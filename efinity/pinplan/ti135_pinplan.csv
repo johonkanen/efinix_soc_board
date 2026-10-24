@@ -1,0 +1,93 @@
+signal,dir,ball,pad,bank,group,note
+adasel0_iso,out,P18,GPIOT_N_04_CLK31_N,2A,j3out,
+adasel1_iso,out,R17,GPIOT_P_04_CLK31_P,2A,j3out,
+adclk_dab,out,T17,GPIOT_P_01_CLK27_P,2A,j3out,
+adclk_iso,out,T16,GPIOT_P_00_CLK26_P,2A,j3out,
+clk1_iso,out,N16,GPIOT_N_02,2A,j3out,
+cs1_iso,out,N17,GPIOT_P_02,2A,j3out,
+inu_adclk,out,R16,GPIOT_N_01_CLK27_N,2A,j3out,
+dab_pwm_hi_sec,out,M17,GPIOT_P_20_PLLIN0,2B,j3out,
+dab_pwm_lo_sec,out,L17,GPIOT_N_20,2B,j3out,
+dab_pwm_pri_hi_iso,out,M18,GPIOT_P_19_EXTFB,2B,j3out,
+dab_pwm_pri_lo_iso,out,M19,GPIOT_N_19,2B,j3out,
+pwm_g1_iso,out,P20,GPIOT_P_17,2B,j3out,
+pwm_g2_iso,out,P21,GPIOT_N_17,2B,j3out,
+pwm_g3_iso,out,P19,GPIOT_P_18,2B,j3out,
+pwm_g4_iso,out,N18,GPIOT_N_18,2B,j3out,
+pwm_q5,out,T20,GPIOT_P_21,2B,j3out,
+pwm_q6,out,R19,GPIOT_N_21,2B,j3out,
+pwm_q7,out,T19,GPIOT_P_22_CLK16_P,2B,j3out,
+pwm_q8,out,R18,GPIOT_N_22_CLK16_N,2B,j3out,
+pwm_trans1_iso,out,U22,GPIOT_P_23_CLK17_P,2B,j3out,
+pwm_trans2_iso,out,T22,GPIOT_N_23_CLK17_N,2B,j3out,
+pwm_trans3_iso,out,U20,GPIOT_P_24_CLK18_P,2B,j3out,
+pwm_trans4,out,T21,GPIOT_N_24_CLK18_N,2B,j3out,
+pwm_trans5,out,R21,GPIOT_P_25_CLK19_P,2B,j3out,
+pwm_trans6,out,R22,GPIOT_N_25_CLK19_N,2B,j3out,
+adc_cs_n,out,L20,GPIOT_N_37_CDI22,2C,adc,
+adc_sclk,out,L19,GPIOT_P_37_CDI23_PLLIN0,2C,adc,
+adc_sdo,in,K17,GPIOT_N_39_CLK15_N,2C,adc,
+adasel2_iso,out,J17,GPIOT_P_34_PLLIN0,2C,j3out,
+adbsel0,out,J19,GPIOT_P_35,2C,j3out,on-board CD4051 mux select (3.3 V via translator)
+adbsel1,out,K19,GPIOT_N_35,2C,j3out,
+adbsel2,out,K16,GPIOT_P_39_CLK15_P,2C,j3out,
+gpio_bypass_rly_iso,out,K18,GPIOT_N_34,2C,j3out,
+emmc_clk,out,K4,GPIOB_P_20_EXTSPICLK_CLK6_P,4A,emmc,
+emmc_cmd,inout,H2,GPIOB_N_18_CLK5_N,4A,emmc,4.7-100k pull-up
+emmc_dat0,inout,F1,GPIOB_N_22,4A,emmc,10-100k pull-up
+emmc_dat1,inout,F2,GPIOB_N_24_CDI4,4A,emmc,10-100k pull-up
+emmc_dat2,inout,F3,GPIOB_P_24_CDI5_EXTFB,4A,emmc,10-100k pull-up
+emmc_dat3,inout,E1,GPIOB_P_22_EXTFB,4A,emmc,10-100k pull-up
+emmc_dat4,inout,E2,GPIOB_P_23_CDI7_PLLIN0,4A,emmc,10-100k pull-up
+emmc_dat5,inout,D2,GPIOB_N_23_CDI6,4A,emmc,10-100k pull-up
+emmc_dat6,inout,B1,GPIOB_N_21_CLK7_N,4A,emmc,10-100k pull-up
+emmc_dat7,inout,G2,GPIOB_P_18_CLK5_P,4A,emmc,10-100k pull-up
+emmc_ds,clkin,B2,GPIOB_P_21_CLK7_P,4A,emmc,HS400 data strobe on a GCLK pin; 10-100k pull-down
+emmc_rst_n,out,A3,GPIOB_P_28_CSO_CLK11_P,4A,emmc,"CSO pin, free after configuration"
+flash_cs_n,out,C1,GPIOB_N_25_SSL_N,4A,flash,SSL_N: 10k pull-up (active SPI mode)
+flash_io0,inout,J4,GPIOB_N_27_CDI0_CLK10_N,4A,flash,CDI0
+flash_io1,inout,J5,GPIOB_P_27_CDI1_CLK10_P,4A,flash,CDI1
+flash_io2,inout,G3,GPIOB_N_26_CDI2,4A,flash,CDI2: 10k pull-up (WP#)
+flash_io3,inout,C2,GPIOB_P_25_CDI3_PLLIN0,4A,flash,CDI3: 10k pull-up (HOLD#)
+flash_sck,out,G4,GPIOB_P_26_CCK,4A,flash,CCK
+refclk_bl0,pllref,N7,GPIOB_P_00_PLLIN0,4B,clock,25 MHz reference for PLL_BL0
+refclk_bl1,pllref,R3,GPIOB_P_03_PLLIN0,4B,clock,25 MHz reference for PLL_BL1
+refclk_bl2,pllref,L2,GPIOB_P_06_CDI19_PLLIN0,4B,clock,25 MHz reference for PLL_BL2
+eth_int_n,in,M5,GPIOB_N_09,4B,eth,pull-up
+eth_mdc,out,M2,GPIOB_N_06_CDI18,4B,eth,
+eth_mdio,inout,K3,GPIOB_N_08,4B,eth,pull-up at the PHY
+eth_rst_n,out,K2,GPIOB_P_08,4B,eth,pull-down/RC at the PHY
+rgmii_rx_ctl,in,N2,GPIOB_N_12_CDI12,4B,eth,region B1
+rgmii_rxc,clkin,P5,GPIOB_P_14_CLK1_P,4B,eth,"GCLK, clock region B1"
+rgmii_rxd0,in,N3,GPIOB_P_12_CDI13,4B,eth,region B1
+rgmii_rxd1,in,R4,GPIOB_N_14_CLK1_N,4B,eth,region B1
+rgmii_rxd2,in,N5,GPIOB_N_11_CDI14,4B,eth,region B0/B1
+rgmii_rxd3,in,N6,GPIOB_P_11_CDI15,4B,eth,region B0/B1
+rgmii_tx_ctl,out,R2,GPIOB_N_03,4B,eth,
+rgmii_txc,out,P6,GPIOB_N_00,4B,eth,
+rgmii_txd0,out,P1,GPIOB_N_04,4B,eth,
+rgmii_txd1,out,P3,GPIOB_N_05,4B,eth,
+rgmii_txd2,out,T6,GPIOB_N_07_CDI16,4B,eth,
+rgmii_txd3,out,P4,GPIOB_P_05,4B,eth,
+j3_oe_n,out,L5,GPIOB_P_09,4B,j3ctl,"OE of all 4 translators, 10k pull-up to 1V8"
+gpio_bypass_rly_isolated,out,N1,GPIOB_P_04_EXTFB,4B,j3out,via translator
+t_clk,out,H6,GPIOL_27_CLK25,BL3,lcd,
+t_cs_n,out,F4,GPIOL_26_CLK24,BL3,lcd,
+t_din,out,G6,GPIOL_28,BL3,lcd,
+led0_n,out,H9,GPIOL_32_PLLIN1,BL3,led,active low
+led1_n,out,F5,GPIOL_34_PLLIN1,BL3,led,active low
+uart_rx,in,H8,GPIOL_33,BL3,uart,pull-up
+uart_tx,out,H7,GPIOL_31,BL3,uart,
+lcd_cs_n,out,M8,GPIOR_127_CLK8,BR0,lcd,
+lcd_dc,out,K6,GPIOR_129_PLLIN1,BR0,lcd,
+lcd_led,out,H5,GPIOR_132,BR0,lcd,
+lcd_mosi,out,J6,GPIOR_131_PERST_Q0_N,BR0,lcd,
+lcd_reset_n,out,K7,GPIOR_128_CLK9,BR0,lcd,
+lcd_sck,out,L8,GPIOR_130_PLLIN1,BR0,lcd,
+mdata_dab,in,N20,GPIOR_79,TR1,j3in,
+mdata_inu,in,M20,GPIOR_78_PLLIN1,TR1,j3in,
+mdata_iso,in,N21,GPIOR_80_CLK12,TR1,j3in,
+sdata1_iso,in,N22,GPIOR_81_CLK13,TR1,j3in,
+lcd_miso,in,M22,GPIOR_82,TR1,lcd,
+t_do,in,L21,GPIOR_83,TR1,lcd,
+t_irq,in,L22,GPIOR_84,TR1,lcd,

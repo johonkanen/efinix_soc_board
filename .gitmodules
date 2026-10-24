@@ -1,0 +1,3 @@
+[submodule "tools/p2k"]
+	path = tools/p2k
+	url = https://github.com/johonkanen/proteus2kicad.git

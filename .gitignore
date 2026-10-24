@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+# generated outputs (rebuild with tools/build_schematic.sh / efinity/pinplan/pinplan.py)
+reports/
+efinity/pinplan/build/
+# KiCad local state
+*.kicad_prl
+*-backups/
+fp-info-cache
+_autosave-*
+\#auto_saved_files#
+*.lck

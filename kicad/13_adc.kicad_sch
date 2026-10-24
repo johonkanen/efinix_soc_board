@@ -1,0 +1,15 @@
+(kicad_sch
+	(version 20260101)
+	(generator "eeschema")
+	(generator_version "10.0")
+	(uuid "dc1b78fc-48d5-4018-ae34-2275b3039843")
+	(paper "A3")
+	(title_block
+		(title "Ti135 control card - adc")
+		(company "Jari Honkanen")
+		(rev "0.1")
+		(comment 1 "Efinix Ti135N484I3 control card for the AC lab PSU baseboard")
+	)
+	(lib_symbols)
+	(embedded_fonts no)
+)

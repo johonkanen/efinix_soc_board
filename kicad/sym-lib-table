@@ -1,0 +1,4 @@
+(sym_lib_table
+	(version 7)
+	(lib (name "ti135_card")(type "KiCad")(uri "${KIPRJMOD}/../lib/ti135_card.kicad_sym")(options "")(descr "Project symbols, pin ids = IPC"))
+)
