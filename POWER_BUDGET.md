@@ -77,7 +77,7 @@ The TDA38812 (VCORE on the Agilex card) is not needed: the Ti135 core is about 1
 **One TLV62585PDRLR per rail**, the same part six times: VCORE 0.95 V, 0V85, 1V1, 1V8, 3V3, 1V2. Each with:
 
 - Cin 10 µF 0805
-- L 1 µH, 4 × 4 mm class, Isat ≥ 4 A (for example XFL4020-102 or a JLC-stocked equivalent)
+- L 1 µH, 4 × 4 mm: **Sunlord WPN4020H1R0MT** (C98359, 26 mΩ, Isat 5.8 A, above the 4 A switch limit; 11,421 orderable)
 - Cout 22 µF 0805 (2 × 22 µF on VCORE)
 - R2 = 100 kΩ (data sheet maximum), R1 = R2 × (Vout/0.6 − 1), optional feed-forward C3
 

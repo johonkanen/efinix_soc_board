@@ -1,6 +1,6 @@
 # Status and handoff
 
-Last updated: **2026-10-25**. Read this first if you are picking the work up (human or agent).
+Last updated: **2026-10-25** (PCB setup). Read this first if you are picking the work up (human or agent).
 
 ## What this repository is
 
@@ -20,7 +20,14 @@ card, and plugs into the same baseboard.
 
 ## Where we left off
 
-**Phase 2 (schematic): all 14 sheets are drawn (2026-10-25).** Next is footprints and PCB setup (see Next phases).
+**Phase 2 (schematic): all 14 sheets are drawn. Phase 3 (PCB) is set up (2026-10-25):** `kicad/ti135_card.kicad_pcb` exists.
+- The outline is in place, and J3 / J6 / J9 sit on their MECHANICAL.md pads (checked by the script).
+- U501 is rotated 180° and U801 is north of it; every other part is staged off-board by sheet.
+- 8-layer JLC08161H-3313 stack-up, net classes and DRC rules are set up.
+- DRC: schematic parity 0, no shorts or clearance errors. 499 unconnected items (nothing is routed yet), plus silkscreen
+  warnings from the jack overhanging the edge.
+
+The next step is **placement** (see Next phases).
 
 | Sheet | State |
 |---|---|
@@ -92,17 +99,21 @@ tools/p2k/bin/p2k render_sheet kicad/08_lpddr4.kicad_sch   # PNG check -> report
 ## Open items
 
 - [ ] **Measure the card-to-baseboard gap on the Ti60 card**: it decides the baseboard U8 replacement height.
-- [ ] **Stock at JLC (2026-10-25):** RB1-125B8G1A magjack **0** (C363353); ADS7056IRUGR 44; KSZ9031RNXCA 17 + 42 (-TR).
-      Order early or source elsewhere. A different magjack changes MECHANICAL.md §J9 (keep the front face and centreline).
+- [ ] **Stock at JLC, orderable quantity (2026-10-25):**
+  - ADS7056IRUGR **18**;
+  - KSZ9031RNXCA **16**, plus 42 of the -TR version;
+  - QSPI flash 68, LPDDR4 106, eMMC 177.
+
+  Order these early or source them elsewhere. Check with `jlc-tools/stock_check.py` (judge by the orderable "free"
+  quantity, not stockCount). The magjack is now the HR911130A (9,124 orderable); the RB1 had 0.
 - [ ] Verify the KSZ9031 LED1 polarity (strap-dependent) on the first board; U902 is an inverting buffer.
 - [ ] Verify against the **Titanium Hardware Design Checklist** (Efinix Support Center, login): decoupling values,
       the supply that CDONE/CRESET_N are pulled up to (1V8 assumed, as on the Ti375C529 kit), unused transceiver pins,
       DDR PHY rail group (TI135_PCB_NOTES.md §10).
 - [ ] Run the **Efinix Power Estimator** (spreadsheet, Support Center) and update POWER_BUDGET.md.
 - [ ] Download the **Ti135N484 package net-length file** (Support Center) for LPDDR4 length matching.
-- [ ] Check the inductor WPN4020H1R0MT (C98359) saturation current is at least 4 A (the TLV62585 switch limit).
-- [ ] Verify the Ti60 jack front face against the Würth 615008140121 drawing and the UDE RB1 front against its own
-      drawing (MECHANICAL.md, J9).
+- [ ] Verify the Ti60 jack front face against the Würth 615008140121 drawing (MECHANICAL.md, J9; the HR911130A
+      body is the same 21.3 mm deep).
 - [ ] Choose the LPDDR4 data rate (sets the PLL_BL2 frequencies in `efinity/pinplan/pinplan.py`; the current values are
       placeholders).
 - [ ] Ti135N484I3 sourcing: not stocked at JLC; it needs global sourcing.
@@ -110,16 +121,24 @@ tools/p2k/bin/p2k render_sheet kicad/08_lpddr4.kicad_sch   # PNG check -> report
 ## Next phases
 
 1. **Schematic review and BOM pass.** All sheets are drawn. Review the renders (`reports/render/`), fill in the LCSC/MPN fields, and check JLC stock.
-2. **Footprints for the hard-placed parts:** J3 / J6 (PinSocket on B.Cu) and J9 (RB1 magjack) at the
-   MECHANICAL.md coordinates. The outline is 76.000 × 65.127 mm with the aux origin at KiCad (100, 100).
-3. **PCB setup (Phase 3):**
+2. ~~Footprints and PCB setup~~ **done 2026-10-25:**
+   - `tools/gen_footprints.py`: the HR911130A footprint.
+   - `tools/build_pcb.sh` runs all three below, then DRC.
+   - `tools/make_board.py` (run with kipy): builds the board from the netlist with the fixed parts placed and checked.
+     It rebuilds from scratch, so use it only until manual placement starts; after that, use pcbnew's "Update PCB from
+     Schematic".
+   - `tools/board_setup.py`: Agilex stack-up, net classes (LPDDR4, RGMII, power), DRC rules (U501/U801), and a J3
+     edge exception.
+3. **Placement and fan-out (next):**
    - **First, check KiCadRoutingTools** (user request): https://github.com/drandyhaas/KiCadRoutingTools/discussions/1364
-   - Use the proteus2kicad `build_pcb` flow, or pcbnew scripts, to create the board from the netlist with the fixed parts
-     placed.
-   - Copy the stack-up, net classes and LPDDR4 rules from the Agilex card.
-   - Placement: BGA rotated 180° (DDR edge toward U801 in the north, banks 2A–2C west toward J3 and the translators,
-     4A/4B east toward flash, eMMC and Ethernet). Then decoupling under the BGA and the dog-bone fan-out.
-   - Pin-swap loop through `efinity/pinplan/pinplan.py` (Interface Designer check) → schematic.
+   - Placement:
+     - BGA decoupling under U501 on the matching balls;
+     - translators between the 2A–2C (west) BGA edge and J3;
+     - flash, eMMC, KSZ9031 and crystal east and north-east toward J9;
+     - power cells (6 × TLV62585) along the bottom and east edge, near J6;
+     - ADC block near J3's analog pins (ISOADA, J3 pins 1/3/4).
+   - Then the dog-bone fan-out (0.8 mm pitch), the plane assignment per layer, and a pin-swap loop through
+     `efinity/pinplan/pinplan.py` → schematic.
 4. **LPDDR4 routing** (TI135_PCB_NOTES.md §6.3), then the rest. DRC, then the JLC order checklist.
 5. **In parallel (software):** bring up Linux on a Ti375C529 dev kit with the hard SoC + TSEMAC + eMMC host
    (MIGRATION_PLAN.md phase 1).

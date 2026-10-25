@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Sheet 9 ethernet: KSZ9031RNX (U901) gigabit PHY, RGMII to the FPGA at 1.8 V, magjack J9 (UDE RB1-125B8G1A).
+"""Sheet 9 ethernet: KSZ9031RNX (U901) gigabit PHY, RGMII to the FPGA at 1.8 V, magjack J9 (HanRun HR911130A, C54408).
 
 Values from the Agilex 5 card (a5e_kicad/eth.kicad_sch, ETH_PHY_REVIEW.md):
 - RGMII 22 R series resistors (TX at the FPGA end, RX at the PHY end in layout), DVDDH = 1V8.
@@ -15,7 +15,7 @@ from _common import *  # noqa: F401,F403
 
 sh = sheet("09_ethernet.kicad_sch")
 sh.text("KSZ9031RNX gigabit PHY, RGMII at 1.8 V to bank 4B. Values and straps from the Agilex 5 card (address 0,\n"
-        "RGMII mode, single-LED mode). J9 = UDE RB1-125B8G1A magjack, placed per MECHANICAL.md.", g(14), g(14))
+        "RGMII mode, single-LED mode). J9 = HanRun HR911130A magjack (green LED used, yellow spare), placed per MECHANICAL.md.", g(14), g(14))
 
 UX, UY = g(120), g(90)
 u = sh.place("KSZ9031RNXCA", "U901", UX, UY, value="KSZ9031RNXCA", fields={"LCSC": "C58758"})
@@ -105,18 +105,18 @@ cap_row(sh, g(200), g(176), "1V8", [(f"C9{40 + i:02d}", v, fp) for i, (v, fp) in
                                     enumerate([("4u7", None)] + [("100n", None)] * 3)],
         "1V8 DVDDH (3 pins): 4u7 + 3 x 100n")
 
-# magjack
-J = sh.place("RJ45_RB1-125B8G1A", "J9", g(260), g(90), value="RB1-125B8G1A", fields={"LCSC": "C363353"})
-for pin, net in (("R2", "eth_mdi_a_P"), ("R3", "eth_mdi_a_N"), ("R4", "eth_mdi_b_P"), ("R5", "eth_mdi_b_N"),
-                 ("R6", "eth_mdi_c_P"), ("R7", "eth_mdi_c_N"), ("R8", "eth_mdi_d_P"), ("R9", "eth_mdi_d_N")):
+# magjack HanRun HR911130A (LCSC C54408, chosen 2026-10-25 for stock; MECHANICAL.md J9)
+J = sh.place("HR911130A", "J9", g(260), g(90), value="HR911130A", fields={"LCSC": "C54408"})
+for pin, net in (("2", "eth_mdi_a_P"), ("3", "eth_mdi_a_N"), ("4", "eth_mdi_b_P"), ("7", "eth_mdi_b_N"),
+                 ("5", "eth_mdi_c_P"), ("6", "eth_mdi_c_N"), ("8", "eth_mdi_d_P"), ("9", "eth_mdi_d_N")):
     attach(sh, J, pin, "label", net, 4)
-attach(sh, J, "R1", "label", "eth_ct", 4)
-attach(sh, J, "R10", "power", "GND", 3)
+attach(sh, J, "1", "label", "eth_ct", 4)
+attach(sh, J, "10", "power", "GND", 3)
 attach(sh, J, "SH", "power", "GND", 3)
-attach(sh, J, "L1", "nc")
-attach(sh, J, "L2", "nc")
-attach(sh, J, "L3", "label", "eth_led_a", 4)
-attach(sh, J, "L4", "label", "eth_led_k", 4)
+attach(sh, J, "11", "label", "eth_led_a", 4)
+attach(sh, J, "12", "label", "eth_led_k", 4)
+attach(sh, J, "14", "nc")
+attach(sh, J, "13", "nc")
 _, ct, cb = vert2(sh, "C", "C950", g(258), g(130), "100n", text="right")
 sh.wire(ct, up(ct, 2)); sh.label("eth_ct", *up(ct, 2), 90)
 sh.wire(cb, down(cb, 2)); power_at(sh, "GND", down(cb, 2), "down")

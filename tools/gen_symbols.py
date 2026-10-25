@@ -218,6 +218,18 @@ def emmc():
     return s
 
 
+def hr911130a():
+    left = [(2, "MDI0+", PAS), (3, "MDI0-", PAS), (4, "MDI1+", PAS), (7, "MDI1-", PAS), (5, "MDI2+", PAS),
+            (6, "MDI2-", PAS), (8, "MDI3+", PAS), (9, "MDI3-", PAS), None, (1, "TCT", PAS), (10, "CHS", PAS)]
+    right = [(11, "LEDG_A", PAS), (12, "LEDG_K", PAS), None, (14, "LEDY_A", PAS), (13, "LEDY_K", PAS), None,
+             ("SH", "SHIELD", PAS)]
+    s = box("HR911130A", "J", left, right, value="HR911130A",
+            desc="HanRun RJ45 with 10/100/1000Base-T magnetics, green (11 A / 12 K) and yellow (14 A / 13 K) LEDs. "
+                 "TCT = chip-side centre taps, CHS = 75 R / 1000 p Bob Smith common (LCSC C54408)")
+    set_prop(s, "Datasheet", "https://datasheet.lcsc.com/datasheet/pdf/d9b1e130e54a44fe9872ced55aa393e4.pdf")
+    return s
+
+
 def tlv62585p():
     left = [(3, "VIN", PI), (4, "EN", IN)]
     right = [(2, "SW", PO), (5, "FB", IN), (6, "PG", "open_collector")]
@@ -253,7 +265,6 @@ def build():
         from_std("Connector_Generic", "Conn_01x05", "Conn_01x05", "J"),
         from_std("Connector_Generic", "Conn_01x03", "Conn_01x03", "J"),
         from_std("Interface_Ethernet", "KSZ9031RNXCA", "KSZ9031RNXCA", "U"),
-        from_std("Connector", "RJ45_RB1-125B8G1A", "RJ45_RB1-125B8G1A", "J"),
         from_std("Analog_Switch", "CD4051B", "CD4051B", "U"),
         from_std("Amplifier_Operational", "AD8603", "AD8603", "U"),
         from_std("Amplifier_Operational", "OPA365xxDBV", "OPA365xxDBV", "U"),
@@ -274,7 +285,7 @@ def build():
     ]
     pwr = [power(n, n == "GND") for n in ("GND", "5V0", "VCORE", "0V85", "1V1", "1V2", "1V8", "3V3", "3V3_analog")]
     pwr.append(rename(std_symbol("power", "PWR_FLAG"), "PWR_FLAG"))
-    syms = std + agx + [fpga_symbol(), axc8t245(), emmc(), qspi_flash(), tlv62585p()] + pwr
+    syms = std + agx + [fpga_symbol(), axc8t245(), emmc(), qspi_flash(), tlv62585p(), hr911130a()] + pwr
     for sym in syms:
         # hidden power-input pins become implicit global nets named after the pin in KiCad; they are stacked on a
         # visible pin anyway, so make them passive (same treatment as the generated Ti135 symbol)
@@ -305,7 +316,7 @@ FOOTPRINT = {
     "Conn_01x05": "Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical",
     "Conn_01x03": "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical",
     "KSZ9031RNXCA": "Package_DFN_QFN:QFN-48-1EP_7x7mm_P0.5mm_EP5.15x5.15mm",
-    "RJ45_RB1-125B8G1A": "Connector_RJ:RJ45_UDE_RB1-125B8G1A",
+    "HR911130A": "ti135_card:RJ45_Hanrun_HR911130A_Horizontal",
     "CD4051B": "Package_SO:TSSOP-16_4.4x5mm_P0.65mm",
     "AD8603": "Package_TO_SOT_SMD:TSOT-23-5",
     "OPA365xxDBV": "Package_TO_SOT_SMD:SOT-23-5",

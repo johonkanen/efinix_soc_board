@@ -1,0 +1,93 @@
+(version 1)
+# Ti135 control card DRC rules: the Agilex 5 card's LPDDR4 / JLCPCB rules (tools/board_setup.py),
+# U7 -> U501 (Ti135N484, 0.8 mm pitch, no sub-0.09 mm exception), U12 -> U801 (LPDDR4).
+
+# ===================================================================================================
+# LPDDR4 rules (net classes lpddr_dq, lpddr_ca, lpddr_diff).  KiCad applies the LAST matching rule,
+# so the general rules come first and the BGA-courtyard exceptions (U7 Agilex, U12 LPDDR4) after them.
+# intersectsCourtyard() also catches segments that cross the courtyard edge (insideCourtyard() would not).
+# Stack-up: JLC08161H-3313.  50 ohm SE: 0.15 mm F/B.Cu, 0.12 mm inner.  100 ohm pair: 0.13/0.25 mm
+# F/B.Cu, 0.11/0.25 mm inner.  JLCPCB minimum trace/space is 0.09 mm; the 0.075 mm clearance used
+# between the 0.4 mm U7 pads is below that - see the note at the end.
+# ===================================================================================================
+
+# ---- single-ended DQ/DM/CA outside the BGAs -------------------------------------------------------
+(rule "lpddr_se_outer"
+	(condition "(A.hasNetclass('lpddr_dq') || A.hasNetclass('lpddr_ca')) && (A.Layer == 'F.Cu' || A.Layer == 'B.Cu')")
+	(constraint track_width (min 0.13mm) (opt 0.15mm) (max 0.16mm)))
+(rule "lpddr_se_inner"
+	(condition "(A.hasNetclass('lpddr_dq') || A.hasNetclass('lpddr_ca')) && A.Layer != 'F.Cu' && A.Layer != 'B.Cu'")
+	(constraint track_width (min 0.11mm) (opt 0.12mm) (max 0.13mm)))
+
+# ---- DQS / CK pairs outside the BGAs: 100 ohm geometry per layer -----------------------------------
+(rule "lpddr_diff_outer"
+	(condition "A.hasNetclass('lpddr_diff') && (A.Layer == 'F.Cu' || A.Layer == 'B.Cu')")
+	(constraint track_width (min 0.12mm) (opt 0.13mm) (max 0.14mm))
+	(constraint diff_pair_gap (min 0.2mm) (opt 0.25mm) (max 0.3mm)))
+(rule "lpddr_diff_inner"
+	(condition "A.hasNetclass('lpddr_diff') && A.Layer != 'F.Cu' && A.Layer != 'B.Cu'")
+	(constraint track_width (min 0.1mm) (opt 0.11mm) (max 0.12mm))
+	(constraint diff_pair_gap (min 0.2mm) (opt 0.25mm) (max 0.3mm)))
+
+# ---- pair integrity (whole net, all layers) --------------------------------------------------------
+# intra-pair skew, and the total length the two halves may run apart: escape through the U7 ball field
+# (~6 mm), the U12 escape through its 0.65 mm channels (~8 mm) and the pad entries.
+(rule "lpddr_pair_skew"
+	(condition "A.hasNetclass('lpddr_diff')")
+	(constraint skew (max 2ps) (within_diff_pairs)))
+(rule "lpddr_pair_uncoupled"
+	(condition "A.hasNetclass('lpddr_diff')")
+	(constraint diff_pair_uncoupled (max 12mm)))
+
+# ---- crosstalk guard outside the BGAs (warning only) -----------------------------------------------
+# neighbouring LPDDR tracks at least 0.25 mm apart (about 2x the dielectric height on every layer).
+(rule "lpddr_xtalk_spacing"
+	(severity warning)
+	(condition "A.Type == 'Track' && B.Type == 'Track' && (A.hasNetclass('lpddr_dq') || A.hasNetclass('lpddr_ca') || A.hasNetclass('lpddr_diff')) && (B.hasNetclass('lpddr_dq') || B.hasNetclass('lpddr_ca') || B.hasNetclass('lpddr_diff')) && A.NetName != B.NetName && !A.inDiffPair('*') && !(A.intersectsCourtyard('U501') || A.intersectsCourtyard('U801'))")
+	(constraint clearance (min 0.25mm)))
+
+# ---- inside the BGA courtyards: neck-down and single-channel escape ---------------------------------
+# One 0.1 mm trace per channel between the balls.  A pair may split into two channels here, so the
+# gap has no upper limit; it is counted as uncoupled length by the rule above.
+(rule "lpddr_bga_neckdown"
+	(condition "(A.hasNetclass('lpddr_dq') || A.hasNetclass('lpddr_ca') || A.hasNetclass('lpddr_diff')) && (A.intersectsCourtyard('U501') || A.intersectsCourtyard('U801'))")
+	(constraint track_width (min 0.09mm) (opt 0.1mm))
+	(constraint diff_pair_gap (min 0.1mm) (opt 0.2mm)))
+
+# Clearance between LPDDR tracks and the U7 pads / via-in-pad vias: the 0.4 mm pads on 0.65 mm pitch
+# leave 0.25 mm, i.e. 0.1 mm trace + 2 x 0.075 mm.  This matches the 0.075 mm pad overrides already on
+# the footprint and the board minimum clearance, but it is BELOW JLCPCB's 0.09 mm capability.  To be
+# within spec, reduce the U7 pads to 0.35 mm (0.3 mm channel -> 0.1 mm trace + 2 x 0.1 mm) and raise
+# this rule and the board minimum to 0.09 mm.
+(rule "lpddr_bga_clearance_u801"
+	(condition "(A.hasNetclass('lpddr_dq') || A.hasNetclass('lpddr_ca') || A.hasNetclass('lpddr_diff')) && A.Type == 'Track' && (B.Type == 'Pad' || B.Type == 'Via') && A.intersectsCourtyard('U801')")
+	(constraint clearance (min 0.1mm)))
+
+# ===================================================================================================
+# JLCPCB multilayer capabilities (jlcpcb.com/capabilities/pcb-capabilities, checked 2026-10-13).
+# Board setup constraints carry the rest: clearance/track 0.09, via 0.25/0.15 (annular 0.05, 0.075
+# preferred - the 0.3/0.15 vias used here), via hole-to-hole 0.2, silk 1.0 mm / 0.15 mm.
+# Via-in-pad on U7 relies on JLCPCB epoxy filled & capped vias (default for 6+ layers; select it
+# when ordering).
+#
+# Hole clearance is set to 0.175 mm (= 0.075 mm via ring + 0.1 mm copper clearance). JLCPCB lists
+# "via hole to track 0.2 mm" without saying whether it is measured from the drill or the ring; at
+# 0.2 mm about 200 existing track/via spots would fail. Confirm with the JLCPCB DFM check on the
+# Gerbers before raising it.
+# ===================================================================================================
+(rule "jlc_pth_annular"
+	(condition "A.Type == 'Pad' && A.Pad_Type == 'Through-hole'")
+	(constraint annular_width (min 0.15mm)))
+(rule "jlc_pad_hole_to_hole"
+	(condition "A.Type == 'Pad' && B.Type == 'Pad' && A.Pad_Type == 'Through-hole' && B.Pad_Type == 'Through-hole'")
+	(constraint hole_to_hole (min 0.45mm)))
+(rule "jlc_pth_to_track"
+	(condition "A.Type == 'Pad' && A.Pad_Type == 'Through-hole' && B.Type != 'Pad'")
+	(constraint hole_clearance (min 0.28mm)))
+
+
+# J3 corner pins 37/38: the hole positions come from the Ti60 card / baseboard (MECHANICAL.md) and sit
+# 0.89 mm from the top edge, so their pads are 0.39 mm from it. JLC's routed-edge minimum is 0.3 mm.
+(rule "j3_baseboard_edge"
+	(condition "A.memberOfFootprint('J3')")
+	(constraint edge_clearance (min 0.3mm)))
