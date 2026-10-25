@@ -10,8 +10,17 @@ overall plan is in `LAYOUT_PLAN.md`. Tools: `~/dev/KiCadRoutingTools` (venv `.ve
 - Check the bus router that was still running at wrap-up:
   - log `work/route/bus1.log`: last line `WHOLE K=47 round=2 ...` / `BUS U501->U801 ...`;
   - result `work/route/bus1.kicad_pcb`, summary `work/route/bus1.json`;
-  - not finished, or the machine restarted: re-run it from `STATUS.md`'s command (about 1.5 h per round), in the
-    background.
+  - round 1 is saved in `work/route/bus1_snapshot_round1_2026-10-25/`; see its README;
+  - not finished, or the machine restarted: the tool has no resume, so re-run it in the background (about 1.5 h per
+    round; `ortools` is already in the venv). Keep a WSL window open while it runs: WSL stopping kills it.
+    ```
+    cd work/route && K=~/dev/KiCadRoutingTools
+    nohup $K/.venv/bin/python -X utf8 $K/awx/route_bus.py bus0.kicad_pcb bus1.kicad_pcb --rounds 2 --inproc \
+        --bus U501:U801:joint:F.Cu,B.Cu,In2.Cu,In5.Cu --clearance-ceiling 0.1 --track-width 0.1 \
+        --fanout-track-width 0.1 --via-size 0.25 --via-drill 0.15 --json-out bus1.json > bus1.log 2>&1 &
+    ```
+    `bus0.kicad_pcb` is the board with the DDR signal vias stripped (`tools/ddr/strip_ddr_vias.py`; copies of all
+    three files are in the snapshot). The layer list must start with F.Cu,B.Cu.
 - `git log --oneline -3` should show `8178627` (LPDDR4 draft). Tag `pre-ddr-routing` is the clean board before it.
 
 ## 1. Learn the tools on their own example first (1–2 h)
