@@ -410,7 +410,7 @@ only after the last Group 1 rail (3V3) is in regulation, and the supervisor cove
 - `tools/sheets/NN_*.py` draw one sheet each. `tools/sync_root.py` creates the root sheet pins.
 - `tools/build_schematic.sh` regenerates everything and runs ERC.
 - Done: 01–05 (power input, VCORE, rails, sequencing, FPGA power/decoupling), 06 fpga_config, 07 clocks, 08 lpddr4 (netlist-checked against §6.1 of the notes), 11 fpga_io, 12 level_shift, 14 connectors.
-- To do: 09 ethernet, 10 emmc, 13 adc.
+- 2026-10-25: 09 ethernet, 10 emmc and 13 adc are drawn as well, so all 14 sheets are done. The ADC front end comes from the Agilex 3 card (OPA365, 33 R + 680 p).
 - **Regulators changed 2026-10-24:** six TLV62585PDRLR replace the TDA38812 and the AP61202s; the AP61202 is nearly out of stock at JLC. See `POWER_BUDGET.md`.
 - Mechanics: `MECHANICAL.md`.
 

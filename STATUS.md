@@ -1,6 +1,6 @@
 # Status and handoff
 
-Last updated: **2026-10-24**. Read this first if you are picking the work up (human or agent).
+Last updated: **2026-10-25**. Read this first if you are picking the work up (human or agent).
 
 ## What this repository is
 
@@ -20,7 +20,7 @@ card, and plugs into the same baseboard.
 
 ## Where we left off
 
-**Phase 2 (schematic) is in progress: 11 of 14 sheets are drawn.**
+**Phase 2 (schematic): all 14 sheets are drawn (2026-10-25).** Next is footprints and PCB setup (see Next phases).
 
 | Sheet | State |
 |---|---|
@@ -32,15 +32,18 @@ card, and plugs into the same baseboard.
 | 06 fpga_config | done: CDONE, CRESET_N, JTAG + header J1, REF_RES, straps, QSPI flash U601, LEDs |
 | 07 clocks | done: 25 MHz SiT8924 → 3 × 33 R → PLL_BL0/1/2 reference pins N7/R3/L2 |
 | 08 lpddr4 | done: U501 DDR unit ↔ U801 H9HCNNN8KUMLHR-NME. Connectivity checked against the netlist (0 mismatches) |
-| **09 ethernet** | **to do**: KSZ9031RNX (RGMII at 1.8 V DVDDH) + RJ45 magjack J9. Reuse the Agilex `a5e_kicad/eth.kicad_sch` values (also read `ETH_PHY_REVIEW.md` there: FB1/FB2, Y3 placement) |
-| **10 emmc** | **to do**: KIOXIA THGAMVG7T13BAIL (symbol done). Pull-ups and caps in `TI135_PCB_NOTES.md` §8 and the Efinix Ti375C529 kit (CMD/DAT 47k5 to 1V8, DS 47k5 pull-down, CLK 10 R series, VCC 3V3, VCCQ 1V8) |
+| 09 ethernet | done: KSZ9031RNX with the Agilex values/straps (PHY address 0, RGMII mode, single-LED mode), 22 R RGMII series, ferrite-fed AVDDH/AVDDL_PLL, 25 MHz crystal, magjack J9. The jack LED goes through a 74LVC1G06; **verify LED1 polarity at bring-up** |
+| 10 emmc | done: THGAMVG7T13BAIL, CMD/DAT0-7/RST_n 47 k pull-ups to 1V8, DS 47 k pull-down, CLK 10 R, VCC 3V3, VCCQ 1V8, VDDi 2u2 |
 | 11 fpga_io | done: U501 bank units with labels from the pin plan |
 | 12 level_shift | done: 4 × SN74AXC8T245, OE pulled up (outputs disabled until the FPGA enables them) |
-| **13 adc** | **to do**: CD4051B mux (from ISOADA1..3 on J3) + AD8603 + ADS7056 (DVDD = 1V8, 3V3_analog). Reuse the Agilex `ad_subsystem.kicad_sch` values; the mux selects come 3.3 V from the translators (adbsel0..2_3v3) |
+| 13 adc | done. Front end from the **Agilex 3 card** (`~/dev/ti60f225_control_card`, design-notes "ADC front end for 2.5 MSPS"): SN74LV4051A (INH to GND, X0 = GND reference, rail monitors, isoada1..3 from J3), then an OPA365 buffer, a 33 R + 680 p C0G kickback filter and an ADS7056. AVDD 4u7 + 100n, DVDD 1V8, 33 R SPI series. The Agilex 5 card's AD8603 was too slow and its INH was tied high |
 | 14 connectors | done: J3 (baseboard J11) + 32 × 10 k pull-downs, J5 LCD, J2 UART |
 
-ERC now shows only (a) labels on the root sheet whose other end is on the three missing sheets and (b) a harmless
-`pin_not_driven` on U401 ~MR (driven only by open-drain PG outputs; it has an internal pull-up).
+ERC shows two known, harmless notes and nothing else:
+- `pin_not_driven` on U401 ~MR: it is driven only by open-drain PG outputs and has an internal pull-up.
+- `pin_to_pin` on U1301 X0: the mux's zero-reference input is intentionally tied to GND.
+
+The netlist check passes: each of the 92 pin-plan signals reaches its load, and the LPDDR4 wiring matches §6.1 of the notes.
 
 ## How to build (everything is scripted, do not hand-edit the .kicad_sch files)
 
@@ -89,7 +92,9 @@ tools/p2k/bin/p2k render_sheet kicad/08_lpddr4.kicad_sch   # PNG check -> report
 ## Open items
 
 - [ ] **Measure the card-to-baseboard gap on the Ti60 card**: it decides the baseboard U8 replacement height.
-- [ ] Draw sheets 09 ethernet, 10 emmc and 13 adc. Then ERC must be clean (except the known U401 ~MR note).
+- [ ] **Stock at JLC (2026-10-25):** RB1-125B8G1A magjack **0** (C363353); ADS7056IRUGR 44; KSZ9031RNXCA 17 + 42 (-TR).
+      Order early or source elsewhere. A different magjack changes MECHANICAL.md §J9 (keep the front face and centreline).
+- [ ] Verify the KSZ9031 LED1 polarity (strap-dependent) on the first board; U902 is an inverting buffer.
 - [ ] Verify against the **Titanium Hardware Design Checklist** (Efinix Support Center, login): decoupling values,
       the supply that CDONE/CRESET_N are pulled up to (1V8 assumed, as on the Ti375C529 kit), unused transceiver pins,
       DDR PHY rail group (TI135_PCB_NOTES.md §10).
@@ -104,7 +109,7 @@ tools/p2k/bin/p2k render_sheet kicad/08_lpddr4.kicad_sch   # PNG check -> report
 
 ## Next phases
 
-1. **Finish the schematic** (sheets 09, 10, 13). Clean ERC. Review every sheet render. Write a BOM/LCSC column pass.
+1. **Schematic review and BOM pass.** All sheets are drawn. Review the renders (`reports/render/`), fill in the LCSC/MPN fields, and check JLC stock.
 2. **Footprints for the hard-placed parts:** J3 / J6 (PinSocket on B.Cu) and J9 (RB1 magjack) at the
    MECHANICAL.md coordinates. The outline is 76.000 × 65.127 mm with the aux origin at KiCad (100, 100).
 3. **PCB setup (Phase 3):**

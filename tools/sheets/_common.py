@@ -111,3 +111,62 @@ def cap_row(sh, x, y, rail, caps, title=None, gnd="GND", pitch=None):
         top, bot = t, b
         if fp:
             set_field(sh, ref, "Footprint", fp)
+
+
+def side_of(placed, num):
+    """Which side of a placed symbol pin `num` sits on: 'left', 'right', 'up' or 'down' (from the pin extents)."""
+    pts = list(placed.pins.values())
+    xs, ys = [p[0] for p in pts], [p[1] for p in pts]
+    p = placed.pin(num)
+    if p[0] <= min(xs) + 1e-6 and max(xs) - min(xs) > 1:
+        return "left"
+    if p[0] >= max(xs) - 1e-6 and max(xs) - min(xs) > 1:
+        return "right"
+    return "up" if p[1] <= (min(ys) + max(ys)) / 2 else "down"
+
+
+_ROT = {"left": 180, "right": 0, "up": 90, "down": 270}
+_MOVE = {"left": lambda p, n: left(p, n), "right": lambda p, n: right(p, n),  # noqa: F405
+         "up": lambda p, n: up(p, n), "down": lambda p, n: down(p, n)}  # noqa: F405
+
+
+def attach(sh, placed, num, kind, name=None, n=3, shape="passive"):
+    """Connect pin `num` outward from the symbol: kind 'label' / 'hlabel' (name), 'power' (rail name) or 'nc'.
+    Returns the end point of the stub."""
+    if kind == "nc":
+        sh.no_connect(*placed.pin(num))
+        return placed.pin(num)
+    d = side_of(placed, num)
+    p = placed.pin(num)
+    q = _MOVE[d](p, n)
+    sh.wire(p, q)
+    if kind == "label":
+        sh.label(name, *q, _ROT[d])
+    elif kind == "hlabel":
+        hlabel(sh, name, *q, _ROT[d], shape)
+    elif kind == "power":
+        power_at(sh, name, q, d)  # noqa: F405
+    return q
+
+
+def series_r(sh, ref, x, y, value, left_kind, left_name, right_kind, right_name, shape="passive", fields=None):
+    """Horizontal resistor with a (h)label on each end: kinds 'label' or 'hlabel'."""
+    _, a, b = horiz2(sh, "R", ref, x, y, value, text="above", fields=fields)  # noqa: F405
+    for (pt, kind, name, d) in ((a, left_kind, left_name, "left"), (b, right_kind, right_name, "right")):
+        q = _MOVE[d](pt, 2)
+        sh.wire(pt, q)
+        if kind == "hlabel":
+            hlabel(sh, name, *q, _ROT[d], shape)
+        else:
+            sh.label(name, *q, _ROT[d])
+
+
+def pull_r(sh, ref, x, y, net, rail, value):
+    """Vertical resistor: net label at one end, rail (power symbol) at the other (GND below, supplies above)."""
+    _, t, b = vert2(sh, "R", ref, x, y, value, text="right")  # noqa: F405
+    if rail == "GND":
+        sh.wire(t, up(t, 2)); sh.label(net, *up(t, 2), 90)  # noqa: F405
+        sh.wire(b, down(b, 2)); power_at(sh, "GND", down(b, 2), "down")  # noqa: F405
+    else:
+        sh.wire(t, up(t, 2)); power_at(sh, rail, up(t, 2), "up")  # noqa: F405
+        sh.wire(b, down(b, 2)); sh.label(net, *down(b, 2), 270)  # noqa: F405
