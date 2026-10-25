@@ -13,6 +13,7 @@ card, and plugs into the same baseboard.
 |---|---|
 | `MIGRATION_PLAN.md` | Overall plan: block mapping, decisions, power tree, phases, open questions |
 | `TI135_PCB_NOTES.md` | Ti135 device rules: banks, power sequencing, configuration pins, LPDDR4 wiring and swizzling, routing rules, required pull resistors |
+| `NEXT_SESSION.md` | **Start here next time:** the plan for the next session (bus router result, learning the tools on their LPDDR4 example, DDR clean-up) |
 | `LAYOUT_PLAN.md` | Placement and routing plan: phases, which tool does each step, the fixed design inputs |
 | `MECHANICAL.md` | **Hard mechanical requirements**: outline, J3/J6 (bottom-side baseboard connectors), RJ45 position, all in the Ti60 / KiCad frames |
 | `POWER_BUDGET.md` | Rail estimate, 5V_ISOL input limit, regulator choice (TLV62585PDRLR), divider values |
