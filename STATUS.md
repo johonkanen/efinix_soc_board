@@ -40,7 +40,8 @@ card, and plugs into the same baseboard.
 - DRC: schematic parity 0; no courtyard, clearance or short errors; 499 unconnected (unrouted). Silkscreen warnings
   (overlapping reference labels, the jack overhanging the edge) remain to be tidied.
 
-The next step is **fan-out and routing** (see Next phases).
+**Planes and BGA fan-out done** (TI135_PCB_NOTES.md §6.6–6.7): via-in-pad on every connected U501/U801 ball, plane regions by
+script, under-BGA decaps cleared. Next: LAYOUT_PLAN.md step 12 (buck cell copper) and phase 4 (LPDDR4 routing).
 
 | Sheet | State |
 |---|---|

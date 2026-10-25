@@ -355,21 +355,44 @@ Supply balls under U501 (rotated 180°, DDR edge north): 1V1 in the north band (
 (y 75.8…76.6), VCORE in the centre/south (y 77.4…86.2), 1V8 spread through both (y 76.6…83.8), and 3 × 3V3.
 U801 is 1V1 (46 balls) + 1V8 (8). 0V85 and 1V8 interleave with 1V1/VCORE, so they go on the other plane layer.
 
-| Layer | Net(s) | Why |
+**As built (2026-10-25, `tools/plane_regions.py` → `placement/planes.json` → `tools/apply_planes.py`).** The tool's
+automatic split of a shared layer (route_planes Voronoi over each net's pads) cut the VCORE regulator off from the
+BGA and ran 3V3 as thin strips across In3, so the regions are drawn by script instead:
+
+| Layer | Net(s) | Region |
 |---|---|---|
-| In1.Cu | GND, solid | 0.1 mm reference for In2 (DDR) and F.Cu |
-| In3.Cu | VCORE (BGA centre/south → L201) · 1V1 (BGA north band → U801 → L341) · 3V3 regions (translators west, PHY east, eMMC south) | VCORE and 1V1 meet along one seam at y ≈ 78 under the BGA. The DDR corridor (BGA north edge → U801) lies entirely inside the 1V1 (VDDQ) region, so In2's secondary reference has no seam |
-| In4.Cu | 1V8 (board-wide) · 0V85 island (BGA north band → L331) · 5V0 island (J6 → buck inputs) | 1V8 reaches about 12 ICs, so it gets the largest area |
-| In6.Cu | GND, solid | 0.1 mm reference for In5 (DDR) and B.Cu |
-| F.Cu / B.Cu | GND flood after routing (F.Cu: 355 GND SMD pads, B.Cu: 91) | pour reaches the pads by fill, no via each |
+| In1.Cu, In6.Cu | GND | whole board |
+| In3.Cu | 1V1 | U501 cells (each ball-grid cell goes to the nearest 1V1/VCORE ball) + north block (U801, DDR corridor) + east band to L341 |
+| In3.Cu | VCORE | U501 cells + east corridor to L201 |
+| In3.Cu | GND | the rest |
+| In4.Cu | 0V85 | U501 cells (nearest 1V8/0V85 ball) + corridor to L331 |
+| In4.Cu | 1V8 | the rest |
+| B.Cu | 5V0 | J6 and the five regulator inputs (all on B.Cu, reached by fill) |
+| F.Cu / B.Cu | GND flood | after routing |
+
+3V3 is not a plane: it reaches about 45 pads across the whole board, so it is routed as a power net and poured on the
+outer layers after routing. All 334 plane balls of U501/U801 lie inside their own net's fill.
 
 Left to wide traces: the PHY's `phy_vdd10` / `phy_avdd33` / `phy_dvdd_rg` and the FPGA's ferrite-fed PLL rails
 (`vcca_*`, `vddpll_*`), 2–10 pads each, all local.
 
-Routing arguments that follow: `route_planes.py --nets GND GND 'VCORE|1V1|3V3' '1V8|0V85|5V0' --plane-layers In1.Cu In6.Cu In3.Cu In4.Cu`.
 Signal layers are F.Cu, In2.Cu, In5.Cu and B.Cu. **Do not use `--impedance 50` on F.Cu/B.Cu.** The router's IPC-2141 microstrip
 model ignores the solder mask and asks for 0.188 mm, against 0.15 mm from JLC's calculator and the field solve
 (§6.5). Its inner-layer result (0.119 mm, 100 Ω at 0.110/0.25) agrees with both. Pass the widths explicitly.
+
+### 6.7 BGA fan-out: via-in-pad (2026-10-25)
+
+Every connected ball of U501 has a 0.30/0.15 mm via at its pad centre (0.32 mm pads), and every connected ball of
+U801 a 0.25/0.15 mm via (0.27 mm pads): `tools/via_in_pad.py`, 392 + 178 vias. JLC fills and caps via-in-pad free on
+6+ layer boards (order option "epoxy filled & capped"). Plane balls reach their pour by fill. Signal balls escape on
+their own layer between the via columns: one 0.1 mm track per 0.8 mm channel (`lpddr_bga_neckdown` rule). The
+LPDDR4 bytes route directly from the via on In2 or In5, so each byte stays on one layer (§6.3), with no surface stub.
+- Tried first: `bga_fanout.py --escape-method underpad`. It escaped the outer DDR rows on F.Cu and put the plane
+  balls on dog-bone gap vias, against both the via-in-pad choice and the one-layer-per-byte rule.
+- The decaps under both BGAs were then moved off foreign vias with `place_fanout_clearance.py --clearance 0.13
+  --max-displacement-cap 5`: 69 caps moved, no vias nudged. Three caps were nudged 0.05 mm by hand for the 0.175 mm
+  hole clearance.
+- Test: byte 1 alone, In2 only, 0.1 mm: 9 of 11 nets routed in 1 s (DQ8/DQ9 next to the 0V85 row left open).
 
 ## 7. Clock-capable pins (from the Efinity device database)
 

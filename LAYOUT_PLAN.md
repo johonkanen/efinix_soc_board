@@ -24,7 +24,8 @@ How the board goes from placed parts to fab outputs, and which tool does each st
 | Other controlled nets | 50 Ω / 100 Ω: In2/In5 0.12 mm, 0.11/0.25 mm; F/B 0.15 mm, 0.13/0.25 mm | §6.5 |
 | LPDDR4 data rate | Ti135N484I3 maximum 2.8 Gbps (data sheet Table 22); routed to the Efinix table (3700 Mbps budget) | §6.3 |
 | LPDDR4 swizzle | DQ order within each byte fixed in Efinity (`efinity/pinplan/lpddr4_swizzle.json`); bytes 0/1/3 on In2, byte 2 + CA/CK on In5 | LPDDR4_SWIZZLE.md |
-| Planes | In1 GND · In3 VCORE / 1V1 / 3V3 · In4 1V8 / 0V85 / 5V0 · In6 GND · F/B GND flood after routing | §6.6 |
+| Planes | In1 GND · In3 1V1 / VCORE / GND · In4 1V8 / 0V85 · In6 GND · B.Cu 5V0 region · F/B GND flood after routing; 3V3 routed | §6.6 |
+| BGA fan-out | via-in-pad on every connected ball of U501 (0.30/0.15) and U801 (0.25/0.15) | §6.7 |
 | Card-to-baseboard gap | ≈ 5.3 mm (1.27 mm socket on male header); power supplies on the underside, as on the Ti60 card | MECHANICAL.md |
 
 ## Phase 1: placement
@@ -49,9 +50,9 @@ How the board goes from placed parts to fab outputs, and which tool does each st
 
 | Step | Tool / by hand |
 |---|---|
-| 9. Planes per §6.6; check the In3 VCORE/1V1 seam (y ≈ 78) and that the DDR corridor is all 1V1. Draw region outlines by hand if the tool's split does not follow the ball map | `route_planes.py`, pcbnew |
-| 10. Dog-bone fan-out of U501 (0.8 mm) and U801 (0.8 × 0.65 mm), escapes on the planned DDR layers | the routing skill's BGA fan-out step |
-| 11. Under-BGA decaps onto the fan-out vias | the routing skill's decap optimisation step |
+| 9. **Done.** Planes per §6.6; check the In3 VCORE/1V1 seam (y ≈ 78) and that the DDR corridor is all 1V1. Draw region outlines by hand if the tool's split does not follow the ball map | `route_planes.py`, pcbnew |
+| 10. **Done: via-in-pad** on every connected ball (`tools/via_in_pad.py`); the escapes are part of the routing steps | §6.7 |
+| 11. **Done.** Under-BGA decaps moved off foreign vias | `place_fanout_clearance.py` |
 | 12. Buck cells on B.Cu: one cell drawn by hand (SW node small, GND strip between the pin rows with vias to In6, wide VIN/VOUT with vias to the planes), copied to the other four | pcbnew |
 
 ## Phase 4: memories (automatic, hand sign-off)
