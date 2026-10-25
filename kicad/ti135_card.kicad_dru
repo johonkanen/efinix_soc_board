@@ -58,6 +58,14 @@
 	(condition "A.Type == 'Track' && B.Type == 'Track' && ((A.hasNetclass('lpddr_ca') && (B.hasNetclass('lpddr_dq') || B.NetName == '/IOBANK 3/dqs0_P' || B.NetName == '/IOBANK 3/dqs0_N' || B.NetName == '/IOBANK 3/dqs1_P' || B.NetName == '/IOBANK 3/dqs1_N' || B.NetName == '/IOBANK 3/dqs2_P' || B.NetName == '/IOBANK 3/dqs2_N' || B.NetName == '/IOBANK 3/dqs3_P' || B.NetName == '/IOBANK 3/dqs3_N')) || A.NetName == '/IOBANK 3/~{rst}') && A.NetName != B.NetName && !(A.intersectsCourtyard('U501') || A.intersectsCourtyard('U801'))")
 	(constraint clearance (min 0.3mm)))
 
+# ---- LPDDR4 routing layers (LPDDR4_SWIZZLE_PLAN.md "Layer rules") -------------------------------------
+# Tracks only on F.Cu, In2, In5 and B.Cu: In1/In4 are GND planes, In3 (~73 ohm, no adjacent plane) and In6
+# (power islands) are not for LPDDR4.  Vias are not affected.  "In5 only inside one In6 pour" cannot be
+# expressed here (rules can test rule areas, not copper pours): check it by eye.
+(rule "lpddr_layers"
+	(condition "A.Type == 'Track' && (A.hasNetclass('lpddr_dq') || A.hasNetclass('lpddr_ca') || A.hasNetclass('lpddr_diff')) && (A.Layer == 'In1.Cu' || A.Layer == 'In3.Cu' || A.Layer == 'In4.Cu' || A.Layer == 'In6.Cu')")
+	(constraint disallow track))
+
 # ---- inside the BGA courtyards: neck-down and single-channel escape ---------------------------------
 # One 0.1 mm trace per channel between the balls.  A pair may split into two channels here, so the
 # gap has no upper limit; it is counted as uncoupled length by the rule above.
