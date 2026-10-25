@@ -274,7 +274,12 @@ accepted. (The 2026-10-24 note that cross-byte values were "accepted" was a sile
 
 - Timing budget at 3700 Mbps: DQ–DQS ≤ 75 ps, CK–DQS ≤ 350 ps, CA/CKE/CS–CK ≤ 100 ps. P/N intra-pair skew < 1 ps (the
   controller cannot deskew differential pairs).
-- **Include the FPGA package net length** (download *Package Net Length* for Ti135N484 from the Support Center).
+- **Include the FPGA package net length.** Efinix *Ti135_netlength-v0.5.xlsx* (Support Center; kept locally in
+  `reference/efinix/`, not in git) gives each ball's package length and delay. `tools/pad_to_die.py` (run by
+  `tools/build_pcb.sh`) writes them onto U501's pads as KiCad pad-to-die length/delay (233 balls), so tuning and DRC
+  measure die to die. N484 package delay spread: byte 0 37 ps, byte 1 23 ps, byte 2 30 ps, byte 3 20 ps, CA/CK
+  54 ps (CK 89.6 ps, CA from 35.7 ps). That is a large share of the 75 ps DQ–DQS and 100 ps CA–CK budgets, so it must
+  be compensated on the board. U801 (LPDDR4) has no package data; its in-package skew is the DRAM's own.
 - Width ≥ 5 mil. Spacing: 3H data↔CA, 5H CK↔anything. Byte group ↔ byte group ≥ 5× width. **Keep each byte group on
   one layer.** Route CK, A, CKE, CS on one layer.
 - Stripline preferred. Continuous reference plane between FPGA and DRAM. Return vias within ±250 mil of layer

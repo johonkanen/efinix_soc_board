@@ -127,7 +127,7 @@ tools/p2k/bin/p2k render_sheet kicad/08_lpddr4.kicad_sch   # PNG check -> report
       the supply that CDONE/CRESET_N are pulled up to (1V8 assumed, as on the Ti375C529 kit), unused transceiver pins,
       DDR PHY rail group (TI135_PCB_NOTES.md §10).
 - [ ] Run the **Efinix Power Estimator** (spreadsheet, Support Center) and update POWER_BUDGET.md.
-- [ ] Download the **Ti135N484 package net-length file** (Support Center) for LPDDR4 length matching.
+- [x] Ti135N484 package net lengths: Efinix Ti135_netlength-v0.5.xlsx in `reference/efinix/` (local, not in git), applied as U501 pad-to-die by `tools/pad_to_die.py`. The BSDL (v1.0) and the package STEP (v1.1) are stored there too.
 - [ ] Verify the Ti60 jack front face against the Würth 615008140121 drawing (MECHANICAL.md, J9; the HR911130A
       body is the same 21.3 mm deep).
 - [ ] Choose the LPDDR4 data rate (sets the PLL_BL2 frequencies in `efinity/pinplan/pinplan.py`; the current values are

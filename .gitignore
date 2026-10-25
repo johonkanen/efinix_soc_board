@@ -15,3 +15,6 @@ work/
 kicad/.history/
 # KiCadRoutingTools skills, linked from ~/dev/KiCadRoutingTools/.claude/skills
 .claude/skills/
+# Efinix vendor files (copyright): see reference/efinix/README.md
+reference/efinix/*
+!reference/efinix/README.md

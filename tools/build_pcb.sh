@@ -17,6 +17,7 @@ if [[ "${1:-}" == "--rebuild" ]]; then
     tools/p2k/bin/kipy tools/apply_placement.py "$placed" 2>&1 | grep -v "Debug: Adding duplicate"
 fi
 python3 tools/board_setup.py
+tools/p2k/bin/kipy tools/pad_to_die.py 2>&1 | grep -v "Debug: Adding duplicate"
 mkdir -p reports
 tools/p2k/bin/kicad-cli pcb drc --schematic-parity -o reports/drc.rpt kicad/ti135_card.kicad_pcb 2>&1 | grep -v Font | tail -3
 grep -E "^\[" reports/drc.rpt | sed 's/:.*//' | sort | uniq -c | sort -rn
