@@ -59,7 +59,7 @@ How the board goes from placed parts to fab outputs, and which tool does each st
 
 | Step | Tool |
 |---|---|
-| 13. LPDDR4 DQ bytes on their layers, DQS matched to its byte. **Target swap off** (the swizzle is fixed in Efinity). A reorder inside a byte is legal only through `lpddr4_swizzle.json` → `pinplan.py` → schematic | `route.py` / `route_diff.py` with length-match groups |
+| 13. **In progress (first draft on the board, not clean; STATUS.md).** LPDDR4 DQ bytes on their layers, DQS matched to its byte. **Target swap off** (the swizzle is fixed in Efinity). A reorder inside a byte is legal only through `lpddr4_swizzle.json` → `pinplan.py` → schematic | `route.py` / `route_diff.py` with length-match groups |
 | 14. CA, CK, CKE, CS, RST on In5 up U801's centre column | same |
 | 15. eMMC (CLK, CMD, DAT0–7, DS, RST): length-matched to CLK, CLK through R1001 | `route.py` with a match group |
 | 16. QSPI flash (CLK, CS, IO0–3): short, matched to CLK | same |

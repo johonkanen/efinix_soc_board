@@ -1,6 +1,6 @@
 # Status and handoff
 
-Last updated: **2026-10-25** (placement with power on the underside, LPDDR4 swizzle, layer and plane plan). Read this first if you are picking the work up (human or agent).
+Last updated: **2026-10-25** (end of session: LPDDR4 first routing draft on the board, work in progress). Read this first if you are picking the work up (human or agent).
 
 ## What this repository is
 
@@ -40,8 +40,36 @@ card, and plugs into the same baseboard.
 - DRC: schematic parity 0; no courtyard, clearance or short errors; 499 unconnected (unrouted). Silkscreen warnings
   (overlapping reference labels, the jack overhanging the edge) remain to be tidied.
 
-**Planes and BGA fan-out done** (TI135_PCB_NOTES.md §6.6–6.7): via-in-pad on every connected U501/U801 ball, plane regions by
-script, under-BGA decaps cleared. Regulator cell copper done (§6.8; the bottom-side template mirror bug found and fixed). Next: phase 4 (LPDDR4 routing).
+**Planes, BGA fan-out (via-in-pad) and regulator cell copper done** (TI135_PCB_NOTES.md §6.6–6.8).
+
+**LPDDR4 routing: first draft on the board (2026-10-25, work in progress, NOT clean).** Pick up here.
+- **On the board:** all 56 DDR nets connected by KiCadRoutingTools `route.py` on F.Cu/In2/In5/B.Cu, 0.1 mm wide,
+  0.05 mm grid, free layer choice. 91 vias, 1215 mm. Tag `pre-ddr-routing` is the last clean commit, before this draft.
+- **Every DRC error left is in the DDR copper** (the rest of the board is clean):
+  - 195 hole clearance: tracks pass vias at 0.1 mm copper, the rule is 0.175 mm from the drill;
+  - 76 clearance and 63 crosstalk-spacing warnings (DDR tracks < 0.25 mm apart outside the BGAs);
+  - 88 track width: nothing widened to 40 Ω (0.18 mm inner / 0.25 mm outer) outside the BGAs yet;
+  - 33 diff-pair gap / uncoupled length on DQS/CK.
+- **Quality gaps:** each byte is spread over 3–4 layers (Efinix: one layer per byte). Lengths are not matched yet. The
+  U501 pad-to-die delays are on the board (`tools/pad_to_die.py`), so tuning can be die to die.
+- **What was tried** (helpers in `tools/ddr/`):
+  - one layer per byte, plain router: 8–31 of 56 nets;
+  - `route_diff.py` can't start pairs from bare via-in-pad balls (it needs fan-out stubs);
+  - U801 rotated 180°: 55/56, 1463 mm, 110 vias, so the current pose stays;
+  - the tool's `bga_fanout.py` escapes outer DDR rows on the surface.
+- **Bus router (experimental `awx/route_bus.py`)** was still running at wrap-up, on `work/route/bus0.kicad_pcb`: DDR
+  signal vias stripped, layers F/B/In2/In5, joint fan-out. Log `work/route/bus1.log`, result `work/route/bus1.kicad_pcb`,
+  summary `work/route/bus1.json`. Round 1: 40/40 lanes, 5 open, 74 vias, 1114 mm. It needed `ortools` in the
+  KiCadRoutingTools venv (installed). It relaxes the hole clearance to 0.1 mm in its own project copy: check its board
+  against ours.
+- **Next:**
+  1. Read the bus router's result. Compare it with the draft on open nets, layers per byte, DRC (our rules) and pair
+     skew; keep the better one as the base.
+  2. Fix hole clearance (route at `--clearance 0.1` with hole clearance honoured, or nudge), widen outside the BGAs
+     to 40 Ω, couple DQS/CK.
+  3. Length/time matching per Efinix §6.3 (DQS pairs 10 mil, CK 5 mil, CA group ±62.5 mil, CA–CK ±30 mil, DQ 0…375 mil
+     over DQS), die to die.
+  4. Then eMMC, QSPI, RGMII/MDI, the rest (LAYOUT_PLAN.md phases 4–5).
 
 | Sheet | State |
 |---|---|
