@@ -38,18 +38,20 @@ GbE linked). High = margin case (warm junction, heavier DDR traffic).
 | VCORE 0.95 V | VCC, VCCA, VDD_SOC (fabric, hard RISC-V, DDR controller) | 0.6 | 1.0 (inrush ≥ 1.5 A) | 0.57 / 0.95 |
 | 0V85 | VDD_PHY_DDR, VDDPLL_MCB | 0.25 | 0.45 | 0.21 / 0.38 |
 | 1V1 | FPGA VDDQ/VDDQX/VDDQ_CK + LPDDR4 VDD2/VDDQ | 0.4 | 0.7 | 0.44 / 0.77 |
-| 1V8 | VCCAUX, HSIO VCCIO, LPDDR4 VDD1, eMMC VCCQ, flash, oscillator, PHY DVDDH, translator A sides | 0.3 | 0.5 | 0.54 / 0.90 |
-| 3V3 | HVIO, PHY AVDDH, eMMC VCC, translator B sides + J3 pull-downs, LCD module + backlight | 0.3 | 0.45 | 0.99 / 1.49 |
-| 1V2 | KSZ9031 DVDDL/AVDDL/AVDDL_PLL | 0.22 | 0.26 | 0.26 / 0.31 |
+| 1V8 | VCCAUX, HSIO VCCIO, LPDDR4 VDD1, eMMC VCCQ, flash, oscillator, translator A sides | 0.3 | 0.5 | 0.54 / 0.90 |
+| 3V3 | HVIO, eMMC VCC, translator B sides + J3 pull-downs, LCD module + backlight; RTL8211FDI (all of it: its 1.0 V core and 1.8 V RGMII pads come from internal LDOs, estimate about 0.18 / 0.22 A, no current table in data sheet Rev 1.7) | 0.48 | 0.67 | 1.58 / 2.21 |
 | 3V3_analog | ADC block (LDO from 5V0) | 0.01 | 0.02 | 0.05 / 0.1 (LDO loss included) |
-| **Sum of outputs** | | | | **3.1 / 4.9** |
-| **At 5 V input, about 85 % efficiency** | | **0.72 A** | **1.15 A** | 3.6 / 5.8 |
+| **Sum of outputs** | | | | **3.4 / 5.3** |
+| **At 5 V input, about 85 % efficiency** | | **0.80 A** | **1.25 A** | 4.0 / 6.2 |
+
+2026-10-25: KSZ9031 + 1V2 buck replaced by the RTL8211FDI-CG (stock). Its linear core LDO costs about 0.3 W more than the
+KSZ9031's external 1V2 buck.
 
 **Result: the typical case already uses most of the 1 A rail, and the high case exceeds it.** Ways to cut power, in
 order of effect:
 
 1. **LCD backlight and module** (about 0.3 W): leave them out of the budget, or power them from another source.
-2. **Ethernet at 100 Mbit/s** instead of 1000 (KSZ9031 drops from about 0.55 W to about 0.25 W). The control card needs no GbE.
+2. **Ethernet at 100 Mbit/s** instead of 1000 (a gigabit PHY roughly halves its power at 100 Mbit/s). The control card needs no GbE.
 3. **LPDDR4 data rate** at the low end (1.6 Gbps or below) and **RISC-V clock** about 500–600 MHz.
 4. **Ti135 "L" grade (I3L)**: VCC/VCCA/VDD_SOC at 0.85 V. That gives about 20–25 % less core power (slides: LP worst case
    3.0 W vs 4.0 W) and lets **VCORE and 0V85 merge into one rail**, one regulator fewer. Lower speed grade; check
@@ -74,7 +76,7 @@ The Agilex card uses AP61202Z6 (2 A, SOT-563) for the rails and a TDA38812 for V
 
 The TDA38812 (VCORE on the Agilex card) is not needed: the Ti135 core is about 1 A, not 10+ A.
 
-**One TLV62585PDRLR per rail**, the same part six times: VCORE 0.95 V, 0V85, 1V1, 1V8, 3V3, 1V2. Each with:
+**One TLV62585PDRLR per rail**, the same part five times: VCORE 0.95 V, 0V85, 1V1, 1V8, 3V3 (the 1V2 rail went with the KSZ9031). Each with:
 
 - Cin 10 µF 0805
 - L 1 µH, 4 × 4 mm: **Sunlord WPN4020H1R0MT** (C98359, 26 mΩ, Isat 5.8 A, above the 4 A switch limit; 11,421 orderable)
@@ -86,7 +88,6 @@ The TDA38812 (VCORE on the Agilex card) is not needed: the Ti135 core is about 1
 | VCORE | 0.95 V | 58.3 k → **59.0 k** | 100 k | 0.954 V |
 | 0V85 | 0.85 V | 41.7 k → **41.2 k** | 100 k | 0.847 V |
 | 1V1 | 1.1 V | 83.3 k → **82.5 k** | 100 k | 1.095 V |
-| 1V2 | 1.2 V | **100 k** | 100 k | 1.200 V |
 | 1V8 | 1.8 V | **200 k** | 100 k | 1.800 V |
 | 3V3 | 3.3 V | 450 k → **453 k** | 100 k | 3.318 V |
 

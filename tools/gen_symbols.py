@@ -230,6 +230,29 @@ def hr911130a():
     return s
 
 
+def rtl8211fd():
+    """Realtek RTL8211FD(I)-CG, 40-pin QFN 5x5 0.4 mm, from the data sheet Rev. 1.7 (Table 1-9). Strap functions
+    in the pin names: RXD3/RXC/RXCTL = PHYAD0..2, RXD2 = PLLOFF, RXD1 = TXDLY, RXD0 = RXDLY, LED0 = CFG_EXT,
+    LED1/LED2 = CFG_LDO0/1."""
+    left = [(20, "TXC", IN), (19, "TXCTL", IN), (18, "TXD0", IN), (17, "TXD1", IN), (16, "TXD2", IN),
+            (15, "TXD3", IN), None,
+            (27, "RXC/PHYAD1", BIDI), (26, "RXCTL/PHYAD2", BIDI), (25, "RXD0/RXDLY", BIDI),
+            (24, "RXD1/TXDLY", BIDI), (23, "RXD2/PLLOFF", BIDI), (22, "RXD3/PHYAD0", BIDI), None,
+            (13, "MDC", IN), (14, "MDIO", BIDI), (31, "INTB/PMEB", "open_collector"), (12, "PHYRSTB", IN), None,
+            (36, "XTAL_IN", IN), (37, "XTAL_OUT", OUT), (35, "CLKOUT", OUT)]
+    right = [(1, "MDIP0", BIDI), (2, "MDIN0", BIDI), (4, "MDIP1", BIDI), (5, "MDIN1", BIDI), (6, "MDIP2", BIDI),
+             (7, "MDIN2", BIDI), (9, "MDIP3", BIDI), (10, "MDIN3", BIDI), None,
+             (32, "LED0/CFG_EXT", BIDI), (33, "LED1/CFG_LDO0", BIDI), (34, "LED2/CFG_LDO1", BIDI), None,
+             (39, "RSET", PAS), (30, "LDO_OUT", PO), (28, "DVDD_RG", PO)]
+    top = [(11, "AVDD33", PI), (40, "AVDD33", PI), (29, "DVDD33", PI), (3, "AVDD10", PI), (8, "AVDD10", PI),
+           (38, "AVDD10", PI), (21, "DVDD10", PI)]
+    s = box("RTL8211FD", "U", left, right, top=top, bottom=[(41, "GND", PI)], value="RTL8211FDI-CG",
+            desc="Realtek 10/100/1000 PHY, RGMII, 3.3 V single supply with 1.0 V core LDO (LDO_OUT -> AVDD10/DVDD10) "
+                 "and RGMII pad LDO (DVDD_RG), QFN-40 5x5 (LCSC C692886)")
+    set_prop(s, "Datasheet", "https://static.chipdip.ru/lib/595/DOC042595102.pdf")
+    return s
+
+
 def tlv62585p():
     left = [(3, "VIN", PI), (4, "EN", IN)]
     right = [(2, "SW", PO), (5, "FB", IN), (6, "PG", "open_collector")]
@@ -264,11 +287,10 @@ def build():
         from_std("Connector_Generic", "Conn_01x14", "Conn_01x14", "J"),
         from_std("Connector_Generic", "Conn_01x05", "Conn_01x05", "J"),
         from_std("Connector_Generic", "Conn_01x03", "Conn_01x03", "J"),
-        from_std("Interface_Ethernet", "KSZ9031RNXCA", "KSZ9031RNXCA", "U"),
         from_std("Analog_Switch", "CD4051B", "CD4051B", "U"),
         from_std("Amplifier_Operational", "AD8603", "AD8603", "U"),
         from_std("Amplifier_Operational", "OPA365xxDBV", "OPA365xxDBV", "U"),
-        from_std("74xGxx", "74LVC1G06", "74LVC1G06", "U"),
+        from_std("74xGxx", "74LVC1G07", "74LVC1G07", "U"),
         from_std("Regulator_Switching", "AP61202Z6", "AP61202Z6", "U"),
         from_std("Regulator_Linear", "NCP163ASN330T1G", "NCP163ASN330T1G", "U"),
         from_std("Power_Supervisor", "TPS3808DBV", "TPS3808DBV", "U"),
@@ -283,9 +305,9 @@ def build():
         from_file(lib, "TDA38812", "TDA38812", "U"),
         from_file(clk, "SIT8924BA-73-18N-25.000000", "SIT8924BA-73-18N-25.000000", "Y"),
     ]
-    pwr = [power(n, n == "GND") for n in ("GND", "5V0", "VCORE", "0V85", "1V1", "1V2", "1V8", "3V3", "3V3_analog")]
+    pwr = [power(n, n == "GND") for n in ("GND", "5V0", "VCORE", "0V85", "1V1", "1V8", "3V3", "3V3_analog")]
     pwr.append(rename(std_symbol("power", "PWR_FLAG"), "PWR_FLAG"))
-    syms = std + agx + [fpga_symbol(), axc8t245(), emmc(), qspi_flash(), tlv62585p(), hr911130a()] + pwr
+    syms = std + agx + [fpga_symbol(), axc8t245(), emmc(), qspi_flash(), tlv62585p(), rtl8211fd(), hr911130a()] + pwr
     for sym in syms:
         # hidden power-input pins become implicit global nets named after the pin in KiCad; they are stacked on a
         # visible pin anyway, so make them passive (same treatment as the generated Ti135 symbol)
@@ -315,12 +337,12 @@ FOOTPRINT = {
     "Conn_01x14": "Connector_PinHeader_2.54mm:PinHeader_1x14_P2.54mm_Vertical",
     "Conn_01x05": "Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical",
     "Conn_01x03": "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical",
-    "KSZ9031RNXCA": "Package_DFN_QFN:QFN-48-1EP_7x7mm_P0.5mm_EP5.15x5.15mm",
+    "RTL8211FD": "Package_DFN_QFN:QFN-40-1EP_5x5mm_P0.4mm_EP3.6x3.6mm_ThermalVias",
     "HR911130A": "ti135_card:RJ45_Hanrun_HR911130A_Horizontal",
     "CD4051B": "Package_SO:TSSOP-16_4.4x5mm_P0.65mm",
     "AD8603": "Package_TO_SOT_SMD:TSOT-23-5",
     "OPA365xxDBV": "Package_TO_SOT_SMD:SOT-23-5",
-    "74LVC1G06": "Package_TO_SOT_SMD:SOT-353_SC-70-5",
+    "74LVC1G07": "Package_TO_SOT_SMD:SOT-353_SC-70-5",
     "AP61202Z6": "Package_TO_SOT_SMD:SOT-563",
     "NCP163ASN330T1G": "Package_TO_SOT_SMD:SOT-23-5",
     "TPS3808DBV": "Package_TO_SOT_SMD:SOT-23-6",

@@ -79,7 +79,7 @@ Power Estimator currents to size the regulators and the bulk capacitance (`MIGRA
 | Bank | Type | Supply ball(s) | VCCIO here | User pins | REF_RES | Use on this card |
 |---|---|---|---|---|---|---|
 | 4A | HSIO | VCCIO4A ×3 (H4, K5, M6) | 1.8 V | 24 | G5 | Config flash (dual-purpose config pins, §4.2), translator A side, spare |
-| 4B | HSIO | VCCIO4B ×4 (L3, N4, P2, T4) | 1.8 V | 28 | M7 | RGMII to KSZ9031, MDIO, 25 MHz reference clock |
+| 4B | HSIO | VCCIO4B ×4 (L3, N4, P2, T4) | 1.8 V | 28 | M7 | RGMII to the RTL8211FDI (KSZ9031 until 2026-10-25), MDIO, 25 MHz reference clock |
 | 2A | HSIO | VCCIO2A (P17) | 1.8 V | 7 | P16 | eMMC / translators |
 | 2B | HSIO | VCCIO2B ×2 (L18, N19) | 1.8 V | 18 | (none on this package) | eMMC / translators |
 | 2C | HSIO | VCCIO2C (J18) | 1.8 V | 8 | L16 | eMMC / translators |
@@ -187,7 +187,7 @@ controller and tri-states CKE), then VDD2/VDDQ, then VDD1, all below 300 mV at t
 falling slower than 0.5 V/µs**. In practice: pull CRESET_N low from the supervisor as soon as the input drops (PG
 fails), and do not add active discharge that pulls 1V8 down before 1V1.
 
-Card implementation (enable chain): `MIGRATION_PLAN.md` §4.3. VCORE → 1V8 → 3V3 (+1V2) form Group 1. Then 1V1 and
+Card implementation (enable chain): `MIGRATION_PLAN.md` §4.3. VCORE → 1V8 → 3V3 form Group 1 (the 1V2 PHY rail was dropped with the KSZ9031). Then 1V1 and
 0V85 (Group 2) are enabled from the 3V3 power-good. The wired-AND of all PGs drives the supervisor, which drives CRESET_N.
 
 ---

@@ -52,7 +52,7 @@ SIGNALS = [
     ("emmc_rst_n", "out", "GPIOB_P_28_CSO_CLK11_P", "emmc", "CSO pin, free after configuration"),
     # --- bank 4A: status ---
 
-    # --- bank 4B: RGMII to KSZ9031 (1.8 V DVDDH) ---
+    # --- bank 4B: RGMII to RTL8211FDI (1.8 V pads from its internal LDO) ---
     ("rgmii_rxc", "clkin", "GPIOB_P_14_CLK1_P", "eth", "GCLK, clock region B1"),
     ("rgmii_rx_ctl", "in", "GPIOB_N_12_CDI12", "eth", "region B1"),
     ("rgmii_rxd0", "in", "GPIOB_P_12_CDI13", "eth", "region B1"),

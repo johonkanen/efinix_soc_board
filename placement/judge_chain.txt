@@ -1,0 +1,2 @@
+python3 -X utf8 py_router/route_planes.py {in} {out} --nets GND --plane-layers In1.Cu
+python3 -X utf8 py_router/route.py {in} {out} --nets '*' --json-out {dir}/route.json

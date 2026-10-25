@@ -434,7 +434,7 @@
       },
       {
         "netclass": "PWR",
-        "pattern": "^(5V0|1V8|3V3|1V2|1V1|0V85|3V3_analog)$"
+        "pattern": "^(5V0|1V8|3V3|1V1|0V85|3V3_analog|phy_vdd10)$"
       },
       {
         "netclass": "PWR_CORE",

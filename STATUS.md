@@ -1,6 +1,6 @@
 # Status and handoff
 
-Last updated: **2026-10-25** (PCB setup). Read this first if you are picking the work up (human or agent).
+Last updated: **2026-10-25** (placement done; PHY changed to RTL8211FDI). Read this first if you are picking the work up (human or agent).
 
 ## What this repository is
 
@@ -20,26 +20,33 @@ card, and plugs into the same baseboard.
 
 ## Where we left off
 
-**Phase 2 (schematic): all 14 sheets are drawn. Phase 3 (PCB) is set up (2026-10-25):** `kicad/ti135_card.kicad_pcb` exists.
-- The outline is in place, and J3 / J6 / J9 sit on their MECHANICAL.md pads (checked by the script).
-- U501 is rotated 180° and U801 is north of it; every other part is staged off-board by sheet.
+**Phase 2 (schematic): all 14 sheets are drawn. Phase 3 (PCB): every part is placed (2026-10-25)** in
+`kicad/ti135_card.kicad_pcb`.
+- The outline is in place, and J3 / J6 / J9 sit on their MECHANICAL.md pads (checked by the script). J3, J6, J9, J5,
+  U501 (rotated 180°) and U801 are locked.
 - 8-layer JLC08161H-3313 stack-up, net classes and DRC rules are set up.
-- DRC: schematic parity 0, no shorts or clearance errors. 499 unconnected items (nothing is routed yet), plus silkscreen
-  warnings from the jack overhanging the edge.
+- **Ethernet PHY changed to the RTL8211FDI-CG** (user decision 2026-10-25, stock; the Agilex 5 card does the same).
+  The 1V2 buck went with the KSZ9031, so there are now 5 × TLV62585.
+- **Placement**: KiCadRoutingTools `place_simple` (§Placement below), seed 1 of 12, applied with
+  `tools/apply_placement.py`. The BGA and LPDDR4 decaps are on B.Cu under their packages. The translators sit
+  between J3 and the BGA's west edge, the ADC at J3's south (analog) end, the PHY between the BGA and J9, and the
+  1V1 / 1V8 cells by U801.
+- DRC: schematic parity 0; no courtyard, clearance or short errors; 499 unconnected (unrouted). Silkscreen warnings
+  (overlapping reference labels, the jack overhanging the edge) remain to be tidied.
 
-The next step is **placement** (see Next phases).
+The next step is **fan-out and routing** (see Next phases).
 
 | Sheet | State |
 |---|---|
 | 01 pwr_input | done: J6 (baseboard 5V_ISOL / ISOGND), bulk caps, 3V3_analog LDO |
 | 02 pwr_vcore | done: VCORE 0.95 V, TLV62585PDRLR |
-| 03 pwr_rails | done: 1V8, 3V3, 1V2 (group 1), 0V85, 1V1 (group 2, EN = pg_group1) |
+| 03 pwr_rails | done: 1V8, 3V3 (group 1), 0V85, 1V1 (group 2, EN = pg_group1). The 1V2 cell went with the KSZ9031 (2026-10-25) |
 | 04 pwr_seq | done: power-good chain, TPS3808 → fpga_creset_n (20 ms) |
 | 05 fpga_power | done: U501 power / GND / unused units, ferrite-filtered PLL rails, decoupling rows |
 | 06 fpga_config | done: CDONE, CRESET_N, JTAG + header J1, REF_RES, straps, QSPI flash U601, LEDs |
 | 07 clocks | done: 25 MHz SiT8924 → 3 × 33 R → PLL_BL0/1/2 reference pins N7/R3/L2 |
 | 08 lpddr4 | done: U501 DDR unit ↔ U801 H9HCNNN8KUMLHR-NME. Connectivity checked against the netlist (0 mismatches) |
-| 09 ethernet | done: KSZ9031RNX with the Agilex values/straps (PHY address 0, RGMII mode, single-LED mode), 22 R RGMII series, ferrite-fed AVDDH/AVDDL_PLL, 25 MHz crystal, magjack J9. The jack LED goes through a 74LVC1G06; **verify LED1 polarity at bring-up** |
+| 09 ethernet | done, **redone 2026-10-25 for the RTL8211FDI-CG** (C692886, 8,537 orderable; the KSZ9031 had 16; the Agilex 5 card makes the same change). 3V3 only, internal 1.0 V core LDO and 1.8 V RGMII pad LDO (CFG_EXT = 0, CFG_LDO = 10 strapped). All nine straps fitted: PHY address 1, TXDLY 0, RXDLY 1. PHYRSTB is a 3.3 V input, so U902 74LVC1G07 drives it open drain. Jack LED sinks directly into LED2 (active low). 22 R RGMII series, RSET 2.49 k, 25 MHz crystal, magjack J9 |
 | 10 emmc | done: THGAMVG7T13BAIL, CMD/DAT0-7/RST_n 47 k pull-ups to 1V8, DS 47 k pull-down, CLK 10 R, VCC 3V3, VCCQ 1V8, VDDi 2u2 |
 | 11 fpga_io | done: U501 bank units with labels from the pin plan |
 | 12 level_shift | done: 4 × SN74AXC8T245, OE pulled up (outputs disabled until the FPGA enables them) |
@@ -88,9 +95,10 @@ tools/p2k/bin/p2k render_sheet kicad/08_lpddr4.kicad_sch   # PNG check -> report
   - eMMC KIOXIA THGAMVG7T13BAIL (C7599693)
   - QSPI ISSI IS25WP128-RHLE (C1349419)
 - Board: the Ti60/Agilex outline, 8 layers (JLC08161H-3313 stack-up), JTAG header + Efinix cable (no on-board FTDI).
-- J3 and J6 are bottom-side sockets, numbered like the baseboard (pin n = baseboard pin n). The RJ45 is the UDE
-  RB1-125B8G1A magjack, aligned to the Ti60 jack's front face and centreline (MECHANICAL.md).
-- Regulators: 6 × TLV62585PDRLR (3 A) instead of the TDA38812 / AP61202; 3V3_analog NCP163 LDO.
+- J3 and J6 are bottom-side sockets, numbered like the baseboard (pin n = baseboard pin n). The RJ45 is the HanRun
+  HR911130A magjack (C54408; the UDE RB1-125B8G1A had no stock), aligned to the Ti60 jack's front face and centreline (MECHANICAL.md).
+- Regulators: 5 × TLV62585PDRLR (3 A) instead of the TDA38812 / AP61202; 3V3_analog NCP163 LDO.
+- Ethernet PHY: RTL8211FDI-CG (C692886), RGMII at 1.8 V from its internal pad LDO (2026-10-25; it replaced the KSZ9031).
 - 5 V budget: the baseboard U8 (VXO7805-1000, 1 A) is to be upgraded to 1.5–2 A in the baseboard redraw. This is being
   worked on in the `ac_psu_kicad` session. Its options: TRACO TSR 2-2450 (10.2 mm tall), Mornsun K7805-2000R3L
   (bent leads), or the upright K7805-2000R3 (17.5 mm, collides with the card edge).
@@ -101,12 +109,13 @@ tools/p2k/bin/p2k render_sheet kicad/08_lpddr4.kicad_sch   # PNG check -> report
 - [ ] **Measure the card-to-baseboard gap on the Ti60 card**: it decides the baseboard U8 replacement height.
 - [ ] **Stock at JLC, orderable quantity (2026-10-25):**
   - ADS7056IRUGR **18**;
-  - KSZ9031RNXCA **16**, plus 42 of the -TR version;
+  - RTL8211FDI-CG 8,537 (it replaced the KSZ9031RNXCA, 16);
   - QSPI flash 68, LPDDR4 106, eMMC 177.
 
   Order these early or source them elsewhere. Check with `jlc-tools/stock_check.py` (judge by the orderable "free"
   quantity, not stockCount). The magjack is now the HR911130A (9,124 orderable); the RB1 had 0.
-- [ ] Verify the KSZ9031 LED1 polarity (strap-dependent) on the first board; U902 is an inverting buffer.
+- [ ] Bring-up: the PHY is at MDIO address 1 (device tree `reg = <1>`, `phy-mode = "rgmii-id"`). Program the RTL8211F LCR
+      (page 0xd04, reg 0x10) so LED2 shows link/activity at all speeds (its default is link-at-1000 only).
 - [ ] Verify against the **Titanium Hardware Design Checklist** (Efinix Support Center, login): decoupling values,
       the supply that CDONE/CRESET_N are pulled up to (1V8 assumed, as on the Ti375C529 kit), unused transceiver pins,
       DDR PHY rail group (TI135_PCB_NOTES.md §10).
@@ -125,20 +134,34 @@ tools/p2k/bin/p2k render_sheet kicad/08_lpddr4.kicad_sch   # PNG check -> report
    - `tools/gen_footprints.py`: the HR911130A footprint.
    - `tools/build_pcb.sh` runs all three below, then DRC.
    - `tools/make_board.py` (run with kipy): builds the board from the netlist with the fixed parts placed and checked.
-     It rebuilds from scratch, so use it only until manual placement starts; after that, use pcbnew's "Update PCB from
-     Schematic".
+     It rebuilds from scratch. `tools/build_pcb.sh --rebuild` runs it and then puts every footprint back where it was
+     (`tools/apply_placement.py`), which works until routing starts. After that, use pcbnew's "Update PCB from
+     Schematic". Plain `tools/build_pcb.sh` leaves the board alone and only refreshes the rules and runs DRC.
    - `tools/board_setup.py`: Agilex stack-up, net classes (LPDDR4, RGMII, power), DRC rules (U501/U801), and a J3
      edge exception.
-3. **Placement and fan-out (next):**
-   - **First, check KiCadRoutingTools** (user request): https://github.com/drandyhaas/KiCadRoutingTools/discussions/1364
-   - Placement:
-     - BGA decoupling under U501 on the matching balls;
-     - translators between the 2A–2C (west) BGA edge and J3;
-     - flash, eMMC, KSZ9031 and crystal east and north-east toward J9;
-     - power cells (6 × TLV62585) along the bottom and east edge, near J6;
-     - ADC block near J3's analog pins (ISOADA, J3 pins 1/3/4).
-   - Then the dog-bone fan-out (0.8 mm pitch), the plane assignment per layer, and a pin-swap loop through
-     `efinity/pinplan/pinplan.py` → schematic.
+3. ~~Placement~~ **done 2026-10-25** with KiCadRoutingTools (https://github.com/drandyhaas/KiCadRoutingTools, local
+   `~/dev/KiCadRoutingTools` with its venv; skill `plan-pcb-placement`):
+   - Inputs are in `placement/`:
+     - `groups.json`: 20 functional groups with anchors, `near` hints and the buck cells' template candidates
+       (skipped: one hand-made layout, copied per cell).
+     - `prep.sh`: lock J3/J6/J9/J5/U501/U801, unplace the rest, flip the 90 BGA/LPDDR4 decaps to B.Cu
+       (`flip_decaps.py`), emit the intent and apply the hand fixes (`fix_intent.py`: the FPGA/LPDDR4 sheets keep
+       per-part faces).
+     - `make_board.py` now sets pad pin functions/types. Without them the placer read the Y701 oscillator as a
+       crystal and dragged 30 1V8 decaps to it.
+   - Run: `placement/prep.sh`, then from `work/place`:
+     `$P $K/py_placer/place_simple.py fixed.kicad_pcb 'wk/s{seed}.kicad_pcb' --groups groups.json --intent intent.json --jobs 4 --json 'wk/s{seed}.json'`
+     (12 seeds, about 2.5 min each), then `$P $K/py_placer/judge_seeds.py wk/judge.json --chain placement/judge_chain.txt --intent intent.json`.
+   - Result: seed 1 (cost 13,345, HPWL 6.0 m). Its level-2 quick route: 28 open nets, 746 vias, 7.0 m copper; seed 7
+     was close (29 open, 7.4 m), seed 10 was worse (64 open).
+   - Apply a seed: `tools/p2k/bin/kipy tools/apply_placement.py work/place/wk/sN.kicad_pcb`.
+   - Still to do by hand:
+     - the buck cells' SW/VIN/COUT loops (one layout, copied to the other four);
+     - Y901 and the RGMII series resistors (TX at the FPGA, RX at the PHY);
+     - J1 / J2 header positions (the placer put them mid-board);
+     - silkscreen labels (`$K/py_placer/beautify_labels.py`).
+   - Next: dog-bone fan-out at 0.8 mm pitch, the plane assignment per layer (In1 GND, In4 power), and a pin-swap loop
+     through `efinity/pinplan/pinplan.py` → schematic.
 4. **LPDDR4 routing** (TI135_PCB_NOTES.md §6.3), then the rest. DRC, then the JLC order checklist.
 5. **In parallel (software):** bring up Linux on a Ti375C529 dev kit with the hard SoC + TSEMAC + eMMC host
    (MIGRATION_PLAN.md phase 1).

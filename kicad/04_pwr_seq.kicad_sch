@@ -1047,7 +1047,7 @@
 			(embedded_fonts no)
 		)
 	)
-	(text "Power-up order (TI135_PCB_NOTES.md §5): group 1 (VCORE, 1V8, 3V3, 1V2) -> pg_group1 -> group 2 (0V85, 1V1)\n-> pg_all -> U401 TPS3808 (20 ms) -> fpga_creset_n -> SPI active configuration."
+	(text "Power-up order (TI135_PCB_NOTES.md §5): group 1 (VCORE, 1V8, 3V3) -> pg_group1 -> group 2 (0V85, 1V1)\n-> pg_all -> U401 TPS3808 (20 ms) -> fpga_creset_n -> SPI active configuration."
 		(exclude_from_sim no)
 		(at 17.78 17.78 0)
 		(effects

@@ -3,7 +3,7 @@
 
 Re-runnable start-of-layout tool. It rebuilds the board from scratch, so only use it until placement starts:
 after that, update the board from the schematic in pcbnew instead.
-- one footprint per symbol, with nets and symbol links (DRC schematic parity), via p2k.pcb.export_netlist;
+- one footprint per symbol, with nets, pin functions/types and symbol links (DRC schematic parity);
 - the outline (76.000 x 65.127 mm) and the aux/grid origin at KiCad (100, 100) = the Ti60 Gerber origin
   (MECHANICAL.md);
 - the fixed parts J3, J6 (bottom-side sockets to the baseboard) and J9 (HR911130A magjack). Each is placed by
@@ -24,8 +24,13 @@ os.environ.setdefault("P2K_PCB", os.path.join(ROOT, "kicad", "ti135_card.kicad_p
 os.environ.setdefault("P2K_SCHEMATIC", os.path.join(ROOT, "kicad", "ti135_card.kicad_sch"))
 os.environ.setdefault("P2K_REPORTS", os.path.join(ROOT, "reports"))
 
+import subprocess  # noqa: E402
+import tempfile  # noqa: E402
+import xml.etree.ElementTree as ET  # noqa: E402
+
 import pcbnew  # noqa: E402
 
+from p2k import board as p2k_board  # noqa: E402
 from p2k import pcb  # noqa: E402
 from p2k.build_pcb import load_fp  # noqa: E402
 
@@ -57,6 +62,18 @@ SOFT = {
     "U801": (173.3, 58.1, -90.0, "top"),    # Agilex U12 position
     "J5": (152.912, 114.454, 90.0, "top"),  # LCD header, Ti60 J4 / Agilex J5 position
 }
+
+
+def pin_info():
+    """{(ref, pin): (pin function, pin type)} from the schematic netlist. p2k's export_netlist drops them; pcbnew's
+    "Update from schematic" sets them, and the placement tools read them (power pins, an oscillator's OUT)."""
+    with tempfile.TemporaryDirectory() as tmp:
+        out = os.path.join(tmp, "netlist.xml")
+        subprocess.run([os.path.join(p2k_board.BIN, "kicad-cli"), "sch", "export", "netlist", "--format", "kicadxml",
+                        "-o", out, pcb.schematic_file()], check=True, capture_output=True)
+        xml = ET.parse(out).getroot()
+    return {(nd.get("ref"), nd.get("pin")): (nd.get("pinfunction") or "", nd.get("pintype") or "")
+            for n in xml.iter("net") for nd in n.findall("node")}
 
 
 def place(board, fp, x, y, side, orient):
@@ -111,6 +128,7 @@ def main():
     out = os.environ["P2K_PCB"]
     comps, nets = pcb.export_netlist()
     pin_net = {(r, p): n for n, nodes in nets.items() for r, p in nodes}
+    pins = pin_info()
     board = pcbnew.NewBoard(out)
     board.SetCopperLayerCount(8)
     ds = board.GetDesignSettings()
@@ -154,6 +172,9 @@ def main():
                 net = pin_net.get((ref, pad.GetNumber()))
                 if net is not None:
                     pad.SetNet(netinfo[net])
+                fn, typ = pins.get((ref, pad.GetNumber()), ("", ""))
+                pad.SetPinFunction(fn)
+                pad.SetPinType(typ)
             return fp
         if ref in FIXED:
             side, pads, anchor = FIXED[ref]

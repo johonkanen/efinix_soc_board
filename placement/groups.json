@@ -1,0 +1,569 @@
+{
+ "schema": 1,
+ "board": "work/place/fixed.kicad_pcb",
+ "groups": [
+  {
+   "name": "power_in",
+   "role": "power",
+   "anchor": "J6",
+   "near": [
+    "vcore",
+    "rail_3v3"
+   ],
+   "refs": [
+    "J6",
+    "C101",
+    "C102",
+    "C103"
+   ],
+   "why": "baseboard 5 V entry (J6, bottom) with its bulk caps"
+  },
+  {
+   "name": "vcore",
+   "role": "power",
+   "anchor": "U201",
+   "near": [
+    "core",
+    "power_in"
+   ],
+   "refs": [
+    "U201",
+    "L201",
+    "R201",
+    "R202",
+    "C201",
+    "C202",
+    "C203"
+   ],
+   "why": "VCORE 0.95 V buck cell",
+   "templates": [
+    {
+     "chip": "U201",
+     "kind": "switching stage",
+     "why": "TLV62585 buck (SOT-563) with its inductor",
+     "skip": "the six cells are identical; the SW/VIN/COUT loop is laid out by hand once and copied after placement"
+    }
+   ]
+  },
+  {
+   "name": "rail_1v8",
+   "role": "power",
+   "anchor": "U301",
+   "near": [
+    "core",
+    "power_in"
+   ],
+   "refs": [
+    "U301",
+    "L301",
+    "R301",
+    "R302",
+    "C301",
+    "C302",
+    "C303"
+   ],
+   "why": "1V8 buck cell",
+   "templates": [
+    {
+     "chip": "U301",
+     "kind": "switching stage",
+     "why": "TLV62585 buck (SOT-563) with its inductor",
+     "skip": "the six cells are identical; the SW/VIN/COUT loop is laid out by hand once and copied after placement"
+    }
+   ]
+  },
+  {
+   "name": "rail_3v3",
+   "role": "power",
+   "anchor": "U311",
+   "near": [
+    "power_in",
+    "level_shift"
+   ],
+   "refs": [
+    "U311",
+    "L311",
+    "R311",
+    "R312",
+    "C311",
+    "C312",
+    "C313"
+   ],
+   "why": "3V3 buck cell",
+   "templates": [
+    {
+     "chip": "U311",
+     "kind": "switching stage",
+     "why": "TLV62585 buck (SOT-563) with its inductor",
+     "skip": "the six cells are identical; the SW/VIN/COUT loop is laid out by hand once and copied after placement"
+    }
+   ]
+  },
+  {
+   "name": "rail_0v85",
+   "role": "power",
+   "anchor": "U331",
+   "near": [
+    "core"
+   ],
+   "refs": [
+    "U331",
+    "L331",
+    "R331",
+    "R332",
+    "C331",
+    "C332"
+   ],
+   "why": "0V85 buck cell (DDR PHY)",
+   "templates": [
+    {
+     "chip": "U331",
+     "kind": "switching stage",
+     "why": "TLV62585 buck (SOT-563) with its inductor",
+     "skip": "the six cells are identical; the SW/VIN/COUT loop is laid out by hand once and copied after placement"
+    }
+   ]
+  },
+  {
+   "name": "rail_1v1",
+   "role": "power",
+   "anchor": "U341",
+   "near": [
+    "core",
+    "lpddr"
+   ],
+   "refs": [
+    "U341",
+    "L341",
+    "R341",
+    "R342",
+    "C341",
+    "C342",
+    "C343"
+   ],
+   "why": "1V1 buck cell (DDR I/O + LPDDR4 VDD2/VDDQ)",
+   "templates": [
+    {
+     "chip": "U341",
+     "kind": "switching stage",
+     "why": "TLV62585 buck (SOT-563) with its inductor",
+     "skip": "the six cells are identical; the SW/VIN/COUT loop is laid out by hand once and copied after placement"
+    }
+   ]
+  },
+  {
+   "name": "seq",
+   "role": "power",
+   "anchor": "U401",
+   "near": [
+    "core"
+   ],
+   "refs": [
+    "U401",
+    "R401",
+    "C401"
+   ],
+   "why": "power-good chain and CRESET_N supervisor"
+  },
+  {
+   "name": "core",
+   "role": "core",
+   "anchor": "U501",
+   "near": [
+    "lpddr",
+    "clock",
+    "cfg"
+   ],
+   "refs": [
+    "U501",
+    "FB501",
+    "FB502",
+    "FB503",
+    "FB504",
+    "C501",
+    "C502",
+    "C503",
+    "C504",
+    "C505",
+    "C506",
+    "C507",
+    "C508",
+    "R801",
+    "C509",
+    "C510",
+    "C511",
+    "C512",
+    "C513",
+    "C514",
+    "C515",
+    "C516",
+    "C517",
+    "C518",
+    "C519",
+    "C520",
+    "C521",
+    "C522",
+    "C523",
+    "C524",
+    "C525",
+    "C526",
+    "C527",
+    "C528",
+    "C529",
+    "C530",
+    "C531",
+    "C532",
+    "C533",
+    "C534",
+    "C535",
+    "C536",
+    "C537",
+    "C538",
+    "C539",
+    "C540",
+    "C541",
+    "C542",
+    "C543",
+    "C544",
+    "C545",
+    "C546",
+    "C547",
+    "C548",
+    "C549",
+    "C550",
+    "C551",
+    "C552",
+    "C553",
+    "C554",
+    "C555",
+    "C556",
+    "C557",
+    "C558",
+    "C559",
+    "C560",
+    "C561",
+    "C562",
+    "C563",
+    "C564",
+    "C565"
+   ],
+   "why": "the Ti135 with its ferrite-filtered PLL supplies and DDR_CAL; its BGA decaps (pre-flipped to B.Cu, under the BGA)"
+  },
+  {
+   "name": "cfg",
+   "role": "core",
+   "anchor": "U601",
+   "near": [
+    "core"
+   ],
+   "refs": [
+    "U601",
+    "C615",
+    "R616",
+    "R617",
+    "R618",
+    "R619",
+    "R601",
+    "R602",
+    "R603",
+    "R604",
+    "R605",
+    "R606",
+    "R607",
+    "R608",
+    "R609",
+    "R610",
+    "R611",
+    "R612",
+    "R613",
+    "R614"
+   ],
+   "why": "QSPI flash next to bank 4A config pins, config/JTAG pulls"
+  },
+  {
+   "name": "jtag",
+   "role": "interface",
+   "anchor": "J1",
+   "near": [
+    "cfg"
+   ],
+   "refs": [
+    "J1"
+   ],
+   "why": "JTAG header"
+  },
+  {
+   "name": "leds",
+   "role": "ui",
+   "anchor": "D601",
+   "near": [
+    "core"
+   ],
+   "refs": [
+    "D601",
+    "D602",
+    "R620",
+    "R621"
+   ],
+   "why": "user LEDs on HVIO"
+  },
+  {
+   "name": "clock",
+   "role": "clock",
+   "anchor": "Y701",
+   "near": [
+    "core"
+   ],
+   "refs": [
+    "Y701",
+    "C701",
+    "R701",
+    "R702",
+    "R703"
+   ],
+   "why": "25 MHz oscillator fanned out to N7/R3/L2 (bank 4B)"
+  },
+  {
+   "name": "lpddr",
+   "role": "core",
+   "anchor": "U801",
+   "near": [
+    "core"
+   ],
+   "refs": [
+    "U801",
+    "R802",
+    "C803",
+    "C804",
+    "C805",
+    "C806",
+    "C807",
+    "C808",
+    "C809",
+    "C810",
+    "C811",
+    "C812",
+    "C813",
+    "C814",
+    "C815",
+    "C816",
+    "C817",
+    "C818",
+    "C819",
+    "C820",
+    "C821",
+    "C822",
+    "C823",
+    "C824",
+    "C825",
+    "C826",
+    "C827",
+    "C828",
+    "C829",
+    "C830",
+    "C831",
+    "C832",
+    "C833",
+    "C834",
+    "C835"
+   ],
+   "why": "LPDDR4 with its ZQ resistor; its decaps (pre-flipped to B.Cu, under the package)"
+  },
+  {
+   "name": "ethernet",
+   "role": "interface",
+   "anchor": "U901",
+   "near": [
+    "magjack",
+    "core"
+   ],
+   "refs": [
+    "U901",
+    "U902",
+    "Y901",
+    "C901",
+    "C910",
+    "C911",
+    "C920",
+    "C921",
+    "C922",
+    "C930",
+    "C931",
+    "C932",
+    "C933",
+    "C934",
+    "C935",
+    "C936",
+    "C940",
+    "C941",
+    "C951",
+    "FB901",
+    "R901",
+    "R902",
+    "R903",
+    "R904",
+    "R905",
+    "R906",
+    "R907",
+    "R908",
+    "R909",
+    "R910",
+    "R911",
+    "R912",
+    "R920",
+    "R921",
+    "R922",
+    "R923",
+    "R924",
+    "R925",
+    "R926",
+    "R927",
+    "R928",
+    "R929",
+    "R930",
+    "R931",
+    "R932",
+    "R933"
+   ],
+   "why": "RTL8211FDI with RGMII series resistors, straps, crystal, LDO decoupling, reset buffer U902"
+  },
+  {
+   "name": "magjack",
+   "role": "interface",
+   "anchor": "J9",
+   "near": [
+    "ethernet"
+   ],
+   "refs": [
+    "J9",
+    "C950",
+    "R950"
+   ],
+   "why": "HR911130A magjack with CT cap and LED resistor"
+  },
+  {
+   "name": "emmc",
+   "role": "core",
+   "anchor": "U1001",
+   "near": [
+    "core"
+   ],
+   "refs": [
+    "U1001",
+    "R1001",
+    "R1010",
+    "R1011",
+    "R1012",
+    "R1013",
+    "R1014",
+    "R1015",
+    "R1016",
+    "R1017",
+    "R1018",
+    "R1019",
+    "R1020",
+    "C1001",
+    "C1002",
+    "C1003",
+    "C1004",
+    "C1005",
+    "C1006",
+    "C1007"
+   ],
+   "why": "eMMC with pull-ups and decoupling, bank 4A side"
+  },
+  {
+   "name": "level_shift",
+   "role": "interface",
+   "anchor": "U1201",
+   "near": [
+    "core",
+    "j3"
+   ],
+   "refs": [
+    "U1201",
+    "U1202",
+    "U1203",
+    "U1204",
+    "C1201",
+    "C1202",
+    "C1203",
+    "C1204",
+    "C1205",
+    "C1206",
+    "C1207",
+    "C1208",
+    "R1201"
+   ],
+   "why": "4 x SN74AXC8T245 between bank 2A-2C and J3"
+  },
+  {
+   "name": "j3",
+   "role": "interface",
+   "anchor": "J3",
+   "near": [
+    "level_shift",
+    "adc"
+   ],
+   "refs": [
+    "J3",
+    "RN1401",
+    "RN1402",
+    "RN1403",
+    "RN1404",
+    "RN1405",
+    "RN1406",
+    "RN1407",
+    "RN1408"
+   ],
+   "why": "baseboard J11 socket (bottom) with its 32 pull-downs"
+  },
+  {
+   "name": "adc",
+   "role": "interface",
+   "anchor": "U1303",
+   "near": [
+    "j3"
+   ],
+   "refs": [
+    "U1301",
+    "U1302",
+    "U1303",
+    "R1301",
+    "R1302",
+    "R1303",
+    "R1304",
+    "R1305",
+    "R1306",
+    "R1310",
+    "R1311",
+    "R1312",
+    "C1301",
+    "C1302",
+    "C1303",
+    "C1304",
+    "C1305",
+    "C1306",
+    "U101",
+    "C104",
+    "C105"
+   ],
+   "why": "mux + buffer + ADS7056 next to J3's analog pins, with the 3V3_analog LDO"
+  },
+  {
+   "name": "ui",
+   "role": "ui",
+   "anchor": "J5",
+   "near": [
+    "core"
+   ],
+   "refs": [
+    "J5",
+    "J2",
+    "R1401",
+    "R1402"
+   ],
+   "why": "LCD header (locked) and UART header"
+  }
+ ]
+}

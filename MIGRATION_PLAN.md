@@ -447,7 +447,7 @@ DDR calibration (Efinity DDR test), U-Boot, Linux, Ethernet, eMMC, ADC, header I
 5. **Dev kit:** do you have (or can you get) a Ti375C529 kit for the Linux bring-up? Which Efinix kit do you have now (the SPI test used a Trion kit)?
 6. **Repo:** new git repo here with a copy of the KiCad project, or a branch in `agilex3_soc_control_card`?
 7. **Transceivers / MIPI:** definitely unused (tie off), or should an SGMII PHY / camera be kept possible?
-8. **Ethernet:** keep KSZ9031 RGMII (recommended, lowest risk), or move to SGMII via Q1 with another PHY?
+8. **Ethernet:** keep KSZ9031 RGMII (recommended, lowest risk), or move to SGMII via Q1 with another PHY? **2026-10-25: RGMII kept, PHY changed to the RTL8211FDI-CG for stock (sheet 09); the 1V2 rail is gone.**
 
 ## Sources
 

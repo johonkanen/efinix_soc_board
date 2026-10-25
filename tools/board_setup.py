@@ -55,7 +55,7 @@ PATTERNS = [
     ("lpddr_ca", r".*ddr_(ca[0-5]|cke0|cs[02]_n|rst_n)$"),
     ("lpddr_diff", r".*ddr_(dqs[0-3]|ck)_[PN]$"),
     ("rgmii", r".*(rgmii|phy)_(txc|tx_ctl|txd[0-3]|rxc|rx_ctl|rxd[0-3])$"),
-    ("PWR", r"^(5V0|1V8|3V3|1V2|1V1|0V85|3V3_analog)$"),
+    ("PWR", r"^(5V0|1V8|3V3|1V1|0V85|3V3_analog|phy_vdd10)$"),
     ("PWR_CORE", r"^VCORE$"),
 ]
 

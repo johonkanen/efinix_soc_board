@@ -1,3 +1,6 @@
 [submodule "tools/p2k"]
 	path = tools/p2k
 	url = https://github.com/johonkanen/proteus2kicad.git
+[submodule "tools/jlc"]
+	path = tools/jlc
+	url = https://github.com/johonkanen/jlc-tools.git

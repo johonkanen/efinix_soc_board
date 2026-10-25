@@ -10,3 +10,5 @@ fp-info-cache
 _autosave-*
 \#auto_saved_files#
 *.lck
+# placement / routing runs (placement/prep.sh, KiCadRoutingTools)
+work/

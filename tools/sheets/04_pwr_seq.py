@@ -3,7 +3,7 @@
 
 pg_group1 = PG(VCORE) & PG(1V8) & PG(3V3) (open drain, wired AND), R401 100 k to 5V0. It drives EN of the
 group-2 regulators 0V85 / 1V1 (sheet 3).
-pg_all = PG(0V85) & PG(1V1) & PG(1V2) -> U401 TPS3808 ~MR (internal pull-up to VDD). Group 2 only starts after
+pg_all = PG(0V85) & PG(1V1) -> U401 TPS3808 ~MR (internal pull-up to VDD). Group 2 only starts after
 group 1 is good, so pg_all high means every rail is good. SENSE watches VCORE directly (G01: 0.405 V threshold).
 RESET (open drain, R602 10 k to 1V8 on sheet 6) = fpga_creset_n, released t_D = 20 ms (CT open) after the last
 condition: meets ">= 10 us after all supplies at 90 %" and ">= 4.5 ms before configuration" (TI135_PCB_NOTES.md §5).
@@ -12,7 +12,7 @@ Power-down: any PG falling (<90 %) pulls ~MR low -> CRESET_N low at once, resett
 from _common import *  # noqa: F401,F403
 
 sh = sheet("04_pwr_seq.kicad_sch")
-sh.text("Power-up order (TI135_PCB_NOTES.md §5): group 1 (VCORE, 1V8, 3V3, 1V2) -> pg_group1 -> group 2 (0V85, 1V1)\n"
+sh.text("Power-up order (TI135_PCB_NOTES.md §5): group 1 (VCORE, 1V8, 3V3) -> pg_group1 -> group 2 (0V85, 1V1)\n"
         "-> pg_all -> U401 TPS3808 (20 ms) -> fpga_creset_n -> SPI active configuration.", g(14), g(14))
 
 # pg_group1 pull-up
