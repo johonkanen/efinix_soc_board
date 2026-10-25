@@ -53,7 +53,7 @@ How the board goes from placed parts to fab outputs, and which tool does each st
 | 9. **Done.** Planes per §6.6; check the In3 VCORE/1V1 seam (y ≈ 78) and that the DDR corridor is all 1V1. Draw region outlines by hand if the tool's split does not follow the ball map | `route_planes.py`, pcbnew |
 | 10. **Done: via-in-pad** on every connected ball (`tools/via_in_pad.py`); the escapes are part of the routing steps | §6.7 |
 | 11. **Done.** Under-BGA decaps moved off foreign vias | `place_fanout_clearance.py` |
-| 12. Buck cells on B.Cu: one cell drawn by hand (SW node small, GND strip between the pin rows with vias to In6, wide VIN/VOUT with vias to the planes), copied to the other four | pcbnew |
+| 12. **Done.** Buck cells on B.Cu: SW 0.35 → 0.8 mm, GND strip between the pin rows with vias to In6, VOUT 0.7 mm with vias to the rail plane, FB away from SW; every via legalised against all layers | `tools/buck_copper.py` |
 
 ## Phase 4: memories (automatic, hand sign-off)
 

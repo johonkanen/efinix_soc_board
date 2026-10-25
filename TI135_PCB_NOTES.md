@@ -394,6 +394,16 @@ LPDDR4 bytes route directly from the via on In2 or In5, so each byte stays on on
   hole clearance.
 - Test: byte 1 alone, In2 only, 0.1 mm: 9 of 11 nets routed in 1 s (DQ8/DQ9 next to the 0V85 row left open).
 
+### 6.8 Regulator cells (B.Cu, 2026-10-25)
+
+The five TLV62585 cells follow TI SLVSDE5F Figure 24: CIN across VIN/GND, the inductor straight out from SW, COUT on
+the GND side, the divider at FB. **Template mirror bug:** fitted on B.Cu with the top-side sketches, the cells came
+out mirrored relative to the pins (CIN next to the GND pin, COUT on the VIN side). The fitter keeps footprint-frame
+offsets while the flip mirrors the pads. Fixed with mirrored sketches (`placement/sketches_B`, used by `prep.sh`),
+and the cells were re-placed with everything else locked. Each cell was verified in the regulator's own frame.
+Copper is drawn by `tools/buck_copper.py`, one layout copied through each cell's pad frame. The 5V0 B.Cu region
+feeds every VIN by fill. The 3V3 cell's output and the EN/PG pins are left to the router.
+
 ## 7. Clock-capable pins (from the Efinity device database)
 
 | Bank | PLL_CLKIN | GCLK | Other |

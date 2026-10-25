@@ -12,8 +12,8 @@ for b in locked fixed; do cp $R/kicad/ti135_card.kicad_pro $b.kicad_pro; cp $R/k
 $R/tools/p2k/bin/kipy "$H/flip_bottom.py" fixed.kicad_pcb
 $P -X utf8 $K/py_tools/check_floorplan.py fixed.kicad_pcb --emit-intent intent.json > /dev/null 2>&1 || true
 python3 "$H/fix_intent.py" intent.json
-# buck cell templates (TI TLV62585 Figure 24, placement/sketches/U*.json)
-for sk in "$H"/sketches/U*.json; do
+# buck cell templates (TI TLV62585 Figure 24; B.Cu variants in placement/sketches_B)
+for sk in "$H"/sketches_B/U*.json; do   # cells are on B.Cu: mirrored sketches (TI135_PCB_NOTES.md 6.8)
     $P -X utf8 $K/py_tools/fit_template.py fixed.kicad_pcb --sketch "$sk" --intent intent.json --write-intent intent.json \
         | grep -E "^  (ground return|NOTE)" | grep -v ESTIMATED || true
 done

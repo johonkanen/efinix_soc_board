@@ -41,7 +41,7 @@ card, and plugs into the same baseboard.
   (overlapping reference labels, the jack overhanging the edge) remain to be tidied.
 
 **Planes and BGA fan-out done** (TI135_PCB_NOTES.md §6.6–6.7): via-in-pad on every connected U501/U801 ball, plane regions by
-script, under-BGA decaps cleared. Next: LAYOUT_PLAN.md step 12 (buck cell copper) and phase 4 (LPDDR4 routing).
+script, under-BGA decaps cleared. Regulator cell copper done (§6.8; the bottom-side template mirror bug found and fixed). Next: phase 4 (LPDDR4 routing).
 
 | Sheet | State |
 |---|---|
