@@ -16,6 +16,7 @@ channel may carry any of them: the ball <-> J3 order can be swapped freely durin
 """
 
 import csv
+import json
 import os
 import sys
 
@@ -198,6 +199,22 @@ def main():
         "AXI0_CLK_INPUT_PIN": "ddr_axi0_clk",
         "CTRL_CLK_PIN": "ddr_ctrl_clk",
     }, block_type="DDR")
+    # Package pin swizzle as wired on the board (lpddr4_swizzle.json, LPDDR4_SWIZZLE.md): position k of
+    # PIN_SWIZZLE_DQMn is FPGA ball DDR_DQ[8n+k] (position 8 = DDR_DM[n]); its value is the DRAM-side signal
+    # wired there, in x32 numbering (channel A byte 0/1 = DQ[0:15], channel B byte 0/1 = DQ[16:31]).
+    with open(os.path.join(HERE, "lpddr4_swizzle.json")) as f:
+        swz = json.load(f)
+    swizzle = {"PIN_SWIZZLE_EN": "1",
+               "PIN_SWIZZLE_CA": ",".join(f"CA[{c}]" for c in swz["ca"])}
+    for n in range(4):
+        swizzle[f"PIN_SWIZZLE_DQM{n}"] = ",".join([f"DQ[{8 * n + b}]" for b in swz["dq"][str(n)]] + [f"DM[{n}]"])
+    d.set_property("ddr", swizzle, block_type="DDR")
+    readback = d.get_property("ddr", list(swizzle), block_type="DDR")
+    for k, v in swizzle.items():
+        got = readback.get(k) if isinstance(readback, dict) else None
+        print(f"  {k} = {got}")
+        if k != "PIN_SWIZZLE_EN" and got != v:
+            sys.exit(f"DDR swizzle readback mismatch for {k}: wrote {v}, read {got}")
 
     d.create_block("soc_jtag", block_type="JTAG")
     d.assign_resource("soc_jtag", "JTAG_USER1", block_type="JTAG")

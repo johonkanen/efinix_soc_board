@@ -1,6 +1,6 @@
 # Status and handoff
 
-Last updated: **2026-10-25** (placement done; PHY changed to RTL8211FDI). Read this first if you are picking the work up (human or agent).
+Last updated: **2026-10-25** (placement with power on the underside, LPDDR4 swizzle, layer and plane plan). Read this first if you are picking the work up (human or agent).
 
 ## What this repository is
 
@@ -13,6 +13,7 @@ card, and plugs into the same baseboard.
 |---|---|
 | `MIGRATION_PLAN.md` | Overall plan: block mapping, decisions, power tree, phases, open questions |
 | `TI135_PCB_NOTES.md` | Ti135 device rules: banks, power sequencing, configuration pins, LPDDR4 wiring and swizzling, routing rules, required pull resistors |
+| `LAYOUT_PLAN.md` | Placement and routing plan: phases, which tool does each step, the fixed design inputs |
 | `MECHANICAL.md` | **Hard mechanical requirements**: outline, J3/J6 (bottom-side baseboard connectors), RJ45 position, all in the Ti60 / KiCad frames |
 | `POWER_BUDGET.md` | Rail estimate, 5V_ISOL input limit, regulator choice (TLV62585PDRLR), divider values |
 | `reference/` | `ti135n484_pinout.csv` (all 484 balls, from the Efinity device DB), `baseboard_j11_pinout.csv` (baseboard signal header, the authority for J3) |
@@ -27,10 +28,15 @@ card, and plugs into the same baseboard.
 - 8-layer JLC08161H-3313 stack-up, net classes and DRC rules are set up.
 - **Ethernet PHY changed to the RTL8211FDI-CG** (user decision 2026-10-25, stock; the Agilex 5 card does the same).
   The 1V2 buck went with the KSZ9031, so there are now 5 × TLV62585.
-- **Placement**: KiCadRoutingTools `place_simple` (§Placement below), seed 1 of 12, applied with
-  `tools/apply_placement.py`. The BGA and LPDDR4 decaps are on B.Cu under their packages. The translators sit
-  between J3 and the BGA's west edge, the ADC at J3's south (analog) end, the PHY between the BGA and J9, and the
-  1V1 / 1V8 cells by U801.
+- **Placement** (KiCadRoutingTools, §Next phases 3; applied 2026-10-25, seed 8 of 12):
+  - power supplies on the underside, as on the Ti60 card: 5 TLV62585 cells held to TI's Figure 24 layout, plus J6's caps;
+  - BGA/LPDDR4 decaps on B.Cu under their packages;
+  - J1/J2 at the west edge below J3 (MECHANICAL.md);
+  - translators between J3 and the BGA, PHY between the BGA and J9, eMMC south, ADC south-east.
+- **LPDDR4**: DQ swizzle within each byte (LPDDR4_SWIZZLE.md: crossings 125 → 45), configured in Efinity
+  (`efinity/pinplan/lpddr4_swizzle.json`). 40 Ω / 80 Ω rules (Efinix guide). The Ti135N484**I3** tops out at 2.8 Gbps.
+- **Layers** (TI135_PCB_NOTES.md §6.5–6.6): signals on F/In2/In5/B. In1 and In6 GND; In3 VCORE/1V1/3V3; In4 1V8/0V85/5V0.
+- **Plan for the rest**: `LAYOUT_PLAN.md`. LPDDR4, eMMC and flash are routed automatically and signed off by hand.
 - DRC: schematic parity 0; no courtyard, clearance or short errors; 499 unconnected (unrouted). Silkscreen warnings
   (overlapping reference labels, the jack overhanging the edge) remain to be tidied.
 
@@ -140,28 +146,32 @@ tools/p2k/bin/p2k render_sheet kicad/08_lpddr4.kicad_sch   # PNG check -> report
    - `tools/board_setup.py`: Agilex stack-up, net classes (LPDDR4, RGMII, power), DRC rules (U501/U801), and a J3
      edge exception.
 3. ~~Placement~~ **done 2026-10-25** with KiCadRoutingTools (https://github.com/drandyhaas/KiCadRoutingTools, local
-   `~/dev/KiCadRoutingTools` with its venv; skill `plan-pcb-placement`):
+   `~/dev/KiCadRoutingTools` with its venv; its skills are linked into `.claude/skills/`, gitignored):
    - Inputs are in `placement/`:
-     - `groups.json`: 20 functional groups with anchors, `near` hints and the buck cells' template candidates
-       (skipped: one hand-made layout, copied per cell).
-     - `prep.sh`: lock J3/J6/J9/J5/U501/U801, unplace the rest, flip the 90 BGA/LPDDR4 decaps to B.Cu
-       (`flip_decaps.py`), emit the intent and apply the hand fixes (`fix_intent.py`: the FPGA/LPDDR4 sheets keep
-       per-part faces).
-     - `make_board.py` now sets pad pin functions/types. Without them the placer read the Y701 oscillator as a
-       crystal and dragged 30 1V8 decaps to it.
+     - `groups.json`: 20 functional groups. The power groups have `side: B`.
+     - `sketches/U*.json`: the TLV62585 templates (TI SLVSDE5F Figure 24).
+     - `prep.sh` does the prep in order:
+       1. locks J3/J6/J9/J5/J1/J2/U501/U801 and unplaces the rest;
+       2. flips the decaps and power cells to B.Cu (`flip_bottom.py`);
+       3. emits the intent and applies `fix_intent.py`;
+       4. fits the templates.
+     - `make_board.py` sets pad pin functions/types. Without them the placer read the Y701 oscillator as a crystal.
    - Run: `placement/prep.sh`, then from `work/place`:
-     `$P $K/py_placer/place_simple.py fixed.kicad_pcb 'wk/s{seed}.kicad_pcb' --groups groups.json --intent intent.json --jobs 4 --json 'wk/s{seed}.json'`
-     (12 seeds, about 2.5 min each), then `$P $K/py_placer/judge_seeds.py wk/judge.json --chain placement/judge_chain.txt --intent intent.json`.
-   - Result: seed 1 (cost 13,345, HPWL 6.0 m). Its level-2 quick route: 28 open nets, 746 vias, 7.0 m copper; seed 7
-     was close (29 open, 7.4 m), seed 10 was worse (64 open).
-   - Apply a seed: `tools/p2k/bin/kipy tools/apply_placement.py work/place/wk/sN.kicad_pcb`.
-   - Still to do by hand:
-     - the buck cells' SW/VIN/COUT loops (one layout, copied to the other four);
-     - Y901 and the RGMII series resistors (TX at the FPGA, RX at the PHY);
-     - J1 / J2 header positions (the placer put them mid-board);
-     - silkscreen labels (`$K/py_placer/beautify_labels.py`).
-   - Next: dog-bone fan-out at 0.8 mm pitch, the plane assignment per layer (In1 GND, In4 power), and a pin-swap loop
-     through `efinity/pinplan/pinplan.py` → schematic.
+     - place: `$P $K/py_placer/place_simple.py fixed.kicad_pcb 'wk/s{seed}.kicad_pcb' --groups groups.json --intent intent.json --jobs 4 --json 'wk/s{seed}.json'`
+       (12 seeds, about 2.5 min each);
+     - judge: `$P $K/py_placer/judge_seeds.py wk/judge.json --chain ../../placement/judge_chain.txt --intent intent.json --seeds 1,7,8 --jobs 1`
+       (its route uses the §6.6 planes and the 4 signal layers).
+   - Result: seed 8 (placer cost 13,801). Its level-2 quick route left 24 nets open, with 711 vias and 7.2 m of copper;
+     seed 7 left 34 open and seed 1 left 38.
+   - Applied with `tools/p2k/bin/kipy tools/apply_placement.py work/place/wk/s8.kicad_pcb`. Checks: no assembly
+     blocking, no floorplan errors, all five templates as drawn.
+   - Still to do by hand (LAYOUT_PLAN.md step 4):
+     - RGMII series resistors: TX at the FPGA, RX at the PHY;
+     - Y901 tight to the PHY;
+     - R801/R802 at their balls;
+     - silkscreen labels (`beautify_labels.py`).
+   - Watch at sign-off: the 0V85/1V1 cells (B.Cu) sit at the east end of the DDR corridor. Efinix asks for ≥ 100 mil
+     between switching nodes and DDR traces; In6 GND shields In5.
 4. **LPDDR4 routing** (TI135_PCB_NOTES.md §6.3), then the rest. DRC, then the JLC order checklist.
 5. **In parallel (software):** bring up Linux on a Ti375C529 dev kit with the hard SoC + TSEMAC + eMMC host
    (MIGRATION_PLAN.md phase 1).

@@ -1,0 +1,91 @@
+{
+ "anchor": "U341",
+ "kind": "switching stage",
+ "source": "TI TLV62585 SLVSDE5F, 10.1 Layout Guidelines and Figure 24 (PDRL). Figure -> footprint frame: figure up = -x (outward from the VIN 3 / SW 2 / GND 1 pin row), left = +y, right = -y, down = +x (a turn). L1 straight out from SW, C1 (CIN) left of the chip with VIN up / GND down, C2 (COUT) right with VOUT up / GND down, R1/R2 at FB; GND copper between the two pin rows joins the GND pin and both cap grounds.",
+ "members": [
+  {
+   "ref": "C341",
+   "pads": {
+    "C341": [
+     "1"
+    ],
+    "U341": [
+     "3"
+    ]
+   },
+   "side": "+y",
+   "rot": 0,
+   "note": "C1 (CIN): VIN pad at VIN 3, axis along the pin rows' normal, GND pad toward the GND band"
+  },
+  {
+   "ref": "L341",
+   "pads": {
+    "L341": [
+     "1"
+    ],
+    "U341": [
+     "2"
+    ]
+   },
+   "side": "-x",
+   "rot": 90,
+   "note": "L1 straight out from SW 2, VOUT pad toward -y"
+  },
+  {
+   "ref": "C342",
+   "pads": {
+    "C342": [
+     "1"
+    ],
+    "L341": [
+     "2"
+    ]
+   },
+   "side": "-y",
+   "rot": 0,
+   "note": "C2 (COUT): VOUT pad under L1's output pad, GND pad toward the GND band"
+  },
+  {
+   "ref": "C343",
+   "pads": {
+    "C343": [
+     "1",
+     "2"
+    ],
+    "C342": [
+     "1",
+     "2"
+    ]
+   },
+   "side": "-y",
+   "rot": 0,
+   "note": "second COUT beside C2"
+  },
+  {
+   "ref": "R342",
+   "pads": {
+    "R342": [
+     "1"
+    ],
+    "U341": [
+     "5"
+    ]
+   },
+   "side": "+x",
+   "note": "R2 (FB to GND) at FB 5"
+  },
+  {
+   "ref": "R341",
+   "pads": {
+    "R341": [
+     "2"
+    ],
+    "R342": [
+     "1"
+    ]
+   },
+   "side": "+x",
+   "note": "R1 (VOUT to FB) beside R2; VOUT sense routed from C2"
+  }
+ ]
+}

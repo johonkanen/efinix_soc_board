@@ -12,3 +12,6 @@ _autosave-*
 *.lck
 # placement / routing runs (placement/prep.sh, KiCadRoutingTools)
 work/
+kicad/.history/
+# KiCadRoutingTools skills, linked from ~/dev/KiCadRoutingTools/.claude/skills
+.claude/skills/

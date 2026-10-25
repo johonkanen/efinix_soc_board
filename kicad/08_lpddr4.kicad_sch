@@ -13706,7 +13706,7 @@
 			(embedded_fonts no)
 		)
 	)
-	(text "LPDDR4 x32: U501 DDR block -> U801 (2 channels x16, single rank). Wiring per TI135_PCB_NOTES.md §6.1\n(Efinix Ti375C529 kit). Swizzle rules §6.2: DQ only within its byte, CA only with the same permutation on\nboth channels, never DM/DQS/bytes/channels; enter every swap in Interface Designer PIN_SWIZZLE_*.\nRouting: §6.3 (40 R SE / 80 R diff, include package net lengths)."
+	(text "LPDDR4 x32: U501 DDR block -> U801 (2 channels x16, single rank). Wiring per TI135_PCB_NOTES.md §6.1\n(Efinix Ti375C529 kit). DQ swizzled within each byte (LPDDR4_SWIZZLE.md, efinity/pinplan/lpddr4_swizzle.json,\nInterface Designer PIN_SWIZZLE_DQM0-3). Never DM/DQS/bytes/channels; CA not swizzled.\nRouting: §6.3 (40 R SE / 80 R diff, include package net lengths)."
 		(exclude_from_sim no)
 		(at 17.78 20.32 0)
 		(effects
@@ -15943,7 +15943,7 @@
 		)
 		(uuid "a6bec7a1-1828-542c-8362-4caff79d8988")
 	)
-	(label "ddr_dq0"
+	(label "ddr_dq2"
 		(at 241.3 137.16 180)
 		(effects
 			(font
@@ -16038,7 +16038,7 @@
 		)
 		(uuid "d0cb384a-7548-5321-b62b-d4eb30c82c06")
 	)
-	(label "ddr_dq7"
+	(label "ddr_dq1"
 		(at 241.3 154.94 180)
 		(effects
 			(font
@@ -16208,7 +16208,7 @@
 		)
 		(uuid "3e2894d5-88e5-5ebf-9b04-99b102095ddd")
 	)
-	(label "ddr_dq15"
+	(label "ddr_dq11"
 		(at 292.1 154.94 0)
 		(effects
 			(font
@@ -16402,7 +16402,7 @@
 		)
 		(uuid "634bd507-ed65-5bf5-9fda-747c25440d04")
 	)
-	(label "ddr_dq1"
+	(label "ddr_dq5"
 		(at 241.3 139.7 180)
 		(effects
 			(font
@@ -16442,7 +16442,7 @@
 		)
 		(uuid "26b0b9be-6158-5f07-a1f2-102c07917c9c")
 	)
-	(label "ddr_dq6"
+	(label "ddr_dq0"
 		(at 241.3 152.4 180)
 		(effects
 			(font
@@ -16612,7 +16612,7 @@
 		)
 		(uuid "cb16d327-e3df-510f-b5c3-c5653d30d43d")
 	)
-	(label "ddr_dq14"
+	(label "ddr_dq10"
 		(at 292.1 152.4 0)
 		(effects
 			(font
@@ -17462,7 +17462,7 @@
 		)
 		(uuid "25e1dcd6-1ba2-52a3-948d-fe704b5c4d42")
 	)
-	(label "ddr_dq2"
+	(label "ddr_dq7"
 		(at 241.3 142.24 180)
 		(effects
 			(font
@@ -17502,7 +17502,7 @@
 		)
 		(uuid "ed807cac-7bb9-541f-81dc-f5289f10db16")
 	)
-	(label "ddr_dq5"
+	(label "ddr_dq4"
 		(at 241.3 149.86 180)
 		(effects
 			(font
@@ -17672,7 +17672,7 @@
 		)
 		(uuid "63c0ba81-8ca6-5f67-a94d-04a2d0f905f9")
 	)
-	(label "ddr_dq13"
+	(label "ddr_dq14"
 		(at 292.1 149.86 0)
 		(effects
 			(font
@@ -17712,7 +17712,7 @@
 		)
 		(uuid "af388cf9-f1bd-5ef7-b601-ddf56b41e759")
 	)
-	(label "ddr_dq10"
+	(label "ddr_dq12"
 		(at 292.1 142.24 0)
 		(effects
 			(font
@@ -17882,7 +17882,7 @@
 		)
 		(uuid "0e3b19a7-af20-53b1-bf4b-92c072823a05")
 	)
-	(label "ddr_dq3"
+	(label "ddr_dq6"
 		(at 241.3 144.78 180)
 		(effects
 			(font
@@ -17977,7 +17977,7 @@
 		)
 		(uuid "9f80d528-0616-5355-864a-c32cff0bace9")
 	)
-	(label "ddr_dq4"
+	(label "ddr_dq3"
 		(at 241.3 147.32 180)
 		(effects
 			(font
@@ -18147,7 +18147,7 @@
 		)
 		(uuid "99fe61c7-75d5-5045-9888-ca5d7dbde251")
 	)
-	(label "ddr_dq12"
+	(label "ddr_dq15"
 		(at 292.1 147.32 0)
 		(effects
 			(font
@@ -18242,7 +18242,7 @@
 		)
 		(uuid "ef00a104-82ea-516b-a15a-c1d9bcc045f9")
 	)
-	(label "ddr_dq11"
+	(label "ddr_dq13"
 		(at 292.1 144.78 0)
 		(effects
 			(font
@@ -20969,7 +20969,7 @@
 		)
 		(uuid "800d5a1b-5cd2-5bb5-b902-f511c7c02174")
 	)
-	(label "ddr_dq16"
+	(label "ddr_dq19"
 		(at 342.9 137.16 180)
 		(effects
 			(font
@@ -21064,7 +21064,7 @@
 		)
 		(uuid "7cacf9d1-8696-5b46-9c7d-f54f69e8ffe2")
 	)
-	(label "ddr_dq23"
+	(label "ddr_dq18"
 		(at 342.9 154.94 180)
 		(effects
 			(font
@@ -21234,7 +21234,7 @@
 		)
 		(uuid "3ef08ef6-398a-5c99-b515-5640a620b0a7")
 	)
-	(label "ddr_dq31"
+	(label "ddr_dq25"
 		(at 393.7 154.94 0)
 		(effects
 			(font
@@ -21329,7 +21329,7 @@
 		)
 		(uuid "656dce18-ff10-52e5-b75f-c6ef70ede2bc")
 	)
-	(label "ddr_dq24"
+	(label "ddr_dq28"
 		(at 393.7 137.16 0)
 		(effects
 			(font
@@ -24010,7 +24010,7 @@
 		)
 		(uuid "fbcf9840-7fc7-51c2-938b-76061c8339e3")
 	)
-	(label "ddr_dq19"
+	(label "ddr_dq17"
 		(at 342.9 144.78 180)
 		(effects
 			(font
@@ -24105,7 +24105,7 @@
 		)
 		(uuid "b5343dce-0e24-507c-a9e4-c7d683caaada")
 	)
-	(label "ddr_dq20"
+	(label "ddr_dq22"
 		(at 342.9 147.32 180)
 		(effects
 			(font
@@ -24275,7 +24275,7 @@
 		)
 		(uuid "4806360a-7eae-5dcc-b9be-082d431ea46d")
 	)
-	(label "ddr_dq28"
+	(label "ddr_dq27"
 		(at 393.7 147.32 0)
 		(effects
 			(font
@@ -24370,7 +24370,7 @@
 		)
 		(uuid "477cdfd5-0dc5-5a25-b7de-4c004357e4fc")
 	)
-	(label "ddr_dq27"
+	(label "ddr_dq30"
 		(at 393.7 144.78 0)
 		(effects
 			(font
@@ -24540,7 +24540,7 @@
 		)
 		(uuid "f2149fd4-6b6d-5bf8-b91d-987b5b6671d0")
 	)
-	(label "ddr_dq18"
+	(label "ddr_dq21"
 		(at 342.9 142.24 180)
 		(effects
 			(font
@@ -24580,7 +24580,7 @@
 		)
 		(uuid "d2836ffb-e6c8-5c3e-bcbf-7a73406ca24b")
 	)
-	(label "ddr_dq21"
+	(label "ddr_dq23"
 		(at 342.9 149.86 180)
 		(effects
 			(font
@@ -24750,7 +24750,7 @@
 		)
 		(uuid "2a97ece5-77e0-585a-9b72-87f06d71dfe6")
 	)
-	(label "ddr_dq29"
+	(label "ddr_dq24"
 		(at 393.7 149.86 0)
 		(effects
 			(font
@@ -24790,7 +24790,7 @@
 		)
 		(uuid "b2df0bdb-8007-5699-b330-4e84f007b0c2")
 	)
-	(label "ddr_dq26"
+	(label "ddr_dq31"
 		(at 393.7 142.24 0)
 		(effects
 			(font
@@ -25600,7 +25600,7 @@
 		)
 		(uuid "4a3cd515-b7a4-51fe-babd-57e72e6608b5")
 	)
-	(label "ddr_dq17"
+	(label "ddr_dq20"
 		(at 342.9 139.7 180)
 		(effects
 			(font
@@ -25640,7 +25640,7 @@
 		)
 		(uuid "17099ae3-aae8-5ed8-9486-0ed871c13ee1")
 	)
-	(label "ddr_dq22"
+	(label "ddr_dq16"
 		(at 342.9 152.4 180)
 		(effects
 			(font
@@ -25810,7 +25810,7 @@
 		)
 		(uuid "54c0cf41-9094-5503-96ca-27e347751a5d")
 	)
-	(label "ddr_dq30"
+	(label "ddr_dq26"
 		(at 393.7 152.4 0)
 		(effects
 			(font
@@ -25850,7 +25850,7 @@
 		)
 		(uuid "07fe5425-f48c-597d-9e4a-cdaaca511c6b")
 	)
-	(label "ddr_dq25"
+	(label "ddr_dq29"
 		(at 393.7 139.7 0)
 		(effects
 			(font

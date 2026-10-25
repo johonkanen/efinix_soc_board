@@ -1,0 +1,16 @@
+{
+  "_comment": [
+    "LPDDR4 DQ swizzle U501 (Ti135N484) -> U801 (H9HCNNN8KUMLHR-NME). Single source for tools/sheets/08_lpddr4.py",
+    "(schematic wiring) and efinity/pinplan/pinplan.py (Interface Designer PIN_SWIZZLE_*). See LPDDR4_SWIZZLE.md.",
+    "dq[n][k] = DRAM DQ bit (0-7, within the DRAM byte that FPGA byte n is wired to) on FPGA ball DDR_DQ[8n+k].",
+    "FPGA byte 0/1 -> channel A byte 0/1, byte 2/3 -> channel B byte 0/1 (fixed). DM, DQS, CA, CK, CKE, CS are not swapped.",
+    "ca[i] = DRAM CA index on FPGA DDR_A[i] (identity: no CA swizzle)."
+  ],
+  "dq": {
+    "0": [6, 7, 0, 4, 5, 1, 3, 2],
+    "1": [0, 1, 6, 7, 2, 3, 5, 4],
+    "2": [6, 3, 7, 0, 1, 2, 4, 5],
+    "3": [5, 7, 6, 4, 0, 1, 3, 2]
+  },
+  "ca": [0, 1, 2, 3, 4, 5]
+}

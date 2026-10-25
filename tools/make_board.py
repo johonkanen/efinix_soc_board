@@ -9,7 +9,7 @@ after that, update the board from the schematic in pcbnew instead.
 - the fixed parts J3, J6 (bottom-side sockets to the baseboard) and J9 (HR911130A magjack). Each is placed by
   trying the orientations and keeping the one that puts its pads/pegs on the MECHANICAL.md coordinates
   (it fails if none does);
-- U501 rotated 180 deg (DDR edge north), U801 north of it, J5/J1/J2 at the Ti60/Agilex positions;
+- U501 rotated 180 deg (DDR edge north), U801 north of it, J5 at the Ti60/Agilex position, J1/J2 west below J3;
 - every other footprint staged by sheet in a grid to the right of the board;
 - 8 copper layers. The stack-up, net classes and DRC rules are added afterwards by tools/board_setup.py.
 """
@@ -61,6 +61,10 @@ SOFT = {
     "U501": (164.0, 81.0, 180.0, "top"),    # Agilex U7 position; 180 deg: DDR rows (U..AB) face north
     "U801": (173.3, 58.1, -90.0, "top"),    # Agilex U12 position
     "J5": (152.912, 114.454, 90.0, "top"),  # LCD header, Ti60 J4 / Agilex J5 position
+    # JTAG / UART headers in line with J3's pin column, south of it: the baseboard has no top-side parts under
+    # x 131.5..136.5, y 77..116 except REF1 (y 92..96), so the pin tails are clear (MECHANICAL.md)
+    "J1": (133.5, 79.5, 0.0, "top"),
+    "J2": (133.5, 107.0, 0.0, "top"),
 }
 
 

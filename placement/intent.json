@@ -1,13 +1,13 @@
 {
  "assembly": {
   "sides": "both",
-  "why": "observed: 201 pad-bearing part(s) on F and 92 on B, 2 reflow pass(es). every footprint BLOCK (#726): blocks sharing one reference are keyed with an ordinal suffix and counted separately. `pad_bearing` restricts that to blocks carrying at least one pad that is not a paste/mask aperture (#1143), and it is the count the populated-side verdict is taken from -- a zero-pad graphic on the back does not make a board double-sided."
+  "why": "observed: 164 pad-bearing part(s) on F and 129 on B, 2 reflow pass(es). every footprint BLOCK (#726): blocks sharing one reference are keyed with an ordinal suffix and counted separately. `pad_bearing` restricts that to blocks carrying at least one pad that is not a paste/mask aperture (#1143), and it is the count the populated-side verdict is taken from -- a zero-pad graphic on the back does not make a board double-sided."
  },
  "blocks": [
   {
    "group": "sheet:0912d4b9",
    "name": "sheet:0912d4b9",
-   "note": "the board is a pile, so its members' bounding box is staging, not a zone (#1103)",
+   "note": "members are spread across the board and their bounding box overlaps another block, so no zone is claimed. Add one only if this really is a contiguous area",
    "refs": [
     "C615",
     "D601",
@@ -322,8 +322,7 @@
     "U311",
     "U331",
     "U341"
-   ],
-   "side": "F"
+   ]
   },
   {
    "group": "sheet:107c4e43",
@@ -394,8 +393,7 @@
     "R201",
     "R202",
     "U201"
-   ],
-   "side": "F"
+   ]
   }
  ],
  "board": "fixed.kicad_pcb",
@@ -407,11 +405,13 @@
    "blocks[sheet:434be1e8].side": "observed_baseline",
    "blocks[sheet:43cae895].side": "observed_baseline",
    "blocks[sheet:4439c084].side": "observed_baseline",
-   "blocks[sheet:6eb9e8e2].side": "observed_baseline",
-   "blocks[sheet:82b9dff3].side": "observed_baseline",
    "blocks[sheet:b11e2d82].side": "observed_baseline",
    "blocks[sheet:e9219459].side": "observed_baseline",
    "defaults.zone_tolerance_mm": "derived_default",
+   "edge_connectors[J1].edge": "observed_baseline",
+   "edge_connectors[J1].overhang_mm": "observed_baseline",
+   "edge_connectors[J2].edge": "observed_baseline",
+   "edge_connectors[J2].overhang_mm": "observed_baseline",
    "edge_connectors[J3].edge": "observed_baseline",
    "edge_connectors[J3].overhang_mm": "observed_baseline",
    "edge_connectors[J6].edge": "observed_baseline",
@@ -427,7 +427,7 @@
   },
   "cutouts": [],
   "decap_census": {
-   "beyond_radius": 87,
+   "beyond_radius": 86,
    "beyond_radius_refs": [
     "C101",
     "C102",
@@ -437,7 +437,6 @@
     "C203",
     "C331",
     "C332",
-    "C341",
     "C342",
     "C343",
     "C501",
@@ -517,7 +516,7 @@
     "C834",
     "C835"
    ],
-   "ics": 6,
+   "ics": 7,
    "max_mm": 4.744431051243127,
    "max_mm_display": 4.7444,
    "median_mm": 0.6012,
@@ -527,12 +526,14 @@
    "population": 153,
    "search_radius_mm": 5.0,
    "source": "auto-tethers",
-   "tethers": 66,
+   "tethers": 67,
    "unaccounted": 0,
    "worst_beyond_mm": 36.2346
   },
   "edge_contours": 0,
   "file_locked": [
+   "J1",
+   "J2",
    "J3",
    "J5",
    "J6",
@@ -544,7 +545,7 @@
   "note": "read-only, describing the board as it is. The outline is not editable by this toolchain: size, cutouts and slots are mechanical decisions the user owns",
   "pose_claims_withheld": {
    "kept": "KiCad-locked parts; a brief / mechanical.json merged after this",
-   "reason": "the board is a pile (99% of footprints lie outside the board outline): staging poses are not claims",
+   "reason": "the board is a pile (98% of footprints lie outside the board outline): staging poses are not claims",
    "refs_off_board": [
     "C1001",
     "C1002",
@@ -711,8 +712,6 @@
     "FB503",
     "FB504",
     "FB901",
-    "J1",
-    "J2",
     "L201",
     "L301",
     "L311",
@@ -848,6 +847,22 @@
  },
  "edge_connectors": [
   {
+   "edge": "west",
+   "overhang_mm": {
+    "max": 0.5,
+    "min": 0.0
+   },
+   "ref": "J1"
+  },
+  {
+   "edge": "west",
+   "overhang_mm": {
+    "max": 0.5,
+    "min": 0.0
+   },
+   "ref": "J2"
+  },
+  {
    "edge": "north",
    "overhang_mm": {
     "max": 0.739,
@@ -892,7 +907,7 @@
  "keepouts": [],
  "kind": "floorplan-intent",
  "legality_budget": {},
- "min_reader": 12,
+ "min_reader": 14,
  "must_lock": [],
  "proximity": [
   {
@@ -959,5 +974,771 @@
   }
  ],
  "schema": 1,
- "units": "mm"
+ "units": "mm",
+ "templates": [
+  {
+   "anchor": "U201",
+   "members": [
+    {
+     "ref": "C201",
+     "at": [
+      -0.0025,
+      2.04
+     ],
+     "rot": 0.0,
+     "pads": {
+      "C201": [
+       "1"
+      ],
+      "U201": [
+       "3"
+      ]
+     },
+     "note": "C1 (CIN): VIN pad at VIN 3, axis along the pin rows' normal, GND pad toward the GND band"
+    },
+    {
+     "ref": "L201",
+     "at": [
+      -3.5625,
+      -1.31
+     ],
+     "rot": 90.0,
+     "pads": {
+      "L201": [
+       "1"
+      ],
+      "U201": [
+       "2"
+      ]
+     },
+     "note": "L1 straight out from SW 2, VOUT pad toward -y"
+    },
+    {
+     "ref": "C202",
+     "at": [
+      0.5075,
+      -2.035
+     ],
+     "rot": 0.0,
+     "pads": {
+      "C202": [
+       "1"
+      ],
+      "L201": [
+       "2"
+      ]
+     },
+     "note": "C2 (COUT): VOUT pad under L1's output pad, GND pad toward the GND band"
+    },
+    {
+     "ref": "C203",
+     "at": [
+      0.5075,
+      -4.105
+     ],
+     "rot": 0.0,
+     "pads": {
+      "C203": [
+       "1",
+       "2"
+      ],
+      "C202": [
+       "1",
+       "2"
+      ]
+     },
+     "note": "second COUT beside C2"
+    },
+    {
+     "ref": "R202",
+     "at": [
+      2.2325,
+      -0.0
+     ],
+     "rot": 0.0,
+     "pads": {
+      "R202": [
+       "1"
+      ],
+      "U201": [
+       "5"
+      ]
+     },
+     "note": "R2 (FB to GND) at FB 5"
+    },
+    {
+     "ref": "R201",
+     "at": [
+      2.2725,
+      1.51
+     ],
+     "rot": 90.0,
+     "pads": {
+      "R201": [
+       "2"
+      ],
+      "R202": [
+       "1"
+      ]
+     },
+     "note": "R1 (VOUT to FB) beside R2; VOUT sense routed from C2"
+    }
+   ],
+   "tolerance_mm": 0.3,
+   "fitted": {
+    "legs_gap_mm": {
+     "C201": 1.64,
+     "L201": 0.813,
+     "C202": 0.92,
+     "C203": 1.24,
+     "R202": 0.402,
+     "R201": 0.41
+    },
+    "legs_mm": {
+     "C201": [
+      1.64
+     ],
+     "L201": [
+      0.812
+     ],
+     "C202": [
+      0.92
+     ],
+     "C203": [
+      0.62,
+      0.62
+     ],
+     "R202": [
+      0.402
+     ],
+     "R201": [
+      0.41
+     ]
+    },
+    "off_chip_mm": {
+     "C201": 0.11,
+     "L201": 0.103,
+     "C202": 0.105,
+     "C203": 2.175,
+     "R202": 0.102,
+     "R201": 0.603
+    },
+    "gap_mm": 0.1,
+    "ground_return_mm": {
+     "C201": 1.042,
+     "C202": 2.109,
+     "C203": 2.729
+    },
+    "decap_limits": []
+   },
+   "kind": "switching stage",
+   "source": "TI TLV62585 SLVSDE5F, 10.1 Layout Guidelines and Figure 24 (PDRL). Figure -> footprint frame: figure up = -x (outward from the VIN 3 / SW 2 / GND 1 pin row), left = +y, right = -y, down = +x (a turn). L1 straight out from SW, C1 (CIN) left of the chip with VIN up / GND down, C2 (COUT) right with VOUT up / GND down, R1/R2 at FB; GND copper between the two pin rows joins the GND pin and both cap grounds."
+  },
+  {
+   "anchor": "U301",
+   "members": [
+    {
+     "ref": "C301",
+     "at": [
+      -0.0025,
+      2.04
+     ],
+     "rot": 0.0,
+     "pads": {
+      "C301": [
+       "1"
+      ],
+      "U301": [
+       "3"
+      ]
+     },
+     "note": "C1 (CIN): VIN pad at VIN 3, axis along the pin rows' normal, GND pad toward the GND band"
+    },
+    {
+     "ref": "L301",
+     "at": [
+      -3.5625,
+      -1.31
+     ],
+     "rot": 90.0,
+     "pads": {
+      "L301": [
+       "1"
+      ],
+      "U301": [
+       "2"
+      ]
+     },
+     "note": "L1 straight out from SW 2, VOUT pad toward -y"
+    },
+    {
+     "ref": "C302",
+     "at": [
+      0.5075,
+      -2.035
+     ],
+     "rot": 0.0,
+     "pads": {
+      "C302": [
+       "1"
+      ],
+      "L301": [
+       "2"
+      ]
+     },
+     "note": "C2 (COUT): VOUT pad under L1's output pad, GND pad toward the GND band"
+    },
+    {
+     "ref": "C303",
+     "at": [
+      0.5075,
+      -4.105
+     ],
+     "rot": 0.0,
+     "pads": {
+      "C303": [
+       "1",
+       "2"
+      ],
+      "C302": [
+       "1",
+       "2"
+      ]
+     },
+     "note": "second COUT beside C2"
+    },
+    {
+     "ref": "R302",
+     "at": [
+      2.2325,
+      -0.0
+     ],
+     "rot": 0.0,
+     "pads": {
+      "R302": [
+       "1"
+      ],
+      "U301": [
+       "5"
+      ]
+     },
+     "note": "R2 (FB to GND) at FB 5"
+    },
+    {
+     "ref": "R301",
+     "at": [
+      2.2725,
+      1.51
+     ],
+     "rot": 90.0,
+     "pads": {
+      "R301": [
+       "2"
+      ],
+      "R302": [
+       "1"
+      ]
+     },
+     "note": "R1 (VOUT to FB) beside R2; VOUT sense routed from C2"
+    }
+   ],
+   "tolerance_mm": 0.3,
+   "fitted": {
+    "legs_gap_mm": {
+     "C301": 1.64,
+     "L301": 0.813,
+     "C302": 0.92,
+     "C303": 1.24,
+     "R302": 0.402,
+     "R301": 0.41
+    },
+    "legs_mm": {
+     "C301": [
+      1.64
+     ],
+     "L301": [
+      0.812
+     ],
+     "C302": [
+      0.92
+     ],
+     "C303": [
+      0.62,
+      0.62
+     ],
+     "R302": [
+      0.402
+     ],
+     "R301": [
+      0.41
+     ]
+    },
+    "off_chip_mm": {
+     "C301": 0.11,
+     "L301": 0.103,
+     "C302": 0.105,
+     "C303": 2.175,
+     "R302": 0.102,
+     "R301": 0.603
+    },
+    "gap_mm": 0.1,
+    "ground_return_mm": {
+     "C301": 1.042,
+     "C302": 2.109,
+     "C303": 2.729
+    },
+    "decap_limits": []
+   },
+   "kind": "switching stage",
+   "source": "TI TLV62585 SLVSDE5F, 10.1 Layout Guidelines and Figure 24 (PDRL). Figure -> footprint frame: figure up = -x (outward from the VIN 3 / SW 2 / GND 1 pin row), left = +y, right = -y, down = +x (a turn). L1 straight out from SW, C1 (CIN) left of the chip with VIN up / GND down, C2 (COUT) right with VOUT up / GND down, R1/R2 at FB; GND copper between the two pin rows joins the GND pin and both cap grounds."
+  },
+  {
+   "anchor": "U311",
+   "members": [
+    {
+     "ref": "C311",
+     "at": [
+      -0.0025,
+      2.04
+     ],
+     "rot": 0.0,
+     "pads": {
+      "C311": [
+       "1"
+      ],
+      "U311": [
+       "3"
+      ]
+     },
+     "note": "C1 (CIN): VIN pad at VIN 3, axis along the pin rows' normal, GND pad toward the GND band"
+    },
+    {
+     "ref": "L311",
+     "at": [
+      -3.5625,
+      -1.31
+     ],
+     "rot": 90.0,
+     "pads": {
+      "L311": [
+       "1"
+      ],
+      "U311": [
+       "2"
+      ]
+     },
+     "note": "L1 straight out from SW 2, VOUT pad toward -y"
+    },
+    {
+     "ref": "C312",
+     "at": [
+      0.5075,
+      -2.035
+     ],
+     "rot": 0.0,
+     "pads": {
+      "C312": [
+       "1"
+      ],
+      "L311": [
+       "2"
+      ]
+     },
+     "note": "C2 (COUT): VOUT pad under L1's output pad, GND pad toward the GND band"
+    },
+    {
+     "ref": "C313",
+     "at": [
+      0.5075,
+      -4.105
+     ],
+     "rot": 0.0,
+     "pads": {
+      "C313": [
+       "1",
+       "2"
+      ],
+      "C312": [
+       "1",
+       "2"
+      ]
+     },
+     "note": "second COUT beside C2"
+    },
+    {
+     "ref": "R312",
+     "at": [
+      2.2325,
+      -0.0
+     ],
+     "rot": 0.0,
+     "pads": {
+      "R312": [
+       "1"
+      ],
+      "U311": [
+       "5"
+      ]
+     },
+     "note": "R2 (FB to GND) at FB 5"
+    },
+    {
+     "ref": "R311",
+     "at": [
+      2.2725,
+      1.51
+     ],
+     "rot": 90.0,
+     "pads": {
+      "R311": [
+       "2"
+      ],
+      "R312": [
+       "1"
+      ]
+     },
+     "note": "R1 (VOUT to FB) beside R2; VOUT sense routed from C2"
+    }
+   ],
+   "tolerance_mm": 0.3,
+   "fitted": {
+    "legs_gap_mm": {
+     "C311": 1.64,
+     "L311": 0.813,
+     "C312": 0.92,
+     "C313": 1.24,
+     "R312": 0.402,
+     "R311": 0.41
+    },
+    "legs_mm": {
+     "C311": [
+      1.64
+     ],
+     "L311": [
+      0.812
+     ],
+     "C312": [
+      0.92
+     ],
+     "C313": [
+      0.62,
+      0.62
+     ],
+     "R312": [
+      0.402
+     ],
+     "R311": [
+      0.41
+     ]
+    },
+    "off_chip_mm": {
+     "C311": 0.11,
+     "L311": 0.103,
+     "C312": 0.105,
+     "C313": 2.175,
+     "R312": 0.102,
+     "R311": 0.603
+    },
+    "gap_mm": 0.1,
+    "ground_return_mm": {
+     "C311": 1.042,
+     "C312": 2.109,
+     "C313": 2.729
+    },
+    "decap_limits": []
+   },
+   "kind": "switching stage",
+   "source": "TI TLV62585 SLVSDE5F, 10.1 Layout Guidelines and Figure 24 (PDRL). Figure -> footprint frame: figure up = -x (outward from the VIN 3 / SW 2 / GND 1 pin row), left = +y, right = -y, down = +x (a turn). L1 straight out from SW, C1 (CIN) left of the chip with VIN up / GND down, C2 (COUT) right with VOUT up / GND down, R1/R2 at FB; GND copper between the two pin rows joins the GND pin and both cap grounds."
+  },
+  {
+   "anchor": "U331",
+   "members": [
+    {
+     "ref": "C331",
+     "at": [
+      -0.0025,
+      2.04
+     ],
+     "rot": 0.0,
+     "pads": {
+      "C331": [
+       "1"
+      ],
+      "U331": [
+       "3"
+      ]
+     },
+     "note": "C1 (CIN): VIN pad at VIN 3, axis along the pin rows' normal, GND pad toward the GND band"
+    },
+    {
+     "ref": "L331",
+     "at": [
+      -3.5625,
+      -1.31
+     ],
+     "rot": 90.0,
+     "pads": {
+      "L331": [
+       "1"
+      ],
+      "U331": [
+       "2"
+      ]
+     },
+     "note": "L1 straight out from SW 2, VOUT pad toward -y"
+    },
+    {
+     "ref": "C332",
+     "at": [
+      0.5075,
+      -2.035
+     ],
+     "rot": 0.0,
+     "pads": {
+      "C332": [
+       "1"
+      ],
+      "L331": [
+       "2"
+      ]
+     },
+     "note": "C2 (COUT): VOUT pad under L1's output pad, GND pad toward the GND band"
+    },
+    {
+     "ref": "R332",
+     "at": [
+      2.2325,
+      -0.0
+     ],
+     "rot": 0.0,
+     "pads": {
+      "R332": [
+       "1"
+      ],
+      "U331": [
+       "5"
+      ]
+     },
+     "note": "R2 (FB to GND) at FB 5"
+    },
+    {
+     "ref": "R331",
+     "at": [
+      2.2725,
+      1.51
+     ],
+     "rot": 90.0,
+     "pads": {
+      "R331": [
+       "2"
+      ],
+      "R332": [
+       "1"
+      ]
+     },
+     "note": "R1 (VOUT to FB) beside R2; VOUT sense routed from C2"
+    }
+   ],
+   "tolerance_mm": 0.3,
+   "fitted": {
+    "legs_gap_mm": {
+     "C331": 1.64,
+     "L331": 0.813,
+     "C332": 0.92,
+     "R332": 0.402,
+     "R331": 0.41
+    },
+    "legs_mm": {
+     "C331": [
+      1.64
+     ],
+     "L331": [
+      0.812
+     ],
+     "C332": [
+      0.92
+     ],
+     "R332": [
+      0.402
+     ],
+     "R331": [
+      0.41
+     ]
+    },
+    "off_chip_mm": {
+     "C331": 0.11,
+     "L331": 0.103,
+     "C332": 0.105,
+     "R332": 0.102,
+     "R331": 0.603
+    },
+    "gap_mm": 0.1,
+    "ground_return_mm": {
+     "C331": 1.042,
+     "C332": 2.109
+    },
+    "decap_limits": []
+   },
+   "kind": "switching stage",
+   "source": "TI TLV62585 SLVSDE5F, 10.1 Layout Guidelines and Figure 24 (PDRL). Figure -> footprint frame: figure up = -x (outward from the VIN 3 / SW 2 / GND 1 pin row), left = +y, right = -y, down = +x (a turn). L1 straight out from SW, C1 (CIN) left of the chip with VIN up / GND down, C2 (COUT) right with VOUT up / GND down, R1/R2 at FB; GND copper between the two pin rows joins the GND pin and both cap grounds."
+  },
+  {
+   "anchor": "U341",
+   "members": [
+    {
+     "ref": "C341",
+     "at": [
+      -0.0025,
+      2.04
+     ],
+     "rot": 0.0,
+     "pads": {
+      "C341": [
+       "1"
+      ],
+      "U341": [
+       "3"
+      ]
+     },
+     "note": "C1 (CIN): VIN pad at VIN 3, axis along the pin rows' normal, GND pad toward the GND band"
+    },
+    {
+     "ref": "L341",
+     "at": [
+      -3.5625,
+      -1.31
+     ],
+     "rot": 90.0,
+     "pads": {
+      "L341": [
+       "1"
+      ],
+      "U341": [
+       "2"
+      ]
+     },
+     "note": "L1 straight out from SW 2, VOUT pad toward -y"
+    },
+    {
+     "ref": "C342",
+     "at": [
+      0.5075,
+      -2.035
+     ],
+     "rot": 0.0,
+     "pads": {
+      "C342": [
+       "1"
+      ],
+      "L341": [
+       "2"
+      ]
+     },
+     "note": "C2 (COUT): VOUT pad under L1's output pad, GND pad toward the GND band"
+    },
+    {
+     "ref": "C343",
+     "at": [
+      0.5075,
+      -4.105
+     ],
+     "rot": 0.0,
+     "pads": {
+      "C343": [
+       "1",
+       "2"
+      ],
+      "C342": [
+       "1",
+       "2"
+      ]
+     },
+     "note": "second COUT beside C2"
+    },
+    {
+     "ref": "R342",
+     "at": [
+      2.2325,
+      -0.0
+     ],
+     "rot": 0.0,
+     "pads": {
+      "R342": [
+       "1"
+      ],
+      "U341": [
+       "5"
+      ]
+     },
+     "note": "R2 (FB to GND) at FB 5"
+    },
+    {
+     "ref": "R341",
+     "at": [
+      2.2725,
+      1.51
+     ],
+     "rot": 90.0,
+     "pads": {
+      "R341": [
+       "2"
+      ],
+      "R342": [
+       "1"
+      ]
+     },
+     "note": "R1 (VOUT to FB) beside R2; VOUT sense routed from C2"
+    }
+   ],
+   "tolerance_mm": 0.3,
+   "fitted": {
+    "legs_gap_mm": {
+     "C341": 1.64,
+     "L341": 0.813,
+     "C342": 0.92,
+     "C343": 1.24,
+     "R342": 0.402,
+     "R341": 0.41
+    },
+    "legs_mm": {
+     "C341": [
+      1.64
+     ],
+     "L341": [
+      0.812
+     ],
+     "C342": [
+      0.92
+     ],
+     "C343": [
+      0.62,
+      0.62
+     ],
+     "R342": [
+      0.402
+     ],
+     "R341": [
+      0.41
+     ]
+    },
+    "off_chip_mm": {
+     "C341": 0.11,
+     "L341": 0.103,
+     "C342": 0.105,
+     "C343": 2.175,
+     "R342": 0.102,
+     "R341": 0.603
+    },
+    "gap_mm": 0.1,
+    "ground_return_mm": {
+     "C341": 1.042,
+     "C342": 2.109,
+     "C343": 2.729
+    },
+    "decap_limits": []
+   },
+   "kind": "switching stage",
+   "source": "TI TLV62585 SLVSDE5F, 10.1 Layout Guidelines and Figure 24 (PDRL). Figure -> footprint frame: figure up = -x (outward from the VIN 3 / SW 2 / GND 1 pin row), left = +y, right = -y, down = +x (a turn). L1 straight out from SW, C1 (CIN) left of the chip with VIN up / GND down, C2 (COUT) right with VOUT up / GND down, R1/R2 at FB; GND copper between the two pin rows joins the GND pin and both cap grounds."
+  }
+ ]
 }

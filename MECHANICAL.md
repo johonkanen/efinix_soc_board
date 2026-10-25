@@ -72,7 +72,11 @@ The Agilex 5 card (after its 2026-10-24 change) is the same within 0.03 mm.
 - **Card outline in the baseboard IPC frame:** X 42.599…118.599, Y −18.766…46.361.
 - Baseboard U8 (VXO7805-1000, to be replaced by a 2 A part) is at IPC (104.36, −20.1), **1.33 mm outside the card's
   bottom edge**. Anything on U8 that is taller than the card-to-baseboard gap must stay below Y −18.766 (bb frame).
-- The gap is set by the J3/J6 socket + header stack: **measure it on the Ti60 card**.
+- The gap is the mated height of the 1.27 mm female socket (J3/J6, card bottom) on the baseboard's 1.27 mm male header
+  (J11/J12), as on the Ti60 card. A standard 1.27 mm socket body is 4.3 mm (e.g. HC-PM127-4.3H-2x19PZ, LCSC C27985219)
+  plus the male header's insulator (≈ 1.0–1.5 mm): **gap ≈ 5.3 mm** (take the lower value).
+- **Power supplies go on the card's underside**, as on the Ti60 card. Bottom-side budget: the tallest card part
+  (WPN4020 inductor, 2.0 mm) + the tallest baseboard part under it (SOIC-16W isolators, 2.65 mm) = 4.65 mm < 5.3 mm.
 
 ## J9: RJ45 magjack HanRun HR911130A, front face and centreline as on the Ti60
 
@@ -96,6 +100,14 @@ The Agilex 5 card (after its 2026-10-24 change) is the same within 0.03 mm.
 
 The LCD is connected with jumper wires. Keep the Ti60/Agilex position anyway: pin 1 at Ti60 (52.912, −14.454) =
 KiCad (152.912, 114.454), pins along +x.
+
+## J1 (JTAG 1×5) and J2 (UART 1×3), 2.54 mm, top side
+
+The Ti60 positions (below) would put through-hole pins in the LPDDR4 corridor between U501 and U801. These headers
+sit at the west edge instead, in line with J3's pin column: J1 pin 1 at KiCad (133.5, 79.5), J2 pin 1 at (133.5, 107.0),
+pins along +y. The baseboard (`~/dev/ac_psu_kicad/kicad/ac_psu.kicad_pcb`, mapped to the card frame through J11) has
+no top-side parts under x 131.5…136.5, y 77…116 except REF1 (SOT-23, y 92…96), so the pin tails clear it. Check
+against the measured card-to-baseboard gap.
 
 ## Other Ti60 positions (for information)
 

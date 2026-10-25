@@ -3,30 +3,40 @@
 
 Wiring as on Efinix's Ti375C529 kit (TI135_PCB_NOTES.md §6.1): one CA bus / CK / CKE0 / RESET shared by
 channels A and B; CS_N[0] -> CS0_A, CS_N[2] -> CS0_B; CKE[1], CS_N[1], CS_N[3] unused (single rank).
-FPGA byte 0/1 -> channel A byte 0/1, byte 2/3 -> channel B byte 0/1. DDR_CAL 240 R 1 % to GND,
+FPGA byte 0/1 -> channel A byte 0/1, byte 2/3 -> channel B byte 0/1; DQ bits swizzled within each byte per
+efinity/pinplan/lpddr4_swizzle.json (LPDDR4_SWIZZLE.md). DDR_CAL 240 R 1 % to GND,
 ZQ0 240 R 1 % to VDDQ (1V1), ODT_CA_A/B to VDD2 (1V1, as on the Agilex card).
 Net names ddr_dq0..31 / ddr_dm0..3 / ddr_dqs<n>_P/N / ddr_ck_P/N / ddr_ca0..5 keep the Agilex LPDDR4 net-class
-patterns. Swizzling (DQ within a byte, CA) is allowed only as in TI135_PCB_NOTES.md §6.2 and must be entered in
-the Interface Designer (PIN_SWIZZLE_*); any swap made in layout is redrawn here by changing MAP below.
+patterns. Swizzling (DQ within a byte, CA) is allowed only as in TI135_PCB_NOTES.md §6.2. A swap made in layout is
+entered in lpddr4_swizzle.json; this sheet and the Interface Designer project (PIN_SWIZZLE_*) both follow it.
 """
+import json
+import os
 import re
 
 from _common import *  # noqa: F401,F403
 
 sh = sheet("08_lpddr4.kicad_sch")
 
-# FPGA pad -> net, and memory pin name(s) on that net
+# DQ swizzle (LPDDR4_SWIZZLE.md): FPGA DDR_DQ[8n+k] -> DRAM DQ bit SWZ["dq"][n][k] of the DRAM byte wired to FPGA
+# byte n. The same file feeds Interface Designer's PIN_SWIZZLE_DQMn in efinity/pinplan/pinplan.py.
+with open(os.path.join(ROOT, "efinity", "pinplan", "lpddr4_swizzle.json")) as f:
+    SWZ = json.load(f)
+assert all(sorted(SWZ["dq"][str(n)]) == list(range(8)) for n in range(4)) and sorted(SWZ["ca"]) == list(range(6))
+
+# FPGA pad -> net, and memory pin name(s) on that net. Nets are named after the FPGA ball (ddr_dq<FPGA index>).
 MAP = {}
 for n in range(32):
-    ch, bit = ("A", n) if n < 16 else ("B", n - 16)
-    MAP[f"DDR_DQ[{n}]"] = (f"ddr_dq{n}", [f"DQ{bit}_{ch}"])
+    byte, k = divmod(n, 8)
+    ch, mbyte = ("A", byte) if byte < 2 else ("B", byte - 2)
+    MAP[f"DDR_DQ[{n}]"] = (f"ddr_dq{n}", [f"DQ{8 * mbyte + SWZ['dq'][str(byte)][k]}_{ch}"])
 for n in range(4):
     ch, byte = ("A", n) if n < 2 else ("B", n - 2)
     MAP[f"DDR_DM[{n}]"] = (f"ddr_dm{n}", [f"DMI{byte}_{ch}"])
     MAP[f"DDR_DQS[{n}]"] = (f"ddr_dqs{n}_P", [f"DQS{byte}_T_{ch}"])
     MAP[f"DDR_DQS_N[{n}]"] = (f"ddr_dqs{n}_N", [f"DQS{byte}_C_{ch}"])
 for n in range(6):
-    MAP[f"DDR_A[{n}]"] = (f"ddr_ca{n}", [f"CA{n}_A", f"CA{n}_B"])
+    MAP[f"DDR_A[{n}]"] = (f"ddr_ca{n}", [f"CA{SWZ['ca'][n]}_A", f"CA{SWZ['ca'][n]}_B"])
 MAP["DDR_CK"] = ("ddr_ck_P", ["CK_T_A", "CK_T_B"])
 MAP["DDR_CK_N"] = ("ddr_ck_N", ["CK_C_A", "CK_C_B"])
 MAP["DDR_CKE[0]"] = ("ddr_cke0", ["CKE0_A", "CKE0_B"])
@@ -37,8 +47,8 @@ UNUSED_FPGA = {"DDR_CKE[1]", "DDR_CS_N[1]", "DDR_CS_N[3]"}
 MEM_NET = {m: net for net, ms in MAP.values() for m in ms}
 
 sh.text("LPDDR4 x32: U501 DDR block -> U801 (2 channels x16, single rank). Wiring per TI135_PCB_NOTES.md §6.1\n"
-        "(Efinix Ti375C529 kit). Swizzle rules §6.2: DQ only within its byte, CA only with the same permutation on\n"
-        "both channels, never DM/DQS/bytes/channels; enter every swap in Interface Designer PIN_SWIZZLE_*.\n"
+        "(Efinix Ti375C529 kit). DQ swizzled within each byte (LPDDR4_SWIZZLE.md, efinity/pinplan/lpddr4_swizzle.json,\n"
+        "Interface Designer PIN_SWIZZLE_DQM0-3). Never DM/DQS/bytes/channels; CA not swizzled.\n"
         "Routing: §6.3 (40 R SE / 80 R diff, include package net lengths).", g(14), g(16))
 
 # ---------------------------------------------------------------- FPGA DDR unit

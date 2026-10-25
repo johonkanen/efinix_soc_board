@@ -16,7 +16,8 @@
     "C102",
     "C103"
    ],
-   "why": "baseboard 5 V entry (J6, bottom) with its bulk caps"
+   "why": "baseboard 5 V entry (J6, bottom) with its bulk caps (underside, as on the Ti60 card)",
+   "side": "B"
   },
   {
    "name": "vcore",
@@ -35,15 +36,15 @@
     "C202",
     "C203"
    ],
-   "why": "VCORE 0.95 V buck cell",
+   "why": "VCORE 0.95 V buck cell (underside, as on the Ti60 card)",
    "templates": [
     {
      "chip": "U201",
      "kind": "switching stage",
-     "why": "TLV62585 buck (SOT-563) with its inductor",
-     "skip": "the six cells are identical; the SW/VIN/COUT loop is laid out by hand once and copied after placement"
+     "why": "TLV62585 buck (SOT-563); template from TI SLVSDE5F Figure 24 (placement/sketches)"
     }
-   ]
+   ],
+   "side": "B"
   },
   {
    "name": "rail_1v8",
@@ -62,15 +63,15 @@
     "C302",
     "C303"
    ],
-   "why": "1V8 buck cell",
+   "why": "1V8 buck cell (underside, as on the Ti60 card)",
    "templates": [
     {
      "chip": "U301",
      "kind": "switching stage",
-     "why": "TLV62585 buck (SOT-563) with its inductor",
-     "skip": "the six cells are identical; the SW/VIN/COUT loop is laid out by hand once and copied after placement"
+     "why": "TLV62585 buck (SOT-563); template from TI SLVSDE5F Figure 24 (placement/sketches)"
     }
-   ]
+   ],
+   "side": "B"
   },
   {
    "name": "rail_3v3",
@@ -89,15 +90,15 @@
     "C312",
     "C313"
    ],
-   "why": "3V3 buck cell",
+   "why": "3V3 buck cell (underside, as on the Ti60 card)",
    "templates": [
     {
      "chip": "U311",
      "kind": "switching stage",
-     "why": "TLV62585 buck (SOT-563) with its inductor",
-     "skip": "the six cells are identical; the SW/VIN/COUT loop is laid out by hand once and copied after placement"
+     "why": "TLV62585 buck (SOT-563); template from TI SLVSDE5F Figure 24 (placement/sketches)"
     }
-   ]
+   ],
+   "side": "B"
   },
   {
    "name": "rail_0v85",
@@ -114,15 +115,15 @@
     "C331",
     "C332"
    ],
-   "why": "0V85 buck cell (DDR PHY)",
+   "why": "0V85 buck cell (DDR PHY) (underside, as on the Ti60 card)",
    "templates": [
     {
      "chip": "U331",
      "kind": "switching stage",
-     "why": "TLV62585 buck (SOT-563) with its inductor",
-     "skip": "the six cells are identical; the SW/VIN/COUT loop is laid out by hand once and copied after placement"
+     "why": "TLV62585 buck (SOT-563); template from TI SLVSDE5F Figure 24 (placement/sketches)"
     }
-   ]
+   ],
+   "side": "B"
   },
   {
    "name": "rail_1v1",
@@ -141,15 +142,15 @@
     "C342",
     "C343"
    ],
-   "why": "1V1 buck cell (DDR I/O + LPDDR4 VDD2/VDDQ)",
+   "why": "1V1 buck cell (DDR I/O + LPDDR4 VDD2/VDDQ) (underside, as on the Ti60 card)",
    "templates": [
     {
      "chip": "U341",
      "kind": "switching stage",
-     "why": "TLV62585 buck (SOT-563) with its inductor",
-     "skip": "the six cells are identical; the SW/VIN/COUT loop is laid out by hand once and copied after placement"
+     "why": "TLV62585 buck (SOT-563); template from TI SLVSDE5F Figure 24 (placement/sketches)"
     }
-   ]
+   ],
+   "side": "B"
   },
   {
    "name": "seq",

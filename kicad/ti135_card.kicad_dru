@@ -6,45 +6,57 @@
 # LPDDR4 rules (net classes lpddr_dq, lpddr_ca, lpddr_diff).  KiCad applies the LAST matching rule,
 # so the general rules come first and the BGA-courtyard exceptions (U7 Agilex, U12 LPDDR4) after them.
 # intersectsCourtyard() also catches segments that cross the courtyard edge (insideCourtyard() would not).
-# Stack-up: JLC08161H-3313.  50 ohm SE: 0.15 mm F/B.Cu, 0.12 mm inner.  100 ohm pair: 0.13/0.25 mm
-# F/B.Cu, 0.11/0.25 mm inner.  JLCPCB minimum trace/space is 0.09 mm; the 0.075 mm clearance used
-# between the 0.4 mm U7 pads is below that - see the note at the end.
+# Targets: Altera PCB Design Guidelines 821801, 6.3.2.2 (Agilex 5 E-Series Group B), Tables 8-10:
+#   main segment 40 ohm stripline / 45 ohm microstrip; break-out/break-in 50 ohm allowed; no differential
+#   target for CLK/DQS ("keep traces closely coupled", 4 mil in-pair spacing); spacing 2h within a group,
+#   3h between groups (CMD/CLK to DQ/DQS, nibble to nibble, serpentines, RESET); P/N skew < 1 ps.
+# Stack-up JLC08161H-3313 (field solve from the Ti135 session): 40 ohm = 0.18 mm on In2/In5, 50 ohm =
+#   0.15 mm on F/B, 40 ohm = 0.25 mm on F/B -> 45 ohm ~ 0.20 mm on F/B (interpolated, verify).  h ~ 0.1 mm
+#   on F.Cu/In2/In5, so 2h = 0.2 mm and 3h = 0.3 mm.  Route LPDDR4 on In2 (over In1 GND) first, In5 only
+#   inside one In6 pour, edge escapes on F.Cu; not on In3/In6 (see LPDDR4_SWIZZLE_PLAN.md).
+# JLCPCB minimum trace/space is 0.09 mm; the 0.075 mm clearance used between the 0.4 mm U7 pads is below
+# that - see the note at the end.
 # ===================================================================================================
 
 # ---- single-ended DQ/DM/CA outside the BGAs -------------------------------------------------------
 (rule "lpddr_se_outer"
 	(condition "(A.hasNetclass('lpddr_dq') || A.hasNetclass('lpddr_ca')) && (A.Layer == 'F.Cu' || A.Layer == 'B.Cu')")
-	(constraint track_width (min 0.13mm) (opt 0.15mm) (max 0.16mm)))
+	(constraint track_width (min 0.23mm) (opt 0.25mm) (max 0.27mm)))
 (rule "lpddr_se_inner"
 	(condition "(A.hasNetclass('lpddr_dq') || A.hasNetclass('lpddr_ca')) && A.Layer != 'F.Cu' && A.Layer != 'B.Cu'")
-	(constraint track_width (min 0.11mm) (opt 0.12mm) (max 0.13mm)))
+	(constraint track_width (min 0.17mm) (opt 0.18mm) (max 0.19mm)))
 
-# ---- DQS / CK pairs outside the BGAs: 100 ohm geometry per layer -----------------------------------
+# ---- DQS / CK pairs outside the BGAs: no differential target, same width as SE, 4 mil gap -----------
 (rule "lpddr_diff_outer"
 	(condition "A.hasNetclass('lpddr_diff') && (A.Layer == 'F.Cu' || A.Layer == 'B.Cu')")
-	(constraint track_width (min 0.12mm) (opt 0.13mm) (max 0.14mm))
-	(constraint diff_pair_gap (min 0.2mm) (opt 0.25mm) (max 0.3mm)))
+	(constraint track_width (min 0.19mm) (opt 0.2mm) (max 0.21mm))
+	(constraint diff_pair_gap (min 0.18mm) (opt 0.2mm) (max 0.22mm)))
 (rule "lpddr_diff_inner"
 	(condition "A.hasNetclass('lpddr_diff') && A.Layer != 'F.Cu' && A.Layer != 'B.Cu'")
-	(constraint track_width (min 0.1mm) (opt 0.11mm) (max 0.12mm))
-	(constraint diff_pair_gap (min 0.2mm) (opt 0.25mm) (max 0.3mm)))
+	(constraint track_width (min 0.13mm) (opt 0.14mm) (max 0.15mm))
+	(constraint diff_pair_gap (min 0.14mm) (opt 0.15mm) (max 0.17mm)))
 
 # ---- pair integrity (whole net, all layers) --------------------------------------------------------
-# intra-pair skew, and the total length the two halves may run apart: escape through the U7 ball field
-# (~6 mm), the U12 escape through its 0.65 mm channels (~8 mm) and the pad entries.
+# P/N skew < 1 ps (Table 10), and the total length the two halves may run apart: escape through the U7
+# ball field (~6 mm), the U12 escape through its 0.65 mm channels (~8 mm) and the pad entries.
 (rule "lpddr_pair_skew"
 	(condition "A.hasNetclass('lpddr_diff')")
-	(constraint skew (max 2ps) (within_diff_pairs)))
+	(constraint skew (max 1ps) (within_diff_pairs)))
 (rule "lpddr_pair_uncoupled"
 	(condition "A.hasNetclass('lpddr_diff')")
 	(constraint diff_pair_uncoupled (max 12mm)))
 
-# ---- crosstalk guard outside the BGAs (warning only) -----------------------------------------------
-# neighbouring LPDDR tracks at least 0.25 mm apart (about 2x the dielectric height on every layer).
+# ---- crosstalk spacing outside the BGAs (warnings) -------------------------------------------------
+# 2h within a group, 3h between groups.  Byte-to-byte (nibble) 3h is not expressible per byte with the
+# current net classes: keep 0.3 mm between bytes by hand.
 (rule "lpddr_xtalk_spacing"
 	(severity warning)
 	(condition "A.Type == 'Track' && B.Type == 'Track' && (A.hasNetclass('lpddr_dq') || A.hasNetclass('lpddr_ca') || A.hasNetclass('lpddr_diff')) && (B.hasNetclass('lpddr_dq') || B.hasNetclass('lpddr_ca') || B.hasNetclass('lpddr_diff')) && A.NetName != B.NetName && !A.inDiffPair('*') && !(A.intersectsCourtyard('U501') || A.intersectsCourtyard('U801'))")
-	(constraint clearance (min 0.25mm)))
+	(constraint clearance (min 0.2mm)))
+(rule "lpddr_xtalk_group"
+	(severity warning)
+	(condition "A.Type == 'Track' && B.Type == 'Track' && ((A.hasNetclass('lpddr_ca') && (B.hasNetclass('lpddr_dq') || B.NetName == '/IOBANK 3/dqs0_P' || B.NetName == '/IOBANK 3/dqs0_N' || B.NetName == '/IOBANK 3/dqs1_P' || B.NetName == '/IOBANK 3/dqs1_N' || B.NetName == '/IOBANK 3/dqs2_P' || B.NetName == '/IOBANK 3/dqs2_N' || B.NetName == '/IOBANK 3/dqs3_P' || B.NetName == '/IOBANK 3/dqs3_N')) || A.NetName == '/IOBANK 3/~{rst}') && A.NetName != B.NetName && !(A.intersectsCourtyard('U501') || A.intersectsCourtyard('U801'))")
+	(constraint clearance (min 0.3mm)))
 
 # ---- inside the BGA courtyards: neck-down and single-channel escape ---------------------------------
 # One 0.1 mm trace per channel between the balls.  A pair may split into two channels here, so the

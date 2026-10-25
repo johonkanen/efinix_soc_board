@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """Stack-up, layer roles, net classes and DRC rules for kicad/ti135_card (run after tools/make_board.py).
 
-- Stack-up and copper layer types: copied from the Agilex 5 card (JLC08161H-3313, 8 layers, 1.6 mm).
+- Stack-up: copied from the Agilex 5 card (JLC08161H-3313, 8 layers, 1.6 mm). Copper layer types are set here
+  (LAYER_TYPES): the stack-up's thin 0.1 mm cores pair In2 with In1 and In5 with In6, so the controlled-impedance
+  widths only hold with In1 / In6 as GND planes and In3 / In4 as planes. Signals go on F.Cu, In2, In5, B.Cu
+  (field solve in TI135_PCB_NOTES.md §6.5).
 - Net classes (kicad/ti135_card.kicad_pro): the Agilex LPDDR4 classes with patterns for this board's net names
   (sheet 8: ddr_dq*, ddr_dm*, ddr_ca*, ddr_cke0, ddr_cs*_n, ddr_rst_n, ddr_dqs*_P/N, ddr_ck_P/N), plus power
   and RGMII classes.
@@ -10,6 +13,7 @@
 Plain python3 (s-expression edit of the saved board).
 """
 import json
+import re
 import os
 import sys
 
@@ -24,11 +28,19 @@ PRO = os.path.join(ROOT, "kicad", "ti135_card.kicad_pro")
 DRU = os.path.join(ROOT, "kicad", "ti135_card.kicad_dru")
 
 
+# KiCad "power" = plane layer. F.Cu S | In1 GND | In2 S | In3 plane | In4 plane | In5 S | In6 GND | B.Cu S
+LAYER_TYPES = {"F.Cu": "signal", "In1.Cu": "power", "In2.Cu": "signal", "In3.Cu": "power", "In4.Cu": "power",
+               "In5.Cu": "signal", "In6.Cu": "power", "B.Cu": "signal"}
+
+
 def stackup():
     agx, ours = load(AGX), load(PCB)
     for key in ("layers",):
         i = next(k for k, c in enumerate(ours) if isinstance(c, list) and c[0] == key)
         ours[i] = find(agx, key)
+        for entry in ours[i][1:]:
+            if isinstance(entry, list) and len(entry) > 2 and str(entry[1]) in LAYER_TYPES:
+                entry[2] = type(entry[2])(LAYER_TYPES[str(entry[1])])
     setup_ours, setup_agx = find(ours, "setup"), find(agx, "setup")
     st = find(setup_agx, "stackup")
     old = find(setup_ours, "stackup")
@@ -42,9 +54,10 @@ def stackup():
 NETCLASSES = [
     # name, track, clearance, via, via drill, diff width, diff gap
     ("Default", 0.1, 0.1, 0.3, 0.15, 0.1, 0.2),
-    ("lpddr_dq", 0.12, 0.1, 0.3, 0.15, 0.1, 0.2),
-    ("lpddr_ca", 0.12, 0.1, 0.3, 0.15, 0.1, 0.2),
-    ("lpddr_diff", 0.12, 0.1, 0.3, 0.15, 0.11, 0.25),
+    # LPDDR4: Efinix Titanium DDR PCB guide targets 40 ohm SE / 80 ohm diff (TI135_PCB_NOTES.md §6.3, §6.5)
+    ("lpddr_dq", 0.18, 0.1, 0.3, 0.15, 0.14, 0.15),
+    ("lpddr_ca", 0.18, 0.1, 0.3, 0.15, 0.14, 0.15),
+    ("lpddr_diff", 0.14, 0.1, 0.3, 0.15, 0.14, 0.15),
     ("rgmii", 0.12, 0.1, 0.3, 0.15, 0.1, 0.2),
     ("PWR", 0.3, 0.1, 0.45, 0.25, 0.1, 0.2),
     ("PWR_CORE", 0.5, 0.1, 0.45, 0.25, 0.1, 0.2),
@@ -87,6 +100,23 @@ def dru():
     b = src.index('(rule "lpddr_bga_clearance_u12"')
     src = src[:a] + src[b:]              # the 0.075 mm U7 exception: not needed at the Ti135's 0.8 mm pitch
     src = src.replace("'U7'", "'U501'").replace("'U12'", "'U801'").replace("clearance_u12", "clearance_u801")
+    # LPDDR4 widths: 40 ohm SE / 80 ohm diff (Efinix Titanium DDR PCB guide; field solve TI135_PCB_NOTES.md §6.5),
+    # replacing the Agilex card's 50 / 100 ohm values
+    widths = {
+        "lpddr_se_outer": "(constraint track_width (min 0.23mm) (opt 0.25mm) (max 0.27mm)))",
+        "lpddr_se_inner": "(constraint track_width (min 0.17mm) (opt 0.18mm) (max 0.19mm)))",
+        "lpddr_diff_outer": "(constraint track_width (min 0.19mm) (opt 0.2mm) (max 0.21mm))\n\t(constraint diff_pair_gap (min 0.18mm) (opt 0.2mm) (max 0.22mm)))",
+        "lpddr_diff_inner": "(constraint track_width (min 0.13mm) (opt 0.14mm) (max 0.15mm))\n\t(constraint diff_pair_gap (min 0.14mm) (opt 0.15mm) (max 0.17mm)))",
+    }
+    for name, body in widths.items():
+        src, n = re.subn(r'(\(rule "%s"\n\t\(condition [^\n]*\n)(?:\t\(constraint [^\n]*\n?)+' % name,
+                         lambda m: m.group(1) + "\t" + body.replace("\\n", "\n") + "\n", src)
+        assert n == 1, name
+    src = src.replace("DQS / CK pairs outside the BGAs: 100 ohm geometry per layer", "DQS / CK pairs outside the BGAs: 80 ohm geometry per layer")
+    src = src.replace("# Stack-up: JLC08161H-3313.  50 ohm SE: 0.15 mm F/B.Cu, 0.12 mm inner.  100 ohm pair: 0.13/0.25 mm\n"
+                      "# F/B.Cu, 0.11/0.25 mm inner.",
+                      "# Stack-up: JLC08161H-3313.  Ti135 card: 40 ohm SE 0.25 mm F/B.Cu, 0.18 mm In2/In5;  80 ohm pair\n"
+                      "# 0.20/0.20 mm F/B.Cu, 0.14/0.15 mm In2/In5 (Efinix DDR PCB guide; TI135_PCB_NOTES.md §6.5).")
     head = ("# Ti135 control card DRC rules: the Agilex 5 card's LPDDR4 / JLCPCB rules (tools/board_setup.py),\n"
             "# U7 -> U501 (Ti135N484, 0.8 mm pitch, no sub-0.09 mm exception), U12 -> U801 (LPDDR4).\n")
     lines = src.split("\n")

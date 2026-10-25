@@ -213,10 +213,23 @@ channel B, in the same way as on Efinix's Ti375C529 dev kit (schematic v1.1, pag
 | DDR_CS_N[2] | CS0_B | |
 | DDR_CS_N[3] | – (CS1_B, rank 1) | Leave unconnected |
 | DDR_RST_N | RESET_n | |
-| DDR_DQ[7:0], DDR_DM[0], DDR_DQS[0]/_N[0] | channel A byte 0: DQ[7:0]_A, DMI0_A, DQS0_A | |
-| DDR_DQ[15:8], DDR_DM[1], DDR_DQS[1]/_N[1] | channel A byte 1: DQ[15:8]_A, DMI1_A, DQS1_A | |
-| DDR_DQ[23:16], DDR_DM[2], DDR_DQS[2]/_N[2] | channel B byte 0: DQ[7:0]_B, DMI0_B, DQS0_B | |
-| DDR_DQ[31:24], DDR_DM[3], DDR_DQS[3]/_N[3] | channel B byte 1: DQ[15:8]_B, DMI1_B, DQS1_B | |
+| DDR_DQ[7:0], DDR_DM[0], DDR_DQS[0]/_N[0] | channel A byte 0: DQ[7:0]_A, DMI0_A, DQS0_A | DQ swizzled within the byte (below) |
+| DDR_DQ[15:8], DDR_DM[1], DDR_DQS[1]/_N[1] | channel A byte 1: DQ[15:8]_A, DMI1_A, DQS1_A | DQ swizzled within the byte |
+| DDR_DQ[23:16], DDR_DM[2], DDR_DQS[2]/_N[2] | channel B byte 0: DQ[7:0]_B, DMI0_B, DQS0_B | DQ swizzled within the byte |
+| DDR_DQ[31:24], DDR_DM[3], DDR_DQS[3]/_N[3] | channel B byte 1: DQ[15:8]_B, DMI1_B, DQS1_B | DQ swizzled within the byte |
+
+**DQ swizzle (2026-10-25, `LPDDR4_SWIZZLE.md`)**. Net `ddr_dq<n>` is FPGA ball DDR_DQ[n]. The DRAM bit it lands on
+is listed below, and `efinity/pinplan/lpddr4_swizzle.json` holds the same map for both the sheet script and the Interface Designer project.
+DM, DQS, CA, CK, CKE, CS and RESET are not swapped.
+
+| FPGA DDR_DQ[k] (ball) | k = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
+|---|---|---|---|---|---|---|---|---|
+| byte 0 → DQ_A | U3→**6** | U2→**7** | U1→**0** | V3→**4** | Y2→**5** | AA1→**1** | AB2→**3** | AA2→**2** |
+| byte 1 → DQ_A | U4→**8** | V5→**9** | W5→**14** | W4→**15** | AA5→**10** | AB5→**11** | AA6→**13** | AB7→**12** |
+| byte 2 → DQ_B | AA16→**6** | Y16→**3** | AA17→**7** | AB17→**0** | V18→**1** | V17→**2** | V16→**4** | W16→**5** |
+| byte 3 → DQ_B | AB19→**13** | AB21→**15** | AA20→**14** | AA19→**12** | W22→**8** | W21→**9** | W19→**11** | W20→**10** |
+
+(k = position within the byte: FPGA DDR_DQ[8·byte + k].)
 | DDR_CAL (Y9) | – | **240 Ω 1 % to GND** |
 | – | ZQ0 (A5) | **240 Ω 1 % to VDDQ (1V1)** (LPDDR4; the dev kit's LPDDR4x uses 0V6) |
 | – | ODT_CA_A / ODT_CA_B | To VDD2 (1V1). The dev kit uses 240 Ω; the Agilex card ties them directly. Either enables CA ODT |
@@ -227,23 +240,26 @@ but they don't apply here (x32).
 
 ### 6.2 Swizzling (pin swapping) rules
 
-Efinity has a *Pin Swizzling* tab on the DDR block: `PIN_SWIZZLE_EN`, `PIN_SWIZZLE_DQM0…3` (per FPGA byte group: the
-DRAM pins that DQ[n×8 … n×8+7] and DM[n] connect to) and `PIN_SWIZZLE_CA`. The swizzle must be entered there exactly
-as routed. Otherwise training, mode-register reads and DBI give wrong data.
+Efinity has a *Pin Swizzling* tab on the DDR block: `PIN_SWIZZLE_EN`, `PIN_SWIZZLE_DQM0…3` (position k of group n =
+FPGA ball DDR_DQ[8n+k], position 8 = DDR_DM[n]; the value is the DRAM-side signal wired there) and `PIN_SWIZZLE_CA`.
+The swizzle must be entered there exactly as routed. Otherwise training, mode-register reads and DBI give wrong
+data. `efinity/pinplan/pinplan.py` sets it from `lpddr4_swizzle.json` and reads it back. Details and sources are in `LPDDR4_SWIZZLE.md`.
 
-**The Efinity design check only checks names and duplicates.** It was tested on 2026-10-24 and accepted DM↔DQ swaps,
-DQ moved to another byte, and whole-byte swaps without an error. The electrical rules below are therefore ours to
-enforce:
+**What Efinity enforces (2026.1, tested 2026-10-25).** Each group only accepts its own DQ[8n…8n+7] and DM[n]
+(`DDRPinSwap.get_group_options`). `set_property` **rejects** a DQ from another byte, a whole-byte swap and duplicates
+("Unable to translate PIN_SWIZZLE_DQM0"). It does not raise in the design check, and the old value silently stays,
+so always read it back. A hand-edited peri.xml is caught by `ddr_rule_pin_swap`. A DM↔DQ swap inside a group is
+accepted. (The 2026-10-24 note that cross-byte values were "accepted" was a silent no-op.)
 
 | Swap | Allowed? |
 |---|---|
-| DQ bits **within the same byte** (FPGA DQ[8n…8n+7] ↔ any DQ of the same DRAM byte) | **Yes.** Declare in PIN_SWIZZLE_DQMn |
-| DM ↔ DQ | **No.** DM stays on DMI (it carries DM/DBI) |
-| DQ to another byte | **No.** Each DQ must stay with its own DQS |
-| Whole byte lanes (FPGA byte 0 ↔ DRAM byte 1, A ↔ B) | **No** (not shown in Efinix docs/dev kits, and the MRR/training lanes would move). Keep the mapping of §6.1 |
+| DQ bits **within the same byte**, DQ0 included (FPGA DQ[8n…8n+7] ↔ any DQ of the same DRAM byte) | **Yes.** Declare in PIN_SWIZZLE_DQMn. The Ti375C529 kit swaps every byte this way, DQ[0] included. **Used on this card** |
+| DM ↔ DQ (same byte) | Tool accepts it, but **not used**. No Efinix board does it, DMI carries DM/DBI, and it would gain only 1–5 crossing points per byte here |
+| DQ to another byte | **No.** Not expressible in Efinity (rejected) |
+| Whole byte lanes (FPGA byte 0 ↔ DRAM byte 1, A ↔ B) | **No.** Not expressible in Efinity. Keep the byte mapping of §6.1 |
 | DQS / DQS_N within a pair | **No** |
-| CA[5:0] among themselves | **Yes**, declare in PIN_SWIZZLE_CA. The **same** CA permutation must be used for channel A and channel B, because they share DDR_A |
-| CK, CKE, CS, RESET | **No** |
+| CA[5:0] among themselves | Tool supports PIN_SWIZZLE_CA (one permutation; both channels share DDR_A). **Not used**: no Efinix board does it, and it does not change the CA topology (`LPDDR4_SWIZZLE.md`) |
+| CK, CKE, CS, RESET | **No** (no setting exists) |
 
 ### 6.3 Routing (Efinix *Titanium DDR DRAM PCB Design User Guide* v1.2)
 
@@ -267,8 +283,12 @@ enforce:
   equal and as short as possible.
 - The stack-up and the LPDDR4 net classes of the Agilex card (JLC08161H-3313, `LPDDR4_DELAY_MATCHING.md` in
   `agilex3_soc_control_card`) carry over. Check its impedance classes against 40 Ω / 80 Ω.
-- Data rate for this card: not decided yet (`MIGRATION_PLAN.md` §5, phase 0). A lower rate relaxes the skew budget,
-  but the table above is the Efinix baseline.
+- **Data rate:** Ti135 data sheet Table 22 (LPDDR4/4x Interface Performance) for **N484**: 3.3 Gbps (C4/I4), **2.8 Gbps
+  (C3/I3, this card's Ti135N484I3)**, 2.5 Gbps (Q3). The LPDDR4 (H9HCNNN8KUMLHR) is rated 3733+. The board is routed to the
+  Efinix table above (its 3700 Mbps budget is tighter than 2.8 Gbps needs), so it supports the I3 maximum; Linux
+  bring-up can start lower (e.g. 2,133 Mbps) by changing only the PLL.
+- **Impedance:** the table's 40 Ω SE / 80 Ω diff is used (not the Agilex card's 50 / 100 Ω): 0.18 mm and 0.14 / 0.15 mm on
+  In2 / In5 (§6.5), set in `tools/board_setup.py`.
 
 ### 6.4 DDR clocking
 
@@ -292,6 +312,64 @@ Results from the pin-plan project (`efinity/pinplan`, design check passed 2026-1
 - CLKOUT0 is the PLL's local feedback clock, which fixes the VCO. Pick the output frequencies with that in mind.
 
 ---
+
+### 6.5 Stack-up, layer roles and impedance (field solve 2026-10-25)
+
+JLC08161H-3313, 1.6 mm: F.Cu 35 µm | 3313 prepreg 0.0994 (εr 4.1) | In1 | core 0.1 (4.6) | In2 | 2116×3 prepreg
+0.3568 (4.16) | In3 | core 0.3 (4.6) | In4 | prepreg 0.3568 | In5 | core 0.1 | In6 | prepreg 0.0994 | B.Cu 35 µm
+(inner copper 15.2 µm, solder mask 0.03 mm εr 3.8).
+
+**Layer roles** (set by `tools/board_setup.py`): F.Cu signal, **In1 GND**, In2 signal, **In3 plane**, **In4 plane**,
+In5 signal, **In6 GND**, B.Cu signal. The thin 0.1 mm cores pair In2 with In1 and In5 with In6. That is the
+arrangement JLC's impedance calculator assumes, and the only one where the widths below hold. Route LPDDR4 on In2 / In5
+(plus F.Cu / B.Cu for escapes). In3 as a signal layer would be about 73 Ω SE / 123 Ω diff (no plane closer than
+0.3 mm). In6 as a signal layer would take In5's reference away.
+
+2D finite-difference solve (`tools/zsolve.py`, `tools/zsolve_cases.py`; rectangular cross-section; checked against
+Cohn's exact stripline formula to 0.5 %. Real trapezoidal etching reads a few % higher; JLC tolerance ±10 %):
+
+| Layer | Geometry | Z |
+|---|---|---|
+| F.Cu / B.Cu (with mask) | 0.15 mm SE | 51.0 Ω (JLC calculator: 50 Ω at 0.1509) |
+| | 0.13 / 0.25 mm diff | 99.8 Ω |
+| | 0.10 mm (BGA neck-down) | 60 Ω |
+| In2 / In5 | 0.12 mm SE | 48.6 Ω (JLC: 50 Ω at 0.1207) |
+| | 0.11 mm SE | 50.5 Ω |
+| | 0.11 / 0.25 mm diff | 95.9 Ω (JLC: 100 Ω at 0.1082) |
+| | 0.10 / 0.20 mm diff | 97.2 Ω |
+| In2 if In3 is not a plane | 0.12 mm SE | 50.2 Ω (In1 dominates) |
+
+**LPDDR4 uses the Efinix 40 Ω / 80 Ω targets (§6.3)**, solved the same way:
+
+| Layer | 40 Ω SE | 80 Ω diff |
+|---|---|---|
+| In2 / In5 | 0.18 mm (0.17 → 41.0 Ω, 0.19 → 38.6 Ω) | 0.14 / 0.15 mm gap → 80.6 Ω |
+| F.Cu / B.Cu (escapes only) | 0.25 mm → 39.3 Ω | 0.20 / 0.20 mm → 79.6 Ω |
+
+The DRC rules (`lpddr_se_outer/inner`, `lpddr_diff_outer/inner`) use these LPDDR4 widths. The 50 Ω / 100 Ω table above
+applies to the other controlled nets (RGMII, MDI pairs, eMMC/QSPI clocks).
+
+### 6.6 Plane assignment (KiCadRoutingTools `recommend-plane-mappings`, 2026-10-25)
+
+Supply balls under U501 (rotated 180°, DDR edge north): 1V1 in the north band (y 72.6…78.2), 0V85 inside it
+(y 75.8…76.6), VCORE in the centre/south (y 77.4…86.2), 1V8 spread through both (y 76.6…83.8), and 3 × 3V3.
+U801 is 1V1 (46 balls) + 1V8 (8). 0V85 and 1V8 interleave with 1V1/VCORE, so they go on the other plane layer.
+
+| Layer | Net(s) | Why |
+|---|---|---|
+| In1.Cu | GND, solid | 0.1 mm reference for In2 (DDR) and F.Cu |
+| In3.Cu | VCORE (BGA centre/south → L201) · 1V1 (BGA north band → U801 → L341) · 3V3 regions (translators west, PHY east, eMMC south) | VCORE and 1V1 meet along one seam at y ≈ 78 under the BGA. The DDR corridor (BGA north edge → U801) lies entirely inside the 1V1 (VDDQ) region, so In2's secondary reference has no seam |
+| In4.Cu | 1V8 (board-wide) · 0V85 island (BGA north band → L331) · 5V0 island (J6 → buck inputs) | 1V8 reaches about 12 ICs, so it gets the largest area |
+| In6.Cu | GND, solid | 0.1 mm reference for In5 (DDR) and B.Cu |
+| F.Cu / B.Cu | GND flood after routing (F.Cu: 355 GND SMD pads, B.Cu: 91) | pour reaches the pads by fill, no via each |
+
+Left to wide traces: the PHY's `phy_vdd10` / `phy_avdd33` / `phy_dvdd_rg` and the FPGA's ferrite-fed PLL rails
+(`vcca_*`, `vddpll_*`), 2–10 pads each, all local.
+
+Routing arguments that follow: `route_planes.py --nets GND GND 'VCORE|1V1|3V3' '1V8|0V85|5V0' --plane-layers In1.Cu In6.Cu In3.Cu In4.Cu`.
+Signal layers are F.Cu, In2.Cu, In5.Cu and B.Cu. **Do not use `--impedance 50` on F.Cu/B.Cu.** The router's IPC-2141 microstrip
+model ignores the solder mask and asks for 0.188 mm, against 0.15 mm from JLC's calculator and the field solve
+(§6.5). Its inner-layer result (0.119 mm, 100 Ω at 0.110/0.25) agrees with both. Pass the widths explicitly.
 
 ## 7. Clock-capable pins (from the Efinity device database)
 
