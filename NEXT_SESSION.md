@@ -7,7 +7,7 @@ overall plan is in `LAYOUT_PLAN.md`. Tools: `~/dev/KiCadRoutingTools` (venv `.ve
 ## 0. Start-up (10 min)
 
 - Read `STATUS.md` → "Where we left off".
-- Check the bus router that was still running at wrap-up:
+- The bus router **finished** (see the table in step 2). Its files:
   - log `work/route/bus1.log`: last line `WHOLE K=47 round=2 ...` / `BUS U501->U801 ...`;
   - result `work/route/bus1.kicad_pcb`, summary `work/route/bus1.json`;
   - round 1 is saved in `work/route/bus1_snapshot_round1_2026-10-25/`; see its README;
@@ -53,7 +53,7 @@ project copy: always check with `kicad/ti135_card.kicad_pro` / `.kicad_dru`):
 | Candidate | Where |
 |---|---|
 | A. draft on main (route.py, 56/56, 91 vias, 1215 mm) | `kicad/ti135_card.kicad_pcb` |
-| B. bus router (round 1: 40/40 lanes, 5 open, 74 vias, 1114 mm) | `work/route/bus1.kicad_pcb` |
+| B. bus router, **finished 2026-10-26 06:06** after 9.1 h; kept round 1: 42 lanes connected and locked, 5 open (ddr_dq1, DQS0 P/N, DQS3 P/N), 72 vias, 1095 mm on the board, bus DRC 0 by its own rules. Bytes still span 3 layers (F.Cu 29–57 % from its surface escapes) | `work/route/bus1.kicad_pcb` (its project copy relaxes hole clearance to 0.1 mm) |
 | C. what step 1 teaches (e.g. `bga_fanout.py` + `route_diff.py` + `route.py --bus`) | new run |
 
 Criteria, in order:
