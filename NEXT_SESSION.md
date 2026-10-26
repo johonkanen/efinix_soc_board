@@ -13,7 +13,8 @@ Tools: `~/dev/KiCadRoutingTools` (venv `.venv`, with `ortools`); the skills are 
   and CK/CA trunk-and-branch with `ca_tb_chain.sh`, both with `--impedance 40`, then fitted to the JLC widths by
   `tools/ddr/widen.py` (TI135_PCB_NOTES.md §6.10). Every DDR net is connected, with no shorts, and the rest of the
   board is DRC-clean. The whole flow is `tools/ddr/ddr40_chain.sh IN WORKDIR`. KRT is not deterministic here, so
-  re-runs differ; main is the `work/fit_cd1.0` candidate.
+  re-runs differ; main is the `work/fit_cd1.0` candidate, plus four nets re-routed at width with
+  `tools/ddr/reroute_nets.sh` (dq18 and rst_n; dm0 with byte 0 rippable; dm1 with byte 1 rippable) and re-fitted.
 - **Measure timing** with `tools/p2k/bin/kipy tools/ddr/ddr_timing.py`: die to die, along each path, U501
   pad-to-die included.
 - **Grade** with `tools/ddr/grade.sh NAME BOARD`: our rules, planes refilled, KiCad DRC. KiCad caps each DRC type at
@@ -21,12 +22,12 @@ Tools: `~/dev/KiCadRoutingTools` (venv `.venv`, with `ortools`); the skills are 
 
 | Check (Efinix §6.3) | Rule | Now (40 Ω board) |
 |---|---|---|
-| CA/CKE/CS − CK | ±5.3 ps (30 mil); budget ±100 ps | −47.5 … +39.1 ps; channels A/B equal |
+| CA/CKE/CS − CK | ±5.3 ps (30 mil); budget ±100 ps | −64.5 … +39.1 ps; channels A/B equal |
 | CK P/N | ≤ 0.9 ps | 3.7 ps |
-| DQS P/N | ≤ 1.8 ps | 8.5 / 1.9 / 12.9 / 1.9 ps (bytes 0–3; DQS1/DQS2 routed as singles) |
-| DQ/DM − DQS | 0 … 66 ps | −59…56 / −35…60 / −60…103 / 5…58 ps |
-| Width (DDR, outside the BGAs) | 0.17–0.19 inner, 0.23–0.27 F/B; pairs 0.13–0.15 / 0.19–0.21 | 70 mm below the minimum (115 segments): dm0 24.6, dq18 9.3, rst_n 8.4, dq21 6.1, ca5 4.7 mm … |
-| Other DDR DRC | – | 7 hole clearance, 4 skew, 3 uncoupled, 1 edge (dm2), 240 xtalk-spacing warnings |
+| DQS P/N | ≤ 1.8 ps | 7.9 / 1.9 / 13.1 / 2.2 ps (bytes 0–3; DQS1/DQS2 routed as singles) |
+| DQ/DM − DQS | 0 … 66 ps | −83…9 / −42…68 / −60…102 / 6…59 ps |
+| Width (DDR, outside the BGAs) | 0.17–0.19 inner, 0.23–0.27 F/B; pairs 0.13–0.15 / 0.19–0.21 | 1 error: cs2_n 1.7 mm at 0.1 mm between R801 and C507 (see phase 4) |
+| Other DDR DRC | – | 0 hole, 0 edge; 4 skew, 3 uncoupled (phase 3); 180 xtalk-spacing warnings |
 
 ## 1. ~~KiCad time-domain tuning setup~~ (done 2026-10-26, TI135_PCB_NOTES.md §6.9)
 
@@ -91,19 +92,29 @@ Done:
   both via holes; route_diff then runs at the class clearance 0.1, `DQS_CL`). Re-runs with it have 2–4 hole hits
   instead of 7–8. The board on main predates this change (7 hits).
 
+- **Narrow nets (2026-10-26, later):** `widen.py` now models the clearances exactly (0.1 mm copper for every net
+  class, 0.175 mm via holes, 0.28 mm PTH holes, round pads as circles) and fits in three steps: every segment to the
+  minimum, a sideways nudge of the runs still narrow (polyline offset between anchors), then to the target. `--why`
+  names the blocker of each narrow segment. What still did not fit was re-routed at width with
+  `tools/ddr/reroute_nets.sh` (`--impedance 40 --escalation off`). dm0 and dm1 fit only when their byte's other
+  nets may be ripped and re-routed (`EXTRA="--rip-existing-nets ..."`). 115 width errors → 1.
+- **Hole clearance 7 → 0, edge 1 → 0:** a clearance-repair step in `widen.py` nudges any DDR segment that does not
+  clear, inside the BGAs too. A DQS stub in U801's 0.8 mm channel goes to the 0.09 mm neck-down minimum first: at 0.1
+  mm, two legs with a 0.1 gap and 0.175 mm to both holes fill the channel exactly. The thin 0.0898 mm neck-down
+  segments KRT leaves are raised to 0.09.
+
 Left:
-- **The remaining 70 mm of narrow DDR copper** (115 `track_width` errors): KRT necked dm0 (24.6 mm), dq18, dq21 and
-  others where it found no room, and `rst_n` is in neither chain. Re-route these few nets at width, or move
-  neighbours by hand. Five neck-down segments are 0.0898 mm against a 0.09 minimum.
-- 7 hole clearance (6 are DQS stubs inside U801, 5 µm short), 1 edge clearance (dm2 at 0.481 mm), 4 skew and 3
-  uncoupled (DQS/CK pairs; these go with phase 3 tuning).
+- **cs2_n** (1 width error): 1.7 mm at 0.1 mm through the 0.421 mm opening between R801 (DDR_CAL resistor) and C507.
+  0.23 mm needs 0.43 mm, so the fix is moving R801 or C507 by about 10 µm (a placement change, your call), or
+  accepting it as BGA breakout.
+- 4 skew and 3 uncoupled (DQS/CK pairs; these go with phase 3 tuning).
 - 240 crosstalk-spacing warnings (0.2 / 0.3 mm). The routes were laid at 0.11 mm clearance; re-routing at 0.2 mm
   (`CL=0.2`) was worse (an open net and 12 clearance errors).
 - Efinix: ≥ 100 mil from the 0V85/1V1 switching nodes, and return vias at layer changes.
 
 **Phase 3 targets must be recomputed on this board** (`kicad_delays.sh` + `ddr_timing.py --kicad`). The bytes spread
-95–162 ps, against 48–100 ps on the 0.1 mm board, so tuning needs more meander room. Do phase 3 after the width
-clean-up above.
+53–162 ps, against 48–100 ps on the 0.1 mm board, so tuning needs more meander room. In byte 0 every DQ/DM now runs
+up to 83 ps shorter than DQS. Phase 3 is next; meanders must keep the 40 Ω widths (`widen.py` again afterwards).
 
 ## 5. LPDDR4 sign-off (your review)
 

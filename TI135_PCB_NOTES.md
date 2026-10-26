@@ -441,6 +441,13 @@ feeds every VIN by fill. The 3V3 cell's output and the EN/PG pins are left to th
     inherits those maxima;
   - it widens what is still narrow wherever clearance allows: 0.11 mm to tracks/pads, 0.13 mm to via copper (the
     0.175 mm drill rule), the pair gap minimum, 0.5 mm to the edge.
+  It models the clearances exactly (0.1 mm copper for every net class, 0.175 mm to via holes, 0.28 mm to PTH holes
+  per `jlc_pth_to_track`). The steps are: every segment to the minimum, then a sideways nudge of runs still narrow,
+  then the target. A clearance-repair step nudges any DDR segment that violates, inside the BGAs too, and may neck a
+  segment to 0.09 mm there. U801's 0.8 mm channel holds a 0.1 mm pair with a 0.1 mm gap and 0.175 mm to both via
+  holes with zero margin.
+- **Nets with no room are re-routed at width** (`tools/ddr/reroute_nets.sh`, `--escalation off` so nothing necks).
+  dm0 and dm1 fit only when their byte's other nets may be ripped and re-routed.
 - **Rule fix:** `lpddr_bga_neckdown` has an explicit `diff_pair_gap` max (10 mm). Left out, KiCad kept the 0.22 mm
   max of `lpddr_diff_outer`, which flagged CK's split at U801's T points.
 - **KiCad DRC reports at most 199 violations of one type.** Count the narrow copper with `widen.py`'s summary

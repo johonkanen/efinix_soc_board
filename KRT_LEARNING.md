@@ -135,3 +135,9 @@ CS0 +16). CK P/N skew 9 ps.
   byte runs. Run a few variants in parallel and grade them all.
 - **`--layer-costs` in `DQS_EXTRA` had no effect** (the later `$COMMON` value wins: argparse takes the last).
 - **KiCad DRC stops at 199 reports per violation type.** Measure progress some other way.
+- **A net KRT necked can often be re-routed at width with `--escalation off`** once the rest is placed
+  (`tools/ddr/reroute_nets.sh`). For dm0/dm1 it only worked with `--rip-existing-nets` on their byte's other nets;
+  without that it fails with "no rippable blockers".
+- **Re-fitting a fitted board** must not split segments again at a courtyard edge: zero-length tracks result, and
+  KiCad reports them as `tracks_crossing`. `widen.py` now splits only from strictly inside and drops zero-length
+  tracks.
