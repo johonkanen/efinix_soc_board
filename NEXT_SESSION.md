@@ -23,27 +23,12 @@ overall plan is in `LAYOUT_PLAN.md`. Tools: `~/dev/KiCadRoutingTools` (venv `.ve
     three files are in the snapshot). The layer list must start with F.Cu,B.Cu.
 - `git log --oneline -3` should show `8178627` (LPDDR4 draft). Tag `pre-ddr-routing` is the clean board before it.
 
-## 1. Learn the tools on their own example first (1–2 h)
+## 1. ~~Learn the tools on their own example~~ (done 2026-10-26, `KRT_LEARNING.md`)
 
-So far we have used the KiCadRoutingTools pieces one by one, with a few mistakes along the way (route_diff needs
-fan-out stubs, route_bus wants F.Cu,B.Cu first in its layer list, the B.Cu template mirror). Before cleaning up our
-DDR, reproduce one of the toolkit's own routing examples end to end, so we learn the intended chain on a board where
-the expected result is known.
-
-- **Board:** `kicad_files/haasoscope_pro_max_test.kicad_pcb`. It has a two-channel LPDDR4 (`DQ0_A` / `DQ0_B`, shared
-  `CK_t_A`), the closest match to ours. Alternatives:
-  - `orangecrab_ext_pll` / `ulx3s`: FPGA BGA fan-out;
-  - `tigard`: placement, with `docs/examples/tigard.groups.json`.
-- **How:**
-  1. Copy the board, with its `.kicad_pro`, into `work/learn/`.
-  2. Run `/plan-pcb-routing` on it and follow its chain step by step: planes → fan-out → decap pass → diff pairs →
-     route with `--length-match-group auto` → finalize → `/review-routed-board`.
-  3. Write down each command and its result in `work/learn/NOTES.md`.
-- **Read first:** `docs/claude-skills.md`, `docs/bus-routing.md` (both bus tools, including `route.py --bus`, which
-  we have not tried), `docs/length-matching.md`, `docs/differential-pairs.md`, `docs/route-plane.md`.
-- **Take away:** the right order and flags for a two-BGA LPDDR4. In particular, whether to fan out with
-  `bga_fanout.py` (stubs for route_diff) or with the bus step, and how length/time matching with pad-to-die is
-  meant to run.
+The haasoscope chain (Ti90 ↔ LPDDR4) reproduced in 40 s, and the same recipe run on our board in 1 min
+(`tools/ddr/recipe_chain.sh`): 56/56 connected, 3 of 5 pairs coupled, **0 copper-clearance errors after refilling
+the planes**, 103 near-miss hole clearances. Grading lesson: refill the zones before DRC, and route at `--clearance
+0.11`.
 
 ## 2. Pick the LPDDR4 base (1 h)
 
@@ -54,7 +39,7 @@ project copy: always check with `kicad/ti135_card.kicad_pro` / `.kicad_dru`):
 |---|---|
 | A. draft on main (route.py, 56/56, 91 vias, 1215 mm) | `kicad/ti135_card.kicad_pcb` |
 | B. bus router, **finished 2026-10-26 06:06** after 9.1 h; kept round 1: 42 lanes connected and locked, 5 open (ddr_dq1, DQS0 P/N, DQS3 P/N), 72 vias, 1095 mm on the board, bus DRC 0 by its own rules. Bytes still span 3 layers (F.Cu 29–57 % from its surface escapes) | `work/route/bus1.kicad_pcb` (its project copy relaxes hole clearance to 0.1 mm) |
-| C. what step 1 teaches (e.g. `bga_fanout.py` + `route_diff.py` + `route.py --bus`) | new run |
+| C. **the haasoscope recipe** (bga_fanout both BGAs, route_diff, route.py auto-matched): 56/56, 127 vias, 1789 mm, 0 clearance errors after refill | `work/ours/ram.kicad_pcb`; rerun with `tools/ddr/recipe_chain.sh` |
 
 Criteria, in order:
 1. nets connected;
