@@ -43,7 +43,22 @@ Original plan:
    so a shared CA/CK net reads path + one branch. Then each net can be dialled to its number with the pcbnew tuner.
 3. Check one net: KiCad's delay readout (net inspector or tuner) against `ddr_timing.py` (path + branch).
 
-## 2. Data bytes: clean re-route (2–3 h)
+## 2. ~~Data bytes: clean re-route~~ (done 2026-10-26, `tools/ddr/byte_chain.sh`)
+
+Best variant on main: `DQ_EXTRA="--ordering inside_out" tools/ddr/byte_chain.sh` (DQS via route_diff, DQ/DM per
+byte group incl. DQS, `--time-matching`, tolerance 3 ps). All connected, no shorts. Rest of the board clean.
+- **DQS P/N skew, KiCad readout:** 9.1 / 1.3 / 1.5 / 0.2 ps. Byte 0 still needs about 9 ps on DQS0_P.
+- **DQ/DM − DQS, path model:** −12.7…81 / −1.8…68 / −20.9…79 / −0.9…47.5 ps. Most DQ need +5…+54 ps.
+- **Tried and worse:** `--bus` (bus corridors); DQS halves as singles in the byte groups (meanders ran out of
+  room, 12 misses); a horizontal DQS escape at U501 (no change).
+- **Limit:** physical room for meanders in the corridor. DQS1/DQS2 can't couple: their U501 balls are stacked in
+  one column, and the fan-out itself falls back to single-ended for them.
+
+**Next: interactive tuning in pcbnew** with `tools/ddr/kicad_delays.sh > d.csv; kipy tools/ddr/ddr_timing.py --kicad
+d.csv`. It lists every net with its target in KiCad's readout. As of 2026-10-26: CA/CK +8…+50 ps on 10 nets, about
+20 DQ/DM +5…+54 ps, and DQS P/N on byte 0/1/2. Remake room where a meander does not fit.
+
+Original plan:
 
 Same method as the CK/CA work (KRT_LEARNING.md):
 1. Rip each byte whole (DQ, DM, DQS P/N), so every net is point to point.
