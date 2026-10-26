@@ -90,3 +90,28 @@ the same no-routable-pairs case. Routed pair gap 0.15 mm (80 Ω inner).
 
 Not yet known: whether KiCadRoutingTools' time matching includes the U501 pad-to-die delays (check with KiCad's own
 length/time report).
+
+## CK/CA trunk-and-branch (2026-10-26, `tools/ddr/ca_trunk_branch.py`, `tools/ddr/ca_tb_chain.sh`)
+
+Each shared CA/CKE/CK net: a trunk U501 → T via in U801's ball-free columns L/M, then two mirror-image branches in
+the channels between ball rows to channel A and B (CA5 on In2, the rest on F.Cu). The trunk step routes against
+temporary THT pads at the T points (the router targets pads, not bare vias), with the U801 pads parked on TMP_ nets
+and the branches pre-drawn on BR_ nets so the trunks keep out of their corridors.
+
+**KiCadRoutingTools gotchas found on the way:**
+- **die_delay unit bug:** KiCad writes `(die_delay X)` in ns, and the router reads X as ps ("pad-to-die +0.036 ps"
+  for a 35.7 ps package). Its time matching silently drops package delays. Workaround: scale the delays x1000 on the
+  routing copy, then restore them with `tools/pad_to_die.py`. Worth reporting upstream (#1248 code path).
+- **Group patterns:** in `--length-match-group` only `*` and `[..]` are wildcards; `?` is literal (`--nets`
+  accepts `?`). A group that matches < 2 nets is skipped silently.
+- **Multi-point nets disable a group's matching:** leftover escape fragments count as extra terminals. Rip the
+  whole net so it is point to point.
+- **`--no-bga-zones <BGA>`** is needed to route to anything inside a ball field.
+- **pcbnew SWIG:** removing hundreds of tracks garbles later object lookups (do pads and vias first, remove last).
+  Two `NETINFO_ITEM`s added back to back share a net code (give explicit codes).
+- **Meanders:** amplitude 1.0 fits best here (1.5 and 0.6 left more nets unmatched); some nets still have no straight
+  run long enough.
+
+**Result (on main):** all connected, every net's two channels equal; CA/CKE/CS − CK −8.6 … +36.8 ps (C: −57 …
++123, 85 ps between channels). Within the ±100 ps timing budget, not yet the ±5.3 ps length rule (CA4 +37, CA1 +21,
+CS0 +16). CK P/N skew 9 ps.

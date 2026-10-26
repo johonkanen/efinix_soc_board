@@ -65,8 +65,11 @@ The router's "within tolerance" did not hold:
 - DQS1/DQS2 fell back to single nets, and DQS0 has a split escape;
 - DQS was routed before its DQ, so DQ ≥ DQS was not enforced.
 
+**Update 2026-10-26: CK/CA trunk-and-branch done** (KRT_LEARNING.md): channels equal, CA/CKE/CS − CK −8.6 … +36.8 ps,
+CK P/N 9 ps. Still to tune: CA4, CA1, CS0, CK P/N (KiCad tuner or a meander pass).
+
 **Plan:**
-1. CK/CA as trunk + short equal branches at U801.
+1. ~~CK/CA as trunk + short equal branches at U801.~~ Done.
 2. All five DQS pairs coupled from the fan-out on.
 3. Final timing in KiCad's interactive time-domain tuner (tuning profile from the §6.5 per-layer delays;
    it includes U501's pad-to-die), checked with `tools/ddr/ddr_timing.py`.
