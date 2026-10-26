@@ -68,3 +68,25 @@ their pads. Signal layers F/In2/In5/B via `--layer-costs` (planes forbidden). Cl
 
 **Still open with any tool:** one layer per byte (needs per-byte `--layers` steps), widening to 40 Ω outside the
 BGAs, DQ-vs-DQS matching (auto groups leave DQS out when it was routed as a pair).
+
+## Recipe at 0.11 mm and the three candidates graded alike (2026-10-26, `tools/ddr/grade.sh`)
+
+Recipe fixes for 0.11 mm: the fan-out's pair stubs need `--diff-pair-gap $CL`, otherwise route_diff skips every pair
+as "stubs pinched below clearance". The `--mps-layer-swap` crash (`'list' object has no attribute 'num_rounds'`) was
+the same no-routable-pairs case. Routed pair gap 0.15 mm (80 Ω inner).
+
+| (our rules, planes refilled) | A draft (main) | B bus router | C recipe @ 0.11 |
+|---|---|---|---|
+| DDR nets with open pads | 0 | **14** | 0 |
+| DRC errors outside the DDR | 0 | **8** (its joint fan-out touched other nets) | 0 |
+| Copper clearance errors | 0 (the 76 earlier were stale fill) | 0 | 0 |
+| Hole clearance | 119 | 30 | **23** (13 GND + 8 1V1 fan-out vias, CK and DQ tracks) |
+| Width (no 40 Ω widening yet) | 88 | 199 | 199 |
+| Pair gap / uncoupled | 28 / 5 | 9 / 1 | 8 / 3 |
+| Coupled pairs | none | – | DQS0, DQS3, CK |
+| Time matching | none | none | byte lanes within tolerance; DQS 5–19 ps shorter than its DQ (allowed: DQ 0…375 mil longer); **CK 117 ps short of the CA group** |
+| Vias / length | 91 / 1215 mm | 87 / 1153 mm | 118 / 1782 mm |
+| Bytes on layers | 3–4 | 3 | 4 |
+
+Not yet known: whether KiCadRoutingTools' time matching includes the U501 pad-to-die delays (check with KiCad's own
+length/time report).
