@@ -4,7 +4,7 @@
     tune_meander.py BOARD.kicad_pcb PLAN.json EDITS.json [--amp 1.0] [--spacing 3] [--clearance 0.11]
 
 PLAN (from `ddr_timing.py --plan`): {net: path delay to add, ps}. For each net, its chains of same-layer segments
-outside the BGA courtyards are meandered, longest first, by KiCadRoutingTools' trombone generator
+outside the BGA courtyards are meandered, longest first (amplitude --amp, else 0.6x, 0.35x), by KiCadRoutingTools' trombone generator
 (length_matching.apply_meanders_to_route, which checks each bump against the copper around it) until the deficit is
 covered: ps -> mm at the layer's delay (TI135_PCB_NOTES.md §6.5). Meanders on the trunk of a shared CA/CK net add to
 both channels alike. Nets are done in plan order (largest first); each one's new copper is an obstacle to the next.
@@ -33,16 +33,21 @@ pcb = parse_kicad_pcb(board)
 plan = json.load(open(plan_file))
 ids = {n.name: nid for nid, n in pcb.nets.items()}
 
-# BGA courtyards, approximated by the ball field + 1 mm (the footprints' F.CrtYd is 1 mm outside the outer balls)
+# BGA courtyards, approximated by the ball field + 0.95 mm (F.CrtYd is about 1 mm outside the outer balls; the margin
+# keeps the points where `widen.py --split-only` cut segments at the real courtyard edge outside). Run that first: a
+# segment crossing the edge is otherwise dropped whole, however far it runs outside.
 court = []
-for ref in ("U501", "U801"):
-    ps = pcb.footprints[ref].pads
-    xs = [p.global_x for p in ps]; ys = [p.global_y for p in ps]
-    court.append((min(xs) - 1.0, min(ys) - 1.0, max(xs) + 1.0, max(ys) + 1.0))
+if os.path.exists(board + ".court.json"):  # the real F.CrtYd boxes, from widen.py --split-only
+    court = [tuple(c) for c in json.load(open(board + ".court.json"))]
+else:
+    for ref in ("U501", "U801"):
+        ps = pcb.footprints[ref].pads
+        xs = [p.global_x for p in ps]; ys = [p.global_y for p in ps]
+        court.append((min(xs) - 0.95, min(ys) - 0.95, max(xs) + 0.95, max(ys) + 0.95))
 
 
-def inside(x, y):
-    return any(x0 < x < x1 and y0 < y < y1 for x0, y0, x1, y1 in court)
+def inside(x, y, e=1e-4):  # strictly inside: a split point on the edge is outside
+    return any(x0 + e < x < x1 - e and y0 + e < y < y1 - e for x0, y0, x1, y1 in court)
 
 
 def key(x, y):
@@ -103,6 +108,64 @@ def oriented(chain):
     return res
 
 
+
+CLR, HOLE_CLR, PTH_HOLE_CLR, MARGIN = 0.1, 0.175, 0.28, 0.0002  # the board's rules (widen.py)
+
+
+def _pt_seg(px, py, ax, ay, bx, by):
+    dx, dy = bx - ax, by - ay; l2 = dx * dx + dy * dy
+    t = 0.0 if l2 == 0 else max(0.0, min(1.0, ((px - ax) * dx + (py - ay) * dy) / l2))
+    return math.hypot(px - ax - t * dx, py - ay - t * dy)
+
+
+def _seg_seg(a, b, c, d):
+    def o(p, q, r):
+        return (q[0] - p[0]) * (r[1] - p[1]) - (q[1] - p[1]) * (r[0] - p[0])
+    if o(a, b, c) * o(a, b, d) < 0 and o(c, d, a) * o(c, d, b) < 0:
+        return 0.0
+    return min(_pt_seg(*a, *c, *d), _pt_seg(*b, *c, *d), _pt_seg(*c, *a, *b), _pt_seg(*d, *a, *b))
+
+
+def _pad_dist(pad, a, b):
+    """Distance from segment a-b to the pad's copper (circle, else its rotated rectangle)."""
+    if pad.shape == "circle":
+        return _pt_seg(pad.global_x, pad.global_y, *a, *b) - max(pad.size_x, pad.size_y) / 2
+    th = math.radians(pad.rotation or 0.0); cs, sn = math.cos(th), math.sin(th)
+    def loc(p):  # board -> pad frame
+        x, y = p[0] - pad.global_x, p[1] - pad.global_y
+        return (x * cs - y * sn, x * sn + y * cs)
+    la, lb = loc(a), loc(b); hx, hy = pad.size_x / 2, pad.size_y / 2
+    if -hx <= la[0] <= hx and -hy <= la[1] <= hy:
+        return 0.0
+    corners = [(-hx, -hy), (hx, -hy), (hx, hy), (-hx, hy)]
+    return min(_seg_seg(la, lb, corners[i], corners[(i + 1) % 4]) for i in range(4))
+
+
+def violations(new, nid, layer, box):
+    """Count new segments that break a clearance rule against other nets' copper near box (x0, y0, x1, y1)."""
+    x0, y0, x1, y1 = box
+    near = lambda x, y: x0 - 1.5 <= x <= x1 + 1.5 and y0 - 1.5 <= y <= y1 + 1.5
+    segs = [o for o in pcb.segments if o.layer == layer and o.net_id != nid
+            and (near(o.start_x, o.start_y) or near(o.end_x, o.end_y))]
+    vias = [v for v in pcb.vias if v.net_id != nid and near(v.x, v.y)]
+    pads = [q for q in pcb_pads if q.net_id != nid and near(q.global_x, q.global_y)
+            and (layer in q.layers or "*.Cu" in q.layers)]
+    bad = 0
+    for s in new:
+        a, b, hw = (s.start_x, s.start_y), (s.end_x, s.end_y), s.width / 2
+        ok = all(_seg_seg(a, b, (o.start_x, o.start_y), (o.end_x, o.end_y)) - hw - o.width / 2 >= CLR + MARGIN for o in segs)
+        ok = ok and all(_pt_seg(v.x, v.y, *a, *b) - hw - v.size / 2 >= CLR + MARGIN and
+                        _pt_seg(v.x, v.y, *a, *b) - hw - v.drill / 2 >= HOLE_CLR + MARGIN for v in vias)
+        ok = ok and all(_pad_dist(q, a, b) - hw >= CLR + MARGIN and
+                        (not q.drill or _pt_seg(q.global_x, q.global_y, *a, *b) - hw - q.drill / 2 >= PTH_HOLE_CLR + MARGIN)
+                        for q in pads)
+        bad += not ok
+    return bad
+
+
+pcb_pads = [q for plist in pcb.pads_by_net.values() for q in plist]
+
+
 seglen = lambda s: math.hypot(s.end_x - s.start_x, s.end_y - s.start_y)
 remove, add, report = [], [], {}
 for net in sorted(plan, key=lambda n: -plan[n]):
@@ -124,10 +187,24 @@ for net in sorted(plan, key=lambda n: -plan[n]):
         if left <= 0.3:
             break
         L = c[0].layer; w = c[0].width
-        cfg = GridRouteConfig(track_width=w, clearance=opt["--clearance"], meander_amplitude=opt["--amp"],
-                              meander_spacing=opt["--spacing"], verbose=bool(os.environ.get("TUNE_VERBOSE")))
         before = sum(seglen(s) for s in c)
-        new, bumps = apply_meanders_to_route(c, left / PS_PER_MM[L], cfg, pcb_data=pcb, net_id=nid)
+        box = (min(min(q.start_x, q.end_x) for q in c), min(min(q.start_y, q.end_y) for q in c),
+               max(max(q.start_x, q.end_x) for q in c), max(max(q.start_y, q.end_y) for q in c))
+        bumps = 0
+        # KRT measures a bump from the existing centreline with a corner margin, so a trace already close to a
+        # neighbour (legally) gets no bump on either side at the real clearance. Ask it at a small clearance too, and
+        # keep a result only if every new segment passes the board's own rules (violations()).
+        for amp in (opt["--amp"], opt["--amp"] * 0.6, opt["--amp"] * 0.35):  # smaller bumps fit between vias
+            for kc in (opt["--clearance"], 0.03):
+                cfg = GridRouteConfig(track_width=w, clearance=kc, meander_amplitude=amp, meander_spacing=opt["--spacing"],
+                                      layers=["F.Cu", "In1.Cu", "In2.Cu", "In3.Cu", "In4.Cu", "In5.Cu", "In6.Cu", "B.Cu"],
+                                      board_edge_clearance=0.5, verbose=bool(os.environ.get("TUNE_VERBOSE")))
+                new, bumps = apply_meanders_to_route(c, left / PS_PER_MM[L], cfg, pcb_data=pcb, net_id=nid)
+                if bumps and violations([q for q in new if q not in c], nid, L, box) == 0:
+                    break
+                bumps = 0
+            if bumps:
+                break
         if bumps == 0:
             continue
         gained = (sum(seglen(s) for s in new) - before) * PS_PER_MM[L]

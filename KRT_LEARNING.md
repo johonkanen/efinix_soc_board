@@ -152,3 +152,37 @@ CS0 +16). CK P/N skew 9 ps.
   no bumps at all. Matching needs room planned at routing time.
 - `route.py --length-match-group` on a few re-routed nets can rip and lose unrelated nets ("RIP-RESTORE ... remains
   UNROUTED"), so check connectivity after every such step.
+
+## Possible KiCadRoutingTools bugs (2026-10-26; not reported upstream, the user decides)
+
+Found while driving KRT from our scripts (`~/dev/KiCadRoutingTools`, commit as of 2026-10-26). Each has a workaround in
+our tools.
+
+1. **route_diff crashes when every pair is skipped.** If all pairs are skipped (here: fan-out stub gap 0.1 below
+   `--clearance 0.11`, "Skipping 4 pair(s): fanout escape stubs already pinch their own P/N"), `order_nets_mps`
+   fails with `AttributeError: 'list' object has no attribute 'num_rounds'`: `compute_mps_net_ordering(...,
+   return_extended_info=True)` returns a plain list when there are no units ("MPS: No units with valid routing
+   endpoints found"). Expected: a clean "nothing to route" exit. Workaround: route DQS at the class clearance 0.1
+   (`byte_chain.sh` `DQS_CL`).
+2. **A meander bump can never start next to a close (but legal) neighbour, on either side.**
+   `length_matching.get_safe_amplitude_at_point` checks the bump's first segment (the entry chamfer, which starts on
+   the existing track's centreline) against `required_clearance`. That value includes a corner margin: for a 0.171 mm
+   track and a 0.14 mm neighbour at 0.11 clearance it is 0.367 mm centre to centre, while the track already sits
+   0.315 mm from it (0.159 mm edge gap, DRC-clean). So every amplitude on both sides is rejected, though the far side
+   is empty. This is why both route.py's in-route matching and our tuner reported "No straight run with clearance
+   found for meanders" for most DDR nets. Expected: the part of the bump on the existing centreline (or moving away
+   from the neighbour) should not need more than the existing clearance. Workaround (`tools/ddr/tune_meander.py`):
+   ask at a small clearance (0.03) as well, then verify every new segment against the real rules ourselves.
+3. **route.py's default rip of small pre-existing nets can leave them open.** Without `--rip-existing-nets`, small
+   pre-existing nets (≤ 30 segments, ≤ 6 vias) are still rip candidates. In a few-net re-route it ripped other
+   DDR nets (dqs2_N, dqs3_P, dq19), then reported "restore skipped ... saved copper would short other-net copper;
+   left ripped (#134)" and "RIP-RESTORE (#468) ... remains UNROUTED", so the step's output had new opens.
+   Workaround: `KICAD_RIP_PREEXISTING=0` (`byte_seq.sh`) and a connectivity check after every step.
+
+Not bugs, but surprising when KRT is used as a library:
+- `GridRouteConfig.layers` defaults to `['F.Cu', 'B.Cu']`, and the meander clearance index expands pad layers
+  against it. Pass the board's copper layers.
+- `GridRouteConfig.board_edge_clearance` defaults to 0 (the edge check then uses the track clearance); set 0.5.
+- `--impedance`'s microstrip model has no solder mask (F/B come out about 0.27 mm for 40 Ω where JLC says 0.25).
+- Time matching always targets the group's longest member; there is no offset or window in ps (the `.kicad_dru`
+  length window is in mm), so "DQ 0…66 ps longer than DQS" needs our own top-up (`tune_meander.py`).

@@ -171,7 +171,7 @@ print(f"CA/CKE/CS - CK: {lo:+.1f} .. {hi:+.1f} ps   length rule +-5.3: {'OK' if 
 # Meanders only add delay. CA/CKE/CS and both CK legs: every path to the group's longest (CA-CK and CK P/N -> 0).
 # Byte k: DQS P and N to max(P, N, longest DQ/DM - DQ_HI); every DQ/DM to at least DQS + DQ_LO. That keeps DQ - DQS in
 # [DQ_LO, DQ_HI] inside Efinix's 0..66 ps with margin either side for the meander error.
-DQ_LO, DQ_HI = 8.0, 58.0
+DQ_LO, DQ_HI = float(os.environ.get("DQ_LO", 8.0)), float(os.environ.get("DQ_HI", 58.0))
 if PLAN:
     import json as _json
     plan = {}
@@ -183,16 +183,17 @@ if PLAN:
     for k in range(4):
         p_, n_ = f"ddr_dqs{k}_P", f"ddr_dqs{k}_N"
         members = [f"ddr_dq{8 * k + i}" for i in range(8)] + [f"ddr_dm{k}"]
-        if any(get(m) is None for m in members + [p_, n_]):
+        if get(p_) is None or get(n_) is None:
             continue
-        dqs = max(get(p_), get(n_), max(get(m) for m in members) - DQ_HI)
+        members = [m for m in members if get(m) is not None]  # a byte being routed net by net (byte_seq.sh)
+        dqs = max(get(p_), get(n_), max([get(m) for m in members] or [0]) - DQ_HI)
         plan[p_], plan[n_] = dqs - get(p_), dqs - get(n_)
         for m in members:
             plan[m] = max(0.0, dqs + DQ_LO - get(m))
     plan = {full[n]: round(v, 2) for n, v in plan.items() if v > 0.3}
     _json.dump(plan, open(PLAN, "w"), indent=1)
     print(f"\nplan: {len(plan)} nets to lengthen, {sum(plan.values()):.0f} ps in all, largest "
-          f"{max(plan.values()):.1f} ps -> {PLAN}")
+          f"{max(plan.values() or [0]):.1f} ps -> {PLAN}")
 
 # ---- KiCad tuner targets (--kicad CSV from tools/ddr/kicad_delays.sh) -------------------------------------------
 # KiCad sums a net's whole copper, so its readout = path + (for a shared CA/CK net) the second branch. A net that must

@@ -4,22 +4,33 @@
 # rip the nets -> bga_fanout them on U501 and U801 (around the copper already there) -> route.py --impedance 40
 # --escalation off (a net that cannot complete at width fails instead of necking down) -> widen.py fit -> grade.
 # A net that fails keeps its old copper: the output is the input with only the nets that routed replaced.
-# Env: MATCH=1 time-matches the named nets as one group (route.py meanders them right after routing, while the
+# Env: PAIR=1: the NETs are diff-pair bases (e.g. dqs0): fan out as pairs and route with route_diff (0.14 mm, P/N
+# matched, at the class clearance 0.1); MATCH=1 time-matches the named nets as one group (route.py meanders them right after routing, while the
 # corridor they were ripped from is still free); TOL (ps, 3); EXTRA (more route.py options); CL (clearance, 0.11).
 set -eu
+export KICAD_RIP_PREEXISTING=0   # never rip nets outside the request (KRT_LEARNING.md)
 R="$(cd "$(dirname "$0")/../.." && pwd)"; IN=$(realpath "$1"); W="$2"; shift 2; mkdir -p "$W"; cd "$W"
 K=~/dev/KiCadRoutingTools; P="$K/.venv/bin/python -X utf8"; KP="$R/tools/p2k/bin/kipy"; CL=${CL:-0.11}
 pro(){ for e in kicad_pro kicad_dru; do cp "$R/kicad/ti135_card.$e" "$1.$e"; done; }
 RE="ddr_($(IFS='|'; echo "$*"))\$"; PAT=""; for n in "$@"; do PAT="$PAT '*ddr_$n'"; done
+[ -n "${PAIR:-}" ] && RE="ddr_($(IFS='|'; echo "$*"))_[PN]\$"
 [ -n "${MATCH:-}" ] && MATCHOPT="--length-match-group $PAT --time-matching --time-match-tolerance ${TOL:-3}"
 cp "$IN" in.kicad_pcb; pro in
 $KP "$R/tools/ddr/rip_nets.py" in.kicad_pcb rip.kicad_pcb "$RE" 2>&1 | grep rip_nets; pro rip
 L="--layers F.Cu In1.Cu In2.Cu In3.Cu In4.Cu In5.Cu In6.Cu B.Cu --layer-costs 1 -1 1 -1 -1 1 -1 1"
 FO="--escape-method auto --plane-drop off --no-fix-drc-settings --track-width 0.1 --clearance $CL --check-for-previous"
+if [ -n "${PAIR:-}" ]; then
+  PP=""; for n in "$@"; do PP="$PP '*ddr_${n}_*'"; done
+  eval "$P $K/py_router/bga_fanout.py rip.kicad_pcb --component U501 --output f1.kicad_pcb --nets $PP --diff-pairs $PP --primary-escape vertical $L $FO --diff-pair-gap $CL --via-size 0.3 --via-drill 0.15" > f1.log 2>&1 || true; pro f1
+  eval "$P $K/py_router/bga_fanout.py f1.kicad_pcb --component U801 --output fanned.kicad_pcb --nets $PP --diff-pairs $PP --no-inner-top-layer $L $FO --diff-pair-gap 0.1 --via-size 0.25 --via-drill 0.15" > f2.log 2>&1 || true; pro fanned
+  eval "$P $K/py_router/route_diff.py fanned.kicad_pcb routed.kicad_pcb --nets $PP --diff-pair-intra-match --diff-pair-gap 0.15 --heuristic-weight 1.5 --track-width 0.14 --no-bga-zones U501 U801 $L --clearance 0.1 --via-size 0.3 --via-drill 0.15 --grid-step 0.05 --bga-proximity-radius 1 --stub-proximity-radius 1 --proximity-heuristic-factor 0.02 --board-edge-clearance 0.5 ${EXTRA:-}" > routed.log 2>&1 || true
+  pro routed; echo "  route: $(grep 'Diff pairs:' routed.log | tail -1)"
+else
 eval "$P $K/py_router/bga_fanout.py rip.kicad_pcb --component U501 --output f1.kicad_pcb --nets $PAT --primary-escape vertical $L $FO --via-size 0.3 --via-drill 0.15" > f1.log 2>&1 || true; pro f1
 eval "$P $K/py_router/bga_fanout.py f1.kicad_pcb --component U801 --output fanned.kicad_pcb --nets $PAT --no-inner-top-layer $L $FO --via-size 0.25 --via-drill 0.15" > f2.log 2>&1 || true; pro fanned
 eval "$P $K/py_router/route.py fanned.kicad_pcb routed.kicad_pcb --nets $PAT --impedance 40 --escalation off --no-bga-zones U501 U801 $L --clearance $CL --via-size 0.3 --via-drill 0.15 --grid-step 0.05 --bga-proximity-radius 1 --stub-proximity-radius 1 --proximity-heuristic-factor 0.02 --max-iterations 1000000 ${MATCHOPT:-} ${EXTRA:-} --json-out routed.json" > routed.log 2>&1 || true
 pro routed; echo "  route: $(grep 'Single-ended:' routed.log | tail -1)"
+fi
 $KP "$R/tools/ddr/widen.py" routed.kicad_pcb out.kicad_pcb 2>&1 | grep -v "memory leak"
 $KP "$R/tools/pad_to_die.py" out.kicad_pcb 2>&1 | grep pad_to_die; pro out
 "$R/tools/ddr/grade.sh" "$(basename "$W")" out.kicad_pcb 2>&1 | grep -v "memory leak" | head -9

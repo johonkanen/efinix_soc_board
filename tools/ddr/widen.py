@@ -14,7 +14,7 @@ otherwise it is left as it is. Every segment goes to the minimum width first, th
 target, so the first segments widened do not take the room their neighbours need for the minimum. A segment wider than the rule maximum (KRT's --impedance has no solder mask in its
 microstrip model and routes F/B about 0.27 mm for 40 ohm) is narrowed to the target. Zones are refilled afterwards (they give way). KiCad caps each DRC error type at 199
 reports, so the summary line counts the segments still below the rule minimum itself. --why lists, for each segment
-left narrow, the copper that blocks the minimum width and by how much.
+left narrow, the copper that blocks the minimum width and by how much. --split-only stops after the courtyard splits.
 """
 import math
 import sys
@@ -89,6 +89,12 @@ for t in list(b.GetTracks()):
     b.Add(n); split += 1
 for t in zero:  # SWIG: remove last, after all lookups
     b.Remove(t)
+if "--split-only" in sys.argv:  # for tools/ddr/tune_meander.py: whole segments outside the courtyards to meander
+    pcbnew.SaveBoard(args[1], b)
+    import json
+    json.dump(court, open(args[1] + ".court.json", "w"))  # the real courtyards, for tune_meander.py
+    print(f"widen --split-only: {split} split at a courtyard edge")
+    sys.exit(0)
 
 
 # obstacles per layer in a grid: ("seg", ax, ay, cx, cy, half width, net, id) / ("circ", x, y, r, net, id) /
