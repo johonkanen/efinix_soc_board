@@ -40,13 +40,13 @@ card, and plugs into the same baseboard.
     positions are the Agilex card's offsets from its J3, shifted +1.0 mm in x to clear J1. Our extra parts (rail
     monitors, SPI series resistors, extra caps) sit at the nearest free spot by the pin they serve;
   - **J3 pull-down arrays (RN1401–RN1408) on B.Cu** in a column beside J3, each level with its pins, as on the
-    Agilex card. Silkscreen labels in that area still need tidying.
+    Agilex card.
 - **LPDDR4**: DQ swizzle within each byte (LPDDR4_SWIZZLE.md: crossings 125 → 45), configured in Efinity
   (`efinity/pinplan/lpddr4_swizzle.json`). 40 Ω / 80 Ω rules (Efinix guide). The Ti135N484**I3** tops out at 2.8 Gbps.
 - **Layers** (TI135_PCB_NOTES.md §6.5–6.6): signals on F/In2/In5/B. In1 and In6 GND; In3 VCORE/1V1/3V3; In4 1V8/0V85/5V0.
 - **Plan for the rest**: `LAYOUT_PLAN.md`. LPDDR4, eMMC and flash are routed automatically and signed off by hand.
-- DRC: schematic parity 0; no courtyard, clearance or short errors; 499 unconnected (unrouted). Silkscreen warnings
-  (overlapping reference labels, the jack overhanging the edge) remain to be tidied.
+- DRC: schematic parity 0; no courtyard, clearance or short errors; 499 unconnected (unrouted). Silkscreen checks are
+  off: the card carries no reference-designator silkscreen, only a few custom markings (user, 2026-10-26).
 
 **Planes, BGA fan-out (via-in-pad) and regulator cell copper done** (TI135_PCB_NOTES.md §6.6–6.8).
 
@@ -205,8 +205,7 @@ tools/p2k/bin/p2k render_sheet kicad/08_lpddr4.kicad_sch   # PNG check -> report
    - Still to do by hand (LAYOUT_PLAN.md step 4):
      - RGMII series resistors: TX at the FPGA, RX at the PHY;
      - Y901 tight to the PHY;
-     - R801/R802 at their balls;
-     - silkscreen labels (`beautify_labels.py`).
+     - R801/R802 at their balls.
    - Watch at sign-off: the 0V85/1V1 cells (B.Cu) sit at the east end of the DDR corridor. Efinix asks for ≥ 100 mil
      between switching nodes and DDR traces; In6 GND shields In5.
 4. **LPDDR4 routing** (TI135_PCB_NOTES.md §6.3), then the rest. DRC, then the JLC order checklist.

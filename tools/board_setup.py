@@ -125,6 +125,9 @@ def netclasses():
     sev = pro.setdefault("board", {}).setdefault("design_settings", {}).setdefault("rule_severities", {})
     sev["missing_tuning_profile"] = "warning"
     sev["tuning_profile_track_geometries"] = "ignore"   # the 0.1 mm neck-down inside the BGAs differs from the profile
+    # no reference-designator silkscreen on this card, only a few custom markings (user, 2026-10-26)
+    for k in ("silk_overlap", "silk_over_copper", "silk_edge_clearance"):
+        sev[k] = "ignore"
     rules = pro.setdefault("board", {}).setdefault("design_settings", {}).setdefault("rules", {})
     rules.update({"min_clearance": 0.09, "min_track_width": 0.09, "min_via_diameter": 0.25,
                   "min_via_annular_width": 0.05, "min_through_hole_diameter": 0.15, "min_hole_clearance": 0.175,
