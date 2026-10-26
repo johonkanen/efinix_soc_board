@@ -5,6 +5,8 @@
   (LAYER_TYPES): the stack-up's thin 0.1 mm cores pair In2 with In1 and In5 with In6, so the controlled-impedance
   widths only hold with In1 / In6 as GND planes and In3 / In4 as planes. Signals go on F.Cu, In2, In5, B.Cu
   (field solve in TI135_PCB_NOTES.md §6.5).
+- KiCad 10 time-domain tuning profiles (40 ohm SE / 80 ohm diff, per-layer delays from the field solve) on the
+  LPDDR4 net classes, so the pcbnew tuners and length/skew DRC work in ps, die to die (U501 pad-to-die).
 - Net classes (kicad/ti135_card.kicad_pro): the Agilex LPDDR4 classes with patterns for this board's net names
   (sheet 8: ddr_dq*, ddr_dm*, ddr_ca*, ddr_cke0, ddr_cs*_n, ddr_rst_n, ddr_dqs*_P/N, ddr_ck_P/N), plus power
   and RGMII classes.
@@ -73,6 +75,36 @@ PATTERNS = [
 ]
 
 
+# KiCad 10 time-domain tuning profiles (Board Setup -> Tuning Profiles), assigned to the LPDDR4 net classes. Delays from
+# the field solve (TI135_PCB_NOTES.md §6.5): microstrip with mask 6.11 ps/mm, In2/In5 stripline 7.01 ps/mm, the plane
+# layers about 7.0, via 7.2 ps/mm of height. Widths are the 40 ohm SE / 80 ohm diff geometry (Efinix DDR PCB guide).
+# Units: pcbIUScale.IU_PER_PS_PER_MM = 1e6 (6.11 ps/mm -> 6110000), lengths in nm.
+LAYER_STACK = ["F.Cu", "In1.Cu", "In2.Cu", "In3.Cu", "In4.Cu", "In5.Cu", "In6.Cu", "B.Cu"]
+LAYER_DELAY = {"F.Cu": 6.11, "In1.Cu": 6.97, "In2.Cu": 7.01, "In3.Cu": 7.00, "In4.Cu": 7.00, "In5.Cu": 7.01,
+               "In6.Cu": 6.97, "B.Cu": 6.11}
+TUNING = {  # profile: (type 0 SE / 1 diff, target ohms, {outer|inner: (width mm, gap mm)}, net classes)
+    "LPDDR4 SE 40R JLC08161H-3313": (0, 40.0, {"outer": (0.25, 0.0), "inner": (0.18, 0.0)}, ["lpddr_dq", "lpddr_ca"]),
+    "LPDDR4 DIFF 80R JLC08161H-3313": (1, 80.0, {"outer": (0.20, 0.20), "inner": (0.14, 0.15)}, ["lpddr_diff"]),
+}
+
+
+def tuning_profiles():
+    profiles = []
+    for name, (kind, z, geo, _) in TUNING.items():
+        entries = []
+        for i, L in enumerate(LAYER_STACK):
+            w, gap = geo["outer" if L in ("F.Cu", "B.Cu") else "inner"]
+            entries.append({"signal_layer": L,
+                            "top_reference_layer": LAYER_STACK[i - 1] if i > 0 else "UNDEFINED",
+                            "bottom_reference_layer": LAYER_STACK[i + 1] if i < len(LAYER_STACK) - 1 else "UNDEFINED",
+                            "width": int(round(w * 1e6)), "diff_pair_gap": int(round(gap * 1e6)),
+                            "delay": int(round(LAYER_DELAY[L] * 1e6))})
+        profiles.append({"profile_name": name, "type": kind, "target_impedance": z,
+                         "enable_time_domain_tuning": True, "via_prop_delay": 7200000, "via_overrides": [],
+                         "layer_entries": entries})
+    return {"meta": {"version": 0}, "tuning_profiles_impedance_geometric": profiles}
+
+
 def netclasses():
     pro = json.load(open(PRO))
     ns = pro.setdefault("net_settings", {})
@@ -84,8 +116,15 @@ def netclasses():
                   "diff_pair_width": dpw, "diff_pair_gap": dpg, "microvia_diameter": 0.2, "microvia_drill": 0.1,
                   "priority": len(classes) if name != "Default" else 2147483647})
         classes.append(c)
+    profile_of = {c: name for name, (_, _, _, cls) in TUNING.items() for c in cls}
+    for c in classes:
+        c["tuning_profile"] = profile_of.get(c["name"], "")
     ns["classes"] = classes
+    pro["tuning_profiles"] = tuning_profiles()
     ns["netclass_patterns"] = [{"netclass": c, "pattern": p} for c, p in PATTERNS]
+    sev = pro.setdefault("board", {}).setdefault("design_settings", {}).setdefault("rule_severities", {})
+    sev["missing_tuning_profile"] = "warning"
+    sev["tuning_profile_track_geometries"] = "ignore"   # the 0.1 mm neck-down inside the BGAs differs from the profile
     rules = pro.setdefault("board", {}).setdefault("design_settings", {}).setdefault("rules", {})
     rules.update({"min_clearance": 0.09, "min_track_width": 0.09, "min_via_diameter": 0.25,
                   "min_via_annular_width": 0.05, "min_through_hole_diameter": 0.15, "min_hole_clearance": 0.175,

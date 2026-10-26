@@ -568,7 +568,7 @@
         "priority": 2,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 0.18,
-        "tuning_profile": "",
+        "tuning_profile": "LPDDR4 SE 40R JLC08161H-3313",
         "via_diameter": 0.3,
         "via_drill": 0.15,
         "wire_width": 6
@@ -587,7 +587,7 @@
         "priority": 3,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 0.14,
-        "tuning_profile": "",
+        "tuning_profile": "LPDDR4 DIFF 80R JLC08161H-3313",
         "via_diameter": 0.3,
         "via_drill": 0.15,
         "wire_width": 6
@@ -606,7 +606,7 @@
         "priority": 1,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 0.18,
-        "tuning_profile": "",
+        "tuning_profile": "LPDDR4 SE 40R JLC08161H-3313",
         "via_diameter": 0.3,
         "via_drill": 0.15,
         "wire_width": 6
@@ -822,6 +822,155 @@
     "meta": {
       "version": 0
     },
-    "tuning_profiles_impedance_geometric": []
+    "tuning_profiles_impedance_geometric": [
+      {
+        "enable_time_domain_tuning": true,
+        "layer_entries": [
+          {
+            "bottom_reference_layer": "In1.Cu",
+            "delay": 6110000,
+            "diff_pair_gap": 0,
+            "signal_layer": "F.Cu",
+            "top_reference_layer": "UNDEFINED",
+            "width": 250000
+          },
+          {
+            "bottom_reference_layer": "In2.Cu",
+            "delay": 6970000,
+            "diff_pair_gap": 0,
+            "signal_layer": "In1.Cu",
+            "top_reference_layer": "F.Cu",
+            "width": 180000
+          },
+          {
+            "bottom_reference_layer": "In3.Cu",
+            "delay": 7010000,
+            "diff_pair_gap": 0,
+            "signal_layer": "In2.Cu",
+            "top_reference_layer": "In1.Cu",
+            "width": 180000
+          },
+          {
+            "bottom_reference_layer": "In4.Cu",
+            "delay": 7000000,
+            "diff_pair_gap": 0,
+            "signal_layer": "In3.Cu",
+            "top_reference_layer": "In2.Cu",
+            "width": 180000
+          },
+          {
+            "bottom_reference_layer": "In5.Cu",
+            "delay": 7000000,
+            "diff_pair_gap": 0,
+            "signal_layer": "In4.Cu",
+            "top_reference_layer": "In3.Cu",
+            "width": 180000
+          },
+          {
+            "bottom_reference_layer": "In6.Cu",
+            "delay": 7010000,
+            "diff_pair_gap": 0,
+            "signal_layer": "In5.Cu",
+            "top_reference_layer": "In4.Cu",
+            "width": 180000
+          },
+          {
+            "bottom_reference_layer": "B.Cu",
+            "delay": 6970000,
+            "diff_pair_gap": 0,
+            "signal_layer": "In6.Cu",
+            "top_reference_layer": "In5.Cu",
+            "width": 180000
+          },
+          {
+            "bottom_reference_layer": "UNDEFINED",
+            "delay": 6110000,
+            "diff_pair_gap": 0,
+            "signal_layer": "B.Cu",
+            "top_reference_layer": "In6.Cu",
+            "width": 250000
+          }
+        ],
+        "profile_name": "LPDDR4 SE 40R JLC08161H-3313",
+        "target_impedance": 40.0,
+        "type": 0,
+        "via_overrides": [],
+        "via_prop_delay": 7200000
+      },
+      {
+        "enable_time_domain_tuning": true,
+        "layer_entries": [
+          {
+            "bottom_reference_layer": "In1.Cu",
+            "delay": 6110000,
+            "diff_pair_gap": 200000,
+            "signal_layer": "F.Cu",
+            "top_reference_layer": "UNDEFINED",
+            "width": 200000
+          },
+          {
+            "bottom_reference_layer": "In2.Cu",
+            "delay": 6970000,
+            "diff_pair_gap": 150000,
+            "signal_layer": "In1.Cu",
+            "top_reference_layer": "F.Cu",
+            "width": 140000
+          },
+          {
+            "bottom_reference_layer": "In3.Cu",
+            "delay": 7010000,
+            "diff_pair_gap": 150000,
+            "signal_layer": "In2.Cu",
+            "top_reference_layer": "In1.Cu",
+            "width": 140000
+          },
+          {
+            "bottom_reference_layer": "In4.Cu",
+            "delay": 7000000,
+            "diff_pair_gap": 150000,
+            "signal_layer": "In3.Cu",
+            "top_reference_layer": "In2.Cu",
+            "width": 140000
+          },
+          {
+            "bottom_reference_layer": "In5.Cu",
+            "delay": 7000000,
+            "diff_pair_gap": 150000,
+            "signal_layer": "In4.Cu",
+            "top_reference_layer": "In3.Cu",
+            "width": 140000
+          },
+          {
+            "bottom_reference_layer": "In6.Cu",
+            "delay": 7010000,
+            "diff_pair_gap": 150000,
+            "signal_layer": "In5.Cu",
+            "top_reference_layer": "In4.Cu",
+            "width": 140000
+          },
+          {
+            "bottom_reference_layer": "B.Cu",
+            "delay": 6970000,
+            "diff_pair_gap": 150000,
+            "signal_layer": "In6.Cu",
+            "top_reference_layer": "In5.Cu",
+            "width": 140000
+          },
+          {
+            "bottom_reference_layer": "UNDEFINED",
+            "delay": 6110000,
+            "diff_pair_gap": 200000,
+            "signal_layer": "B.Cu",
+            "top_reference_layer": "In6.Cu",
+            "width": 200000
+          }
+        ],
+        "profile_name": "LPDDR4 DIFF 80R JLC08161H-3313",
+        "target_impedance": 80.0,
+        "type": 1,
+        "via_overrides": [],
+        "via_prop_delay": 7200000
+      }
+    ]
   }
 }

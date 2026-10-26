@@ -409,6 +409,22 @@ and the cells were re-placed with everything else locked. Each cell was verified
 Copper is drawn by `tools/buck_copper.py`, one layout copied through each cell's pad frame. The 5V0 B.Cu region
 feeds every VIN by fill. The 3V3 cell's output and the EN/PG pins are left to the router.
 
+### 6.9 LPDDR4 delay tuning in KiCad (time domain, 2026-10-26)
+
+- **Tuning profiles** (`tools/board_setup.py` → `.kicad_pro`): `LPDDR4 SE 40R JLC08161H-3313` on `lpddr_dq` /
+  `lpddr_ca`, `LPDDR4 DIFF 80R JLC08161H-3313` on `lpddr_diff`. Per-layer delays from §6.5: F/B 6.11, In2/In5 7.01,
+  plane layers about 7.0 ps/mm, via 7.2 ps/mm. With them, pcbnew's tuners (single track, diff pair, skew) and the
+  length/skew DRC work in ps, and include U501's pad-to-die (`tools/pad_to_die.py`, stored in ps).
+- **KiCad's readout per net:** `tools/ddr/kicad_delays.sh > delays.csv`. It runs a probe DRC rule
+  `(constraint length (min 1ps) (max 2ps))` on a copy, and every LPDDR4 net reports its actual delay.
+- **Targets:** `tools/p2k/bin/kipy tools/ddr/ddr_timing.py --kicad delays.csv` prints, per net, the delay to dial
+  in pcbnew. KiCad sums a net's whole copper, so a shared CA/CK net reads path + its second branch (removed using
+  the exact branch geometry of `tools/ddr/ca_trunk_branch.py`). Meanders only add delay, so each group's target is
+  its longest path: CA/CKE/CS/CK to one value; each DQS pair equalised; DQ/DM to 5…66 ps over their DQS.
+- Model check: KiCad and the path model agree within about ±5 ps on most point-to-point nets. KiCad reads 10–16 ps
+  more on some, from its via model (traversed height) and leftover stub copper, which it counts. KiCad is the
+  reference.
+
 ## 7. Clock-capable pins (from the Efinity device database)
 
 | Bank | PLL_CLKIN | GCLK | Other |

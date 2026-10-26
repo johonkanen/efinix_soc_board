@@ -24,7 +24,13 @@ Tools: `~/dev/KiCadRoutingTools` (venv `.venv`, with `ortools`); the skills are 
 | DQ/DM − DQS | 0 … 66 ps | fails in all four bytes (DQ shorter than DQS in 0, 2, 3) |
 | DRC (DDR) | – | 199 width (no 40 Ω widening yet), 16 pair gap, 4 uncoupled, 14 hole clearance |
 
-## 1. KiCad time-domain tuning setup (30–60 min)
+## 1. ~~KiCad time-domain tuning setup~~ (done 2026-10-26, TI135_PCB_NOTES.md §6.9)
+
+Done as planned: profiles on the net classes, `tools/ddr/kicad_delays.sh` (KiCad's own delay per net),
+`ddr_timing.py --kicad` (per-net targets in KiCad terms). CA/CK targets: add +8 … +50 ps (CA4 is the longest).
+Byte 0 needs up to +98 ps on DQ6, so the data bytes are better re-routed (step 2) than tuned.
+
+Original plan:
 
 1. In `tools/board_setup.py`, add two tuning profiles to `kicad/ti135_card.kicad_pro`, copied in form from the
    Agilex card's (`tuning_profiles.tuning_profiles_impedance_geometric`):

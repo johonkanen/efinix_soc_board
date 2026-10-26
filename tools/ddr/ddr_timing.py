@@ -19,7 +19,11 @@ import pcbnew
 PS_PER_MM = {"F.Cu": 6.11, "B.Cu": 6.11, "In2.Cu": 7.01, "In5.Cu": 7.01}
 VIA_PS = 5.5
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-b = pcbnew.LoadBoard(sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, "kicad", "ti135_card.kicad_pcb"))
+args = [a for a in sys.argv[1:]]
+KICAD_CSV = None
+if "--kicad" in args:
+    i = args.index("--kicad"); KICAD_CSV = args[i + 1]; del args[i:i + 2]
+b = pcbnew.LoadBoard(args[0] if args else os.path.join(ROOT, "kicad", "ti135_card.kicad_pcb"))
 import heapq
 from collections import defaultdict
 # copper graph per net: nodes = rounded points on a layer; a via (and a THT/via-in-pad position) joins its layers.
@@ -145,3 +149,50 @@ for n in ca:
 lo, hi = min(allv), max(allv)
 print(f"CA/CKE/CS - CK: {lo:+.1f} .. {hi:+.1f} ps   length rule +-5.3: {'OK' if lo >= -5.3 and hi <= 5.3 else 'FAIL'}"
       f"   timing budget +-100: {'OK' if max(abs(lo), abs(hi)) <= 100 else 'FAIL'}")
+
+
+# ---- KiCad tuner targets (--kicad CSV from tools/ddr/kicad_delays.sh) -------------------------------------------
+# KiCad sums a net's whole copper, so its readout = path + (for a shared CA/CK net) the second branch. A net that must
+# gain d ps of path delay must read kicad + d in KiCad. Meanders only add delay, so every target is the group's longest.
+if KICAD_CSV:
+    import csv as _csv
+    kd = {r["net"]: float(r["kicad_ps"]) for r in _csv.DictReader(open(KICAD_CSV))}
+    print("\nKiCad readout vs path (model check; shared CA/CK nets add one branch, ~10-20 ps):")
+    for n in sorted(kd):
+        if get(n) is not None:
+            print(f"   {n:12} KiCad {kd[n]:6.1f}   path {get(n):6.1f}   diff {kd[n] - get(n):+6.1f}")
+    # KiCad is the reference for tuning (its tuner and DRC use it): path_k = KiCad readout, minus the second branch on a
+    # shared CA/CK net (its exact geometry from tools/ddr/ca_trunk_branch.py). The model check above differs by the
+    # via model (KiCad: 7.2 ps/mm of traversed height; here a flat 5.5 ps) and stub copper KiCad also counts.
+    import importlib.util as _ilu
+    _spec = _ilu.spec_from_file_location("ctb", os.path.join(ROOT, "tools", "ddr", "ca_trunk_branch.py"))
+    ctb = _ilu.module_from_spec(_spec); _spec.loader.exec_module(ctb)
+    ctb.U801 = b.FindFootprintByReference("U801")
+    branch = {n: ctb.branch_delay(b, n) for n in ctb.SHARED}
+    get_model = get
+    def get(n):
+        return kd[n] - branch.get(n, 0.0) if n in kd else get_model(n)
+    print("\nPaths in KiCad terms (readout - second branch for shared nets): " +
+          ", ".join(f"{n} {get(n):.1f}" for n in ca + ["ddr_ck_P", "ddr_ck_N"]))
+    print("\nTUNER TARGETS (tune each net in pcbnew until KiCad shows this delay):")
+    grp = ca + ["ddr_ck_P", "ddr_ck_N"]
+    T = max(get(n) for n in grp)
+    print(f" CA/CKE/CS/CK group: every path to {T:.1f} ps")
+    for n in grp:
+        d = T - get(n)
+        print(f"   {n:12} now {kd[n]:6.1f} ps -> {kd[n] + d:6.1f} ps   (+{d:5.1f})" if d > 0.4 else f"   {n:12} {kd[n]:6.1f} ps  (longest, leave)")
+    for k in range(4):
+        p_, n_ = f"ddr_dqs{k}_P", f"ddr_dqs{k}_N"
+        members = [f"ddr_dq{8 * k + i}" for i in range(8)] + [f"ddr_dm{k}"]
+        dqs = max(get(p_), get(n_))
+        top = max(get(m) for m in members)
+        if top - dqs > 60:                    # a DQ already > 60 ps over: raise DQS so it sits <= 60 under it
+            dqs = top - 60
+        print(f" byte {k}: DQS P/N to {dqs:.1f} ps, DQ/DM to >= {dqs + 5:.1f} ps (<= {dqs + 66:.1f})")
+        for n in [p_, n_]:
+            d = dqs - get(n)
+            print(f"   {n:12} now {kd[n]:6.1f} ps -> {kd[n] + d:6.1f} ps   (+{d:5.1f})" if d > 0.4 else f"   {n:12} {kd[n]:6.1f} ps  (leave)")
+        for n in members:
+            d = dqs + 5 - get(n)
+            if d > 0.4:
+                print(f"   {n:12} now {kd[n]:6.1f} ps -> {kd[n] + d:6.1f} ps   (+{d:5.1f})")
