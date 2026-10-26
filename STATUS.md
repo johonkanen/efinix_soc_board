@@ -34,7 +34,13 @@ card, and plugs into the same baseboard.
   - power supplies on the underside, as on the Ti60 card: 5 TLV62585 cells held to TI's Figure 24 layout, plus J6's caps;
   - BGA/LPDDR4 decaps on B.Cu under their packages;
   - J1/J2 at the west edge below J3 (MECHANICAL.md);
-  - translators between J3 and the BGA, PHY between the BGA and J9, eMMC south, ADC south-east.
+  - translators between J3 and the BGA, PHY between the BGA and J9, eMMC south;
+  - **analog section copied from the Agilex card (2026-10-26, `tools/place_analog.py`):** mux, OPA365 buffer,
+    33 R + 680 p filter, ADS7056 and the 3V3_analog LDO sit just below J3, where the isoada inputs arrive. Their
+    positions are the Agilex card's offsets from its J3, shifted +1.0 mm in x to clear J1. Our extra parts (rail
+    monitors, SPI series resistors, extra caps) sit at the nearest free spot by the pin they serve;
+  - **J3 pull-down arrays (RN1401–RN1408) on B.Cu** in a column beside J3, each level with its pins, as on the
+    Agilex card. Silkscreen labels in that area still need tidying.
 - **LPDDR4**: DQ swizzle within each byte (LPDDR4_SWIZZLE.md: crossings 125 → 45), configured in Efinity
   (`efinity/pinplan/lpddr4_swizzle.json`). 40 Ω / 80 Ω rules (Efinix guide). The Ti135N484**I3** tops out at 2.8 Gbps.
 - **Layers** (TI135_PCB_NOTES.md §6.5–6.6): signals on F/In2/In5/B. In1 and In6 GND; In3 VCORE/1V1/3V3; In4 1V8/0V85/5V0.
