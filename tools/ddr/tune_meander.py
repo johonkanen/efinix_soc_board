@@ -4,7 +4,7 @@
     tune_meander.py BOARD.kicad_pcb PLAN.json EDITS.json [--amp 1.0] [--spacing 3] [--clearance 0.11]
 
 PLAN (from `ddr_timing.py --plan`): {net: path delay to add, ps}. For each net, its chains of same-layer segments
-outside the BGA courtyards are meandered, longest first (amplitude --amp, else 0.6x, 0.35x), by KiCadRoutingTools' trombone generator
+outside the BGA courtyards are meandered, longest first (amplitude --amp, else 0.6x, 0.35x, 0.2x), by KiCadRoutingTools' trombone generator
 (length_matching.apply_meanders_to_route, which checks each bump against the copper around it) until the deficit is
 covered: ps -> mm at the layer's delay (TI135_PCB_NOTES.md §6.5). Meanders on the trunk of a shared CA/CK net add to
 both channels alike. Nets are done in plan order (largest first); each one's new copper is an obstacle to the next.
@@ -194,7 +194,7 @@ for net in sorted(plan, key=lambda n: -plan[n]):
         # KRT measures a bump from the existing centreline with a corner margin, so a trace already close to a
         # neighbour (legally) gets no bump on either side at the real clearance. Ask it at a small clearance too, and
         # keep a result only if every new segment passes the board's own rules (violations()).
-        for amp in (opt["--amp"], opt["--amp"] * 0.6, opt["--amp"] * 0.35):  # smaller bumps fit between vias
+        for amp in (opt["--amp"], opt["--amp"] * 0.6, opt["--amp"] * 0.35, opt["--amp"] * 0.2):  # smaller bumps fit between vias
             for kc in (opt["--clearance"], 0.03):
                 cfg = GridRouteConfig(track_width=w, clearance=kc, meander_amplitude=amp, meander_spacing=opt["--spacing"],
                                       layers=["F.Cu", "In1.Cu", "In2.Cu", "In3.Cu", "In4.Cu", "In5.Cu", "In6.Cu", "B.Cu"],

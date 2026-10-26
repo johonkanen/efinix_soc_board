@@ -74,37 +74,33 @@ Same method as the CK/CA work (KRT_LEARNING.md):
 4. Try one layer per byte with per-byte `--layers` (Efinix: keep a byte group on one layer).
 5. Target: DQS P/N ≤ 1.8 ps, DQ/DM 0 … 66 ps over their DQS. Script it like `ca_tb_chain.sh` (`tools/ddr/byte_chain.sh`).
 
-## 3. Delay tuning (started 2026-10-26; blocked on meander room, decision needed)
+## 3. Delay tuning (2026-10-26: option 2 in progress; candidate on branch `ddr-option2`)
 
-Tools:
-- `ddr_timing.py --nets` lists every DQ/DM against its DQS. `--plan FILE` writes the delay each net must gain
-  (CA/CKE/CS and both CK legs to the group's longest; per byte DQS P/N to max(P, N, longest DQ − 58), DQ/DM to at
-  least DQS + 8). That keeps every DQ in 8…58 ps over DQS, inside Efinix's 0…66 ps.
-- `tools/ddr/tune_meander.py` (KRT venv) meanders each net's same-layer chains outside the BGAs with KRT's trombone
-  generator, which clearance-checks every bump, and writes edits. `tools/ddr/tune_apply.py` (kipy) applies them;
-  then `widen.py` and `grade.sh`.
+Return point: tag `ddr40-before-reroute` (main's board: DRC-clean at 40 Ω, untuned).
 
-Findings on the 40 Ω board (main):
-- The plan asks for **1453 ps (about 220 mm of meander)** on 37 nets, up to 112 ps on one net.
-- **The tuner places 230–540 ps of it** (best: 0.8 mm amplitude, 2W arm pitch). The bundles are packed at the
-  routing clearance, so a trace inside a bundle has no side free; there is free copper beside the bundles, but not
-  next to the inner traces. KRT's own in-route matching hit the same wall ("No straight run with clearance").
-- A test application (`work/p3/tuned_fit`): DQS2 P/N 13 → 1.1 ps, byte 0's dq0/2/5/7 to +3…+17 ps; byte 0's
-  dq1/3/4 stay at −60…−65 ps, and dq16 goes to −105 ps (DQS2 moved up). 2 board-edge hits (KRT's meanders don't
-  check the edge).
-- **Re-routing to make room did not converge:**
-  - routing clearance 0.15 / 0.2 (`byte_chain.sh` `RCL`): opens and spreads to 160–170 ps;
-  - a matched byte-2 re-route (`reroute_nets.sh` `MATCH=1`): the router ripped and lost other nets.
-- **Outliers set much of the plan:** DQS0 is ~50 ps longer than its byte needs. dq18/dq21 (+77/+102) and ca3 (−64.5)
-  are the phase-4 re-routes, routed without matching.
+**Option 2 (re-route with meander room), what works** (`tools/ddr/byte_seq.sh`, `MODE=net NET_ORDER=far`):
+- Each byte on its own layer: 0 In2, 1 In2 (redone with `RIP_BYTES=1`), 2 In5, 3 B; 75–81 % on the primary layer.
+- Per byte: the DQS pair first. Then each DQ/DM alone, farthest ball pair first, and meandered to DQS + 30 ps right
+  away (`tune_meander.py`), so later nets route around those meanders instead of packing against straight
+  neighbours.
+- Then `tools/ddr/polish.sh` (plan + tune + fit) for what is left.
+- Candidate (`ddr-option2`: board from `work/hp/p1`), DQ/DM − DQS in ps:
+  - byte 0: +13…+57, DQS P/N 4.5;
+  - byte 1: −24…+56, DQS P/N 6.6 (dq9 −12, dq15 −24);
+  - byte 2: +7…+45, DQS P/N 0.07 (passes);
+  - byte 3: +11…+60, DQS P/N 5.6.
 
-Options (for the user):
-1. **Accept the timing budget, not the length rule.** Efinix's ±75 ps DQ−DQS and ±100 ps CA−CK at 3.7 Gbps; the I3
-   part runs ≤ 2.8 Gbps, so the real budget is larger. Then only a few nets need work: dq16, byte 2's top, byte 0's
-   −83, and the DQS/CK P/N skews. The tuner can do most of that.
-2. **Re-route the LPDDR4 with meander room**: one layer per byte (Efinix), a spaced corridor, re-routing the
-   outliers short; then the tuner. A day's work, and the router's results vary run to run.
-3. Tune by hand in pcbnew, pushing neighbours aside (KiCad's tuner does not shove).
+**Left on the candidate:**
+- Byte 1's dq9/dq15 and the DQS P/N skews (4.5 / 6.6 / 5.6 ps, rule 1.8). The DQ routed after a pair fill the room
+  beside it.
+- CA/CK untouched: CA − CK −57…+47 ps (budget ±100 OK, ±5.3 rule not), CK P/N 3.7 ps.
+- Width: 88 mm of DDR copper below the minimum. The per-net routes neck where they find no room; re-routing them
+  at width would change their delays.
+- 499 crosstalk-spacing warnings.
+
+Tools added: `byte_seq.sh` (`MODE`, `NET_ORDER`, `ORDER`, `LAYER_<k>`, `RIP_BYTES`, `DQ_LO_NET`), `polish.sh`,
+`reroute_nets.sh` `PAIR=1`/`MATCH=1`, `ddr_timing.py --nets/--plan`, `tune_meander.py` / `tune_apply.py`, and
+`widen.py --split-only`. KiCadRoutingTools issues: KRT_LEARNING.md.
 
 ## 4. LPDDR4 DRC clean-up (in progress 2026-10-26)
 
