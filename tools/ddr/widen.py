@@ -25,7 +25,7 @@ import pcbnew
 
 CLR, HOLE_CLR, PTH_HOLE_CLR, EDGE_CLR = 0.1, 0.175, 0.28, 0.5
 NECK_MIN = 0.09  # rule lpddr_bga_neckdown
-MARGIN = 0.0005  # mm kept over every clearance (KiCad grades in nm)
+MARGIN = 0.0002  # mm kept over every clearance (KiCad grades in nm)
 XT, XT_GROUP = 0.2, 0.3
 SE = {"inner": [0.18, 0.17], "outer": [0.25, 0.24, 0.23]}
 DIFF = {"inner": [0.14, 0.13], "outer": [0.20, 0.19]}
@@ -250,7 +250,7 @@ widen_pass("min")
 
 # Nudge (between the minimum and the target pass). A segment still below the minimum is usually short by tens of um
 # on one side. Offset its run (the same-net segments on its layer between two anchors: a via, pad, junction or BGA
-# interior) sideways as a polyline, 5..100 um either way; failing that, only the segment's own two ends. Anchors stay,
+# interior) sideways as a polyline, 0.5..100 um either way (0.5 um steps to 20 um); failing that, only the segment's own two ends. Anchors stay,
 # and the move is kept only if every moved segment clears at its width (the narrow ones at the minimum).
 def P(v):
     return pcbnew.VECTOR2I(pcbnew.FromMM(v[0]), pcbnew.FromMM(v[1]))
@@ -336,7 +336,7 @@ def nudge(t, bga_free=False):
     for free in (free_all, local):
         if not free:
             continue
-        for k in [i * 0.005 for i in range(1, 21)]:
+        for k in [i * 0.0005 for i in range(1, 41)] + [i * 0.005 for i in range(5, 21)]:  # fine first
             for sgn in (1, -1):
                 mv = offset_moves(chain, free, sgn * k)
                 ok = True
@@ -346,7 +346,7 @@ def nudge(t, bga_free=False):
                         continue
                     da = mv.get(vk(ua), (0, 0)); dc = mv.get(vk(uc), (0, 0))
                     na = (ua[0] + da[0], ua[1] + da[1]); nc = (uc[0] + dc[0], uc[1] + dc[1])
-                    w = max(mm(u.GetWidth()), minw.get(key, 0))
+                    w = minw.get(key, mm(u.GetWidth()))  # a moved segment may drop to its minimum; the target pass re-widens
                     g, it = gap(u, b.GetLayerName(lid), na, nc, w / 2, info.get(key, (0, 0, None))[2])
                     if g < 0:
                         if DEBUG and DEBUG in t.GetNetname() and k in (0.025, 0.05, 0.1):
@@ -361,7 +361,7 @@ def nudge(t, bga_free=False):
                             continue
                         da = mv.get(vk(ua), (0, 0)); dc = mv.get(vk(uc), (0, 0))
                         u.SetStart(P((ua[0] + da[0], ua[1] + da[1]))); u.SetEnd(P((uc[0] + dc[0], uc[1] + dc[1])))
-                        if key in minw and mm(u.GetWidth()) < minw[key]:
+                        if key in minw:
                             u.SetWidth(pcbnew.FromMM(minw[key]))
                         dead.update(track_keys[key] | {key})
                         put_track(u, tag="+n%d" % nudged)

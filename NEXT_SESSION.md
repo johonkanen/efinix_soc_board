@@ -26,7 +26,7 @@ Tools: `~/dev/KiCadRoutingTools` (venv `.venv`, with `ortools`); the skills are 
 | CK P/N | ≤ 0.9 ps | 3.7 ps |
 | DQS P/N | ≤ 1.8 ps | 7.9 / 1.9 / 13.1 / 2.2 ps (bytes 0–3; DQS1/DQS2 routed as singles) |
 | DQ/DM − DQS | 0 … 66 ps | −83…9 / −42…68 / −60…102 / 6…59 ps |
-| Width (DDR, outside the BGAs) | 0.17–0.19 inner, 0.23–0.27 F/B; pairs 0.13–0.15 / 0.19–0.21 | 1 error: cs2_n 1.7 mm at 0.1 mm between R801 and C507 (see phase 4) |
+| Width (DDR, outside the BGAs) | 0.17–0.19 inner, 0.23–0.27 F/B; pairs 0.13–0.15 / 0.19–0.21 | clean |
 | Other DDR DRC | – | 0 hole, 0 edge; 4 skew, 3 uncoupled (phase 3); 180 xtalk-spacing warnings |
 
 ## 1. ~~KiCad time-domain tuning setup~~ (done 2026-10-26, TI135_PCB_NOTES.md §6.9)
@@ -104,9 +104,8 @@ Done:
   segments KRT leaves are raised to 0.09.
 
 Left:
-- **cs2_n** (1 width error): 1.7 mm at 0.1 mm through the 0.421 mm opening between R801 (DDR_CAL resistor) and C507.
-  0.23 mm needs 0.43 mm, so the fix is moving R801 or C507 by about 10 µm (a placement change, your call), or
-  accepting it as BGA breakout.
+- ~~cs2_n~~ done: R801 moved 10 µm in −x (DDR_CAL resistor, nothing routed to it yet); the nudge centres cs2_n in
+  the 0.431 mm opening with 0.5 µm steps. DDR width errors: 0.
 - 4 skew and 3 uncoupled (DQS/CK pairs; these go with phase 3 tuning).
 - 240 crosstalk-spacing warnings (0.2 / 0.3 mm). The routes were laid at 0.11 mm clearance; re-routing at 0.2 mm
   (`CL=0.2`) was worse (an open net and 12 clearance errors).

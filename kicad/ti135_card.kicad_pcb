@@ -2344,7 +2344,7 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "F.Cu")
 		(uuid "15ff61e1-22d5-4011-8354-3698906d7360")
-		(at 164.6793 70.4288 180)
+		(at 164.6693 70.4288 180)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R801"
@@ -77329,8 +77329,8 @@
 	)
 	(segment
 		(start 165.614999 69.214791)
-		(end 165.65 69.3)
-		(width 0.25)
+		(end 165.6645 69.297137)
+		(width 0.23)
 		(layer "F.Cu")
 		(net "/08 lpddr4/ddr_cs2_n")
 		(uuid "8c528105-60fd-42ce-a246-e67bbec37d2c")
@@ -77392,7 +77392,7 @@
 		(uuid "aa7d1cd0-2c6b-4b79-b4ec-cbc7f0058852")
 	)
 	(segment
-		(start 165.65 70.955)
+		(start 165.6645 70.955)
 		(end 165.65 71.35)
 		(width 0.1)
 		(layer "F.Cu")
@@ -77448,9 +77448,9 @@
 		(uuid "d16fe0ea-e7e8-40ec-9d0f-98680fcd9937")
 	)
 	(segment
-		(start 165.65 70.955)
-		(end 165.65 69.3)
-		(width 0.1)
+		(start 165.6645 70.955)
+		(end 165.6645 69.297137)
+		(width 0.23)
 		(layer "F.Cu")
 		(net "/08 lpddr4/ddr_cs2_n")
 		(uuid "d2608f0f-315d-4587-a956-44302b9d511f")
