@@ -20,7 +20,12 @@ PS_PER_MM = {"F.Cu": 6.11, "B.Cu": 6.11, "In2.Cu": 7.01, "In5.Cu": 7.01}
 VIA_PS = 5.5
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 args = [a for a in sys.argv[1:]]
-KICAD_CSV = None
+KICAD_CSV = PLAN = None
+NETS = "--nets" in args
+if NETS:
+    args.remove("--nets")
+if "--plan" in args:
+    i = args.index("--plan"); PLAN = args[i + 1]; del args[i:i + 2]
 if "--kicad" in args:
     i = args.index("--kicad"); KICAD_CSV = args[i + 1]; del args[i:i + 2]
 b = pcbnew.LoadBoard(args[0] if args else os.path.join(ROOT, "kicad", "ti135_card.kicad_pcb"))
@@ -143,6 +148,9 @@ for k in range(4):
     ok = min(diffs) >= 0 and max(diffs) <= 66 and sk <= 1.8
     bad += not ok
     print(f"  {k}   {dqs:6.1f}   {sk:5.2f}     {min(diffs):7.1f} .. {max(diffs):6.1f}   {'OK' if ok else 'FAIL'}")
+    if NETS:
+        print("        " + "  ".join(f"{m[4:]} {get(m) - dqs:+.0f}" for m in members) +
+              f"  (DQS P {get(f'ddr_dqs{k}_P'):.0f}, N {get(f'ddr_dqs{k}_N'):.0f} ps)")
 ck, cks = pair("ddr_ck")
 ca = ["ddr_ca0", "ddr_ca1", "ddr_ca2", "ddr_ca3", "ddr_ca4", "ddr_ca5", "ddr_cke0", "ddr_cs0_n", "ddr_cs2_n"]
 ckA = get("ddr_ck_P", "all")
@@ -158,6 +166,33 @@ lo, hi = min(allv), max(allv)
 print(f"CA/CKE/CS - CK: {lo:+.1f} .. {hi:+.1f} ps   length rule +-5.3: {'OK' if lo >= -5.3 and hi <= 5.3 else 'FAIL'}"
       f"   timing budget +-100: {'OK' if max(abs(lo), abs(hi)) <= 100 else 'FAIL'}")
 
+
+# ---- meander plan (--plan FILE, for tools/ddr/tune.sh): the path delay each net must gain, in ps -------------------
+# Meanders only add delay. CA/CKE/CS and both CK legs: every path to the group's longest (CA-CK and CK P/N -> 0).
+# Byte k: DQS P and N to max(P, N, longest DQ/DM - DQ_HI); every DQ/DM to at least DQS + DQ_LO. That keeps DQ - DQS in
+# [DQ_LO, DQ_HI] inside Efinix's 0..66 ps with margin either side for the meander error.
+DQ_LO, DQ_HI = 8.0, 58.0
+if PLAN:
+    import json as _json
+    plan = {}
+    grp = ca + ["ddr_ck_P", "ddr_ck_N"]
+    T = max(get(n) for n in grp if get(n) is not None)
+    for n in grp:
+        if get(n) is not None:
+            plan[n] = T - get(n)
+    for k in range(4):
+        p_, n_ = f"ddr_dqs{k}_P", f"ddr_dqs{k}_N"
+        members = [f"ddr_dq{8 * k + i}" for i in range(8)] + [f"ddr_dm{k}"]
+        if any(get(m) is None for m in members + [p_, n_]):
+            continue
+        dqs = max(get(p_), get(n_), max(get(m) for m in members) - DQ_HI)
+        plan[p_], plan[n_] = dqs - get(p_), dqs - get(n_)
+        for m in members:
+            plan[m] = max(0.0, dqs + DQ_LO - get(m))
+    plan = {full[n]: round(v, 2) for n, v in plan.items() if v > 0.3}
+    _json.dump(plan, open(PLAN, "w"), indent=1)
+    print(f"\nplan: {len(plan)} nets to lengthen, {sum(plan.values()):.0f} ps in all, largest "
+          f"{max(plan.values()):.1f} ps -> {PLAN}")
 
 # ---- KiCad tuner targets (--kicad CSV from tools/ddr/kicad_delays.sh) -------------------------------------------
 # KiCad sums a net's whole copper, so its readout = path + (for a shared CA/CK net) the second branch. A net that must

@@ -141,3 +141,14 @@ CS0 +16). CK P/N skew 9 ps.
 - **Re-fitting a fitted board** must not split segments again at a courtyard edge: zero-length tracks result, and
   KiCad reports them as `tracks_crossing`. `widen.py` now splits only from strictly inside and drops zero-length
   tracks.
+
+## Delay tuning on routed copper (2026-10-26, `tools/ddr/tune_meander.py`)
+
+- `length_matching.apply_meanders_to_route(segments, extra_mm, GridRouteConfig(...), pcb_data=..., net_id=...)` works
+  on a board's existing segments, given as a path-ordered chain (parse_kicad_pcb keeps each segment's UUID, so the
+  edits can be applied by UUID in pcbnew). It meanders the longest straight runs first, spills over several, and
+  checks every bump against the copper around it, but not against the board edge.
+- Bumps alternate sides and a blocked side is dropped. A trace inside a bundle routed at the minimum clearance gets
+  no bumps at all. Matching needs room planned at routing time.
+- `route.py --length-match-group` on a few re-routed nets can rip and lose unrelated nets ("RIP-RESTORE ... remains
+  UNROUTED"), so check connectivity after every such step.

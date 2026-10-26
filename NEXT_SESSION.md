@@ -74,11 +74,37 @@ Same method as the CK/CA work (KRT_LEARNING.md):
 4. Try one layer per byte with per-byte `--layers` (Efinix: keep a byte group on one layer).
 5. Target: DQS P/N ≤ 1.8 ps, DQ/DM 0 … 66 ps over their DQS. Script it like `ca_tb_chain.sh` (`tools/ddr/byte_chain.sh`).
 
-## 3. CK/CA final tuning (1 h)
+## 3. Delay tuning (started 2026-10-26; blocked on meander room, decision needed)
 
-- CK is about 20–35 ps short of the long CA nets, and CK_P/N differ by 9 ps. Lengthen CK and match its two halves.
-  Then pull CA4, CA1 and CS0 in (or bring the rest up) to ±5.3 ps.
-- Use the KiCad tuner with the targets from step 1, or a meander pass with room made for CK_P.
+Tools:
+- `ddr_timing.py --nets` lists every DQ/DM against its DQS. `--plan FILE` writes the delay each net must gain
+  (CA/CKE/CS and both CK legs to the group's longest; per byte DQS P/N to max(P, N, longest DQ − 58), DQ/DM to at
+  least DQS + 8). That keeps every DQ in 8…58 ps over DQS, inside Efinix's 0…66 ps.
+- `tools/ddr/tune_meander.py` (KRT venv) meanders each net's same-layer chains outside the BGAs with KRT's trombone
+  generator, which clearance-checks every bump, and writes edits. `tools/ddr/tune_apply.py` (kipy) applies them;
+  then `widen.py` and `grade.sh`.
+
+Findings on the 40 Ω board (main):
+- The plan asks for **1453 ps (about 220 mm of meander)** on 37 nets, up to 112 ps on one net.
+- **The tuner places 230–540 ps of it** (best: 0.8 mm amplitude, 2W arm pitch). The bundles are packed at the
+  routing clearance, so a trace inside a bundle has no side free; there is free copper beside the bundles, but not
+  next to the inner traces. KRT's own in-route matching hit the same wall ("No straight run with clearance").
+- A test application (`work/p3/tuned_fit`): DQS2 P/N 13 → 1.1 ps, byte 0's dq0/2/5/7 to +3…+17 ps; byte 0's
+  dq1/3/4 stay at −60…−65 ps, and dq16 goes to −105 ps (DQS2 moved up). 2 board-edge hits (KRT's meanders don't
+  check the edge).
+- **Re-routing to make room did not converge:**
+  - routing clearance 0.15 / 0.2 (`byte_chain.sh` `RCL`): opens and spreads to 160–170 ps;
+  - a matched byte-2 re-route (`reroute_nets.sh` `MATCH=1`): the router ripped and lost other nets.
+- **Outliers set much of the plan:** DQS0 is ~50 ps longer than its byte needs. dq18/dq21 (+77/+102) and ca3 (−64.5)
+  are the phase-4 re-routes, routed without matching.
+
+Options (for the user):
+1. **Accept the timing budget, not the length rule.** Efinix's ±75 ps DQ−DQS and ±100 ps CA−CK at 3.7 Gbps; the I3
+   part runs ≤ 2.8 Gbps, so the real budget is larger. Then only a few nets need work: dq16, byte 2's top, byte 0's
+   −83, and the DQS/CK P/N skews. The tuner can do most of that.
+2. **Re-route the LPDDR4 with meander room**: one layer per byte (Efinix), a spaced corridor, re-routing the
+   outliers short; then the tuner. A day's work, and the router's results vary run to run.
+3. Tune by hand in pcbnew, pushing neighbours aside (KiCad's tuner does not shove).
 
 ## 4. LPDDR4 DRC clean-up (in progress 2026-10-26)
 

@@ -2,6 +2,7 @@
 # LPDDR4 data bytes re-route (NEXT_SESSION.md phase 2) on a copy:  tools/ddr/byte_chain.sh IN.kicad_pcb WORKDIR
 # rip DQ/DM/DQS -> bga_fanout pairs then singles (U501, U801) -> route_diff DQS -> route.py DQ/DM, one time-matched
 # group per byte incl. its DQS -> cap pass -> grade + timing.   Env: CL (clearance, 0.11), LAYERS_<n> optional;
+# RCL: routing clearance outside the fan-outs (default CL; 0.2 leaves room for meanders and the xtalk rule);
 # WOPT / DQS_WOPT: DQ/DM and DQS width options (default --track-width 0.1; e.g. --impedance 40 / --impedance 80).
 set -eu
 R="$(cd "$(dirname "$0")/../.." && pwd)"; IN=$(realpath "$1"); W="$2"; mkdir -p "$W"; cd "$W"
@@ -18,7 +19,7 @@ fan f2 f1.kicad_pcb --component U501 --output f2.kicad_pcb --nets "*ddr_dq[0-9]*
 # skips pairs whose stub gap is below its clearance, so DQS route at the class clearance 0.1 (DQS_CL).
 fan f3 f2.kicad_pcb --component U801 --output f3.kicad_pcb --nets "*ddr_dqs*" --diff-pairs "*ddr_dqs*" --no-inner-top-layer $L $FO --diff-pair-gap 0.1 --via-size 0.25 --via-drill 0.15
 fan fanned f3.kicad_pcb --component U801 --output fanned.kicad_pcb --nets "*ddr_dq[0-9]*" "*ddr_dm*" --check-for-previous --no-inner-top-layer $L $FO --via-size 0.25 --via-drill 0.15
-COMMON="--no-bga-zones U501 U801 $L --clearance $CL --via-size 0.3 --via-drill 0.15 --grid-step 0.05 --bga-proximity-radius 1 --stub-proximity-radius 1 --proximity-heuristic-factor 0.02"
+COMMON="--no-bga-zones U501 U801 $L --clearance ${RCL:-$CL} --via-size 0.3 --via-drill 0.15 --grid-step 0.05 --bga-proximity-radius 1 --stub-proximity-radius 1 --proximity-heuristic-factor 0.02"
 if [ "${DQS_MODE:-pair}" = single ]; then   # DQS halves as single nets inside the byte groups (P/N matched by the group)
   cp fanned.kicad_pcb dqs.kicad_pcb; echo "Diff pairs: skipped (DQS_MODE=single)" > dqs.log; DQS_NETS="'*ddr_dqs*'"
 else DQS_NETS=""

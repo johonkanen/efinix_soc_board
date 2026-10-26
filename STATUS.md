@@ -1,6 +1,6 @@
 # Status and handoff
 
-Last updated: **2026-10-26** (LPDDR4 re-routed at 40 Ω and width-fitted on main, phase 4 in progress; plan in NEXT_SESSION.md). Read this first if you are picking the work up (human or agent).
+Last updated: **2026-10-26** (LPDDR4 at 40 Ω, DRC-clean but for pair skew; phase 3 delay tuning blocked on meander room, decision pending; NEXT_SESSION.md). Read this first if you are picking the work up (human or agent).
 
 ## What this repository is
 
