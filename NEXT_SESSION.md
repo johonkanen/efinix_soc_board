@@ -1,101 +1,78 @@
 # Next session plan
 
-Written 2026-10-25 at the end of the session. The detail is in `STATUS.md` ("LPDDR4 routing: first draft"); the
-overall plan is in `LAYOUT_PLAN.md`. Tools: `~/dev/KiCadRoutingTools` (venv `.venv`, skills linked into
-`.claude/skills/`).
+Written 2026-10-26 at the end of the session. Background:
+- `STATUS.md`: the overall state;
+- `LAYOUT_PLAN.md`: the phases;
+- `KRT_LEARNING.md`: how to drive KiCadRoutingTools, and every gotcha found so far.
 
-## 0. Start-up (10 min)
+Tools: `~/dev/KiCadRoutingTools` (venv `.venv`, with `ortools`); the skills are linked into `.claude/skills/`.
 
-- Read `STATUS.md` → "Where we left off".
-- The bus router **finished** (see the table in step 2). Its files:
-  - log `work/route/bus1.log`: last line `WHOLE K=47 round=2 ...` / `BUS U501->U801 ...`;
-  - result `work/route/bus1.kicad_pcb`, summary `work/route/bus1.json`;
-  - round 1 is saved in `work/route/bus1_snapshot_round1_2026-10-25/`; see its README;
-  - not finished, or the machine restarted: the tool has no resume, so re-run it in the background (about 1.5 h per
-    round; `ortools` is already in the venv). Keep a WSL window open while it runs: WSL stopping kills it.
-    ```
-    cd work/route && K=~/dev/KiCadRoutingTools
-    nohup $K/.venv/bin/python -X utf8 $K/awx/route_bus.py bus0.kicad_pcb bus1.kicad_pcb --rounds 2 --inproc \
-        --bus U501:U801:joint:F.Cu,B.Cu,In2.Cu,In5.Cu --clearance-ceiling 0.1 --track-width 0.1 \
-        --fanout-track-width 0.1 --via-size 0.25 --via-drill 0.15 --json-out bus1.json > bus1.log 2>&1 &
-    ```
-    `bus0.kicad_pcb` is the board with the DDR signal vias stripped (`tools/ddr/strip_ddr_vias.py`; copies of all
-    three files are in the snapshot). The layer list must start with F.Cu,B.Cu.
-- `git log --oneline -3` should show `8178627` (LPDDR4 draft). Tag `pre-ddr-routing` is the clean board before it.
+## Where we are
 
-## 1. ~~Learn the tools on their own example~~ (done 2026-10-26, `KRT_LEARNING.md`)
+- **Main** holds the LPDDR4 routed with the haasoscope recipe, with CK/CA re-routed as trunk-and-branch
+  (`tools/ddr/ca_tb_chain.sh`). Every DDR net is connected, with no shorts or crossings, and the rest of the board is
+  DRC-clean.
+- **Measure timing** with `tools/p2k/bin/kipy tools/ddr/ddr_timing.py`: die to die, along each path, U501
+  pad-to-die included.
+- **Grade** with `tools/ddr/grade.sh NAME BOARD`: our rules, planes refilled, KiCad DRC.
 
-The haasoscope chain (Ti90 ↔ LPDDR4) reproduced in 40 s, and the same recipe run on our board in 1 min
-(`tools/ddr/recipe_chain.sh`): 56/56 connected, 3 of 5 pairs coupled, **0 copper-clearance errors after refilling
-the planes**, 103 near-miss hole clearances. Grading lesson: refill the zones before DRC, and route at `--clearance
-0.11`.
-
-## 2. Pick the LPDDR4 base (1 h)
-
-Compare on our board, each graded with **our** rules (the bus router writes a relaxed hole clearance into its own
-project copy: always check with `kicad/ti135_card.kicad_pro` / `.kicad_dru`):
-
-| Candidate | Where |
-|---|---|
-| A. draft on main (route.py, 56/56, 91 vias, 1215 mm) | `kicad/ti135_card.kicad_pcb` |
-| B. bus router, **finished 2026-10-26 06:06** after 9.1 h; kept round 1: 42 lanes connected and locked, 5 open (ddr_dq1, DQS0 P/N, DQS3 P/N), 72 vias, 1095 mm on the board, bus DRC 0 by its own rules. Bytes still span 3 layers (F.Cu 29–57 % from its surface escapes) | `work/route/bus1.kicad_pcb` (its project copy relaxes hole clearance to 0.1 mm) |
-| C. **the haasoscope recipe** (bga_fanout both BGAs, route_diff, route.py auto-matched): 56/56, 127 vias, 1789 mm, 0 clearance errors after refill | `work/ours/ram.kicad_pcb`; rerun with `tools/ddr/recipe_chain.sh` |
-
-Criteria, in order:
-1. nets connected;
-2. DRC errors (hole clearance!);
-3. layers per byte (Efinix: one);
-4. DQS/CK pairs coupled;
-5. vias and length.
-
-`tools/ddr/route_stats.py` gives the per-byte layer split. Keep the winner on main and note the choice in STATUS.md.
-
-## LPDDR4 timing status (2026-10-26, candidate C on main, `tools/ddr/ddr_timing.py`, die to die)
-
-| Check (Efinix §6.3) | Rule | Measured |
+| Check (Efinix §6.3) | Rule | Now |
 |---|---|---|
-| CA/CKE/CS vs CK | ±5.3 ps (30 mil); budget ±100 ps | −57 … +123 ps |
-| CA group itself | 11 ps (62.5 mil) | 180 ps (189 → 369 ps) |
-| CK P/N | ≤ 0.9 ps | 0.08 ps (OK) |
-| DQS P/N | ≤ 1.8 ps | 39 / 12 / 35 / 3.4 ps (bytes 0–3) |
-| DQ/DM − DQS | 0 … 66 ps | bytes 0, 2, 3 have DQ shorter than DQS (to −42 ps); byte 1 to +97 ps |
+| CA/CKE/CS − CK | ±5.3 ps (30 mil); budget ±100 ps | −8.6 … +36.8 ps (CA4 +37, CA1 +21, CS0 +16); channels A/B equal |
+| CK P/N | ≤ 0.9 ps | 9 ps (CK_P found no room for meanders) |
+| DQS P/N | ≤ 1.8 ps | 39 / ~5 / 35 / 3.4 ps (bytes 0–3) |
+| DQ/DM − DQS | 0 … 66 ps | fails in all four bytes (DQ shorter than DQS in 0, 2, 3) |
+| DRC (DDR) | – | 199 width (no 40 Ω widening yet), 16 pair gap, 4 uncoupled, 14 hole clearance |
 
-The router's "within tolerance" did not hold:
-- the CA/CK nets branch to both channels, and the branches differ by up to 85 ps;
-- DQS1/DQS2 fell back to single nets, and DQS0 has a split escape;
-- DQS was routed before its DQ, so DQ ≥ DQS was not enforced.
+## 1. KiCad time-domain tuning setup (30–60 min)
 
-**Update 2026-10-26: CK/CA trunk-and-branch done** (KRT_LEARNING.md): channels equal, CA/CKE/CS − CK −8.6 … +36.8 ps,
-CK P/N 9 ps. Still to tune: CA4, CA1, CS0, CK P/N (KiCad tuner or a meander pass).
+1. In `tools/board_setup.py`, add two tuning profiles to `kicad/ti135_card.kicad_pro`, copied in form from the
+   Agilex card's (`tuning_profiles.tuning_profiles_impedance_geometric`):
+   - `LPDDR4 SE 40R JLC08161H-3313`: F/B 0.25 mm at 6.11 ps/mm, In2/In5 0.18 mm at 7.01 ps/mm.
+   - `LPDDR4 DIFF 80R`: F/B 0.20/0.20 mm, In2/In5 0.14/0.15 mm.
+   - Both: via 7.2 ps/mm, time-domain tuning on.
 
-**Plan:**
-1. ~~CK/CA as trunk + short equal branches at U801.~~ Done.
-2. All five DQS pairs coupled from the fan-out on.
-3. Final timing in KiCad's interactive time-domain tuner (tuning profile from the §6.5 per-layer delays;
-   it includes U501's pad-to-die), checked with `tools/ddr/ddr_timing.py`.
+   Then set `tuning_profile` on the net classes `lpddr_dq` / `lpddr_ca` (SE) and `lpddr_diff` (DIFF).
+2. Teach `tools/ddr/ddr_timing.py` to print **per-net targets in KiCad's own terms**. KiCad sums a net's whole copper,
+   so a shared CA/CK net reads path + one branch. Then each net can be dialled to its number with the pcbnew tuner.
+3. Check one net: KiCad's delay readout (net inspector or tuner) against `ddr_timing.py` (path + branch).
 
-## 3. Make the LPDDR4 clean (2–4 h)
+## 2. Data bytes: clean re-route (2–3 h)
 
-1. Hole clearance 0.175 mm: re-route at the right floor, or nudge.
-2. Widths: 40 Ω outside the BGA courtyards (0.18 mm In2/In5, 0.25 mm F/B), 0.1 mm neck-down inside
-   (`lpddr_bga_neckdown`). The router has no automatic DDR neck-down: a widening pass, or KiCad interactive.
-3. DQS/CK as coupled 80 Ω pairs outside the BGAs (0.14/0.15 mm inner).
-4. Matching to Efinix §6.3, die to die (pad-to-die is on U501):
-   - DQS P/N within 10 mil, CK P/N within 5 mil;
-   - DQ/DM 0…375 mil longer than their DQS;
-   - CA/CKE/CS within 62.5 mil of each other and ±30 mil of CK.
+Same method as the CK/CA work (KRT_LEARNING.md):
+1. Rip each byte whole (DQ, DM, DQS P/N), so every net is point to point.
+2. Fan out the DQS pairs with `bga_fanout.py --diff-pairs --diff-pair-gap <clearance>` on both BGAs. That gives
+   coupled pair stubs, which `route_diff.py` needs.
+3. Route DQS with `route_diff.py`, then DQ/DM with `route.py`. Include DQS in the byte's group (`[..]` patterns, never
+   `?`), use `--time-matching`, and apply the die_delay ×1000 workaround on the routing copy, restored with
+   `tools/pad_to_die.py` afterwards.
+4. Try one layer per byte with per-byte `--layers` (Efinix: keep a byte group on one layer).
+5. Target: DQS P/N ≤ 1.8 ps, DQ/DM 0 … 66 ps over their DQS. Script it like `ca_tb_chain.sh` (`tools/ddr/byte_chain.sh`).
 
-   Use `route.py --length-match-group auto --time-matching`, or KiCad's tuning.
-5. Efinix rules: ≥ 100 mil from switching nodes (the 0V85/1V1 cells at the corridor's east end), return vias near
-   layer changes.
-6. Your sign-off: DRC, a length/delay report per group, a picture per layer.
+## 3. CK/CA final tuning (1 h)
 
-## 4. Then the rest (LAYOUT_PLAN.md phases 4–6)
+- CK is about 20–35 ps short of the long CA nets, and CK_P/N differ by 9 ps. Lengthen CK and match its two halves.
+  Then pull CA4, CA1 and CS0 in (or bring the rest up) to ±5.3 ps.
+- Use the KiCad tuner with the targets from step 1, or a meander pass with room made for CK_P.
 
-eMMC (length-matched to CLK) → QSPI flash → RGMII (matched group) and MDI pairs to J9 → everything else → 3V3 routing,
-GND stitching, F/B GND flood → `/review-routed-board` → Gerbers/BOM/CPL with `tools/jlc`.
+## 4. LPDDR4 DRC clean-up (1–2 h)
 
-## Open questions for you
+- 40 Ω widening outside the BGA courtyards (0.18 mm In2/In5, 0.25 mm F/B; 0.1 mm stays inside, `lpddr_bga_neckdown`):
+  a script that widens DDR segments where clearance allows, then DRC.
+- The 14 hole-clearance hits (fan-out vias 0.15–0.17 mm against 0.175 mm), the pair-gap and uncoupled-length rules.
+- Efinix: ≥ 100 mil from the 0V85/1V1 switching nodes, return vias at layer changes.
 
-- None blocking. Nice to have: the actual height of the baseboard's 1.27 mm male header insulator (the gap is
-  assumed ≈ 5.3 mm).
+## 5. LPDDR4 sign-off (your review)
+
+`ddr_timing.py` all PASS, `grade.sh` with no DDR errors, a picture per layer, the swizzle unchanged
+(`tools/lpddr4_swizzle_score.py`).
+
+## 6. Then the rest of the board (LAYOUT_PLAN.md phases 4–6)
+
+eMMC (length-matched to CLK) → QSPI flash → RGMII and the MDI pairs to J9 → the rest → 3V3, GND stitching, F/B GND
+flood → `/review-routed-board` → Gerbers/BOM/CPL with `tools/jlc`.
+
+## Optional
+
+- Report the KiCadRoutingTools die_delay unit bug upstream (it reads KiCad's ns as ps; #1248 code path). Your call.
+- The baseboard header insulator height (the gap is assumed ≈ 5.3 mm).
