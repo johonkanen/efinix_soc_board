@@ -117,3 +117,21 @@ and the branches pre-drawn on BR_ nets so the trunks keep out of their corridors
 **Result (on main):** all connected, every net's two channels equal; CA/CKE/CS − CK −8.6 … +36.8 ps (C: −57 …
 +123, 85 ps between channels). Within the ±100 ps timing budget, not yet the ±5.3 ps length rule (CA4 +37, CA1 +21,
 CS0 +16). CK P/N skew 9 ps.
+
+## LPDDR4 at 40 Ω (2026-10-26, `tools/ddr/ddr40_chain.sh`, `tools/ddr/widen.py`)
+
+- **Route at width; don't widen afterwards.** Buses routed at 0.1 mm / 0.11 mm clearance sit on a 0.21 mm pitch, and
+  widening in place reached only 23 % of the length.
+- **`--impedance 40`** on route.py computes a width per layer from the stack-up: 0.171 mm inner, 0.272 mm F/B. The
+  microstrip model has no solder mask (JLC: 0.25 mm), so clamp F/B afterwards (narrowing always clears). Where it
+  finds no room it necks a net down to the floor for up to ~30 mm, and reports it under `design_rules.narrowed` in
+  the JSON summary.
+- **route_diff `--impedance 80`** gives 0.149 / 0.224 mm at a 0.15 gap, and coupled fewer pairs than
+  `--track-width 0.14`. Use the explicit width.
+- **The fan-out pair stub gap must be ≥ route_diff's `--clearance`.** At a 0.1 gap and 0.11 clearance it skips every
+  pair, then crashes in `order_nets_mps` (`'list' object has no attribute 'num_rounds'`: an empty MPS result
+  returns a list). Possible upstream bug; not reported.
+- **Not deterministic:** the same inputs gave CK P/N skews of 0.6–103 ps across runs, and an open DQ in two of five
+  byte runs. Run a few variants in parallel and grade them all.
+- **`--layer-costs` in `DQS_EXTRA` had no effect** (the later `$COMMON` value wins: argparse takes the last).
+- **KiCad DRC stops at 199 reports per violation type.** Measure progress some other way.

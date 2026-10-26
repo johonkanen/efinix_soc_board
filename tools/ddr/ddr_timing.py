@@ -126,6 +126,8 @@ def get(name, which=None):
 
 def pair(base):
     p, n = get(base + "_P"), get(base + "_N")
+    if p is None or n is None:
+        return None, None
     return (p + n) / 2, abs(p - n)
 
 
@@ -134,6 +136,9 @@ print("byte  DQS(ps)  P/N skew  DQ/DM - DQS min..max (ps)  [rule 0..66, |.| <= 7
 for k in range(4):
     dqs, sk = pair(f"ddr_dqs{k}")
     members = [f"ddr_dq{8 * k + i}" for i in range(8)] + [f"ddr_dm{k}"]
+    missing = [m for m in members if get(m) is None]
+    if missing or dqs is None:
+        print(f"  {k}   NO PATH for {', '.join(missing) or 'DQS'}"); bad += 1; continue
     diffs = [get(m) - dqs for m in members]
     ok = min(diffs) >= 0 and max(diffs) <= 66 and sk <= 1.8
     bad += not ok
@@ -144,7 +149,10 @@ ckA = get("ddr_ck_P", "all")
 allv = []
 print(f"CK to each DRAM channel (P leg): {', '.join(f'{v:.1f}' for v in sorted(ckA))} ps; P/N skew {cks:.2f} (rule 0.9)")
 for n in ca:
-    vs = get(n, "all"); allv += [v - ck for v in vs]
+    vs = get(n, "all")
+    if vs is None:  # connected per DRC, but no die-to-die path found (e.g. a stub that loops back)
+        print(f"   {n:10} NO PATH from U501 to the DRAM"); bad += 1; continue
+    allv += [v - ck for v in vs]
     print(f"   {n:10} to each channel: {', '.join(f'{v:6.1f}' for v in sorted(vs))} ps   vs CK {', '.join(f'{v - ck:+6.1f}' for v in sorted(vs))}")
 lo, hi = min(allv), max(allv)
 print(f"CA/CKE/CS - CK: {lo:+.1f} .. {hi:+.1f} ps   length rule +-5.3: {'OK' if lo >= -5.3 and hi <= 5.3 else 'FAIL'}"

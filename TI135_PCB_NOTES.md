@@ -425,6 +425,27 @@ feeds every VIN by fill. The 3V3 cell's output and the EN/PG pins are left to th
   more on some, from its via model (traversed height) and leftover stub copper, which it counts. KiCad is the
   reference.
 
+### 6.10 LPDDR4 at 40 Ω: route at width, then fit (2026-10-26)
+
+- **Widening after routing does not work.** Routed at 0.1 mm on a 0.21 mm pitch, the buses have no room to grow:
+  widening in place left 1112 of 1444 mm (77 %) below the rule minimum outside the BGAs (only short meander pieces
+  widened). With the 0.2 mm crosstalk spacing respected it is worse.
+- **So the LPDDR4 is routed at the impedance width** (`tools/ddr/ddr40_chain.sh`): the data bytes
+  (`byte_chain.sh`, `WOPT="--impedance 40"`, DQS at 0.14 mm) and CK/CA trunk-and-branch (`ca_tb_chain.sh`,
+  `WOPT="--impedance 40"`). KRT's 40 Ω widths are 0.171 mm inner and 0.272 mm on F/B. Its microstrip model has no
+  solder mask, so F/B come out wider than the JLC calculator's 0.25 mm.
+- **Then `tools/ddr/widen.py` fits every DDR segment to the rules:**
+  - it splits a segment where it leaves a BGA courtyard. `intersectsCourtyard` would otherwise keep the whole
+    segment under the neck-down rule, however far it runs outside;
+  - it narrows anything over a rule maximum to the target, inside the courtyards too, since the neck-down rule
+    inherits those maxima;
+  - it widens what is still narrow wherever clearance allows: 0.11 mm to tracks/pads, 0.13 mm to via copper (the
+    0.175 mm drill rule), the pair gap minimum, 0.5 mm to the edge.
+- **Rule fix:** `lpddr_bga_neckdown` has an explicit `diff_pair_gap` max (10 mm). Left out, KiCad kept the 0.22 mm
+  max of `lpddr_diff_outer`, which flagged CK's split at U801's T points.
+- **KiCad DRC reports at most 199 violations of one type.** Count the narrow copper with `widen.py`'s summary
+  (mm per net), not with the DRC count.
+
 ## 7. Clock-capable pins (from the Efinity device database)
 
 | Bank | PLL_CLKIN | GCLK | Other |
