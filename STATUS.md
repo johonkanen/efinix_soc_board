@@ -44,7 +44,7 @@ card, and plugs into the same baseboard.
 
 **Planes, BGA fan-out (via-in-pad) and regulator cell copper done** (TI135_PCB_NOTES.md §6.6–6.8).
 
-**LPDDR4 routing: first draft on the board (2026-10-25, work in progress, NOT clean).** Pick up here.
+**LPDDR4 routing: candidate C on the board (2026-10-26, the haasoscope recipe, KRT_LEARNING.md): 56/56 connected, 0 copper-clearance errors, 23 hole clearance; die-to-die timing fails (NEXT_SESSION.md). Work in progress.** The notes below describe the earlier draft it replaced.
 - **On the board:** all 56 DDR nets connected by KiCadRoutingTools `route.py` on F.Cu/In2/In5/B.Cu, 0.1 mm wide,
   0.05 mm grid, free layer choice. 91 vias, 1215 mm. Tag `pre-ddr-routing` is the last clean commit, before this draft.
 - **Every DRC error left is in the DDR copper** (the rest of the board is clean):

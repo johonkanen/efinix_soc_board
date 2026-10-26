@@ -50,6 +50,27 @@ Criteria, in order:
 
 `tools/ddr/route_stats.py` gives the per-byte layer split. Keep the winner on main and note the choice in STATUS.md.
 
+## LPDDR4 timing status (2026-10-26, candidate C on main, `tools/ddr/ddr_timing.py`, die to die)
+
+| Check (Efinix §6.3) | Rule | Measured |
+|---|---|---|
+| CA/CKE/CS vs CK | ±5.3 ps (30 mil); budget ±100 ps | −57 … +123 ps |
+| CA group itself | 11 ps (62.5 mil) | 180 ps (189 → 369 ps) |
+| CK P/N | ≤ 0.9 ps | 0.08 ps (OK) |
+| DQS P/N | ≤ 1.8 ps | 39 / 12 / 35 / 3.4 ps (bytes 0–3) |
+| DQ/DM − DQS | 0 … 66 ps | bytes 0, 2, 3 have DQ shorter than DQS (to −42 ps); byte 1 to +97 ps |
+
+The router's "within tolerance" did not hold:
+- the CA/CK nets branch to both channels, and the branches differ by up to 85 ps;
+- DQS1/DQS2 fell back to single nets, and DQS0 has a split escape;
+- DQS was routed before its DQ, so DQ ≥ DQS was not enforced.
+
+**Plan:**
+1. CK/CA as trunk + short equal branches at U801.
+2. All five DQS pairs coupled from the fan-out on.
+3. Final timing in KiCad's interactive time-domain tuner (tuning profile from the §6.5 per-layer delays;
+   it includes U501's pad-to-die), checked with `tools/ddr/ddr_timing.py`.
+
 ## 3. Make the LPDDR4 clean (2–4 h)
 
 1. Hole clearance 0.175 mm: re-route at the right floor, or nudge.
