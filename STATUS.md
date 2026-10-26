@@ -1,6 +1,6 @@
 # Status and handoff
 
-Last updated: **2026-10-25** (end of session: LPDDR4 first routing draft on the board, work in progress). Read this first if you are picking the work up (human or agent).
+Last updated: **2026-10-26** (end of session: LPDDR4 CK/CA trunk-and-branch on main; plan in NEXT_SESSION.md). Read this first if you are picking the work up (human or agent).
 
 ## What this repository is
 
@@ -44,7 +44,7 @@ card, and plugs into the same baseboard.
 
 **Planes, BGA fan-out (via-in-pad) and regulator cell copper done** (TI135_PCB_NOTES.md §6.6–6.8).
 
-**LPDDR4 routing: candidate C on the board (2026-10-26, the haasoscope recipe, KRT_LEARNING.md): 56/56 connected, 0 copper-clearance errors, 23 hole clearance; die-to-die timing fails (NEXT_SESSION.md). Work in progress.** The notes below describe the earlier draft it replaced.
+**LPDDR4 routing (2026-10-26, work in progress): haasoscope recipe (KRT_LEARNING.md) with CK/CA re-routed as trunk-and-branch; all connected, rest of the board DRC-clean; timing table and next steps in NEXT_SESSION.md.** The notes below describe the earlier draft.
 - **On the board:** all 56 DDR nets connected by KiCadRoutingTools `route.py` on F.Cu/In2/In5/B.Cu, 0.1 mm wide,
   0.05 mm grid, free layer choice. 91 vias, 1215 mm. Tag `pre-ddr-routing` is the last clean commit, before this draft.
 - **Every DRC error left is in the DDR copper** (the rest of the board is clean):
