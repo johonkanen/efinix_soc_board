@@ -98,10 +98,12 @@ the channels between ball rows to channel A and B (CA5 on In2, the rest on F.Cu)
 temporary THT pads at the T points (the router targets pads, not bare vias), with the U801 pads parked on TMP_ nets
 and the branches pre-drawn on BR_ nets so the trunks keep out of their corridors.
 
-**KiCadRoutingTools gotchas found on the way:**
-- **die_delay unit bug:** KiCad writes `(die_delay X)` in ns, and the router reads X as ps ("pad-to-die +0.036 ps"
-  for a 35.7 ps package). Its time matching silently drops package delays. Workaround: scale the delays x1000 on the
-  routing copy, then restore them with `tools/pad_to_die.py`. Worth reporting upstream (#1248 code path).
+**Gotchas found on the way:**
+- **die_delay units (correction 2026-10-26): no KiCadRoutingTools bug.** KiCad's `(die_delay X)` is in ps
+  (pcbnew `pcbIUScale.IU_PER_PS` = 1e6) and the router reads it correctly. **Our `tools/pad_to_die.py` stored the
+  delays 1000x too small** (it assumed fs per IU). The "x1000 workaround" in the trunk step was in fact correcting
+  that, so the CK/CA matching used the right delays. Fixed: pad_to_die.py writes ps x IU_PER_PS, ddr_timing.py reads
+  through IU_PER_PS, and the workaround is gone.
 - **Group patterns:** in `--length-match-group` only `*` and `[..]` are wildcards; `?` is literal (`--nets`
   accepts `?`). A group that matches < 2 nets is skipped silently.
 - **Multi-point nets disable a group's matching:** leftover escape fragments count as extra terminals. Rip the

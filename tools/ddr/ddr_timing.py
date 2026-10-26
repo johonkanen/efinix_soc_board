@@ -42,7 +42,7 @@ for ref in ("U501", "U801"):
             bb = p.GetBoundingBox()
             items[n]["pads"].append((ref, (R(p.GetPosition().x), R(p.GetPosition().y)),
                                      (pcbnew.ToMM(bb.GetLeft()), pcbnew.ToMM(bb.GetTop()), pcbnew.ToMM(bb.GetRight()), pcbnew.ToMM(bb.GetBottom())),
-                                     p.GetPadToDieDelay() / 1000.0 if ref == "U501" else 0.0))
+                                     p.GetPadToDieDelay() / pcbnew.pcbIUScale.IU_PER_PS if ref == "U501" else 0.0))
 
 
 def path_delays(n):

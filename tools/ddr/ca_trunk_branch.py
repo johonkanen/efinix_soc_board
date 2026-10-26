@@ -60,7 +60,7 @@ def t_point(b, s):
     return (TX, CHANNEL[s][0]), CHANNEL[s][1]
 
 
-KRT_DELAY_SCALE = 1000   # see prep: the router reads die_delay in ps, KiCad stores ns
+IU_PER_PS = pcbnew.pcbIUScale.IU_PER_PS
 START_GAP = 0.25   # in prep the branches start this far from the T point (dummy net), finish joins them
 
 
@@ -119,8 +119,7 @@ def prep(b):
         pad.SetDrillSize(pcbnew.VECTOR2I(FM(DRILL), FM(DRILL))); pad.SetLayerSet(pcbnew.PAD.PTHMask())
         pad.SetPosition(pcbnew.VECTOR2I(FM(x), FM(y))); pad.SetNet(names[s]); fp.Add(pad); b.Add(fp)
         # the branch's delay rides on the T pad as pad-to-die, so the trunk matching covers die -> ball
-        # (KRT_DELAY_SCALE: see the U501 note below)
-        pad.SetPadToDieDelay(int(round(branch_delay(b, s) * 1000 * KRT_DELAY_SCALE)))
+        pad.SetPadToDieDelay(int(round(branch_delay(b, s) * IU_PER_PS)))
         tmp = new_net(b, "TMP_" + s)
         br = new_net(b, "BR_" + s)
         for lname, pts, p, side in branch_paths(b, s):   # branches drawn now (dummy net) so trunks keep out
@@ -165,11 +164,6 @@ def prep(b):
             ends = [t.GetPosition()] if isinstance(t, pcbnew.PCB_VIA) else [t.GetStart(), t.GetEnd()]
             if any(in_gap(q) for q in ends) or near_branch(t):
                 movers.add(s)
-    # KiCadRoutingTools reads (die_delay X) as ps while KiCad writes it in ns: on this temporary copy the U501 delays
-    # are scaled x1000 so the router sees the right picoseconds. The chain restores them (tools/pad_to_die.py).
-    for p in b.FindFootprintByReference("U501").Pads():
-        if p.GetPadToDieDelay():
-            p.SetPadToDieDelay(p.GetPadToDieDelay() * KRT_DELAY_SCALE)
     doomed = []
     for t in b.GetTracks():
         s = short(t.GetNetname())

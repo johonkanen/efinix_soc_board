@@ -44,8 +44,7 @@ Same method as the CK/CA work (KRT_LEARNING.md):
 2. Fan out the DQS pairs with `bga_fanout.py --diff-pairs --diff-pair-gap <clearance>` on both BGAs. That gives
    coupled pair stubs, which `route_diff.py` needs.
 3. Route DQS with `route_diff.py`, then DQ/DM with `route.py`. Include DQS in the byte's group (`[..]` patterns, never
-   `?`), use `--time-matching`, and apply the die_delay ×1000 workaround on the routing copy, restored with
-   `tools/pad_to_die.py` afterwards.
+   `?`) and use `--time-matching` (the U501 pad-to-die delays are now stored correctly, in ps).
 4. Try one layer per byte with per-byte `--layers` (Efinix: keep a byte group on one layer).
 5. Target: DQS P/N ≤ 1.8 ps, DQ/DM 0 … 66 ps over their DQS. Script it like `ca_tb_chain.sh` (`tools/ddr/byte_chain.sh`).
 
@@ -74,5 +73,4 @@ flood → `/review-routed-board` → Gerbers/BOM/CPL with `tools/jlc`.
 
 ## Optional
 
-- Report the KiCadRoutingTools die_delay unit bug upstream (it reads KiCad's ns as ps; #1248 code path). Your call.
 - The baseboard header insulator height (the gap is assumed ≈ 5.3 mm).

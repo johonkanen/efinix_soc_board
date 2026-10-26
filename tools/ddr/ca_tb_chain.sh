@@ -17,6 +17,6 @@ eval "$P $K/py_router/route.py fin.kicad_pcb movers.kicad_pcb --nets $M --length
 echo "movers: $(grep 'Single-ended:' movers.log | tail -1)"; pro movers
 $P $K/py_placer/place_fanout_clearance.py movers.kicad_pcb out.kicad_pcb --clearance 0.13 --step 0.1 --max-displacement-cap 5 2>&1 | grep -E "^Moved|Unresolved" || true
 pro out
-$KP "$R/tools/pad_to_die.py" out.kicad_pcb 2>&1 | grep pad_to_die   # restore KiCad's die delays (prep scaled them)
+$KP "$R/tools/pad_to_die.py" out.kicad_pcb 2>&1 | grep pad_to_die   # re-apply the U501 package delays
 "$R/tools/ddr/grade.sh" "$(basename "$W")" out.kicad_pcb 2>&1 | grep -v "memory leak" | head -12
 $KP "$R/tools/ddr/ddr_timing.py" "$R/work/grade/$(basename "$W")/b.kicad_pcb" 2>&1 | grep -v "Debug\|memory leak"

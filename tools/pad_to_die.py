@@ -25,7 +25,7 @@ for p in b.FindFootprintByReference("U501").Pads():
     if p.GetNumber() in table:
         mm, ps = table[p.GetNumber()]
         p.SetPadToDieLength(pcbnew.FromMM(mm))
-        p.SetPadToDieDelay(int(round(ps * 1000)))
+        p.SetPadToDieDelay(int(round(ps * pcbnew.pcbIUScale.IU_PER_PS)))
         n += 1
 pcbnew.SaveBoard(PCB, b)
 print(f"pad_to_die: {n} U501 pads set from the Efinix N484 net-length table (v0.5)")
