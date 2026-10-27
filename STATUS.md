@@ -14,6 +14,7 @@ card, and plugs into the same baseboard.
 | `MIGRATION_PLAN.md` | Overall plan: block mapping, decisions, power tree, phases, open questions |
 | `TI135_PCB_NOTES.md` | Ti135 device rules: banks, power sequencing, configuration pins, LPDDR4 wiring and swizzling, routing rules, required pull resistors |
 | `KRT_LEARNING.md` | KiCadRoutingTools: the haasoscope LPDDR4 example reproduced, its recipe on our board, grading lessons |
+| `HW_CHECKLIST_REVIEW.md` | Efinix hardware checklist (Ti135 N484, SPI x4) item by item against the card: what to change (DDR_CAL 0.1 %, decoupling, 47 µF per regulator, SSU_N) |
 | `NEXT_SESSION.md` | **Start here next time:** the plan for the next session (bus router result, learning the tools on their LPDDR4 example, DDR clean-up) |
 | `LAYOUT_PLAN.md` | Placement and routing plan: phases, which tool does each step, the fixed design inputs |
 | `MECHANICAL.md` | **Hard mechanical requirements**: outline, J3/J6 (bottom-side baseboard connectors), RJ45 position, all in the Ti60 / KiCad frames |
