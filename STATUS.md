@@ -40,7 +40,9 @@ card, and plugs into the same baseboard.
     positions are the Agilex card's offsets from its J3, shifted +1.0 mm in x to clear J1. Our extra parts (rail
     monitors, SPI series resistors, extra caps) sit at the nearest free spot by the pin they serve;
   - **J3 pull-down arrays (RN1401–RN1408) on B.Cu** in a column beside J3, each level with its pins, as on the
-    Agilex card.
+    Agilex card;
+  - **level shifters (U1201–U1204) by hand (2026-10-27)** in a column beside J3, with their decaps partly on B.Cu;
+    the analog block moved down ~5.6 mm to make room.
 - **LPDDR4**: DQ swizzle within each byte (LPDDR4_SWIZZLE.md: crossings 125 → 45), configured in Efinity
   (`efinity/pinplan/lpddr4_swizzle.json`). 40 Ω / 80 Ω rules (Efinix guide). The Ti135N484**I3** tops out at 2.8 Gbps.
 - **Layers** (TI135_PCB_NOTES.md §6.5–6.6): signals on F/In2/In5/B. In1 and In6 GND; In3 VCORE/1V1/3V3; In4 1V8/0V85/5V0.

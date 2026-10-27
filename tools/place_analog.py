@@ -39,6 +39,10 @@ EAST = {"R1310", "R1311", "R1312"}
 ARRAYS = [f"RN14{i:02d}" for i in range(1, 9)]
 CLEAR = 0.0  # courtyards may touch, not overlap (KiCad's rule)
 
+if "--force" not in sys.argv:  # the result was hand-adjusted afterwards (2026-10-27): a re-run would undo that
+    sys.exit("place_analog: applied once and then adjusted by hand (level shifters by J3, analog block moved down "
+             "~5.6 mm). Re-running moves these parts back; pass --force to do it anyway.")
+sys.argv = [a for a in sys.argv if a != "--force"]
 b = pcbnew.LoadBoard(sys.argv[1])
 fp = {f.GetReference(): f for f in b.GetFootprints()}
 j3 = fp["J3"]; jx, jy = mm(j3.GetPosition().x), mm(j3.GetPosition().y)
