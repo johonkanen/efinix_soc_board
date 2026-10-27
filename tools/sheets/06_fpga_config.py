@@ -116,5 +116,14 @@ for k, net in enumerate(("led0_n", "led1_n")):
     hlabel(sh, net, *down(db, 2), 270, "input")
 sh.text("User LEDs on 3.3 V HVIO pins (active low)", g(244), g(128))
 
+# ---------------------------------------------------------------- SSU_N (L4, bank 4A; pin on sheet 11)
+# Efinix hardware checklist: weak pull-up. It is the x8 secondary chip select, unused in x4 mode (2026-10-27).
+# Added last so the refs above stay as they are on the board.
+p = (g(140), g(154))
+hlabel(sh, "fpga_ssu_n", *p, 270)
+sh.wire(p, up(p, 2)); sh.label("fpga_ssu_n", *up(p, 2), 90)
+pull_r(sh, ref("R"), g(150), SY, "fpga_ssu_n", "1V8", "10k")
+sh.text("SSU_N: weak pull-up (checklist)", g(134), SY - g(12))
+
 sh.save()
 print("06_fpga_config done")

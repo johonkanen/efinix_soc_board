@@ -1,6 +1,6 @@
 # Status and handoff
 
-Last updated: **2026-10-27** (phase 2 done: LPDDR4 at the 40 Ω width everywhere, timing within the checklist; next is phase 3, NEXT_SESSION.md). Read this first if you are picking the work up (human or agent).
+Last updated: **2026-10-27** (phase 3 half done: checklist fixes in the schematic, board placement of the 84 new parts still to do; NEXT_SESSION.md phase 3 "Where it stopped"). Read this first if you are picking the work up (human or agent).
 
 ## What this repository is
 
@@ -52,6 +52,12 @@ card, and plugs into the same baseboard.
   off: the card carries no reference-designator silkscreen, only a few custom markings (user, 2026-10-26).
 
 **Planes, BGA fan-out (via-in-pad) and regulator cell copper done** (TI135_PCB_NOTES.md §6.6–6.8).
+
+**Checklist fixes (2026-10-27, phase 3, half done):** schematic done: R801 240R 0.1 %, SSU_N pull-up R622, Efinix
+decoupling table in full (C5001–C5073, sheet 05 now A2), 47u + 22p feed-forward per TLV62585 cell (the data sheet
+asks for a feed-forward cap above 47 µF; user decision). ERC unchanged (two known notes). **The board in kicad/ is not
+updated yet:** until the new parts are placed, DRC parity reports them as missing. Placement is under way in `work/p3/`
+(NEXT_SESSION.md phase 3).
 
 **LPDDR4 clean-up (2026-10-27, phase 2):** every DDR segment at the 40 Ω width (0 mm below the minimum; 10 nets
 re-routed at width, dm0/dq1 meandered, DQS0 re-routed as a pair). Die to die, path model / KiCad: DQ/DM–DQS within

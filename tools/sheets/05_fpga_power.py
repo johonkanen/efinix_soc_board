@@ -104,5 +104,35 @@ ROWS = [
 for k, (rail, title, spec) in enumerate(ROWS):
     x, y = (g(30), g(112) + k * g(26)) if k < 3 else (g(205), g(172) + (k - 3) * g(26))
     cap_row(sh, x, y, rail, caps(spec), title)
+
+# Efinix checklist additions (HW_CHECKLIST_REVIEW.md "Decoupling", the "Missing" column; 2026-10-27). New refs, so
+# the parts already on the board keep theirs. 10 n / 1 n are 0201 (BGA via pairs), 1 u /
+# 4u7 0402, 10 u / 47 u 0805, 100 u 1206. VCORE and 1V8 have one of their 47 u at the regulator (C204, C304: the
+# checklist's 47 uF per regulator output).
+# Sheet 5 outgrew C501-C599 (C6xx is sheet 6): the additions are numbered C5001.. (user, 2026-10-27).
+cn[0] = 5000
+for node in sh.tree:
+    if isinstance(node, list) and str(node[0]) == "paper":
+        node[1] = "A2"
+ADD = [
+    ("VCORE", "VCORE, checklist additions: 2 x 100u, 47u (+ C204), 2 x 10u, 3 x 1u, 7 x 10n, 3 x 1n",
+     [("100u", 2, C1206), ("47u", 1, C0805), ("10u", 2, C0805), ("1u", 3, None), ("10n", 7, C0201),
+      ("1n", 3, C0201)], g(30), g(195)),
+    ("1V8", "1V8, checklist additions (VCCIO x 5 banks + VCCAUX): 4 x 47u (+ C304), 4 x 10u, 4 x 4u7, 5 x 1u",
+     [("47u", 4, C0805), ("10u", 4, C0805), ("4u7", 4, None), ("1u", 5, None)], g(30), g(221)),
+    ("1V8", "1V8, checklist additions: 6 x 10n, 6 x 1n", [("10n", 6, C0201), ("1n", 6, C0201)], g(30), g(247)),
+    ("3V3", "3V3, checklist additions (VCCIO33 x 3 banks): 2 x 4u7, 3 x 1u", [("4u7", 2, None), ("1u", 3, None)],
+     g(205), g(224)),
+    ("0V85", "0V85 VDD_PHY, checklist addition: 10n", [("10n", 1, C0201)], g(205), g(250)),
+    ("1V1", "1V1, checklist additions: 3 x 4u7, 3 x 10n", [("4u7", 3, None), ("10n", 3, C0201)], g(205), g(276)),
+]
+for rail, title, spec, x, y in ADD:
+    cap_row(sh, x, y, rail, caps(spec), title)
+# filtered PLL rails: checklist per VCCA 2 x 100n, 2 x 10n, 1n (one 100n is at the ferrite); VDDPLL 100n, 10n, 1n
+for k, (net, spec) in enumerate((("vcca_bl", [("100n", 1, C0201), ("10n", 2, C0201), ("1n", 1, C0201)]),
+                                 ("vcca_br", [("100n", 1, C0201), ("10n", 2, C0201), ("1n", 1, C0201)]),
+                                 ("vcca_tr", [("100n", 1, C0201), ("10n", 2, C0201), ("1n", 1, C0201)]),
+                                 ("vddpll_mcb_top_phy_ddr", [("10n", 1, C0201), ("1n", 1, C0201)]))):
+    cap_row(sh, g(400), g(92) + k * g(38), net, caps(spec), f"{net}, checklist additions", label=True)
 sh.save()
 print("05_fpga_power done, caps up to", f"C{cn[0]}")

@@ -5,7 +5,10 @@
 n: sheet-local number for the refs (U<n>, L<n>, R<n>a/b, C<n>...) given as a 3-4 digit prefix base, e.g. 201.
 rail: output power net; r1: top divider resistor (R2 = 100 k bottom, Vout = 0.6 V x (1 + R1/R2));
 en: None = EN tied to 5V0, else a hierarchical label name; pg: hierarchical label name for the open-drain PG output (None = no connect).
-Cin 10 u 0805, L 1 uH 4x4 mm, Cout 22 u 0805 (couts of them), PWR_FLAG on the output.
+Cin 10 u 0805, L 1 uH 4x4 mm, Cout 22 u 0805 (couts of them; a COUT entry may be (ref, value) instead, e.g. the
+47 u energy storage of the Efinix checklist), PWR_FLAG on the output.
+cff: ref of a 22 p feed-forward cap across R1. SLVSDE5F Table 4 note 2: above 47 uF of output capacitance a
+feed-forward capacitor is needed, and every rail of this card carries more than that with the FPGA decoupling.
 """
 from _common import *  # noqa: F401,F403
 
@@ -14,7 +17,7 @@ U_PART = {"LCSC": "C485118"}
 
 
 def buck(sh, refs, x, y, rail, r1, en=None, pg=None, couts=1, title=None):
-    """refs: dict with keys U, L, R1, R2, CIN, COUT (list). Returns the output node."""
+    """refs: dict with keys U, L, R1, R2, CIN, COUT (list), optional CFF. Returns the output node."""
     u = sh.place("TLV62585PDRL", refs["U"], x, y, value="TLV62585PDRLR", fields=U_PART)
     vin, en_p, gnd = u.pin(3), u.pin(4), u.pin(1)
     sw, fb, pgp = u.pin(2), u.pin(5), u.pin(6)
@@ -48,6 +51,11 @@ def buck(sh, refs, x, y, rail, r1, en=None, pg=None, couts=1, title=None):
     _, r2t, r2b = vert2(sh, "R", refs["R2"], xr, mid[1] + g(4), "100k", text="right")
     sh.wire(mid, r2t); sh.junction(*mid)
     sh.wire(r2b, down(r2b, 2)); power_at(sh, "GND", down(r2b, 2), "down")
+    if refs.get("CFF"):
+        xc = xr + g(11)
+        _, cft, cfb = vert2(sh, "C", refs["CFF"], xc, out[1] + g(5), "22p", text="right")
+        sh.wire((xc, out[1]), cft); sh.junction(xc, out[1])
+        sh.wire(cfb, (xc, mid[1]), mid)
     xf = out[0] - g(1)
     sh.wire(fb, (xf, fb[1]), (xf, mid[1]), mid)
     # PG
@@ -56,12 +64,13 @@ def buck(sh, refs, x, y, rail, r1, en=None, pg=None, couts=1, title=None):
     else:
         sh.no_connect(*pgp)
     # output caps, rail symbol, PWR_FLAG
-    xo = xr + g(14)
+    xo = xr + g(20 if refs.get("CFF") else 14)
     sh.wire((xr, out[1]), (xo + g(8) * (couts - 1), out[1]))
     sh.junction(xr, out[1])
     for k, cref in enumerate(refs["COUT"][:couts]):
+        cref, cval = cref if isinstance(cref, tuple) else (cref, "22u")
         cx = xo + g(8) * k
-        _, ct, cb = vert2(sh, "C", cref, cx, out[1] + g(5), "22u", text="right")
+        _, ct, cb = vert2(sh, "C", cref, cx, out[1] + g(5), cval, text="right")
         sh.wire((cx, out[1]), ct)
         if k < couts - 1 or True:
             sh.junction(cx, out[1]) if cx != xo + g(8) * (couts - 1) else None

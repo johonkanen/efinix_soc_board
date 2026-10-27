@@ -3,7 +3,7 @@
 label per used pin, named after the signal in efinity/pinplan/ti135_pinplan.csv. Unused pins: no-connect flag.
 
 Configuration-related dual-purpose pins in bank 4A that are not in the pin plan but need a strap go to sheet 6
-(fpga_config): CSI (pull-up), TEST_N (pull-up), CBSEL0/1 (DNP pull-downs).
+(fpga_config): CSI (pull-up), TEST_N (pull-up), CBSEL0/1 (DNP pull-downs), SSU_N (pull-up).
 U501 is the Ti135; its power/config/DDR units are on sheets 5, 6 and 8.
 """
 from _common import *  # noqa: F401,F403
@@ -12,7 +12,7 @@ sh = sheet("11_fpga_io.kicad_sch")
 pp = pinplan()
 by_ball = {r["ball"]: (s, r) for s, r in pp.items()}
 SHAPE = {"out": "output", "in": "input", "clkin": "input", "pllref": "input", "inout": "bidirectional"}
-STRAPS = {"A2": "fpga_csi", "L7": "fpga_test_n", "J1": "fpga_cbsel0", "H1": "fpga_cbsel1"}
+STRAPS = {"A2": "fpga_csi", "L7": "fpga_test_n", "J1": "fpga_cbsel0", "H1": "fpga_cbsel1", "L4": "fpga_ssu_n"}
 
 sh.text("U501 Ti135N484I3 I/O banks. Signal <-> ball assignment from efinity/pinplan/pinplan.py\n"
         "(Interface Designer project, design check passed). Change pins there, then re-run this script.\n"

@@ -6,6 +6,9 @@ Source: *Hardware Design Checklist and Guidelines*, generated for **Ti135 N484, 
 
 ## To act on
 
+**2026-10-27 (phase 3):** items 1–4 are done in the schematic (R801 0.1 %, R622 SSU_N pull-up, C5001–C5073, a
+47u + 22p feed-forward per regulator). Board placement is pending (NEXT_SESSION.md phase 3).
+
 | # | Item | Checklist | This card | |
 |---|---|---|---|---|
 | 1 | DDR_CAL (Y9) | 240 Ω **±0.1 %** to GND, close to the pin | R801 240 Ω **1 %** | ✗ change to 0.1 % |

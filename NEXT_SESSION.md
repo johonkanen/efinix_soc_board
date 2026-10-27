@@ -1,4 +1,4 @@
-# Next session plan (phases, 2026-10-27; phases 1–2 done)
+# Next session plan (phases, 2026-10-27; phases 1–2 done, phase 3 half done)
 
 Written for an agent starting with a fresh context. Work **one phase at a time**: finish it, commit, push, update
 this file and `STATUS.md`, then stop and report to the user, who reviews each phase before the next starts.
@@ -52,6 +52,8 @@ this file and `STATUS.md`, then stop and report to the user, who reviews each ph
 | Re-route a few DDR nets | `tools/ddr/reroute_nets.sh IN WORKDIR dq9 dm1` (`PAIR=1` for DQS pairs, `EXTRA="--rip-existing-nets ..."`) |
 | Re-route bytes | `tools/ddr/byte_seq.sh` (`MODE=net NET_ORDER=far RIP_BYTES=..`); CA/CK: `tools/ddr/ca_tb_chain.sh` |
 | Decaps on BGA via pairs | `tools/p2k/bin/kipy tools/place_bga_decaps.py IN OUT REF...` (smallest caps first) |
+| Nearest free B.Cu spot | `tools/p2k/bin/kipy tools/place_free.py IN OUT REF[@X,Y[,ROT]]...` (bare REF: near its rail's U501 balls; new, untested) |
+| Schematic → routed board | `tools/p2k/bin/kipy tools/add_parts.py IN OUT` (adds missing parts, syncs values/fields/pad nets; no copper touched) |
 | Pictures | `tools/render_ddr.py BOARD OUT.png U501 U801`; `tools/render_board.py BOARD OUT.png` (KRT venv python) |
 | IO routing sketch | `tools/io_sketch.sh IN WORKDIR` |
 | Zone refill | `tools/p2k/bin/kipy work/grade/<any>/refill.py BOARD` (written by grade.sh) |
@@ -146,7 +148,78 @@ The plan, for reference:
 
 Done when: no `track_width` DDR errors; timing within decision 1; DQS skews reported.
 
-## Phase 3: checklist fixes (HW_CHECKLIST_REVIEW.md "To act on")
+## Phase 3: checklist fixes (HW_CHECKLIST_REVIEW.md "To act on") — **in progress (stopped 2026-10-27 at the user's request)**
+
+### Where it stopped
+
+**Done: the schematic (all four items), committed.** ERC shows only the two known notes. `build_schematic.sh` now also
+fails on a duplicate reference: ERC does not flag one, and the netlist merges the two symbols.
+- R801 240R **0.1 %**, RT0402BRD07240RL (LCSC C852660, extended, 8,680 orderable).
+- SSU_N: `fpga_ssu_n` from U501 L4 (sheet 11 `STRAPS`) → R622 10 k to 1V8 (sheet 06, added last so that the
+  other refs keep their numbers).
+- Decoupling (sheet 05, now **A2**): 73 new caps, **C5001–C5073**. They are not C566+ because sheet 05 outgrew C5xx
+  and C6xx belongs to sheet 06; the user chose C5001+ and kept C501–C565. The "Missing" column in full:
+  - VCORE: 2 × 100u 1206, 47u, 2 × 10u, 3 × 1u, 7 × 10n, 3 × 1n;
+  - 1V8: 4 × 47u, 4 × 10u, 4 × 4u7, 5 × 1u, 6 × 10n, 6 × 1n;
+  - 3V3: 2 × 4u7, 3 × 1u;
+  - 0V85: 10n;
+  - 1V1: 3 × 4u7, 3 × 10n;
+  - each VCCA: 100n, 2 × 10n, 1n (labels `vcca_*`);
+  - VDDPLL: 10n, 1n.
+
+  10n, 1n and 100n are 0201; 1u and 4u7 are 0402; 10u and 47u are 0805; 100u is 1206. Candidate parts (fields not
+  set; BOM pass): 47u CL21A476MQYNNNE C16780 (basic), 100u CL31A107MQHNNNE C15008 (basic), 10n CC0201KRX7R7BB103
+  C272853, 1n CC0201KRX7R9BB102 C505464, 22p 0402 C0G (basic C1555).
+- **Regulators (user decision 2026-10-27):** the TLV62585 data sheet (SLVSDE5F §8.2.2.5, Table 4 note 2) gives
+  10–47 µF output capacitance and says "for output capacitance higher than 47 µF, a feed forward capacitor is
+  needed". Every rail already carries more than that (VCORE 105 µF, 1V8 75, 1V1 88, 3V3 54 nominal; VCORE and 1V8
+  reach about 420 µF with the table). The user chose:
+  - Efinix's table in full;
+  - one 47u per cell: **C204** (VCORE) and **C304** (1V8) are each one of their rail's table 47u, placed at the
+    regulator; **C314 / C333 / C344** are new for 3V3 / 0V85 / 1V1;
+  - a **22p feed-forward cap across R1 on all five cells: C205 / C305 / C315 / C334 / C345** (`_power.py` `CFF`).
+
+  Check loop stability at bring-up.
+
+**Not done: the board.** `kicad/ti135_card.kicad_pcb` is still the phase 2 board. Until the new parts are on it,
+DRC with schematic parity reports 84 missing footprints, R801's value and U501 L4's net. Work in `work/p3/` (on disk,
+gitignored):
+- `base` = copy of kicad/.
+- `a1` = `tools/add_parts.py` (new): 84 parts added and staged right of the outline, R801 value/fields and
+  U501.L4 → `/fpga_ssu_n` synced, nothing else changed.
+- `a2` = new 0201/0402 staged at U501's centre (B.Cu).
+- `a3` = `place_bga_decaps.py` with the 0201s (1n, then 10n, then 100n) and then the 0402s. Only 13 landed on via
+  pairs (VCORE 10, 1V1 3):
+  - 1V8 has 5 pair spots and all of them are taken;
+  - vcca_* / vddpll / 3V3 have none;
+  - after that the courtyards of the earlier caps block the pairs that are left.
+
+  8 caps went to a free spot near the centre, and 39 are still stacked at the centre. **Do not use a3 as it is.**
+
+### How to continue
+
+1. Start again from `work/p3/a1.kicad_pcb`. If the schematic changed since, re-run
+   `tools/p2k/bin/kipy tools/add_parts.py work/p3/base.kicad_pcb work/p3/a1.kicad_pcb` on a fresh copy of kicad/.
+   Copy `kicad/ti135_card.kicad_pro` and `.kicad_dru` beside it.
+2. 0201s on pairs: stage them under U501 and run `place_bga_decaps.py` with the 0201s only. Then place every cap
+   left off a pair with **`tools/place_free.py`** (new, **not run yet**: test it first). A bare REF means "the
+   nearest free spot to any U501 ball of its rail". It uses the same clearances as place_bga_decaps, plus the board
+   edge and through-hole pads.
+3. Place the 0402s with `place_free.py` (bare refs), then the bulk 0805/1206 (bare refs: they land at the BGA edge
+   or in the empty south-west corner of the ball field, where C509 sits). Smallest first.
+4. Regulator cells (B.Cu, x 189–203, y 75–106): the 47u next to the cell's 22u row, e.g.
+   `C204@194.0,101.47,-90` (check against U311's cell); the 22p beside its R1 (R201 at 201.69, 103.23 etc.), as
+   `place_free.py REF@x,y`.
+5. R622 near ball L4 (`place_free.py R622@x,y` with L4's position).
+6. Then the "done when" check: `tools/ddr/grade.sh` (same DDR result as after phase 2), copy into `kicad/`, then
+   `tools/build_pcb.sh` (parity 0, no new errors; new unconnected items are expected until phase 5 routes power),
+   ERC as before. Update HW_CHECKLIST_REVIEW.md items 1–4 and commit.
+
+Pictures of B.Cu: the helper scripts used this time were scratch scripts (a kipy dump plus a PIL draw);
+`tools/render_board.py` shows the four layers.
+
+### The plan, for reference
+
 
 1. **DDR_CAL**: R801 240 Ω **0.1 %** (sheet 08 generator; find an LCSC part with `jlc_search.py`).
 2. **SSU_N** (U501 L4): 10 k pull-up to 1V8 (sheet 06 generator; net from the ball).
@@ -206,15 +279,17 @@ At the end of each phase the agent's report ends with **the prompt for the next 
 the user to paste into a fresh session. Keep it in the same form as the one below (update the phase number, the
 files to read and any decision the user made in the review), and replace the block here at the same time.
 
-Next prompt (phase 3):
+Next prompt (phase 3, continued):
 
 ```
 Read NEXT_SESSION.md, then the files it lists under "Read first"
-(STATUS.md, HW_CHECKLIST_REVIEW.md, TI135_PCB_NOTES.md §6, KRT_LEARNING.md).
+(STATUS.md, HW_CHECKLIST_REVIEW.md, TI135_PCB_NOTES.md §6.7, KRT_LEARNING.md).
 
-Do Phase 3 only, following that file's steps, rules and "done when" check.
-Phase 2's result is in the Phase 2 section: the LPDDR4 on main is the reference that
-grade.sh must still reproduce after phase 3 (do not touch DDR copper; move new caps instead).
+Finish Phase 3: its schematic part is done and committed; continue from
+"Where it stopped" / "How to continue" in the Phase 3 section (board placement of the
+84 new parts, starting from work/p3/a1.kicad_pcb), then its "done when" check.
+Phase 2's LPDDR4 on main is the reference that grade.sh must still reproduce
+(do not touch DDR copper; move new caps instead).
 - Follow the "Rules" section strictly: never modify ~/dev/agilex3_soc_control_card;
   check that KiCad is closed (no kicad/~ti135_card.kicad_pro.lck) before writing under
   kicad/; schematics only through tools/sheets/*.py; work on copies under work/ and

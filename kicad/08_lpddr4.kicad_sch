@@ -15049,8 +15049,8 @@
 				)
 			)
 		)
-		(property "Value" "240R 1%"
-			(at 143.55 116.84 0)
+		(property "Value" "240R 0.1%"
+			(at 144.65 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15076,6 +15076,24 @@
 			)
 		)
 		(property "Description" "Resistor"
+			(at 137.16 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "RT0402BRD07240RL"
+			(at 137.16 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C852660"
 			(at 137.16 115.57 0)
 			(effects
 				(font

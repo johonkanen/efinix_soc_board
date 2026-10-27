@@ -2407,9 +2407,76 @@
 			)
 		)
 	)
+	(symbol
+		(lib_id "ti135_card:C")
+		(at 118.11 64.77 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "33da0541-3120-5fc7-9cba-4ddb4573bd67")
+		(property "Reference" "C305"
+			(at 122.85 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "22p"
+			(at 122.3 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 119.0752 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 118.11 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 118.11 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "3687cae4-28a7-5a28-83b8-73a9ac4424d6")
+		)
+		(pin "2"
+			(uuid "c1f95ee2-2f57-57f2-a786-a7c517a13ba4")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
+					(reference "C305")
+					(unit 1)
+				)
+			)
+		)
+	)
 	(wire
 		(pts
-			(xy 73.66 60.96) (xy 95.25 60.96)
+			(xy 118.11 58.42) (xy 118.11 60.96)
 		)
 		(stroke
 			(width 0)
@@ -2417,19 +2484,15 @@
 		)
 		(uuid "a47905de-dae6-5fd5-a908-c10e08f3f402")
 	)
-	(wire
-		(pts
-			(xy 95.25 60.96) (xy 95.25 69.85)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
+	(junction
+		(at 118.11 58.42)
+		(diameter 0)
+		(color 0 0 0 0)
 		(uuid "5fec4d0e-592c-5825-a999-a829693067ec")
 	)
 	(wire
 		(pts
-			(xy 95.25 69.85) (xy 104.14 69.85)
+			(xy 118.11 68.58) (xy 118.11 69.85)
 		)
 		(stroke
 			(width 0)
@@ -2439,13 +2502,53 @@
 	)
 	(wire
 		(pts
-			(xy 73.66 63.5) (xy 77.47 63.5)
+			(xy 118.11 69.85) (xy 104.14 69.85)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "8b9a2280-2757-5b52-9a4a-609d83e6bbd8")
+	)
+	(wire
+		(pts
+			(xy 73.66 60.96) (xy 95.25 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "83eadb93-e0a7-58fa-a7fe-26f37e19cb00")
+	)
+	(wire
+		(pts
+			(xy 95.25 60.96) (xy 95.25 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a9046825-b521-5cc1-9aa8-957f874b18f8")
+	)
+	(wire
+		(pts
+			(xy 95.25 69.85) (xy 104.14 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4f9e793e-aa6b-5df9-9704-66ea818ae07c")
+	)
+	(wire
+		(pts
+			(xy 73.66 63.5) (xy 77.47 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6747eccf-4e92-5a4f-8f57-87a7b67edf6b")
 	)
 	(hierarchical_label "pg_group1"
 		(shape passive)
@@ -2456,27 +2559,27 @@
 			)
 			(justify left)
 		)
-		(uuid "83eadb93-e0a7-58fa-a7fe-26f37e19cb00")
+		(uuid "319621cb-8542-5ebe-8bd2-2eb62092e4da")
 	)
 	(wire
 		(pts
-			(xy 104.14 58.42) (xy 132.08 58.42)
+			(xy 104.14 58.42) (xy 149.86 58.42)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "a9046825-b521-5cc1-9aa8-957f874b18f8")
+		(uuid "bf67d048-d0c8-5433-a44b-7287ce373900")
 	)
 	(junction
 		(at 104.14 58.42)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "4f9e793e-aa6b-5df9-9704-66ea818ae07c")
+		(uuid "ea42c08e-e328-579d-8472-5887492b91ab")
 	)
 	(symbol
 		(lib_id "ti135_card:C")
-		(at 121.92 64.77 0)
+		(at 129.54 64.77 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2484,7 +2587,7 @@
 		(dnp no)
 		(uuid "994cda7c-148b-53d9-83c9-3542fd0e5aeb")
 		(property "Reference" "C302"
-			(at 126.66 63.5 0)
+			(at 134.28 63.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2492,7 +2595,7 @@
 			)
 		)
 		(property "Value" "22u"
-			(at 126.11 66.04 0)
+			(at 133.73 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2500,7 +2603,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
-			(at 122.8852 68.58 0)
+			(at 130.5052 68.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2509,7 +2612,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 121.92 64.77 0)
+			(at 129.54 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2518,7 +2621,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 121.92 64.77 0)
+			(at 129.54 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2543,33 +2646,33 @@
 	)
 	(wire
 		(pts
-			(xy 121.92 58.42) (xy 121.92 60.96)
+			(xy 129.54 58.42) (xy 129.54 60.96)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "6747eccf-4e92-5a4f-8f57-87a7b67edf6b")
+		(uuid "fca7d005-8217-547b-a87c-13815de7bb56")
 	)
 	(junction
-		(at 121.92 58.42)
+		(at 129.54 58.42)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "319621cb-8542-5ebe-8bd2-2eb62092e4da")
+		(uuid "37b49dad-90c5-57d2-a2b2-0da0a8c82983")
 	)
 	(wire
 		(pts
-			(xy 121.92 68.58) (xy 121.92 71.12)
+			(xy 129.54 68.58) (xy 129.54 71.12)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "bf67d048-d0c8-5433-a44b-7287ce373900")
+		(uuid "aa247a39-2455-5bbe-9733-3291abd30442")
 	)
 	(symbol
 		(lib_id "ti135_card:GND")
-		(at 121.92 71.12 0)
+		(at 129.54 71.12 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2577,7 +2680,7 @@
 		(dnp no)
 		(uuid "a7d9f51f-b8d8-5946-8cd6-687371dadf9d")
 		(property "Reference" "#PWR005"
-			(at 121.92 77.47 0)
+			(at 129.54 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2586,7 +2689,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 121.92 74.93 0)
+			(at 129.54 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2594,7 +2697,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 121.92 71.12 0)
+			(at 129.54 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2603,7 +2706,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 121.92 71.12 0)
+			(at 129.54 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2612,7 +2715,7 @@
 			)
 		)
 		(property "Description" "Power symbol for net \"GND\" (IPC net name)"
-			(at 121.92 71.12 0)
+			(at 129.54 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2634,7 +2737,7 @@
 	)
 	(symbol
 		(lib_id "ti135_card:C")
-		(at 132.08 64.77 0)
+		(at 139.7 64.77 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2642,7 +2745,7 @@
 		(dnp no)
 		(uuid "b2a0f212-6983-5fa7-a085-6b960d86874d")
 		(property "Reference" "C303"
-			(at 136.82 63.5 0)
+			(at 144.44 63.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2650,7 +2753,7 @@
 			)
 		)
 		(property "Value" "22u"
-			(at 136.27 66.04 0)
+			(at 143.89 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2658,7 +2761,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
-			(at 133.0452 68.58 0)
+			(at 140.6652 68.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2667,7 +2770,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 132.08 64.77 0)
+			(at 139.7 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2676,7 +2779,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 132.08 64.77 0)
+			(at 139.7 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2701,27 +2804,33 @@
 	)
 	(wire
 		(pts
-			(xy 132.08 58.42) (xy 132.08 60.96)
+			(xy 139.7 58.42) (xy 139.7 60.96)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "ea42c08e-e328-579d-8472-5887492b91ab")
+		(uuid "c116b5f6-4a35-5e2f-9a46-aa890ee427a1")
+	)
+	(junction
+		(at 139.7 58.42)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "9cd91c35-11d0-5158-8028-603131351d8a")
 	)
 	(wire
 		(pts
-			(xy 132.08 68.58) (xy 132.08 71.12)
+			(xy 139.7 68.58) (xy 139.7 71.12)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "fca7d005-8217-547b-a87c-13815de7bb56")
+		(uuid "99fe374a-2bbd-5859-89b4-41a3f0cceb33")
 	)
 	(symbol
 		(lib_id "ti135_card:GND")
-		(at 132.08 71.12 0)
+		(at 139.7 71.12 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2729,7 +2838,7 @@
 		(dnp no)
 		(uuid "4a023dd1-e1f3-5a22-b7e8-92bbbb129e17")
 		(property "Reference" "#PWR006"
-			(at 132.08 77.47 0)
+			(at 139.7 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2738,7 +2847,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 132.08 74.93 0)
+			(at 139.7 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2746,7 +2855,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 132.08 71.12 0)
+			(at 139.7 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2755,7 +2864,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 132.08 71.12 0)
+			(at 139.7 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2764,7 +2873,7 @@
 			)
 		)
 		(property "Description" "Power symbol for net \"GND\" (IPC net name)"
-			(at 132.08 71.12 0)
+			(at 139.7 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2784,6 +2893,168 @@
 			)
 		)
 	)
+	(symbol
+		(lib_id "ti135_card:C")
+		(at 149.86 64.77 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "259bf21b-90e2-5d84-b284-7d5f924a3c48")
+		(property "Reference" "C304"
+			(at 154.6 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "47u"
+			(at 154.05 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 150.8252 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 149.86 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 149.86 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "0fd00cd1-193f-5d88-9835-a35084984956")
+		)
+		(pin "2"
+			(uuid "f3479323-853c-5735-8991-2cb392b382dd")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
+					(reference "C304")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 149.86 58.42) (xy 149.86 58.42)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "44b3119b-c7f1-5f7a-a38d-4c2f131dfa55")
+	)
+	(wire
+		(pts
+			(xy 149.86 58.42) (xy 149.86 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0e45e6af-d3ba-5ad6-8ea0-a8291c29e542")
+	)
+	(wire
+		(pts
+			(xy 149.86 68.58) (xy 149.86 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cb7bac8b-1452-52d8-b9b5-079fcfae7e0a")
+	)
+	(symbol
+		(lib_id "ti135_card:GND")
+		(at 149.86 71.12 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "3a0bc9fe-34ee-51df-a4b6-44fe02badfa1")
+		(property "Reference" "#PWR007"
+			(at 149.86 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 149.86 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 149.86 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 149.86 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol for net \"GND\" (IPC net name)"
+			(at 149.86 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "441f8c9e-3caf-5e25-9619-e2ba923c69cf")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
+					(reference "#PWR007")
+					(unit 1)
+				)
+			)
+		)
+	)
 	(wire
 		(pts
 			(xy 96.52 58.42) (xy 96.52 54.61)
@@ -2792,13 +3063,13 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "37b49dad-90c5-57d2-a2b2-0da0a8c82983")
+		(uuid "90b1501f-4189-52dd-8f0e-8727ebcad0c2")
 	)
 	(junction
 		(at 96.52 58.42)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "aa247a39-2455-5bbe-9733-3291abd30442")
+		(uuid "15656f78-a6bc-5a8a-8565-15abd3430d11")
 	)
 	(symbol
 		(lib_id "ti135_card:1V8")
@@ -2808,8 +3079,8 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "3a0bc9fe-34ee-51df-a4b6-44fe02badfa1")
-		(property "Reference" "#PWR007"
+		(uuid "22645db8-56a3-57cf-af0e-16f1a952ed8f")
+		(property "Reference" "#PWR008"
 			(at 96.52 58.42 0)
 			(effects
 				(font
@@ -2854,12 +3125,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "441f8c9e-3caf-5e25-9619-e2ba923c69cf")
+			(uuid "1075c868-3da5-5470-ada8-fda500671f6d")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
-					(reference "#PWR007")
+					(reference "#PWR008")
 					(unit 1)
 				)
 			)
@@ -2873,7 +3144,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "c116b5f6-4a35-5e2f-9a46-aa890ee427a1")
+		(uuid "4e0c7018-9ae5-550e-8a2e-9f36acd9602e")
 	)
 	(symbol
 		(lib_id "ti135_card:PWR_FLAG")
@@ -2883,8 +3154,8 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "3ff20af6-0fce-5a25-bd6e-a69102c67e58")
-		(property "Reference" "#FLG008"
+		(uuid "41922a3c-3a71-58e3-8e8c-8a1fd4e0ac4c")
+		(property "Reference" "#FLG009"
 			(at 102.235 54.61 0)
 			(effects
 				(font
@@ -2929,12 +3200,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "91f9140b-a128-5ddc-ba23-b9f7cfccdf32")
+			(uuid "12b3f532-3cde-5452-b6eb-54e838f138cc")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
-					(reference "#FLG008")
+					(reference "#FLG009")
 					(unit 1)
 				)
 			)
@@ -3039,7 +3310,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "9cd91c35-11d0-5158-8028-603131351d8a")
+		(uuid "d048bf2a-1b63-5cf8-8812-96cb2b9abd7f")
 	)
 	(wire
 		(pts
@@ -3049,7 +3320,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "99fe374a-2bbd-5859-89b4-41a3f0cceb33")
+		(uuid "bf036a0c-305f-50ed-af35-28863b3c0e15")
 	)
 	(symbol
 		(lib_id "ti135_card:5V0")
@@ -3059,8 +3330,8 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "919356c9-f7dc-540e-a0a9-4ee937defc24")
-		(property "Reference" "#PWR009"
+		(uuid "22b30241-f69c-54a2-8f7e-e31b13a557d8")
+		(property "Reference" "#PWR010"
 			(at 182.88 59.69 0)
 			(effects
 				(font
@@ -3105,12 +3376,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "67b3b4c2-95ab-5f2f-a487-38476ca1624a")
+			(uuid "d1daf3e3-0212-5b63-babd-2717617b8290")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
-					(reference "#PWR009")
+					(reference "#PWR010")
 					(unit 1)
 				)
 			)
@@ -3124,7 +3395,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "44b3119b-c7f1-5f7a-a38d-4c2f131dfa55")
+		(uuid "af06172d-612c-5e6f-a3f9-a5106abd4e32")
 	)
 	(symbol
 		(lib_id "ti135_card:C")
@@ -3201,7 +3472,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "0e45e6af-d3ba-5ad6-8ea0-a8291c29e542")
+		(uuid "cd8bd158-deb7-5028-a797-232e0173c928")
 	)
 	(wire
 		(pts
@@ -3211,13 +3482,13 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "cb7bac8b-1452-52d8-b9b5-079fcfae7e0a")
+		(uuid "2533dd66-cae0-5f23-bccf-4843565a7c67")
 	)
 	(junction
 		(at 182.88 58.42)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "90b1501f-4189-52dd-8f0e-8727ebcad0c2")
+		(uuid "cb6c7fdb-cee2-5f85-88b8-77c87022899f")
 	)
 	(wire
 		(pts
@@ -3227,7 +3498,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "15656f78-a6bc-5a8a-8565-15abd3430d11")
+		(uuid "2ced4294-ec02-5e05-91e9-de220f806e71")
 	)
 	(symbol
 		(lib_id "ti135_card:GND")
@@ -3237,8 +3508,8 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "22b30241-f69c-54a2-8f7e-e31b13a557d8")
-		(property "Reference" "#PWR010"
+		(uuid "0ee312b3-c456-5b64-8d7c-9f1931fb1312")
+		(property "Reference" "#PWR011"
 			(at 177.8 77.47 0)
 			(effects
 				(font
@@ -3283,12 +3554,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "d1daf3e3-0212-5b63-babd-2717617b8290")
+			(uuid "b4423df3-efe7-5b2b-9db1-1b192b092de3")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
-					(reference "#PWR010")
+					(reference "#PWR011")
 					(unit 1)
 				)
 			)
@@ -3302,7 +3573,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "4e0c7018-9ae5-550e-8a2e-9f36acd9602e")
+		(uuid "252f20bb-8f7c-521a-9869-384dc2d1094b")
 	)
 	(wire
 		(pts
@@ -3312,7 +3583,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "d048bf2a-1b63-5cf8-8812-96cb2b9abd7f")
+		(uuid "ec44c8dd-7b9f-5286-bb6e-dcac4169b387")
 	)
 	(wire
 		(pts
@@ -3322,7 +3593,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "bf036a0c-305f-50ed-af35-28863b3c0e15")
+		(uuid "6a2658f9-2a71-5c1f-b6bd-172212727226")
 	)
 	(symbol
 		(lib_id "ti135_card:GND")
@@ -3332,8 +3603,8 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "0ee312b3-c456-5b64-8d7c-9f1931fb1312")
-		(property "Reference" "#PWR011"
+		(uuid "3c13784b-46d9-5d74-a65a-490d57003c5a")
+		(property "Reference" "#PWR012"
 			(at 203.2 85.09 0)
 			(effects
 				(font
@@ -3378,12 +3649,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "b4423df3-efe7-5b2b-9db1-1b192b092de3")
+			(uuid "5b170ef4-ac99-5cb4-9e64-b85b8357ecbb")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
-					(reference "#PWR011")
+					(reference "#PWR012")
 					(unit 1)
 				)
 			)
@@ -3482,7 +3753,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "af06172d-612c-5e6f-a3f9-a5106abd4e32")
+		(uuid "de14b43e-7936-5e52-8cc7-3bf9223bfd65")
 	)
 	(wire
 		(pts
@@ -3492,7 +3763,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "cd8bd158-deb7-5028-a797-232e0173c928")
+		(uuid "e8eeb14b-c2e2-5f3e-9401-f913168509dc")
 	)
 	(symbol
 		(lib_id "ti135_card:R")
@@ -3569,7 +3840,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "2533dd66-cae0-5f23-bccf-4843565a7c67")
+		(uuid "789f80e5-93e2-5f0f-8f87-2d01d4e59b0f")
 	)
 	(wire
 		(pts
@@ -3579,7 +3850,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "cb6c7fdb-cee2-5f85-88b8-77c87022899f")
+		(uuid "7ba98ecb-0703-501b-bce1-c21ddb4d6cb2")
 	)
 	(wire
 		(pts
@@ -3589,7 +3860,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "2ced4294-ec02-5e05-91e9-de220f806e71")
+		(uuid "313e581b-c914-5a91-88a4-1d25279214ca")
 	)
 	(symbol
 		(lib_id "ti135_card:R")
@@ -3666,13 +3937,13 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "252f20bb-8f7c-521a-9869-384dc2d1094b")
+		(uuid "0e27db0a-fc07-594a-b136-5c7abf9d0fba")
 	)
 	(junction
 		(at 243.84 69.85)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "ec44c8dd-7b9f-5286-bb6e-dcac4169b387")
+		(uuid "1d0c1ee8-d3fd-520e-b186-fa37c2aa5e74")
 	)
 	(wire
 		(pts
@@ -3682,7 +3953,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "6a2658f9-2a71-5c1f-b6bd-172212727226")
+		(uuid "80c93796-dcd0-5abe-8b5a-40ca4f2f448e")
 	)
 	(symbol
 		(lib_id "ti135_card:GND")
@@ -3692,8 +3963,8 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "3c13784b-46d9-5d74-a65a-490d57003c5a")
-		(property "Reference" "#PWR012"
+		(uuid "10e589a1-94b0-5fd7-bea7-8a021cb05d66")
+		(property "Reference" "#PWR013"
 			(at 243.84 87.63 0)
 			(effects
 				(font
@@ -3738,16 +4009,119 @@
 			)
 		)
 		(pin "1"
-			(uuid "5b170ef4-ac99-5cb4-9e64-b85b8357ecbb")
+			(uuid "62fc7e52-42f5-5db4-91d8-40a0452f59f6")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
-					(reference "#PWR012")
+					(reference "#PWR013")
 					(unit 1)
 				)
 			)
 		)
+	)
+	(symbol
+		(lib_id "ti135_card:C")
+		(at 257.81 64.77 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "8f6ad048-7d96-52ef-823b-1d460d9dd1f0")
+		(property "Reference" "C315"
+			(at 262.55 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "22p"
+			(at 262 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 258.7752 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 257.81 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 257.81 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "6b523a48-e8bd-58e1-817a-f9fc3bfd4802")
+		)
+		(pin "2"
+			(uuid "53589ab1-f178-547f-87ab-8bd3e7aa0ab8")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
+					(reference "C315")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 257.81 58.42) (xy 257.81 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5861fcde-46ec-547f-aa4e-01a1d996afdd")
+	)
+	(junction
+		(at 257.81 58.42)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e9bb8192-b1b6-5268-8e63-b3a9b0ccc36c")
+	)
+	(wire
+		(pts
+			(xy 257.81 68.58) (xy 257.81 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ce8706a6-91a5-5646-8263-c1b7f3441106")
+	)
+	(wire
+		(pts
+			(xy 257.81 69.85) (xy 243.84 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "795be41d-7f0e-55d7-a357-01b0bab84c1d")
 	)
 	(wire
 		(pts
@@ -3757,7 +4131,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "de14b43e-7936-5e52-8cc7-3bf9223bfd65")
+		(uuid "d971881e-71f4-52b8-8c6f-83b0b8014088")
 	)
 	(wire
 		(pts
@@ -3767,7 +4141,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "e8eeb14b-c2e2-5f3e-9401-f913168509dc")
+		(uuid "c3ffe447-53a4-58b1-a81b-7e5ba629695c")
 	)
 	(wire
 		(pts
@@ -3777,7 +4151,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "789f80e5-93e2-5f0f-8f87-2d01d4e59b0f")
+		(uuid "2edf0afe-f917-5237-b137-037f271435de")
 	)
 	(wire
 		(pts
@@ -3787,7 +4161,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "7ba98ecb-0703-501b-bce1-c21ddb4d6cb2")
+		(uuid "55c5b873-fe2f-5931-8d37-81eb0e2c6ed8")
 	)
 	(hierarchical_label "pg_group1"
 		(shape passive)
@@ -3798,27 +4172,27 @@
 			)
 			(justify left)
 		)
-		(uuid "313e581b-c914-5a91-88a4-1d25279214ca")
+		(uuid "768ef2b7-5093-5501-b9b5-ccce0ab6dffc")
 	)
 	(wire
 		(pts
-			(xy 243.84 58.42) (xy 271.78 58.42)
+			(xy 243.84 58.42) (xy 289.56 58.42)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "0e27db0a-fc07-594a-b136-5c7abf9d0fba")
+		(uuid "9fc2c17e-4b67-5c31-8be8-e3aa74795493")
 	)
 	(junction
 		(at 243.84 58.42)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "1d0c1ee8-d3fd-520e-b186-fa37c2aa5e74")
+		(uuid "93a91c67-5a0b-5323-b416-0f4b6e39dc55")
 	)
 	(symbol
 		(lib_id "ti135_card:C")
-		(at 261.62 64.77 0)
+		(at 269.24 64.77 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3826,7 +4200,7 @@
 		(dnp no)
 		(uuid "671c3a27-3b83-55e1-9fb4-2847ac0acb0d")
 		(property "Reference" "C312"
-			(at 266.36 63.5 0)
+			(at 273.98 63.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3834,7 +4208,7 @@
 			)
 		)
 		(property "Value" "22u"
-			(at 265.81 66.04 0)
+			(at 273.43 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3842,7 +4216,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
-			(at 262.5852 68.58 0)
+			(at 270.2052 68.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3851,7 +4225,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 261.62 64.77 0)
+			(at 269.24 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3860,7 +4234,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 261.62 64.77 0)
+			(at 269.24 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3885,41 +4259,41 @@
 	)
 	(wire
 		(pts
-			(xy 261.62 58.42) (xy 261.62 60.96)
+			(xy 269.24 58.42) (xy 269.24 60.96)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "80c93796-dcd0-5abe-8b5a-40ca4f2f448e")
+		(uuid "d4f2ec11-7b03-5e88-b4f3-37609dca3995")
 	)
 	(junction
-		(at 261.62 58.42)
+		(at 269.24 58.42)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "5861fcde-46ec-547f-aa4e-01a1d996afdd")
+		(uuid "60226289-ab20-5175-a468-ae6fcf5f01c0")
 	)
 	(wire
 		(pts
-			(xy 261.62 68.58) (xy 261.62 71.12)
+			(xy 269.24 68.58) (xy 269.24 71.12)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "e9bb8192-b1b6-5268-8e63-b3a9b0ccc36c")
+		(uuid "b392e398-13b4-5986-9b26-fbffcb5f3aa4")
 	)
 	(symbol
 		(lib_id "ti135_card:GND")
-		(at 261.62 71.12 0)
+		(at 269.24 71.12 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "10e589a1-94b0-5fd7-bea7-8a021cb05d66")
-		(property "Reference" "#PWR013"
-			(at 261.62 77.47 0)
+		(uuid "e97bb175-4a27-5bb4-9739-ecba91003a3f")
+		(property "Reference" "#PWR014"
+			(at 269.24 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3928,7 +4302,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 261.62 74.93 0)
+			(at 269.24 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3936,7 +4310,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 261.62 71.12 0)
+			(at 269.24 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3945,7 +4319,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 261.62 71.12 0)
+			(at 269.24 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3954,7 +4328,7 @@
 			)
 		)
 		(property "Description" "Power symbol for net \"GND\" (IPC net name)"
-			(at 261.62 71.12 0)
+			(at 269.24 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3963,12 +4337,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "62fc7e52-42f5-5db4-91d8-40a0452f59f6")
+			(uuid "1f692f46-2c3a-56c8-a043-cd06454b253b")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
-					(reference "#PWR013")
+					(reference "#PWR014")
 					(unit 1)
 				)
 			)
@@ -3976,7 +4350,7 @@
 	)
 	(symbol
 		(lib_id "ti135_card:C")
-		(at 271.78 64.77 0)
+		(at 279.4 64.77 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3984,7 +4358,7 @@
 		(dnp no)
 		(uuid "12f242a7-4867-5942-a49c-63005aa9782a")
 		(property "Reference" "C313"
-			(at 276.52 63.5 0)
+			(at 284.14 63.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3992,7 +4366,7 @@
 			)
 		)
 		(property "Value" "22u"
-			(at 275.97 66.04 0)
+			(at 283.59 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4000,7 +4374,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
-			(at 272.7452 68.58 0)
+			(at 280.3652 68.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4009,7 +4383,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 271.78 64.77 0)
+			(at 279.4 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4018,7 +4392,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 271.78 64.77 0)
+			(at 279.4 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4043,45 +4417,51 @@
 	)
 	(wire
 		(pts
-			(xy 271.78 58.42) (xy 271.78 58.42)
+			(xy 279.4 58.42) (xy 279.4 58.42)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "ce8706a6-91a5-5646-8263-c1b7f3441106")
+		(uuid "79f99da8-2fb2-5ea2-9c30-8cb265887928")
 	)
 	(wire
 		(pts
-			(xy 271.78 58.42) (xy 271.78 60.96)
+			(xy 279.4 58.42) (xy 279.4 60.96)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "795be41d-7f0e-55d7-a357-01b0bab84c1d")
+		(uuid "bc3bf9d7-f646-5ae3-9f73-05196a8ef1df")
+	)
+	(junction
+		(at 279.4 58.42)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "705eb055-5bf0-591b-8dfc-d5c3117c0b58")
 	)
 	(wire
 		(pts
-			(xy 271.78 68.58) (xy 271.78 71.12)
+			(xy 279.4 68.58) (xy 279.4 71.12)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "d971881e-71f4-52b8-8c6f-83b0b8014088")
+		(uuid "86acc283-2de6-5270-b3b1-e59378579622")
 	)
 	(symbol
 		(lib_id "ti135_card:GND")
-		(at 271.78 71.12 0)
+		(at 279.4 71.12 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "e97bb175-4a27-5bb4-9739-ecba91003a3f")
-		(property "Reference" "#PWR014"
-			(at 271.78 77.47 0)
+		(uuid "74a5c27f-fd36-5578-a8ba-3ffe4441c1ec")
+		(property "Reference" "#PWR015"
+			(at 279.4 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4090,7 +4470,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 271.78 74.93 0)
+			(at 279.4 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4098,7 +4478,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 271.78 71.12 0)
+			(at 279.4 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4107,7 +4487,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 271.78 71.12 0)
+			(at 279.4 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4116,7 +4496,7 @@
 			)
 		)
 		(property "Description" "Power symbol for net \"GND\" (IPC net name)"
-			(at 271.78 71.12 0)
+			(at 279.4 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4125,12 +4505,164 @@
 			)
 		)
 		(pin "1"
-			(uuid "1f692f46-2c3a-56c8-a043-cd06454b253b")
+			(uuid "33bc3eba-0da1-530e-ba9c-3b55c087c558")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
-					(reference "#PWR014")
+					(reference "#PWR015")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ti135_card:C")
+		(at 289.56 64.77 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "06ab8ba2-d2d2-578d-b04b-6fa9cca83f9a")
+		(property "Reference" "C314"
+			(at 294.3 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "47u"
+			(at 293.75 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 290.5252 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 289.56 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 289.56 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a3688671-86dd-544d-8df5-5b670317c5bb")
+		)
+		(pin "2"
+			(uuid "f9ed1f05-5ad3-59fb-be47-40798eb67b7a")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
+					(reference "C314")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 289.56 58.42) (xy 289.56 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "319dfc54-bf14-59b9-850b-621bc4f01e90")
+	)
+	(wire
+		(pts
+			(xy 289.56 68.58) (xy 289.56 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3a29eb66-5b28-512b-97a6-88ce61dfc0e2")
+	)
+	(symbol
+		(lib_id "ti135_card:GND")
+		(at 289.56 71.12 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "46b884cf-e59a-5e6b-96b1-afea15afb9e0")
+		(property "Reference" "#PWR016"
+			(at 289.56 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 289.56 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 289.56 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 289.56 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol for net \"GND\" (IPC net name)"
+			(at 289.56 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f3ec644a-3ccd-5e62-8f0c-11d89950e3e8")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
+					(reference "#PWR016")
 					(unit 1)
 				)
 			)
@@ -4144,13 +4676,13 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "c3ffe447-53a4-58b1-a81b-7e5ba629695c")
+		(uuid "6b475564-f600-5d6c-8f6e-cc8ee81abfca")
 	)
 	(junction
 		(at 236.22 58.42)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "2edf0afe-f917-5237-b137-037f271435de")
+		(uuid "bb0932bb-c1c9-58bf-88ce-10205f4c857e")
 	)
 	(symbol
 		(lib_id "ti135_card:3V3")
@@ -4160,8 +4692,8 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "74a5c27f-fd36-5578-a8ba-3ffe4441c1ec")
-		(property "Reference" "#PWR015"
+		(uuid "854ecc50-0b7a-5f86-a876-21e40ea41572")
+		(property "Reference" "#PWR017"
 			(at 236.22 58.42 0)
 			(effects
 				(font
@@ -4206,12 +4738,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "33bc3eba-0da1-530e-ba9c-3b55c087c558")
+			(uuid "c6923bbf-ca67-534c-a5f9-e8cee6e8adb2")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
-					(reference "#PWR015")
+					(reference "#PWR017")
 					(unit 1)
 				)
 			)
@@ -4225,7 +4757,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "55c5b873-fe2f-5931-8d37-81eb0e2c6ed8")
+		(uuid "33a3fec2-6402-5554-b359-b1d561a02e17")
 	)
 	(symbol
 		(lib_id "ti135_card:PWR_FLAG")
@@ -4235,8 +4767,8 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "42885c35-8925-5d6d-bef9-33dbedf893c1")
-		(property "Reference" "#FLG016"
+		(uuid "ee74870a-22e3-5baa-a57b-d7d05b96663f")
+		(property "Reference" "#FLG018"
 			(at 241.935 54.61 0)
 			(effects
 				(font
@@ -4281,12 +4813,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "a83a09dc-0711-508c-938d-52de71ed5761")
+			(uuid "4f8d4a08-d54b-5d49-84c3-df7d5ad8a461")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
-					(reference "#FLG016")
+					(reference "#FLG018")
 					(unit 1)
 				)
 			)
@@ -4391,7 +4923,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "768ef2b7-5093-5501-b9b5-ccce0ab6dffc")
+		(uuid "8a690e16-06e0-5d83-b6cb-940878faf237")
 	)
 	(wire
 		(pts
@@ -4401,7 +4933,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "9fc2c17e-4b67-5c31-8be8-e3aa74795493")
+		(uuid "003c0f75-d4de-5268-a26d-e740a870802e")
 	)
 	(symbol
 		(lib_id "ti135_card:5V0")
@@ -4411,8 +4943,8 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "854ecc50-0b7a-5f86-a876-21e40ea41572")
-		(property "Reference" "#PWR017"
+		(uuid "dd214b9c-fdeb-5fe4-8bb7-68595d63cd5a")
+		(property "Reference" "#PWR019"
 			(at 43.18 138.43 0)
 			(effects
 				(font
@@ -4457,12 +4989,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "c6923bbf-ca67-534c-a5f9-e8cee6e8adb2")
+			(uuid "d255c662-be4b-53e0-b27e-ee03dc714a21")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
-					(reference "#PWR017")
+					(reference "#PWR019")
 					(unit 1)
 				)
 			)
@@ -4476,7 +5008,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "93a91c67-5a0b-5323-b416-0f4b6e39dc55")
+		(uuid "16e41932-5a7d-5d86-8c3c-c1e6bfe1519d")
 	)
 	(symbol
 		(lib_id "ti135_card:C")
@@ -4553,7 +5085,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "d4f2ec11-7b03-5e88-b4f3-37609dca3995")
+		(uuid "9b1845c6-be76-5c86-9816-bd519090984b")
 	)
 	(wire
 		(pts
@@ -4563,13 +5095,13 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "60226289-ab20-5175-a468-ae6fcf5f01c0")
+		(uuid "4929bcb5-9cbb-543f-937a-15b3798c497b")
 	)
 	(junction
 		(at 43.18 137.16)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "b392e398-13b4-5986-9b26-fbffcb5f3aa4")
+		(uuid "f5b389a1-13c8-54f9-a90a-45113d543729")
 	)
 	(wire
 		(pts
@@ -4579,7 +5111,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "79f99da8-2fb2-5ea2-9c30-8cb265887928")
+		(uuid "34cfda61-88c6-5ca9-a4c6-fe7575bd1de3")
 	)
 	(symbol
 		(lib_id "ti135_card:GND")
@@ -4589,8 +5121,8 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "1453cf92-2ee4-514b-acbd-e5bf5d1ae6c9")
-		(property "Reference" "#PWR018"
+		(uuid "9c8206d5-7f48-5de3-95f9-8c7b152593b0")
+		(property "Reference" "#PWR020"
 			(at 38.1 156.21 0)
 			(effects
 				(font
@@ -4635,12 +5167,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "e59e8643-cef3-5519-a0ff-0a615a4bf957")
+			(uuid "2de71c7a-4403-5c6c-b1bc-cbd9c043d231")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
-					(reference "#PWR018")
+					(reference "#PWR020")
 					(unit 1)
 				)
 			)
@@ -4654,7 +5186,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "bc3bf9d7-f646-5ae3-9f73-05196a8ef1df")
+		(uuid "6eca2988-3366-579c-a0bf-aa0c6714a348")
 	)
 	(hierarchical_label "pg_group1"
 		(shape passive)
@@ -4665,7 +5197,7 @@
 			)
 			(justify right)
 		)
-		(uuid "705eb055-5bf0-591b-8dfc-d5c3117c0b58")
+		(uuid "10f702e2-2b3d-5f3b-bff6-2803d42cf116")
 	)
 	(wire
 		(pts
@@ -4675,7 +5207,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "86acc283-2de6-5270-b3b1-e59378579622")
+		(uuid "82edec4a-0273-568a-ba85-a1f9698be72f")
 	)
 	(symbol
 		(lib_id "ti135_card:GND")
@@ -4685,8 +5217,8 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "dd214b9c-fdeb-5fe4-8bb7-68595d63cd5a")
-		(property "Reference" "#PWR019"
+		(uuid "3beb347c-1e3f-5d0f-a713-1acc12414023")
+		(property "Reference" "#PWR021"
 			(at 63.5 163.83 0)
 			(effects
 				(font
@@ -4731,12 +5263,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "d255c662-be4b-53e0-b27e-ee03dc714a21")
+			(uuid "cae4291a-df80-5ec5-a850-ac574095f56a")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
-					(reference "#PWR019")
+					(reference "#PWR021")
 					(unit 1)
 				)
 			)
@@ -4835,7 +5367,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "319dfc54-bf14-59b9-850b-621bc4f01e90")
+		(uuid "a8a3b732-577a-53cc-9513-b0dd9f4c630f")
 	)
 	(wire
 		(pts
@@ -4845,7 +5377,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "3a29eb66-5b28-512b-97a6-88ce61dfc0e2")
+		(uuid "c4a9229f-dfe4-5b47-84d7-2c0aea10a1ef")
 	)
 	(symbol
 		(lib_id "ti135_card:R")
@@ -4922,7 +5454,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "6b475564-f600-5d6c-8f6e-cc8ee81abfca")
+		(uuid "23044257-1698-56c8-b265-4cc551b0a268")
 	)
 	(wire
 		(pts
@@ -4932,7 +5464,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "bb0932bb-c1c9-58bf-88ce-10205f4c857e")
+		(uuid "bb6ff295-2eb6-56ba-8167-4e3b89470969")
 	)
 	(wire
 		(pts
@@ -4942,7 +5474,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "33a3fec2-6402-5554-b359-b1d561a02e17")
+		(uuid "60a806d7-077c-52bc-8386-97d7adbe7d0b")
 	)
 	(symbol
 		(lib_id "ti135_card:R")
@@ -5019,13 +5551,13 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "8a690e16-06e0-5d83-b6cb-940878faf237")
+		(uuid "27178582-3804-5cfc-b601-105240d29349")
 	)
 	(junction
 		(at 104.14 148.59)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "003c0f75-d4de-5268-a26d-e740a870802e")
+		(uuid "7e89b307-3cf9-5323-973d-49c17153f4cb")
 	)
 	(wire
 		(pts
@@ -5035,7 +5567,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "16e41932-5a7d-5d86-8c3c-c1e6bfe1519d")
+		(uuid "f6007bce-1f28-5d7f-9951-83a421244cc6")
 	)
 	(symbol
 		(lib_id "ti135_card:GND")
@@ -5045,8 +5577,8 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "9c8206d5-7f48-5de3-95f9-8c7b152593b0")
-		(property "Reference" "#PWR020"
+		(uuid "747bdae7-7adf-5b30-840b-bc915686dd9f")
+		(property "Reference" "#PWR022"
 			(at 104.14 166.37 0)
 			(effects
 				(font
@@ -5091,16 +5623,119 @@
 			)
 		)
 		(pin "1"
-			(uuid "2de71c7a-4403-5c6c-b1bc-cbd9c043d231")
+			(uuid "f91f2187-0ee9-5084-a290-6ec225cb2446")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
-					(reference "#PWR020")
+					(reference "#PWR022")
 					(unit 1)
 				)
 			)
 		)
+	)
+	(symbol
+		(lib_id "ti135_card:C")
+		(at 118.11 143.51 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "767a5f6e-ad6f-5d11-a5cb-32fe85f353db")
+		(property "Reference" "C334"
+			(at 122.85 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "22p"
+			(at 122.3 144.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 119.0752 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 118.11 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 118.11 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "79f6607b-b10c-554e-a41f-7e24f4994311")
+		)
+		(pin "2"
+			(uuid "762a65d7-2872-55a6-9130-61b78cf32d08")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
+					(reference "C334")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 118.11 137.16) (xy 118.11 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "424a9687-806a-5726-9835-379c94fdd5ac")
+	)
+	(junction
+		(at 118.11 137.16)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "7f249403-a8ed-50ff-ad6f-fb089ef3b2a5")
+	)
+	(wire
+		(pts
+			(xy 118.11 147.32) (xy 118.11 148.59)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f7ecd62f-bb44-5c23-9510-90abb32f8550")
+	)
+	(wire
+		(pts
+			(xy 118.11 148.59) (xy 104.14 148.59)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b3dc1938-89c8-51bf-a092-9802d0b4feb5")
 	)
 	(wire
 		(pts
@@ -5110,7 +5745,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "9b1845c6-be76-5c86-9816-bd519090984b")
+		(uuid "1bfb12d3-33ed-5a27-9db7-29a6d2887d51")
 	)
 	(wire
 		(pts
@@ -5120,7 +5755,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "4929bcb5-9cbb-543f-937a-15b3798c497b")
+		(uuid "f5ae2920-c7b6-5cbc-9e1e-18d728328ee3")
 	)
 	(wire
 		(pts
@@ -5130,7 +5765,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "f5b389a1-13c8-54f9-a90a-45113d543729")
+		(uuid "b3f515ea-156b-5746-ab24-f645489e9024")
 	)
 	(wire
 		(pts
@@ -5140,7 +5775,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "34cfda61-88c6-5ca9-a4c6-fe7575bd1de3")
+		(uuid "4ffd61e2-6b70-55a6-823e-bb1f3d60d414")
 	)
 	(hierarchical_label "pg_all"
 		(shape passive)
@@ -5151,27 +5786,27 @@
 			)
 			(justify left)
 		)
-		(uuid "6eca2988-3366-579c-a0bf-aa0c6714a348")
+		(uuid "cb78a00b-373a-5b63-8abd-5b06a6be1169")
 	)
 	(wire
 		(pts
-			(xy 104.14 137.16) (xy 121.92 137.16)
+			(xy 104.14 137.16) (xy 139.7 137.16)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "10f702e2-2b3d-5f3b-bff6-2803d42cf116")
+		(uuid "08da889f-38aa-5a0f-9ed3-c50f60254057")
 	)
 	(junction
 		(at 104.14 137.16)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "82edec4a-0273-568a-ba85-a1f9698be72f")
+		(uuid "4f7c3903-297c-5da0-8e2d-750c61afd84d")
 	)
 	(symbol
 		(lib_id "ti135_card:C")
-		(at 121.92 143.51 0)
+		(at 129.54 143.51 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5179,7 +5814,7 @@
 		(dnp no)
 		(uuid "b1315deb-cf4e-5622-90fb-7a04195721fa")
 		(property "Reference" "C332"
-			(at 126.66 142.24 0)
+			(at 134.28 142.24 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5187,7 +5822,7 @@
 			)
 		)
 		(property "Value" "22u"
-			(at 126.11 144.78 0)
+			(at 133.73 144.78 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5195,7 +5830,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
-			(at 122.8852 147.32 0)
+			(at 130.5052 147.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5204,7 +5839,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 121.92 143.51 0)
+			(at 129.54 143.51 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5213,7 +5848,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 121.92 143.51 0)
+			(at 129.54 143.51 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5238,35 +5873,41 @@
 	)
 	(wire
 		(pts
-			(xy 121.92 137.16) (xy 121.92 139.7)
+			(xy 129.54 137.16) (xy 129.54 139.7)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "a8a3b732-577a-53cc-9513-b0dd9f4c630f")
+		(uuid "bbb3ac1d-6590-5793-ac8d-587d5756eabe")
+	)
+	(junction
+		(at 129.54 137.16)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "8e8c1648-3ce0-5911-bd5b-ed91066357fb")
 	)
 	(wire
 		(pts
-			(xy 121.92 147.32) (xy 121.92 149.86)
+			(xy 129.54 147.32) (xy 129.54 149.86)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "c4a9229f-dfe4-5b47-84d7-2c0aea10a1ef")
+		(uuid "a9443762-31f2-5073-b684-118a104ea83b")
 	)
 	(symbol
 		(lib_id "ti135_card:GND")
-		(at 121.92 149.86 0)
+		(at 129.54 149.86 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "3beb347c-1e3f-5d0f-a713-1acc12414023")
-		(property "Reference" "#PWR021"
-			(at 121.92 156.21 0)
+		(uuid "31d6257f-6ae6-59ca-bdfb-a097db0a2201")
+		(property "Reference" "#PWR023"
+			(at 129.54 156.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5275,7 +5916,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 121.92 153.67 0)
+			(at 129.54 153.67 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5283,7 +5924,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 121.92 149.86 0)
+			(at 129.54 149.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5292,7 +5933,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 121.92 149.86 0)
+			(at 129.54 149.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5301,7 +5942,7 @@
 			)
 		)
 		(property "Description" "Power symbol for net \"GND\" (IPC net name)"
-			(at 121.92 149.86 0)
+			(at 129.54 149.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5310,12 +5951,164 @@
 			)
 		)
 		(pin "1"
-			(uuid "cae4291a-df80-5ec5-a850-ac574095f56a")
+			(uuid "eb6f5744-364b-5a7a-b4e9-113dcfb8518c")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
-					(reference "#PWR021")
+					(reference "#PWR023")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ti135_card:C")
+		(at 139.7 143.51 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "bee4cc80-d3ac-5e46-b5e5-c9c272c73639")
+		(property "Reference" "C333"
+			(at 144.44 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "47u"
+			(at 143.89 144.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 140.6652 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 139.7 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 139.7 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "9b3c8c91-11a3-5582-bc91-96ea42ec4426")
+		)
+		(pin "2"
+			(uuid "0b45a405-cc31-5f8e-b927-57511c7fa22a")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
+					(reference "C333")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 139.7 137.16) (xy 139.7 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a7eda603-366b-5a74-8a39-11f5e4af5976")
+	)
+	(wire
+		(pts
+			(xy 139.7 147.32) (xy 139.7 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6652fd9d-a178-5418-bcb4-d43bfb583451")
+	)
+	(symbol
+		(lib_id "ti135_card:GND")
+		(at 139.7 149.86 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "5052bd0d-bfba-5dd8-a021-930bf01fb11f")
+		(property "Reference" "#PWR024"
+			(at 139.7 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 139.7 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 139.7 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 139.7 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol for net \"GND\" (IPC net name)"
+			(at 139.7 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "20e36938-1a00-5b3f-ada7-20c8842a9bba")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
+					(reference "#PWR024")
 					(unit 1)
 				)
 			)
@@ -5329,13 +6122,13 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "23044257-1698-56c8-b265-4cc551b0a268")
+		(uuid "6a33c40d-c98d-5014-b405-baf1345dcc9b")
 	)
 	(junction
 		(at 96.52 137.16)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "bb6ff295-2eb6-56ba-8167-4e3b89470969")
+		(uuid "63b763c5-2ecc-5920-9d5a-7f9e68bca952")
 	)
 	(symbol
 		(lib_id "ti135_card:0V85")
@@ -5345,8 +6138,8 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "747bdae7-7adf-5b30-840b-bc915686dd9f")
-		(property "Reference" "#PWR022"
+		(uuid "4787a50f-45f7-576d-af3e-794283861ce4")
+		(property "Reference" "#PWR025"
 			(at 96.52 137.16 0)
 			(effects
 				(font
@@ -5391,12 +6184,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "f91f2187-0ee9-5084-a290-6ec225cb2446")
+			(uuid "a69f8b11-14cf-501b-96ab-c24c27ee5796")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
-					(reference "#PWR022")
+					(reference "#PWR025")
 					(unit 1)
 				)
 			)
@@ -5410,7 +6203,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "60a806d7-077c-52bc-8386-97d7adbe7d0b")
+		(uuid "d46fc53c-7114-545e-a92e-1418c59492e5")
 	)
 	(symbol
 		(lib_id "ti135_card:PWR_FLAG")
@@ -5420,8 +6213,8 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "6395459f-c8f6-58ae-b0c0-6027f45272ab")
-		(property "Reference" "#FLG023"
+		(uuid "f4039522-c7ab-5546-82af-019db9b7f7cc")
+		(property "Reference" "#FLG026"
 			(at 102.235 133.35 0)
 			(effects
 				(font
@@ -5466,12 +6259,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "af3d020d-3160-57e0-8e65-d9bef0229fad")
+			(uuid "57d46935-96b2-5993-b88d-25aeb78ae515")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
-					(reference "#FLG023")
+					(reference "#FLG026")
 					(unit 1)
 				)
 			)
@@ -5576,7 +6369,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "27178582-3804-5cfc-b601-105240d29349")
+		(uuid "3f54f09c-9374-50ff-94b4-1fb3cb2a8d7b")
 	)
 	(wire
 		(pts
@@ -5586,7 +6379,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "7e89b307-3cf9-5323-973d-49c17153f4cb")
+		(uuid "fd8b8967-c140-5d7c-a01d-9cc6780438fa")
 	)
 	(symbol
 		(lib_id "ti135_card:5V0")
@@ -5596,8 +6389,8 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "5052bd0d-bfba-5dd8-a021-930bf01fb11f")
-		(property "Reference" "#PWR024"
+		(uuid "824b5641-d804-5a08-a7d8-fc4a5829f10e")
+		(property "Reference" "#PWR027"
 			(at 182.88 138.43 0)
 			(effects
 				(font
@@ -5642,12 +6435,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "20e36938-1a00-5b3f-ada7-20c8842a9bba")
+			(uuid "e9e302f0-7730-5a1e-a60e-2274635fc687")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
-					(reference "#PWR024")
+					(reference "#PWR027")
 					(unit 1)
 				)
 			)
@@ -5661,7 +6454,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "f6007bce-1f28-5d7f-9951-83a421244cc6")
+		(uuid "d42dc9fb-f656-5463-b0bb-3055b3bcec0f")
 	)
 	(symbol
 		(lib_id "ti135_card:C")
@@ -5738,7 +6531,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "424a9687-806a-5726-9835-379c94fdd5ac")
+		(uuid "c0e94447-636e-58e1-8ebb-1e60b8b653c6")
 	)
 	(wire
 		(pts
@@ -5748,13 +6541,13 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "7f249403-a8ed-50ff-ad6f-fb089ef3b2a5")
+		(uuid "708e8753-c543-51a7-b0e1-39f3db419b5d")
 	)
 	(junction
 		(at 182.88 137.16)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "f7ecd62f-bb44-5c23-9510-90abb32f8550")
+		(uuid "626858e9-c915-593c-82e1-f9fdb6a5c3ee")
 	)
 	(wire
 		(pts
@@ -5764,7 +6557,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "b3dc1938-89c8-51bf-a092-9802d0b4feb5")
+		(uuid "a3dc5da8-670b-5897-bb23-3cc081ca5a0a")
 	)
 	(symbol
 		(lib_id "ti135_card:GND")
@@ -5774,8 +6567,8 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "4787a50f-45f7-576d-af3e-794283861ce4")
-		(property "Reference" "#PWR025"
+		(uuid "61fa8cb9-aa1b-5a70-b183-b2e10e97ef69")
+		(property "Reference" "#PWR028"
 			(at 177.8 156.21 0)
 			(effects
 				(font
@@ -5820,12 +6613,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "a69f8b11-14cf-501b-96ab-c24c27ee5796")
+			(uuid "28b09e98-92d4-56fe-97de-3728a8e41867")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
-					(reference "#PWR025")
+					(reference "#PWR028")
 					(unit 1)
 				)
 			)
@@ -5839,7 +6632,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "1bfb12d3-33ed-5a27-9db7-29a6d2887d51")
+		(uuid "a7330f14-5889-5027-b8fa-2b3bc3a3e86f")
 	)
 	(hierarchical_label "pg_group1"
 		(shape passive)
@@ -5850,7 +6643,7 @@
 			)
 			(justify right)
 		)
-		(uuid "f5ae2920-c7b6-5cbc-9e1e-18d728328ee3")
+		(uuid "e7464621-6504-5815-9154-f270f619d2e9")
 	)
 	(wire
 		(pts
@@ -5860,7 +6653,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "b3f515ea-156b-5746-ab24-f645489e9024")
+		(uuid "fc607c4c-35fe-5020-816c-346d08eabf7a")
 	)
 	(symbol
 		(lib_id "ti135_card:GND")
@@ -5870,8 +6663,8 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "d600360b-5baf-5cdf-8af0-fc91821e5482")
-		(property "Reference" "#PWR026"
+		(uuid "b9432d2f-e4ed-5c5b-b9f4-c2a28423c1b0")
+		(property "Reference" "#PWR029"
 			(at 203.2 163.83 0)
 			(effects
 				(font
@@ -5916,12 +6709,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "9518c731-4265-52b3-8c95-f35bc6e92772")
+			(uuid "4b85fdec-b52b-5fe3-9e5e-d2417194bad2")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
-					(reference "#PWR026")
+					(reference "#PWR029")
 					(unit 1)
 				)
 			)
@@ -6020,7 +6813,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "4ffd61e2-6b70-55a6-823e-bb1f3d60d414")
+		(uuid "5fc7ea93-1ce2-57b6-a593-59f12b73d6c3")
 	)
 	(wire
 		(pts
@@ -6030,7 +6823,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "cb78a00b-373a-5b63-8abd-5b06a6be1169")
+		(uuid "342ff4c3-ed53-50b6-b040-51ffbce620ab")
 	)
 	(symbol
 		(lib_id "ti135_card:R")
@@ -6107,7 +6900,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "08da889f-38aa-5a0f-9ed3-c50f60254057")
+		(uuid "b923b7bf-a09b-5569-b623-806442788b71")
 	)
 	(wire
 		(pts
@@ -6117,7 +6910,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "4f7c3903-297c-5da0-8e2d-750c61afd84d")
+		(uuid "ccd609d3-8b2a-5a93-bb0e-783e2d90a040")
 	)
 	(wire
 		(pts
@@ -6127,7 +6920,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "bbb3ac1d-6590-5793-ac8d-587d5756eabe")
+		(uuid "25d5432c-1faa-5293-a6cd-2f0e77d6fd73")
 	)
 	(symbol
 		(lib_id "ti135_card:R")
@@ -6204,13 +6997,13 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "8e8c1648-3ce0-5911-bd5b-ed91066357fb")
+		(uuid "217c8253-f7a5-57bb-b749-e25e635eb648")
 	)
 	(junction
 		(at 243.84 148.59)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "a9443762-31f2-5073-b684-118a104ea83b")
+		(uuid "ecc6a392-7b6d-5305-8ff4-9ca893fe3966")
 	)
 	(wire
 		(pts
@@ -6220,7 +7013,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "a7eda603-366b-5a74-8a39-11f5e4af5976")
+		(uuid "d6e492d0-5cfd-5a96-864d-e5962d9a06f3")
 	)
 	(symbol
 		(lib_id "ti135_card:GND")
@@ -6230,8 +7023,8 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "824b5641-d804-5a08-a7d8-fc4a5829f10e")
-		(property "Reference" "#PWR027"
+		(uuid "5b098635-ae3a-5f5f-8b18-4334b4e5b7fa")
+		(property "Reference" "#PWR030"
 			(at 243.84 166.37 0)
 			(effects
 				(font
@@ -6276,16 +7069,119 @@
 			)
 		)
 		(pin "1"
-			(uuid "e9e302f0-7730-5a1e-a60e-2274635fc687")
+			(uuid "51b1e79b-8bfa-5556-9760-f97f32292d13")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
-					(reference "#PWR027")
+					(reference "#PWR030")
 					(unit 1)
 				)
 			)
 		)
+	)
+	(symbol
+		(lib_id "ti135_card:C")
+		(at 257.81 143.51 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "2a2b1baa-ae4c-5e2b-b79c-75d196d324b3")
+		(property "Reference" "C345"
+			(at 262.55 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "22p"
+			(at 262 144.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 258.7752 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 257.81 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 257.81 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "70738372-9e7e-53d4-8249-1cabc045da46")
+		)
+		(pin "2"
+			(uuid "c375a2c9-9b6b-50b4-aed7-36576dca6627")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
+					(reference "C345")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 257.81 137.16) (xy 257.81 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "479c8ab3-4463-577b-bdb8-779c2d7ad1fd")
+	)
+	(junction
+		(at 257.81 137.16)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "9df60ca8-c0c4-5b22-86aa-ba5b7e2b77b1")
+	)
+	(wire
+		(pts
+			(xy 257.81 147.32) (xy 257.81 148.59)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ec9ae30c-bb57-5ec5-82c2-f73bf0c5273d")
+	)
+	(wire
+		(pts
+			(xy 257.81 148.59) (xy 243.84 148.59)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7e89e4a8-9fdd-5fc4-b765-293ca2345e0d")
 	)
 	(wire
 		(pts
@@ -6295,7 +7191,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "6652fd9d-a178-5418-bcb4-d43bfb583451")
+		(uuid "dd1cd249-dd91-5283-a8e0-329029cd88c2")
 	)
 	(wire
 		(pts
@@ -6305,7 +7201,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "6a33c40d-c98d-5014-b405-baf1345dcc9b")
+		(uuid "af08d8e2-5451-567c-a951-9e9a1a2cbf18")
 	)
 	(wire
 		(pts
@@ -6315,7 +7211,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "63b763c5-2ecc-5920-9d5a-7f9e68bca952")
+		(uuid "3fed8dac-2a07-5c29-9f75-8044b69913b8")
 	)
 	(wire
 		(pts
@@ -6325,7 +7221,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "d46fc53c-7114-545e-a92e-1418c59492e5")
+		(uuid "05e38078-6e7f-59ae-be54-12859fd2ca54")
 	)
 	(hierarchical_label "pg_all"
 		(shape passive)
@@ -6336,27 +7232,27 @@
 			)
 			(justify left)
 		)
-		(uuid "3f54f09c-9374-50ff-94b4-1fb3cb2a8d7b")
+		(uuid "b1266e66-da35-5c63-abe0-1ab8ca978abc")
 	)
 	(wire
 		(pts
-			(xy 243.84 137.16) (xy 271.78 137.16)
+			(xy 243.84 137.16) (xy 289.56 137.16)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "fd8b8967-c140-5d7c-a01d-9cc6780438fa")
+		(uuid "e3f5fbff-cf4e-5a37-9026-acbdecf0c822")
 	)
 	(junction
 		(at 243.84 137.16)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "d42dc9fb-f656-5463-b0bb-3055b3bcec0f")
+		(uuid "c5d511cb-010b-5ee6-8748-cc84e8acfcc6")
 	)
 	(symbol
 		(lib_id "ti135_card:C")
-		(at 261.62 143.51 0)
+		(at 269.24 143.51 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6364,7 +7260,7 @@
 		(dnp no)
 		(uuid "ceb8ee7c-4e51-5182-8fa0-4b0f3cc4693b")
 		(property "Reference" "C342"
-			(at 266.36 142.24 0)
+			(at 273.98 142.24 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6372,7 +7268,7 @@
 			)
 		)
 		(property "Value" "22u"
-			(at 265.81 144.78 0)
+			(at 273.43 144.78 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6380,7 +7276,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
-			(at 262.5852 147.32 0)
+			(at 270.2052 147.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6389,7 +7285,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 261.62 143.51 0)
+			(at 269.24 143.51 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6398,7 +7294,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 261.62 143.51 0)
+			(at 269.24 143.51 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6423,41 +7319,41 @@
 	)
 	(wire
 		(pts
-			(xy 261.62 137.16) (xy 261.62 139.7)
+			(xy 269.24 137.16) (xy 269.24 139.7)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "c0e94447-636e-58e1-8ebb-1e60b8b653c6")
+		(uuid "946f54a8-1278-5e68-92c0-457bdeda6f79")
 	)
 	(junction
-		(at 261.62 137.16)
+		(at 269.24 137.16)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "708e8753-c543-51a7-b0e1-39f3db419b5d")
+		(uuid "5acfe722-aae3-5b2a-920d-6ef824c38611")
 	)
 	(wire
 		(pts
-			(xy 261.62 147.32) (xy 261.62 149.86)
+			(xy 269.24 147.32) (xy 269.24 149.86)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "626858e9-c915-593c-82e1-f9fdb6a5c3ee")
+		(uuid "e1a61237-54a7-5cb5-a5c4-81ce15d4c311")
 	)
 	(symbol
 		(lib_id "ti135_card:GND")
-		(at 261.62 149.86 0)
+		(at 269.24 149.86 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "61fa8cb9-aa1b-5a70-b183-b2e10e97ef69")
-		(property "Reference" "#PWR028"
-			(at 261.62 156.21 0)
+		(uuid "2fbdf656-78d0-5745-8898-49c2dcc76da9")
+		(property "Reference" "#PWR031"
+			(at 269.24 156.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6466,7 +7362,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 261.62 153.67 0)
+			(at 269.24 153.67 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6474,7 +7370,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 261.62 149.86 0)
+			(at 269.24 149.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6483,7 +7379,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 261.62 149.86 0)
+			(at 269.24 149.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6492,7 +7388,7 @@
 			)
 		)
 		(property "Description" "Power symbol for net \"GND\" (IPC net name)"
-			(at 261.62 149.86 0)
+			(at 269.24 149.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6501,12 +7397,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "28b09e98-92d4-56fe-97de-3728a8e41867")
+			(uuid "d77c1b1b-7e4e-539e-bad3-96b295ce266f")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
-					(reference "#PWR028")
+					(reference "#PWR031")
 					(unit 1)
 				)
 			)
@@ -6514,7 +7410,7 @@
 	)
 	(symbol
 		(lib_id "ti135_card:C")
-		(at 271.78 143.51 0)
+		(at 279.4 143.51 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6522,7 +7418,7 @@
 		(dnp no)
 		(uuid "250a18b0-4441-5e75-a5cc-8968a930a7f4")
 		(property "Reference" "C343"
-			(at 276.52 142.24 0)
+			(at 284.14 142.24 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6530,7 +7426,7 @@
 			)
 		)
 		(property "Value" "22u"
-			(at 275.97 144.78 0)
+			(at 283.59 144.78 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6538,7 +7434,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
-			(at 272.7452 147.32 0)
+			(at 280.3652 147.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6547,7 +7443,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 271.78 143.51 0)
+			(at 279.4 143.51 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6556,7 +7452,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 271.78 143.51 0)
+			(at 279.4 143.51 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6581,45 +7477,51 @@
 	)
 	(wire
 		(pts
-			(xy 271.78 137.16) (xy 271.78 137.16)
+			(xy 279.4 137.16) (xy 279.4 137.16)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "a3dc5da8-670b-5897-bb23-3cc081ca5a0a")
+		(uuid "51fab26d-9889-58ca-94db-42f6c328d48c")
 	)
 	(wire
 		(pts
-			(xy 271.78 137.16) (xy 271.78 139.7)
+			(xy 279.4 137.16) (xy 279.4 139.7)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "a7330f14-5889-5027-b8fa-2b3bc3a3e86f")
+		(uuid "242a3ccc-9cef-5bdf-9f0c-2ffb7b02099b")
+	)
+	(junction
+		(at 279.4 137.16)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "cfe9cd90-63cf-5e2c-bf62-1f68efb5ce73")
 	)
 	(wire
 		(pts
-			(xy 271.78 147.32) (xy 271.78 149.86)
+			(xy 279.4 147.32) (xy 279.4 149.86)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "e7464621-6504-5815-9154-f270f619d2e9")
+		(uuid "cd8522dc-3239-5414-b9d1-9390d2351cef")
 	)
 	(symbol
 		(lib_id "ti135_card:GND")
-		(at 271.78 149.86 0)
+		(at 279.4 149.86 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "b9432d2f-e4ed-5c5b-b9f4-c2a28423c1b0")
-		(property "Reference" "#PWR029"
-			(at 271.78 156.21 0)
+		(uuid "6eb5a2cc-7449-5d16-b26a-4cd629ff7162")
+		(property "Reference" "#PWR032"
+			(at 279.4 156.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6628,7 +7530,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 271.78 153.67 0)
+			(at 279.4 153.67 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6636,7 +7538,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 271.78 149.86 0)
+			(at 279.4 149.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6645,7 +7547,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 271.78 149.86 0)
+			(at 279.4 149.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6654,7 +7556,7 @@
 			)
 		)
 		(property "Description" "Power symbol for net \"GND\" (IPC net name)"
-			(at 271.78 149.86 0)
+			(at 279.4 149.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6663,12 +7565,164 @@
 			)
 		)
 		(pin "1"
-			(uuid "4b85fdec-b52b-5fe3-9e5e-d2417194bad2")
+			(uuid "9b73f420-0ef2-5132-8295-c491aa003a26")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
-					(reference "#PWR029")
+					(reference "#PWR032")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ti135_card:C")
+		(at 289.56 143.51 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "81aa142c-9935-5381-bdba-62f28b5b45d1")
+		(property "Reference" "C344"
+			(at 294.3 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "47u"
+			(at 293.75 144.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 290.5252 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 289.56 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 289.56 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "85e1f233-bd00-5047-81d6-9c69883af209")
+		)
+		(pin "2"
+			(uuid "67d9afc7-3ddf-54af-be15-067bf359c557")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
+					(reference "C344")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 289.56 137.16) (xy 289.56 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b03cfecd-d57b-5b5b-855b-25547a13052d")
+	)
+	(wire
+		(pts
+			(xy 289.56 147.32) (xy 289.56 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ac7b365e-6c30-5df7-b396-588bbee844ac")
+	)
+	(symbol
+		(lib_id "ti135_card:GND")
+		(at 289.56 149.86 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "24d6b662-f517-5964-b718-287aefe63fc9")
+		(property "Reference" "#PWR033"
+			(at 289.56 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 289.56 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 289.56 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 289.56 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol for net \"GND\" (IPC net name)"
+			(at 289.56 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "fa9639e5-786a-5d0d-a010-9e6325c4eb02")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
+					(reference "#PWR033")
 					(unit 1)
 				)
 			)
@@ -6682,13 +7736,13 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "fc607c4c-35fe-5020-816c-346d08eabf7a")
+		(uuid "67e67d3f-e2ca-572a-b651-6a1e6750f9e7")
 	)
 	(junction
 		(at 236.22 137.16)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "5fc7ea93-1ce2-57b6-a593-59f12b73d6c3")
+		(uuid "197087ee-f4da-5b21-b50a-8c875e1aa629")
 	)
 	(symbol
 		(lib_id "ti135_card:1V1")
@@ -6698,8 +7752,8 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "5b098635-ae3a-5f5f-8b18-4334b4e5b7fa")
-		(property "Reference" "#PWR030"
+		(uuid "7433284b-8eb4-5869-9754-191cd6bd60aa")
+		(property "Reference" "#PWR034"
 			(at 236.22 137.16 0)
 			(effects
 				(font
@@ -6744,12 +7798,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "51b1e79b-8bfa-5556-9760-f97f32292d13")
+			(uuid "a32348e1-05d5-5b41-9a9a-4bf4fb1dc585")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
-					(reference "#PWR030")
+					(reference "#PWR034")
 					(unit 1)
 				)
 			)
@@ -6763,7 +7817,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "342ff4c3-ed53-50b6-b040-51ffbce620ab")
+		(uuid "1eda327c-73a0-5a66-af6f-7c9d232f8d92")
 	)
 	(symbol
 		(lib_id "ti135_card:PWR_FLAG")
@@ -6773,8 +7827,8 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "693f3407-0105-5e34-b5dc-867fd3e1dd1b")
-		(property "Reference" "#FLG031"
+		(uuid "f14cfee9-2e05-5476-b771-c62813a8d002")
+		(property "Reference" "#FLG035"
 			(at 241.935 133.35 0)
 			(effects
 				(font
@@ -6819,12 +7873,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "861fa345-e1ab-52a3-8bfa-8445449a1d6d")
+			(uuid "d344b87c-d48e-58a9-bb13-b32895106ac1")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
-					(reference "#FLG031")
+					(reference "#FLG035")
 					(unit 1)
 				)
 			)

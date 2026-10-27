@@ -4,7 +4,7 @@
 Wiring as on Efinix's Ti375C529 kit (TI135_PCB_NOTES.md §6.1): one CA bus / CK / CKE0 / RESET shared by
 channels A and B; CS_N[0] -> CS0_A, CS_N[2] -> CS0_B; CKE[1], CS_N[1], CS_N[3] unused (single rank).
 FPGA byte 0/1 -> channel A byte 0/1, byte 2/3 -> channel B byte 0/1; DQ bits swizzled within each byte per
-efinity/pinplan/lpddr4_swizzle.json (LPDDR4_SWIZZLE.md). DDR_CAL 240 R 1 % to GND,
+efinity/pinplan/lpddr4_swizzle.json (LPDDR4_SWIZZLE.md). DDR_CAL 240 R 0.1 % to GND (Efinix checklist),
 ZQ0 240 R 1 % to VDDQ (1V1), ODT_CA_A/B to VDD2 (1V1, as on the Agilex card).
 Net names ddr_dq0..31 / ddr_dm0..3 / ddr_dqs<n>_P/N / ddr_ck_P/N / ddr_ca0..5 keep the Agilex LPDDR4 net-class
 patterns. Swizzling (DQ within a byte, CA) is allowed only as in TI135_PCB_NOTES.md §6.2. A swap made in layout is
@@ -77,7 +77,8 @@ for ball, name in pin_names("Ti135N484I3", 1).items():
     elif name == "DDR_CAL":
         q = right(p, 20)
         sh.wire(p, q)
-        _, t, b = vert2(sh, "R", "R801", q[0], q[1] + g(5), "240R 1%", text="right")
+        _, t, b = vert2(sh, "R", "R801", q[0], q[1] + g(5), "240R 0.1%", text="right",
+                       fields={"MPN": "RT0402BRD07240RL", "LCSC": "C852660"})
         sh.wire(q, t); sh.wire(b, down(b, 2)); power_at(sh, "GND", down(b, 2), "down")
     elif name in UNUSED_FPGA:
         sh.no_connect(*p)

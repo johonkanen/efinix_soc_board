@@ -15292,5 +15292,209 @@
 		)
 		(uuid "4bbfbf01-ca74-54e6-be9b-5ca2e0391b3d")
 	)
+	(hierarchical_label "fpga_ssu_n"
+		(shape passive)
+		(at 177.8 195.58 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "6d038ec3-8641-5be7-a839-a49ef57b6422")
+	)
+	(wire
+		(pts
+			(xy 177.8 195.58) (xy 177.8 193.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "faec9387-e8a4-5ac8-9ff5-5d89f53efbc7")
+	)
+	(label "fpga_ssu_n"
+		(at 177.8 193.04 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "f07672ed-c49a-5730-8ebb-dc3465ac8691")
+	)
+	(symbol
+		(lib_id "ti135_card:R")
+		(at 190.5 177.8 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d1d5915a-ad79-5200-92a7-f76cbdb005e7")
+		(property "Reference" "R622"
+			(at 195.24 176.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10k"
+			(at 194.69 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 188.722 177.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 190.5 177.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 190.5 177.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a3e02c76-274a-5692-824f-755219bc8285")
+		)
+		(pin "2"
+			(uuid "e25788f8-eada-59b1-8bb4-2fc8465da4af")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/005bb34e-5019-4cde-82e0-1ce10912d4b9"
+					(reference "R622")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 190.5 173.99) (xy 190.5 171.45)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e028d5d1-3d13-5bde-921f-251ab843be66")
+	)
+	(symbol
+		(lib_id "ti135_card:1V8")
+		(at 190.5 171.45 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "fff3df9d-23db-5abe-9ce0-95a16894a249")
+		(property "Reference" "#PWR027"
+			(at 190.5 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "1V8"
+			(at 190.5 167.894 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 190.5 171.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 190.5 171.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol for net \"1V8\" (IPC net name)"
+			(at 190.5 171.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "76563b8b-e4b9-5848-b24b-d01d2e66a2af")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/005bb34e-5019-4cde-82e0-1ce10912d4b9"
+					(reference "#PWR027")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 190.5 181.61) (xy 190.5 184.15)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7a1a80e1-c85f-5d92-aeab-615da59e22f1")
+	)
+	(label "fpga_ssu_n"
+		(at 190.5 184.15 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "54d447be-265c-5d62-b901-642f9dfdc034")
+	)
+	(text "SSU_N: weak pull-up (checklist)"
+		(exclude_from_sim no)
+		(at 170.18 162.56 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "708dbd0c-47fb-5709-a852-d3616417787d")
+	)
 	(embedded_fonts no)
 )

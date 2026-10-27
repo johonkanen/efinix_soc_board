@@ -88,8 +88,9 @@ C1206 = "Capacitor_SMD:C_1206_3216Metric"
 C0201 = "Capacitor_SMD:C_0201_0603Metric"
 
 
-def cap_row(sh, x, y, rail, caps, title=None, gnd="GND", pitch=None):
-    """One decoupling row: rail symbol above, GND below, caps = [(ref, value, footprint or None)]."""
+def cap_row(sh, x, y, rail, caps, title=None, gnd="GND", pitch=None, label=False):
+    """One decoupling row: rail symbol above, GND below, caps = [(ref, value, footprint or None)].
+    label=True: the rail is a local net (net label above) instead of a power symbol."""
     pitch = pitch or g(7)
     if title:
         sh.text(title, x + g(4), y - g(10))
@@ -104,7 +105,11 @@ def cap_row(sh, x, y, rail, caps, title=None, gnd="GND", pitch=None):
             if k < len(caps) - 1:
                 sh.junction(*t); sh.junction(*b)
         else:
-            power_at(sh, rail, up(t, 2), "up"); sh.wire(t, up(t, 2))
+            if label:
+                sh.label(rail, *up(t, 2), 90)
+            else:
+                power_at(sh, rail, up(t, 2), "up")
+            sh.wire(t, up(t, 2))
             power_at(sh, gnd, down(b, 2), "down"); sh.wire(b, down(b, 2))
             if len(caps) > 1:
                 sh.junction(*t); sh.junction(*b)
