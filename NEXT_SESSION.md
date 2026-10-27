@@ -163,3 +163,34 @@ Done when: those checks are scripted and pass; DRC clean.
   big meanders in an open band between the parts (`tools/render_ddr.py ... U20 U23`).
 - Branches: `ddr-option2` (LPDDR4 candidate), `io-sketch` (IO sketch); tag `ddr40-before-reroute` (the LPDDR4
   before option 2).
+
+## Handing over to the next phase
+
+At the end of each phase the agent's report ends with **the prompt for the next phase**, in a code block, ready for
+the user to paste into a fresh session. Keep it in the same form as the one below (update the phase number, the
+files to read and any decision the user made in the review), and replace the block here at the same time.
+
+Next prompt (phase 2):
+
+```
+Read NEXT_SESSION.md, then the files it lists under "Read first"
+(STATUS.md, HW_CHECKLIST_REVIEW.md, TI135_PCB_NOTES.md §6, KRT_LEARNING.md).
+
+Do Phase 2 only, following that file's steps, rules and "done when" check.
+Phase 1's result and its gotchas are in the Phase 1 section (e.g. copy .kicad_pro/.kicad_dru beside
+every board under work/ before widen.py).
+- Follow the "Rules" section strictly: never modify ~/dev/agilex3_soc_control_card;
+  check that KiCad is closed (no kicad/~ti135_card.kicad_pro.lck) before writing under
+  kicad/; schematics only through tools/sheets/*.py; work on copies under work/ and
+  copy into kicad/ only when it grades clean.
+- Use the existing tools from the "Tools" table before writing new ones.
+- If a step needs a decision that NEXT_SESSION.md does not cover, stop and ask me
+  instead of guessing.
+
+When the phase is done (or blocked): commit with the trailer from the file, git push,
+update NEXT_SESSION.md and STATUS.md, then stop and report:
+- what was done, with the numbers from the "done when" check (DRC, timing),
+- anything that did not meet the check and why,
+- anything you want me to decide or review in KiCad,
+- the prompt for the next phase (see "Handing over to the next phase").
+```
