@@ -399,6 +399,15 @@ LPDDR4 bytes route directly from the via on In2 or In5, so each byte stays on on
   hole clearance.
 - Test: byte 1 alone, In2 only, 0.1 mm: 9 of 11 nets routed in 1 s (DQ8/DQ9 next to the 0V85 row left open).
 
+- **0201 decaps on via pairs (2026-10-27):** the 37 × 100 nF in `05_fpga_power` are 0201
+  (`tools/sheets/05_fpga_power.py`; e.g. GRM033R60J104KE19D, LCSC C76928, JLC extended).
+  - Neither an 0201 nor an 0402 fits between the 0.3 mm vias on the 0.8 mm grid (0.5 mm free).
+  - An 0201 sits with its pads straight on an adjacent rail/GND via pair, the shortest loop there is
+    (`tools/place_bga_decaps.py`): VCORE 9/9, 0V85 5/5, 1V1 8/8, 1V8 5/7 (pair spots ran out); 3V3 has none.
+  - The 1 µF / 4.7 µF 0402s under U501 went onto the remaining pairs or the nearest free spot.
+  - `tools/swap_footprint.py` swaps a footprint on the board after a generator change, keeping nets, fields and
+    the schematic link.
+
 ### 6.8 Regulator cells (B.Cu, 2026-10-25)
 
 The five TLV62585 cells follow TI SLVSDE5F Figure 24: CIN across VIN/GND, the inductor straight out from SW, COUT on

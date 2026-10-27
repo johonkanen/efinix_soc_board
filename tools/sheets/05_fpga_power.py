@@ -82,7 +82,8 @@ sh.text("U501 GND: 131 balls (stacked pin). Every GND ball to the GND plane with
 place_unit(sh, "Ti135N484I3", "U501", g(300), g(110), 9)
 sh.text("U501 unused: transceivers Q0/Q1 and MIPI1 (pins typed no-connect, leave open; their supplies too)", g(256), g(84))
 
-# decoupling rows (rail above, GND below)
+# decoupling rows (rail above, GND below). The 100n are 0201: under U501 their pads sit straight on a rail/GND
+# via pair (0.8 mm pitch, via-in-pad), which an 0402 does not leave room for between the vias (2026-10-27)
 def caps(spec):
     out = []
     for val, n, fp in spec:
@@ -92,13 +93,13 @@ def caps(spec):
 
 ROWS = [
     ("VCORE", "VCORE (VCC x31, VDD_SOC x3, VCC18A_MIPI x2): 2 x 22u, 4 x 4u7, 12 x 100n",
-     [("22u", 2, C0805), ("4u7", 4, None), ("100n", 12, None)]),
-    ("0V85", "0V85 VDD_PHY_DDR x15: 10u, 4 x 1u, 6 x 100n", [("10u", 1, C0805), ("1u", 4, None), ("100n", 6, None)]),
+     [("22u", 2, C0805), ("4u7", 4, None), ("100n", 12, C0201)]),
+    ("0V85", "0V85 VDD_PHY_DDR x15: 10u, 4 x 1u, 6 x 100n", [("10u", 1, C0805), ("1u", 4, None), ("100n", 6, C0201)]),
     ("1V1", "1V1 VDDQ/VDDQX/VDDQ_CK_PHY_DDR x24: 10u, 4 x 1u, 8 x 100n",
-     [("10u", 1, C0805), ("1u", 4, None), ("100n", 8, None)]),
+     [("10u", 1, C0805), ("1u", 4, None), ("100n", 8, C0201)]),
     ("1V8", "1V8 VCCAUX x4, VCCIO 2A/2B/2C/4A/4B x11: 10u, 2 x 4u7, 8 x 100n",
-     [("10u", 1, C0805), ("4u7", 2, None), ("100n", 8, None)]),
-    ("3V3", "3V3 VCCIO33 BR0 / BR1_BL3 / TR1: 4u7, 3 x 100n", [("4u7", 1, None), ("100n", 3, None)]),
+     [("10u", 1, C0805), ("4u7", 2, None), ("100n", 8, C0201)]),
+    ("3V3", "3V3 VCCIO33 BR0 / BR1_BL3 / TR1: 4u7, 3 x 100n", [("4u7", 1, None), ("100n", 3, C0201)]),
 ]
 for k, (rail, title, spec) in enumerate(ROWS):
     x, y = (g(30), g(112) + k * g(26)) if k < 3 else (g(205), g(172) + (k - 3) * g(26))
