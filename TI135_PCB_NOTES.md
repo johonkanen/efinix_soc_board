@@ -407,6 +407,10 @@ LPDDR4 bytes route directly from the via on In2 or In5, so each byte stays on on
   - The 1 µF / 4.7 µF 0402s under U501 went onto the remaining pairs or the nearest free spot.
   - `tools/swap_footprint.py` swaps a footprint on the board after a generator change, keeping nets, fields and
     the schematic link.
+- **Efinix decoupling table in full (2026-10-27, phase 3):** 40 more 0201s (10n/1n/100n) and 20 0402s under or
+  around U501, 13 bulk 0805/1206 at the BGA's edges. 14 0201s found a free via pair (VCORE 10, 1V1 3, 0V85 1); the
+  rest sit at the nearest free spot to their rail's balls (`tools/place_free.py`). VCCA_BL's caps are 5–6 mm from its
+  ball R8: the area round it is full.
 
 ### 6.8 Regulator cells (B.Cu, 2026-10-25)
 

@@ -1,6 +1,6 @@
 # Status and handoff
 
-Last updated: **2026-10-27** (phase 3 half done: checklist fixes in the schematic, board placement of the 84 new parts still to do; NEXT_SESSION.md phase 3 "Where it stopped"). Read this first if you are picking the work up (human or agent).
+Last updated: **2026-10-27** (phase 3 done: checklist fixes in the schematic and the 84 new parts placed on the board; next is phase 4, CK/CA on one layer; NEXT_SESSION.md). Read this first if you are picking the work up (human or agent).
 
 ## What this repository is
 
@@ -53,11 +53,12 @@ card, and plugs into the same baseboard.
 
 **Planes, BGA fan-out (via-in-pad) and regulator cell copper done** (TI135_PCB_NOTES.md §6.6–6.8).
 
-**Checklist fixes (2026-10-27, phase 3, half done):** schematic done: R801 240R 0.1 %, SSU_N pull-up R622, Efinix
-decoupling table in full (C5001–C5073, sheet 05 now A2), 47u + 22p feed-forward per TLV62585 cell (the data sheet
-asks for a feed-forward cap above 47 µF; user decision). ERC unchanged (two known notes). **The board in kicad/ is not
-updated yet:** until the new parts are placed, DRC parity reports them as missing. Placement is under way in `work/p3/`
-(NEXT_SESSION.md phase 3).
+**Checklist fixes (2026-10-27, phase 3, done):** R801 240R 0.1 %, SSU_N pull-up R622, Efinix decoupling table in
+full (C5001–C5073, sheet 05 now A2), 47u + 22p feed-forward per TLV62585 cell (the data sheet asks for a feed-forward
+cap above 47 µF; user decision). On the board all 84 new parts sit on B.Cu: 14 0201s on rail/GND via pairs under
+U501, the rest at the nearest free spot to their rail's balls, the 47u/22p in the regulator cells. LPDDR4 copper
+untouched (grade.sh as after phase 2), schematic parity 0, ERC unchanged (two known notes); the new caps are not yet
+tied to their rails (unconnected 615 → 734, phase 5). Details: NEXT_SESSION.md phase 3.
 
 **LPDDR4 clean-up (2026-10-27, phase 2):** every DDR segment at the 40 Ω width (0 mm below the minimum; 10 nets
 re-routed at width, dm0/dq1 meandered, DQS0 re-routed as a pair). Die to die, path model / KiCad: DQ/DM–DQS within

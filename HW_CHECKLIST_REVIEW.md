@@ -6,15 +6,16 @@ Source: *Hardware Design Checklist and Guidelines*, generated for **Ti135 N484, 
 
 ## To act on
 
-**2026-10-27 (phase 3):** items 1–4 are done in the schematic (R801 0.1 %, R622 SSU_N pull-up, C5001–C5073, a
-47u + 22p feed-forward per regulator). Board placement is pending (NEXT_SESSION.md phase 3).
+**2026-10-27 (phase 3, done):** items 1–4 are done in the schematic and on the board (R801 0.1 %, R622 SSU_N
+pull-up, C5001–C5073, a 47u + 22p feed-forward per regulator; placement in NEXT_SESSION.md phase 3). The new caps
+are placed but not yet tied to their rails by copper, except the 14 0201s sitting on via pairs: phase 5 routes them.
 
 | # | Item | Checklist | This card | |
 |---|---|---|---|---|
-| 1 | DDR_CAL (Y9) | 240 Ω **±0.1 %** to GND, close to the pin | R801 240 Ω **1 %** | ✗ change to 0.1 % |
-| 2 | SSU_N (L4) | weak pull-up | unconnected | ~ add 10 k to 1V8 (x8 chip select; unused in x4 mode, but listed) |
-| 3 | Decoupling per rail | table below | fewer bulk caps, no 10 nF / 1 nF parts | ✗ see "Decoupling" |
-| 4 | Energy storage | ≥ 1 × 47 µF at each regulator output | 22 µF outputs (VCORE 4 × 22 µF, 1V8 2 × 22, 3V3 2 × 22, 0V85 22 + 10, 1V1 2 × 22 + 3 × 10) | ✗ add 47 µF per regulator (TLV62585 tolerates the extra output capacitance; check its loop stability limit) |
+| 1 | DDR_CAL (Y9) | 240 Ω **±0.1 %** to GND, close to the pin | R801 240 Ω **0.1 %** (RT0402BRD07240RL, C852660) | ✓ (phase 3) |
+| 2 | SSU_N (L4) | weak pull-up | R622 10 k to 1V8 (B.Cu, 4.6 mm from L4) | ✓ (phase 3; x8 chip select, unused in x4 mode) |
+| 3 | Decoupling per rail | table below | the table in full: C5001–C5073 added ("Missing" column below) | ✓ (phase 3; copper in phase 5) |
+| 4 | Energy storage | ≥ 1 × 47 µF at each regulator output | 47 µF per cell (C204, C304 from the table; C314, C333, C344 new) + a 22 pF feed-forward across R1 (C205/C305/C315/C334/C345: TLV62585 data sheet, > 47 µF output) | ✓ (phase 3; check loop stability at bring-up) |
 | 5 | DDR byte group on one layer; CK/A/CKE/CS on one layer | required | main: bytes spread over 3–4 layers, CA over In5/In2/F. `ddr-option2`: bytes 75–81 % on one layer | ✗ (main) / ~ (option 2) |
 | 6 | DDR skew (3700 Mbps) | DQ–DQS ≤ 75 ps, CK–DQS ≤ 350 ps, A/CKE/CS–CK ≤ 100 ps | main: DQ–DQS −83…+102 ✗, CK–DQS ≤ 91 ✓, CA–CK −64.5…+47 ✓. `ddr-option2`: DQ–DQS −24…+60 ✓ | ✗ (main) / ✓ (option 2) |
 
