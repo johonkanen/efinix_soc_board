@@ -1,6 +1,6 @@
 # Status and handoff
 
-Last updated: **2026-10-27** (phase plan written: NEXT_SESSION.md, phases 1–7, decisions recorded). Read this first if you are picking the work up (human or agent).
+Last updated: **2026-10-27** (phase 1 done: the `ddr-option2` LPDDR4 is on main; next is phase 2, NEXT_SESSION.md). Read this first if you are picking the work up (human or agent).
 
 ## What this repository is
 
@@ -53,7 +53,12 @@ card, and plugs into the same baseboard.
 
 **Planes, BGA fan-out (via-in-pad) and regulator cell copper done** (TI135_PCB_NOTES.md §6.6–6.8).
 
-**LPDDR4 routing (2026-10-26, work in progress): data bytes and CK/CA trunk-and-branch re-routed at the 40 Ω widths and fitted to the JLC rules (`tools/ddr/ddr40_chain.sh`, TI135_PCB_NOTES.md §6.10); all connected, rest of the board DRC-clean; DDR width, hole and edge clearance clean; timing table and next steps in NEXT_SESSION.md.** The notes below describe the earlier draft.
+**LPDDR4 on main = the `ddr-option2` routing (2026-10-27, phase 1, `tools/ddr/transplant.py`):** all DDR nets
+connected; die-to-die DQ/DM–DQS −23.9…+60.4 ps, CK–DQS ≤ 86 ps, CA/CKE/CS–CK −57.1…+47.0 ps, all within the checklist
+limits (HW_CHECKLIST_REVIEW.md item 6); DQS P/N 4.47 / 6.64 / 0.07 / 5.61 ps, CK 3.67 ps; 88 mm below the width
+minimum. Rest of the board unchanged (C528 moved 0.3 mm off a dq2 via). Details: NEXT_SESSION.md phase 1.
+
+**LPDDR4 routing (2026-10-26, superseded by option 2 above): data bytes and CK/CA trunk-and-branch re-routed at the 40 Ω widths and fitted to the JLC rules (`tools/ddr/ddr40_chain.sh`, TI135_PCB_NOTES.md §6.10); all connected, rest of the board DRC-clean; DDR width, hole and edge clearance clean; timing table and next steps in NEXT_SESSION.md.** The notes below describe the earlier draft.
 - **On the board:** all 56 DDR nets connected by KiCadRoutingTools `route.py` on F.Cu/In2/In5/B.Cu, 0.1 mm wide,
   0.05 mm grid, free layer choice. 91 vias, 1215 mm. Tag `pre-ddr-routing` is the last clean commit, before this draft.
 - **Every DRC error left is in the DDR copper** (the rest of the board is clean):

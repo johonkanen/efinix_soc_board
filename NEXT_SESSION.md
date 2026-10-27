@@ -60,7 +60,29 @@ this file and `STATUS.md`, then stop and report to the user, who reviews each ph
 Work on copies under `work/` (gitignored) and copy the result into `kicad/` only when it grades clean. DRC with
 schematic parity must run on the board **in `kicad/`** (a copy elsewhere has no sub-sheets).
 
-## Phase 1: LPDDR4 from `ddr-option2` onto main
+## Phase 1: LPDDR4 from `ddr-option2` onto main — **done 2026-10-27**
+
+Result (on main, `kicad/ti135_card.kicad_pcb`):
+- `tools/ddr/transplant.py` replaced main's LPDDR4 copper (2684 items, 139 vias) with option 2's (3569, 148 vias).
+  Only clash: C528 (1 µF 0402, 0V85, B.Cu) sat on a `ddr_dq2` via; `place_bga_decaps.py C528` moved it 0.3 mm
+  (+x). Nothing else changed outside the DDR copper (footprints, non-DDR tracks/vias, zones compared by script).
+- `widen.py` changed nothing (option 2 was already fitted): **88 mm below the width minimum**, per net dq25 18.9,
+  dm3 17.3, dq1 16.0, dq24 12.9, dm0 8.3, dq26 6.9, dm1 3.2, dq29 2.1, dq6 1.6, dq10 0.6 (KiCad: 199 `track_width`,
+  capped; all `min`; one is dm3 below the 0.09 neck-down inside a BGA).
+- DRC (`tools/build_pcb.sh`): schematic parity 0; non-DDR entries identical to main before the change; all DDR
+  nets connected (615 unconnected items board-wide, same as before, all unrouted non-DDR). DDR: 4
+  `skew_out_of_range` (DQS0/1/3, CK P/N), 2 `diff_pair_uncoupled_length_too_long` (DQS0 19.1 mm vs 12), 199
+  `track_width`, 499 crosstalk-spacing warnings (`lpddr_xtalk_*`, warnings only), 1 `via_dangling` warning on
+  ddr_ca5 (already on main).
+- Timing (`ddr_timing.py --nets`, die to die): DQ/DM–DQS byte 0 +13.5…+57.1, byte 1 −23.9…+55.8, byte 2
+  +7.2…+44.8, byte 3 +10.9…+60.4 ps (≤ 75 ✓); CK–DQS max 86 ps (DQS 338.9/226.6/240.3/194.3, CK 252.6; ≤ 350 ✓);
+  CA/CKE/CS–CK −57.1…+47.0 ps (≤ 100 ✓). P/N skew: DQS 4.47 / 6.64 / 0.07 / 5.61 ps, CK 3.67 ps (phase 2).
+  KiCad's own readout (`kicad_delays.sh`) agrees with the path model as before (0…+28 ps, shared CA nets more).
+- Layers per byte: B0 In2 81 %, B1 F 39 % / In2 38 %, B2 In5 75 %, B3 B.Cu 76 %, CA In5 51 %.
+- Gotcha: `widen.py` (and anything reading net classes through pcbnew) needs the `.kicad_pro`/`.kicad_dru` copied
+  beside the board under `work/`; without them DQS is taken as single-ended and widened to 0.18 mm.
+
+The original plan, for reference:
 
 Main has newer placement (analog section, level shifters, 0201 decaps on via pairs under U501, hand moves) but
 the older, untuned LPDDR4. `ddr-option2` has the better LPDDR4 on the older placement. Same U501/U801 poses.
@@ -80,7 +102,7 @@ Done when: all DDR nets connected; no DDR DRC errors except the known `skew_out_
 
 ## Phase 2: LPDDR4 clean-up on main
 
-- Width: about 88 mm below the minimum (`widen.py --why` lists it). Re-route those nets at width
+- Width: 88 mm below the minimum (`widen.py --why` lists it; per net in phase 1 above). Re-route those nets at width
   (`reroute_nets.sh`, `--escalation off`, allow ripping their byte's other nets), then re-check timing.
 - DQS P/N skew (4.5 / 6.6 / 0.07 / 5.6 ps on option 2): try `polish.sh` with `ONLY` on the DQS legs, or a
   `reroute_nets.sh PAIR=1`; accept and report what remains if the room is not there.
