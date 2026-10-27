@@ -243,7 +243,7 @@
       "internal_id": "",
       "mfg": "",
       "mpn": "",
-      "sch_revision": ""
+      "sch_revision": "0.1"
     },
     "layer_pairs": [],
     "layer_presets": [],
@@ -805,7 +805,7 @@
       {
         "filename": "ti135_card.kicad_sch",
         "name": "ti135_card",
-        "uuid": "00000000-0000-0000-0000-000000000000"
+        "uuid": "c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7"
       }
     ],
     "used_designators": "",
@@ -814,7 +814,63 @@
   "sheets": [
     [
       "c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7",
-      "Root"
+      "ti135_card"
+    ],
+    [
+      "b177fc93-3c09-44d0-8b93-4373107c4e43",
+      "01 pwr_input"
+    ],
+    [
+      "ecbe7283-e4ee-4777-b3eb-dbdd82b9dff3",
+      "02 pwr_vcore"
+    ],
+    [
+      "afe31350-0a3f-46a7-ba21-73576eb9e8e2",
+      "03 pwr_rails"
+    ],
+    [
+      "1200db6b-7482-42ce-b7c4-d025e9219459",
+      "04 pwr_seq"
+    ],
+    [
+      "55e10be5-a4dc-4519-b64d-07699d83e66a",
+      "05 fpga_power"
+    ],
+    [
+      "005bb34e-5019-4cde-82e0-1ce10912d4b9",
+      "06 fpga_config"
+    ],
+    [
+      "8a939fee-b0ba-4a20-ad16-1502b11e2d82",
+      "07 clocks"
+    ],
+    [
+      "df7ad03a-4cdc-47f6-9423-5d0632e27d2b",
+      "08 lpddr4"
+    ],
+    [
+      "232c9406-938b-4386-9e9b-bee74439c084",
+      "09 ethernet"
+    ],
+    [
+      "3886b9a9-7f36-4ca1-be8f-3e95434be1e8",
+      "10 emmc"
+    ],
+    [
+      "852b22d5-751e-4ab2-90eb-27b9ddbb281f",
+      "11 fpga_io"
+    ],
+    [
+      "25009a49-bc15-4aef-b3df-d48f1029afc5",
+      "12 level_shift"
+    ],
+    [
+      "334ad52b-5884-483f-bc00-3be643cae895",
+      "13 adc"
+    ],
+    [
+      "9cb92e40-fa6d-416e-bbc5-307aa5691903",
+      "14 connectors"
     ]
   ],
   "text_variables": {},
