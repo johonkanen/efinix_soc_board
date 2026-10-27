@@ -1,6 +1,6 @@
 # Status and handoff
 
-Last updated: **2026-10-26** (LPDDR4 at 40 Ω, DRC-clean but for pair skew; phase 3 delay tuning blocked on meander room, decision pending; NEXT_SESSION.md). Read this first if you are picking the work up (human or agent).
+Last updated: **2026-10-27** (phase plan written: NEXT_SESSION.md, phases 1–7, decisions recorded). Read this first if you are picking the work up (human or agent).
 
 ## What this repository is
 
