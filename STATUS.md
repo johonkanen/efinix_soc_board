@@ -1,6 +1,6 @@
 # Status and handoff
 
-Last updated: **2026-10-27** (phase 1 done: the `ddr-option2` LPDDR4 is on main; next is phase 2, NEXT_SESSION.md). Read this first if you are picking the work up (human or agent).
+Last updated: **2026-10-27** (phase 2 done: LPDDR4 at the 40 Ω width everywhere, timing within the checklist; next is phase 3, NEXT_SESSION.md). Read this first if you are picking the work up (human or agent).
 
 ## What this repository is
 
@@ -52,6 +52,12 @@ card, and plugs into the same baseboard.
   off: the card carries no reference-designator silkscreen, only a few custom markings (user, 2026-10-26).
 
 **Planes, BGA fan-out (via-in-pad) and regulator cell copper done** (TI135_PCB_NOTES.md §6.6–6.8).
+
+**LPDDR4 clean-up (2026-10-27, phase 2):** every DDR segment at the 40 Ω width (0 mm below the minimum; 10 nets
+re-routed at width, dm0/dq1 meandered, DQS0 re-routed as a pair). Die to die, path model / KiCad: DQ/DM–DQS within
+−23.9…+71.0 / −15.6…+73.8 ps, CK–DQS ≤ 79 ps, CA–CK unchanged; DQS P/N 0.53 / 6.64 / 0.07 / 5.61 ps, CK 3.67 ps
+(DQS1/DQS3/CK: no room). Cost: byte 0 In2 55 %, byte 3 spread over F/B/In2. Rest of the board unchanged. Details:
+NEXT_SESSION.md phase 2.
 
 **LPDDR4 on main = the `ddr-option2` routing (2026-10-27, phase 1, `tools/ddr/transplant.py`):** all DDR nets
 connected; die-to-die DQ/DM–DQS −23.9…+60.4 ps, CK–DQS ≤ 86 ps, CA/CKE/CS–CK −57.1…+47.0 ps, all within the checklist

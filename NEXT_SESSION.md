@@ -1,4 +1,4 @@
-# Next session plan (phases, 2026-10-27)
+# Next session plan (phases, 2026-10-27; phases 1–2 done)
 
 Written for an agent starting with a fresh context. Work **one phase at a time**: finish it, commit, push, update
 this file and `STATUS.md`, then stop and report to the user, who reviews each phase before the next starts.
@@ -100,7 +100,43 @@ Done when: all DDR nets connected; no DDR DRC errors except the known `skew_out_
 `diff_pair_uncoupled` on DQS/CK pairs and `track_width` (listed with mm per net); timing within decision 1
 (report the numbers); rest of the board unchanged (DRC parity clean, no new non-DDR errors). Commit on main.
 
-## Phase 2: LPDDR4 clean-up on main
+## Phase 2: LPDDR4 clean-up on main — **done 2026-10-27**
+
+Result (on main, `kicad/ti135_card.kicad_pcb`; work in `work/p2/`, the chain b0a → t01 → e2 → f1 → pol1 → pol2b → g2 →
+k2 → m1 → p_dqs0a → fin):
+- **Width: 0 mm below the minimum** (`widen.py`), no `track_width` DRC error. Re-routed at width with
+  `reroute_nets.sh` (`--escalation off`): byte 0 dq1/dq6/dm0 (byte mates *not* rippable), byte 1 dm1/dq10, byte 3
+  dq24/25/26/29/dm3 (`CL=0.1`, byte 3 DQ/DM rippable, DQS3 not), then dq31 (left ripped by that step; `CL=0.1
+  --grid-step 0.025`), dm0 again with In2 preferred (`--layer-costs 5 -1 1 -1 -1 5 -1 5`), dq10 again (a plain
+  re-run: +5 ps instead of +65), DQS0 as a pair (`PAIR=1`). Meanders (`tune_meander.py`, hand-written plan, amp 0.5 /
+  spacing 1.5) on dm0 and dq1. One 0.0889 mm piece of dqs0_P inside U801 set to the 0.09 neck-down minimum by hand.
+- DRC (`tools/build_pcb.sh`): schematic parity 0; no DDR net open; non-DDR tracks/vias, footprints and zones
+  identical to the phase 1 commit (script compare). DDR errors left: 3 `skew_out_of_range` (DQS1, DQS3, CK P/N),
+  1 `diff_pair_uncoupled_length_too_long` (DQS1 12.27 mm vs 12), 395 crosstalk-spacing warnings, 1 `via_dangling`
+  warning (ddr_ca5, as before). 499 unconnected items, all non-DDR (KiCad's report cap).
+- Timing, die to die (decision 1), path model (`ddr_timing.py --nets`) / KiCad readout (`kicad_delays.sh`):
+
+  | | path model | KiCad | limit |
+  |---|---|---|---|
+  | DQ/DM–DQS byte 0 | −9.7 … +64.8 | −15.6 … +51.4 | ±75 ✓ |
+  | byte 1 | −23.9 … +55.8 | −7.7 … +73.8 (dq13, untouched) | ±75 ✓ |
+  | byte 2 | +7.2 … +44.8 | +3.3 … +38.1 | ±75 ✓ |
+  | byte 3 | +4.9 … +71.0 (dq24) | −9.4 … +57.5 | ±75 ✓ |
+  | CK–DQS | ≤ 78.7 | ≤ 71 | ≤ 350 ✓ |
+  | CA/CKE/CS–CK | −57.1 … +47.0 (unchanged) | | ±100 ✓ |
+  | DQS P/N skew 0/1/2/3 | 0.53 / 6.64 / 0.07 / 5.61 | 0.01 / 3.37 / 0.38 / 5.82 | aim 1.8 |
+  | CK P/N skew | 3.67 | 5.94 | aim 0.9 |
+
+- **DQS1, DQS3 and CK skew not reached:** no straight run with room for a meander on the short legs (all
+  amplitudes 0.35–1.0), and `PAIR=1` re-routes of DQS1/DQS3 failed to route (old copper kept). CK is
+  trunk-and-branch (phase 4 re-routes it).
+- **Cost: bytes 0 and 3 are less on one layer.** B0 In2 81 → 55 %, B3 B.Cu 76 → 31 % (F 37 %, In2 29 %): at the
+  0.25 mm outer width B.Cu between U501's decaps has no room, so byte 3 moved to F/In2. Total DDR 1612 mm, 145 vias.
+- Lessons: making the byte mates rippable re-routes them shorter (byte 0 down to −95 ps); keep them fixed. Preferring
+  the byte's own inner layer gave dm0 a longer, matchable path. KRT is not deterministic: run 3+ variants per step.
+
+The plan, for reference:
+
 
 - Width: 88 mm below the minimum (`widen.py --why` lists it; per net in phase 1 above). Re-route those nets at width
   (`reroute_nets.sh`, `--escalation off`, allow ripping their byte's other nets), then re-check timing.
@@ -170,15 +206,15 @@ At the end of each phase the agent's report ends with **the prompt for the next 
 the user to paste into a fresh session. Keep it in the same form as the one below (update the phase number, the
 files to read and any decision the user made in the review), and replace the block here at the same time.
 
-Next prompt (phase 2):
+Next prompt (phase 3):
 
 ```
 Read NEXT_SESSION.md, then the files it lists under "Read first"
 (STATUS.md, HW_CHECKLIST_REVIEW.md, TI135_PCB_NOTES.md §6, KRT_LEARNING.md).
 
-Do Phase 2 only, following that file's steps, rules and "done when" check.
-Phase 1's result and its gotchas are in the Phase 1 section (e.g. copy .kicad_pro/.kicad_dru beside
-every board under work/ before widen.py).
+Do Phase 3 only, following that file's steps, rules and "done when" check.
+Phase 2's result is in the Phase 2 section: the LPDDR4 on main is the reference that
+grade.sh must still reproduce after phase 3 (do not touch DDR copper; move new caps instead).
 - Follow the "Rules" section strictly: never modify ~/dev/agilex3_soc_control_card;
   check that KiCad is closed (no kicad/~ti135_card.kicad_pro.lck) before writing under
   kicad/; schematics only through tools/sheets/*.py; work on copies under work/ and
@@ -189,7 +225,7 @@ every board under work/ before widen.py).
 
 When the phase is done (or blocked): commit with the trailer from the file, git push,
 update NEXT_SESSION.md and STATUS.md, then stop and report:
-- what was done, with the numbers from the "done when" check (DRC, timing),
+- what was done, with the numbers from the "done when" check (ERC, DRC),
 - anything that did not meet the check and why,
 - anything you want me to decide or review in KiCad,
 - the prompt for the next phase (see "Handing over to the next phase").

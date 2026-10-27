@@ -186,3 +186,16 @@ Not bugs, but surprising when KRT is used as a library:
 - `--impedance`'s microstrip model has no solder mask (F/B come out about 0.27 mm for 40 Ω where JLC says 0.25).
 - Time matching always targets the group's longest member; there is no offset or window in ps (the `.kicad_dru`
   length window is in mm), so "DQ 0…66 ps longer than DQS" needs our own top-up (`tune_meander.py`).
+
+## Re-routing at width on a finished LPDDR4 (2026-10-27, phase 2)
+
+- `reroute_nets.sh` with the byte's other nets in `--rip-existing-nets` routes the narrow nets, but re-routes the
+  ripped mates shorter (byte 0 went to −95 ps DQ–DQS). Without it the same nets also fit; prefer that.
+- Under U501 on B.Cu (byte 3, among the decaps) nothing fits at 0.25 mm; at `CL=0.1` with the byte's DQ/DM
+  rippable they route, moving to F.Cu/In2. Such a step can leave one mate ripped ("remains UNROUTED"): re-route it
+  alone (`CL=0.1 EXTRA="--grid-step 0.025"`).
+- A net that comes out too short for matching: re-route it with its byte's layer preferred (`--layer-costs`) for a
+  longer, meanderable path, then `tune_meander.py`. A net that comes out too long: just re-run (dq10 +65 → +5 ps).
+- `PAIR=1` re-route of one DQS pair can fix its P/N skew outright (DQS0 1.9 → 0.5 ps); DQS1/DQS3 found no route.
+- `widen.py`'s clearance repair can leave a neck-down piece a hair under 0.09 mm (0.0889); KiCad flags it, widen.py
+  does not.
