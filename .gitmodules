@@ -4,3 +4,6 @@
 [submodule "tools/jlc"]
 	path = tools/jlc
 	url = https://github.com/johonkanen/jlc-tools.git
+[submodule "tools/kicad_ibis_simulation"]
+	path = tools/kicad_ibis_simulation
+	url = https://github.com/johonkanen/kicad_ibis_simulation.git
