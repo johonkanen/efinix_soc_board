@@ -650,6 +650,8 @@ def main():
     ap.add_argument('--small', action='store_true', help='typ, 2800/3200, 8 width points, pair geometries (minutes)')
     ap.add_argument('--first', action='store_true', help='first result in about a minute: the worst DQ (dq4) write '
                     'and read and CA1, today vs 0.10 mm, typ, 2800 MT/s (4 small netlists in parallel)')
+    ap.add_argument('--routed', action='store_true', help='the hand-routed byte lanes (results/board_paths_routed.json, '
+                    'all 0.10 mm, DQS 0.10/0.20): the longest DQ of each byte, DM0, DQS0/2; typ, 2800/3200')
     ap.add_argument('--only', help='regex on the point tag')
     ap.add_argument('--legacy', action='store_true', help='kicad-cli export per netlist (the slow path, for checks)')
     ap.add_argument('-j', type=int, default=2)     # RAM: shared machine, ~1-2 GB per netlist
@@ -661,6 +663,14 @@ def main():
         pts = [(f'first_i{wi:.2f}_o{wo:.2f}', ['--rate', '2800', '--w-in', str(wi), '--w-out', str(wo)],
                 {'dq': r'(w|r)_dq4', 'ca': r'ca1_40'}, True) for wi, wo in ((0.18, 0.25), (0.10, 0.10))]
         out = 'results_first'
+    elif a.routed:
+        dq, ds = ['ddr_dq3', 'ddr_dm0', 'ddr_dq15', 'ddr_dq19', 'ddr_dq28'], ['ddr_dqs0', 'ddr_dqs2']
+        parts = {'wa': r'w_(dq3|dm0|dq15)', 'wb': r'w_(dq19|dq28)', 'ra': r'r_(dq3|dm0|dq15)', 'rb': r'r_(dq19|dq28)',
+                 'sw': r'w_dqs\d', 'sr': r'r_dqs\d'}
+        pts = [(f'routed_r{rate}', ['--rate', str(rate), '--w-in', '0.10', '--w-out', '0.10', '--diff-in', '0.10/0.2',
+                                    '--paths', 'board_paths_routed.json', '--dq-nets', *dq, '--dqs-nets', *ds],
+                parts, True) for rate in (2800, 3200)]
+        out = 'results_routed'
     elif a.small:
         pts, out = small_points(), 'results_small'
     elif a.xtalk:
@@ -702,7 +712,7 @@ def main():
     with open(os.path.join(RES, out + '.csv'), 'w', newline='') as f:
         wr = csv.DictWriter(f, keys); wr.writeheader(); wr.writerows(rows)
     print(f"{len(rows)} rows -> results/{out}.csv")
-    if a.first:
+    if a.first or a.routed:
         print('| width in/out | case | where | eye height mV | eye width ps | margin V mV | margin t ps | Vmax/Vmin mV |')
         for r in sorted(rows, key=lambda r: (r['case'], r['where'], -r['w_in'])):
             if r['kind'] == 'dq_read' and r['where'] == 'ball': continue

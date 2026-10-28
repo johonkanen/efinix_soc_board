@@ -122,6 +122,14 @@ write there). That method is going to `johonkanen/kicad_ibis_simulation` (see "N
   - CK pairs: 80 → 100 Ω geometries change little.
   - CKE: overshoots past 1.4 V at 3200 already at 0.18/0.10.
 
+**2026-10-28: hand-routed byte lanes (`python3 run_si.py --routed -j 2`, 71 s).**
+- Paths from the committed board 2588f29 (`results/board_paths_routed.json`): DQ/DM 0.10 mm, one layer per byte
+  (byte 0/2 F.Cu, 1/3 In5, DM/DQS In2), DQS 0.10/0.20 inner (97 Ω). Worst DQ of each byte (dq3, dq15, dq19, dq28),
+  DM0, DQS0/2; typ only, 2800/3200 MT/s. Results in `results/results_routed.csv`.
+- All DQ/DM/DQS eyes pass at both rates. Lowest margins (3200): write 101 ps / 382 mV (dq3, ball), read 51 ps /
+  144 mV (dq3, die). DQS read at the ball is negative here as in every earlier run (reads are judged at the die).
+- Not covered: corners, crosstalk, CA/CK/CS/CKE (CA paths still the phase-4 board).
+
 ## Next
 
 1. Re-run `prep_models.py` (it has already been re-run with the new pins), then

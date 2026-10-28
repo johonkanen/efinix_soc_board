@@ -269,7 +269,7 @@ def fpga_pkg(s, a, tag, ball, pad_ps, kind):
 
 def build(a):
     rate = a.rate; ui = 1e-6 / rate
-    main = json.load(open(os.path.join(HERE, 'results', 'board_paths_main.json')))
+    main = json.load(open(os.path.join(HERE, 'results', a.paths)))
     p4 = json.load(open(os.path.join(HERE, 'results', 'board_paths_p4.json')))
     s = (FastSch if a.fast else Sch)(a.models); meta = {}
     nb_dq, nb_ca = a.bits, a.ca_bits
@@ -467,6 +467,7 @@ if __name__ == '__main__':
                                                      'ddr_dq27', 'ddr_dm3'])
     p.add_argument('--dqs-nets', nargs='*', default=['ddr_dqs0', 'ddr_dqs3'])
     p.add_argument('--ca-nets', nargs='*', default=['ddr_ca1', 'ddr_ca2', 'ddr_ca4', 'ddr_cs2_n', 'ddr_cs0_n', 'ddr_cke0'])
+    p.add_argument('--paths', default='board_paths_main.json', help='DQ/DQS paths in results/ (board_paths.py)')
     p.add_argument('--no-ck', action='store_true', help='leave CK out (debugging)')
     p.add_argument('--keep', help='regex (full match) on the case tags: only these channels (run_si.py splits a point '
                                   'into several small netlists; one with all 44 channels needs > 9 GB in ngspice)')
