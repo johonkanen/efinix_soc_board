@@ -25953,7 +25953,7 @@
 			)
 		)
 	)
-	(text "U801 VDD1 (1V8): 4u7 + 2 x 1u + 4 x 100n"
+	(text "U801 VDD1 (1V8): 22u + 2 x 100n"
 		(exclude_from_sim no)
 		(at 138.43 177.8 0)
 		(effects
@@ -25981,7 +25981,7 @@
 				)
 			)
 		)
-		(property "Value" "4u7"
+		(property "Value" "22u"
 			(at 137.54 191.77 0)
 			(effects
 				(font
@@ -26008,6 +26008,15 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 133.35 190.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C415703"
 			(at 133.35 190.5 0)
 			(effects
 				(font
@@ -26215,7 +26224,7 @@
 	)
 	(symbol
 		(lib_id "ti135_card:C")
-		(at 142.24 190.5 0)
+		(at 140.97 190.5 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -26223,23 +26232,23 @@
 		(dnp no)
 		(uuid "17ec98b7-19fa-5c93-add6-c77f5616e674")
 		(property "Reference" "C804"
-			(at 146.98 189.23 0)
+			(at 145.71 189.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "1u"
-			(at 145.88 191.77 0)
+		(property "Value" "100n"
+			(at 145.71 191.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 143.2052 194.31 0)
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+			(at 141.9352 194.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -26248,7 +26257,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 142.24 190.5 0)
+			(at 140.97 190.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -26257,7 +26266,16 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 142.24 190.5 0)
+			(at 140.97 190.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 140.97 190.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -26282,7 +26300,7 @@
 	)
 	(wire
 		(pts
-			(xy 142.24 186.69) (xy 142.24 184.15)
+			(xy 140.97 186.69) (xy 140.97 184.15)
 		)
 		(stroke
 			(width 0)
@@ -26292,7 +26310,7 @@
 	)
 	(wire
 		(pts
-			(xy 142.24 194.31) (xy 142.24 196.85)
+			(xy 140.97 194.31) (xy 140.97 196.85)
 		)
 		(stroke
 			(width 0)
@@ -26302,7 +26320,7 @@
 	)
 	(wire
 		(pts
-			(xy 133.35 184.15) (xy 142.24 184.15)
+			(xy 133.35 184.15) (xy 140.97 184.15)
 		)
 		(stroke
 			(width 0)
@@ -26312,7 +26330,7 @@
 	)
 	(wire
 		(pts
-			(xy 133.35 196.85) (xy 142.24 196.85)
+			(xy 133.35 196.85) (xy 140.97 196.85)
 		)
 		(stroke
 			(width 0)
@@ -26321,20 +26339,20 @@
 		(uuid "16e63d04-b455-50e0-bdfc-2c3fedd9f941")
 	)
 	(junction
-		(at 142.24 184.15)
+		(at 140.97 184.15)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "847be797-1951-5f27-90d3-eb71ede207cb")
 	)
 	(junction
-		(at 142.24 196.85)
+		(at 140.97 196.85)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "bd0e1bcf-b587-55e3-ba67-9207dfc342ed")
 	)
 	(symbol
 		(lib_id "ti135_card:C")
-		(at 151.13 190.5 0)
+		(at 148.59 190.5 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -26342,23 +26360,23 @@
 		(dnp no)
 		(uuid "69974feb-cb9e-5879-a4c3-c45b96df4f07")
 		(property "Reference" "C805"
-			(at 155.87 189.23 0)
+			(at 153.33 189.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "1u"
-			(at 154.77 191.77 0)
+		(property "Value" "100n"
+			(at 153.33 191.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 152.0952 194.31 0)
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+			(at 149.5552 194.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -26367,7 +26385,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 151.13 190.5 0)
+			(at 148.59 190.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -26376,7 +26394,16 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 151.13 190.5 0)
+			(at 148.59 190.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 148.59 190.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -26401,7 +26428,7 @@
 	)
 	(wire
 		(pts
-			(xy 151.13 186.69) (xy 151.13 184.15)
+			(xy 148.59 186.69) (xy 148.59 184.15)
 		)
 		(stroke
 			(width 0)
@@ -26411,7 +26438,7 @@
 	)
 	(wire
 		(pts
-			(xy 151.13 194.31) (xy 151.13 196.85)
+			(xy 148.59 194.31) (xy 148.59 196.85)
 		)
 		(stroke
 			(width 0)
@@ -26421,7 +26448,7 @@
 	)
 	(wire
 		(pts
-			(xy 142.24 184.15) (xy 151.13 184.15)
+			(xy 140.97 184.15) (xy 148.59 184.15)
 		)
 		(stroke
 			(width 0)
@@ -26431,7 +26458,7 @@
 	)
 	(wire
 		(pts
-			(xy 142.24 196.85) (xy 151.13 196.85)
+			(xy 140.97 196.85) (xy 148.59 196.85)
 		)
 		(stroke
 			(width 0)
@@ -26439,483 +26466,7 @@
 		)
 		(uuid "77bede29-8e4b-5c1b-bef4-d29ce9c96c77")
 	)
-	(junction
-		(at 151.13 184.15)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "639b01ec-c834-5c62-b687-c9ed0f6621cc")
-	)
-	(junction
-		(at 151.13 196.85)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "dc7f926c-0250-508a-a2d4-7b89f4ddba89")
-	)
-	(symbol
-		(lib_id "ti135_card:C")
-		(at 160.02 190.5 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "136b2302-57bb-5e40-983e-06ba2df3d99d")
-		(property "Reference" "C806"
-			(at 164.76 189.23 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "100n"
-			(at 164.76 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 160.9852 194.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 160.02 190.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 160.02 190.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "52c634e7-b16e-5cf4-ab91-b4a709ce7cfb")
-		)
-		(pin "2"
-			(uuid "33f15b34-2855-5a17-848f-200881598bbd")
-		)
-		(instances
-			(project "ti135_card"
-				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/df7ad03a-4cdc-47f6-9423-5d0632e27d2b"
-					(reference "C806")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(wire
-		(pts
-			(xy 160.02 186.69) (xy 160.02 184.15)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "676ab484-6e62-5e60-866f-44aa8093ec6e")
-	)
-	(wire
-		(pts
-			(xy 160.02 194.31) (xy 160.02 196.85)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2cd9b862-f06a-52b0-ab20-bbf7e4e1c08f")
-	)
-	(wire
-		(pts
-			(xy 151.13 184.15) (xy 160.02 184.15)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "45223ba3-461e-5b30-8292-5b9436a0c2e2")
-	)
-	(wire
-		(pts
-			(xy 151.13 196.85) (xy 160.02 196.85)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "24c547f3-3e41-5b25-a410-56a3737fd92e")
-	)
-	(junction
-		(at 160.02 184.15)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "9903f87b-c9c5-52cb-963c-0a8b38d3eef4")
-	)
-	(junction
-		(at 160.02 196.85)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "b56005d0-2a53-54bb-867d-5f5c45e7f413")
-	)
-	(symbol
-		(lib_id "ti135_card:C")
-		(at 168.91 190.5 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "e685f42f-092f-508d-b5ec-8dbd65c537ea")
-		(property "Reference" "C807"
-			(at 173.65 189.23 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "100n"
-			(at 173.65 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 169.8752 194.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 168.91 190.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 168.91 190.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "972a8d1b-faf1-5342-a7c5-55320a0eb6a3")
-		)
-		(pin "2"
-			(uuid "93a7fc19-3a54-569e-9fb1-a7c8c244d245")
-		)
-		(instances
-			(project "ti135_card"
-				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/df7ad03a-4cdc-47f6-9423-5d0632e27d2b"
-					(reference "C807")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(wire
-		(pts
-			(xy 168.91 186.69) (xy 168.91 184.15)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "dc774260-fa07-5c16-98ff-6c73c6b5dd56")
-	)
-	(wire
-		(pts
-			(xy 168.91 194.31) (xy 168.91 196.85)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "fb062478-875d-58fc-85e8-1abeb6b91d15")
-	)
-	(wire
-		(pts
-			(xy 160.02 184.15) (xy 168.91 184.15)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e32db6ce-1813-5fc8-b499-651d3699754a")
-	)
-	(wire
-		(pts
-			(xy 160.02 196.85) (xy 168.91 196.85)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3fdfea53-3fa7-5e62-9efc-b11f126838ab")
-	)
-	(junction
-		(at 168.91 184.15)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "6a585d50-83bd-534b-b0df-5db7498ff65d")
-	)
-	(junction
-		(at 168.91 196.85)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "162927e5-2ad7-5cd2-89fe-ef7564d74206")
-	)
-	(symbol
-		(lib_id "ti135_card:C")
-		(at 177.8 190.5 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "831c0004-0932-5db3-951e-2fb61b2f9e38")
-		(property "Reference" "C808"
-			(at 182.54 189.23 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "100n"
-			(at 182.54 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 178.7652 194.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 177.8 190.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 177.8 190.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "f24d3ea3-daae-5f33-a72a-d1e63c4d4093")
-		)
-		(pin "2"
-			(uuid "4f426d2b-9168-5e29-9a83-95cdf4ec98ec")
-		)
-		(instances
-			(project "ti135_card"
-				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/df7ad03a-4cdc-47f6-9423-5d0632e27d2b"
-					(reference "C808")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(wire
-		(pts
-			(xy 177.8 186.69) (xy 177.8 184.15)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "707f50ca-d3e3-5076-bdf8-4bac527ddb7b")
-	)
-	(wire
-		(pts
-			(xy 177.8 194.31) (xy 177.8 196.85)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f3f3253f-6ae8-5de6-a5de-f60a9cc85ea7")
-	)
-	(wire
-		(pts
-			(xy 168.91 184.15) (xy 177.8 184.15)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "48054f49-d87f-5bd3-b925-c47b490f3d9d")
-	)
-	(wire
-		(pts
-			(xy 168.91 196.85) (xy 177.8 196.85)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e78fd821-f502-5b53-b79b-3dac8865c865")
-	)
-	(junction
-		(at 177.8 184.15)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "ad0fcf63-33cc-5b29-9ff8-4cdd46a5ec90")
-	)
-	(junction
-		(at 177.8 196.85)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "aad24964-dd79-5aae-972b-72f500657973")
-	)
-	(symbol
-		(lib_id "ti135_card:C")
-		(at 186.69 190.5 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "3731b95b-bb96-5c52-bb01-c20e114c4ac9")
-		(property "Reference" "C809"
-			(at 191.43 189.23 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "100n"
-			(at 191.43 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 187.6552 194.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 186.69 190.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 186.69 190.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "b3c8dfd1-af35-5f3f-8ba0-818e296494aa")
-		)
-		(pin "2"
-			(uuid "1324d11f-860d-50b0-b675-9154cc30b791")
-		)
-		(instances
-			(project "ti135_card"
-				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/df7ad03a-4cdc-47f6-9423-5d0632e27d2b"
-					(reference "C809")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(wire
-		(pts
-			(xy 186.69 186.69) (xy 186.69 184.15)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3cc30be0-8519-5faa-93c2-7a3ca6eb6584")
-	)
-	(wire
-		(pts
-			(xy 186.69 194.31) (xy 186.69 196.85)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2be6dbf2-eabf-5d7b-ba11-250b7a7c0ba6")
-	)
-	(wire
-		(pts
-			(xy 177.8 184.15) (xy 186.69 184.15)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5465b7c7-0031-5be7-8cfa-89cbbaaa88e6")
-	)
-	(wire
-		(pts
-			(xy 177.8 196.85) (xy 186.69 196.85)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ce94b518-6afb-5a33-9d4f-9428b8d98193")
-	)
-	(text "U801 VDD2 (1V1): 10u + 4 x 1u + 8 x 100n"
+	(text "U801 VDD2 (1V1): 2 x 22u + 2 x 1u + 13 x 100n"
 		(exclude_from_sim no)
 		(at 138.43 210.82 0)
 		(effects
@@ -26924,7 +26475,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "e769b985-9067-5334-b7ea-ba228592acdd")
+		(uuid "639b01ec-c834-5c62-b687-c9ed0f6621cc")
 	)
 	(symbol
 		(lib_id "ti135_card:C")
@@ -26934,8 +26485,8 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "f8eebcf8-3f8c-5815-aa56-0f8473ee4f03")
-		(property "Reference" "C810"
+		(uuid "136b2302-57bb-5e40-983e-06ba2df3d99d")
+		(property "Reference" "C806"
 			(at 138.09 222.25 0)
 			(effects
 				(font
@@ -26943,7 +26494,7 @@
 				)
 			)
 		)
-		(property "Value" "10u"
+		(property "Value" "22u"
 			(at 137.54 224.79 0)
 			(effects
 				(font
@@ -26951,7 +26502,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 134.3152 227.33 0)
 			(effects
 				(font
@@ -26978,16 +26529,25 @@
 				(hide yes)
 			)
 		)
+		(property "LCSC" "C415703"
+			(at 133.35 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
-			(uuid "701cd011-4013-5e37-8693-4b367c820422")
+			(uuid "52c634e7-b16e-5cf4-ab91-b4a709ce7cfb")
 		)
 		(pin "2"
-			(uuid "0f559923-6c26-58ff-83bd-e6e30697507d")
+			(uuid "33f15b34-2855-5a17-848f-200881598bbd")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/df7ad03a-4cdc-47f6-9423-5d0632e27d2b"
-					(reference "C810")
+					(reference "C806")
 					(unit 1)
 				)
 			)
@@ -27001,7 +26561,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "b87c8fc5-35b6-50d7-9edb-dbc2e9648682")
+		(uuid "dc7f926c-0250-508a-a2d4-7b89f4ddba89")
 	)
 	(wire
 		(pts
@@ -27011,7 +26571,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "af414de3-058d-5e01-b110-87bc364ba691")
+		(uuid "676ab484-6e62-5e60-866f-44aa8093ec6e")
 	)
 	(symbol
 		(lib_id "ti135_card:1V1")
@@ -27086,7 +26646,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "98dec4f8-22a5-55e8-b1b8-707526029ae8")
+		(uuid "2cd9b862-f06a-52b0-ab20-bbf7e4e1c08f")
 	)
 	(symbol
 		(lib_id "ti135_card:GND")
@@ -27161,39 +26721,39 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "84570f25-3ef8-507e-b672-8e5dfcb89b30")
+		(uuid "45223ba3-461e-5b30-8292-5b9436a0c2e2")
 	)
 	(junction
 		(at 133.35 217.17)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "101300ce-4b6e-5661-8e6a-b68d9bd448a1")
+		(uuid "24c547f3-3e41-5b25-a410-56a3737fd92e")
 	)
 	(junction
 		(at 133.35 229.87)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "c5050688-fd13-50b3-8fe8-8dcbae08cc77")
+		(uuid "9903f87b-c9c5-52cb-963c-0a8b38d3eef4")
 	)
 	(symbol
 		(lib_id "ti135_card:C")
-		(at 142.24 223.52 0)
+		(at 140.97 223.52 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "2f9c142a-5b22-57ba-8e41-28fdea80662a")
-		(property "Reference" "C811"
-			(at 146.98 222.25 0)
+		(uuid "e685f42f-092f-508d-b5ec-8dbd65c537ea")
+		(property "Reference" "C807"
+			(at 145.71 222.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "1u"
-			(at 145.88 224.79 0)
+		(property "Value" "22u"
+			(at 145.16 224.79 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -27201,7 +26761,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 143.2052 227.33 0)
+			(at 141.9352 227.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -27210,7 +26770,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 142.24 223.52 0)
+			(at 140.97 223.52 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -27219,7 +26779,528 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 142.24 223.52 0)
+			(at 140.97 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C415703"
+			(at 140.97 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "972a8d1b-faf1-5342-a7c5-55320a0eb6a3")
+		)
+		(pin "2"
+			(uuid "93a7fc19-3a54-569e-9fb1-a7c8c244d245")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/df7ad03a-4cdc-47f6-9423-5d0632e27d2b"
+					(reference "C807")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 140.97 219.71) (xy 140.97 217.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b56005d0-2a53-54bb-867d-5f5c45e7f413")
+	)
+	(wire
+		(pts
+			(xy 140.97 227.33) (xy 140.97 229.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dc774260-fa07-5c16-98ff-6c73c6b5dd56")
+	)
+	(wire
+		(pts
+			(xy 133.35 217.17) (xy 140.97 217.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fb062478-875d-58fc-85e8-1abeb6b91d15")
+	)
+	(wire
+		(pts
+			(xy 133.35 229.87) (xy 140.97 229.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e32db6ce-1813-5fc8-b499-651d3699754a")
+	)
+	(junction
+		(at 140.97 217.17)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "3fdfea53-3fa7-5e62-9efc-b11f126838ab")
+	)
+	(junction
+		(at 140.97 229.87)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "6a585d50-83bd-534b-b0df-5db7498ff65d")
+	)
+	(symbol
+		(lib_id "ti135_card:C")
+		(at 148.59 223.52 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "831c0004-0932-5db3-951e-2fb61b2f9e38")
+		(property "Reference" "C808"
+			(at 153.33 222.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1u"
+			(at 152.23 224.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 149.5552 227.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 148.59 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 148.59 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C52923"
+			(at 148.59 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f24d3ea3-daae-5f33-a72a-d1e63c4d4093")
+		)
+		(pin "2"
+			(uuid "4f426d2b-9168-5e29-9a83-95cdf4ec98ec")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/df7ad03a-4cdc-47f6-9423-5d0632e27d2b"
+					(reference "C808")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 148.59 219.71) (xy 148.59 217.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "162927e5-2ad7-5cd2-89fe-ef7564d74206")
+	)
+	(wire
+		(pts
+			(xy 148.59 227.33) (xy 148.59 229.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "707f50ca-d3e3-5076-bdf8-4bac527ddb7b")
+	)
+	(wire
+		(pts
+			(xy 140.97 217.17) (xy 148.59 217.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f3f3253f-6ae8-5de6-a5de-f60a9cc85ea7")
+	)
+	(wire
+		(pts
+			(xy 140.97 229.87) (xy 148.59 229.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "48054f49-d87f-5bd3-b925-c47b490f3d9d")
+	)
+	(junction
+		(at 148.59 217.17)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e78fd821-f502-5b53-b79b-3dac8865c865")
+	)
+	(junction
+		(at 148.59 229.87)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ad0fcf63-33cc-5b29-9ff8-4cdd46a5ec90")
+	)
+	(symbol
+		(lib_id "ti135_card:C")
+		(at 156.21 223.52 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "3731b95b-bb96-5c52-bb01-c20e114c4ac9")
+		(property "Reference" "C809"
+			(at 160.95 222.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1u"
+			(at 159.85 224.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 157.1752 227.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 156.21 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 156.21 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C52923"
+			(at 156.21 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b3c8dfd1-af35-5f3f-8ba0-818e296494aa")
+		)
+		(pin "2"
+			(uuid "1324d11f-860d-50b0-b675-9154cc30b791")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/df7ad03a-4cdc-47f6-9423-5d0632e27d2b"
+					(reference "C809")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 156.21 219.71) (xy 156.21 217.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "aad24964-dd79-5aae-972b-72f500657973")
+	)
+	(wire
+		(pts
+			(xy 156.21 227.33) (xy 156.21 229.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3cc30be0-8519-5faa-93c2-7a3ca6eb6584")
+	)
+	(wire
+		(pts
+			(xy 148.59 217.17) (xy 156.21 217.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2be6dbf2-eabf-5d7b-ba11-250b7a7c0ba6")
+	)
+	(wire
+		(pts
+			(xy 148.59 229.87) (xy 156.21 229.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5465b7c7-0031-5be7-8cfa-89cbbaaa88e6")
+	)
+	(junction
+		(at 156.21 217.17)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ce94b518-6afb-5a33-9d4f-9428b8d98193")
+	)
+	(junction
+		(at 156.21 229.87)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e769b985-9067-5334-b7ea-ba228592acdd")
+	)
+	(symbol
+		(lib_id "ti135_card:C")
+		(at 163.83 223.52 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "f8eebcf8-3f8c-5815-aa56-0f8473ee4f03")
+		(property "Reference" "C810"
+			(at 168.57 222.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100n"
+			(at 168.57 224.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+			(at 164.7952 227.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 163.83 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 163.83 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 163.83 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "701cd011-4013-5e37-8693-4b367c820422")
+		)
+		(pin "2"
+			(uuid "0f559923-6c26-58ff-83bd-e6e30697507d")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/df7ad03a-4cdc-47f6-9423-5d0632e27d2b"
+					(reference "C810")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 163.83 219.71) (xy 163.83 217.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b87c8fc5-35b6-50d7-9edb-dbc2e9648682")
+	)
+	(wire
+		(pts
+			(xy 163.83 227.33) (xy 163.83 229.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "af414de3-058d-5e01-b110-87bc364ba691")
+	)
+	(wire
+		(pts
+			(xy 156.21 217.17) (xy 163.83 217.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "98dec4f8-22a5-55e8-b1b8-707526029ae8")
+	)
+	(wire
+		(pts
+			(xy 156.21 229.87) (xy 163.83 229.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "84570f25-3ef8-507e-b672-8e5dfcb89b30")
+	)
+	(junction
+		(at 163.83 217.17)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "101300ce-4b6e-5661-8e6a-b68d9bd448a1")
+	)
+	(junction
+		(at 163.83 229.87)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "c5050688-fd13-50b3-8fe8-8dcbae08cc77")
+	)
+	(symbol
+		(lib_id "ti135_card:C")
+		(at 171.45 223.52 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "2f9c142a-5b22-57ba-8e41-28fdea80662a")
+		(property "Reference" "C811"
+			(at 176.19 222.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100n"
+			(at 176.19 224.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+			(at 172.4152 227.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 171.45 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 171.45 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 171.45 223.52 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -27244,7 +27325,7 @@
 	)
 	(wire
 		(pts
-			(xy 142.24 219.71) (xy 142.24 217.17)
+			(xy 171.45 219.71) (xy 171.45 217.17)
 		)
 		(stroke
 			(width 0)
@@ -27254,7 +27335,7 @@
 	)
 	(wire
 		(pts
-			(xy 142.24 227.33) (xy 142.24 229.87)
+			(xy 171.45 227.33) (xy 171.45 229.87)
 		)
 		(stroke
 			(width 0)
@@ -27264,7 +27345,7 @@
 	)
 	(wire
 		(pts
-			(xy 133.35 217.17) (xy 142.24 217.17)
+			(xy 163.83 217.17) (xy 171.45 217.17)
 		)
 		(stroke
 			(width 0)
@@ -27274,7 +27355,7 @@
 	)
 	(wire
 		(pts
-			(xy 133.35 229.87) (xy 142.24 229.87)
+			(xy 163.83 229.87) (xy 171.45 229.87)
 		)
 		(stroke
 			(width 0)
@@ -27283,20 +27364,20 @@
 		(uuid "32fa9828-896c-5400-a285-4bf027de1d2c")
 	)
 	(junction
-		(at 142.24 217.17)
+		(at 171.45 217.17)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "23eb26cb-c5f6-58b3-ad87-a1a8323abb50")
 	)
 	(junction
-		(at 142.24 229.87)
+		(at 171.45 229.87)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "8c7e8b34-b9e6-523a-9567-ed005d54945a")
 	)
 	(symbol
 		(lib_id "ti135_card:C")
-		(at 151.13 223.52 0)
+		(at 179.07 223.52 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -27304,23 +27385,23 @@
 		(dnp no)
 		(uuid "7aef1af7-1f61-5652-a4b1-e6a9f4a22fa6")
 		(property "Reference" "C812"
-			(at 155.87 222.25 0)
+			(at 183.81 222.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "1u"
-			(at 154.77 224.79 0)
+		(property "Value" "100n"
+			(at 183.81 224.79 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 152.0952 227.33 0)
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+			(at 180.0352 227.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -27329,7 +27410,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 151.13 223.52 0)
+			(at 179.07 223.52 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -27338,7 +27419,16 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 151.13 223.52 0)
+			(at 179.07 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 179.07 223.52 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -27363,7 +27453,7 @@
 	)
 	(wire
 		(pts
-			(xy 151.13 219.71) (xy 151.13 217.17)
+			(xy 179.07 219.71) (xy 179.07 217.17)
 		)
 		(stroke
 			(width 0)
@@ -27373,7 +27463,7 @@
 	)
 	(wire
 		(pts
-			(xy 151.13 227.33) (xy 151.13 229.87)
+			(xy 179.07 227.33) (xy 179.07 229.87)
 		)
 		(stroke
 			(width 0)
@@ -27383,7 +27473,7 @@
 	)
 	(wire
 		(pts
-			(xy 142.24 217.17) (xy 151.13 217.17)
+			(xy 171.45 217.17) (xy 179.07 217.17)
 		)
 		(stroke
 			(width 0)
@@ -27393,7 +27483,7 @@
 	)
 	(wire
 		(pts
-			(xy 142.24 229.87) (xy 151.13 229.87)
+			(xy 171.45 229.87) (xy 179.07 229.87)
 		)
 		(stroke
 			(width 0)
@@ -27402,373 +27492,16 @@
 		(uuid "9235b38a-7f27-56ab-8c87-24fae62eebb7")
 	)
 	(junction
-		(at 151.13 217.17)
+		(at 179.07 217.17)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "577722b2-8f7b-58f6-afcf-1319226b878d")
 	)
 	(junction
-		(at 151.13 229.87)
+		(at 179.07 229.87)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "2b13fbf8-daee-5a14-93a4-e90ccade1849")
-	)
-	(symbol
-		(lib_id "ti135_card:C")
-		(at 160.02 223.52 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "4f88c194-d2cf-5063-868b-806cd5a975b9")
-		(property "Reference" "C813"
-			(at 164.76 222.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "1u"
-			(at 163.66 224.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 160.9852 227.33 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 160.02 223.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 160.02 223.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "f8ddd0da-f814-545f-92d3-e44f15c86703")
-		)
-		(pin "2"
-			(uuid "15dc7aa5-5f16-5be7-87d8-8af49d444af2")
-		)
-		(instances
-			(project "ti135_card"
-				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/df7ad03a-4cdc-47f6-9423-5d0632e27d2b"
-					(reference "C813")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(wire
-		(pts
-			(xy 160.02 219.71) (xy 160.02 217.17)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d1c2eabc-8e9d-57d7-8cb4-228a6283e10d")
-	)
-	(wire
-		(pts
-			(xy 160.02 227.33) (xy 160.02 229.87)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2ca12985-4e6e-533a-81b9-f7c5ed01da66")
-	)
-	(wire
-		(pts
-			(xy 151.13 217.17) (xy 160.02 217.17)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9d5c2bda-6dc7-5f3e-b52a-3db65f636c21")
-	)
-	(wire
-		(pts
-			(xy 151.13 229.87) (xy 160.02 229.87)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "58bcfed9-2f61-59dd-a397-8b5f88824b38")
-	)
-	(junction
-		(at 160.02 217.17)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "7b8eee4b-bccf-59da-bf73-c2e977fd5d9f")
-	)
-	(junction
-		(at 160.02 229.87)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "aa341095-d927-518e-ac05-f553bfd94da9")
-	)
-	(symbol
-		(lib_id "ti135_card:C")
-		(at 168.91 223.52 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "780ce1f5-d57f-584c-a299-1423359143f8")
-		(property "Reference" "C814"
-			(at 173.65 222.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "1u"
-			(at 172.55 224.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 169.8752 227.33 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 168.91 223.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 168.91 223.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "d057779e-2735-533e-bc04-1de6b941e41b")
-		)
-		(pin "2"
-			(uuid "e600c6b9-e792-50a5-b8d2-0fde37aba653")
-		)
-		(instances
-			(project "ti135_card"
-				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/df7ad03a-4cdc-47f6-9423-5d0632e27d2b"
-					(reference "C814")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(wire
-		(pts
-			(xy 168.91 219.71) (xy 168.91 217.17)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "718df480-6e27-5152-aa96-68c6892051af")
-	)
-	(wire
-		(pts
-			(xy 168.91 227.33) (xy 168.91 229.87)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "078b1afc-72ab-59a3-ab55-63590def5758")
-	)
-	(wire
-		(pts
-			(xy 160.02 217.17) (xy 168.91 217.17)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6aa32213-ea37-571a-bdbf-9dbbff5eff46")
-	)
-	(wire
-		(pts
-			(xy 160.02 229.87) (xy 168.91 229.87)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "679d130d-2c38-5598-aab6-6cebc12de322")
-	)
-	(junction
-		(at 168.91 217.17)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "2e4cc7af-ff74-5c3d-b956-7d5a4cc3f022")
-	)
-	(junction
-		(at 168.91 229.87)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "67c9cc0e-81b4-54ff-b369-724d4fbfe4a4")
-	)
-	(symbol
-		(lib_id "ti135_card:C")
-		(at 177.8 223.52 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "bfcec15a-78ba-5f24-aabc-cceb97aead8e")
-		(property "Reference" "C815"
-			(at 182.54 222.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "100n"
-			(at 182.54 224.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 178.7652 227.33 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 177.8 223.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 177.8 223.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "f764b54d-6640-5f01-96c0-405401ab43f9")
-		)
-		(pin "2"
-			(uuid "78d40a05-83b7-5b60-b5fd-0e6b8858cd8d")
-		)
-		(instances
-			(project "ti135_card"
-				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/df7ad03a-4cdc-47f6-9423-5d0632e27d2b"
-					(reference "C815")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(wire
-		(pts
-			(xy 177.8 219.71) (xy 177.8 217.17)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4636894a-450e-5c48-af31-c1ce4f365e28")
-	)
-	(wire
-		(pts
-			(xy 177.8 227.33) (xy 177.8 229.87)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9657ae1e-ab61-5f41-b6a7-bde2bdd7b285")
-	)
-	(wire
-		(pts
-			(xy 168.91 217.17) (xy 177.8 217.17)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ea146406-b15a-59b1-809e-62721d607c26")
-	)
-	(wire
-		(pts
-			(xy 168.91 229.87) (xy 177.8 229.87)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8c42b894-bf8f-5b4d-b210-4d93c48fae90")
-	)
-	(junction
-		(at 177.8 217.17)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "57943625-3922-5027-b004-031973b9bc81")
-	)
-	(junction
-		(at 177.8 229.87)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "87f78baf-a177-5c89-831c-789979a4fa6b")
 	)
 	(symbol
 		(lib_id "ti135_card:C")
@@ -27778,8 +27511,8 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "687047b2-709d-57d2-8578-f4a65e7704c4")
-		(property "Reference" "C816"
+		(uuid "4f88c194-d2cf-5063-868b-806cd5a975b9")
+		(property "Reference" "C813"
 			(at 191.43 222.25 0)
 			(effects
 				(font
@@ -27795,7 +27528,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
 			(at 187.6552 227.33 0)
 			(effects
 				(font
@@ -27822,6 +27555,399 @@
 				(hide yes)
 			)
 		)
+		(property "LCSC" "C190183"
+			(at 186.69 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f8ddd0da-f814-545f-92d3-e44f15c86703")
+		)
+		(pin "2"
+			(uuid "15dc7aa5-5f16-5be7-87d8-8af49d444af2")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/df7ad03a-4cdc-47f6-9423-5d0632e27d2b"
+					(reference "C813")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 186.69 219.71) (xy 186.69 217.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d1c2eabc-8e9d-57d7-8cb4-228a6283e10d")
+	)
+	(wire
+		(pts
+			(xy 186.69 227.33) (xy 186.69 229.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2ca12985-4e6e-533a-81b9-f7c5ed01da66")
+	)
+	(wire
+		(pts
+			(xy 179.07 217.17) (xy 186.69 217.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9d5c2bda-6dc7-5f3e-b52a-3db65f636c21")
+	)
+	(wire
+		(pts
+			(xy 179.07 229.87) (xy 186.69 229.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "58bcfed9-2f61-59dd-a397-8b5f88824b38")
+	)
+	(junction
+		(at 186.69 217.17)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "7b8eee4b-bccf-59da-bf73-c2e977fd5d9f")
+	)
+	(junction
+		(at 186.69 229.87)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "aa341095-d927-518e-ac05-f553bfd94da9")
+	)
+	(symbol
+		(lib_id "ti135_card:C")
+		(at 194.31 223.52 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "780ce1f5-d57f-584c-a299-1423359143f8")
+		(property "Reference" "C814"
+			(at 199.05 222.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100n"
+			(at 199.05 224.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+			(at 195.2752 227.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 194.31 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 194.31 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 194.31 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d057779e-2735-533e-bc04-1de6b941e41b")
+		)
+		(pin "2"
+			(uuid "e600c6b9-e792-50a5-b8d2-0fde37aba653")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/df7ad03a-4cdc-47f6-9423-5d0632e27d2b"
+					(reference "C814")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 194.31 219.71) (xy 194.31 217.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "718df480-6e27-5152-aa96-68c6892051af")
+	)
+	(wire
+		(pts
+			(xy 194.31 227.33) (xy 194.31 229.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "078b1afc-72ab-59a3-ab55-63590def5758")
+	)
+	(wire
+		(pts
+			(xy 186.69 217.17) (xy 194.31 217.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6aa32213-ea37-571a-bdbf-9dbbff5eff46")
+	)
+	(wire
+		(pts
+			(xy 186.69 229.87) (xy 194.31 229.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "679d130d-2c38-5598-aab6-6cebc12de322")
+	)
+	(junction
+		(at 194.31 217.17)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "2e4cc7af-ff74-5c3d-b956-7d5a4cc3f022")
+	)
+	(junction
+		(at 194.31 229.87)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "67c9cc0e-81b4-54ff-b369-724d4fbfe4a4")
+	)
+	(symbol
+		(lib_id "ti135_card:C")
+		(at 201.93 223.52 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "bfcec15a-78ba-5f24-aabc-cceb97aead8e")
+		(property "Reference" "C815"
+			(at 206.67 222.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100n"
+			(at 206.67 224.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+			(at 202.8952 227.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 201.93 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 201.93 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 201.93 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f764b54d-6640-5f01-96c0-405401ab43f9")
+		)
+		(pin "2"
+			(uuid "78d40a05-83b7-5b60-b5fd-0e6b8858cd8d")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/df7ad03a-4cdc-47f6-9423-5d0632e27d2b"
+					(reference "C815")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 201.93 219.71) (xy 201.93 217.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4636894a-450e-5c48-af31-c1ce4f365e28")
+	)
+	(wire
+		(pts
+			(xy 201.93 227.33) (xy 201.93 229.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9657ae1e-ab61-5f41-b6a7-bde2bdd7b285")
+	)
+	(wire
+		(pts
+			(xy 194.31 217.17) (xy 201.93 217.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ea146406-b15a-59b1-809e-62721d607c26")
+	)
+	(wire
+		(pts
+			(xy 194.31 229.87) (xy 201.93 229.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8c42b894-bf8f-5b4d-b210-4d93c48fae90")
+	)
+	(junction
+		(at 201.93 217.17)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "57943625-3922-5027-b004-031973b9bc81")
+	)
+	(junction
+		(at 201.93 229.87)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "87f78baf-a177-5c89-831c-789979a4fa6b")
+	)
+	(symbol
+		(lib_id "ti135_card:C")
+		(at 209.55 223.52 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "687047b2-709d-57d2-8578-f4a65e7704c4")
+		(property "Reference" "C816"
+			(at 214.29 222.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100n"
+			(at 214.29 224.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+			(at 210.5152 227.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 209.55 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 209.55 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 209.55 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "5daa7d2a-ee04-59a5-a97b-43dfaccb26d6")
 		)
@@ -27839,7 +27965,7 @@
 	)
 	(wire
 		(pts
-			(xy 186.69 219.71) (xy 186.69 217.17)
+			(xy 209.55 219.71) (xy 209.55 217.17)
 		)
 		(stroke
 			(width 0)
@@ -27849,7 +27975,7 @@
 	)
 	(wire
 		(pts
-			(xy 186.69 227.33) (xy 186.69 229.87)
+			(xy 209.55 227.33) (xy 209.55 229.87)
 		)
 		(stroke
 			(width 0)
@@ -27859,7 +27985,7 @@
 	)
 	(wire
 		(pts
-			(xy 177.8 217.17) (xy 186.69 217.17)
+			(xy 201.93 217.17) (xy 209.55 217.17)
 		)
 		(stroke
 			(width 0)
@@ -27869,7 +27995,7 @@
 	)
 	(wire
 		(pts
-			(xy 177.8 229.87) (xy 186.69 229.87)
+			(xy 201.93 229.87) (xy 209.55 229.87)
 		)
 		(stroke
 			(width 0)
@@ -27878,20 +28004,20 @@
 		(uuid "1f8ffd87-bad4-52c1-8e3f-88c843e3d542")
 	)
 	(junction
-		(at 186.69 217.17)
+		(at 209.55 217.17)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "1c78c24b-3a09-5c02-9a5f-6f9acfb14ed7")
 	)
 	(junction
-		(at 186.69 229.87)
+		(at 209.55 229.87)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "2d346934-29e4-5ecf-bd96-01a14ad88164")
 	)
 	(symbol
 		(lib_id "ti135_card:C")
-		(at 195.58 223.52 0)
+		(at 217.17 223.52 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -27899,7 +28025,7 @@
 		(dnp no)
 		(uuid "290bf00e-3574-5e59-823c-69c681969fc6")
 		(property "Reference" "C817"
-			(at 200.32 222.25 0)
+			(at 221.91 222.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -27907,15 +28033,15 @@
 			)
 		)
 		(property "Value" "100n"
-			(at 200.32 224.79 0)
+			(at 221.91 224.79 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 196.5452 227.33 0)
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+			(at 218.1352 227.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -27924,7 +28050,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 195.58 223.52 0)
+			(at 217.17 223.52 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -27933,7 +28059,16 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 195.58 223.52 0)
+			(at 217.17 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 217.17 223.52 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -27958,7 +28093,7 @@
 	)
 	(wire
 		(pts
-			(xy 195.58 219.71) (xy 195.58 217.17)
+			(xy 217.17 219.71) (xy 217.17 217.17)
 		)
 		(stroke
 			(width 0)
@@ -27968,7 +28103,7 @@
 	)
 	(wire
 		(pts
-			(xy 195.58 227.33) (xy 195.58 229.87)
+			(xy 217.17 227.33) (xy 217.17 229.87)
 		)
 		(stroke
 			(width 0)
@@ -27978,7 +28113,7 @@
 	)
 	(wire
 		(pts
-			(xy 186.69 217.17) (xy 195.58 217.17)
+			(xy 209.55 217.17) (xy 217.17 217.17)
 		)
 		(stroke
 			(width 0)
@@ -27988,7 +28123,7 @@
 	)
 	(wire
 		(pts
-			(xy 186.69 229.87) (xy 195.58 229.87)
+			(xy 209.55 229.87) (xy 217.17 229.87)
 		)
 		(stroke
 			(width 0)
@@ -27997,20 +28132,20 @@
 		(uuid "b72b5919-e1b3-5c23-b7fb-84faf6023291")
 	)
 	(junction
-		(at 195.58 217.17)
+		(at 217.17 217.17)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "aafdfaf3-4866-5a62-8d88-10db6f4bf8b2")
 	)
 	(junction
-		(at 195.58 229.87)
+		(at 217.17 229.87)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "9084424a-8bc7-5ae7-88b2-30169d39563b")
 	)
 	(symbol
 		(lib_id "ti135_card:C")
-		(at 204.47 223.52 0)
+		(at 224.79 223.52 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -28018,7 +28153,7 @@
 		(dnp no)
 		(uuid "8cea04b1-9697-5c54-9eb8-8d27f1a77c74")
 		(property "Reference" "C818"
-			(at 209.21 222.25 0)
+			(at 229.53 222.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -28026,15 +28161,15 @@
 			)
 		)
 		(property "Value" "100n"
-			(at 209.21 224.79 0)
+			(at 229.53 224.79 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 205.4352 227.33 0)
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+			(at 225.7552 227.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -28043,7 +28178,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 204.47 223.52 0)
+			(at 224.79 223.52 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -28052,7 +28187,16 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 204.47 223.52 0)
+			(at 224.79 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 224.79 223.52 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -28077,7 +28221,7 @@
 	)
 	(wire
 		(pts
-			(xy 204.47 219.71) (xy 204.47 217.17)
+			(xy 224.79 219.71) (xy 224.79 217.17)
 		)
 		(stroke
 			(width 0)
@@ -28087,7 +28231,7 @@
 	)
 	(wire
 		(pts
-			(xy 204.47 227.33) (xy 204.47 229.87)
+			(xy 224.79 227.33) (xy 224.79 229.87)
 		)
 		(stroke
 			(width 0)
@@ -28097,7 +28241,7 @@
 	)
 	(wire
 		(pts
-			(xy 195.58 217.17) (xy 204.47 217.17)
+			(xy 217.17 217.17) (xy 224.79 217.17)
 		)
 		(stroke
 			(width 0)
@@ -28107,7 +28251,7 @@
 	)
 	(wire
 		(pts
-			(xy 195.58 229.87) (xy 204.47 229.87)
+			(xy 217.17 229.87) (xy 224.79 229.87)
 		)
 		(stroke
 			(width 0)
@@ -28116,20 +28260,20 @@
 		(uuid "c40804ad-3650-5fa8-b31a-287bdcd8b942")
 	)
 	(junction
-		(at 204.47 217.17)
+		(at 224.79 217.17)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "c24b8fa0-261b-591d-902c-217ff09c05a4")
 	)
 	(junction
-		(at 204.47 229.87)
+		(at 224.79 229.87)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "49c631e4-14dd-594c-8d2f-8d494c669f92")
 	)
 	(symbol
 		(lib_id "ti135_card:C")
-		(at 213.36 223.52 0)
+		(at 232.41 223.52 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -28137,7 +28281,7 @@
 		(dnp no)
 		(uuid "4a700a25-0809-5642-90ee-94d3657f2f43")
 		(property "Reference" "C819"
-			(at 218.1 222.25 0)
+			(at 237.15 222.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -28145,15 +28289,15 @@
 			)
 		)
 		(property "Value" "100n"
-			(at 218.1 224.79 0)
+			(at 237.15 224.79 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 214.3252 227.33 0)
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+			(at 233.3752 227.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -28162,7 +28306,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 213.36 223.52 0)
+			(at 232.41 223.52 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -28171,7 +28315,16 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 213.36 223.52 0)
+			(at 232.41 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 232.41 223.52 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -28196,7 +28349,7 @@
 	)
 	(wire
 		(pts
-			(xy 213.36 219.71) (xy 213.36 217.17)
+			(xy 232.41 219.71) (xy 232.41 217.17)
 		)
 		(stroke
 			(width 0)
@@ -28206,7 +28359,7 @@
 	)
 	(wire
 		(pts
-			(xy 213.36 227.33) (xy 213.36 229.87)
+			(xy 232.41 227.33) (xy 232.41 229.87)
 		)
 		(stroke
 			(width 0)
@@ -28216,7 +28369,7 @@
 	)
 	(wire
 		(pts
-			(xy 204.47 217.17) (xy 213.36 217.17)
+			(xy 224.79 217.17) (xy 232.41 217.17)
 		)
 		(stroke
 			(width 0)
@@ -28226,7 +28379,7 @@
 	)
 	(wire
 		(pts
-			(xy 204.47 229.87) (xy 213.36 229.87)
+			(xy 224.79 229.87) (xy 232.41 229.87)
 		)
 		(stroke
 			(width 0)
@@ -28235,254 +28388,16 @@
 		(uuid "3c4dcec0-d0df-5383-ba5a-b701051ec0a2")
 	)
 	(junction
-		(at 213.36 217.17)
+		(at 232.41 217.17)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "e45ce569-7522-50ef-9fa2-316785e85145")
 	)
 	(junction
-		(at 213.36 229.87)
+		(at 232.41 229.87)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "58bb4496-d98e-5601-86e3-5a7399bab7e7")
-	)
-	(symbol
-		(lib_id "ti135_card:C")
-		(at 222.25 223.52 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "b4deec30-4abf-5568-b862-8387413937cd")
-		(property "Reference" "C820"
-			(at 226.99 222.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "100n"
-			(at 226.99 224.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 223.2152 227.33 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 222.25 223.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 222.25 223.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "661ee6c0-f3c0-5f92-8d90-719178e742aa")
-		)
-		(pin "2"
-			(uuid "378cf1c0-1364-57ba-a25b-1e731357b7e2")
-		)
-		(instances
-			(project "ti135_card"
-				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/df7ad03a-4cdc-47f6-9423-5d0632e27d2b"
-					(reference "C820")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(wire
-		(pts
-			(xy 222.25 219.71) (xy 222.25 217.17)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "65e6c174-8aa9-57d3-a95a-db14d3901015")
-	)
-	(wire
-		(pts
-			(xy 222.25 227.33) (xy 222.25 229.87)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "01c817e7-ff9b-5be5-9493-4fef35d241d4")
-	)
-	(wire
-		(pts
-			(xy 213.36 217.17) (xy 222.25 217.17)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "98353257-49b3-569d-bf42-164f64ffc85f")
-	)
-	(wire
-		(pts
-			(xy 213.36 229.87) (xy 222.25 229.87)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ec8713ff-6904-5740-b7bd-6671c305dfb7")
-	)
-	(junction
-		(at 222.25 217.17)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "236a5d9c-a72f-5882-ac40-388d8fa2b605")
-	)
-	(junction
-		(at 222.25 229.87)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "bf947312-837d-5dd8-ac46-54e93db93e30")
-	)
-	(symbol
-		(lib_id "ti135_card:C")
-		(at 231.14 223.52 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "cb595b21-3ae9-59fc-8367-ba40c97d9929")
-		(property "Reference" "C821"
-			(at 235.88 222.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "100n"
-			(at 235.88 224.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 232.1052 227.33 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 231.14 223.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 231.14 223.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "0796d4ff-115b-5397-bc53-a444e128894f")
-		)
-		(pin "2"
-			(uuid "6e71ef4c-a728-5c0f-b494-8e0161a81ff9")
-		)
-		(instances
-			(project "ti135_card"
-				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/df7ad03a-4cdc-47f6-9423-5d0632e27d2b"
-					(reference "C821")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(wire
-		(pts
-			(xy 231.14 219.71) (xy 231.14 217.17)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "edf1cdd3-d331-5580-bb83-6c6bae3b45d2")
-	)
-	(wire
-		(pts
-			(xy 231.14 227.33) (xy 231.14 229.87)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4cdffa17-ddbb-5f60-aca4-e0c621048d75")
-	)
-	(wire
-		(pts
-			(xy 222.25 217.17) (xy 231.14 217.17)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "67e9cf0b-bf5a-5114-a8b9-837f247309c4")
-	)
-	(wire
-		(pts
-			(xy 222.25 229.87) (xy 231.14 229.87)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b22627f7-9e99-5fb5-8941-632835f8166f")
-	)
-	(junction
-		(at 231.14 217.17)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "81a8d6b2-77ae-54a8-b032-933068d9b354")
-	)
-	(junction
-		(at 231.14 229.87)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "3413944d-15e1-5186-bf6d-694fd8cf7cb9")
 	)
 	(symbol
 		(lib_id "ti135_card:C")
@@ -28492,8 +28407,8 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "895ade77-b2fe-56e5-bd53-4204d339e523")
-		(property "Reference" "C822"
+		(uuid "b4deec30-4abf-5568-b862-8387413937cd")
+		(property "Reference" "C820"
 			(at 244.77 222.25 0)
 			(effects
 				(font
@@ -28509,7 +28424,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
 			(at 240.9952 227.33 0)
 			(effects
 				(font
@@ -28536,6 +28451,271 @@
 				(hide yes)
 			)
 		)
+		(property "LCSC" "C190183"
+			(at 240.03 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "661ee6c0-f3c0-5f92-8d90-719178e742aa")
+		)
+		(pin "2"
+			(uuid "378cf1c0-1364-57ba-a25b-1e731357b7e2")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/df7ad03a-4cdc-47f6-9423-5d0632e27d2b"
+					(reference "C820")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 240.03 219.71) (xy 240.03 217.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "65e6c174-8aa9-57d3-a95a-db14d3901015")
+	)
+	(wire
+		(pts
+			(xy 240.03 227.33) (xy 240.03 229.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "01c817e7-ff9b-5be5-9493-4fef35d241d4")
+	)
+	(wire
+		(pts
+			(xy 232.41 217.17) (xy 240.03 217.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "98353257-49b3-569d-bf42-164f64ffc85f")
+	)
+	(wire
+		(pts
+			(xy 232.41 229.87) (xy 240.03 229.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ec8713ff-6904-5740-b7bd-6671c305dfb7")
+	)
+	(junction
+		(at 240.03 217.17)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "236a5d9c-a72f-5882-ac40-388d8fa2b605")
+	)
+	(junction
+		(at 240.03 229.87)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "bf947312-837d-5dd8-ac46-54e93db93e30")
+	)
+	(symbol
+		(lib_id "ti135_card:C")
+		(at 247.65 223.52 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "cb595b21-3ae9-59fc-8367-ba40c97d9929")
+		(property "Reference" "C821"
+			(at 252.39 222.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100n"
+			(at 252.39 224.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+			(at 248.6152 227.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 247.65 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 247.65 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 247.65 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "0796d4ff-115b-5397-bc53-a444e128894f")
+		)
+		(pin "2"
+			(uuid "6e71ef4c-a728-5c0f-b494-8e0161a81ff9")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/df7ad03a-4cdc-47f6-9423-5d0632e27d2b"
+					(reference "C821")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 247.65 219.71) (xy 247.65 217.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "edf1cdd3-d331-5580-bb83-6c6bae3b45d2")
+	)
+	(wire
+		(pts
+			(xy 247.65 227.33) (xy 247.65 229.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4cdffa17-ddbb-5f60-aca4-e0c621048d75")
+	)
+	(wire
+		(pts
+			(xy 240.03 217.17) (xy 247.65 217.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "67e9cf0b-bf5a-5114-a8b9-837f247309c4")
+	)
+	(wire
+		(pts
+			(xy 240.03 229.87) (xy 247.65 229.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b22627f7-9e99-5fb5-8941-632835f8166f")
+	)
+	(junction
+		(at 247.65 217.17)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "81a8d6b2-77ae-54a8-b032-933068d9b354")
+	)
+	(junction
+		(at 247.65 229.87)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "3413944d-15e1-5186-bf6d-694fd8cf7cb9")
+	)
+	(symbol
+		(lib_id "ti135_card:C")
+		(at 255.27 223.52 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "895ade77-b2fe-56e5-bd53-4204d339e523")
+		(property "Reference" "C822"
+			(at 260.01 222.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100n"
+			(at 260.01 224.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+			(at 256.2352 227.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 255.27 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 255.27 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 255.27 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "650f4e3a-6031-5fdb-904a-93c34cb84290")
 		)
@@ -28553,7 +28733,7 @@
 	)
 	(wire
 		(pts
-			(xy 240.03 219.71) (xy 240.03 217.17)
+			(xy 255.27 219.71) (xy 255.27 217.17)
 		)
 		(stroke
 			(width 0)
@@ -28563,7 +28743,7 @@
 	)
 	(wire
 		(pts
-			(xy 240.03 227.33) (xy 240.03 229.87)
+			(xy 255.27 227.33) (xy 255.27 229.87)
 		)
 		(stroke
 			(width 0)
@@ -28573,7 +28753,7 @@
 	)
 	(wire
 		(pts
-			(xy 231.14 217.17) (xy 240.03 217.17)
+			(xy 247.65 217.17) (xy 255.27 217.17)
 		)
 		(stroke
 			(width 0)
@@ -28583,7 +28763,7 @@
 	)
 	(wire
 		(pts
-			(xy 231.14 229.87) (xy 240.03 229.87)
+			(xy 247.65 229.87) (xy 255.27 229.87)
 		)
 		(stroke
 			(width 0)
@@ -28591,7 +28771,7 @@
 		)
 		(uuid "90dec847-6a98-5846-b0a1-c384ab16d758")
 	)
-	(text "U801 VDDQ (1V1): 10u + 4 x 1u + 8 x 100n (place at the VDDQ balls)"
+	(text "U801 VDDQ (1V1): 2 x 22u + 2 x 1u + 14 x 100n (the 100n under the DRAM, the 22u/1u bulk west of it)"
 		(exclude_from_sim no)
 		(at 138.43 243.84 0)
 		(effects
@@ -28619,7 +28799,7 @@
 				)
 			)
 		)
-		(property "Value" "10u"
+		(property "Value" "22u"
 			(at 137.54 257.81 0)
 			(effects
 				(font
@@ -28627,7 +28807,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 134.3152 260.35 0)
 			(effects
 				(font
@@ -28646,6 +28826,15 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 133.35 256.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C415703"
 			(at 133.35 256.54 0)
 			(effects
 				(font
@@ -28853,7 +29042,7 @@
 	)
 	(symbol
 		(lib_id "ti135_card:C")
-		(at 142.24 256.54 0)
+		(at 140.97 256.54 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -28861,15 +29050,15 @@
 		(dnp no)
 		(uuid "53cc3824-7dc7-5405-a914-44b982194fe6")
 		(property "Reference" "C824"
-			(at 146.98 255.27 0)
+			(at 145.71 255.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "1u"
-			(at 145.88 257.81 0)
+		(property "Value" "22u"
+			(at 145.16 257.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -28877,7 +29066,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 143.2052 260.35 0)
+			(at 141.9352 260.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -28886,7 +29075,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 142.24 256.54 0)
+			(at 140.97 256.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -28895,7 +29084,16 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 142.24 256.54 0)
+			(at 140.97 256.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C415703"
+			(at 140.97 256.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -28920,7 +29118,7 @@
 	)
 	(wire
 		(pts
-			(xy 142.24 252.73) (xy 142.24 250.19)
+			(xy 140.97 252.73) (xy 140.97 250.19)
 		)
 		(stroke
 			(width 0)
@@ -28930,7 +29128,7 @@
 	)
 	(wire
 		(pts
-			(xy 142.24 260.35) (xy 142.24 262.89)
+			(xy 140.97 260.35) (xy 140.97 262.89)
 		)
 		(stroke
 			(width 0)
@@ -28940,7 +29138,7 @@
 	)
 	(wire
 		(pts
-			(xy 133.35 250.19) (xy 142.24 250.19)
+			(xy 133.35 250.19) (xy 140.97 250.19)
 		)
 		(stroke
 			(width 0)
@@ -28950,7 +29148,7 @@
 	)
 	(wire
 		(pts
-			(xy 133.35 262.89) (xy 142.24 262.89)
+			(xy 133.35 262.89) (xy 140.97 262.89)
 		)
 		(stroke
 			(width 0)
@@ -28959,20 +29157,20 @@
 		(uuid "afbd7db9-f344-56f6-b7d5-457880bbabf9")
 	)
 	(junction
-		(at 142.24 250.19)
+		(at 140.97 250.19)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "3e1e8f13-f0b6-5236-a3a0-723cc2c876c5")
 	)
 	(junction
-		(at 142.24 262.89)
+		(at 140.97 262.89)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "667ecbe4-e44f-5b91-b101-2fc64ebde0d7")
 	)
 	(symbol
 		(lib_id "ti135_card:C")
-		(at 151.13 256.54 0)
+		(at 148.59 256.54 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -28980,7 +29178,7 @@
 		(dnp no)
 		(uuid "23899082-1bca-59d0-8d9e-85990c4f1032")
 		(property "Reference" "C825"
-			(at 155.87 255.27 0)
+			(at 153.33 255.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -28988,7 +29186,7 @@
 			)
 		)
 		(property "Value" "1u"
-			(at 154.77 257.81 0)
+			(at 152.23 257.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -28996,7 +29194,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 152.0952 260.35 0)
+			(at 149.5552 260.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29005,7 +29203,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 151.13 256.54 0)
+			(at 148.59 256.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29014,7 +29212,16 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 151.13 256.54 0)
+			(at 148.59 256.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C52923"
+			(at 148.59 256.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29039,7 +29246,7 @@
 	)
 	(wire
 		(pts
-			(xy 151.13 252.73) (xy 151.13 250.19)
+			(xy 148.59 252.73) (xy 148.59 250.19)
 		)
 		(stroke
 			(width 0)
@@ -29049,7 +29256,7 @@
 	)
 	(wire
 		(pts
-			(xy 151.13 260.35) (xy 151.13 262.89)
+			(xy 148.59 260.35) (xy 148.59 262.89)
 		)
 		(stroke
 			(width 0)
@@ -29059,7 +29266,7 @@
 	)
 	(wire
 		(pts
-			(xy 142.24 250.19) (xy 151.13 250.19)
+			(xy 140.97 250.19) (xy 148.59 250.19)
 		)
 		(stroke
 			(width 0)
@@ -29069,7 +29276,7 @@
 	)
 	(wire
 		(pts
-			(xy 142.24 262.89) (xy 151.13 262.89)
+			(xy 140.97 262.89) (xy 148.59 262.89)
 		)
 		(stroke
 			(width 0)
@@ -29078,20 +29285,20 @@
 		(uuid "749c1add-7280-5472-afad-0ac8f8e3792a")
 	)
 	(junction
-		(at 151.13 250.19)
+		(at 148.59 250.19)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "79102100-c268-55e7-ba0a-0a5f07400463")
 	)
 	(junction
-		(at 151.13 262.89)
+		(at 148.59 262.89)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "81d48136-76e8-5579-9226-99fef70dd5f6")
 	)
 	(symbol
 		(lib_id "ti135_card:C")
-		(at 160.02 256.54 0)
+		(at 156.21 256.54 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -29099,7 +29306,7 @@
 		(dnp no)
 		(uuid "61b10e14-812a-5ddd-acdd-eede6947e263")
 		(property "Reference" "C826"
-			(at 164.76 255.27 0)
+			(at 160.95 255.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29107,7 +29314,7 @@
 			)
 		)
 		(property "Value" "1u"
-			(at 163.66 257.81 0)
+			(at 159.85 257.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29115,7 +29322,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 160.9852 260.35 0)
+			(at 157.1752 260.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29124,7 +29331,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 160.02 256.54 0)
+			(at 156.21 256.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29133,7 +29340,16 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 160.02 256.54 0)
+			(at 156.21 256.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C52923"
+			(at 156.21 256.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29158,7 +29374,7 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 252.73) (xy 160.02 250.19)
+			(xy 156.21 252.73) (xy 156.21 250.19)
 		)
 		(stroke
 			(width 0)
@@ -29168,7 +29384,7 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 260.35) (xy 160.02 262.89)
+			(xy 156.21 260.35) (xy 156.21 262.89)
 		)
 		(stroke
 			(width 0)
@@ -29178,7 +29394,7 @@
 	)
 	(wire
 		(pts
-			(xy 151.13 250.19) (xy 160.02 250.19)
+			(xy 148.59 250.19) (xy 156.21 250.19)
 		)
 		(stroke
 			(width 0)
@@ -29188,7 +29404,7 @@
 	)
 	(wire
 		(pts
-			(xy 151.13 262.89) (xy 160.02 262.89)
+			(xy 148.59 262.89) (xy 156.21 262.89)
 		)
 		(stroke
 			(width 0)
@@ -29197,20 +29413,20 @@
 		(uuid "eb3a9a26-890e-53e7-9edf-de1aff73c2b3")
 	)
 	(junction
-		(at 160.02 250.19)
+		(at 156.21 250.19)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "49bdb4df-3475-54ce-bc19-c95bfe87611a")
 	)
 	(junction
-		(at 160.02 262.89)
+		(at 156.21 262.89)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "52ee8957-72fd-5786-94eb-0fb494e1c1ee")
 	)
 	(symbol
 		(lib_id "ti135_card:C")
-		(at 168.91 256.54 0)
+		(at 163.83 256.54 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -29218,23 +29434,23 @@
 		(dnp no)
 		(uuid "f9829cc5-6272-5ed7-9478-7b642f69eaeb")
 		(property "Reference" "C827"
-			(at 173.65 255.27 0)
+			(at 168.57 255.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "1u"
-			(at 172.55 257.81 0)
+		(property "Value" "100n"
+			(at 168.57 257.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 169.8752 260.35 0)
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+			(at 164.7952 260.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29243,7 +29459,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 168.91 256.54 0)
+			(at 163.83 256.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29252,7 +29468,16 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 168.91 256.54 0)
+			(at 163.83 256.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 163.83 256.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29277,7 +29502,7 @@
 	)
 	(wire
 		(pts
-			(xy 168.91 252.73) (xy 168.91 250.19)
+			(xy 163.83 252.73) (xy 163.83 250.19)
 		)
 		(stroke
 			(width 0)
@@ -29287,7 +29512,7 @@
 	)
 	(wire
 		(pts
-			(xy 168.91 260.35) (xy 168.91 262.89)
+			(xy 163.83 260.35) (xy 163.83 262.89)
 		)
 		(stroke
 			(width 0)
@@ -29297,7 +29522,7 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 250.19) (xy 168.91 250.19)
+			(xy 156.21 250.19) (xy 163.83 250.19)
 		)
 		(stroke
 			(width 0)
@@ -29307,7 +29532,7 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 262.89) (xy 168.91 262.89)
+			(xy 156.21 262.89) (xy 163.83 262.89)
 		)
 		(stroke
 			(width 0)
@@ -29316,20 +29541,20 @@
 		(uuid "e65f1b08-d153-50fb-acc2-d9b9f8d16daf")
 	)
 	(junction
-		(at 168.91 250.19)
+		(at 163.83 250.19)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "c723fbf9-d13e-5af8-acbd-bd468f6bd069")
 	)
 	(junction
-		(at 168.91 262.89)
+		(at 163.83 262.89)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "000f6f99-546e-5c6f-aa27-84f2a7d54a0b")
 	)
 	(symbol
 		(lib_id "ti135_card:C")
-		(at 177.8 256.54 0)
+		(at 171.45 256.54 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -29337,7 +29562,7 @@
 		(dnp no)
 		(uuid "d4d9dffd-3f88-5f84-ad0d-0498d2cc3b42")
 		(property "Reference" "C828"
-			(at 182.54 255.27 0)
+			(at 176.19 255.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29345,15 +29570,15 @@
 			)
 		)
 		(property "Value" "100n"
-			(at 182.54 257.81 0)
+			(at 176.19 257.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 178.7652 260.35 0)
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+			(at 172.4152 260.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29362,7 +29587,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 177.8 256.54 0)
+			(at 171.45 256.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29371,7 +29596,16 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 177.8 256.54 0)
+			(at 171.45 256.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 171.45 256.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29396,7 +29630,7 @@
 	)
 	(wire
 		(pts
-			(xy 177.8 252.73) (xy 177.8 250.19)
+			(xy 171.45 252.73) (xy 171.45 250.19)
 		)
 		(stroke
 			(width 0)
@@ -29406,7 +29640,7 @@
 	)
 	(wire
 		(pts
-			(xy 177.8 260.35) (xy 177.8 262.89)
+			(xy 171.45 260.35) (xy 171.45 262.89)
 		)
 		(stroke
 			(width 0)
@@ -29416,7 +29650,7 @@
 	)
 	(wire
 		(pts
-			(xy 168.91 250.19) (xy 177.8 250.19)
+			(xy 163.83 250.19) (xy 171.45 250.19)
 		)
 		(stroke
 			(width 0)
@@ -29426,7 +29660,7 @@
 	)
 	(wire
 		(pts
-			(xy 168.91 262.89) (xy 177.8 262.89)
+			(xy 163.83 262.89) (xy 171.45 262.89)
 		)
 		(stroke
 			(width 0)
@@ -29435,16 +29669,144 @@
 		(uuid "04ae74a1-f2af-52ac-af78-f36db3ddcc71")
 	)
 	(junction
-		(at 177.8 250.19)
+		(at 171.45 250.19)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "3bebbf19-42f8-5159-89a3-62a0f3877799")
 	)
 	(junction
-		(at 177.8 262.89)
+		(at 171.45 262.89)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "846e6f25-8b63-527d-be70-2fb0cc68ab8e")
+	)
+	(symbol
+		(lib_id "ti135_card:C")
+		(at 179.07 256.54 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "3fddddd5-c7af-5659-8d38-ad514e1dc24f")
+		(property "Reference" "C829"
+			(at 183.81 255.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100n"
+			(at 183.81 257.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+			(at 180.0352 260.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 179.07 256.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 179.07 256.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 179.07 256.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "adf91ec1-91da-51d8-a486-5fb33afc7cfe")
+		)
+		(pin "2"
+			(uuid "dd3839f9-8152-59dd-8d3b-87b315937538")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/df7ad03a-4cdc-47f6-9423-5d0632e27d2b"
+					(reference "C829")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 179.07 252.73) (xy 179.07 250.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "055002b1-9d4d-5c8d-9e1a-63f0da081f62")
+	)
+	(wire
+		(pts
+			(xy 179.07 260.35) (xy 179.07 262.89)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2be52dbe-e428-5457-b45f-2cb3a2bc1fbf")
+	)
+	(wire
+		(pts
+			(xy 171.45 250.19) (xy 179.07 250.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e6e1e248-76d9-5cb4-a643-d0b1db095edd")
+	)
+	(wire
+		(pts
+			(xy 171.45 262.89) (xy 179.07 262.89)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c6a0e527-13d7-5939-88ff-e697d0385df9")
+	)
+	(junction
+		(at 179.07 250.19)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "0660a7c7-add4-5f7c-a36f-b8cde81498b7")
+	)
+	(junction
+		(at 179.07 262.89)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "64f29607-9329-53ab-9f67-b6a04155af44")
 	)
 	(symbol
 		(lib_id "ti135_card:C")
@@ -29454,8 +29816,8 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "3fddddd5-c7af-5659-8d38-ad514e1dc24f")
-		(property "Reference" "C829"
+		(uuid "fc85cb54-d116-5580-989a-8af0e0363001")
+		(property "Reference" "C830"
 			(at 191.43 255.27 0)
 			(effects
 				(font
@@ -29471,7 +29833,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
 			(at 187.6552 260.35 0)
 			(effects
 				(font
@@ -29498,118 +29860,8 @@
 				(hide yes)
 			)
 		)
-		(pin "1"
-			(uuid "adf91ec1-91da-51d8-a486-5fb33afc7cfe")
-		)
-		(pin "2"
-			(uuid "dd3839f9-8152-59dd-8d3b-87b315937538")
-		)
-		(instances
-			(project "ti135_card"
-				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/df7ad03a-4cdc-47f6-9423-5d0632e27d2b"
-					(reference "C829")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(wire
-		(pts
-			(xy 186.69 252.73) (xy 186.69 250.19)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "055002b1-9d4d-5c8d-9e1a-63f0da081f62")
-	)
-	(wire
-		(pts
-			(xy 186.69 260.35) (xy 186.69 262.89)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2be52dbe-e428-5457-b45f-2cb3a2bc1fbf")
-	)
-	(wire
-		(pts
-			(xy 177.8 250.19) (xy 186.69 250.19)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e6e1e248-76d9-5cb4-a643-d0b1db095edd")
-	)
-	(wire
-		(pts
-			(xy 177.8 262.89) (xy 186.69 262.89)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c6a0e527-13d7-5939-88ff-e697d0385df9")
-	)
-	(junction
-		(at 186.69 250.19)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "0660a7c7-add4-5f7c-a36f-b8cde81498b7")
-	)
-	(junction
-		(at 186.69 262.89)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "64f29607-9329-53ab-9f67-b6a04155af44")
-	)
-	(symbol
-		(lib_id "ti135_card:C")
-		(at 195.58 256.54 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "fc85cb54-d116-5580-989a-8af0e0363001")
-		(property "Reference" "C830"
-			(at 200.32 255.27 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "100n"
-			(at 200.32 257.81 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 196.5452 260.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 195.58 256.54 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 195.58 256.54 0)
+		(property "LCSC" "C190183"
+			(at 186.69 256.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29634,7 +29886,7 @@
 	)
 	(wire
 		(pts
-			(xy 195.58 252.73) (xy 195.58 250.19)
+			(xy 186.69 252.73) (xy 186.69 250.19)
 		)
 		(stroke
 			(width 0)
@@ -29644,7 +29896,7 @@
 	)
 	(wire
 		(pts
-			(xy 195.58 260.35) (xy 195.58 262.89)
+			(xy 186.69 260.35) (xy 186.69 262.89)
 		)
 		(stroke
 			(width 0)
@@ -29654,7 +29906,7 @@
 	)
 	(wire
 		(pts
-			(xy 186.69 250.19) (xy 195.58 250.19)
+			(xy 179.07 250.19) (xy 186.69 250.19)
 		)
 		(stroke
 			(width 0)
@@ -29664,7 +29916,7 @@
 	)
 	(wire
 		(pts
-			(xy 186.69 262.89) (xy 195.58 262.89)
+			(xy 179.07 262.89) (xy 186.69 262.89)
 		)
 		(stroke
 			(width 0)
@@ -29673,20 +29925,20 @@
 		(uuid "b1b6806c-35df-5a07-aaa9-922273eda6bf")
 	)
 	(junction
-		(at 195.58 250.19)
+		(at 186.69 250.19)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "f14064c6-6fc7-5590-a7ae-ced720bdfdc1")
 	)
 	(junction
-		(at 195.58 262.89)
+		(at 186.69 262.89)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "71a12b22-b880-52a9-b1a9-42fba9ad3d78")
 	)
 	(symbol
 		(lib_id "ti135_card:C")
-		(at 204.47 256.54 0)
+		(at 194.31 256.54 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -29694,7 +29946,7 @@
 		(dnp no)
 		(uuid "4ab9474b-e612-5a83-8db6-e905cf4df9aa")
 		(property "Reference" "C831"
-			(at 209.21 255.27 0)
+			(at 199.05 255.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29702,15 +29954,15 @@
 			)
 		)
 		(property "Value" "100n"
-			(at 209.21 257.81 0)
+			(at 199.05 257.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 205.4352 260.35 0)
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+			(at 195.2752 260.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29719,7 +29971,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 204.47 256.54 0)
+			(at 194.31 256.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29728,7 +29980,16 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 204.47 256.54 0)
+			(at 194.31 256.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 194.31 256.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29753,7 +30014,7 @@
 	)
 	(wire
 		(pts
-			(xy 204.47 252.73) (xy 204.47 250.19)
+			(xy 194.31 252.73) (xy 194.31 250.19)
 		)
 		(stroke
 			(width 0)
@@ -29763,7 +30024,7 @@
 	)
 	(wire
 		(pts
-			(xy 204.47 260.35) (xy 204.47 262.89)
+			(xy 194.31 260.35) (xy 194.31 262.89)
 		)
 		(stroke
 			(width 0)
@@ -29773,7 +30034,7 @@
 	)
 	(wire
 		(pts
-			(xy 195.58 250.19) (xy 204.47 250.19)
+			(xy 186.69 250.19) (xy 194.31 250.19)
 		)
 		(stroke
 			(width 0)
@@ -29783,7 +30044,7 @@
 	)
 	(wire
 		(pts
-			(xy 195.58 262.89) (xy 204.47 262.89)
+			(xy 186.69 262.89) (xy 194.31 262.89)
 		)
 		(stroke
 			(width 0)
@@ -29792,20 +30053,20 @@
 		(uuid "55bdc7b1-a85d-5acf-953b-36f6ae6119a3")
 	)
 	(junction
-		(at 204.47 250.19)
+		(at 194.31 250.19)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "a773e2a0-2a61-5036-bd1a-6987abfad414")
 	)
 	(junction
-		(at 204.47 262.89)
+		(at 194.31 262.89)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "6bbeac26-780f-58c0-bc6e-5704a7824299")
 	)
 	(symbol
 		(lib_id "ti135_card:C")
-		(at 213.36 256.54 0)
+		(at 201.93 256.54 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -29813,7 +30074,7 @@
 		(dnp no)
 		(uuid "8029091e-7cdb-574a-b829-b57684a52a3b")
 		(property "Reference" "C832"
-			(at 218.1 255.27 0)
+			(at 206.67 255.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29821,15 +30082,15 @@
 			)
 		)
 		(property "Value" "100n"
-			(at 218.1 257.81 0)
+			(at 206.67 257.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 214.3252 260.35 0)
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+			(at 202.8952 260.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29838,7 +30099,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 213.36 256.54 0)
+			(at 201.93 256.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29847,7 +30108,16 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 213.36 256.54 0)
+			(at 201.93 256.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 201.93 256.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29872,7 +30142,7 @@
 	)
 	(wire
 		(pts
-			(xy 213.36 252.73) (xy 213.36 250.19)
+			(xy 201.93 252.73) (xy 201.93 250.19)
 		)
 		(stroke
 			(width 0)
@@ -29882,7 +30152,7 @@
 	)
 	(wire
 		(pts
-			(xy 213.36 260.35) (xy 213.36 262.89)
+			(xy 201.93 260.35) (xy 201.93 262.89)
 		)
 		(stroke
 			(width 0)
@@ -29892,7 +30162,7 @@
 	)
 	(wire
 		(pts
-			(xy 204.47 250.19) (xy 213.36 250.19)
+			(xy 194.31 250.19) (xy 201.93 250.19)
 		)
 		(stroke
 			(width 0)
@@ -29902,7 +30172,7 @@
 	)
 	(wire
 		(pts
-			(xy 204.47 262.89) (xy 213.36 262.89)
+			(xy 194.31 262.89) (xy 201.93 262.89)
 		)
 		(stroke
 			(width 0)
@@ -29911,20 +30181,20 @@
 		(uuid "106a3122-0897-5161-b8d9-f352ae45b7a2")
 	)
 	(junction
-		(at 213.36 250.19)
+		(at 201.93 250.19)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "f373704a-e8ca-5c9b-80ad-4f2d25e1cd16")
 	)
 	(junction
-		(at 213.36 262.89)
+		(at 201.93 262.89)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "6c714202-5558-5a98-b1c9-587fd6132b85")
 	)
 	(symbol
 		(lib_id "ti135_card:C")
-		(at 222.25 256.54 0)
+		(at 209.55 256.54 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -29932,7 +30202,7 @@
 		(dnp no)
 		(uuid "1e0d7cc9-27ed-5b05-a598-b794812a7b9b")
 		(property "Reference" "C833"
-			(at 226.99 255.27 0)
+			(at 214.29 255.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29940,15 +30210,15 @@
 			)
 		)
 		(property "Value" "100n"
-			(at 226.99 257.81 0)
+			(at 214.29 257.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 223.2152 260.35 0)
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+			(at 210.5152 260.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29957,7 +30227,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 222.25 256.54 0)
+			(at 209.55 256.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29966,7 +30236,16 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 222.25 256.54 0)
+			(at 209.55 256.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 209.55 256.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29991,7 +30270,7 @@
 	)
 	(wire
 		(pts
-			(xy 222.25 252.73) (xy 222.25 250.19)
+			(xy 209.55 252.73) (xy 209.55 250.19)
 		)
 		(stroke
 			(width 0)
@@ -30001,7 +30280,7 @@
 	)
 	(wire
 		(pts
-			(xy 222.25 260.35) (xy 222.25 262.89)
+			(xy 209.55 260.35) (xy 209.55 262.89)
 		)
 		(stroke
 			(width 0)
@@ -30011,7 +30290,7 @@
 	)
 	(wire
 		(pts
-			(xy 213.36 250.19) (xy 222.25 250.19)
+			(xy 201.93 250.19) (xy 209.55 250.19)
 		)
 		(stroke
 			(width 0)
@@ -30021,7 +30300,7 @@
 	)
 	(wire
 		(pts
-			(xy 213.36 262.89) (xy 222.25 262.89)
+			(xy 201.93 262.89) (xy 209.55 262.89)
 		)
 		(stroke
 			(width 0)
@@ -30030,20 +30309,20 @@
 		(uuid "e26f4b02-872b-525c-b1b4-d16ecb370cee")
 	)
 	(junction
-		(at 222.25 250.19)
+		(at 209.55 250.19)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "3cb04266-7393-5ac9-aa21-f8523c378991")
 	)
 	(junction
-		(at 222.25 262.89)
+		(at 209.55 262.89)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "54b4652b-a4ab-54ac-90a0-7281b1c19988")
 	)
 	(symbol
 		(lib_id "ti135_card:C")
-		(at 231.14 256.54 0)
+		(at 217.17 256.54 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -30051,7 +30330,7 @@
 		(dnp no)
 		(uuid "ecacf65c-5860-59eb-a81e-c4f672283168")
 		(property "Reference" "C834"
-			(at 235.88 255.27 0)
+			(at 221.91 255.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -30059,15 +30338,15 @@
 			)
 		)
 		(property "Value" "100n"
-			(at 235.88 257.81 0)
+			(at 221.91 257.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 232.1052 260.35 0)
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+			(at 218.1352 260.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -30076,7 +30355,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 231.14 256.54 0)
+			(at 217.17 256.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -30085,7 +30364,16 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 231.14 256.54 0)
+			(at 217.17 256.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 217.17 256.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -30110,7 +30398,7 @@
 	)
 	(wire
 		(pts
-			(xy 231.14 252.73) (xy 231.14 250.19)
+			(xy 217.17 252.73) (xy 217.17 250.19)
 		)
 		(stroke
 			(width 0)
@@ -30120,7 +30408,7 @@
 	)
 	(wire
 		(pts
-			(xy 231.14 260.35) (xy 231.14 262.89)
+			(xy 217.17 260.35) (xy 217.17 262.89)
 		)
 		(stroke
 			(width 0)
@@ -30130,7 +30418,7 @@
 	)
 	(wire
 		(pts
-			(xy 222.25 250.19) (xy 231.14 250.19)
+			(xy 209.55 250.19) (xy 217.17 250.19)
 		)
 		(stroke
 			(width 0)
@@ -30140,7 +30428,7 @@
 	)
 	(wire
 		(pts
-			(xy 222.25 262.89) (xy 231.14 262.89)
+			(xy 209.55 262.89) (xy 217.17 262.89)
 		)
 		(stroke
 			(width 0)
@@ -30149,16 +30437,272 @@
 		(uuid "bf4ac6fa-c4fc-5d3f-849d-5b12e1c5c33a")
 	)
 	(junction
-		(at 231.14 250.19)
+		(at 217.17 250.19)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "d8a335e6-fff5-5823-a8f1-863ad3683859")
 	)
 	(junction
-		(at 231.14 262.89)
+		(at 217.17 262.89)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "aa3e650f-bad0-5d67-ace3-10c1a0c9c600")
+	)
+	(symbol
+		(lib_id "ti135_card:C")
+		(at 224.79 256.54 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d0010d4f-c26c-5b39-af6e-e665c93fd687")
+		(property "Reference" "C835"
+			(at 229.53 255.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100n"
+			(at 229.53 257.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+			(at 225.7552 260.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 224.79 256.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 224.79 256.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 224.79 256.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a282cbe9-3675-5702-8c38-8a1badc1abd4")
+		)
+		(pin "2"
+			(uuid "1b0d2c6f-297d-5165-9e8a-8ae7a11cb64a")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/df7ad03a-4cdc-47f6-9423-5d0632e27d2b"
+					(reference "C835")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 224.79 252.73) (xy 224.79 250.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "88e59454-8e0c-5edd-9cbd-63e93b0137ab")
+	)
+	(wire
+		(pts
+			(xy 224.79 260.35) (xy 224.79 262.89)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3f810c43-fec1-5bdd-acbf-3137b018c482")
+	)
+	(wire
+		(pts
+			(xy 217.17 250.19) (xy 224.79 250.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c4de0bfc-3abc-5887-9211-a00e745a0782")
+	)
+	(wire
+		(pts
+			(xy 217.17 262.89) (xy 224.79 262.89)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4bd714b4-66f5-59a3-9a45-eb9e1ceb9ddd")
+	)
+	(junction
+		(at 224.79 250.19)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "4a3310e3-30b9-52ed-affb-5d5a40d053b6")
+	)
+	(junction
+		(at 224.79 262.89)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "07e9017c-e1a8-5315-9ff1-e97e2c0829c9")
+	)
+	(symbol
+		(lib_id "ti135_card:C")
+		(at 232.41 256.54 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "4e8b370d-7767-5d8e-9d0f-4488cd649253")
+		(property "Reference" "C836"
+			(at 237.15 255.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100n"
+			(at 237.15 257.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+			(at 233.3752 260.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 232.41 256.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 232.41 256.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 232.41 256.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "1573ef8d-978c-551c-b770-f635231006c3")
+		)
+		(pin "2"
+			(uuid "aee3d7d1-5e2f-5dac-850d-ece1eeaa40ca")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/df7ad03a-4cdc-47f6-9423-5d0632e27d2b"
+					(reference "C836")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 232.41 252.73) (xy 232.41 250.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4c5cf5cb-13b3-50ea-b4a7-35e306ae3007")
+	)
+	(wire
+		(pts
+			(xy 232.41 260.35) (xy 232.41 262.89)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dd24ba98-f976-570f-bd76-9a04c7d5a14a")
+	)
+	(wire
+		(pts
+			(xy 224.79 250.19) (xy 232.41 250.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2df4b3f3-b287-582d-b18b-27e8918bdea1")
+	)
+	(wire
+		(pts
+			(xy 224.79 262.89) (xy 232.41 262.89)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5f8db228-8252-5a90-b2d0-a3700039dcc0")
+	)
+	(junction
+		(at 232.41 250.19)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "10e8386c-1779-55cb-9684-7e4b95c843b2")
+	)
+	(junction
+		(at 232.41 262.89)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "38ec3566-7858-5465-97b2-8ff6ad902cfe")
 	)
 	(symbol
 		(lib_id "ti135_card:C")
@@ -30168,8 +30712,8 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "d0010d4f-c26c-5b39-af6e-e665c93fd687")
-		(property "Reference" "C835"
+		(uuid "38b7c7e2-7f13-58ef-a985-1894049a3c68")
+		(property "Reference" "C837"
 			(at 244.77 255.27 0)
 			(effects
 				(font
@@ -30185,7 +30729,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
 			(at 240.9952 260.35 0)
 			(effects
 				(font
@@ -30212,16 +30756,25 @@
 				(hide yes)
 			)
 		)
+		(property "LCSC" "C190183"
+			(at 240.03 256.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
-			(uuid "a282cbe9-3675-5702-8c38-8a1badc1abd4")
+			(uuid "2181adc0-102e-5da9-a466-378845225b1d")
 		)
 		(pin "2"
-			(uuid "1b0d2c6f-297d-5165-9e8a-8ae7a11cb64a")
+			(uuid "24f9e7bb-cd62-5978-af6e-dc3aa1476165")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/df7ad03a-4cdc-47f6-9423-5d0632e27d2b"
-					(reference "C835")
+					(reference "C837")
 					(unit 1)
 				)
 			)
@@ -30235,7 +30788,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "88e59454-8e0c-5edd-9cbd-63e93b0137ab")
+		(uuid "675b2f7a-f2d1-5e46-9cc5-dcfeec80a1b6")
 	)
 	(wire
 		(pts
@@ -30245,27 +30798,411 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "3f810c43-fec1-5bdd-acbf-3137b018c482")
+		(uuid "59e12b31-af32-5553-864b-43948123ac89")
 	)
 	(wire
 		(pts
-			(xy 231.14 250.19) (xy 240.03 250.19)
+			(xy 232.41 250.19) (xy 240.03 250.19)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "c4de0bfc-3abc-5887-9211-a00e745a0782")
+		(uuid "4d24b3c9-7cc5-5c3e-858c-a9213f40c7f6")
 	)
 	(wire
 		(pts
-			(xy 231.14 262.89) (xy 240.03 262.89)
+			(xy 232.41 262.89) (xy 240.03 262.89)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "4bd714b4-66f5-59a3-9a45-eb9e1ceb9ddd")
+		(uuid "9922d9dc-f212-5878-b086-ee13cc819ad8")
+	)
+	(junction
+		(at 240.03 250.19)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "c9b155de-f4c8-58a2-ab0a-c130ed8df1af")
+	)
+	(junction
+		(at 240.03 262.89)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "66ebd0d1-44aa-5fba-804b-0d55469f67b9")
+	)
+	(symbol
+		(lib_id "ti135_card:C")
+		(at 247.65 256.54 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "4256f96f-5a1e-5cdd-a092-7db6b6c88ad8")
+		(property "Reference" "C838"
+			(at 252.39 255.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100n"
+			(at 252.39 257.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+			(at 248.6152 260.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 247.65 256.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 247.65 256.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 247.65 256.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "1add6f47-d246-5ea0-9463-cb80f70a6ff4")
+		)
+		(pin "2"
+			(uuid "891c91d0-a9cc-583f-a58c-a2340b51517d")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/df7ad03a-4cdc-47f6-9423-5d0632e27d2b"
+					(reference "C838")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 247.65 252.73) (xy 247.65 250.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b5d4b6e3-caa6-56dc-bd21-e2ff826a4f1b")
+	)
+	(wire
+		(pts
+			(xy 247.65 260.35) (xy 247.65 262.89)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e64e786e-9d5b-54a1-bbe9-354f6871bfd8")
+	)
+	(wire
+		(pts
+			(xy 240.03 250.19) (xy 247.65 250.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "21667ea6-cbf1-58c8-ae4e-6927ab004c4b")
+	)
+	(wire
+		(pts
+			(xy 240.03 262.89) (xy 247.65 262.89)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "71918210-256a-5f72-9db5-3edf2b67b55a")
+	)
+	(junction
+		(at 247.65 250.19)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "7d4c7686-0ccc-58e3-9398-0e1b1e6c588b")
+	)
+	(junction
+		(at 247.65 262.89)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "0f17320d-9905-502d-96ef-4c3d381e6beb")
+	)
+	(symbol
+		(lib_id "ti135_card:C")
+		(at 255.27 256.54 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "33f04598-b485-5e5f-a615-a3025b55d2e2")
+		(property "Reference" "C839"
+			(at 260.01 255.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100n"
+			(at 260.01 257.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+			(at 256.2352 260.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 255.27 256.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 255.27 256.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 255.27 256.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "faaaaf52-cd60-5ef9-9743-5b69981e9cb2")
+		)
+		(pin "2"
+			(uuid "32ab7a71-3735-56ec-bb4f-c70a14483ecb")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/df7ad03a-4cdc-47f6-9423-5d0632e27d2b"
+					(reference "C839")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 255.27 252.73) (xy 255.27 250.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0d68dddf-60d1-501b-8d4c-4e4f5a32f301")
+	)
+	(wire
+		(pts
+			(xy 255.27 260.35) (xy 255.27 262.89)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f5acc415-a793-51ec-89ca-4ab30c2d30e4")
+	)
+	(wire
+		(pts
+			(xy 247.65 250.19) (xy 255.27 250.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "39dadd1c-a067-5b32-a585-ecb222092cee")
+	)
+	(wire
+		(pts
+			(xy 247.65 262.89) (xy 255.27 262.89)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "41f9ca37-55a5-5808-b1b8-a827d6bc59cb")
+	)
+	(junction
+		(at 255.27 250.19)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "04bb44fd-0edf-561d-9679-1b5e1c36fc5f")
+	)
+	(junction
+		(at 255.27 262.89)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e7e37f1c-e565-5ee9-8c37-8e108f8c6c71")
+	)
+	(symbol
+		(lib_id "ti135_card:C")
+		(at 262.89 256.54 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d5a7b0ea-b34d-597a-9cc1-2ff7c03c52c6")
+		(property "Reference" "C840"
+			(at 267.63 255.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100n"
+			(at 267.63 257.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+			(at 263.8552 260.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 262.89 256.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 262.89 256.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 262.89 256.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "5130603b-87d9-55ca-a9a8-3433de85555e")
+		)
+		(pin "2"
+			(uuid "455b5e1b-b541-5fdd-a4b5-1e8b762379d8")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/df7ad03a-4cdc-47f6-9423-5d0632e27d2b"
+					(reference "C840")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 262.89 252.73) (xy 262.89 250.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "85abdb45-613d-5c00-aaff-448252d5a01f")
+	)
+	(wire
+		(pts
+			(xy 262.89 260.35) (xy 262.89 262.89)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4584be8c-e5e1-5948-a97f-6beebfaadbcb")
+	)
+	(wire
+		(pts
+			(xy 255.27 250.19) (xy 262.89 250.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2c632f6d-00f5-5907-92d5-b5134996c4b4")
+	)
+	(wire
+		(pts
+			(xy 255.27 262.89) (xy 262.89 262.89)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "07d7be2d-c2b0-5c65-8904-2f388a04f172")
 	)
 	(embedded_fonts no)
 )

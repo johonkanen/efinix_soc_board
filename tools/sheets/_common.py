@@ -88,16 +88,17 @@ C1206 = "Capacitor_SMD:C_1206_3216Metric"
 C0201 = "Capacitor_SMD:C_0201_0603Metric"
 
 
-def cap_row(sh, x, y, rail, caps, title=None, gnd="GND", pitch=None, label=False):
+def cap_row(sh, x, y, rail, caps, title=None, gnd="GND", pitch=None, label=False, fields=None):
     """One decoupling row: rail symbol above, GND below, caps = [(ref, value, footprint or None)].
-    label=True: the rail is a local net (net label above) instead of a power symbol."""
+    label=True: the rail is a local net (net label above) instead of a power symbol.
+    fields: {value: {field: text}}, extra fields (e.g. LCSC) per value."""
     pitch = pitch or g(7)
     if title:
         sh.text(title, x + g(4), y - g(10))
     top, bot = None, None
     for k, (ref, val, fp) in enumerate(caps):
         cx = x + k * pitch
-        _, ct, cb = vert2(sh, "C", ref, cx, y, val, text="right")
+        _, ct, cb = vert2(sh, "C", ref, cx, y, val, text="right", fields=(fields or {}).get(val))
         t, b = up(ct, 2), down(cb, 2)
         sh.wire(ct, t); sh.wire(cb, b)
         if top:

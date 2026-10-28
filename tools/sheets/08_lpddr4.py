@@ -135,11 +135,16 @@ def caps(spec):
     return out
 
 
-cap_row(sh, g(105), g(150), "1V8", caps([("4u7", 1, None), ("1u", 2, None), ("100n", 4, None)]),
-        "U801 VDD1 (1V8): 4u7 + 2 x 1u + 4 x 100n")
-cap_row(sh, g(105), g(176), "1V1", caps([("10u", 1, C0805), ("1u", 4, None), ("100n", 8, None)]),
-        "U801 VDD2 (1V1): 10u + 4 x 1u + 8 x 100n")
-cap_row(sh, g(105), g(202), "1V1", caps([("10u", 1, C0805), ("1u", 4, None), ("100n", 8, None)]),
-        "U801 VDDQ (1V1): 10u + 4 x 1u + 8 x 100n (place at the VDDQ balls)")
+# The Agilex card's U12 set (same DRAM, same footprint), so its placement and escape copy over one to one
+# (tools/ddr/copy_dram_escape.py): 0201 100n on the via pairs under the DRAM, 22u 0402 at VDD1, 1u/22u bulk west.
+LCSC = {"100n": "C190183", "1u": "C52923", "22u": "C415703"}
+rows = [
+    (g(150), "1V8", [("22u", 1, None), ("100n", 2, C0201)], "U801 VDD1 (1V8): 22u + 2 x 100n"),
+    (g(176), "1V1", [("22u", 2, None), ("1u", 2, None), ("100n", 13, C0201)], "U801 VDD2 (1V1): 2 x 22u + 2 x 1u + 13 x 100n"),
+    (g(202), "1V1", [("22u", 2, None), ("1u", 2, None), ("100n", 14, C0201)],
+     "U801 VDDQ (1V1): 2 x 22u + 2 x 1u + 14 x 100n (the 100n under the DRAM, the 22u/1u bulk west of it)"),
+]
+for y, rail, spec, title in rows:
+    cap_row(sh, g(105), y, rail, caps(spec), title, pitch=g(6), fields={v: {"LCSC": c} for v, c in LCSC.items()})
 sh.save()
 print("08_lpddr4 done")
