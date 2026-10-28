@@ -220,8 +220,9 @@ channel B, in the same way as on Efinix's Ti375C529 dev kit (schematic v1.1, pag
 
 **DQ swizzle (hand-routed 2026-10-28; first plan 2026-10-25 in `LPDDR4_SWIZZLE.md`)**. Net `ddr_dq<n>` is named
 after the **DRAM** pin: DQ<n>_A for n = 0–15, DQ<n−16>_B for n = 16–31. The swizzle shows only at the FPGA pins. The
-FPGA ball each DRAM bit lands on is listed below. `efinity/pinplan/lpddr4_swizzle.json` and the Interface Designer
-project still hold the 2026-10-25 map and must be updated to this table before the FPGA build.
+FPGA ball each DRAM bit lands on is listed below. `efinity/pinplan/lpddr4_swizzle.json` holds the same map
+(2026-10-28); `pinplan.py` sets it in Interface Designer, the design check passes and the generated pinout matches
+the schematic on all 36 DQ/DM balls. Change all three together.
 DM, DQS, CA, CK, CKE, CS and RESET are not swapped.
 
 | FPGA DDR_DQ[k] (ball) | k = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
@@ -229,7 +230,7 @@ DM, DQS, CA, CK, CKE, CS and RESET are not swapped.
 | byte 0 → DQ_A | U3→**3** | U2→**0** | U1→**7** | V3→**2** | Y2→**4** | AA1→**6** | AB2→**1** | AA2→**5** |
 | byte 1 → DQ_A | U4→**8** | V5→**9** | W5→**14** | W4→**15** | AA5→**10** | AB5→**11** | AA6→**13** | AB7→**12** |
 | byte 2 → DQ_B | AA16→**4** | Y16→**2** | AA17→**6** | AB17→**1** | V18→**0** | V17→**7** | V16→**5** | W16→**3** |
-| byte 3 → DQ_B | AB19→**13** | AB21→**15** | AA20→**14** | AA19→**12** | W22→**8** | W21→**9** | W19→**11** | W20→**10** |
+| byte 3 → DQ_B | AB19→**13** | AB21→**14** | AA20→**9** | AA19→**10** | W22→**15** | W21→**8** | W19→**11** | W20→**12** |
 
 (k = position within the byte: FPGA DDR_DQ[8·byte + k].)
 | DDR_CAL (Y9) | – | **240 Ω 1 % to GND** |
