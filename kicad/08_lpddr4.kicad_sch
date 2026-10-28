@@ -17472,7 +17472,7 @@
 		)
 		(uuid "3f17b4a7-a5d6-5d7a-9481-cc3bef9a1c65")
 	)
-	(label "ddr_dq10"
+	(label "ddr_dq14"
 		(at 60.96 121.92 180)
 		(effects
 			(font
@@ -17512,7 +17512,7 @@
 		)
 		(uuid "42033263-d7a0-58e4-a979-6de0fa26d440")
 	)
-	(label "ddr_dq13"
+	(label "ddr_dq11"
 		(at 60.96 127 180)
 		(effects
 			(font
@@ -17612,7 +17612,7 @@
 		)
 		(uuid "5224ef94-a4b2-5af8-975e-2e84bf5c720d")
 	)
-	(label "ddr_dq15"
+	(label "ddr_dq8"
 		(at 60.96 119.38 180)
 		(effects
 			(font
@@ -17662,7 +17662,7 @@
 		)
 		(uuid "61bdd914-e14d-5820-87d6-2d5bf1d4fedf")
 	)
-	(label "ddr_dq11"
+	(label "ddr_dq10"
 		(at 60.96 124.46 180)
 		(effects
 			(font
@@ -17922,7 +17922,7 @@
 		)
 		(uuid "978bcd57-8d21-5fe2-8381-37823296250a")
 	)
-	(label "ddr_dq8"
+	(label "ddr_dq15"
 		(at 60.96 111.76 180)
 		(effects
 			(font
@@ -18032,7 +18032,7 @@
 		)
 		(uuid "af9c7562-b53c-53ad-9274-26120c085fb9")
 	)
-	(label "ddr_dq14"
+	(label "ddr_dq13"
 		(at 60.96 116.84 180)
 		(effects
 			(font
