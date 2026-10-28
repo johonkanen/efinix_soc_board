@@ -18,3 +18,6 @@ kicad/.history/
 # Efinix vendor files (copyright): see reference/efinix/README.md
 reference/efinix/*
 !reference/efinix/README.md
+# LPDDR4 IBIS simulation: vendor models (copyright) and generated netlists/waveforms
+sim/lpddr4_si/models/
+sim/lpddr4_si/work/

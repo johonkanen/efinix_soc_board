@@ -11,8 +11,12 @@ with a 3.25 mm ball-free gap (four depopulated columns) between them. Each share
 prep:   rip the nets' copper outside U501's courtyard (U501 escapes are kept), add the T vias, and park the U801 pads
         on TMP_<net> nets so the router can only reach the T via. CS0/CS2 (one channel each) are ripped outside both
         courtyards and stay point to point.
+        Env CA_KEEP_BYTES=1: no other DDR net is ripped (their copper already clears the branches).
+        Env CA_BRANCH_LAYER=In5.Cu: every branch on that layer, with via-in-pad at the U801 balls (phase 4: CK/CA on one
+        layer); CA_MOVERS_EXTRA="dq13 ...": more DDR nets that give way (ripped outside the courtyards).
 finish: put the U801 pads back on their nets, remove the TMP nets, draw the F.Cu branches, refill.
 """
+import os
 import sys
 
 import pcbnew
@@ -30,6 +34,9 @@ CHANNEL = {  # net: (channel y, branch layer)
     "ddr_ck_P": (58.9, "F.Cu"), "ddr_ck_N": (59.7, "F.Cu"), "ddr_ca2": (60.5, "F.Cu"),
     "ddr_ca3": (61.3, "F.Cu"), "ddr_ca4": (62.1, "F.Cu"),
 }
+# One-layer mode (CA_BRANCH_LAYER set): every branch on that layer, so CA5 can't cross the other channels as it does
+# on In2; it takes CA4's channel below its row and CA4 moves to the open strip under the last ball row.
+CHANNEL_ONE_LAYER = dict(CHANNEL, ddr_ca5=(62.1, None), ddr_ca4=(62.9, None))
 PITCH_X = 0.65
 VIA, DRILL, BR_W = 0.25, 0.15, 0.1
 mm, FM = pcbnew.ToMM, pcbnew.FromMM
@@ -57,7 +64,8 @@ def net_map(b):
 
 
 def t_point(b, s):
-    return (TX, CHANNEL[s][0]), CHANNEL[s][1]
+    one = os.environ.get("CA_BRANCH_LAYER")
+    return ((TX, CHANNEL_ONE_LAYER[s][0]), one) if one else ((TX, CHANNEL[s][0]), CHANNEL[s][1])
 
 
 IU_PER_PS = pcbnew.pcbIUScale.IU_PER_PS
@@ -142,6 +150,8 @@ def prep(b):
     for s in SHARED:
         for lname, pts, p, side in branch_paths(b, s):
             corridors += [(lname, a, c) for a, c in zip(pts, pts[1:])]
+            if lname != "F.Cu":   # the ball's via-in-pad goes through every layer
+                corridors += [(None, pts[-1], pts[-1])]
 
     def seg_d(q, a, c):
         dx, dy = c[0] - a[0], c[1] - a[1]; l2 = dx * dx + dy * dy
@@ -155,7 +165,7 @@ def prep(b):
         pts = [(mm(q.x), mm(q.y)) for q in ends]
         if not via:   # sample along the track
             pts = [(pts[0][0] + (pts[1][0] - pts[0][0]) * k / 8, pts[0][1] + (pts[1][1] - pts[0][1]) * k / 8) for k in range(9)]
-        return any((via or lname == L) and seg_d(q, a, c) < 0.2 + (0.15 if via else 0.05)
+        return any((via or lname in (L, None)) and seg_d(q, a, c) < 0.2 + (0.15 if via else 0.05) + (0.1 if lname is None else 0)
                    for lname, a, c in corridors for q in pts)
     movers = set()
     for t in b.GetTracks():
@@ -164,6 +174,9 @@ def prep(b):
             ends = [t.GetPosition()] if isinstance(t, pcbnew.PCB_VIA) else [t.GetStart(), t.GetEnd()]
             if any(in_gap(q) for q in ends) or near_branch(t):
                 movers.add(s)
+    if os.environ.get("CA_KEEP_BYTES") == "1":   # the data bytes stay as routed (phase 4): nothing gives way
+        movers = set()
+    movers |= {"ddr_" + n for n in os.environ.get("CA_MOVERS_EXTRA", "").split()}   # e.g. "dq13 dq9": also give way
     doomed = []
     for t in b.GetTracks():
         s = short(t.GetNetname())
@@ -206,7 +219,7 @@ def finish(b):
     for f in tps:
         b.Remove(f)
     pcbnew.ZONE_FILLER(b).Fill(b.Zones())
-    print(f"ca_trunk_branch finish: F.Cu branches drawn for {len(SHARED)} nets, pads back on their nets")
+    print(f"ca_trunk_branch finish: branches drawn for {len(SHARED)} nets, pads back on their nets")
 
 
 if __name__ == "__main__":
