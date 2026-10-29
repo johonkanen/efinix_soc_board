@@ -21,7 +21,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Plot signal layers
+      - name: Plot copper layers
+        shell: bash   # container steps default to sh (dash), which lacks ${var/./_}
         run: |
           set -eu
           kicad-cli version
