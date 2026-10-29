@@ -108,7 +108,7 @@ minimum. Rest of the board unchanged (C528 moved 0.3 mm off a dq2 via). Details:
 | 04 pwr_seq | done: power-good chain, TPS3808 → fpga_creset_n (20 ms) |
 | 05 fpga_power | done: U501 power / GND / unused units, ferrite-filtered PLL rails, decoupling rows |
 | 06 fpga_config | done: CDONE, CRESET_N, JTAG + header J1, REF_RES, straps, QSPI flash U601, LEDs |
-| 07 clocks | done: 25 MHz SiT8924 → 3 × 33 R → PLL_BL0/1/2 reference pins N7/R3/L2 |
+| 07 clocks | done: 25 MHz YXC OT322525MJBA4SL (3225, C669088; replaced the unstocked SiT8924) → 3 × 33 R → PLL_BL0/1/2 reference pins N7/R3/L2 |
 | 08 lpddr4 | done: U501 DDR unit ↔ U801 H9HCNNN8KUMLHR-NME. Connectivity checked against the netlist (0 mismatches) |
 | 09 ethernet | done, **redone 2026-10-25 for the RTL8211FDI-CG** (C692886, 8,537 orderable; the KSZ9031 had 16; the Agilex 5 card makes the same change). 3V3 only, internal 1.0 V core LDO and 1.8 V RGMII pad LDO (CFG_EXT = 0, CFG_LDO = 10 strapped). All nine straps fitted: PHY address 1, TXDLY 0, RXDLY 1. PHYRSTB is a 3.3 V input, so U902 74LVC1G07 drives it open drain. Jack LED sinks directly into LED2 (active low). 22 R RGMII series, RSET 2.49 k, 25 MHz crystal, magjack J9 |
 | 10 emmc | done: THGAMVG7T13BAIL, CMD/DAT0-7/RST_n 47 k pull-ups to 1V8, DS 47 k pull-down, CLK 10 R, VCC 3V3, VCCQ 1V8, VDDi 2u2 |

@@ -250,6 +250,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C603656"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "0653daee-5864-4603-8363-94aa9d5d97cb")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "SOT?23*")
 		(path "/b177fc93-3c09-44d0-8b93-4373107c4e43/d169b334-202d-5a51-ad4a-b3f9d5a1055c")
 		(sheetname "/01 pwr_input/")
@@ -640,6 +652,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C11702"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "a4abb81b-a6bd-4f91-9465-86097dea7739")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/9cb92e40-fa6d-416e-bbc5-307aa5691903/6cb75768-da60-5896-9edc-480569984f9b")
 		(sheetname "/14 connectors/")
@@ -786,6 +810,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C25077"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "7c0580fb-b033-4ebd-8be7-2e7fa234d739")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/3886b9a9-7f36-4ca1-be8f-3e95434be1e8/88032140-36e9-5a1d-acb1-80e81f7a5623")
 		(sheetname "/10 emmc/")
@@ -929,6 +965,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25744"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "54a09343-091b-4957-bbbd-35437dad3cea")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -1509,6 +1557,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C492401"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "88ae5d7d-1d03-481a-87fc-dd843bd8ee58")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(path "/b177fc93-3c09-44d0-8b93-4373107c4e43/0a6f8d91-cdb6-4bdf-a988-490bb1a49ef3")
 		(sheetname "01 pwr_input")
 		(sheetfile "01_pwr_input.kicad_sch")
@@ -1728,6 +1788,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25092"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "130a8050-9dfe-47f5-a5b6-4d9a7c65b057")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -2472,6 +2544,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C25092"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "be3dcb9a-7483-4cea-beb0-920a50b7534b")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/232c9406-938b-4386-9e9b-bee74439c084/80cc7fb2-72a5-5a8d-9a8a-3ab2c881d68b")
 		(sheetname "/09 ethernet/")
@@ -2616,6 +2700,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25900"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "d3e7b2b8-9f0e-4a53-bb58-01a4d50209e4")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -2766,6 +2862,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C25900"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "18828af1-8a21-4fd6-868f-ec6c57877f50")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/232c9406-938b-4386-9e9b-bee74439c084/0542a462-50d9-5c3d-a461-250489c88587")
 		(sheetname "/09 ethernet/")
@@ -2913,6 +3021,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C25900"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "c103ba34-05c4-4d81-8e01-ab2e389878dd")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/232c9406-938b-4386-9e9b-bee74439c084/595d97f2-18bf-5f06-bc0e-1dd45394832c")
 		(sheetname "/09 ethernet/")
@@ -3057,6 +3177,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25105"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "4daa5bad-9488-42ac-8652-0ce2bfefef81")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -4288,6 +4420,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C25792"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "c5e9a2ea-153e-46e9-a858-2811815ee98c")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/3886b9a9-7f36-4ca1-be8f-3e95434be1e8/7c61d19c-5b92-561b-aab2-4dff2c94d4e8")
 		(sheetname "/10 emmc/")
@@ -4431,6 +4575,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C2286"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "6298f260-d226-4170-8573-03f4c1ef3bf7")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -4631,6 +4787,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C70593"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "112a3d3b-37d8-4437-829c-4aadd45cfb11")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "Crystal*")
 		(path "/232c9406-938b-4386-9e9b-bee74439c084/ccc27daf-bf40-5e7d-8ada-c61912beed69")
 		(sheetname "/09 ethernet/")
@@ -4800,6 +4968,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C88970"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "c737dd8e-5da7-47a5-83ef-4485ad727251")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "Inductor_* L_* *Ferrite*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/691ee1cb-e41a-5313-ac94-73776f49a6e8")
 		(sheetname "/05 fpga_power/")
@@ -4923,6 +5103,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "32debabc-a681-45b0-a453-558b4d4f2934")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -7305,6 +7497,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C52923"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "00b15b16-6cbd-4784-8502-51eeabdc0c23")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/232c9406-938b-4386-9e9b-bee74439c084/af753fe5-ffa8-59ee-9650-00050a016927")
 		(sheetname "/09 ethernet/")
@@ -7853,6 +8057,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C25105"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "e66919f2-aeec-4b4f-b11d-7af06e53818b")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/334ad52b-5884-483f-bc00-3be643cae895/f781dd72-23fb-5e23-821b-b92cf0c17e05")
 		(sheetname "/13 adc/")
@@ -7996,6 +8212,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25076"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "6b2615c1-60b9-43c6-a91d-1597afd98a2a")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -8145,6 +8373,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "656428f8-8754-438e-90a0-caa270ef218e")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/232c9406-938b-4386-9e9b-bee74439c084/b3a89c51-e327-5300-acd5-8877cc67328e")
 		(sheetname "/09 ethernet/")
@@ -8288,6 +8528,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "2585dfa4-751e-46cf-ae06-5db4f25d0d1e")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -8437,6 +8689,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C25792"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "f653cf1e-f814-4c20-9920-46cb80c60141")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/3886b9a9-7f36-4ca1-be8f-3e95434be1e8/fb0f3c2a-d13f-5268-8bed-a5b7dcc136de")
 		(sheetname "/10 emmc/")
@@ -8580,6 +8844,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25792"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "e9876c15-08c7-41b0-9730-1f61b766bc3b")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -8730,6 +9006,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C25092"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "49a67a9a-dc7f-48f1-a5ef-81b9a475cd86")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/232c9406-938b-4386-9e9b-bee74439c084/e1e51709-2859-51ac-8249-13afb5422c11")
 		(sheetname "/09 ethernet/")
@@ -8877,6 +9165,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "89f60879-246f-4af6-aa22-6b71d470c38e")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/232c9406-938b-4386-9e9b-bee74439c084/0c0846b9-c84d-502f-9728-d9ea1ddb3f8c")
 		(sheetname "/09 ethernet/")
@@ -9020,6 +9320,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C19666"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "b92f5a2e-b129-4d12-bfff-46810e606aa5")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -9170,6 +9482,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C25744"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "09904852-3a02-4b26-aeb1-5e3b5ec7a0fa")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/232c9406-938b-4386-9e9b-bee74439c084/95c8a13e-0def-5acd-9b2c-a1211045ae62")
 		(sheetname "/09 ethernet/")
@@ -9316,6 +9640,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "0d751514-5a46-4167-a306-3db86d476db8")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/8dfe1b80-4662-5d65-b1e2-970344d21d3b")
 		(sheetname "/05 fpga_power/")
@@ -9459,6 +9795,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "e7fbcc4d-7de3-409b-9bd8-085c14d017bf")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -9609,6 +9957,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C11702"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "336348ec-046e-43c6-9d0d-0de0e1a18317")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/005bb34e-5019-4cde-82e0-1ce10912d4b9/fc2c9b31-2fad-5b58-bfd1-523b2a55f9db")
 		(sheetname "/06 fpga_config/")
@@ -9752,6 +10112,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25792"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "1362c0cd-e96b-4695-9211-65cb0529706f")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -10405,6 +10777,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C2937625"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "574dc5e7-7218-4dc8-bb51-0a4a6a3d0f3b")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "Connector*:*_1x??_*")
 		(path "/9cb92e40-fa6d-416e-bbc5-307aa5691903/787e1640-d16b-54da-8daf-466195b8bde6")
 		(sheetname "/14 connectors/")
@@ -10643,6 +11027,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25092"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "3d0ab74d-9b18-4923-8602-a8f22be51b21")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -11196,6 +11592,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C25092"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "0eb19d93-d03b-41ae-94b2-059cc699af23")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/232c9406-938b-4386-9e9b-bee74439c084/140d55b8-207e-5216-9b47-cc48ff5e1459")
 		(sheetname "/09 ethernet/")
@@ -11339,6 +11747,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C23733"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "35538203-fe1e-4a11-a17d-ea416fb15cc5")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -11488,6 +11908,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "f27bfcc4-234c-4db4-b05b-89572800ef2f")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/1200db6b-7482-42ce-b7c4-d025e9219459/787840bb-c9eb-5e59-aa6a-5995d637c075")
 		(sheetname "/04 pwr_seq/")
@@ -11631,6 +12063,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25792"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "5a696c94-5df5-411a-905c-60fcdac4b818")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -11781,6 +12225,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C25900"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "715c7207-ef02-47aa-bc58-532ad7c107cd")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/232c9406-938b-4386-9e9b-bee74439c084/7af1ca6f-77c0-54f1-bb88-fe1b48df13e7")
 		(sheetname "/09 ethernet/")
@@ -11877,6 +12333,203 @@
 			)
 		)
 	)
+	(footprint "Oscillator:Oscillator_SMD_Abracon_ASE-4Pin_3.2x2.5mm"
+		(layer "F.Cu")
+		(uuid "577af5b5-48c9-4f32-bbdc-77931539fd8a")
+		(at 179.1281 82.317 -90)
+		(descr "Abracon ASE, Miniature Crystal Clock Oscillator, 3.2x2.5mm package, SMD, http://www.abracon.com/Oscillators/ASEseries.pdf")
+		(tags "SMD SMT crystal oscillator")
+		(property "Reference" "Y701"
+			(at 0 -2.45 270)
+			(layer "F.SilkS")
+			(uuid "c6851466-663c-447a-83ec-10f9c326b269")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Value" "OT322525MJBA4SL"
+			(at 0 2.45 270)
+			(layer "F.Fab")
+			(uuid "3dba4611-5c8e-48a1-a20a-5ca68b4df11d")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.mouser.com/datasheet/2/371/SiT8924-datasheet-1839508.pdf"
+			(at 0 0 270)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "59ddd436-47d1-4272-ac62-db73463d1458")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "25MHz 1.8V LVCMOS XO, SiTime MEMS, NC pin1 (always enabled)"
+			(at 0 0 270)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "52c59a9a-6fd9-469e-8614-f4e385b9f254")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "KiLib_Generator" "crystal_resonator_oscillator"
+			(at 0 0 270)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "86fb77f0-d0bd-47c9-a812-b8c960cb75a4")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "LCSC" "C669088"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "a6cbe8d2-5d5b-4c43-9aa1-9e817f4b8e93")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(path "/8a939fee-b0ba-4a20-ad16-1502b11e2d82/c488c0e7-288b-5267-8582-cc60629dc22b")
+		(sheetname "/07 clocks/")
+		(sheetfile "07_clocks.kicad_sch")
+		(attr smd)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start -1.96 1.635)
+			(end 1.96 1.635)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "10e20311-09de-4ff0-a814-4f0fd16c322e")
+		)
+		(fp_line
+			(start -1.96 -1.635)
+			(end -1.96 1.635)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "77f24536-a48b-4ef7-a8d2-0d1e8add1219")
+		)
+		(fp_circle
+			(center 0 0)
+			(end 0.25 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(fill yes)
+			(layer "F.Adhes")
+			(uuid "b9cbfe9a-e847-425b-b883-c7ed955c84ad")
+		)
+		(fp_rect
+			(start -2.1 -1.75)
+			(end 2.1 1.75)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.CrtYd")
+			(uuid "aa64202f-b71a-4594-a9c3-d48a8bb0bb77")
+		)
+		(fp_poly
+			(pts
+				(xy 1.6 -1.25) (xy 1.6 1.25) (xy -0.975 1.25) (xy -1.6 0.625) (xy -1.6 -1.25)
+			)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.Fab")
+			(uuid "dae911b3-ab26-4f19-84db-2c57897fcf55")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 0 270)
+			(layer "F.Fab")
+			(uuid "a7c63441-ef31-4a01-b378-d0fef190a67b")
+			(effects
+				(font
+					(size 0.8 0.8)
+					(thickness 0.12)
+				)
+			)
+		)
+		(pad "1" smd roundrect
+			(at -1.05 0.825 270)
+			(size 1.3 1.1)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.227273)
+			(net "1V8")
+			(pinfunction "NC_1")
+			(pintype "no_connect")
+			(uuid "43a7d7e5-3a1e-427f-a8d7-783ba311fd96")
+		)
+		(pad "2" smd roundrect
+			(at 1.05 0.825 270)
+			(size 1.3 1.1)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.227273)
+			(net "GND")
+			(pinfunction "GND_2")
+			(pintype "power_in")
+			(uuid "abf686e0-9702-40c0-9625-47bf8e9e992b")
+		)
+		(pad "3" smd roundrect
+			(at 1.05 -0.825 270)
+			(size 1.3 1.1)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.227273)
+			(net "Net-(Y701-OUT)")
+			(pinfunction "OUT_3")
+			(pintype "output")
+			(uuid "ec3f9d7d-b783-4629-a612-56125a1e045f")
+		)
+		(pad "4" smd roundrect
+			(at -1.05 -0.825 270)
+			(size 1.3 1.1)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.227273)
+			(net "1V8")
+			(pinfunction "VDD_4")
+			(pintype "power_in")
+			(uuid "25a859db-dbb2-4ae5-84c5-738d0de7e64c")
+		)
+		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Oscillator.3dshapes/Oscillator_SMD_Abracon_ASE-4Pin_3.2x2.5mm.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
 	(footprint "Connector_PinHeader_2.54mm:PinHeader_1x14_P2.54mm_Vertical"
 		(locked yes)
 		(layer "F.Cu")
@@ -11925,6 +12578,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C22465874"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "9753d1fa-7e44-4405-bc09-b644e6adda23")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -12289,6 +12954,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "2a4a2575-06de-4e7f-8ddf-d579e495d8ca")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/25009a49-bc15-4aef-b3df-d48f1029afc5/78736b5c-d73e-5209-b79b-bfeda44ca929")
 		(sheetname "/12 level_shift/")
@@ -12433,6 +13110,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "52c1c1f7-0c7f-42f2-83b9-9575e584ea82")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -12582,6 +13271,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C25105"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "b4e3ebf9-e028-4619-b81b-d23c55434ed8")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/8a939fee-b0ba-4a20-ad16-1502b11e2d82/5d8fe768-41e8-5a7c-a40a-93a4da46710e")
 		(sheetname "/07 clocks/")
@@ -12725,6 +13426,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C52923"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "3df2079c-4fab-437b-b6ae-6480650f56a8")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -13378,6 +14091,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C15850"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "cae3951a-1580-405a-ad85-1f1542de41e3")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/232c9406-938b-4386-9e9b-bee74439c084/63d99a27-b647-5cac-bcdf-bdbffef78e91")
 		(sheetname "/09 ethernet/")
@@ -13521,6 +14246,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "925beb8e-6c3c-42bf-815e-4fedf5f0a2b8")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -13670,6 +14407,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C25792"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "1a5bda79-d967-4761-811e-48908f2dd764")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/3886b9a9-7f36-4ca1-be8f-3e95434be1e8/d0b6f4b5-5330-5159-af23-a29dccec83d4")
 		(sheetname "/10 emmc/")
@@ -13813,6 +14562,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25744"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "0ae4e5dd-1632-4f70-80f2-04ed9c50ab0c")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -13962,6 +14723,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C11702"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "80a65926-a8c8-4c51-a81d-03c3794ace95")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/334ad52b-5884-483f-bc00-3be643cae895/da9eaaa0-2e89-52bf-8dad-5570aa35dd9e")
 		(sheetname "/13 adc/")
@@ -14105,6 +14878,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "39ab285e-8b74-4fa5-92ca-9b5cd062f114")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -14758,6 +15543,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C25092"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "3e57c80f-be2c-4fa1-85b7-2e1ed703b12a")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/232c9406-938b-4386-9e9b-bee74439c084/64fa22c0-9dba-546d-b30e-53c244a77bbc")
 		(sheetname "/09 ethernet/")
@@ -14902,6 +15699,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25092"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "9271f561-4b9f-40e9-9710-f1d44817a9f4")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -15052,6 +15861,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C25092"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "52c9dfed-cfbc-44a2-822f-45dc8e9646f6")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/232c9406-938b-4386-9e9b-bee74439c084/b83954fb-1eee-5b4d-bb97-9cf9eb2bf787")
 		(sheetname "/09 ethernet/")
@@ -15198,6 +16019,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C25744"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "5d331849-f49d-4c53-88be-85b90106a99f")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/005bb34e-5019-4cde-82e0-1ce10912d4b9/ad147a5d-cd59-5301-959d-b1c89ec0a173")
 		(sheetname "/06 fpga_config/")
@@ -15294,174 +16127,6 @@
 			)
 		)
 	)
-	(footprint "Oscillator:Oscillator_SMD_SiT_PQFN-4Pin_2.0x1.6mm"
-		(layer "F.Cu")
-		(uuid "6e122c4d-cf7a-462b-9e34-0dcf688378af")
-		(at 179.1281 82.317 -90)
-		(descr "SiTime SiT8008B, MEMS programmable oscillator, 2.0x1.6mm package, SMD, https://www.sitime.com/datasheet/SiT8008 page 10")
-		(property "Reference" "Y701"
-			(at 0 -2 270)
-			(layer "F.SilkS")
-			(hide yes)
-			(uuid "f9c012d6-cb86-4f05-9118-fb641b9370f0")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Value" "SiT8924BA-73-18N-25.000000"
-			(at 0 2 270)
-			(layer "F.Fab")
-			(uuid "23ff2b46-cbd3-4fcf-945b-2538d1b8cac5")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Datasheet" "https://www.mouser.com/datasheet/2/371/SiT8924-datasheet-1839508.pdf"
-			(at 0 0 270)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "a33f2c24-674e-41e4-92d5-4789039d0b5d")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "25MHz 1.8V LVCMOS XO, SiTime MEMS, NC pin1 (always enabled)"
-			(at 0 0 270)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "9d5dc383-da7b-46ce-a7f0-5d791d8cac16")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(path "/8a939fee-b0ba-4a20-ad16-1502b11e2d82/c488c0e7-288b-5267-8582-cc60629dc22b")
-		(sheetname "/07 clocks/")
-		(sheetfile "07_clocks.kicad_sch")
-		(units
-			(unit
-				(name "A")
-				(pins "1" "4" "2" "3")
-			)
-		)
-		(attr smd)
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_line
-			(start -1.46 1.26)
-			(end 1.46 1.26)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "F.SilkS")
-			(uuid "b3986ad6-3877-4bbe-868f-6e8647d26355")
-		)
-		(fp_line
-			(start -1.46 -1.26)
-			(end -1.46 1.26)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "F.SilkS")
-			(uuid "f1f53257-8de9-432c-a862-b10c689e3c46")
-		)
-		(fp_rect
-			(start -1.5 -1.3)
-			(end 1.5 1.3)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(fill no)
-			(layer "F.CrtYd")
-			(uuid "64c09e96-295e-4136-862f-e9491baf4716")
-		)
-		(fp_poly
-			(pts
-				(xy 1 -0.8) (xy 1 0.8) (xy -0.6 0.8) (xy -1 0.4) (xy -1 -0.8)
-			)
-			(stroke
-				(width 0.1)
-				(type solid)
-			)
-			(fill no)
-			(layer "F.Fab")
-			(uuid "c82d01cd-8009-4486-87cd-7c73b31ddccc")
-		)
-		(fp_text user "${REFERENCE}"
-			(at 0 0 270)
-			(layer "F.Fab")
-			(uuid "23a9682e-aa25-4aa9-9068-26d952c95ada")
-			(effects
-				(font
-					(size 0.5 0.5)
-					(thickness 0.08)
-				)
-			)
-		)
-		(pad "1" smd roundrect
-			(at -0.75 0.6 270)
-			(size 0.9 0.8)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(roundrect_rratio 0.25)
-			(net "unconnected-(Y701-NC-Pad1)")
-			(pinfunction "NC_1")
-			(pintype "no_connect")
-			(uuid "bb3c3398-2068-49f0-be21-09f3558c5645")
-		)
-		(pad "2" smd roundrect
-			(at 0.75 0.6 270)
-			(size 0.9 0.8)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(roundrect_rratio 0.25)
-			(net "GND")
-			(pinfunction "GND_2")
-			(pintype "power_in")
-			(uuid "33536ae2-a0c6-4eda-b627-1aadb59bb3de")
-		)
-		(pad "3" smd roundrect
-			(at 0.75 -0.6 270)
-			(size 0.9 0.8)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(roundrect_rratio 0.25)
-			(net "Net-(Y701-OUT)")
-			(pinfunction "OUT_3")
-			(pintype "output")
-			(uuid "10c60e1b-65e2-4831-8a05-99c74efabbdf")
-		)
-		(pad "4" smd roundrect
-			(at -0.75 -0.6 270)
-			(size 0.9 0.8)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(roundrect_rratio 0.25)
-			(net "1V8")
-			(pinfunction "VDD_4")
-			(pintype "power_in")
-			(uuid "4beb3d3f-9067-45ab-95af-06553d438344")
-		)
-		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Oscillator.3dshapes/Oscillator_SMD_SiT_PQFN-4Pin_2.0x1.6mm.step"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 0)
-			)
-		)
-	)
 	(footprint "Inductor_SMD:L_0402_1005Metric"
 		(layer "F.Cu")
 		(uuid "6e7292e2-13da-492b-a7b9-be5d83db6dda")
@@ -15509,6 +16174,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C88970"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "7b5b0fce-110e-41c3-9cb0-e06e8c0e75eb")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -15635,6 +16312,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25744"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "0be385f5-99a7-4c8f-b26f-78adf9395604")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -15781,6 +16470,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25792"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "81942386-db4e-45a3-9893-dbc27f42ce73")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -17314,6 +18015,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C11702"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "ea70ecdd-8b1c-4ff7-a4f7-ed6c2651db50")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/9cb92e40-fa6d-416e-bbc5-307aa5691903/2e17e1ce-3ad1-52dd-a374-b5b5850f3966")
 		(sheetname "/14 connectors/")
@@ -17458,6 +18171,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25900"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "f0fbc74e-7849-4455-9d87-3db2df9803f7")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -18110,6 +18835,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C52923"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "79d8a228-070f-4fbd-98fb-cef8d540e215")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/232c9406-938b-4386-9e9b-bee74439c084/7b92217a-4714-5e8f-8b08-97b616f4b53c")
 		(sheetname "/09 ethernet/")
@@ -18254,6 +18991,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25900"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "f24084a6-1ff2-41d9-9d46-364891f461cc")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -18403,6 +19152,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C88970"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "f3288a32-e75b-4c6e-ae21-49b11e90c2d3")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "Inductor_* L_* *Ferrite*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/016f9c05-3731-5453-a7d7-bff929c1eba1")
 		(sheetname "/05 fpga_power/")
@@ -18526,6 +19287,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C12530"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "2b303585-d892-4329-84d0-fd11c577435e")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -18675,6 +19448,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "175853b7-f3ca-4100-8ec5-85463e5cb385")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/232c9406-938b-4386-9e9b-bee74439c084/2e479781-0d81-598f-963d-94fc923d9bb9")
 		(sheetname "/09 ethernet/")
@@ -18818,6 +19603,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25744"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "199303df-4d4a-4863-9ac3-ee39816494d3")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -18967,6 +19764,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "9093de5d-e7a1-403f-ab57-775a0aeb1808")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/232c9406-938b-4386-9e9b-bee74439c084/d8d8518c-8d3e-5aba-919a-5695a887c8e2")
 		(sheetname "/09 ethernet/")
@@ -19110,6 +19919,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C52923"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "6c371abf-d019-45a6-9d9b-cb87caea97d7")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -19259,6 +20080,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C52923"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "1e47be33-a848-44d2-9357-a06d678aee4c")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/b177fc93-3c09-44d0-8b93-4373107c4e43/9fd520e8-8236-5fcb-8e3c-4b03af64e279")
 		(sheetname "/01 pwr_input/")
@@ -19402,6 +20235,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25092"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "0cbbcd5d-c647-4a89-bd1c-06b712de1477")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -19551,6 +20396,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "b8fd4081-3465-40f1-99f3-f9b66d3d75f9")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/005bb34e-5019-4cde-82e0-1ce10912d4b9/d321f1a6-e8e1-5e54-a085-853cb511f403")
 		(sheetname "/06 fpga_config/")
@@ -19694,6 +20551,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25744"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "a71e53f3-bd90-43de-bb88-2ac9eb6ecf92")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -19843,6 +20712,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C52923"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "e1c0af16-57e5-4d24-a883-e9846157f3ed")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/624a6665-2e7a-5066-a46f-879db8a0755a")
 		(sheetname "/05 fpga_power/")
@@ -19986,6 +20867,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25105"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "12dc2f5a-fad3-46d5-87f6-61ef90940607")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -20135,6 +21028,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "5690ba07-4c20-4847-814a-4da0885bacc1")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/3886b9a9-7f36-4ca1-be8f-3e95434be1e8/b46ff94c-a273-5e2b-97d3-f62136efc3cd")
 		(sheetname "/10 emmc/")
@@ -20234,7 +21139,7 @@
 	(footprint "Capacitor_SMD:C_0402_1005Metric"
 		(layer "F.Cu")
 		(uuid "96871fc6-5c97-4a31-8927-7d60484820f3")
-		(at 181.4437 81.4197)
+		(at 181.9437 81.4197)
 		(descr "Capacitor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "capacitor")
 		(property "Reference" "C701"
@@ -20278,6 +21183,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "acd07e35-4635-4e5a-8272-394f9220ad26")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -20428,6 +21345,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C25900"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "8cfbb9be-16a6-4f35-b3ee-7fb88744f3ec")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/232c9406-938b-4386-9e9b-bee74439c084/763d524f-eeee-5bfd-8504-4830dbcb2638")
 		(sheetname "/09 ethernet/")
@@ -20572,6 +21501,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25900"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "136088e3-eec2-4b95-896d-cf58425ed953")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -20721,6 +21662,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C25741"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "9b729367-86e3-4abf-8c57-0793fe17e3a8")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/1200db6b-7482-42ce-b7c4-d025e9219459/0981aecd-b404-544d-8283-f3d4be575b58")
 		(sheetname "/04 pwr_seq/")
@@ -20864,6 +21817,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "f064a1ea-2904-4b9d-ab6c-f1daf6daf736")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -21014,6 +21979,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C25105"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "a2ae7f8e-0a90-4c91-91a7-5e5cf5c16938")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/334ad52b-5884-483f-bc00-3be643cae895/770a93b4-937c-511a-95e5-ee6e9108b0f9")
 		(sheetname "/13 adc/")
@@ -21161,6 +22138,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C25884"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "a24e1bd7-0e91-4b20-8e73-f08732550c5d")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/232c9406-938b-4386-9e9b-bee74439c084/a6537a53-fff2-599f-abdb-d1123405d3bc")
 		(sheetname "/09 ethernet/")
@@ -21304,6 +22293,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25744"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "aa6361ea-d517-4f04-8e00-828009e70cae")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -21454,6 +22455,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C11702"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "2e652785-77e9-434c-bb14-67ee2276a1e3")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/005bb34e-5019-4cde-82e0-1ce10912d4b9/aef66ef1-0271-5ff5-93ca-ab217ed92953")
 		(sheetname "/06 fpga_config/")
@@ -21597,6 +22610,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "5722c1df-00e4-48a5-9d3e-1ebaa114aec0")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -21746,6 +22771,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "9e48f289-46f2-4473-a084-bbe359704863")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/334ad52b-5884-483f-bc00-3be643cae895/2cc7bdd9-1f3e-5b41-a7b3-33b48a36fb32")
 		(sheetname "/13 adc/")
@@ -21892,6 +22929,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C1557"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "d1dbd825-4964-4b55-9555-41126775ad29")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/232c9406-938b-4386-9e9b-bee74439c084/e3dfdec0-015f-555f-98af-6eb96a9102f3")
 		(sheetname "/09 ethernet/")
@@ -21991,7 +23040,7 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "F.Cu")
 		(uuid "aa812325-3404-4af1-acf7-1236fe9e246f")
-		(at 176.7955 81.9189 180)
+		(at 176.2955 81.9189 180)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R701"
@@ -22036,6 +23085,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25105"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "676b40ed-09c6-475b-93d7-b4f0ef5f7124")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -22186,6 +23247,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "ea6a296f-fcfa-4a1f-966c-4c851d5e01e7")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/232c9406-938b-4386-9e9b-bee74439c084/2657bad9-01a3-52cb-a48b-493dd7d5214e")
 		(sheetname "/09 ethernet/")
@@ -22329,6 +23402,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C23733"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "6120aa8d-06b0-4c31-aa35-24a7c07c64fb")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -22478,6 +23563,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C11702"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "a61a8b91-e491-4b0f-9368-6d1752050fb4")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/334ad52b-5884-483f-bc00-3be643cae895/dfbf99d1-753d-5b51-a5ed-1a93f27f7ab5")
 		(sheetname "/13 adc/")
@@ -22621,6 +23718,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25744"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "6dd874ea-be72-4370-b716-0f738d7e54f1")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -28350,6 +29459,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C52923"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "0b81283f-475d-4e45-8ecb-fb9f026f975f")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/334ad52b-5884-483f-bc00-3be643cae895/a4e7d305-2028-5323-892e-305a62284da1")
 		(sheetname "/13 adc/")
@@ -28493,6 +29614,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "c06be2f0-856d-4972-b1d5-c8eb382d89db")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -28642,6 +29775,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C52923"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "f195f384-6348-480e-a215-cc7d220ea8a9")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/334ad52b-5884-483f-bc00-3be643cae895/253c6e87-1058-50ae-a10e-5c7d88645bf5")
 		(sheetname "/13 adc/")
@@ -28788,6 +29933,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C88970"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "b1840c0f-8016-4ae0-9713-1facca48e470")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "Inductor_* L_* *Ferrite*")
 		(path "/232c9406-938b-4386-9e9b-bee74439c084/1cc8cb70-d41b-5d84-99d1-22969b7837bd")
 		(sheetname "/09 ethernet/")
@@ -28912,6 +30069,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25900"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "55bf5987-d587-4904-92a9-407547e2461b")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -29062,6 +30231,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C25092"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "e78102c5-2bce-4297-8c1f-613ba050cd21")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/232c9406-938b-4386-9e9b-bee74439c084/bbd1d34c-7d82-5e5a-9e06-e9d46000803e")
 		(sheetname "/09 ethernet/")
@@ -29205,6 +30386,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25105"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "d96bb319-7405-49e4-9065-822c57710a58")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -29354,6 +30547,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C88970"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "5daa3b42-e1cc-454d-a122-95da2ea49067")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "Inductor_* L_* *Ferrite*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/21f67463-077b-52e3-bb50-ce9e40aa5f10")
 		(sheetname "/05 fpga_power/")
@@ -29477,6 +30682,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C2286"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "8488c398-f01b-4a71-ae80-8b0aa3b9d9f4")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -29677,6 +30894,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "f32d3ced-120a-420b-aba5-bcd456608826")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/232c9406-938b-4386-9e9b-bee74439c084/ba91bd28-e8dd-56d2-af19-82bff00bd767")
 		(sheetname "/09 ethernet/")
@@ -29820,6 +31049,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25792"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "2336590b-bc8b-472a-87b0-b5e264ea5074")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -29969,6 +31210,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C52923"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "fa0ec48d-683a-48e8-bc5c-581751b99889")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/a2e015f2-5bf2-5a35-b7a7-93246881ed39")
 		(sheetname "/05 fpga_power/")
@@ -30112,6 +31365,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "462e7358-1749-4efd-980e-8bd0c2f1eeae")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -30261,6 +31526,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C1557"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "3a34e247-e5c0-44e2-b4d3-e09c84106f04")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/232c9406-938b-4386-9e9b-bee74439c084/40d9da57-66d0-5c2a-b3fd-9ccb7654f330")
 		(sheetname "/09 ethernet/")
@@ -30405,6 +31682,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25092"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "f2e2bd63-bdd5-42f1-a0cf-553ecf61ae49")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -30955,6 +32244,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C492404"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "4a388c85-e205-471c-a944-58b53f7eb216")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "Connector*:*_1x??_*")
 		(path "/005bb34e-5019-4cde-82e0-1ce10912d4b9/70557ae1-4e5c-57fd-82af-84d1e1fc9b63")
 		(sheetname "/06 fpga_config/")
@@ -31218,6 +32519,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C11702"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "8291d2df-0cc7-4ac5-bd13-be8f1b93aada")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/334ad52b-5884-483f-bc00-3be643cae895/9678764e-5827-5269-b058-b2ef7e269250")
 		(sheetname "/13 adc/")
@@ -31361,6 +32674,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "5030c406-0773-4589-994c-33e3c4a9a24d")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -31510,6 +32835,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C25792"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "0fef7120-ce78-428f-9a30-78e377507ec8")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/3886b9a9-7f36-4ca1-be8f-3e95434be1e8/363c3345-02ff-576a-85bc-b2c08ec57b71")
 		(sheetname "/10 emmc/")
@@ -31656,6 +32993,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C52923"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "bc859db2-7424-4c55-aa10-0befcd15254e")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/b177fc93-3c09-44d0-8b93-4373107c4e43/ccc22d60-abc3-539b-8c36-53abc7b1e22d")
 		(sheetname "/01 pwr_input/")
@@ -31799,6 +33148,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25744"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "652d2838-cb86-4da8-bb5e-648d87e48cdc")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -31949,6 +33310,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C25092"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "949dbea4-e509-4fe8-9d57-291f79103b8a")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/232c9406-938b-4386-9e9b-bee74439c084/e84f5c02-255c-5647-a221-c4376b98b98c")
 		(sheetname "/09 ethernet/")
@@ -32092,6 +33465,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "1c52ed66-5607-441f-a909-7f9f9194b6ba")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -32241,6 +33626,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C25792"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "a43fef50-8fa3-48f8-a166-3cbee331a3b0")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/3886b9a9-7f36-4ca1-be8f-3e95434be1e8/e9795c78-25c4-54e9-973b-efc14cd996f5")
 		(sheetname "/10 emmc/")
@@ -32387,6 +33784,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C52923"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "beda3909-6c90-4f8f-86d8-deabefd049c9")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/5f424833-ad7c-59f5-8d78-40617752accc")
 		(sheetname "/05 fpga_power/")
@@ -32530,6 +33939,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "a3c28591-cd91-4d50-86d5-e831f71d67da")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -32680,6 +34101,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C11702"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "2b09caf2-4adc-428d-9c3f-bc865c602db9")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/334ad52b-5884-483f-bc00-3be643cae895/4bb074ae-bfde-5477-a9ff-dba1213a7a8c")
 		(sheetname "/13 adc/")
@@ -32824,6 +34257,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25744"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "f191f824-bbd0-43b2-81b3-14aef88d8826")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -32974,6 +34419,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C25792"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "2e5cd3bd-78d6-4be0-80b2-ee156956c230")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/3886b9a9-7f36-4ca1-be8f-3e95434be1e8/206ae4e3-8123-587c-b452-0aeb9bd0713e")
 		(sheetname "/10 emmc/")
@@ -33120,6 +34577,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C25104"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "6f4eac25-1b45-45f0-900e-4f1662d6706f")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/232c9406-938b-4386-9e9b-bee74439c084/1825308b-0165-5df7-a52a-68ba78a734bf")
 		(sheetname "/09 ethernet/")
@@ -33263,6 +34732,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25744"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "0a6c5755-46da-476c-9a66-459a0dc0349e")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -33413,6 +34894,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C25900"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "843c652f-8d84-4a32-9ba8-fb8d8256c5e8")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/232c9406-938b-4386-9e9b-bee74439c084/6ef1b0c8-c0fd-5cc2-9b5d-df9ca0e1b0f7")
 		(sheetname "/09 ethernet/")
@@ -33557,6 +35050,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "6e04ab68-3ab0-4f69-8b31-eb52a0c8ffa6")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -33707,6 +35212,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C25744"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "0eee5036-d193-4ea5-8c35-1f20e66958ca")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/232c9406-938b-4386-9e9b-bee74439c084/7066efcc-97b1-53a3-88ac-4c34aa4fac47")
 		(sheetname "/09 ethernet/")
@@ -33850,6 +35367,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C126514"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "530b89af-70c7-45be-8de8-f5d915698de1")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -34163,6 +35692,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "41612fbb-764d-4682-b0c4-e5d68f57fd08")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/232c9406-938b-4386-9e9b-bee74439c084/fec7be38-dcf5-52b6-bf80-42bdcc13e834")
 		(sheetname "/09 ethernet/")
@@ -34307,6 +35848,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25900"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "08b10d44-df23-4505-91cc-13d6587ade92")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -34456,6 +36009,18 @@
 				)
 			)
 		)
+		(property "LCSC" "C25744"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "d6995e5c-c285-4a3a-9de3-0242dc8e197c")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/005bb34e-5019-4cde-82e0-1ce10912d4b9/29e40c6e-1770-5fca-9020-95a921c2d4b3")
 		(sheetname "/06 fpga_config/")
@@ -34599,6 +36164,18 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C19653"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "2ed40cbd-e36e-4461-a42b-119a0b6295b6")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -34957,6 +36534,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C25741"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "c5da886d-3c50-45ca-8ced-392c74d869a3")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/afe31350-0a3f-46a7-ba21-73576eb9e8e2/9a8ba51c-04c9-5fde-9847-839852633150")
 		(sheetname "/03 pwr_rails/")
@@ -35108,6 +36697,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C76941"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "d083bd5b-15f5-4b3d-9235-91baf5bb9570")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/45449e11-4a73-5243-9ad4-bedfc19cbc0d")
 		(sheetname "/05 fpga_power/")
@@ -35253,6 +36854,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C76941"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "af7a8f85-00f9-4a05-b975-5c6348c9077e")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/2777c648-a16e-5a36-9003-04cc267e6ebd")
 		(sheetname "/05 fpga_power/")
@@ -35396,6 +37009,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C52923"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "caca7b36-787f-4cef-83bf-411c6609b0d3")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -35549,6 +37174,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "fd2977b5-3e7f-4bf5-882f-89ff235b73d4")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/4feaa518-1ab3-5b0e-9901-2ea7f709660b")
 		(sheetname "/05 fpga_power/")
@@ -35692,6 +37329,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C23733"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "ad1dc736-43f3-4a37-98d9-32630c14d951")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -35845,6 +37494,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C25744"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "54a70d8e-1357-4ca2-8af9-31bee20817bf")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/005bb34e-5019-4cde-82e0-1ce10912d4b9/0e369989-7206-588b-968f-f93ea647e3c1")
 		(sheetname "/06 fpga_config/")
@@ -35996,6 +37657,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C66942"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "6d23d78c-1cee-4caa-9150-032e9afc90f4")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/86d19a39-9d8a-5923-9b47-4a561c9b6e7d")
 		(sheetname "/05 fpga_power/")
@@ -36139,6 +37812,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C52923"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "726f58f9-773f-47eb-85e8-39b613d0259f")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -36292,6 +37977,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C15850"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "aa0f1de9-56db-43ee-b926-457373d1c1e0")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/9c7da3c4-a359-57cb-9aa0-f1549e1f2eba")
 		(sheetname "/05 fpga_power/")
@@ -36443,6 +38140,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C76941"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "171a52f2-d73f-4db5-be99-e1c18943ba1f")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/a2a698e6-e0f6-55aa-acc1-0550f7f358ce")
 		(sheetname "/05 fpga_power/")
@@ -36586,6 +38295,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C66942"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "cd2ac501-a66d-4c29-ac25-bbddbf14107f")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -36891,6 +38612,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C15850"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "4193f266-32e9-422b-a04b-14b54d6bec44")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/4da45169-f077-5c73-8121-c8dc888734e0")
 		(sheetname "/05 fpga_power/")
@@ -37042,6 +38775,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C25744"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "51cead0d-0813-4ee5-822d-44099ddcbaa9")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/005bb34e-5019-4cde-82e0-1ce10912d4b9/c1af0bb4-aa3b-5783-971a-941c0deab5d3")
 		(sheetname "/06 fpga_config/")
@@ -37191,6 +38936,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C15850"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "d5562b86-2d6f-4aeb-8789-ef171f3ef6ce")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -37502,6 +39259,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C52923"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "275d192e-237b-4222-8761-402e0a29a4e0")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/33f08f61-2df1-544d-8c09-e243224c0ec3")
 		(sheetname "/05 fpga_power/")
@@ -37653,6 +39422,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C76941"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "d454a0b4-1942-4411-9271-c4e6b7350cc6")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/d969055f-acf9-5493-82ea-d04b190476e8")
 		(sheetname "/05 fpga_power/")
@@ -37798,6 +39579,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C66942"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "e05bc4b1-0e8c-461f-8be5-f4018e4e020f")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/46d866a1-7f0f-54e0-8b55-4277044237c5")
 		(sheetname "/05 fpga_power/")
@@ -37941,6 +39734,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C52923"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "ad05c707-dd66-4ca6-b4fb-c25c5312192d")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -38094,6 +39899,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C76941"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "d6c41401-ebff-4ae2-b381-04fe5c28a158")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/ebc7920c-87a2-5d96-a417-47cb88ce9674")
 		(sheetname "/05 fpga_power/")
@@ -38237,6 +40054,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C96123"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "711002c7-0163-42e4-ad8c-aedac78c2d94")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -38388,6 +40217,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C76941"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "c3ac717a-945f-4763-85c2-d848ea0187bb")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -38863,6 +40704,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C25764"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "bff4bf2a-25de-4ba2-8a69-6f442964a804")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/afe31350-0a3f-46a7-ba21-73576eb9e8e2/4d13c35e-a0d3-5fcb-88a2-371167994ccf")
 		(sheetname "/03 pwr_rails/")
@@ -39012,6 +40865,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C45783"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "62c2b415-80f0-4ce8-bdd7-c5a52c60d19a")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -39166,6 +41031,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C45783"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "0ba046ef-e6c9-4d48-9761-a19196969493")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/afe31350-0a3f-46a7-ba21-73576eb9e8e2/994cda7c-148b-53d9-83c9-3542fd0e5aeb")
 		(sheetname "/03 pwr_rails/")
@@ -39317,6 +41194,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C76941"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "1b0d3cd7-d687-4355-9f4a-dcfb30049a14")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/d061a5aa-8f5d-5d9c-b171-3cc4b3b27261")
 		(sheetname "/05 fpga_power/")
@@ -39460,6 +41349,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C16780"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "1cd3a442-6bff-47e4-bd55-5b1af0757267")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -39613,6 +41514,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "0fb19b49-4745-4b0b-bd2a-b717f34de080")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/25009a49-bc15-4aef-b3df-d48f1029afc5/b5b93aef-4a53-5e6c-8054-ba86c0a7e725")
 		(sheetname "/12 level_shift/")
@@ -39762,6 +41675,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C25744"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "c1400c3b-4a83-4b81-9307-e9d2f61125fc")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "R_*")
@@ -39915,6 +41840,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C25744"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "4f4a315c-e59f-4ec7-8288-9439b3184c3a")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/005bb34e-5019-4cde-82e0-1ce10912d4b9/0a977eab-5eb3-5732-b020-ee5088ca6d8c")
 		(sheetname "/06 fpga_config/")
@@ -40066,6 +42003,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "c8c6c9d9-636e-431e-a54e-cea8fb2388f5")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/1e6fcee6-13b2-5743-b644-d134e34a4f76")
 		(sheetname "/05 fpga_power/")
@@ -40211,6 +42160,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C66942"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "db343031-93bd-4493-8ec3-8d29d77c18af")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/74e2acbd-0c4c-5c20-907e-10e44da3b300")
 		(sheetname "/05 fpga_power/")
@@ -40354,6 +42315,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "b5752e31-6d42-41fa-9114-8597eb94b747")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -40659,6 +42632,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "dd95aa73-dfe6-4711-b0c8-973f7059e451")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/436a8e8c-6db4-57df-a3db-34585a9a9f6b")
 		(sheetname "/05 fpga_power/")
@@ -40804,6 +42789,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "d2566cd1-f1f5-4df6-bf4f-662a2c1b5018")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/5f8885fc-6837-563f-b8c2-c72ff0df65e5")
 		(sheetname "/05 fpga_power/")
@@ -40947,6 +42944,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C23733"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "2047550b-0421-4ff3-ac61-b76a35a5fc5f")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -41100,6 +43109,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C23733"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "9a2edbcf-22a6-49ff-8997-bd6a5a048edf")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/f00d71ed-3529-5121-acb1-b151ed898d0b")
 		(sheetname "/05 fpga_power/")
@@ -41251,6 +43272,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "94fa0abb-b1bc-44cc-8a95-6d6d216eeec5")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/07bf4126-8e3c-5bc8-983a-51590b57f593")
 		(sheetname "/05 fpga_power/")
@@ -41394,6 +43427,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C76941"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "5c32ea23-36fd-4094-afe9-916fada13004")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -41541,6 +43586,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "89cf94e8-025c-4107-b963-a3eccadac0e8")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/8c83f43c-1e3b-502e-9c73-5eed026766e0")
 		(sheetname "/05 fpga_power/")
@@ -41684,6 +43741,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C25744"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "12e8b331-7ec3-44eb-9137-19d2b483cd8d")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "R_*")
@@ -41995,6 +44064,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C15850"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "9458af22-6fe9-40ef-b5d8-2fcffe06d9c8")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/ecbe7283-e4ee-4777-b3eb-dbdd82b9dff3/2f2730cd-639a-548c-bd8b-40952d543139")
 		(sheetname "/02 pwr_vcore/")
@@ -42146,6 +44227,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C76941"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "0d254851-e0d4-4fdc-835c-32707fa68b3e")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/fa3a5c28-7794-59ff-838b-65135f5248f8")
 		(sheetname "/05 fpga_power/")
@@ -42289,6 +44382,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C52923"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "4c67078a-1681-4d79-a957-a3d4821a381f")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -42681,6 +44786,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C76941"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "0a76ee88-b88e-405e-a874-ffc1994d6f95")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/2569ea04-2cf5-5399-97cd-2f35be58800f")
 		(sheetname "/05 fpga_power/")
@@ -42824,6 +44941,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C45783"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "629ba81a-c1b9-4e2b-b4b6-e37c533a35e9")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -42977,6 +45106,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C52923"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "56ac8a85-85f8-4dde-a949-2c394716cf27")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/4b7dae9b-a8f5-502e-a151-32b476f49221")
 		(sheetname "/05 fpga_power/")
@@ -43126,6 +45267,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "f642c4c3-b733-4909-b8d0-eefa97f6354f")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -43916,6 +46069,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C45783"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "4fc7a5b6-bd95-422e-9541-d593ead6a4e5")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/ecbe7283-e4ee-4777-b3eb-dbdd82b9dff3/c7175887-b65b-5b5b-9650-20cbe74203f5")
 		(sheetname "/02 pwr_vcore/")
@@ -44067,6 +46232,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "1004385f-f288-48f7-a100-0e0f93b7f63e")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/ad62d87d-da62-5636-813d-21af5011f4ea")
 		(sheetname "/05 fpga_power/")
@@ -44210,6 +46387,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C16780"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "4cd35bdd-c2ff-4b03-a9c1-806ec278e2ab")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -44361,6 +46550,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C23733"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "4bdfeb00-7c4d-40d8-a6f0-862202459a15")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -44672,6 +46873,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C52923"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "3713bea2-89e4-4df1-95f0-1d31186c0a4c")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/264fd192-a75e-55eb-a30d-211cb53e1b92")
 		(sheetname "/05 fpga_power/")
@@ -44823,6 +47036,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "e44c220a-43b1-4d5b-a5e3-41e52e734cdc")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/1b7c7240-43f0-5401-99c0-56c00b23282e")
 		(sheetname "/05 fpga_power/")
@@ -44968,6 +47193,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C76941"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "86e657fe-0b1c-4c82-b274-3fc29725a92b")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/5557a8ed-29bf-5bd3-93dd-9b4ec3b47b8b")
 		(sheetname "/05 fpga_power/")
@@ -45111,6 +47348,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C16780"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "96387037-dc0f-4595-8bee-97c4ca519b56")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -45422,6 +47671,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C76941"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "81113afd-53f4-41f5-99d3-ebba3e6b963e")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/ef4cc408-67af-5f7a-bb41-80d46c4f192c")
 		(sheetname "/05 fpga_power/")
@@ -45565,6 +47826,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "3c12696a-5e4c-4058-8f23-2c26f4553905")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -45711,6 +47984,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C52923"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "c95640d8-236b-4c0c-b7e1-0a2f99815669")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -45864,6 +48149,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C23733"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "0f210959-1743-4623-a0b4-8d1f54abbfaa")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/3f423f6a-fd56-5be9-bc22-9c230762ae21")
 		(sheetname "/05 fpga_power/")
@@ -46013,6 +48310,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C15008"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "82d5785f-00f3-4cea-9ebf-b83712e4656c")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -46166,6 +48475,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C23733"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "cc075d05-b2d9-40ff-8291-027b5777b062")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/e8dc598c-5e9d-5fb6-b713-51b3fecaa3ea")
 		(sheetname "/05 fpga_power/")
@@ -46315,6 +48636,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C15850"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "56b56f9a-676a-42de-a9bb-0bb79bac6523")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -46468,6 +48801,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "1949036f-c994-4fa7-9f3b-48841f60076b")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/79f7f693-05bc-514e-a53a-23f8f1ffd2f0")
 		(sheetname "/05 fpga_power/")
@@ -46611,6 +48956,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C15850"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "9e407892-4bf8-42ad-83ad-59c8cb6d2bce")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -46764,6 +49121,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C23733"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "08d75e23-d9e2-42f2-9bc6-7d2a2496c4fb")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/435e62b8-6696-51d6-bcb8-c031392b9d52")
 		(sheetname "/05 fpga_power/")
@@ -46915,6 +49284,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C76941"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "90a530c8-1cbf-4afd-8f0f-60e50a931419")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/5c9064b9-515e-53ef-9e35-b36d58ef566d")
 		(sheetname "/05 fpga_power/")
@@ -47058,6 +49439,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C52923"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "44f4b16b-1f50-4da6-b0c2-a86842b8628e")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -47211,6 +49604,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C15850"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "b41fbaf4-f746-4510-a585-b01a2c9ac58b")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/afe31350-0a3f-46a7-ba21-73576eb9e8e2/af0f7711-ab47-5290-9ed3-0cf936f8e3d6")
 		(sheetname "/03 pwr_rails/")
@@ -47360,6 +49765,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C45783"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "ead47c67-312e-4c4b-b6bb-a9757ddac3d8")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -47513,6 +49930,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C16780"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "043cd9ea-1435-4323-9c59-cb1386303777")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/38929780-6ddd-5589-93de-2d16b23af336")
 		(sheetname "/05 fpga_power/")
@@ -47663,6 +50092,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C27985219"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "24c0c924-dce8-435d-b197-e904b358b139")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "Connector*:*_2x??_*")
@@ -48367,6 +50808,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "f1714330-3612-49de-ac83-27f543904c34")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/25009a49-bc15-4aef-b3df-d48f1029afc5/7fa73458-59e3-50e3-963a-9080fbc3bf90")
 		(sheetname "/12 level_shift/")
@@ -48516,6 +50969,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "f6d75a1e-dfe6-4dcb-902d-1f5cec91f7c6")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -48821,6 +51286,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C66942"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "d18f38b1-bea6-47ca-8588-03658250a476")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/928df169-97ea-5e02-b735-ea7dae1e999c")
 		(sheetname "/05 fpga_power/")
@@ -48964,6 +51441,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C1555"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "80651c36-099b-4122-a182-516fb5784509")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -49275,6 +51764,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C25744"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "9a4f37a4-569c-4cb4-88f0-072f8bd02ac6")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/005bb34e-5019-4cde-82e0-1ce10912d4b9/407988ac-ab73-596e-8d99-0e01d314ba9a")
 		(sheetname "/06 fpga_config/")
@@ -49426,6 +51927,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "35f5812e-80e6-4c93-93c5-df80365cfa07")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/5e524328-247b-5944-a9b3-bea3b991d208")
 		(sheetname "/05 fpga_power/")
@@ -49569,6 +52082,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C16780"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "c15ec6ea-9c71-4c94-be07-a7d53596e9c7")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -50173,6 +52698,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "ddeb3e10-132e-43a8-b07d-42778aa3acda")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/6dae3c28-42ca-56e9-8131-750727be39ce")
 		(sheetname "/05 fpga_power/")
@@ -50476,6 +53013,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "008b8049-2fff-4177-9a97-db13571abbce")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/f301e6b1-2bfa-5656-888f-2d879d1213a6")
 		(sheetname "/05 fpga_power/")
@@ -50619,6 +53168,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C25741"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "bbcf6cdf-6dda-46f4-8776-1afcef80d2f9")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "R_*")
@@ -50772,6 +53333,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C52923"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "2836210e-4e8e-45fd-900b-b9a0df0110f3")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/b2f81d5e-5d44-5997-ba71-eaad37be6d11")
 		(sheetname "/05 fpga_power/")
@@ -50921,6 +53494,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "1c9aa001-a762-4f8f-8dfd-4d6d42455fcd")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -51396,6 +53981,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C15850"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "d1d8e09f-8149-4c3c-a1ed-7054d0aa3627")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/b08769f0-7477-5ff7-8d22-dda922c60b4b")
 		(sheetname "/05 fpga_power/")
@@ -51545,6 +54142,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "27942ea4-a7c9-4923-9c35-73992f3b314a")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -51936,6 +54545,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C25741"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "b131e829-43d1-4ef0-a82f-ac293a88f057")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "R_*")
@@ -52382,6 +55003,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "67c96c20-bc87-4c49-b5e5-bdbbde81d5b4")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/a8489fef-95fa-51f2-98a1-418cf7a7ab9f")
 		(sheetname "/05 fpga_power/")
@@ -52525,6 +55158,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C16780"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "a94d0dc9-b857-4330-b98c-6e815b57b402")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -52678,6 +55323,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C76941"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "548d78f0-4c79-495e-973f-17c3c1f44169")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/9f719333-4cc0-59e0-b5d1-c052ad9d041e")
 		(sheetname "/05 fpga_power/")
@@ -52821,6 +55478,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C1555"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "4f0e2d33-6cb7-453c-b11a-e1fa767b3b29")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -52974,6 +55643,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "bdffd6d5-bf8c-4682-8ea2-d708917f067c")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/cb4f2755-e518-5585-8d5a-518f6b6d49c4")
 		(sheetname "/05 fpga_power/")
@@ -53117,6 +55798,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C15008"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "ded6bf8b-bc89-4d1f-9a62-c24f1e0b4859")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -53270,6 +55963,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C1555"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "d13ac7b3-aef4-40e8-a26f-087ec3c5b5b7")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/afe31350-0a3f-46a7-ba21-73576eb9e8e2/2a2b1baa-ae4c-5e2b-b79c-75d196d324b3")
 		(sheetname "/03 pwr_rails/")
@@ -53421,6 +56126,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "05ee8f9f-3996-4f92-8768-e6104d87239e")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/69ddaedc-9579-5213-9444-9091a882246a")
 		(sheetname "/05 fpga_power/")
@@ -53564,6 +56281,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C16780"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "8a4f7682-4797-4eae-a8a6-8973939c102b")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -53717,6 +56446,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C23733"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "d057e358-7f17-41c9-a514-aa5c172cc8a7")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/d244b219-36bd-5c09-b464-9a054f7170c6")
 		(sheetname "/05 fpga_power/")
@@ -53866,6 +56607,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C52923"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "5e46becc-0287-4f1e-9a8f-1e84b45eaec6")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -54018,6 +56771,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C22373841"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "c9d74197-9a03-4ae8-a153-4d6591102f01")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "Connector*:*_2x??_*")
@@ -54367,6 +57132,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "006dd7ca-6334-4d60-aaad-caff690c0740")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/42fc3a30-29e2-5d6a-89ca-b3354a65ceaf")
 		(sheetname "/05 fpga_power/")
@@ -54510,6 +57287,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C15850"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "7fc8173b-f993-4c94-90f0-f9b74f862af5")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -54661,6 +57450,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C76941"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "cf5b5662-647b-4f6d-af44-293b6e70f473")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -55300,6 +58101,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "efc5d7aa-2450-4d0e-be4c-3983ff13dfc1")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/3e88fe3c-f60f-517d-9543-120398d96bd5")
 		(sheetname "/05 fpga_power/")
@@ -55443,6 +58256,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "4f96f851-500a-40c5-a6c3-55e5ddc3b3fc")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -55752,6 +58577,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C2684527"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "efa276a3-72ea-466b-b43b-08da638374b2")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "R_*")
@@ -56198,6 +59035,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C76941"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "c73b63db-5dab-4c08-b772-6057c692babb")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/1bc1c396-8384-5718-a268-8ff20b3f07ea")
 		(sheetname "/05 fpga_power/")
@@ -56341,6 +59190,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C52923"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "fa820187-eecc-45e9-adf3-953ce860e6bf")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -56492,6 +59353,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C16780"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "a9523fb4-bd27-413b-bfa2-8457f2e24ebb")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -56803,6 +59676,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C76941"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "2e6d47f9-8cab-497e-9c6c-7203ac37bc3f")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/59971550-524f-55ca-806a-1b0ed1d36ef3")
 		(sheetname "/05 fpga_power/")
@@ -56946,6 +59831,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C15850"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "d18acc4c-5b7b-422d-8f2b-49219c47fdab")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -57099,6 +59996,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C66942"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "f13d85a5-8228-4c51-aac0-f636c2a42403")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/9dfeedbb-7142-51b8-9056-7ae7cf2606a9")
 		(sheetname "/05 fpga_power/")
@@ -57244,6 +60153,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C76941"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "203901e9-e52b-43fe-9728-f14cd3d334f4")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/1674b7df-0115-5755-905d-b17f013e0ded")
 		(sheetname "/05 fpga_power/")
@@ -57387,6 +60308,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C45783"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "cfa186df-bffb-4136-a4bd-898a61e5a4a4")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -57540,6 +60473,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C23733"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "79529952-5ca9-4a62-bb23-57a7d827d845")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/34b086e9-b1bc-585c-a9c0-447110dbc235")
 		(sheetname "/05 fpga_power/")
@@ -57689,6 +60634,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C52923"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "5152517d-773d-4beb-945b-4e6980413b2c")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -58000,6 +60957,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C23733"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "1b94cf4d-1ba9-4054-b5ef-745a631a059c")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/5e16c226-719f-57ea-8d7f-6da015def818")
 		(sheetname "/05 fpga_power/")
@@ -58150,6 +61119,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C26978"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "fbac898c-53e0-44be-8ee5-130eedb6075b")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "R_*")
@@ -58303,6 +61284,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C27009"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "3ec57099-494d-4d51-a5d7-06be870c3937")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/afe31350-0a3f-46a7-ba21-73576eb9e8e2/a610f041-53de-52f5-8ca9-3164ab42421e")
 		(sheetname "/03 pwr_rails/")
@@ -58452,6 +61445,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C45783"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "97e1e160-bbe9-4143-b7b2-2801d5f25143")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -59083,6 +62088,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C52923"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "184a9f0f-2123-420b-8193-b52ee0985c95")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/5e35a82a-58fb-5547-95be-b9eb56255243")
 		(sheetname "/05 fpga_power/")
@@ -59233,6 +62250,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C25741"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "ee9eeeb4-a9ef-4d0f-a090-23cb8a40be22")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "R_*")
@@ -59386,6 +62415,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C16780"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "b500db40-a589-4c4a-8488-cf054fe82b40")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/ecbe7283-e4ee-4777-b3eb-dbdd82b9dff3/472381ce-c095-53a4-8a3d-41cac46cc4bf")
 		(sheetname "/02 pwr_vcore/")
@@ -59535,6 +62576,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "1b481c4e-9f92-4a42-bac7-d995650db41f")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -60134,6 +63187,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C45783"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "8f20f68d-3bfb-485e-a217-0e65e97e2b4a")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/b177fc93-3c09-44d0-8b93-4373107c4e43/5a3e2484-3f26-55fd-9670-bf5de1d463f4")
 		(sheetname "/01 pwr_input/")
@@ -60285,6 +63350,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C66942"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "b7c05a3b-dc66-43f0-8a7c-bdb8e1a1dad5")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/11e923dc-412a-5f5b-a91f-254453789fbc")
 		(sheetname "/05 fpga_power/")
@@ -60430,6 +63507,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "c776a86f-e386-49db-b2f5-f031a0e156bf")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/d8cf0895-7e79-5cb4-9f16-413429a7e7cc")
 		(sheetname "/05 fpga_power/")
@@ -60573,6 +63662,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "fa0e7449-2c5a-4405-8794-99c1ed7556fc")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -60724,6 +63825,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C76941"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "581048ae-5fbb-4a7d-a7e9-bd6da17275bd")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -61199,6 +64312,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C52923"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "58de5b7a-ab3d-474e-a20d-429d014bee02")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/43c4ee72-1358-57f6-a4f9-8a9a30ee6f3b")
 		(sheetname "/05 fpga_power/")
@@ -61348,6 +64473,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "4055567e-a0ec-4b39-9f6c-0fb11eda91fa")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -62105,6 +65242,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "7dccde04-f269-4708-b7e2-00409d7480f0")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/bd291548-7788-5820-8793-07d640a4da52")
 		(sheetname "/05 fpga_power/")
@@ -62248,6 +65397,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C15850"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "4fb648b6-f563-4df5-b88b-9977354432d1")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -62858,6 +66019,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C66942"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "0577e441-c662-4cb3-ba13-c9f7f69c54a1")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/4d5d2a3f-29ff-594b-bd70-3f299df3a99a")
 		(sheetname "/05 fpga_power/")
@@ -63003,6 +66176,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "aa79bd6a-aff0-44b7-a24a-2f20bd7697ff")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/8f07cb18-2acd-5a71-9512-847a05575b80")
 		(sheetname "/05 fpga_power/")
@@ -63146,6 +66331,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C1555"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "a4bb6a4d-95b0-499c-9e14-64627b9abd01")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -63299,6 +66496,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C66942"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "da325931-f7d4-413e-ad8b-e526058b6854")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/cec2c56a-4663-51b4-b3aa-5a33576f6505")
 		(sheetname "/05 fpga_power/")
@@ -63442,6 +66651,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C76941"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "60859101-aa2d-4e73-8840-c84d49320eaf")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -63589,6 +66810,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "c674c523-408e-4bfe-a4dd-e9a9e6459dba")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/e9394aa1-2866-5931-b71e-f369c57157a5")
 		(sheetname "/05 fpga_power/")
@@ -63732,6 +66965,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C23733"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "aad04ae6-4b6c-4169-a7f4-cb04cd1cad31")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -64049,6 +67294,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C66942"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "d487d4f7-405f-4aaa-ad66-49bc5b036c71")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/54ae462e-f85b-5691-a81d-5c320091eac5")
 		(sheetname "/05 fpga_power/")
@@ -64192,6 +67449,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C52923"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "31747246-cbae-443a-b3d1-e06eee89cbe5")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -64345,6 +67614,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "550a1c92-f7d8-4b12-8758-571b37b25813")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/0b2b197f-d968-5226-b888-c467e3d78daf")
 		(sheetname "/05 fpga_power/")
@@ -64490,6 +67771,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "9c2dbe91-2eda-42b4-b6a1-bd73e5929346")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/ba773ab6-e75a-5183-b1df-236ecf7d977d")
 		(sheetname "/05 fpga_power/")
@@ -64633,6 +67926,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C23733"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "e2086b66-6fa6-44af-9a79-cf047f56f453")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -64786,6 +68091,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C15850"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "ad39404b-e725-4d31-b65c-bd715b08f848")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/745270c1-50c8-576d-81dd-a1cde243a574")
 		(sheetname "/05 fpga_power/")
@@ -64936,6 +68253,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C136979"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "c5ae0afd-8fc4-497e-bc42-b4cc88d68d34")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "R_*")
@@ -65245,6 +68574,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C45783"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "946e9c19-d544-4b33-b071-dd27f5ef8a03")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -65562,6 +68903,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "a8169bad-809f-4573-9fc8-a14144ab0d2d")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/aa0bb9db-7968-54d8-a1fa-3637e27ecbc3")
 		(sheetname "/05 fpga_power/")
@@ -65707,6 +69060,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C76941"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "1b48ce3f-1d6c-4238-bf23-1e13314f4fd2")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/a17d81d0-8c55-5dba-8f55-1126d45af7f5")
 		(sheetname "/05 fpga_power/")
@@ -65850,6 +69215,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "83ba870a-c37a-4993-85d7-05650e35863c")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -66161,6 +69538,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C25744"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "ee176b58-d1c8-47a9-b71c-3cd1bc1bfbf7")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/005bb34e-5019-4cde-82e0-1ce10912d4b9/81f6701d-a1f0-5a72-a330-1128cb8e4e22")
 		(sheetname "/06 fpga_config/")
@@ -66311,6 +69700,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C52923"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "a9c6c656-ac51-44d9-8354-c64624820224")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -66464,6 +69865,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C15850"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "2c5b82b0-d173-4776-9b4c-382ccc7ef5bb")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/afe31350-0a3f-46a7-ba21-73576eb9e8e2/6a844e8b-431d-5e46-b5df-de747b8309cf")
 		(sheetname "/03 pwr_rails/")
@@ -66615,6 +70028,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "d8033ab9-835a-42aa-b780-011130e56e61")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/5917e0d2-d6b7-5547-94a5-9e915a8d3965")
 		(sheetname "/05 fpga_power/")
@@ -66758,6 +70183,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C25744"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "2d197712-525e-447f-84ac-d5f9fc27fc12")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "R_*")
@@ -67150,6 +70587,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C45783"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "c463a72c-24d8-446f-a746-19c0ad216a26")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/afe31350-0a3f-46a7-ba21-73576eb9e8e2/ceb8ee7c-4e51-5182-8fa0-4b0f3cc4693b")
 		(sheetname "/03 pwr_rails/")
@@ -67301,6 +70750,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C76941"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "065ae913-1409-41d4-994b-c18329f16fff")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/e5c3194b-4958-59fe-8c0d-faaba43116bf")
 		(sheetname "/05 fpga_power/")
@@ -67444,6 +70905,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C15850"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "ea8f84e1-3c77-46e1-9f3b-4d47ec3363ef")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -67755,6 +71228,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C23733"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "a4614e27-9ebc-4113-8996-6c9785bd6979")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/3ee05d24-5976-52a6-bcda-89868f95d735")
 		(sheetname "/05 fpga_power/")
@@ -67906,6 +71391,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C76941"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "040306d8-1e66-4055-9d4e-b3ee11d24d0c")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/97c43948-8d9f-57ce-994b-05e299929939")
 		(sheetname "/05 fpga_power/")
@@ -68049,6 +71546,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C45783"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "1b372eb3-f68e-4269-99ed-448aeb7e7f07")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -68200,6 +71709,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "4947f638-7db3-4ecf-9d73-683579b355be")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -68503,6 +72024,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C76941"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "3f1a2f40-f5d9-44be-a21c-f609f8f406b6")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -68972,6 +72505,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "60f97a2c-a829-4452-b797-cec8f4d73b44")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/9f66131c-0b4b-55ea-91fd-2b42663a72bd")
 		(sheetname "/05 fpga_power/")
@@ -69275,6 +72820,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C52923"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "900f29c4-42e9-4085-8b1e-dc6e49bac339")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/55ab5c07-b047-57e6-a314-de56c14bb9af")
 		(sheetname "/05 fpga_power/")
@@ -69424,6 +72981,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "c905a86b-603f-4023-a883-76df1ce542af")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -69865,6 +73434,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C11717"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "9cb6dd07-e4a1-45db-ad7c-ec4b54677f26")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "R_*")
 		(path "/afe31350-0a3f-46a7-ba21-73576eb9e8e2/91904fe6-ebfb-5afd-8842-4098efb1d686")
 		(sheetname "/03 pwr_rails/")
@@ -70180,6 +73761,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C66942"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "c6806b46-e594-496c-a5ca-93e752763476")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/cbb8e991-19ad-5421-83a8-e5d260f1d9e6")
 		(sheetname "/05 fpga_power/")
@@ -70483,6 +74076,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "0beb4645-0e29-4003-bb29-bc25b6780a6c")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/0662a1f3-9c76-5cda-ba4c-c83828de3784")
 		(sheetname "/05 fpga_power/")
@@ -70626,6 +74231,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "cfa4bf79-16d2-4449-bfd8-e3fadfd5247b")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -70943,6 +74560,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C23733"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "e6e6ef29-5b53-4e1e-8d74-927651c44000")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/0756e43c-a10f-5c1e-b263-460d476189c5")
 		(sheetname "/05 fpga_power/")
@@ -71252,6 +74881,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C23733"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "cc369c07-8d36-4187-871a-0cc74822c705")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/89a1ce08-22f3-5bdf-ac91-b53a11206460")
 		(sheetname "/05 fpga_power/")
@@ -71403,6 +75044,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C45783"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "a40a9b78-4c06-4d68-a47b-3eed6bd52395")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/160803bd-bc73-5c9a-9e20-4ca386eae562")
 		(sheetname "/05 fpga_power/")
@@ -71552,6 +75205,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "4b1ebb98-2c81-4bf1-a874-cbde76b90be8")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -71857,6 +75522,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C23733"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "73730a41-2a81-4b8e-9f50-001b53fa4a56")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/db004c26-87a2-5681-ab95-5b82fd5ae6a1")
 		(sheetname "/05 fpga_power/")
@@ -72006,6 +75683,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C52923"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "7e498fde-bd4f-4289-bd3a-bbf50ddcaeaf")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -72159,6 +75848,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C16780"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "d38ada5c-b87c-4cd3-a55d-090d0ab31c67")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/afe31350-0a3f-46a7-ba21-73576eb9e8e2/259bf21b-90e2-5d84-b284-7d5f924a3c48")
 		(sheetname "/03 pwr_rails/")
@@ -72310,6 +76011,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C66942"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "be269c67-e772-461d-b591-ff5bc03786c9")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/a22269f6-474f-5411-8188-debf32767b94")
 		(sheetname "/05 fpga_power/")
@@ -72453,6 +76166,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C1555"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "0f1d0e83-d795-4b95-9c98-ed3e1b10b974")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -73373,6 +77098,18 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C190183"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "0b9b0eae-3bf8-496a-89e7-b5abe9e9f37e")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "C_*")
 		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/f42c993d-7b1c-5d14-9ebc-88267c2f50e6")
 		(sheetname "/05 fpga_power/")
@@ -73516,6 +77253,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C66942"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "112e9009-fbda-48be-bdeb-14962a554e1b")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "C_*")
@@ -73819,6 +77568,18 @@
 					(size 1.27 1.27)
 				)
 				(justify mirror)
+			)
+		)
+		(property "LCSC" "C25094"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "174a5480-abab-4a90-bd14-4cae9e407dcd")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
 			)
 		)
 		(property ki_fp_filters "R_*")

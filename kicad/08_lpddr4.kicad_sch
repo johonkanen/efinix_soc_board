@@ -25072,6 +25072,15 @@
 				)
 			)
 		)
+		(property "LCSC" "C25094"
+			(at 406.4 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "07c80705-c90a-58f8-9e36-d02566a1ba5b")
 		)
