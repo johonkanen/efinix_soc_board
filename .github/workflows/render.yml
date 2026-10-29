@@ -1,6 +1,6 @@
 name: Render board
 
-# Plots every signal layer of the board (copper + board outline, no silkscreen)
+# Plots every copper layer of the board (copper + board outline, no silkscreen)
 # as an SVG and force-pushes them as a single commit to the `renders` branch,
 # so the branch only ever holds the latest plots. README.md embeds them from there.
 on:
@@ -27,8 +27,8 @@ jobs:
           kicad-cli version
           mkdir -p out
           for pcb in kicad/*.kicad_pcb; do
-            # Copper layers of type "signal" in the board's layer stack (planes are type "power").
-            for layer in $(grep -oP '^\t\t\(\d+ "\K[^"]+(?=" signal)' "$pcb"); do
+            # Every copper layer in the board's layer stack, signal and plane.
+            for layer in $(grep -oP '^\t\t\(\d+ "\K[^"]+\.Cu(?=")' "$pcb"); do
               out="out/${layer/./_}.svg"
               mirror=""
               [ "$layer" = B.Cu ] && mirror="--mirror"   # bottom as seen from below
