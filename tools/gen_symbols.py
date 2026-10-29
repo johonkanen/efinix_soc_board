@@ -341,7 +341,7 @@ FOOTPRINT = {
     "Conn_01x05": "Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical",
     "Conn_01x03": "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical",
     "Conn_01x02": "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical",
-    "OT322525MJBA4SL": "Oscillator:Oscillator_SMD_Abracon_ASE-4Pin_3.2x2.5mm",
+    "OT322525MJBA4SL": "Oscillator:Oscillator_SMD_SiT_PQFN-4Pin_3.2x2.5mm",
     "RTL8211FD": "Package_DFN_QFN:QFN-40-1EP_5x5mm_P0.4mm_EP3.6x3.6mm_ThermalVias",
     "HR911130A": "ti135_card:RJ45_Hanrun_HR911130A_Horizontal",
     "CD4051B": "Package_SO:TSSOP-16_4.4x5mm_P0.65mm",

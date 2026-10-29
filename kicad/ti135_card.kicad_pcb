@@ -12333,203 +12333,6 @@
 			)
 		)
 	)
-	(footprint "Oscillator:Oscillator_SMD_Abracon_ASE-4Pin_3.2x2.5mm"
-		(layer "F.Cu")
-		(uuid "577af5b5-48c9-4f32-bbdc-77931539fd8a")
-		(at 179.1281 82.317 -90)
-		(descr "Abracon ASE, Miniature Crystal Clock Oscillator, 3.2x2.5mm package, SMD, http://www.abracon.com/Oscillators/ASEseries.pdf")
-		(tags "SMD SMT crystal oscillator")
-		(property "Reference" "Y701"
-			(at 0 -2.45 270)
-			(layer "F.SilkS")
-			(uuid "c6851466-663c-447a-83ec-10f9c326b269")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Value" "OT322525MJBA4SL"
-			(at 0 2.45 270)
-			(layer "F.Fab")
-			(uuid "3dba4611-5c8e-48a1-a20a-5ca68b4df11d")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Datasheet" "https://www.mouser.com/datasheet/2/371/SiT8924-datasheet-1839508.pdf"
-			(at 0 0 270)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "59ddd436-47d1-4272-ac62-db73463d1458")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "25MHz 1.8V LVCMOS XO, SiTime MEMS, NC pin1 (always enabled)"
-			(at 0 0 270)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "52c59a9a-6fd9-469e-8614-f4e385b9f254")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "KiLib_Generator" "crystal_resonator_oscillator"
-			(at 0 0 270)
-			(layer "F.SilkS")
-			(hide yes)
-			(uuid "86fb77f0-d0bd-47c9-a812-b8c960cb75a4")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "LCSC" "C669088"
-			(at 0 0 0)
-			(layer "F.SilkS")
-			(hide yes)
-			(uuid "a6cbe8d2-5d5b-4c43-9aa1-9e817f4b8e93")
-			(effects
-				(font
-					(size 1.27 1.27)
-					(thickness 0.15)
-				)
-			)
-		)
-		(path "/8a939fee-b0ba-4a20-ad16-1502b11e2d82/c488c0e7-288b-5267-8582-cc60629dc22b")
-		(sheetname "/07 clocks/")
-		(sheetfile "07_clocks.kicad_sch")
-		(attr smd)
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_line
-			(start -1.96 1.635)
-			(end 1.96 1.635)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "F.SilkS")
-			(uuid "10e20311-09de-4ff0-a814-4f0fd16c322e")
-		)
-		(fp_line
-			(start -1.96 -1.635)
-			(end -1.96 1.635)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "F.SilkS")
-			(uuid "77f24536-a48b-4ef7-a8d2-0d1e8add1219")
-		)
-		(fp_circle
-			(center 0 0)
-			(end 0.25 0)
-			(stroke
-				(width 0.1)
-				(type solid)
-			)
-			(fill yes)
-			(layer "F.Adhes")
-			(uuid "b9cbfe9a-e847-425b-b883-c7ed955c84ad")
-		)
-		(fp_rect
-			(start -2.1 -1.75)
-			(end 2.1 1.75)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(fill no)
-			(layer "F.CrtYd")
-			(uuid "aa64202f-b71a-4594-a9c3-d48a8bb0bb77")
-		)
-		(fp_poly
-			(pts
-				(xy 1.6 -1.25) (xy 1.6 1.25) (xy -0.975 1.25) (xy -1.6 0.625) (xy -1.6 -1.25)
-			)
-			(stroke
-				(width 0.1)
-				(type solid)
-			)
-			(fill no)
-			(layer "F.Fab")
-			(uuid "dae911b3-ab26-4f19-84db-2c57897fcf55")
-		)
-		(fp_text user "${REFERENCE}"
-			(at 0 0 270)
-			(layer "F.Fab")
-			(uuid "a7c63441-ef31-4a01-b378-d0fef190a67b")
-			(effects
-				(font
-					(size 0.8 0.8)
-					(thickness 0.12)
-				)
-			)
-		)
-		(pad "1" smd roundrect
-			(at -1.05 0.825 270)
-			(size 1.3 1.1)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(roundrect_rratio 0.227273)
-			(net "1V8")
-			(pinfunction "NC_1")
-			(pintype "no_connect")
-			(uuid "43a7d7e5-3a1e-427f-a8d7-783ba311fd96")
-		)
-		(pad "2" smd roundrect
-			(at 1.05 0.825 270)
-			(size 1.3 1.1)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(roundrect_rratio 0.227273)
-			(net "GND")
-			(pinfunction "GND_2")
-			(pintype "power_in")
-			(uuid "abf686e0-9702-40c0-9625-47bf8e9e992b")
-		)
-		(pad "3" smd roundrect
-			(at 1.05 -0.825 270)
-			(size 1.3 1.1)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(roundrect_rratio 0.227273)
-			(net "Net-(Y701-OUT)")
-			(pinfunction "OUT_3")
-			(pintype "output")
-			(uuid "ec3f9d7d-b783-4629-a612-56125a1e045f")
-		)
-		(pad "4" smd roundrect
-			(at -1.05 -0.825 270)
-			(size 1.3 1.1)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(roundrect_rratio 0.227273)
-			(net "1V8")
-			(pinfunction "VDD_4")
-			(pintype "power_in")
-			(uuid "25a859db-dbb2-4ae5-84c5-738d0de7e64c")
-		)
-		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Oscillator.3dshapes/Oscillator_SMD_Abracon_ASE-4Pin_3.2x2.5mm.step"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 0)
-			)
-		)
-	)
 	(footprint "Connector_PinHeader_2.54mm:PinHeader_1x14_P2.54mm_Vertical"
 		(locked yes)
 		(layer "F.Cu")
@@ -31623,6 +31426,201 @@
 		)
 		(embedded_fonts no)
 		(model "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint "Oscillator:Oscillator_SMD_SiT_PQFN-4Pin_3.2x2.5mm"
+		(layer "F.Cu")
+		(uuid "daae0101-b069-4cc5-89bd-3dc9a39f6815")
+		(at 179.1281 82.317 -90)
+		(descr "SiTime SiT8008B, MEMS programmable oscillator, 3.2x2.5mm package, SMD, https://www.sitime.com/datasheet/SiT8008 page 11")
+		(property "Reference" "Y701"
+			(at 0 -2.5 270)
+			(layer "F.SilkS")
+			(uuid "4036b36d-ba6f-41c3-98b8-6891c1ddf1be")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Value" "OT322525MJBA4SL"
+			(at 0 2.5 270)
+			(layer "F.Fab")
+			(uuid "2419fcd3-d849-49ac-b454-5f75e1dca6b7")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.mouser.com/datasheet/2/371/SiT8924-datasheet-1839508.pdf"
+			(at 0 0 270)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "b8a7e232-30fe-4de2-b77c-77e100fe3950")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "25MHz 1.8V LVCMOS XO, SiTime MEMS, NC pin1 (always enabled)"
+			(at 0 0 270)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "5314cb2d-1780-4f46-9e08-b1b3c54e5792")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "KiLib_Generator" "crystal_resonator_oscillator"
+			(at 0 0 270)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "a9d38250-4de3-40be-b341-5e16a70af871")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "LCSC" "C669088"
+			(at 0 0 270)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "8b8c54ee-1b46-447c-9f6b-e452bd3a1a69")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(path "/8a939fee-b0ba-4a20-ad16-1502b11e2d82/c488c0e7-288b-5267-8582-cc60629dc22b")
+		(sheetname "/07 clocks/")
+		(sheetfile "07_clocks.kicad_sch")
+		(attr smd)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start -2.06 1.81)
+			(end 2.06 1.81)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "3ade5145-5bcb-487a-959c-c65c2c54b912")
+		)
+		(fp_line
+			(start -2.06 -1.81)
+			(end -2.06 1.81)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "baa857ec-ed8d-4b55-81b6-34c5068c742e")
+		)
+		(fp_circle
+			(center 0 0)
+			(end 0.5 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(fill yes)
+			(layer "F.Adhes")
+			(uuid "5e27bd1a-b783-4131-9622-c19db98d03b1")
+		)
+		(fp_rect
+			(start -2.1 -1.8)
+			(end 2.1 1.8)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.CrtYd")
+			(uuid "bef812c6-3ab4-4238-8670-503c31804668")
+		)
+		(fp_poly
+			(pts
+				(xy 1.6 -1.25) (xy 1.6 1.25) (xy -0.975 1.25) (xy -1.6 0.625) (xy -1.6 -1.25)
+			)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.Fab")
+			(uuid "f2d68954-cfbe-4f11-bb28-b72955390212")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 0 270)
+			(layer "F.Fab")
+			(uuid "ba31811c-90fe-4630-8d33-6ba8650907d5")
+			(effects
+				(font
+					(size 0.8 0.8)
+					(thickness 0.12)
+				)
+			)
+		)
+		(pad "1" smd roundrect
+			(at -1.1 0.95 270)
+			(size 1.4 1.2)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.208333)
+			(net "1V8")
+			(pinfunction "NC_1")
+			(pintype "no_connect")
+			(uuid "ce882412-e10a-4964-973c-34d29c2a59d9")
+		)
+		(pad "2" smd roundrect
+			(at 1.1 0.95 270)
+			(size 1.4 1.2)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.208333)
+			(net "GND")
+			(pinfunction "GND_2")
+			(pintype "power_in")
+			(uuid "cc182508-426d-4dc7-9180-a496f04f09ea")
+		)
+		(pad "3" smd roundrect
+			(at 1.1 -0.95 270)
+			(size 1.4 1.2)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.208333)
+			(net "Net-(Y701-OUT)")
+			(pinfunction "OUT_3")
+			(pintype "output")
+			(uuid "bcf99630-768b-405e-b969-8238a7af60e7")
+		)
+		(pad "4" smd roundrect
+			(at -1.1 -0.95 270)
+			(size 1.4 1.2)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.208333)
+			(net "1V8")
+			(pinfunction "VDD_4")
+			(pintype "power_in")
+			(uuid "a21cf9d9-efde-43bf-bf70-94b6415f9c2e")
+		)
+		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Oscillator.3dshapes/Oscillator_SMD_SiT_PQFN-4Pin_3.2x2.5mm.step"
 			(offset
 				(xyz 0 0 0)
 			)

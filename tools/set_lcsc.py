@@ -65,7 +65,7 @@ LCSC = {
     ("25MHz", "Crystal_SMD_3225-4Pin_3.2x2.5mm"): "C70593",   # X322525MRB4SI 18 pF (27 p caps + strays)
     ("NCP163ASN330T1G", "SOT-23-5"): "C603656",
     ("TPS3808G01DBVR", "SOT-23-6"): "C19653",
-    ("OT322525MJBA4SL", "Oscillator_SMD_Abracon_ASE-4Pin_3.2x2.5mm"): "C669088",  # Y701, EN tied to 1V8
+    ("OT322525MJBA4SL", "Oscillator_SMD_SiT_PQFN-4Pin_3.2x2.5mm"): "C669088",  # Y701, EN tied to 1V8
     # connectors (THT)
     ("JTAG 3.3V", "PinHeader_1x05_P2.54mm_Vertical"): "C492404",
     ("UART 3.3V", "PinHeader_1x03_P2.54mm_Vertical"): "C2937625",
