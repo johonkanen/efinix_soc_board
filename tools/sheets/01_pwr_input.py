@@ -24,6 +24,13 @@ power_at(sh, "5V0", top, "up")
 sh.wire(top, right(top, 2)); sh.pwr_flag(*right(top, 2), 270)
 gf = (g(24), g(60)); power_at(sh, "GND", gf, "down"); sh.wire(gf, up(gf, 2)); sh.pwr_flag(*up(gf, 2), 0)
 
+# J101: 2.54 mm 1x2 bench supply input next to J6 (female jumpers), for running the card without the baseboard
+j = sh.place("Conn_01x02", "J101", g(40), g(76), value="5V0 bench input")
+a = left(j.pin("1"), 4); sh.wire(j.pin("1"), a); sh.wire(a, up(a, 2)); power_at(sh, "5V0", up(a, 2), "up")
+b = left(j.pin("2"), 8); sh.wire(j.pin("2"), b); sh.wire(b, down(b, 2)); power_at(sh, "GND", down(b, 2), "down")
+sh.text("J101: 2.54 mm 1x2 header near J6 to power the card from a bench supply with female jumpers,\n"
+        "without the baseboard (pin 1 = 5V0, pin 2 = GND). Do not feed it while the baseboard powers J6.", g(14), g(86))
+
 # bulk input capacitance on 5V0
 for k, (ref, val, fp) in enumerate((("C101", "47u", C1206), ("C102", "22u", C0805), ("C103", "100n", None))):
     x = g(70) + k * g(8)

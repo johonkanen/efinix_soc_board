@@ -67,10 +67,20 @@ The Agilex 5 card (after its 2026-10-24 change) is the same within 0.03 mm.
   then orientation 90 (verified by `tools/make_board.py`). (An earlier version of this file had the pin order reversed along the row; the
   nets per row were right.)
 
+## J101: bench 5 V input (2026-10-29)
+
+- 2.54 mm 1x2 pin header (PinHeader_1x02_P2.54mm_Vertical) on **F.Cu**, north-east of J6: pin 1 = 5V0 at KiCad
+  (205.0, 107.0), pin 2 = GND at (205.0, 109.54). Powers the card from a bench supply with female jumper wires when
+  it is not on the baseboard. Do not feed it while the baseboard supplies J6 (no OR-ing diode).
+- Its THT tails stick out of the card's underside. Under them the baseboard has no parts (baseboard C4 0402 and U10
+  SOT-23 are west of card x 202.7; baseboard = card − (88.932, 98.054) mm, from J12 vs J6). A standard 3 mm tail fits in the
+  ≈ 5.3 mm gap; trim the tails flush to be safe.
+
 ## Clearance to the baseboard U8 (5V_ISOL regulator)
 
 - **Card outline in the baseboard IPC frame:** X 42.599…118.599, Y −18.766…46.361.
-- Baseboard U8 (VXO7805-1000, to be replaced by a 2 A part) is at IPC (104.36, −20.1), **1.33 mm outside the card's
+- Baseboard U8 (VXO7805-1000; 2026-10-29: becomes the upright Mornsun K7805-2000R3, 2 A, the baseboard user found
+  room above it) is at IPC (104.36, −20.1), **1.33 mm outside the card's
   bottom edge**. Anything on U8 that is taller than the card-to-baseboard gap must stay below Y −18.766 (bb frame).
 - The gap is the mated height of the 1.27 mm female socket (J3/J6, card bottom) on the baseboard's 1.27 mm male header
   (J11/J12), as on the Ti60 card. A standard 1.27 mm socket body is 4.3 mm (e.g. HC-PM127-4.3H-2x19PZ, LCSC C27985219)

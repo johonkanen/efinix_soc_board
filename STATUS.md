@@ -163,9 +163,9 @@ tools/p2k/bin/p2k render_sheet kicad/08_lpddr4.kicad_sch   # PNG check -> report
   HR911130A magjack (C54408; the UDE RB1-125B8G1A had no stock), aligned to the Ti60 jack's front face and centreline (MECHANICAL.md).
 - Regulators: 5 × TLV62585PDRLR (3 A) instead of the TDA38812 / AP61202; 3V3_analog NCP163 LDO.
 - Ethernet PHY: RTL8211FDI-CG (C692886), RGMII at 1.8 V from its internal pad LDO (2026-10-25; it replaced the KSZ9031).
-- 5 V budget: the baseboard U8 (VXO7805-1000, 1 A) is to be upgraded to 1.5–2 A in the baseboard redraw. This is being
-  worked on in the `ac_psu_kicad` session. Its options: TRACO TSR 2-2450 (10.2 mm tall), Mornsun K7805-2000R3L
-  (bent leads), or the upright K7805-2000R3 (17.5 mm, collides with the card edge).
+- 5 V budget: the baseboard U8 (VXO7805-1000, 1 A) becomes the **Mornsun K7805-2000R3 (5 V / 2 A), upright**, with
+  C93 10 µF / 50 V 1210 in and C94 22 µF / 10 V 0805 out (2026-10-29, `ac_psu_kicad` 732c9b1). The card gets 2 A minus
+  the gate-driver logic and U10. Whether 20V_ISO_SEC delivers the extra ~2.5 W has to be measured on a built board.
 - User LEDs on the two spare 3.3 V HVIO pins (H9, F5).
 
 ## Open items

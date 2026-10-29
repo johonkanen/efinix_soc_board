@@ -873,7 +873,7 @@
 					)
 				)
 			)
-			(property "Footprint" "Connector_PinSocket_1.27mm:PinSocket_2x19_P1.27mm_Vertical"
+			(property "Footprint" "ti135_card:PinSocket_2x19_P1.27mm_Vertical_Drill0.6"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -6337,7 +6337,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_PinSocket_1.27mm:PinSocket_2x19_P1.27mm_Vertical"
+		(property "Footprint" "ti135_card:PinSocket_2x19_P1.27mm_Vertical_Drill0.6"
 			(at 88.9 43.18 0)
 			(hide yes)
 			(show_name no)

@@ -7,11 +7,14 @@ FPGA design exists and replace the Ti135 rows below.
 ## Input limit: the baseboard 5V_ISOL rail
 
 - The card takes **5V_ISOL** from baseboard J12 (our J6).
-- On the baseboard (`~/dev/ac_psu_kicad`), 5V_ISOL comes from **U8 = RECOM VXO7805-1000: 5 V, 1 A max**, fed from
-  20V_ISO_SEC. The same rail also feeds the three gate-driver connectors J4/J6/J8 (pin 45) and U10 (TPS73033, 3.3 V
-  for the isolators).
-- So the control card gets **less than 5 W**. Target: **≤ 0.7 A at 5 V (3.5 W)**, leaving margin for the gate-driver
-  logic supplies.
+- On the baseboard (`~/dev/ac_psu_kicad`), 5V_ISOL comes from U8, fed from 20V_ISO_SEC. The same rail also feeds the
+  three gate-driver connectors J4/J6/J8 (pin 45) and U10 (TPS73033, 3.3 V for the isolators).
+- **2026-10-29 (from the ac_psu_kicad session): U8 becomes the Mornsun K7805-2000R3, 5 V / 2 A**, upright (the
+  baseboard user decided there is room above it), with C93 10 µF / 50 V X7R 1210 at its input (no 22 µF / 50 V ceramic
+  stocked at JLC) and C94 22 µF / 10 V 0805 at its output, both on the bottom side just south of U8's pins.
+  Committed in `johonkanen/ac_psu_kicad` main 732c9b1. The card's budget is **2 A minus the gate-driver logic and U10**.
+- **Open:** whether 20V_ISO_SEC can deliver the extra ~2.5 W has to be measured on a built baseboard.
+- Before: U8 = RECOM VXO7805-1000 (1 A), which gave the card less than 5 W (target was ≤ 0.7 A at 5 V).
 - The Ti60 card drew well below that (Ti60 + PEF7071 PHY + HyperRAM). The Agilex 5 card would not fit in it at all.
 - If the budget is tight, upgrading U8 on the baseboard (it is being redrawn in KiCad anyway) is the cleanest fix.
 
@@ -47,7 +50,7 @@ GbE linked). High = margin case (warm junction, heavier DDR traffic).
 2026-10-25: KSZ9031 + 1V2 buck replaced by the RTL8211FDI-CG (stock). Its linear core LDO costs about 0.3 W more than the
 KSZ9031's external 1V2 buck.
 
-**Result: the typical case already uses most of the 1 A rail, and the high case exceeds it.** Ways to cut power, in
+**Result: with the old 1 A U8 the typical case used most of the rail and the high case exceeded it. With the 2 A K7805-2000R3 (2026-10-29) both fit, if the gate-driver logic and U10 stay below about 0.75 A and 20V_ISO_SEC delivers the power.** Ways to cut power, in
 order of effect:
 
 1. **LCD backlight and module** (about 0.3 W): leave them out of the budget, or power them from another source.
@@ -97,5 +100,7 @@ VCC tolerance is 0.92…0.98 V (±3.2 %). FB ±2 % plus 1 % resistors fits; use 
 ## Open
 
 - [ ] Run the Efinix Power Estimator with the real design and replace the Ti135 rows.
-- [x] **Decided 2026-10-24: upgrade the baseboard U8 to a 1.5–2 A part.** Requested from the ac_psu_kicad session. The card keeps the Ti135N484**I3**, GbE and the on-card LCD supply. The other cuts stay available as fallbacks.
+- [x] **Decided 2026-10-24: upgrade the baseboard U8 to a 1.5–2 A part.** Requested from the ac_psu_kicad session; 2026-10-29: K7805-2000R3 (2 A) chosen there. The card keeps the Ti135N484**I3**, GbE and the on-card LCD supply. The other cuts stay available as fallbacks.
 - [ ] Measure the Ti60 card's 5V_ISOL current on the baseboard as a reference.
+- [ ] Measure on a built baseboard that 20V_ISO_SEC can deliver the extra ~2.5 W for the 2 A U8.
+- [ ] Get the gate-driver logic and U10 5V_ISOL currents, to fix the card's share of the 2 A.
