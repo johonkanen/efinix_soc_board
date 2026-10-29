@@ -1,0 +1,41 @@
+name: Render board
+
+# Renders top and bottom images of every board with kicad-cli and uploads them
+# as a workflow artifact (Actions run page -> Artifacts). Nothing is committed.
+on:
+  push:
+    paths:
+      - 'kicad/**.kicad_pcb'
+      - '.github/workflows/render.yml'
+  workflow_dispatch:
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    # -full includes KiCad's stock 3D models (${KICAD10_3DMODEL_DIR}).
+    # root: the image's default user can't write to the Actions workspace.
+    container:
+      image: kicad/kicad:10.0-full
+      options: --user root
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Render
+        run: |
+          set -eu
+          kicad-cli version
+          mkdir -p out
+          for pcb in kicad/*.kicad_pcb; do
+            b=$(basename "$pcb" .kicad_pcb)
+            for side in top bottom; do
+              kicad-cli pcb render --side "$side" --quality basic --background opaque \
+                --width 1600 --height 1200 -o "out/${b}_${side}.png" "$pcb"
+            done
+          done
+          ls -l out
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: board-renders
+          path: out/*.png
+          if-no-files-found: error
