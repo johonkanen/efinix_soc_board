@@ -8,3 +8,4 @@
 | `dump_pads.py` (kipy) + `u801_pose_study.py` | U801 rotation/position study: straight-line crossings with the best within-byte swizzle per pose. Crude for the far bytes (they route round the package); the routing trial decided it: the current -90 deg pose won |
 | `strip_ddr_vias.py IN OUT` (kipy) | remove the DDR signal vias (keeps DDR_CAL and plane vias): the input the bus router wants |
 | `transplant.py IN_MAIN FROM_BOARD OUT` (kipy) | replace the LPDDR4 copper (`ddr_*` tracks/arcs/vias, not DDR_CAL) of IN_MAIN with FROM_BOARD's; checks U501/U801 poses match |
+| `delay_rules.sh [DRU]` | KiCad delays → `ddr_timing.py --kicad --rules` → length rules (ps, die to die) in the generated block of `kicad/ti135_card.kicad_dru`, for pcbnew's tuner and DRC. Rerun after rerouting |

@@ -112,3 +112,63 @@
 (rule "j3_baseboard_edge"
 	(condition "A.memberOfFootprint('J3')")
 	(constraint edge_clearance (min 0.3mm)))
+
+# ---- BEGIN generated delay targets (tools/ddr/delay_rules.sh; do not edit by hand) ----
+(rule "lpddr_delay_ca0"
+	(condition "A.NetName == '/08 lpddr4/ddr_ca0'")
+	(constraint length (min 275.5ps) (opt 278.0ps) (max 280.5ps)))
+(rule "lpddr_delay_ca1"
+	(condition "A.NetName == '/08 lpddr4/ddr_ca1'")
+	(constraint length (min 271.6ps) (opt 274.1ps) (max 276.6ps)))
+(rule "lpddr_delay_ca2"
+	(condition "A.NetName == '/08 lpddr4/ddr_ca2'")
+	(constraint length (min 276.1ps) (opt 278.6ps) (max 281.1ps)))
+(rule "lpddr_delay_ca3"
+	(condition "A.NetName == '/08 lpddr4/ddr_ca3'")
+	(constraint length (min 275.7ps) (opt 278.2ps) (max 280.7ps)))
+(rule "lpddr_delay_ca4"
+	(condition "A.NetName == '/08 lpddr4/ddr_ca4'")
+	(constraint length (min 275.9ps) (opt 278.4ps) (max 280.9ps)))
+(rule "lpddr_delay_ca5"
+	(condition "A.NetName == '/08 lpddr4/ddr_ca5'")
+	(constraint length (min 272.7ps) (opt 275.2ps) (max 277.7ps)))
+(rule "lpddr_delay_cke0"
+	(condition "A.NetName == '/08 lpddr4/ddr_cke0'")
+	(constraint length (min 273.8ps) (opt 276.3ps) (max 278.8ps)))
+(rule "lpddr_delay_cs0_n"
+	(condition "A.NetName == '/08 lpddr4/ddr_cs0_n'")
+	(constraint length (min 249.7ps) (opt 252.2ps) (max 254.7ps)))
+(rule "lpddr_delay_cs2_n"
+	(condition "A.NetName == '/08 lpddr4/ddr_cs2_n'")
+	(constraint length (min 249.7ps) (opt 252.2ps) (max 254.7ps)))
+(rule "lpddr_delay_ck_P"
+	(condition "A.NetName == '/08 lpddr4/ddr_ck_P'")
+	(constraint length (min 276.0ps) (opt 276.5ps) (max 277.0ps)))
+(rule "lpddr_delay_ck_N"
+	(condition "A.NetName == '/08 lpddr4/ddr_ck_N'")
+	(constraint length (min 278.5ps) (opt 279.0ps) (max 279.5ps)))
+(rule "lpddr_delay_byte0_dqs"
+	(condition "A.NetName == '/08 lpddr4/ddr_dqs0_P' || A.NetName == '/08 lpddr4/ddr_dqs0_N'")
+	(constraint length (min 274.0ps) (opt 274.5ps) (max 275.0ps)))
+(rule "lpddr_delay_byte0_dq"
+	(condition "A.NetName == '/08 lpddr4/ddr_dq0' || A.NetName == '/08 lpddr4/ddr_dq1' || A.NetName == '/08 lpddr4/ddr_dq2' || A.NetName == '/08 lpddr4/ddr_dq3' || A.NetName == '/08 lpddr4/ddr_dq4' || A.NetName == '/08 lpddr4/ddr_dq5' || A.NetName == '/08 lpddr4/ddr_dq6' || A.NetName == '/08 lpddr4/ddr_dq7' || A.NetName == '/08 lpddr4/ddr_dm0'")
+	(constraint length (min 279.5ps) (opt 284.5ps) (max 335.5ps)))
+(rule "lpddr_delay_byte1_dqs"
+	(condition "A.NetName == '/08 lpddr4/ddr_dqs1_P' || A.NetName == '/08 lpddr4/ddr_dqs1_N'")
+	(constraint length (min 180.9ps) (opt 181.4ps) (max 181.9ps)))
+(rule "lpddr_delay_byte1_dq"
+	(condition "A.NetName == '/08 lpddr4/ddr_dq8' || A.NetName == '/08 lpddr4/ddr_dq9' || A.NetName == '/08 lpddr4/ddr_dq10' || A.NetName == '/08 lpddr4/ddr_dq11' || A.NetName == '/08 lpddr4/ddr_dq12' || A.NetName == '/08 lpddr4/ddr_dq13' || A.NetName == '/08 lpddr4/ddr_dq14' || A.NetName == '/08 lpddr4/ddr_dq15' || A.NetName == '/08 lpddr4/ddr_dm1'")
+	(constraint length (min 186.4ps) (opt 191.4ps) (max 242.4ps)))
+(rule "lpddr_delay_byte2_dqs"
+	(condition "A.NetName == '/08 lpddr4/ddr_dqs2_P' || A.NetName == '/08 lpddr4/ddr_dqs2_N'")
+	(constraint length (min 215.2ps) (opt 215.7ps) (max 216.2ps)))
+(rule "lpddr_delay_byte2_dq"
+	(condition "A.NetName == '/08 lpddr4/ddr_dq16' || A.NetName == '/08 lpddr4/ddr_dq17' || A.NetName == '/08 lpddr4/ddr_dq18' || A.NetName == '/08 lpddr4/ddr_dq19' || A.NetName == '/08 lpddr4/ddr_dq20' || A.NetName == '/08 lpddr4/ddr_dq21' || A.NetName == '/08 lpddr4/ddr_dq22' || A.NetName == '/08 lpddr4/ddr_dq23' || A.NetName == '/08 lpddr4/ddr_dm2'")
+	(constraint length (min 220.7ps) (opt 225.7ps) (max 276.7ps)))
+(rule "lpddr_delay_byte3_dqs"
+	(condition "A.NetName == '/08 lpddr4/ddr_dqs3_P' || A.NetName == '/08 lpddr4/ddr_dqs3_N'")
+	(constraint length (min 205.6ps) (opt 206.1ps) (max 206.6ps)))
+(rule "lpddr_delay_byte3_dq"
+	(condition "A.NetName == '/08 lpddr4/ddr_dq24' || A.NetName == '/08 lpddr4/ddr_dq25' || A.NetName == '/08 lpddr4/ddr_dq26' || A.NetName == '/08 lpddr4/ddr_dq27' || A.NetName == '/08 lpddr4/ddr_dq28' || A.NetName == '/08 lpddr4/ddr_dq29' || A.NetName == '/08 lpddr4/ddr_dq30' || A.NetName == '/08 lpddr4/ddr_dq31' || A.NetName == '/08 lpddr4/ddr_dm3'")
+	(constraint length (min 211.1ps) (opt 216.1ps) (max 267.1ps)))
+# ---- END generated delay targets ----

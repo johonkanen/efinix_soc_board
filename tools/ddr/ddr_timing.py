@@ -20,7 +20,7 @@ PS_PER_MM = {"F.Cu": 6.11, "B.Cu": 6.11, "In2.Cu": 7.01, "In5.Cu": 7.01}
 VIA_PS = 5.5
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 args = [a for a in sys.argv[1:]]
-KICAD_CSV = PLAN = None
+KICAD_CSV = PLAN = RULES = None
 NETS = "--nets" in args
 if NETS:
     args.remove("--nets")
@@ -28,6 +28,8 @@ if "--plan" in args:
     i = args.index("--plan"); PLAN = args[i + 1]; del args[i:i + 2]
 if "--kicad" in args:
     i = args.index("--kicad"); KICAD_CSV = args[i + 1]; del args[i:i + 2]
+if "--rules" in args:   # with --kicad: write the targets as DRC length rules (tools/ddr/delay_rules.sh)
+    i = args.index("--rules"); RULES = args[i + 1]; del args[i:i + 2]
 b = pcbnew.LoadBoard(args[0] if args else os.path.join(ROOT, "kicad", "ti135_card.kicad_pcb"))
 import heapq
 from collections import defaultdict
@@ -205,26 +207,31 @@ if KICAD_CSV:
     for n in sorted(kd):
         if get(n) is not None:
             print(f"   {n:12} KiCad {kd[n]:6.1f}   path {get(n):6.1f}   diff {kd[n] - get(n):+6.1f}")
-    # KiCad is the reference for tuning (its tuner and DRC use it): path_k = KiCad readout, minus the second branch on a
-    # shared CA/CK net (its exact geometry from tools/ddr/ca_trunk_branch.py). The model check above differs by the
-    # via model (KiCad: 7.2 ps/mm of traversed height; here a flat 5.5 ps) and stub copper KiCad also counts.
-    import importlib.util as _ilu
-    _spec = _ilu.spec_from_file_location("ctb", os.path.join(ROOT, "tools", "ddr", "ca_trunk_branch.py"))
-    ctb = _ilu.module_from_spec(_spec); _spec.loader.exec_module(ctb)
-    ctb.U801 = b.FindFootprintByReference("U801")
-    branch = {n: ctb.branch_delay(b, n) for n in ctb.SHARED}
+    # KiCad is the reference for tuning (its tuner and DRC use it): path_k = KiCad readout, minus the copper that is not
+    # on the die-to-die path of a shared CA/CK net (its second branch, measured on the routed board: all of the net's
+    # copper in the path model minus its longest U501 -> U801 path). The model check above differs by the via model
+    # (KiCad: 7.2 ps/mm of traversed height; here a flat 5.5 ps) and stub copper KiCad also counts.
+    def total_model(s):
+        it = items[full[s]]
+        return (sum(w for *_, w in it["seg"]) + VIA_PS * len(it["via"]) +
+                max([dd for ref, *_, dd in it["pads"] if ref == "U501"] or [0.0]))
+    branch = {n: total_model(n) - get(n) for n in ca + ["ddr_ck_P", "ddr_ck_N"]
+              if get(n) is not None and len(ends.get(n) or {}) > 1}
     get_model = get
     def get(n):
         return kd[n] - branch.get(n, 0.0) if n in kd else get_model(n)
-    print("\nPaths in KiCad terms (readout - second branch for shared nets): " +
+    print("\nSecond branch (shared nets, model): " + ", ".join(f"{n} {v:.1f}" for n, v in branch.items()))
+    print("Paths in KiCad terms (readout - second branch for shared nets): " +
           ", ".join(f"{n} {get(n):.1f}" for n in ca + ["ddr_ck_P", "ddr_ck_N"]))
     print("\nTUNER TARGETS (tune each net in pcbnew until KiCad shows this delay):")
     grp = ca + ["ddr_ck_P", "ddr_ck_N"]
     T = max(get(n) for n in grp)
     print(f" CA/CKE/CS/CK group: every path to {T:.1f} ps")
+    rules = []
     for n in grp:
         d = T - get(n)
         print(f"   {n:12} now {kd[n]:6.1f} ps -> {kd[n] + d:6.1f} ps   (+{d:5.1f})" if d > 0.4 else f"   {n:12} {kd[n]:6.1f} ps  (longest, leave)")
+        rules.append((n[4:], [n], kd[n] + d, (-0.5, 0.0, 0.5) if "ck_" in n else (-2.5, 0.0, 2.5)))
     for k in range(4):
         p_, n_ = f"ddr_dqs{k}_P", f"ddr_dqs{k}_N"
         members = [f"ddr_dq{8 * k + i}" for i in range(8)] + [f"ddr_dm{k}"]
@@ -240,3 +247,15 @@ if KICAD_CSV:
             d = dqs + 5 - get(n)
             if d > 0.4:
                 print(f"   {n:12} now {kd[n]:6.1f} ps -> {kd[n] + d:6.1f} ps   (+{d:5.1f})")
+        rules.append((f"byte{k}_dqs", [p_, n_], dqs, (-0.5, 0.0, 0.5)))
+        rules.append((f"byte{k}_dq", members, dqs, (5.0, 10.0, 61.0)))
+    if RULES:
+        # KiCad's length constraint is per net, in ps with the tuning profiles; its tuner aims at opt. One rule per
+        # target: CA/CKE/CS each to the group path (+-2.5 ps: CA - CK <= 5 ps, Efinix 30 mil = 5.3 ps), CK P/N and DQS
+        # P/N +-0.5 ps, DQ/DM DQS + 5..61 ps (Efinix 0..66, 5 ps margin for the model error).
+        cond = lambda ns: " || ".join(f"A.NetName == '{full[n]}'" for n in ns)
+        with open(RULES, "w") as f:
+            for name, ns, t, (lo, opt, hi) in rules:
+                f.write(f'(rule "lpddr_delay_{name}"\n\t(condition "{cond(ns)}")\n'
+                        f'\t(constraint length (min {t + lo:.1f}ps) (opt {t + opt:.1f}ps) (max {t + hi:.1f}ps)))\n')
+        print(f"\n{len(rules)} length rules -> {RULES}")

@@ -437,6 +437,14 @@ feeds every VIN by fill. The 3V3 cell's output and the EN/PG pins are left to th
   in pcbnew. KiCad sums a net's whole copper, so a shared CA/CK net reads path + its second branch (removed using
   the exact branch geometry of `tools/ddr/ca_trunk_branch.py`). Meanders only add delay, so each group's target is
   its longest path: CA/CKE/CS/CK to one value; each DQS pair equalised; DQ/DM to 5…66 ps over their DQS.
+- **DRC length rules (2026-10-30):** `tools/ddr/delay_rules.sh` writes the targets into `kicad/ti135_card.kicad_dru`
+  as one `length` constraint per group (between the "generated delay targets" markers), so pcbnew's length tuner aims
+  at each net's `opt` and DRC flags what is outside: CA/CKE/CS to the group path ±2.5 ps, CK P/N ±0.5 ps, DQS P/N
+  ±0.5 ps, DQ/DM DQS + 5…61 ps. The targets are absolute ps and follow the longest net of each group: rerun the
+  script after rerouting a net. The second branch of a shared CA/CK net is now measured on the routed board (all its
+  copper minus the longest U501 → U801 path, 22–27 ps), not taken from the planned `ca_trunk_branch.py` geometry.
+- The pair skew rule (`within_diff_pairs`, 1 ps) compares KiCad's whole-net totals, so CK P/N, whose two branches
+  differ by about 2.5 ps, keeps a skew item even when its paths match. Judge CK P/N by the length rules.
 - Model check: KiCad and the path model agree within about ±5 ps on most point-to-point nets. KiCad reads 10–16 ps
   more on some, from its via model (traversed height) and leftover stub copper, which it counts. KiCad is the
   reference.
