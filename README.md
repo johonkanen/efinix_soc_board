@@ -39,7 +39,7 @@ Copper layers of `kicad/ti135_card.kicad_pcb` in stack order, without silkscreen
 </tr>
 <tr>
 <td align="center"><img src="https://raw.githubusercontent.com/johonkanen/efinix_soc_board/renders/ti135_card/In6_Cu.svg" width="400"><br><b>In6.Cu: GND plane</b></td>
-<td align="center"><img src="https://raw.githubusercontent.com/johonkanen/efinix_soc_board/renders/ti135_card/B_Cu.svg" width="400"><br><b>B.Cu: signal, 5V0 pour (bottom, mirrored)</b></td>
+<td align="center"><img src="https://raw.githubusercontent.com/johonkanen/efinix_soc_board/renders/ti135_card/B_Cu.svg" width="400"><br><b>B.Cu: signal, 5V0 pour (bottom, seen from the top)</b></td>
 </tr>
 </table>
 
