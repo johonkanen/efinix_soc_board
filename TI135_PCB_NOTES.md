@@ -448,6 +448,10 @@ feeds every VIN by fill. The 3V3 cell's output and the EN/PG pins are left to th
   274.5 ps that sets it to 279.5 ps (CK − earliest DQS 98 ps, budget 350). The targets are absolute ps and follow the longest net of each group: rerun the
   script after rerouting a net. The second branch of a shared CA/CK net is now measured on the routed board (all its
   copper minus the longest U501 → U801 path, 22–27 ps), not taken from the planned `ca_trunk_branch.py` geometry.
+- **pcbnew's tuner reads the pad-to-pad path; DRC's length check sums the whole net** (seen 2026-10-30: CA5 tuner
+  302.5 ps, DRC 324.6 ps). On a shared CA/CK net the rule's `opt` and `min` are therefore the path (what the tuner
+  shows) and `max` also allows the second branch, so DRC only catches gross errors there; `ddr_timing.py` (the path
+  report) is the exact CA–CK check. A DQ more than 61 ps over its DQS is flagged TOO LONG, not followed by its DQS.
 - The pair skew rule (`within_diff_pairs`, 1 ps) compares KiCad's whole-net totals, so CK P/N, whose two branches
   differ by about 2.5 ps, keeps a skew item even when its paths match. Judge CK P/N by the length rules.
 - Model check: KiCad and the path model agree within about ±5 ps on most point-to-point nets. KiCad reads 10–16 ps
