@@ -297,6 +297,9 @@ accepted. (The 2026-10-24 note that cross-byte values were "accepted" was a sile
   bring-up can start lower (e.g. 2,133 Mbps) by changing only the PLL.
 - **Impedance:** the table's 40 Ω SE / 80 Ω diff is used (not the Agilex card's 50 / 100 Ω): 0.18 mm and 0.14 / 0.15 mm on
   In2 / In5 (§6.5), set in `tools/board_setup.py`.
+- **2026-10-30: the DRC width rules are 0.1 mm** (0.09–0.11, pair gap 0.1–0.25 opt 0.2) to match the hand routing:
+  52.6 Ω inner / 60.4 Ω outer, pairs 0.10/0.20 inner 97 Ω. The IBIS check of the routed bytes passes (typ, 2800/3200
+  MT/s); CA/CK and the min/max corners are to be simulated after delay matching.
 
 ### 6.4 DDR clocking
 

@@ -18,23 +18,17 @@
 # that - see the note at the end.
 # ===================================================================================================
 
-# ---- single-ended DQ/DM/CA outside the BGAs -------------------------------------------------------
-(rule "lpddr_se_outer"
-	(condition "(A.hasNetclass('lpddr_dq') || A.hasNetclass('lpddr_ca')) && (A.Layer == 'F.Cu' || A.Layer == 'B.Cu')")
-	(constraint track_width (min 0.23mm) (opt 0.25mm) (max 0.27mm)))
-(rule "lpddr_se_inner"
-	(condition "(A.hasNetclass('lpddr_dq') || A.hasNetclass('lpddr_ca')) && A.Layer != 'F.Cu' && A.Layer != 'B.Cu'")
-	(constraint track_width (min 0.17mm) (opt 0.18mm) (max 0.19mm)))
-
-# ---- DQS / CK pairs outside the BGAs: no differential target, same width as SE, 4 mil gap -----------
-(rule "lpddr_diff_outer"
-	(condition "A.hasNetclass('lpddr_diff') && (A.Layer == 'F.Cu' || A.Layer == 'B.Cu')")
-	(constraint track_width (min 0.19mm) (opt 0.2mm) (max 0.21mm))
-	(constraint diff_pair_gap (min 0.18mm) (opt 0.2mm) (max 0.22mm)))
-(rule "lpddr_diff_inner"
-	(condition "A.hasNetclass('lpddr_diff') && A.Layer != 'F.Cu' && A.Layer != 'B.Cu'")
-	(constraint track_width (min 0.13mm) (opt 0.14mm) (max 0.15mm))
-	(constraint diff_pair_gap (min 0.14mm) (opt 0.15mm) (max 0.17mm)))
+# ---- trace width: 0.1 mm everywhere (2026-10-30) --------------------------------------------------
+# The hand routing runs at 0.1 mm: 52.6 ohm on In2/In5, 60.4 ohm on F/B; pairs 0.10/0.20 inner 97 ohm (field solve,
+# sim/lpddr4_si/README.md). That is off Efinix's 40/80 ohm and >= 5 mil, but the IBIS check of the routed bytes passes
+# at 2800/3200 MT/s (typ). Keep F/B runs short (narrow outer costs more margin than inner). CA/CK and the min/max
+# corners are to be simulated after delay matching.
+(rule "lpddr_width"
+	(condition "A.hasNetclass('lpddr_dq') || A.hasNetclass('lpddr_ca') || A.hasNetclass('lpddr_diff')")
+	(constraint track_width (min 0.09mm) (opt 0.1mm) (max 0.11mm)))
+(rule "lpddr_diff_gap"
+	(condition "A.hasNetclass('lpddr_diff')")
+	(constraint diff_pair_gap (min 0.1mm) (opt 0.2mm) (max 0.25mm)))
 
 # ---- pair integrity (whole net, all layers) --------------------------------------------------------
 # P/N skew < 1 ps (Table 10), and the total length the two halves may run apart: escape through the U7
