@@ -440,7 +440,9 @@ feeds every VIN by fill. The 3V3 cell's output and the EN/PG pins are left to th
 - **DRC length rules (2026-10-30):** `tools/ddr/delay_rules.sh` writes the targets into `kicad/ti135_card.kicad_dru`
   as one `length` constraint per group (between the "generated delay targets" markers), so pcbnew's length tuner aims
   at each net's `opt` and DRC flags what is outside: CA/CKE/CS to the group path ±2.5 ps, CK P/N ±0.5 ps, DQS P/N
-  ±0.5 ps, DQ/DM DQS + 5…61 ps. The targets are absolute ps and follow the longest net of each group: rerun the
+  ±0.5 ps, DQ/DM DQS + 5…61 ps. The CA/CK group path is the larger of its own longest path and the latest DQS + 5 ps
+  (`CK_OVER_DQS`): Efinix wants every DQS shorter than CK, since write leveling only delays DQS. With byte 0's DQS at
+  274.5 ps that sets it to 279.5 ps (CK − earliest DQS 98 ps, budget 350). The targets are absolute ps and follow the longest net of each group: rerun the
   script after rerouting a net. The second branch of a shared CA/CK net is now measured on the routed board (all its
   copper minus the longest U501 → U801 path, 22–27 ps), not taken from the planned `ca_trunk_branch.py` geometry.
 - The pair skew rule (`within_diff_pairs`, 1 ps) compares KiCad's whole-net totals, so CK P/N, whose two branches

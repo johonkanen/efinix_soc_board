@@ -55,7 +55,7 @@
 	(constraint clearance (min 0.2mm)))
 (rule "lpddr_xtalk_group"
 	(severity warning)
-	(condition "A.Type == 'Track' && B.Type == 'Track' && ((A.hasNetclass('lpddr_ca') && (B.hasNetclass('lpddr_dq') || B.NetName == '/IOBANK 3/dqs0_P' || B.NetName == '/IOBANK 3/dqs0_N' || B.NetName == '/IOBANK 3/dqs1_P' || B.NetName == '/IOBANK 3/dqs1_N' || B.NetName == '/IOBANK 3/dqs2_P' || B.NetName == '/IOBANK 3/dqs2_N' || B.NetName == '/IOBANK 3/dqs3_P' || B.NetName == '/IOBANK 3/dqs3_N')) || A.NetName == '/IOBANK 3/~{rst}') && A.NetName != B.NetName && !(A.intersectsCourtyard('U501') || A.intersectsCourtyard('U801'))")
+	(condition "A.Type == 'Track' && B.Type == 'Track' && ((A.hasNetclass('lpddr_ca') && (B.hasNetclass('lpddr_dq') || B.NetName == '/08 lpddr4/ddr_dqs0_P' || B.NetName == '/08 lpddr4/ddr_dqs0_N' || B.NetName == '/08 lpddr4/ddr_dqs1_P' || B.NetName == '/08 lpddr4/ddr_dqs1_N' || B.NetName == '/08 lpddr4/ddr_dqs2_P' || B.NetName == '/08 lpddr4/ddr_dqs2_N' || B.NetName == '/08 lpddr4/ddr_dqs3_P' || B.NetName == '/08 lpddr4/ddr_dqs3_N')) || A.NetName == '/08 lpddr4/ddr_rst_n') && A.NetName != B.NetName && !(A.intersectsCourtyard('U501') || A.intersectsCourtyard('U801'))")
 	(constraint clearance (min 0.3mm)))
 
 # ---- LPDDR4 routing layers (LPDDR4_SWIZZLE_PLAN.md "Layer rules") -------------------------------------
@@ -116,37 +116,37 @@
 # ---- BEGIN generated delay targets (tools/ddr/delay_rules.sh; do not edit by hand) ----
 (rule "lpddr_delay_ca0"
 	(condition "A.NetName == '/08 lpddr4/ddr_ca0'")
-	(constraint length (min 275.5ps) (opt 278.0ps) (max 280.5ps)))
+	(constraint length (min 302.8ps) (opt 305.3ps) (max 307.8ps)))
 (rule "lpddr_delay_ca1"
 	(condition "A.NetName == '/08 lpddr4/ddr_ca1'")
-	(constraint length (min 271.6ps) (opt 274.1ps) (max 276.6ps)))
+	(constraint length (min 298.9ps) (opt 301.4ps) (max 303.9ps)))
 (rule "lpddr_delay_ca2"
 	(condition "A.NetName == '/08 lpddr4/ddr_ca2'")
-	(constraint length (min 276.1ps) (opt 278.6ps) (max 281.1ps)))
+	(constraint length (min 303.4ps) (opt 305.9ps) (max 308.4ps)))
 (rule "lpddr_delay_ca3"
 	(condition "A.NetName == '/08 lpddr4/ddr_ca3'")
-	(constraint length (min 275.7ps) (opt 278.2ps) (max 280.7ps)))
+	(constraint length (min 303.0ps) (opt 305.5ps) (max 308.0ps)))
 (rule "lpddr_delay_ca4"
 	(condition "A.NetName == '/08 lpddr4/ddr_ca4'")
-	(constraint length (min 275.9ps) (opt 278.4ps) (max 280.9ps)))
+	(constraint length (min 303.2ps) (opt 305.7ps) (max 308.2ps)))
 (rule "lpddr_delay_ca5"
 	(condition "A.NetName == '/08 lpddr4/ddr_ca5'")
-	(constraint length (min 272.7ps) (opt 275.2ps) (max 277.7ps)))
+	(constraint length (min 300.0ps) (opt 302.5ps) (max 305.0ps)))
 (rule "lpddr_delay_cke0"
 	(condition "A.NetName == '/08 lpddr4/ddr_cke0'")
-	(constraint length (min 273.8ps) (opt 276.3ps) (max 278.8ps)))
+	(constraint length (min 301.1ps) (opt 303.6ps) (max 306.1ps)))
 (rule "lpddr_delay_cs0_n"
 	(condition "A.NetName == '/08 lpddr4/ddr_cs0_n'")
-	(constraint length (min 249.7ps) (opt 252.2ps) (max 254.7ps)))
+	(constraint length (min 277.0ps) (opt 279.5ps) (max 282.0ps)))
 (rule "lpddr_delay_cs2_n"
 	(condition "A.NetName == '/08 lpddr4/ddr_cs2_n'")
-	(constraint length (min 249.7ps) (opt 252.2ps) (max 254.7ps)))
+	(constraint length (min 277.0ps) (opt 279.5ps) (max 282.0ps)))
 (rule "lpddr_delay_ck_P"
 	(condition "A.NetName == '/08 lpddr4/ddr_ck_P'")
-	(constraint length (min 276.0ps) (opt 276.5ps) (max 277.0ps)))
+	(constraint length (min 303.4ps) (opt 303.9ps) (max 304.4ps)))
 (rule "lpddr_delay_ck_N"
 	(condition "A.NetName == '/08 lpddr4/ddr_ck_N'")
-	(constraint length (min 278.5ps) (opt 279.0ps) (max 279.5ps)))
+	(constraint length (min 305.8ps) (opt 306.3ps) (max 306.8ps)))
 (rule "lpddr_delay_byte0_dqs"
 	(condition "A.NetName == '/08 lpddr4/ddr_dqs0_P' || A.NetName == '/08 lpddr4/ddr_dqs0_N'")
 	(constraint length (min 274.0ps) (opt 274.5ps) (max 275.0ps)))

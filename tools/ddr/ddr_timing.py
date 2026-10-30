@@ -224,9 +224,18 @@ if KICAD_CSV:
     print("Paths in KiCad terms (readout - second branch for shared nets): " +
           ", ".join(f"{n} {get(n):.1f}" for n in ca + ["ddr_ck_P", "ddr_ck_N"]))
     print("\nTUNER TARGETS (tune each net in pcbnew until KiCad shows this delay):")
+    def dqs_target(k):
+        dqs = max(get(f"ddr_dqs{k}_P"), get(f"ddr_dqs{k}_N"))
+        top = max(get(m) for m in [f"ddr_dq{8 * k + i}" for i in range(8)] + [f"ddr_dm{k}"])
+        return max(dqs, top - 60)            # a DQ already > 60 ps over: raise DQS so it sits <= 60 under it
+    # Efinix: every DQS shorter than CK (write leveling only delays DQS), so the CA/CK group sits CK_OVER_DQS above the
+    # latest DQS when that is longer than the group's own longest path.
+    CK_OVER_DQS = float(os.environ.get("CK_OVER_DQS", 5.0))
     grp = ca + ["ddr_ck_P", "ddr_ck_N"]
-    T = max(get(n) for n in grp)
-    print(f" CA/CKE/CS/CK group: every path to {T:.1f} ps")
+    T_ca = max(get(n) for n in grp)
+    T_dqs = max(dqs_target(k) for k in range(4)) + CK_OVER_DQS
+    T = max(T_ca, T_dqs)
+    print(f" CA/CKE/CS/CK group: every path to {T:.1f} ps (longest path {T_ca:.1f}, latest DQS + {CK_OVER_DQS:.0f} = {T_dqs:.1f})")
     rules = []
     for n in grp:
         d = T - get(n)
@@ -235,10 +244,7 @@ if KICAD_CSV:
     for k in range(4):
         p_, n_ = f"ddr_dqs{k}_P", f"ddr_dqs{k}_N"
         members = [f"ddr_dq{8 * k + i}" for i in range(8)] + [f"ddr_dm{k}"]
-        dqs = max(get(p_), get(n_))
-        top = max(get(m) for m in members)
-        if top - dqs > 60:                    # a DQ already > 60 ps over: raise DQS so it sits <= 60 under it
-            dqs = top - 60
+        dqs = dqs_target(k)
         print(f" byte {k}: DQS P/N to {dqs:.1f} ps, DQ/DM to >= {dqs + 5:.1f} ps (<= {dqs + 66:.1f})")
         for n in [p_, n_]:
             d = dqs - get(n)
