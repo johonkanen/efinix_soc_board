@@ -81,11 +81,18 @@ while a sweep runs.
       are listed there too: CK reaches channel A 4-5 ps before channel B (CA - CK +2.4 / -2.2 ps, inside +-5.3); a few
       nets carry under 1 ps of stub copper (dm2, dq26, dq29).
 
-### 3. Measure one worst-case netlist
-- [ ] Longest route, min corner (typ if min is not validated yet), 3200 Mbps, under `/usr/bin/time -v`: wall time
-      and maximum resident set size.
-- [ ] Set `-j` = min(free cores, (free RAM - 3 GB) / peak RSS), probably 3-4. Estimate the total: netlists x time / `-j`.
-- [ ] Choose full or screened corners (see above).
+### 3. Measure one worst-case netlist (done 2026-10-31)
+- [x] `sim/lpddr4_si/routed_si.py --one NET --corner C --rate R`: one net's extracted copper (every piece with the
+      Z0 and ps/mm of its layer and width, vias as hubs with L by span and C to ground, stubs and T branches as
+      routed) between its IBIS buffers; min/max from the corner model files at typ; `.save` only the probed nodes;
+      the `.dat` is deleted after reading. Single-ended nets so far; DQS/CK pairs follow in step 4.
+- [x] Worst cases at min corner, 3200 Mbps (peak RSS summed over the whole process tree, sampled every 0.1 s):
+      ddr_ca2 (T to both channels, longest copper) 11 s, 76 MB; ddr_cke0 12 s, 76 MB; ddr_dq1 8 s. ddr_ca2 at typ
+      2800: 13 s, 80 MB. One-net netlists are tiny: the OOM and the hour-long runs were the many-net netlists.
+- [x] `-j`: CPU-bound, not RAM-bound (6 workers ~0.5 GB). Use `-j 4` on the shared machine (up to `-j 8` when it is
+      free). About 86 netlists per rate and corner (36 DQ/DM write, 32 DQ read, 9 CA/CS/CKE, 8 DQS, 1 CK), 516 for
+      both rates and all corners: about 26 min at `-j 4`.
+- [x] Decision: **full corners on every net** (13 s per netlist, under the 30 s threshold); no screening needed.
 
 ### 4. Typ sweep, all nets, 2800 and 3200 Mbps
 - [ ] Per net: eye height and width at pin and die, mask margins (V and t), Vmax/Vmin, overshoot/undershoot areas.
