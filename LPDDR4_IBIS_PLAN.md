@@ -130,7 +130,10 @@ while a sweep runs.
       The eye plots agree with the numbers.
 - [x] Report: `sim/lpddr4_si/README.md` "Routed board: result". Every net passes at 2800 and 3200 Mbps, all
       corners, except CKE0 at max/3200 (16 mV over the peak limit): **10 ohm series resistor on CKE at U501**.
-- [ ] After the resistor is on the board: extract CKE through it and rerun its IBIS case on the real routing.
+- [x] R803 on the board (e4ac548): CKE extracted through it and rerun at all corners: worst peak 1299 mV (max,
+      2800) vs 1470 mV, margins >= 393 mV / 210 ps (`results/routed_corners.md`).
+- [x] CKE retuned (306.7 ps, -1.0 ps vs CK) and rerun: every corner passes; peak 1331 mV at max/2800 (139 mV
+      margin), 1448 mV at max/3200 (22 mV margin).
 
 ## Rules while running
 

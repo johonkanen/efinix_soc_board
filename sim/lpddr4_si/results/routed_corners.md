@@ -42,3 +42,34 @@ option. Simulated at the DRAM die, the routed CKE with a series resistor at U501
 
 A lower-impedance trunk also passes (In2 0.18 mm, 39.8 ohm: 1384 mV; B.Cu 0.25 mm, 39.3 ohm: 1377 mV at max 3200)
 but needs a reroute. Chosen: **10 ohm in series on B.Cu at U501**.
+
+**CKE as built with R803 (board e4ac548, 2026-10-31).** CKE now runs U501 -> via -> R803 (10 ohm, B.Cu) -> B.Cu
+0.12 mm (about 56 ohm) -> T -> U801; `extract_routes.py` / `routed_si.py` follow it through the resistor. Still
+with the meander sized for the old rule (path about 67 ps long; it is retuned next). At the DRAM die:
+
+| corner | rate | peak (mV) | limit (mV) | undershoot (mV) | V margin (mV) | t margin (ps) | OS / US area (V-ns) |
+|---|---|---|---|---|---|---|---|
+| typ | 2800 | 1223 | 1400 | -99 | 507 | 303 | 0.013 / 0.010 |
+| typ | 3200 | 1251 | 1400 | -118 | 428 | 210 | 0.016 / 0.013 |
+| min | 2800 | 1167 | 1360 | -89 | 506 | 310 | 0.010 / 0.008 |
+| min | 3200 | 1221 | 1360 | -136 | 393 | 214 | 0.015 / 0.013 |
+| max | 2800 | 1299 | 1470 | -105 | 558 | 312 | 0.021 / 0.012 |
+| max | 3200 | 1292 | 1470 | -115 | 545 | 226 | 0.021 / 0.014 |
+
+Every corner passes; the worst peak is 171 mV under the limit (was 16 mV over).
+
+**CKE retuned (board saved 14:52).** CKE die to die 306.7 ps, -1.0 ps vs CK (rule +-5.3). The CKE rule is written
+from R803 and shifted by the tuner's offset on this routing (-23.0 ps). At the DRAM die:
+
+| corner | rate | peak (mV) | limit (mV) | undershoot (mV) | V margin (mV) | t margin (ps) | OS / US area (V-ns) |
+|---|---|---|---|---|---|---|---|
+| typ | 2800 | 1237 | 1400 | -106 | 561 | 286 | 0.012 / 0.009 |
+| typ | 3200 | 1280 | 1400 | -167 | 502 | 236 | 0.019 / 0.016 |
+| min | 2800 | 1154 | 1360 | -94 | 552 | 305 | 0.009 / 0.008 |
+| min | 3200 | 1214 | 1360 | -120 | 449 | 228 | 0.013 / 0.009 |
+| max | 2800 | 1331 | 1470 | -156 | 592 | 293 | 0.017 / 0.013 |
+| max | 3200 | 1448 | 1470 | -227 | 500 | 216 | 0.030 / 0.023 |
+
+Every corner passes. At 2800 Mbps (the I3's top rate) the peak is 139 mV under the limit; at 3200 / max only 22 mV
+(the shorter route moved the reflections; before the retune it was 1292 mV). If 3200 Mbps margin matters, 15 ohm
+gave about 60 mV lower peaks than 10 ohm in the resistor comparison above.

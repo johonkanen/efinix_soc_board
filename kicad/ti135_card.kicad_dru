@@ -153,7 +153,7 @@
 	(constraint length (min 306.6ps) (opt 309.1ps) (max 333.7ps)))
 (rule "lpddr_delay_cke0"
 	(condition "A.NetName == '/08 lpddr4/ddr_cke0'")
-	(constraint length (min 305.9ps) (opt 308.4ps) (max 334.9ps)))
+	(constraint length (min 216.5ps) (opt 219.0ps) (max 267.0ps)))
 (rule "lpddr_delay_cs0_n"
 	(condition "A.NetName == '/08 lpddr4/ddr_cs0_n'")
 	(constraint length (min 304.7ps) (opt 307.2ps) (max 309.7ps)))
