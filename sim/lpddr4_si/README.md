@@ -1,9 +1,52 @@
-# LPDDR4 IBIS simulation: how narrow can the traces be (WORK IN PROGRESS)
+# LPDDR4 IBIS simulation: trace width study and the routed board
 
 KiCad 10 + ngspice IBIS simulation of U501 (Efinix Ti135N484I3) ↔ U801 (SK hynix H9HCNNN8KUMLHR, simulated with the
 Winbond W66CL2NQUAFJ **stand-in**) at 2800 / 3200 MT/s. The question and the full brief are in
 `IBIS_SIM_AGENT_PROMPT.md` (repo root). The method comes from `~/dev/agilex3_soc_control_card/sim/lpddr4_si/` (read only, never
 write there). That method is going to `johonkanen/kicad_ibis_simulation` (see "Next").
+
+## Routed board: result (2026-10-31, LPDDR4_IBIS_PLAN.md steps 1-7)
+
+**Every LPDDR4 net of the routed board (commit eabcea1) passes at 2800 and 3200 Mbps, typ/min/max, with one
+exception: CKE0 at max corner and 3200 Mbps peaks 16 mV over the overshoot limit. Use the FPGA's 48 ohm drive on
+CKE (Efinity setting): then CKE passes there too.**
+
+| check | result | detail |
+|---|---|---|
+| Drivers (step 1) | Efinix exact at every load with the corner model files; KiCad's own `vcc=MIN/MAX` is not | `results/validate_drivers*.md` |
+| Extraction (step 2) | whole-net delay within 0.76 ps of KiCad on all 56 nets | `results/check_routes.md` |
+| Typ sweep (step 4) | 172 netlists, all pass | `results/routed_typ.md` |
+| Corners (step 5) | 344 netlists, all eyes pass; CKE0 max/3200 1486 mV vs 1470 mV (48 ohm drive: 1415 mV) | `results/routed_corners.md` |
+| Crosstalk (step 6) | at most 14 mV / 8 ps lost (bounding case); every net still passes | `results/xtalk_board.md` |
+| Checks can fail (step 7) | overshoot, timing and closed-eye failures all detected; plots agree | `bad_case.py`, below |
+
+Tightest margins over all corners and both rates (at the receiver die): DQ read timing 49 ps (dq11, typ 3200) and
+voltage 138 mV; CA/CS/CKE voltage 120 mV (min 2800); DQ/DM write 351 mV / 170 ps; DQS read 523 mV / 61 ps; DQS
+write 982 mV / 170 ps; CK 438 mV / 158 ps. Over/undershoot areas at most 0.04 V-ns (limit 0.1).
+
+**Step 7, the checks can fail** (`python3 bad_case.py`, eye PNGs `results/eyes/eye_bad*.png`), all at 3200 Mbps:
+
+| case | result |
+|---|---|
+| 1. dq1 write, DRAM ODT off, max | peak 1579 mV vs 1470 mV, OS/US area 0.140 / 0.104 V-ns: **limits fail**; eye still open (short line) |
+| 2. dq11 read, FPGA ODT off, max | t margin **-30 ps** at the FPGA die: **mask fails** |
+| 3. dq1 write, all traces 150 ohm, 4x long, ODT 60 | eye 259 mV, +53 mV / +48 ps: degraded, still passes (the ODT absorbs it) |
+| 4. as 3 with the DRAM ODT off | eye **closed** (-450 mV, 0 ps), peaks 1942 / -658 mV: **everything fails** |
+
+**How it was run** (`routed_si.py`, see its docstring): every net's extracted copper (`extract_routes.py`) as one
+netlist (one net or pair per netlist, `.save` only the probes, `.dat` deleted), every piece with the Z0 and ps/mm of
+its layer and width; vias by span; DQS/CK legs at the pair's odd-mode Z0 (0.10 / 0.20 mm as routed); min/max from
+the corner model files (`corner_models.py`); `-j 4` (CPU-bound, ~80 MB per run), 7.7 min typ + 14 min corners.
+
+**Assumptions and what is not modelled:**
+- DRAM = Winbond W66CL2NQUAFJ stand-in (the SK hynix model is under NDA); its edges run up to 12-18 ps faster than
+  its own tables after KiCad's conversion; its open-load level is wrong (does not matter while the FPGA ODT is on).
+- U801 has no package delays (none public); U501 package delay as a 46.3 ohm line of the pad-to-die delay.
+- Settings: FPGA 40 ohm drive, FPGA ODT 60, DRAM ODT 60, DRAM drive PD40, CA ODT 40 (`gen_sch.py` BASE); CKE has no
+  ODT (CKE_INPUT). Masks: JEDEC DQ/CA; for the FPGA read side TI's SoC-pad diamond as a proxy (Efinix publishes none).
+- Lossless lines; no meander self-coupling; pair mode conversion not modelled; crosstalk only from the board's
+  worst coupled lengths outside the BGAs (step 6).
+- `limits_ok` checks the peaks; the areas are in the CSV (`os_area_Vns`, `us_area_Vns`) and were checked by hand.
 
 ## Status (2026-10-27, stopped by the user for the day)
 

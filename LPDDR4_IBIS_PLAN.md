@@ -123,11 +123,13 @@ while a sweep runs.
 - [x] Crosstalk costs at most 14 mV eye height, 10 mV V margin, 8 ps t margin (10 mm bound); peak noise on a quiet
       victim 30 mV far end. Every net still passes with that taken off. `sim/lpddr4_si/results/xtalk_board.md`.
 
-### 7. Prove the checks can fail, then report
-- [ ] One deliberately bad case (no ODT, a very long line, or a much too narrow trace): margins must go negative and
-      the eye plot must agree.
-- [ ] Report in `sim/lpddr4_si/README.md`: what was modelled, the stand-ins, every assumption, results per group and
-      corner, the worst nets and their margins, and what was not modelled.
+### 7. Prove the checks can fail, then report (done 2026-10-31)
+- [x] `sim/lpddr4_si/bad_case.py`, 3200 Mbps: (1) DQ write with the DRAM ODT off at max: limits fail (1579 mV,
+      areas over 0.1 V-ns); (2) DQ read with the FPGA ODT off at max: t margin -30 ps; (3) all traces 150 ohm and
+      4x long with ODT: degraded (259 mV eye) but passes; (4) the same with the ODT off: eye closed (-450 mV, 0 ps).
+      The eye plots agree with the numbers.
+- [x] Report: `sim/lpddr4_si/README.md` "Routed board: result". Every net passes at 2800 and 3200 Mbps, all
+      corners, except CKE0 at max/3200 (16 mV over the peak limit): **set the FPGA's CKE drive to 48 ohm**.
 
 ## Rules while running
 
