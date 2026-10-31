@@ -33,8 +33,10 @@
 # ---- pair integrity (whole net, all layers) --------------------------------------------------------
 # P/N skew < 1 ps (Table 10), and the total length the two halves may run apart: escape through the U7
 # ball field (~6 mm), the U12 escape through its 0.65 mm channels (~8 mm) and the pad entries.
+# CK is left out: its P and N each branch to both channels, and KiCad's skew compares whole nets (the two branches
+# differ ~1.3 ps). CK P/N is held by its per-net path rules instead (lpddr_delay_ck_P/N, +-0.4 ps -> <= 0.8 ps).
 (rule "lpddr_pair_skew"
-	(condition "A.hasNetclass('lpddr_diff')")
+	(condition "A.hasNetclass('lpddr_diff') && A.NetName != '/08 lpddr4/ddr_ck_P' && A.NetName != '/08 lpddr4/ddr_ck_N'")
 	(constraint skew (max 1ps) (within_diff_pairs)))
 (rule "lpddr_pair_uncoupled"
 	(condition "A.hasNetclass('lpddr_diff')")
@@ -119,37 +121,37 @@
 # ---- BEGIN generated delay targets (tools/ddr/delay_rules.sh; do not edit by hand) ----
 (rule "lpddr_delay_ca0"
 	(condition "A.NetName == '/08 lpddr4/ddr_ca0'")
-	(constraint length (min 303.7ps) (opt 306.2ps) (max 334.6ps)))
+	(constraint length (min 329.9ps) (opt 332.4ps) (max 334.9ps)))
 (rule "lpddr_delay_ca1"
 	(condition "A.NetName == '/08 lpddr4/ddr_ca1'")
-	(constraint length (min 303.7ps) (opt 306.2ps) (max 330.6ps)))
+	(constraint length (min 326.7ps) (opt 329.2ps) (max 331.7ps)))
 (rule "lpddr_delay_ca2"
 	(condition "A.NetName == '/08 lpddr4/ddr_ca2'")
-	(constraint length (min 303.7ps) (opt 306.2ps) (max 335.1ps)))
+	(constraint length (min 330.4ps) (opt 332.9ps) (max 335.4ps)))
 (rule "lpddr_delay_ca3"
 	(condition "A.NetName == '/08 lpddr4/ddr_ca3'")
-	(constraint length (min 303.7ps) (opt 306.2ps) (max 334.7ps)))
+	(constraint length (min 330.0ps) (opt 332.5ps) (max 335.0ps)))
 (rule "lpddr_delay_ca4"
 	(condition "A.NetName == '/08 lpddr4/ddr_ca4'")
-	(constraint length (min 303.7ps) (opt 306.2ps) (max 335.3ps)))
+	(constraint length (min 330.6ps) (opt 333.1ps) (max 335.6ps)))
 (rule "lpddr_delay_ca5"
 	(condition "A.NetName == '/08 lpddr4/ddr_ca5'")
-	(constraint length (min 303.7ps) (opt 306.2ps) (max 330.5ps)))
+	(constraint length (min 325.8ps) (opt 328.3ps) (max 330.8ps)))
 (rule "lpddr_delay_cke0"
 	(condition "A.NetName == '/08 lpddr4/ddr_cke0'")
-	(constraint length (min 303.7ps) (opt 306.2ps) (max 333.8ps)))
+	(constraint length (min 329.1ps) (opt 331.6ps) (max 334.1ps)))
 (rule "lpddr_delay_cs0_n"
 	(condition "A.NetName == '/08 lpddr4/ddr_cs0_n'")
-	(constraint length (min 303.7ps) (opt 306.2ps) (max 308.7ps)))
+	(constraint length (min 304.0ps) (opt 306.5ps) (max 309.0ps)))
 (rule "lpddr_delay_cs2_n"
 	(condition "A.NetName == '/08 lpddr4/ddr_cs2_n'")
-	(constraint length (min 303.7ps) (opt 306.2ps) (max 308.7ps)))
+	(constraint length (min 304.0ps) (opt 306.5ps) (max 309.0ps)))
 (rule "lpddr_delay_ck_P"
 	(condition "A.NetName == '/08 lpddr4/ddr_ck_P'")
-	(constraint length (min 305.7ps) (opt 306.2ps) (max 331.8ps)))
+	(constraint length (min 329.5ps) (opt 329.9ps) (max 330.3ps)))
 (rule "lpddr_delay_ck_N"
 	(condition "A.NetName == '/08 lpddr4/ddr_ck_N'")
-	(constraint length (min 305.7ps) (opt 306.2ps) (max 334.1ps)))
+	(constraint length (min 330.8ps) (opt 331.2ps) (max 331.6ps)))
 (rule "lpddr_delay_byte0_dqs"
 	(condition "A.NetName == '/08 lpddr4/ddr_dqs0_P' || A.NetName == '/08 lpddr4/ddr_dqs0_N'")
 	(constraint length (min 274.0ps) (opt 274.5ps) (max 275.0ps)))

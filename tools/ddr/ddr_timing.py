@@ -2,8 +2,9 @@
 """LPDDR4 die-to-die delay per net and the Efinix checks (tools/p2k/bin/kipy tools/ddr/ddr_timing.py [BOARD]).
 
 Board delay = track length per layer x propagation delay (field solve, TI135_PCB_NOTES.md §6.5: In2/In5 stripline
-eps_eff 4.42 -> 7.01 ps/mm; F.Cu/B.Cu microstrip with mask eps_eff 3.36 -> 6.11 ps/mm) + 5.5 ps per via (about half
-the 1.6 mm board at 6.9 ps/mm; a coarse figure) + the U501 pad-to-die delay on the board (tools/pad_to_die.py).
+eps_eff 4.42 -> 7.01 ps/mm; F.Cu/B.Cu microstrip with mask eps_eff 3.36 -> 6.11 ps/mm) + the via barrel between the
+layers it joins (stack-up height x the tuning profile's via delay, 7.2 ps/mm, as KiCad counts it: F.Cu -> In2 1.8 ps,
+F.Cu -> In5 9.4 ps, F.Cu -> B.Cu 11.1 ps) + the U501 pad-to-die delay on the board (tools/pad_to_die.py).
 U801 has no package data. Pairs use the mean of P and N.
 Checks (TI135_PCB_NOTES.md §6.3; timing budget at 3700 Mbps, the board is routed to it although the I3 part runs
 <= 2.8 Gbps): DQ/DM - DQS of its byte in 0..66 ps (0..375 mil), and |DQ - DQS| <= 75 ps; DQS P/N <= 1.8 ps (10 mil),
@@ -17,10 +18,9 @@ import sys
 import pcbnew
 
 PS_PER_MM = {"F.Cu": 6.11, "B.Cu": 6.11, "In2.Cu": 7.01, "In5.Cu": 7.01}
-VIA_PS = 5.5
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 args = [a for a in sys.argv[1:]]
-KICAD_CSV = PLAN = RULES = None
+KICAD_CSV = PLAN = RULES = PATTERNS = None
 NETS = "--nets" in args
 if NETS:
     args.remove("--nets")
@@ -28,9 +28,40 @@ if "--plan" in args:
     i = args.index("--plan"); PLAN = args[i + 1]; del args[i:i + 2]
 if "--kicad" in args:
     i = args.index("--kicad"); KICAD_CSV = args[i + 1]; del args[i:i + 2]
+if "--patterns" in args:   # with --kicad: path-terms targets for the tuning patterns of shared CA/CK nets
+    i = args.index("--patterns"); PATTERNS = args[i + 1]; del args[i:i + 2]
 if "--rules" in args:   # with --kicad: write the targets as DRC length rules (tools/ddr/delay_rules.sh)
     i = args.index("--rules"); RULES = args[i + 1]; del args[i:i + 2]
-b = pcbnew.LoadBoard(args[0] if args else os.path.join(ROOT, "kicad", "ti135_card.kicad_pcb"))
+BOARD = args[0] if args else os.path.join(ROOT, "kicad", "ti135_card.kicad_pcb")
+b = pcbnew.LoadBoard(BOARD)
+
+
+def _via_model():
+    """Copper layer depth (mm, top of F.Cu to top of each copper layer) from the board's stack-up, and the via delay
+    (ps/mm) of the LPDDR4 tuning profile in the project: KiCad's own via model for time-domain tuning."""
+    import json
+    src = open(BOARD).read()
+    st = src[src.index("(stackup"):src.index("(copper_finish")]
+    z, depth = 0.0, {}
+    for name, body in re.findall(r'\(layer "([^"]+)"(.*?)(?=\(layer "|\Z)', st, re.S):
+        if "Mask" in name or "Paste" in name or "SilkS" in name:
+            continue
+        if name.endswith(".Cu"):
+            depth[name] = z
+        t = re.search(r"\(thickness ([0-9.]+)", body)
+        z += float(t.group(1)) if t else 0.0
+    pro = json.load(open(os.path.splitext(BOARD)[0] + ".kicad_pro"))
+    prof = [p for p in pro["tuning_profiles"]["tuning_profiles_impedance_geometric"] if "LPDDR4" in p["profile_name"]]
+    return depth, prof[0]["via_prop_delay"] / 1e6
+
+
+DEPTH, VIA_PS_MM = _via_model()
+
+
+def via_ps(layers):
+    """KiCad: a via counts the barrel between the outermost layers it joins."""
+    zs = [DEPTH[L] for L in layers if L in DEPTH]
+    return (max(zs) - min(zs)) * VIA_PS_MM if zs else 0.0
 import heapq
 from collections import defaultdict
 # copper graph per net: nodes = rounded points on a layer; a via (and a THT/via-in-pad position) joins its layers.
@@ -85,16 +116,19 @@ def path_delays(n):
                     link((q, L), (a, L), w * t); link((q, L), (c, L), w * (1 - t))
     for v in it["via"]:   # every track end within the via's copper (r <= 0.2 mm) joins it, on any layer
         near = [(q, L) for q in pts for L in pts[q] if abs(q[0] - v[0]) <= 0.2 and abs(q[1] - v[1]) <= 0.2]
+        layers = sorted({L for _, L in near} | {"F.Cu"}, key=lambda L: DEPTH.get(L, 0.0))
+        for L1, L2 in zip(layers, layers[1:]):   # the barrel, layer to layer
+            link(("V", v, L1), ("V", v, L2), via_ps([L1, L2]))
         for node in near:
-            link(("V", v), node, VIA_PS / 2)
-        link(("V", v), (v, "F.Cu"), VIA_PS / 2)
+            link(("V", v, node[1]), node, 0.0)
+        link(("V", v, "F.Cu"), (v, "F.Cu"), 0.0)
     # pads: join every node inside the pad box on F.Cu (and a via in the pad, through its F.Cu node)
     pad_nodes = []
     for ref, pos, (x0, y0, x1, y1), dd in it["pads"]:
         pn = ("P", ref, pos); pad_nodes.append((ref, pn, dd))
         for v in it["via"]:   # a via overlapping the pad (in it, or offset) connects by copper overlap
             if x0 - 0.15 <= v[0] <= x1 + 0.15 and y0 - 0.15 <= v[1] <= y1 + 0.15:
-                link(pn, ("V", v), 0.0)
+                link(pn, ("V", v, "F.Cu"), 0.0)
         for node in list(adj):
             if node[0] in ("V", "P"):
                 continue
@@ -209,11 +243,16 @@ if KICAD_CSV:
             print(f"   {n:12} KiCad {kd[n]:6.1f}   path {get(n):6.1f}   diff {kd[n] - get(n):+6.1f}")
     # KiCad is the reference for tuning (its tuner and DRC use it): path_k = KiCad readout, minus the copper that is not
     # on the die-to-die path of a shared CA/CK net (its second branch, measured on the routed board: all of the net's
-    # copper in the path model minus its longest U501 -> U801 path). The model check above differs by the via model
-    # (KiCad: 7.2 ps/mm of traversed height; here a flat 5.5 ps) and stub copper KiCad also counts.
+    # copper in the path model minus its longest U501 -> U801 path). Both use KiCad's via model, so on a point-to-point
+    # net the model check above reads ~0; more is copper off the pad-to-pad path (a stub or a loop) that KiCad counts.
     def total_model(s):
         it = items[full[s]]
-        return (sum(w for *_, w in it["seg"]) + VIA_PS * len(it["via"]) +
+        def layers(v):   # the layers a via joins: track ends on it, and F.Cu when it sits in a pad
+            ls = {L for a, c, L, _ in it["seg"] for q in (a, c) if abs(q[0] - v[0]) <= 0.2 and abs(q[1] - v[1]) <= 0.2}
+            if any(x0 - 0.15 <= v[0] <= x1 + 0.15 and y0 - 0.15 <= v[1] <= y1 + 0.15 for *_, (x0, y0, x1, y1), _ in it["pads"]):
+                ls.add("F.Cu")
+            return ls
+        return (sum(w for *_, w in it["seg"]) + sum(via_ps(layers(v)) for v in it["via"]) +
                 max([dd for ref, *_, dd in it["pads"] if ref == "U501"] or [0.0]))
     branch = {n: total_model(n) - get(n) for n in ca + ["ddr_ck_P", "ddr_ck_N"]
               if get(n) is not None and len(ends.get(n) or {}) > 1}
@@ -235,14 +274,18 @@ if KICAD_CSV:
     T_dqs = max(dqs_target(k) for k in range(4)) + CK_OVER_DQS
     T = max(T_ca, T_dqs)
     print(f" CA/CKE/CS/CK group: every path to {T:.1f} ps (longest path {T_ca:.1f}, latest DQS + {CK_OVER_DQS:.0f} = {T_dqs:.1f})")
-    rules = []
+    rules, patterns = [], {}
     for n in grp:
         d = T - get(n)
         print(f"   {n:12} now {get(n):6.1f} ps -> {T:6.1f} ps   (+{d:5.1f})" if d > 0.4 else f"   {n:12} {get(n):6.1f} ps  (longest, leave)")
-        # pcbnew's tuner reads the pad-to-pad path, DRC the whole net: on a shared net opt is the path (what the tuner
-        # shows) and max also allows the second branch, so DRC only catches gross errors there.
-        tol = 0.5 if "ck_" in n else 2.5
-        rules.append((n[4:], [n], T, (-tol, 0.0, tol + branch.get(n, 0.0))))
+        # DRC sums the whole net, pcbnew's tuner reads the pad-to-pad path: the rule is the path target plus this
+        # net's second branch, so DRC is exact on the path; the tuning patterns of shared nets get the path target
+        # itself as their own override (--patterns, tools/ddr/pattern_targets.py).
+        tol = 0.4 if "ck_" in n else 2.5           # CK P/N each +-0.4 -> P/N <= 0.8 ps (Efinix 0.9)
+        br = branch.get(n, 0.0)
+        rules.append((n[4:], [n], T + br, (-tol, 0.0, tol)))
+        if br:
+            patterns[full[n]] = (round(T - tol, 1), round(T, 1), round(T + tol, 1))
     for k in range(4):
         p_, n_ = f"ddr_dqs{k}_P", f"ddr_dqs{k}_N"
         members = [f"ddr_dq{8 * k + i}" for i in range(8)] + [f"ddr_dm{k}"]
@@ -261,12 +304,16 @@ if KICAD_CSV:
         rules.append((f"byte{k}_dq", members, dqs, (5.0, 10.0, 61.0)))
     if RULES:
         # KiCad's length constraint is per net, in ps with the tuning profiles; its tuner aims at opt. One rule per
-        # target: CA/CKE/CS each to the group path (+-2.5 ps: CA - CK <= 5 ps, Efinix 30 mil = 5.3 ps), CK P/N and DQS
-        # P/N +-0.5 ps, DQ/DM DQS + 5..61 ps (Efinix 0..66, 5 ps margin for the model error). The exact CA - CK check of
-        # the shared nets is the path report at the top of this script.
+        # target: CA/CKE/CS each to the group path (+-2.5 ps: CA - CK <= 5 ps, Efinix 30 mil = 5.3 ps), CK P/N +-0.4 ps,
+        # DQS P/N +-0.5 ps, DQ/DM DQS + 5..61 ps (Efinix 0..66, 5 ps margin). A shared net's rule includes its second
+        # branch (DRC reads the whole net), so a net inside its rule meets the Efinix checks above.
         cond = lambda ns: " || ".join(f"A.NetName == '{full[n]}'" for n in ns)
         with open(RULES, "w") as f:
             for name, ns, t, (lo, opt, hi) in rules:
                 f.write(f'(rule "lpddr_delay_{name}"\n\t(condition "{cond(ns)}")\n'
                         f'\t(constraint length (min {t + lo:.1f}ps) (opt {t + opt:.1f}ps) (max {t + hi:.1f}ps)))\n')
         print(f"\n{len(rules)} length rules -> {RULES}")
+    if PATTERNS:
+        import json as _json
+        _json.dump(patterns, open(PATTERNS, "w"), indent=1)
+        print(f"{len(patterns)} shared-net tuning pattern targets (path terms) -> {PATTERNS}")
