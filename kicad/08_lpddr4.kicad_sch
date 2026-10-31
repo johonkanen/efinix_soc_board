@@ -34134,7 +34134,7 @@
 				)
 			)
 		)
-		(property "Value" "10R"
+		(property "Value" "15R"
 			(at 147.32 74.17 270)
 			(effects
 				(font
@@ -34169,7 +34169,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C25077"
+		(property "LCSC" "C25083"
 			(at 147.32 76.2 0)
 			(effects
 				(font
@@ -34233,7 +34233,7 @@
 		)
 		(uuid "7c165aa1-4a87-5549-ac74-41e8ac4c0d42")
 	)
-	(text "CKE series 10R on B.Cu at the U501 CKE via (sim/lpddr4_si/results/routed_corners.md):\nCKE has no ODT; without it the max-corner peak at 3200 Mbps is 1486 mV (limit 1470), with it 1291 mV.\nEfinity has no CA/CKE drive setting."
+	(text "CKE series 15R on B.Cu at the U501 CKE via (sim/lpddr4_si/results/routed_corners.md):\nCKE has no ODT; without it the max-corner peak at 3200 Mbps is 1486 mV (limit 1470).\nEfinity has no CA/CKE drive setting."
 		(exclude_from_sim no)
 		(at 127 66.04 0)
 		(effects

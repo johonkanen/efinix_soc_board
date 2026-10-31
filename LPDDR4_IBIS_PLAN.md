@@ -129,11 +129,13 @@ while a sweep runs.
       4x long with ODT: degraded (259 mV eye) but passes; (4) the same with the ODT off: eye closed (-450 mV, 0 ps).
       The eye plots agree with the numbers.
 - [x] Report: `sim/lpddr4_si/README.md` "Routed board: result". Every net passes at 2800 and 3200 Mbps, all
-      corners, except CKE0 at max/3200 (16 mV over the peak limit): **10 ohm series resistor on CKE at U501**.
+      corners, except CKE0 at max/3200 (16 mV over the peak limit): **series resistor on CKE at U501** (R803, 15 ohm since 2026-10-31).
 - [x] R803 on the board (e4ac548): CKE extracted through it and rerun at all corners: worst peak 1299 mV (max,
       2800) vs 1470 mV, margins >= 393 mV / 210 ps (`results/routed_corners.md`).
 - [x] CKE retuned (306.7 ps, -1.0 ps vs CK) and rerun: every corner passes; peak 1331 mV at max/2800 (139 mV
       margin), 1448 mV at max/3200 (22 mV margin).
+- [x] R803 changed to 15 ohm for 3200 Mbps headroom: peak 1262 mV at max/2800 (208 mV margin), 1376 mV at max/3200
+      (94 mV), eye margins >= 370 mV / 206 ps.
 
 ## Rules while running
 

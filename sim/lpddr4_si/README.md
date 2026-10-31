@@ -8,15 +8,14 @@ write there). That method is going to `johonkanen/kicad_ibis_simulation` (see "N
 ## Routed board: result (2026-10-31, LPDDR4_IBIS_PLAN.md steps 1-7)
 
 **Every LPDDR4 net of the routed board (commit eabcea1) passes at 2800 and 3200 Mbps, typ/min/max, with one
-exception: CKE0 at max corner and 3200 Mbps peaks 16 mV over the overshoot limit. Fix: a 10 ohm series resistor on B.Cu at U501's CKE via. Efinity has no drive setting for CA/CK/CKE (only DQ_PD/PU_DRV_STRENGTH), so the FPGA side cannot be weakened; with it CKE
-peaks at 1291 mV there (limit 1470 mV).**
+exception: CKE0 at max corner and 3200 Mbps peaks 16 mV over the overshoot limit. Fix: a series resistor on B.Cu at U501's CKE via, R803 = 15 ohm. Efinity has no drive setting for CA/CK/CKE (only DQ_PD/PU_DRV_STRENGTH), so the FPGA side cannot be weakened; with R803 = 15 ohm CKE peaks at 1376 mV there (limit 1470 mV).**
 
 | check | result | detail |
 |---|---|---|
 | Drivers (step 1) | Efinix exact at every load with the corner model files; KiCad's own `vcc=MIN/MAX` is not | `results/validate_drivers*.md` |
 | Extraction (step 2) | whole-net delay within 0.76 ps of KiCad on all 56 nets | `results/check_routes.md` |
 | Typ sweep (step 4) | 172 netlists, all pass | `results/routed_typ.md` |
-| Corners (step 5) | 344 netlists, all eyes pass; CKE0 max/3200 1486 mV vs 1470 mV (10 ohm series R: 1291 mV) | `results/routed_corners.md` |
+| Corners (step 5) | 344 netlists, all eyes pass; CKE0 max/3200 1486 mV vs 1470 mV (R803 15 ohm, as routed: 1376 mV) | `results/routed_corners.md` |
 | Crosstalk (step 6) | at most 14 mV / 8 ps lost (bounding case); every net still passes | `results/xtalk_board.md` |
 | Checks can fail (step 7) | overshoot, timing and closed-eye failures all detected; plots agree | `bad_case.py`, below |
 

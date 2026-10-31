@@ -73,3 +73,16 @@ from R803 and shifted by the tuner's offset on this routing (-23.0 ps). At the D
 Every corner passes. At 2800 Mbps (the I3's top rate) the peak is 139 mV under the limit; at 3200 / max only 22 mV
 (the shorter route moved the reflections; before the retune it was 1292 mV). If 3200 Mbps margin matters, 15 ohm
 gave about 60 mV lower peaks than 10 ohm in the resistor comparison above.
+
+**R803 = 15 ohm (2026-10-31, final).** Same routing, the resistor raised from 10 to 15 ohm for margin at 3200 Mbps:
+
+| corner | rate | peak (mV) | limit (mV) | undershoot (mV) | V margin (mV) | t margin (ps) | OS / US area (V-ns) |
+|---|---|---|---|---|---|---|---|
+| typ | 2800 | 1170 | 1400 | -45 | 467 | 265 | 0.004 / 0.004 |
+| typ | 3200 | 1216 | 1400 | -103 | 422 | 218 | 0.010 / 0.008 |
+| min | 2800 | 1098 | 1360 | -35 | 454 | 275 | 0.002 / 0.002 |
+| min | 3200 | 1159 | 1360 | -63 | 370 | 206 | 0.006 / 0.005 |
+| max | 2800 | 1262 | 1470 | -86 | 500 | 263 | 0.007 / 0.006 |
+| max | 3200 | 1376 | 1470 | -157 | 443 | 208 | 0.019 / 0.014 |
+
+Peak margin 208 mV at 2800 and 94 mV at 3200 (10 ohm: 139 / 22 mV); the eye keeps >= 370 mV / 206 ps.

@@ -72707,7 +72707,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "10R"
+		(property "Value" "15R"
 			(at 0 -1.17 90)
 			(layer "B.Fab")
 			(uuid "f1d71758-bda0-4b34-b2ca-fa27eb96cc6c")
@@ -72743,7 +72743,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25077"
+		(property "LCSC" "C25083"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "B.Fab")

@@ -34,7 +34,7 @@ for t in b.GetTracks():
         d['segs'].append(dict(a=key(s.x, s.y, ln(t.GetLayer())), b=key(e.x, e.y, ln(t.GetLayer())),
                               layer=ln(t.GetLayer()), mm=t.GetLength() / 1e6, w=t.GetWidth() / 1e6,
                               pa=(s.x, s.y), pb=(e.x, e.y)))
-SERIES = {'ddr_cke0': ('ddr_cke0_fpga', 'R803', 10.0)}    # net: (FPGA-side net, series part, ohm); see routed_si.py
+SERIES = {'ddr_cke0': ('ddr_cke0_fpga', 'R803', 15.0)}    # net: (FPGA-side net, series part, ohm); see routed_si.py
 for fp in b.GetFootprints():
     if fp.GetReference() not in ('U501', 'U801') + tuple(x[1] for x in SERIES.values()): continue
     for p in fp.Pads():
