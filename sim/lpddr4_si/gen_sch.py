@@ -270,7 +270,7 @@ def fpga_pkg(s, a, tag, ball, pad_ps, kind):
 def build(a):
     rate = a.rate; ui = 1e-6 / rate
     main = json.load(open(os.path.join(HERE, 'results', a.paths)))
-    p4 = json.load(open(os.path.join(HERE, 'results', 'board_paths_p4.json')))
+    p4 = json.load(open(os.path.join(HERE, 'results', a.ca_paths)))
     s = (FastSch if a.fast else Sch)(a.models); meta = {}
     nb_dq, nb_ca = a.bits, a.ca_bits
     c = a.corner.upper()
@@ -349,9 +349,9 @@ def build(a):
         d = s.ibis('drv', EFX, fpin, f'lpddr4_ocd_{st["fdrv"]}p_{st["fdrv"]}n', die, prbs_ca + corner)
         ch = Chain(s, a, tag)
         if 'trunk' in e:
-            ends = tee(tag, net, ch, f'{tag}_fb', NECK_CAP_P4)
+            ends = tee(tag, net, ch, f'{tag}_fb', a.ca_neck_cap)
         else:
-            ch.runs(f'{tag}_fb', e['path'], f'{tag}_ma', cap=NECK_CAP_P4); ends = [(e['u801_pad'], f'{tag}_ma')]
+            ch.runs(f'{tag}_fb', e['path'], f'{tag}_ma', cap=a.ca_neck_cap); ends = [(e['u801_pad'], f'{tag}_ma')]
         rx = [(s.ibis('rx', MEM, pad, model_of(pad), m, corner.strip()), m) for pad, m in ends]
         meta[tag] = dict(kind='ca', net=net, ui=2 * ui, drv=d, rx=rx, **st)
 
@@ -363,7 +363,7 @@ def build(a):
             e = p4[net]
             die, fpin = fpga_pkg(s, a, f'{tag}{leg}', f'{tag}{leg}_fb', e['u501_pad_to_die_ps'], 'D' + leg.upper())
             legs[leg] = s.ibis('drv', EFX, fpin, f'lpddr4_ocd_{st["fdrv"]}p_{st["fdrv"]}n_diff', die, prbs_dq + corner)
-            ends[leg] = tee(f'{tag}{leg}', net, Chain(s, a, f'{tag}{leg}'), f'{tag}{leg}_fb', NECK_CAP_P4, pair=True)
+            ends[leg] = tee(f'{tag}{leg}', net, Chain(s, a, f'{tag}{leg}'), f'{tag}{leg}_fb', a.ca_neck_cap, pair=True)
         om = 'CLK_INPUT' if st['caodt'] == 'off' else f'CLK_ODT_{st["caodt"]}'
         rx = []
         for (pp, mp), (pn, mn) in zip(ends['p'], ends['n']):
@@ -468,6 +468,9 @@ if __name__ == '__main__':
     p.add_argument('--dqs-nets', nargs='*', default=['ddr_dqs0', 'ddr_dqs3'])
     p.add_argument('--ca-nets', nargs='*', default=['ddr_ca1', 'ddr_ca2', 'ddr_ca4', 'ddr_cs2_n', 'ddr_cs0_n', 'ddr_cke0'])
     p.add_argument('--paths', default='board_paths_main.json', help='DQ/DQS paths in results/ (board_paths.py)')
+    p.add_argument('--ca-paths', default='board_paths_p4.json', help='CA/CK/CS/CKE paths in results/ (board_paths.py)')
+    p.add_argument('--ca-neck-cap', type=float, default=NECK_CAP_P4,
+                   help='mm of each CA run modelled as 0.10 mm neck-down (0: every run at --w-in/--w-out)')
     p.add_argument('--no-ck', action='store_true', help='leave CK out (debugging)')
     p.add_argument('--keep', help='regex (full match) on the case tags: only these channels (run_si.py splits a point '
                                   'into several small netlists; one with all 44 channels needs > 9 GB in ngspice)')

@@ -130,6 +130,19 @@ write there). That method is going to `johonkanen/kicad_ibis_simulation` (see "N
   144 mV (dq3, die). DQS read at the ball is negative here as in every earlier run (reads are judged at the die).
 - Not covered: corners, crosstalk, CA/CK/CS/CKE (CA paths still the phase-4 board).
 
+**2026-10-30: CKE0 as routed (`python3 run_si.py --cke -j 2`, 40 s; `results/results_cke.csv`).**
+- Path from the delay-tuned board (`results/board_paths_cke.json`): U501 via-in-pad, In2 30.7 mm at 0.12 mm, via,
+  B.Cu 1.0 mm trunk + 2 × 1.06 mm branches at 0.25 mm, ball vias. Compared with the same route at 0.10 mm inner.
+  `gen_sch.py --ca-paths/--ca-neck-cap 0` (the CA channels used to come from the phase-4 board only).
+- Typ and min corners, 2800/3200: **0.12 mm is better than 0.10 mm everywhere** (lower peaks and undershoot, smaller
+  areas). 3200 typ, die: 1385 / −231 mV at 0.12 (in limits), 1417 / −271 mV at 0.10 (above VDDQ + 0.3 V). Ball
+  peaks 1.23–1.24 V (0.12) vs 1.25–1.27 V (0.10). All over/undershoot areas ≤ 0.048 V·ns (limit 0.1). Eye height
+  ≥ 840 mV, time margin ≥ 209 ps (CKE is SDR, one bit per tCK).
+- **The max corner is not usable:** the Efinix driver at `vcc=MAX` settles at 1.24 V into the unterminated line,
+  70 mV above its own 1.17 V [Voltage Range] max. That is a model/conversion problem, not ringing, and it makes the
+  overshoot areas (0.3–0.5 V·ns) and the die peaks meaningless. The driver validation only covered typ: validate
+  the max-corner drivers before trusting any max-corner result.
+
 ## Next
 
 1. Re-run `prep_models.py` (it has already been re-run with the new pins), then

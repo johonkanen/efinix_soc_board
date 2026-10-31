@@ -652,6 +652,8 @@ def main():
                     'and read and CA1, today vs 0.10 mm, typ, 2800 MT/s (4 small netlists in parallel)')
     ap.add_argument('--routed', action='store_true', help='the hand-routed byte lanes (results/board_paths_routed.json, '
                     'all 0.10 mm, DQS 0.10/0.20): the longest DQ of each byte, DM0, DQS0/2; typ, 2800/3200')
+    ap.add_argument('--cke', action='store_true', help='CKE0 as routed (results/board_paths_cke.json: In2 0.12, B.Cu '
+                    '0.25 mm), and at 0.10 mm inner on the same route; typ/min/max, 2800/3200')
     ap.add_argument('--only', help='regex on the point tag')
     ap.add_argument('--legacy', action='store_true', help='kicad-cli export per netlist (the slow path, for checks)')
     ap.add_argument('-j', type=int, default=2)     # RAM: shared machine, ~1-2 GB per netlist
@@ -671,6 +673,12 @@ def main():
                                     '--paths', 'board_paths_routed.json', '--dq-nets', *dq, '--dqs-nets', *ds],
                 parts, True) for rate in (2800, 3200)]
         out = 'results_routed'
+    elif a.cke:
+        pts = [(f'cke_r{rate}_{corner}_i{wi:.2f}', ['--rate', str(rate), '--corner', corner, '--w-in', f'{wi:.2f}',
+                                                    '--w-out', '0.25', '--ca-paths', 'board_paths_cke.json',
+                                                    '--ca-neck-cap', '0'], {'ke': r'cke0_40'}, corner == 'typ')
+               for rate in (2800, 3200) for corner in ('typ', 'min', 'max') for wi in (0.12, 0.10)]
+        out = 'results_cke'
     elif a.small:
         pts, out = small_points(), 'results_small'
     elif a.xtalk:
@@ -712,6 +720,12 @@ def main():
     with open(os.path.join(RES, out + '.csv'), 'w', newline='') as f:
         wr = csv.DictWriter(f, keys); wr.writeheader(); wr.writerows(rows)
     print(f"{len(rows)} rows -> results/{out}.csv")
+    if a.cke:
+        print('| point | where | Vmax/Vmin mV | limits ok | overshoot / undershoot area V*ns | eye height mV | margin V mV | margin t ps |')
+        for r in sorted(rows, key=lambda r: (r['point'], r['rx'], r['where'])):
+            print(f"| {r['point']} {r['rx']} | {r['where']} | {r['vmax_mV']:.0f}/{r['vmin_mV']:.0f} | {r['limits_ok']} | "
+                  f"{r['os_area_Vns']:.4f} / {r['us_area_Vns']:.4f} | {r['eh_mV']:.0f} | {r['v_margin_mV']:+.0f} | "
+                  f"{r['t_margin_ps']:+.0f} |")
     if a.first or a.routed:
         print('| width in/out | case | where | eye height mV | eye width ps | margin V mV | margin t ps | Vmax/Vmin mV |')
         for r in sorted(rows, key=lambda r: (r['case'], r['where'], -r['w_in'])):
