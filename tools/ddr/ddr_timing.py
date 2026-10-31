@@ -261,8 +261,11 @@ if KICAD_CSV:
     print("Paths in KiCad terms (readout - second branch for shared nets): " +
           ", ".join(f"{n} {get(n):.1f}" for n in ca + ["ddr_ck_P", "ddr_ck_N"]))
     print("\nTUNER TARGETS (pcbnew's tuner delay, pad to pad; DRC adds the second branch of a shared net):")
+    # Bytes whose DQS is raised by hand so their long DQs need no shortening (DQS -> longest DQ - 10, 2026-10-31:
+    # byte 1, dq15 221.8 ps). DQS must stay below CK - 5 ps.
+    DQS_FLOOR = {1: 211.8}
     def dqs_target(k):
-        dqs = max(get(f"ddr_dqs{k}_P"), get(f"ddr_dqs{k}_N"))
+        dqs = max(get(f"ddr_dqs{k}_P"), get(f"ddr_dqs{k}_N"), DQS_FLOOR.get(k, 0.0))
         return dqs                           # a DQ more than DQ_MAX over its DQS is flagged: shorten its meander
     # Efinix: every DQS shorter than CK (write leveling only delays DQS), so the CA/CK group sits CK_OVER_DQS above the
     # latest DQS when that is longer than the group's own longest path.
@@ -273,6 +276,29 @@ if KICAD_CSV:
     T_dqs = max(dqs_target(k) for k in range(4)) + CK_OVER_DQS
     T = max(T_ca, T_dqs)
     print(f" CA/CKE/CS/CK group: every path to {T:.1f} ps (longest path {T_ca:.1f}, latest DQS + {CK_OVER_DQS:.0f} = {T_dqs:.1f})")
+    # On some shared nets the tuner's pad-to-pad path takes in part of the other branch (CA1 +11 ps, CK +3 ps on this
+    # board; it depends on how the T is drawn). Its reading is in each pattern's last_tuning_length (mm, mapped to ps
+    # with the pattern's own target length/delay pairs). min/opt of a shared net's rule are shifted by tuner - path,
+    # so "Update all tuning patterns" puts the real path on the target. The readings are as fresh as the last update:
+    # run this right after "Update all tuning patterns" and save, then update again.
+    tuner = defaultdict(list)
+    for blk in re.findall(r"\n\t\(generated\n.*?\n\t\)", open(BOARD).read(), re.S):
+        f = lambda k: (re.search(rf'\({k} ("[^"]*"|[^)\s]*)\)', blk) or [None, None])[1]
+        if f("type") != "tuning_pattern" or f("tuning_mode") == '"diff_pair_skew"' or not f("last_netname"):
+            continue
+        Lmin, Lmax, Dmin, Dmax, L = (float(f(k)) for k in ("target_length_min", "target_length_max", "target_delay_min",
+                                                           "target_delay_max", "last_tuning_length"))
+        if Lmax <= Lmin:
+            continue
+        net = short(f("last_netname").strip('"'))
+        ps = Dmin + (L - Lmin) * (Dmax - Dmin) / (Lmax - Lmin)
+        legs = [net[:-2] + "_P", net[:-2] + "_N"] if f("tuning_mode") == '"diff_pair"' else [net]
+        for leg in legs:
+            tuner[leg].append(ps - get(leg))
+    tuner_off = {n: sorted(v)[len(v) // 2] for n, v in tuner.items() if n in grp and abs(sorted(v)[len(v) // 2]) > 0.5}
+    if tuner_off:
+        print(" tuner reads (tuner - path, ps; rules shifted by it): " +
+              ", ".join(f"{n} {v:+.1f}" for n, v in tuner_off.items()))
     rules = []
     for n in grp:
         d = T - get(n)
@@ -283,7 +309,8 @@ if KICAD_CSV:
         # shared net is good when its pattern is green after an update AND DRC is green. A pattern override is not
         # honoured when the GUI regenerates patterns (2026-10-31: they were tuned to the rule instead).
         tol = 0.4 if "ck_" in n else 2.5           # CK P/N each +-0.4 -> P/N <= 0.8 ps (Efinix 0.9)
-        rules.append((n[4:], [n], T, (-tol, 0.0, tol + branch.get(n, 0.0))))
+        off = tuner_off.get(n, 0.0)
+        rules.append((n[4:], [n], T, (-tol + off, off, tol + max(branch.get(n, 0.0), off))))
     for k in range(4):
         p_, n_ = f"ddr_dqs{k}_P", f"ddr_dqs{k}_N"
         members = [f"ddr_dq{8 * k + i}" for i in range(8)] + [f"ddr_dm{k}"]
