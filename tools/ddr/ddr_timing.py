@@ -265,10 +265,11 @@ if KICAD_CSV:
     print("\nTUNER TARGETS (pcbnew's tuner delay, pad to pad; DRC adds the second branch of a shared net):")
     def dqs_target(k):
         dqs = max(get(f"ddr_dqs{k}_P"), get(f"ddr_dqs{k}_N"))
-        return dqs                           # a DQ more than 61 ps over its DQS is flagged: remove its meander
+        return dqs                           # a DQ more than DQ_MAX over its DQS is flagged: shorten its meander
     # Efinix: every DQS shorter than CK (write leveling only delays DQS), so the CA/CK group sits CK_OVER_DQS above the
     # latest DQS when that is longer than the group's own longest path.
     CK_OVER_DQS = float(os.environ.get("CK_OVER_DQS", 5.0))
+    DQ_MAX = float(os.environ.get("DQ_MAX", 15.0))      # DQ/DM window DQS + 5 .. DQ_MAX ps, aimed at + 10
     grp = ca + ["ddr_ck_P", "ddr_ck_N"]
     T_ca = max(get(n) for n in grp)
     T_dqs = max(dqs_target(k) for k in range(4)) + CK_OVER_DQS
@@ -290,7 +291,7 @@ if KICAD_CSV:
         p_, n_ = f"ddr_dqs{k}_P", f"ddr_dqs{k}_N"
         members = [f"ddr_dq{8 * k + i}" for i in range(8)] + [f"ddr_dm{k}"]
         dqs = dqs_target(k)
-        print(f" byte {k}: DQS P/N to {dqs:.1f} ps, DQ/DM to >= {dqs + 5:.1f} ps (<= {dqs + 66:.1f})")
+        print(f" byte {k}: DQS P/N to {dqs:.1f} ps, DQ/DM to {dqs + 5:.1f} .. {dqs + DQ_MAX:.1f} ps")
         for n in [p_, n_]:
             d = dqs - get(n)
             print(f"   {n:12} now {kd[n]:6.1f} ps -> {kd[n] + d:6.1f} ps   (+{d:5.1f})" if d > 0.4 else f"   {n:12} {kd[n]:6.1f} ps  (leave)")
@@ -298,14 +299,15 @@ if KICAD_CSV:
             d = dqs + 5 - get(n)
             if d > 0.4:
                 print(f"   {n:12} now {kd[n]:6.1f} ps -> {kd[n] + d:6.1f} ps   (+{d:5.1f})")
-            elif get(n) > dqs + 61:
-                print(f"   {n:12} now {kd[n]:6.1f} ps -> <= {dqs + 61:6.1f} ps   (TOO LONG by {get(n) - dqs - 61:.1f})")
+            elif get(n) > dqs + DQ_MAX:
+                print(f"   {n:12} now {kd[n]:6.1f} ps -> <= {dqs + DQ_MAX:6.1f} ps   (TOO LONG by {get(n) - dqs - DQ_MAX:.1f})")
         rules.append((f"byte{k}_dqs", [p_, n_], dqs, (-0.5, 0.0, 0.5)))
-        rules.append((f"byte{k}_dq", members, dqs, (5.0, 10.0, 61.0)))
+        rules.append((f"byte{k}_dq", members, dqs, (5.0, 10.0, DQ_MAX)))
     if RULES:
         # KiCad's length constraint is per net, in ps with the tuning profiles; its tuner aims at opt. One rule per
         # target: CA/CKE/CS each to the group path (+-2.5 ps: CA - CK <= 5 ps, Efinix 30 mil = 5.3 ps), CK P/N +-0.4 ps,
-        # DQS P/N +-0.5 ps, DQ/DM DQS + 5..61 ps (Efinix 0..66, 5 ps margin). A shared net's rule includes its second
+        # DQS P/N +-0.5 ps, DQ/DM DQS + 5 / 10 / 15 ps (Efinix allows 0..66; the tight max keeps DQ-DQ skew in a byte
+        # <= 10 ps). A shared net's rule includes its second
         # branch (DRC reads the whole net), so a net inside its rule meets the Efinix checks above.
         cond = lambda ns: " || ".join(f"A.NetName == '{full[n]}'" for n in ns)
         with open(RULES, "w") as f:
