@@ -20,7 +20,7 @@ import pcbnew
 PS_PER_MM = {"F.Cu": 6.11, "B.Cu": 6.11, "In2.Cu": 7.01, "In5.Cu": 7.01}
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 args = [a for a in sys.argv[1:]]
-KICAD_CSV = PLAN = RULES = PATTERNS = None
+KICAD_CSV = PLAN = RULES = None
 NETS = "--nets" in args
 if NETS:
     args.remove("--nets")
@@ -28,8 +28,6 @@ if "--plan" in args:
     i = args.index("--plan"); PLAN = args[i + 1]; del args[i:i + 2]
 if "--kicad" in args:
     i = args.index("--kicad"); KICAD_CSV = args[i + 1]; del args[i:i + 2]
-if "--patterns" in args:   # with --kicad: path-terms targets for the tuning patterns of shared CA/CK nets
-    i = args.index("--patterns"); PATTERNS = args[i + 1]; del args[i:i + 2]
 if "--rules" in args:   # with --kicad: write the targets as DRC length rules (tools/ddr/delay_rules.sh)
     i = args.index("--rules"); RULES = args[i + 1]; del args[i:i + 2]
 BOARD = args[0] if args else os.path.join(ROOT, "kicad", "ti135_card.kicad_pcb")
@@ -275,18 +273,17 @@ if KICAD_CSV:
     T_dqs = max(dqs_target(k) for k in range(4)) + CK_OVER_DQS
     T = max(T_ca, T_dqs)
     print(f" CA/CKE/CS/CK group: every path to {T:.1f} ps (longest path {T_ca:.1f}, latest DQS + {CK_OVER_DQS:.0f} = {T_dqs:.1f})")
-    rules, patterns = [], {}
+    rules = []
     for n in grp:
         d = T - get(n)
         print(f"   {n:12} now {get(n):6.1f} ps -> {T:6.1f} ps   (+{d:5.1f})" if d > 0.4 else f"   {n:12} {get(n):6.1f} ps  (longest, leave)")
-        # DRC sums the whole net, pcbnew's tuner reads the pad-to-pad path: the rule is the path target plus this
-        # net's second branch, so DRC is exact on the path; the tuning patterns of shared nets get the path target
-        # itself as their own override (--patterns, tools/ddr/pattern_targets.py).
+        # pcbnew's tuner reads the pad-to-pad path, DRC the whole net (path + the second branch of a shared net).
+        # One rule serves both: min/opt in path terms (the tuner, and "Update all tuning patterns", aim at opt; a path
+        # below min shows in the tuner), max = path + tol + the measured branch (a net too long shows in DRC). So a
+        # shared net is good when its pattern is green after an update AND DRC is green. A pattern override is not
+        # honoured when the GUI regenerates patterns (2026-10-31: they were tuned to the rule instead).
         tol = 0.4 if "ck_" in n else 2.5           # CK P/N each +-0.4 -> P/N <= 0.8 ps (Efinix 0.9)
-        br = branch.get(n, 0.0)
-        rules.append((n[4:], [n], T + br, (-tol, 0.0, tol)))
-        if br:
-            patterns[full[n]] = (round(T - tol, 1), round(T, 1), round(T + tol, 1))
+        rules.append((n[4:], [n], T, (-tol, 0.0, tol + branch.get(n, 0.0))))
     for k in range(4):
         p_, n_ = f"ddr_dqs{k}_P", f"ddr_dqs{k}_N"
         members = [f"ddr_dq{8 * k + i}" for i in range(8)] + [f"ddr_dm{k}"]
@@ -307,15 +304,10 @@ if KICAD_CSV:
         # KiCad's length constraint is per net, in ps with the tuning profiles; its tuner aims at opt. One rule per
         # target: CA/CKE/CS each to the group path (+-2.5 ps: CA - CK <= 5 ps, Efinix 30 mil = 5.3 ps), CK P/N +-0.4 ps,
         # DQS P/N +-0.5 ps, DQ/DM DQS + 5 / 10 / 15 ps (Efinix allows 0..66; the tight max keeps DQ-DQ skew in a byte
-        # <= 10 ps). A shared net's rule includes its second
-        # branch (DRC reads the whole net), so a net inside its rule meets the Efinix checks above.
+        # <= 10 ps). Shared nets: see above (tuner + DRC).
         cond = lambda ns: " || ".join(f"A.NetName == '{full[n]}'" for n in ns)
         with open(RULES, "w") as f:
             for name, ns, t, (lo, opt, hi) in rules:
                 f.write(f'(rule "lpddr_delay_{name}"\n\t(condition "{cond(ns)}")\n'
                         f'\t(constraint length (min {t + lo:.1f}ps) (opt {t + opt:.1f}ps) (max {t + hi:.1f}ps)))\n')
         print(f"\n{len(rules)} length rules -> {RULES}")
-    if PATTERNS:
-        import json as _json
-        _json.dump(patterns, open(PATTERNS, "w"), indent=1)
-        print(f"{len(patterns)} shared-net tuning pattern targets (path terms) -> {PATTERNS}")
