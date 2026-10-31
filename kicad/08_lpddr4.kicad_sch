@@ -4575,7 +4575,7 @@
 					)
 				)
 			)
-			(property "Footprint" "Package_BGA:LFBGA-484_18x18mm_Layout22x22_P0.8mm"
+			(property "Footprint" "ti135_card:LFBGA-484_18x18mm_Layout22x22_P0.8mm"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -19045,7 +19045,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_BGA:LFBGA-484_18x18mm_Layout22x22_P0.8mm"
+		(property "Footprint" "ti135_card:LFBGA-484_18x18mm_Layout22x22_P0.8mm"
 			(at 88.9 139.7 0)
 			(hide yes)
 			(show_name no)

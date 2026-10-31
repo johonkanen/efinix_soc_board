@@ -353,4 +353,15 @@
 		(uuid "55920f6e-f4d0-4462-8488-8df818bcf874")
 	)
 	(embedded_fonts no)
+	(model "${KIPRJMOD}/../lib/3dmodels/MX25U25645G_CSP24_6x8mm_P1.0mm.wrl"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
 )

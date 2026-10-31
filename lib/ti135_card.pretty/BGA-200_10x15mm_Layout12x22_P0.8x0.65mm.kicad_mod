@@ -1352,7 +1352,7 @@
 		(layers "F.Cu" "F.Mask" "F.Paste")
 	)
 	(embedded_fonts no)
-	(model "${KICAD10_3DMODEL_DIR}/Package_BGA.3dshapes/BGA-200_10x14.5mm_Layout12x22_P0.8x0.65mm.step"
+	(model "${KIPRJMOD}/../lib/3dmodels/BGA-200_10x15mm_Layout12x22_P0.8x0.65mm.wrl"
 		(offset
 			(xyz 0 0 0)
 		)

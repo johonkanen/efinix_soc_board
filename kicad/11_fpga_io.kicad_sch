@@ -40,7 +40,7 @@
 					)
 				)
 			)
-			(property "Footprint" "Package_BGA:LFBGA-484_18x18mm_Layout22x22_P0.8mm"
+			(property "Footprint" "ti135_card:LFBGA-484_18x18mm_Layout22x22_P0.8mm"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -11294,7 +11294,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_BGA:LFBGA-484_18x18mm_Layout22x22_P0.8mm"
+		(property "Footprint" "ti135_card:LFBGA-484_18x18mm_Layout22x22_P0.8mm"
 			(at 317.5 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -12819,7 +12819,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_BGA:LFBGA-484_18x18mm_Layout22x22_P0.8mm"
+		(property "Footprint" "ti135_card:LFBGA-484_18x18mm_Layout22x22_P0.8mm"
 			(at 317.5 190.5 0)
 			(hide yes)
 			(show_name no)
@@ -14344,7 +14344,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_BGA:LFBGA-484_18x18mm_Layout22x22_P0.8mm"
+		(property "Footprint" "ti135_card:LFBGA-484_18x18mm_Layout22x22_P0.8mm"
 			(at 101.6 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -15869,7 +15869,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_BGA:LFBGA-484_18x18mm_Layout22x22_P0.8mm"
+		(property "Footprint" "ti135_card:LFBGA-484_18x18mm_Layout22x22_P0.8mm"
 			(at 101.6 190.5 0)
 			(hide yes)
 			(show_name no)

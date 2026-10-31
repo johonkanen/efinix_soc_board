@@ -7430,7 +7430,7 @@
 			(uuid "9a383ba8-fbe7-427b-83b7-c59446b1c2f3")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Package_BGA.3dshapes/BGA-200_10x14.5mm_Layout12x22_P0.8x0.65mm.step"
+		(model "${KIPRJMOD}/../lib/3dmodels/BGA-200_10x15mm_Layout12x22_P0.8x0.65mm.wrl"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -10975,6 +10975,17 @@
 			(uuid "2514cf67-e44d-4792-8fbe-ced0cac866f1")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/../lib/3dmodels/MX25U25645G_CSP24_6x8mm_P1.0mm.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "F.Cu")
@@ -15660,7 +15671,7 @@
 			)
 		)
 	)
-	(footprint "Package_BGA:LFBGA-153_11.5x13mm_Layout14x14_P0.5mm"
+	(footprint "ti135_card:LFBGA-153_11.5x13mm_Layout14x14_P0.5mm"
 		(layer "F.Cu")
 		(uuid "71c335ab-6dc0-4321-84c7-96896455b1d7")
 		(at 185.8074 103.4427 90)
@@ -17032,7 +17043,7 @@
 			(uuid "86c0f1d8-d21e-4366-bbf7-920f2ed9d595")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Package_BGA.3dshapes/LFBGA-153_11.5x13mm_Layout14x14_P0.5mm.step"
+		(model "${KIPRJMOD}/../lib/3dmodels/LFBGA-153_11.5x13mm_Layout14x14_P0.5mm.wrl"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -22749,7 +22760,7 @@
 			)
 		)
 	)
-	(footprint "Package_BGA:LFBGA-484_18x18mm_Layout22x22_P0.8mm"
+	(footprint "ti135_card:LFBGA-484_18x18mm_Layout22x22_P0.8mm"
 		(locked yes)
 		(layer "F.Cu")
 		(uuid "afad2614-e3d0-4e0c-b545-fa36f91d055d")
@@ -28317,7 +28328,7 @@
 			(uuid "086507a4-2a2f-4e3c-8d13-43a4305394e1")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Package_BGA.3dshapes/LFBGA-484_18x18mm_Layout22x22_P0.8mm.step"
+		(model "${KIPRJMOD}/../lib/3dmodels/LFBGA-484_18x18mm_Layout22x22_P0.8mm.wrl"
 			(offset
 				(xyz 0 0 0)
 			)

@@ -178,7 +178,7 @@ def fpga_symbol():
     sym += [
         [Sym("property"), "Reference", "U", [Sym("at"), 0, top_max + 5.08, 0], _font()],
         [Sym("property"), "Value", name, [Sym("at"), 0, top_max + 2.54, 0], _font()],
-        [Sym("property"), "Footprint", "Package_BGA:LFBGA-484_18x18mm_Layout22x22_P0.8mm", [Sym("at"), 0, 0, 0],
+        [Sym("property"), "Footprint", "ti135_card:LFBGA-484_18x18mm_Layout22x22_P0.8mm", [Sym("at"), 0, 0, 0],
          [Sym("hide"), Sym("yes")], _font()],
         [Sym("property"), "Datasheet", "https://www.efinixinc.com/docs-html/dsti135/", [Sym("at"), 0, 0, 0],
          [Sym("hide"), Sym("yes")], _font()],
@@ -357,7 +357,7 @@ FOOTPRINT = {
     "IS25WP128-RHLE": "ti135_card:MX25U25645G_CSP24_6x8mm_P1.0mm",
     "SIT8924BA-73-18N-25.000000": "Oscillator:Oscillator_SMD_SiT_PQFN-4Pin_2.0x1.6mm",
     "SN74AXC8T245": "Package_SO:TSSOP-24_4.4x7.8mm_P0.65mm",
-    "THGAMVG7T13BAIL": "Package_BGA:LFBGA-153_11.5x13mm_Layout14x14_P0.5mm",
+    "THGAMVG7T13BAIL": "ti135_card:LFBGA-153_11.5x13mm_Layout14x14_P0.5mm",
 }
 
 
