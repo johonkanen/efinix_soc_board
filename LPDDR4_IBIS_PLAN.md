@@ -94,9 +94,15 @@ while a sweep runs.
       both rates and all corners: about 26 min at `-j 4`.
 - [x] Decision: **full corners on every net** (13 s per netlist, under the 30 s threshold); no screening needed.
 
-### 4. Typ sweep, all nets, 2800 and 3200 Mbps
-- [ ] Per net: eye height and width at pin and die, mask margins (V and t), Vmax/Vmin, overshoot/undershoot areas.
-- [ ] Results to `sim/lpddr4_si/results/routed_*.csv`, eye PNGs of the worst net of each group.
+### 4. Typ sweep, all nets, 2800 and 3200 Mbps (done 2026-10-31)
+- [x] `routed_si.py --sweep --corners typ -j 4`: 172 netlists, 7.7 min, 0 failed. DQS/CK pairs: each leg its own
+      copper at the pair's odd-mode Z0 (0.10 mm / 0.20 mm gap as routed). Resumable CSV, timeout and memory cap per
+      run, `.dat` deleted after reading.
+- [x] **Every net passes at both rates**, no negative margin at the die or the DRAM ball, no over/undershoot limit
+      or area exceeded. Tightest: DQ read timing 49 ps (3200, dq11), CA voltage margin 137 mV, CKE peak 1344 mV
+      against 1400 mV. Table: `sim/lpddr4_si/results/routed_typ.md`; rows `results/routed.csv`.
+- [x] Eye PNGs of the worst net per kind and rate (`--plot-worst`, `results/eyes/eye_worst_*`, git-ignored): open
+      eyes, masks inside; plots agree with the numbers.
 
 ### 5. Corners
 - [ ] min (and max once step 1 allows it), full or screened.
