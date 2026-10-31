@@ -51,13 +51,24 @@ while a sweep runs.
 
 ## Steps
 
-### 1. Validate the min/max drivers
-- [ ] Each Efinix and DRAM driver used, at min and max, as a RECTDRIVER into 50 ohm with the package zeroed, against
-      the model's V-t tables (`kicad_ibis.ibisfix.waveform`, `t2080`): levels within a few mV, 20-80 % edges within
-      a few ps. Typ is already done (`sim/lpddr4_si/results/validate_drivers.md`).
-- [ ] Known problem: the Efinix driver at `vcc=MAX` settled at 1.24 V into the unterminated CKE line, above its
-      1.17 V `[Voltage Range]` max. Find out whether it is the model, the conversion or the corner keywords. Until
-      solved, the max corner is not used and the report says so.
+### 1. Validate the min/max drivers (done 2026-10-31)
+- [x] Each driver at typ/min/max as a RECTDRIVER into its own V-t fixture (R_fixture read from the model: Efinix
+      40 ohm 20, 48 ohm 24, Winbond 50 ohm), package zeroed, against the model's V-t table of that corner. Then the
+      DC high level into the board's loads (Efinix: 60 ohm DRAM ODT and open; Winbond: 40 ohm FPGA ODT and open)
+      against the model's own V-I tables. `python3 run_si.py --validate typ|min|max [--corner-files]`, results in
+      `sim/lpddr4_si/results/validate_drivers*.md`.
+- [x] Cause of the 1.24 V max-corner CKE level: **KiCad's corner switch** (`vcc=MAX rpin=MAX ...`). It is exact into
+      the V-t fixture only. Into 60 ohm the Efinix driver is -21 mV (min) / +46 mV (max) off, open -72 / +129 mV.
+      The tables themselves give 1.170 V open at max.
+- [x] Workaround: `corner_models.py` writes `models/min/` and `models/max/` (min or max column copied into typ,
+      V_fixture too) and the corner is simulated at typ (`--corner-files`). Efinix 40 and 48 ohm: levels within 3 mV
+      at every load and corner, 20-80 % edges within 1-7 ps. **Use corner files for all min/max runs.**
+- [x] Winbond PD40/PD48 (DRAM read driver, stand-in): into the FPGA ODT (40 ohm) within 4 mV at every corner; open
+      load wrong (typ -162 mV, files at min/max -207 / -98 mV), which does not matter while the FPGA ODT is on for
+      reads. Its edges come out faster than the tables: up to 12 ps at typ and 18 ps at min. Read eyes are then
+      slightly optimistic in edge rate; say so in the report.
+- [x] The earlier "48 ohm driver 47 mV low" (`validate_drivers.md`) was the validation circuit: it used 20 ohm, the
+      model's tables use 24 ohm. Fixed.
 
 ### 2. Extract the routed copper
 - [ ] Copy `extract_routes.py` and `routed_si.py` from `~/dev/agilex3_soc_control_card/sim/lpddr4_si/` (read only:

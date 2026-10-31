@@ -2,7 +2,7 @@
 -> eyes, mask margins, over/undershoot -> results/.
 
   source ../../tools/p2k/bin/kicad_env.sh     # mounts the AppImage, sets KICAD_MOUNT
-  python3 run_si.py --validate                # converted drivers vs the IBIS V-t tables
+  python3 run_si.py --validate [typ|min|max]  # converted drivers vs the IBIS V-t tables of that corner
   python3 run_si.py [--sweep] [-j 12]         # width sweep: results/results.csv
   python3 run_si.py --xtalk                   # three coupled lines: results/results_xtalk.csv
 
@@ -440,8 +440,8 @@ def point_params(args):
                 xt_layer=d.get('--xtalk', ''), xt_w=d.get('--w', ''), xt_gap=d.get('--gap', ''))
 
 
-def ibis_wf(path, model, edge, vfix=0.0):
-    """[Rising|Falling Waveform] typ column of a model, for the table with V_fixture == vfix."""
+def ibis_wf(path, model, edge, vfix=0.0, col=1):
+    """[Rising|Falling Waveform] of a model (col 1 typ, 2 min, 3 max), for the table with V_fixture == vfix."""
     t = open(path).read()
     i = re.search(rf'^\[Model\]\s+{re.escape(model)}\s*$', t, re.M).start()
     j = t.find('[Model]', i + 8); blk = t[i:j if j > 0 else len(t)]
@@ -452,22 +452,53 @@ def ibis_wf(path, model, edge, vfix=0.0):
         vf = re.search(r'^V_fixture\s*=\s*(\S+)', body, re.M)
         if not vf or abs(num(vf.group(1).rstrip('Vv')) - vfix) > 1e-6: continue
         rows = [l.split() for l in body.splitlines() if l.strip() and not l.strip().startswith('|') and '=' not in l]
-        return np.array([num(r[0].rstrip('sS')) for r in rows]), np.array([num(r[1].rstrip('Vv')) for r in rows])
+        rows = [r for r in rows if len(r) > col and r[col].upper() != 'NA']
+        return np.array([num(r[0].rstrip('sS')) for r in rows]), np.array([num(r[col].rstrip('Vv')) for r in rows])
     raise KeyError(f'{model} {edge} V_fixture={vfix}')
 
 
-def validate():
+def vi_high(lib, model, col, r_load):
+    """DC high level of a driver into r_load to GND (inf: open), from its own V-I tables ([Pullup] and clamps, column
+    col): the reference for loads other than the V-t table fixture."""
+    t = open(lib).read()
+    i = re.search(rf'^\[Model\]\s+{re.escape(model)}\s*$', t, re.M).start(); j = t.find('[Model]', i + 8)
+    blk = t[i:j if j > 0 else len(t)]
+    unit = {'p': 1e-12, 'n': 1e-9, 'u': 1e-6, 'm': 1e-3, 'f': 1e-15}
+    num = lambda s: float(re.match(r'[-+.\deE]+', s).group()) * unit.get(re.sub(r'[-+.\deE]+', '', s, count=1)[:1].lower(), 1)
+
+    def tab(name):
+        m = re.search(rf'^\[{name}\](.*?)(?=^\[)', blk, re.S | re.M)
+        if not m: return None
+        rows = [l.split() for l in m.group(1).splitlines() if l.strip() and not l.strip().startswith('|')]
+        a = np.array([[num(x.rstrip('VvAa')) if x.upper() != 'NA' else np.nan for x in r[:4]]
+                      for r in rows if len(r) >= 4 and re.match(r'[-+.\d]', r[0])])
+        for c in (2, 3): a[:, c] = np.where(np.isnan(a[:, c]), a[:, 1], a[:, c])
+        return a
+    vcc = num(re.search(r'^\[Voltage Range\]\s+(.*)$', blk, re.M).group(1).split()[col - 1].rstrip('Vv'))
+    v = np.linspace(0, 1.5, 15001); i_in = np.zeros_like(v)    # current into the pin (IBIS sign)
+    for name, rel in (('Pullup', True), ('POWER Clamp', True), ('GND Clamp', False)):
+        a = tab(name)
+        if a is not None: i_in += np.interp(vcc - v if rel else v, a[:, 0], a[:, col])
+    return v[np.argmin(abs(i_in + v / r_load))]
+
+
+def validate(corner='typ', files=False):
     """Converted driver (package removed, trimmed V-t tables) into its IBIS fixture to GND (Efinix 20 ohm, Winbond
-    50 ohm) vs the untrimmed IBIS V-t table (V_fixture 0): levels and 20-80 % edge times."""
-    msgs, meta = export('validate', ['--validate'])
-    idir = os.path.join(WORK, 'validate_ibis')
+    50 ohm) vs the untrimmed IBIS V-t table (V_fixture 0) of the same corner: levels and 20-80 % edge times. Then the
+    DC high level into the loads of the board (Efinix: 60 ohm DRAM ODT and open; Winbond: 40 ohm FPGA ODT and open)
+    vs the model's V-I tables. files: simulate models/<corner>/ (corner_models.py) at typ instead of vcc=<corner>."""
+    tag = ('validate' if corner == 'typ' else f'validate_{corner}') + ('_files' if files else '')
+    col = {'typ': 1, 'min': 2, 'max': 3}[corner]
+    msgs, meta = export(tag, ['--validate', '--corner', 'typ' if files else corner] +
+                        (['--models', f'../models/{corner}'] if files else []))
+    idir = os.path.join(WORK, tag + '_ibis')
     for f in glob.glob(os.path.join(idir, '*.cache')):     # the V-t tables are at the die, without package
         s = open(f).read()
         s = re.sub(r'^(RPIN \S+ \S+) \S+', r'\1 1e-6', s, flags=re.M)
         s = re.sub(r'^(LPIN \S+ \S+) \S+', r'\1 1e-15', s, flags=re.M)
         s = re.sub(r'^(CPIN \S+ \S+) \S+', r'\1 1e-18', s, flags=re.M)
         open(f, 'w').write(s)
-    t, w = ngspice(os.path.join(WORK, 'validate.cir'), [f'{k}_o' for k in meta], os.path.join(WORK, 'validate.dat'))
+    t, w = ngspice(os.path.join(WORK, tag + '.cir'), [f'{k}_o' for k in meta], os.path.join(WORK, tag + '.dat'))
     import matplotlib; matplotlib.use('Agg'); import matplotlib.pyplot as plt
     fig, axs = plt.subplots(1, len(meta), figsize=(4.2 * len(meta), 3.4), dpi=110)
     lines = ['| driver model | fixture | edge | V start / end, IBIS (mV) | V start / end, KiCad (mV) | t20-80, IBIS (ps) '
@@ -481,7 +512,7 @@ def validate():
     for ax, (k, m) in zip(axs, meta.items()):
         v = w[f'{k}_o']; lib = os.path.join(HERE, 'models', m['lib'].replace('.ibs', '_full.ibs'))
         for edge, sel in (('Rising', t < 4.0e-9), ('Falling', t >= 4.0e-9)):
-            ti, vi = ibis_wf(lib, m['model'], edge)
+            ti, vi = ibis_wf(lib, m['model'], edge, col=col)
             tk, vk = t[sel], v[sel]
             mid = (vi[0] + vi[-1]) / 2
             ic = np.argmax(vk > mid) if edge == 'Rising' else np.argmax(vk < mid)
@@ -493,10 +524,25 @@ def validate():
                          f"{vs[0]*1e3:.0f} / {vk[-1]*1e3:.0f} | {d_ic*1e12:.1f} | {d_k*1e12:.1f} |")
             ax.plot(ti * 1e12, vi * 1e3, 'k', lw=1.2, label=f'IBIS {edge.lower()}')
             ax.plot(ti * 1e12, vs * 1e3, '--', lw=1.2, label=f'KiCad {edge.lower()}')
-        ax.set_title(f"{m['model']} into {m['rf']} ohm to GND", fontsize=8); ax.set_xlabel('ps'); ax.set_ylabel('mV')
+        ax.set_title(f"{m['model']} into {m['rf']} ohm to GND, {corner}", fontsize=8); ax.set_xlabel('ps'); ax.set_ylabel('mV')
         ax.grid(alpha=.3); ax.legend(fontsize=7); ax.set_xlim(0, 800)
-    fig.tight_layout(); fig.savefig(os.path.join(RES, 'validate_drivers.png')); plt.close(fig)
-    open(os.path.join(RES, 'validate_drivers.md'), 'w').write('\n'.join(lines) + '\n')
+    out = 'validate_drivers' + ('' if corner == 'typ' else f'_{corner}') + ('_files' if files else '')
+    fig.tight_layout(); fig.savefig(os.path.join(RES, out + '.png')); plt.close(fig)
+    lines += ['', '| driver model | load | DC high, V-I tables (mV) | DC high, KiCad (mV) | diff (mV) |', '|---|---|---|---|---|']
+    cir = open(os.path.join(WORK, tag + '.cir')).read()
+    for r_load in (40, 60, 1e6):
+        c = re.sub(r'^(R\d+ \S+ GND) \S+$', rf'\g<1> {r_load:g}', cir, flags=re.M)
+        lt = f'{tag}_r{r_load:g}'; open(os.path.join(WORK, lt + '.cir'), 'w').write(c)
+        t2, w2 = ngspice(os.path.join(WORK, lt + '.cir'), [f'{k}_o' for k in meta], os.path.join(WORK, lt + '.dat'))
+        for k, m in meta.items():
+            if (r_load == 40) == m['model'].startswith('lpddr4_') and r_load != 1e6:
+                continue                                      # Efinix: 60 ohm and open; Winbond: 40 ohm and open
+            lib = os.path.join(HERE, 'models', m['lib'].replace('.ibs', '_full.ibs'))
+            vk = float(np.mean(w2[f'{k}_o'][(t2 > 3.0e-9) & (t2 < 3.9e-9)])); vt = vi_high(lib, m['model'], col, r_load)
+            lines.append(f"| {m['model']} | {'open' if r_load == 1e6 else f'{r_load:g} ohm to GND'} | {vt * 1e3:.0f} | "
+                         f"{vk * 1e3:.0f} | {(vk - vt) * 1e3:+.0f} |")
+        os.remove(os.path.join(WORK, lt + '.dat'))
+    open(os.path.join(RES, out + '.md'), 'w').write('\n'.join(lines) + '\n')
     print('\n'.join(lines))
 
 
@@ -644,7 +690,10 @@ def full_point(job):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--validate', action='store_true', help='only check the converted drivers against IBIS V-t tables')
+    ap.add_argument('--validate', nargs='?', const='typ', choices=['typ', 'min', 'max'],
+                    help='only check the converted drivers against the IBIS V-t tables of that corner (default typ)')
+    ap.add_argument('--corner-files', action='store_true', help='min/max from models/<corner>/ (corner_models.py) '
+                    'simulated at typ, instead of KiCad\'s vcc=MIN/MAX (wrong away from the V-t fixture)')
     ap.add_argument('--quick', action='store_true', help='typ corner, today / 0.10 / 0.09 mm only')
     ap.add_argument('--xtalk', action='store_true', help='three coupled lines (CPL)')
     ap.add_argument('--small', action='store_true', help='typ, 2800/3200, 8 width points, pair geometries (minutes)')
@@ -660,7 +709,7 @@ def main():
     a = ap.parse_args()
     if not os.path.exists(LIBNG): sys.exit('source tools/p2k/bin/kicad_env.sh first (KICAD_MOUNT)')
     os.makedirs(WORK, exist_ok=True); os.makedirs(os.path.join(RES, 'eyes'), exist_ok=True)
-    if a.validate: return validate()
+    if a.validate: return validate(a.validate, a.corner_files)
     if a.first:
         pts = [(f'first_i{wi:.2f}_o{wo:.2f}', ['--rate', '2800', '--w-in', str(wi), '--w-out', str(wo)],
                 {'dq': r'(w|r)_dq4', 'ca': r'ca1_40'}, True) for wi, wo in ((0.18, 0.25), (0.10, 0.10))]

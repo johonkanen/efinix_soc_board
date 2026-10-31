@@ -405,18 +405,27 @@ def build(a):
     return finish(s, meta)
 
 
+def r_fixture(path, model):
+    """R_fixture of a model's [Rising Waveform] tables (ohm): the load its V-t tables were made with."""
+    t = open(path).read()
+    i = re.search(rf'^\[Model\]\s+{re.escape(model)}\s*$', t, re.M).start(); j = t.find('[Model]', i + 8)
+    m = re.search(r'^R_fixture\s*=\s*([\d.]+)', t[i:j if j > 0 else len(t)], re.M)
+    return round(float(m.group(1)), 3)
+
+
 def build_validate(a):
     """Each driver model as a RECTDRIVER into its IBIS waveform fixture to GND (Efinix 20 ohm? see run_si), to compare
     the converted model with the [Rising/Falling Waveform] tables (run_si.py --validate strips the package)."""
     s = (FastSch if a.fast else Sch)(a.models); meta = {}
+    c = a.corner.upper()
+    corner = '' if a.corner == 'typ' else f' vcc={c} rpin={c} lpin={c} cpin={c}'
     s.text('.tran 1p 8n', 25.4, 15.24)
-    for tag, lib, pin, model, rf in (('efx40', EFX, 'SE0', 'lpddr4_ocd_40p_40n', 20),
-                                     ('efx48', EFX, 'SE0', 'lpddr4_ocd_48p_48n', 20),
-                                     ('mem_pd40', MEM, 'C11', 'PD40_ODT40_VOH30', 50),
-                                     ('mem_pd48', MEM, 'C11', 'PD48_ODT40_VOH30', 50)):
+    for tag, lib, pin, model in (('efx40', EFX, 'SE0', 'lpddr4_ocd_40p_40n'), ('efx48', EFX, 'SE0', 'lpddr4_ocd_48p_48n'),
+                                 ('mem_pd40', MEM, 'C11', 'PD40_ODT40_VOH30'), ('mem_pd48', MEM, 'C11', 'PD48_ODT40_VOH30')):
+        rf = r_fixture(os.path.join(os.path.dirname(os.path.abspath(a.out)), a.models, lib[0]), model)
         s.row(f'{tag}: {model} into {rf} ohm to GND')
         meta[tag] = dict(kind='validate', model=model, lib=lib[0], rf=rf,
-                         drv=s.ibis('drv', lib, pin, model, f'{tag}_o', 'ton=3n toff=3n td=1n n=1', 'RECTDRIVER'))
+                         drv=s.ibis('drv', lib, pin, model, f'{tag}_o', 'ton=3n toff=3n td=1n n=1' + corner, 'RECTDRIVER'))
         s.sym('Device', 'R', 'R', {'1': f'{tag}_o', '2': 'GND'}, str(rf))
     return finish(s, meta)
 

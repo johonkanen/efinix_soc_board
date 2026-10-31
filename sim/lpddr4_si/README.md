@@ -143,6 +143,13 @@ write there). That method is going to `johonkanen/kicad_ibis_simulation` (see "N
   overshoot areas (0.3–0.5 V·ns) and the die peaks meaningless. The driver validation only covered typ: validate
   the max-corner drivers before trusting any max-corner result.
 
+**2026-10-31: driver validation at all corners (LPDDR4_IBIS_PLAN.md step 1).** KiCad's corner keywords
+(`vcc=MIN/MAX ...`) are right only into the V-t fixture: the Efinix driver is up to +129 mV off into an open line
+(the max-corner CKE result above) and +46 mV into 60 ohm. `corner_models.py` writes `models/min|max/` with that
+column as typ; simulated at typ (`run_si.py --validate min|max --corner-files`) every Efinix level is within 3 mV at
+every load and the edges within 1-7 ps. The Winbond stand-in is within 4 mV into the FPGA ODT; its edges are up to
+18 ps faster than its tables. Details and tables: `results/validate_drivers*.md`, LPDDR4_IBIS_PLAN.md step 1.
+
 ## Next
 
 1. Re-run `prep_models.py` (it has already been re-run with the new pins), then
