@@ -30,6 +30,7 @@ LCSC = {
     ("22p", "C_0402_1005Metric"): "C1555",        # basic, C0G
     ("27p", "C_0402_1005Metric"): "C1557",        # C0G (PHY crystal)
     ("680p C0G", "C_0402_1005Metric"): "C126514",  # GCM1555C1H681JA16D C0G
+    ("1n C0G", "C_0402_1005Metric"): "C76947",     # GRM1555C1H102JA01D C0G (isoada buffer inputs)
     ("4u7", "C_0603_1608Metric"): "C19666",       # basic, 16 V X5R
     # bulk
     ("10u", "C_0805_2012Metric"): "C15850",       # basic, 25 V X5R (also on 5V0)
