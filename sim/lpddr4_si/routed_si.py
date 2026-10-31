@@ -76,15 +76,17 @@ def channel(s, R, net, tag, pair=False):
         else:
             z, ps = G.zline(seg['layer'], seg['w'])
         s.tl(node(seg['a']), node(seg['b']), round(z, 2), max(seg['mm'], 1e-4) * ps * 1e-12)
-    u501 = [p for p in r['pads'] if p['ref'] == 'U501'][0]
+    u501 = ([p for p in r['pads'] if p['ref'] == 'U501'] or [dict(vias=[], ball=None, die_ps=0.0)])[0]
     u801 = [p for p in r['pads'] if p['ref'] == 'U801']
     ball = {(p['ref'], p['ball']): f'{tag}_{p["ref"].lower()}_{p["ball"].lower()}' for p in r['pads']}
-    pad_of_via = {v: p for p in r['pads'] for v in p['vias']}
+    pads_of_via = {}                    # a via can sit under two pads (U501 ball and R803 on the CKE via)
+    for p in r['pads']:
+        for v in p['vias']: pads_of_via.setdefault(v, []).append(p)
     depth = R['_board']['depth_mm']
     for v in r['vias']:
         att = [(lay, node(k)) for lay, k in v['att']]
-        if v['id'] in pad_of_via:
-            p = pad_of_via[v['id']]; att.append(('F.Cu', ball[(p['ref'], p['ball'])]))
+        for p in pads_of_via.get(v['id'], []):
+            att.append((p.get('layer', 'F.Cu'), ball[(p['ref'], p['ball'])]))
         C = G.VIA_C_U501 if v['id'] in u501['vias'] else G.VIA_C_U801 if any(v['id'] in p['vias'] for p in u801) \
             else G.VIA_C_MID
         cnt = {}
@@ -115,6 +117,13 @@ def build(R, net, kind, corner, rate, st=None):
     t_end = NBITS * ui
     if kind in ('dq_write', 'dq_read', 'ca'):
         ball, u501, u801 = channel(s, R, net, 'c')
+        series = R['_board'].get('series', {}).get(net)
+        if series:                      # FPGA side (U501 -> via -> part pad 1), the part, then the net from pad 2
+            pre_net, part, ohm = series
+            pb, u501, _ = channel(s, R, pre_net, 'cf')
+            p1 = next(k for k in pb if k[0] == part); p2 = next(k for k in ball if k[0] == part and k[1] != p1[1])
+            s.net.r(pb[p1], ball[p2], ohm)
+            ball = {**ball, **pb}
         fb = ball[('U501', u501['ball'])]
         if kind == 'dq_write':
             die, fpin = G.fpga_pkg(s, a, 'c', fb, u501['die_ps'], 'SE')

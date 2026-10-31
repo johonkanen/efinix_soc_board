@@ -34,12 +34,14 @@ for t in b.GetTracks():
         d['segs'].append(dict(a=key(s.x, s.y, ln(t.GetLayer())), b=key(e.x, e.y, ln(t.GetLayer())),
                               layer=ln(t.GetLayer()), mm=t.GetLength() / 1e6, w=t.GetWidth() / 1e6,
                               pa=(s.x, s.y), pb=(e.x, e.y)))
+SERIES = {'ddr_cke0': ('ddr_cke0_fpga', 'R803', 10.0)}    # net: (FPGA-side net, series part, ohm); see routed_si.py
 for fp in b.GetFootprints():
-    if fp.GetReference() not in ('U501', 'U801'): continue
+    if fp.GetReference() not in ('U501', 'U801') + tuple(x[1] for x in SERIES.values()): continue
     for p in fp.Pads():
         n = p.GetNetname()
         if n.startswith(PFX) and n[len(PFX):] in nets:
             nets[n[len(PFX):]]['pads'].append(dict(ref=fp.GetReference(), ball=p.GetNumber(), pad=p,
+                                                   layer='B.Cu' if fp.IsFlipped() else 'F.Cu',
                                                    die_ps=p.GetPadToDieDelay() / pcbnew.pcbIUScale.IU_PER_PS))
 
 for name, d in nets.items():
@@ -54,9 +56,9 @@ for name, d in nets.items():
     for p in d['pads']:
         pad = p.pop('pad'); att = []
         for k, ((x, y), lay) in ends.items():
-            if lay == 'F.Cu' and pad.HitTest(pcbnew.VECTOR2I(int(x), int(y))): att.append(k)
+            if lay == p['layer'] and pad.HitTest(pcbnew.VECTOR2I(int(x), int(y))): att.append(k)
         vias = [v['id'] for v in d['vias'] if pad.HitTest(pcbnew.VECTOR2I(int(v['x']), int(v['y'])))]
-        pads.append(dict(ref=p['ref'], ball=p['ball'], die_ps=p['die_ps'], att=att, vias=vias))
+        pads.append(dict(ref=p['ref'], ball=p['ball'], layer=p['layer'], die_ps=p['die_ps'], att=att, vias=vias))
     d['pads'] = pads
     for s in d['segs']: s.pop('pa'); s.pop('pb')
     for v in d['vias']: v['att'] = [list(a) for a in v['att']]
@@ -75,7 +77,8 @@ profiles = {p['profile_name']: dict(via_ps_mm=p['via_prop_delay'] / 1e6,
                                     ps_mm={e['signal_layer']: e['delay'] / 1e6 for e in p['layer_entries']})
             for p in pro['tuning_profiles']['tuning_profiles_impedance_geometric']}
 classes = {c['name']: c.get('tuning_profile', '') for c in pro['net_settings']['classes']}
-nets['_board'] = dict(board=os.path.relpath(board, HERE), depth_mm=depth, profiles=profiles, netclass_profile=classes)
+nets['_board'] = dict(board=os.path.relpath(board, HERE), depth_mm=depth, profiles=profiles, netclass_profile=classes,
+                      series=SERIES)
 
 os.makedirs(os.path.dirname(out), exist_ok=True)
 json.dump(nets, open(out, 'w'), indent=0)

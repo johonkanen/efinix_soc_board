@@ -21,7 +21,7 @@ depth = B['depth_mm']
 
 def via_layers(net, v):
     lays = {lay for lay, _ in v['att']}
-    if any(v['id'] in p['vias'] for p in net['pads']): lays.add('F.Cu')
+    lays |= {p.get('layer', 'F.Cu') for p in net['pads'] if v['id'] in p['vias']}
     return lays
 
 
@@ -43,9 +43,9 @@ def paths(net, prof):
     for p in net['pads']:
         pn = f'pad:{p["ref"]}:{p["ball"]}'
         for k in p['att']: link(pn, k, 0.0)
-        for vid in p['vias']: link(pn, f'{vid}:F.Cu', 0.0)
-    src = [p for p in net['pads'] if p['ref'] == 'U501'][0]
-    start = f'pad:U501:{src["ball"]}'
+        for vid in p['vias']: link(pn, f'{vid}:{p.get("layer", "F.Cu")}', 0.0)
+    src = ([p for p in net['pads'] if p['ref'] == 'U501'] or [p for p in net['pads'] if p['ref'] != 'U801'])[0]
+    start = f'pad:{src["ref"]}:{src["ball"]}'   # a series net (CKE after R803) starts at the part
     dist = {start: src['die_ps']}; pq = [(src['die_ps'], start)]
     while pq:
         d, u = heapq.heappop(pq)
@@ -62,7 +62,7 @@ for name in sorted(R, key=lambda n: (n.rstrip('_PN0123456789'), len(n), n)):
     net = R[name]; prof = B['profiles'][B['netclass_profile'][net['netclass']]]
     whole = (sum(s['mm'] * prof['ps_mm'][s['layer']] for s in net['segs']) +
              sum(via_ps(prof, via_layers(net, v)) for v in net['vias']) +
-             max(p['die_ps'] for p in net['pads'] if p['ref'] == 'U501'))
+             max([p['die_ps'] for p in net['pads'] if p['ref'] == 'U501'] or [0.0]))
     k = kd.get(name)
     diff = whole - k if k is not None else float('nan')
     if k is not None: worst = max(worst, abs(diff))

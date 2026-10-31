@@ -63,7 +63,8 @@ def via_ps(layers):
 import heapq
 from collections import defaultdict
 # copper graph per net: nodes = rounded points on a layer; a via (and a THT/via-in-pad position) joins its layers.
-R = lambda v: round(pcbnew.ToMM(v) * 50) / 50   # 0.02 mm snap: routed endpoints differ by a few um
+R = lambda v: round(pcbnew.ToMM(v) * 200) / 200   # 5 um snap (0.02 mm merged the 0.018 mm-apart ends of a tight
+                                                  # meander into a shortcut: dqs1_N read 5 ps short, 2026-10-31)
 items = defaultdict(lambda: {"seg": [], "via": [], "pads": []})
 for t in b.GetTracks():
     n = t.GetNetname()
@@ -75,18 +76,26 @@ for t in b.GetTracks():
         L = b.GetLayerName(t.GetLayer())
         items[n]["seg"].append(((R(t.GetStart().x), R(t.GetStart().y)), (R(t.GetEnd().x), R(t.GetEnd().y)), L,
                                 pcbnew.ToMM(t.GetLength()) * PS_PER_MM.get(L, 7.01)))
-for ref in ("U501", "U801"):
-    for p in b.FindFootprintByReference(ref).Pads():
+# Series parts on a net: {net: (FPGA-side net, part)}. The net KiCad tunes starts at the part; the part's FPGA side
+# (U501 pad-to-die, the via) is added to the path, so the target stays die to die; the rule is written without it.
+SERIES = {"ddr_cke0": ("ddr_cke0_fpga", "R803")}
+pad_layer = {}
+for ref in ("U501", "U801") + tuple(r for _, r in SERIES.values()):
+    fp = b.FindFootprintByReference(ref)
+    if fp is None:
+        continue
+    for p in fp.Pads():
         n = p.GetNetname()
         if n in items:
+            pad_layer[(n, ref, (R(p.GetPosition().x), R(p.GetPosition().y)))] = "B.Cu" if fp.IsFlipped() else "F.Cu"
             bb = p.GetBoundingBox()
             items[n]["pads"].append((ref, (R(p.GetPosition().x), R(p.GetPosition().y)),
                                      (pcbnew.ToMM(bb.GetLeft()), pcbnew.ToMM(bb.GetTop()), pcbnew.ToMM(bb.GetRight()), pcbnew.ToMM(bb.GetBottom())),
                                      p.GetPadToDieDelay() / pcbnew.pcbIUScale.IU_PER_PS if ref == "U501" else 0.0))
 
 
-def path_delays(n):
-    """{U801 pad position: die-to-die delay from the U501 pad} along the copper."""
+def path_delays(n, start="U501", end="U801"):
+    """{end pad position: delay from the start pad (U501: incl. its pad-to-die)} along the copper."""
     it = items[n]; adj = defaultdict(list)
     def link(a, c, w):
         adj[a].append((c, w)); adj[c].append((a, w))
@@ -100,7 +109,7 @@ def path_delays(n):
     for L, qs in ends_by_layer.items():
         for i, q in enumerate(qs):
             for r in qs[i + 1:]:
-                if abs(q[0] - r[0]) < 0.06 and abs(q[1] - r[1]) < 0.06:
+                if abs(q[0] - r[0]) < 0.006 and abs(q[1] - r[1]) < 0.006:
                     link((q, L), (r, L), 0.0)
         for a, c, L2, w in it["seg"]:
             if L2 != L:
@@ -110,7 +119,7 @@ def path_delays(n):
                 continue
             for q in qs:
                 t = ((q[0] - a[0]) * dx + (q[1] - a[1]) * dy) / l2
-                if 0.02 < t < 0.98 and abs((q[0] - a[0]) * dy - (q[1] - a[1]) * dx) / l2 ** 0.5 < 0.03:
+                if 0.02 < t < 0.98 and abs((q[0] - a[0]) * dy - (q[1] - a[1]) * dx) / l2 ** 0.5 < 0.006:
                     link((q, L), (a, L), w * t); link((q, L), (c, L), w * (1 - t))
     for v in it["via"]:   # every track end within the via's copper (r <= 0.2 mm) joins it, on any layer
         near = [(q, L) for q in pts for L in pts[q] if abs(q[0] - v[0]) <= 0.2 and abs(q[1] - v[1]) <= 0.2]
@@ -120,20 +129,23 @@ def path_delays(n):
         for node in near:
             link(("V", v, node[1]), node, 0.0)
         link(("V", v, "F.Cu"), (v, "F.Cu"), 0.0)
-    # pads: join every node inside the pad box on F.Cu (and a via in the pad, through its F.Cu node)
+    # pads: join every node inside the pad box on the pad's layer (and a via in the pad, through that layer's node)
     pad_nodes = []
     for ref, pos, (x0, y0, x1, y1), dd in it["pads"]:
-        pn = ("P", ref, pos); pad_nodes.append((ref, pn, dd))
+        pn = ("P", ref, pos); pad_nodes.append((ref, pn, dd)); pl = pad_layer.get((n, ref, pos), "F.Cu")
         for v in it["via"]:   # a via overlapping the pad (in it, or offset) connects by copper overlap
             if x0 - 0.15 <= v[0] <= x1 + 0.15 and y0 - 0.15 <= v[1] <= y1 + 0.15:
-                link(pn, ("V", v, "F.Cu"), 0.0)
+                if ("V", v, pl) not in adj:     # the barrel down to a B.Cu pad
+                    lays = sorted({k[2] for k in adj if k[0] == "V" and k[1] == v} | {pl}, key=lambda L: DEPTH.get(L, 0.0))
+                    for L1, L2 in zip(lays, lays[1:]): link(("V", v, L1), ("V", v, L2), via_ps([L1, L2]))
+                link(pn, ("V", v, pl), 0.0)
         for node in list(adj):
             if node[0] in ("V", "P"):
                 continue
             q, L = node
-            if L == "F.Cu" and x0 - 0.01 <= q[0] <= x1 + 0.01 and y0 - 0.01 <= q[1] <= y1 + 0.01:
+            if L == pl and x0 - 0.01 <= q[0] <= x1 + 0.01 and y0 - 0.01 <= q[1] <= y1 + 0.01:
                 link(pn, (q, L), 0.0)
-    src = [(pn, dd) for ref, pn, dd in pad_nodes if ref == "U501"]
+    src = [(pn, dd) for ref, pn, dd in pad_nodes if ref == start]
     if not src:
         return {}
     start, dd0 = src[0]
@@ -147,12 +159,21 @@ def path_delays(n):
         for v, w in adj[u]:
             if dv + w < dist.get(v, 1e18):
                 dist[v] = dv + w; heapq.heappush(pq, (dv + w, next(cnt), v))
-    return {pn[2]: dist.get(pn) for ref, pn, dd in pad_nodes if ref == "U801"}
+    return {pn[2]: dist.get(pn) for ref, pn, dd in pad_nodes if ref == end}
 
 
 short = lambda n: n.split("/")[-1]
 full = {short(n): n for n in items}
 ends = {s: path_delays(full[s]) for s in full}
+PRE = {}                   # delay of a series net's FPGA side, U501 die -> the part (in every path of that net)
+for net, (pre_net, part) in SERIES.items():
+    if net in full and pre_net in full:
+        d = [v for v in path_delays(full[pre_net], "U501", part).values() if v is not None]
+        if d:
+            PRE[net] = max(d)
+            ends[net] = {k: (v + PRE[net] if v is not None else None)
+                         for k, v in path_delays(full[net], part, "U801").items()}
+            print(f"{net}: through {part}; FPGA side ({pre_net}, U501 die -> {part}) {PRE[net]:.1f} ps")
 
 
 def get(name, which=None):
@@ -247,16 +268,18 @@ if KICAD_CSV:
         it = items[full[s]]
         def layers(v):   # the layers a via joins: track ends on it, and F.Cu when it sits in a pad
             ls = {L for a, c, L, _ in it["seg"] for q in (a, c) if abs(q[0] - v[0]) <= 0.2 and abs(q[1] - v[1]) <= 0.2}
-            if any(x0 - 0.15 <= v[0] <= x1 + 0.15 and y0 - 0.15 <= v[1] <= y1 + 0.15 for *_, (x0, y0, x1, y1), _ in it["pads"]):
-                ls.add("F.Cu")
+            for ref, pos, (x0, y0, x1, y1), _ in it["pads"]:
+                if x0 - 0.15 <= v[0] <= x1 + 0.15 and y0 - 0.15 <= v[1] <= y1 + 0.15:
+                    ls.add(pad_layer.get((full[s], ref, pos), "F.Cu"))
             return ls
         return (sum(w for *_, w in it["seg"]) + sum(via_ps(layers(v)) for v in it["via"]) +
                 max([dd for ref, *_, dd in it["pads"] if ref == "U501"] or [0.0]))
-    branch = {n: total_model(n) - get(n) for n in ca + ["ddr_ck_P", "ddr_ck_N"]
+    # (a series net's KiCad readout starts at its part: its path here, minus PRE, is what KiCad sees)
+    branch = {n: total_model(n) - (get(n) - PRE.get(n, 0.0)) for n in ca + ["ddr_ck_P", "ddr_ck_N"]
               if get(n) is not None and len(ends.get(n) or {}) > 1}
     get_model = get
     def get(n):
-        return kd[n] - branch.get(n, 0.0) if n in kd else get_model(n)
+        return kd[n] - branch.get(n, 0.0) + PRE.get(n, 0.0) if n in kd else get_model(n)
     print("\nSecond branch (shared nets, model): " + ", ".join(f"{n} {v:.1f}" for n, v in branch.items()))
     print("Paths in KiCad terms (readout - second branch for shared nets): " +
           ", ".join(f"{n} {get(n):.1f}" for n in ca + ["ddr_ck_P", "ddr_ck_N"]))
@@ -272,7 +295,10 @@ if KICAD_CSV:
     CK_OVER_DQS = float(os.environ.get("CK_OVER_DQS", 5.0))
     DQ_MAX = float(os.environ.get("DQ_MAX", 15.0))      # DQ/DM window DQS + 5 .. DQ_MAX ps, aimed at + 10
     grp = ca + ["ddr_ck_P", "ddr_ck_N"]
-    T_ca = max(get(n) for n in grp)
+    # GROUP_SKIP (comma list): nets left out of the group target, e.g. one that is too long only because its tuning
+    # pattern was sized for an older rule (2026-10-31: CKE after R803) - it is then shortened to the others.
+    skip = {x for x in os.environ.get("GROUP_SKIP", "").split(",") if x}
+    T_ca = max(get(n) for n in grp if n not in skip)
     T_dqs = max(dqs_target(k) for k in range(4)) + CK_OVER_DQS
     T = max(T_ca, T_dqs)
     print(f" CA/CKE/CS/CK group: every path to {T:.1f} ps (longest path {T_ca:.1f}, latest DQS + {CK_OVER_DQS:.0f} = {T_dqs:.1f})")
@@ -294,7 +320,7 @@ if KICAD_CSV:
         ps = Dmin + (L - Lmin) * (Dmax - Dmin) / (Lmax - Lmin)
         legs = [net[:-2] + "_P", net[:-2] + "_N"] if f("tuning_mode") == '"diff_pair"' else [net]
         for leg in legs:
-            tuner[leg].append(ps - get(leg))
+            tuner[leg].append(ps - (get(leg) - PRE.get(leg, 0.0)))
     tuner_off = {n: sorted(v)[len(v) // 2] for n, v in tuner.items() if n in grp and abs(sorted(v)[len(v) // 2]) > 0.5}
     if tuner_off:
         print(" tuner reads (tuner - path, ps; rules shifted by it): " +
@@ -310,7 +336,7 @@ if KICAD_CSV:
         # honoured when the GUI regenerates patterns (2026-10-31: they were tuned to the rule instead).
         tol = 0.4 if "ck_" in n else 2.5           # CK P/N each +-0.4 -> P/N <= 0.8 ps (Efinix 0.9)
         off = tuner_off.get(n, 0.0)
-        rules.append((n[4:], [n], T, (-tol + off, off, tol + max(branch.get(n, 0.0), off))))
+        rules.append((n[4:], [n], T - PRE.get(n, 0.0), (-tol + off, off, tol + max(branch.get(n, 0.0), off))))
     for k in range(4):
         p_, n_ = f"ddr_dqs{k}_P", f"ddr_dqs{k}_N"
         members = [f"ddr_dq{8 * k + i}" for i in range(8)] + [f"ddr_dm{k}"]
