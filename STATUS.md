@@ -43,7 +43,11 @@ card, and plugs into the same baseboard.
   - **J3 pull-down arrays (RN1401–RN1408) on B.Cu** in a column beside J3, each level with its pins, as on the
     Agilex card;
   - **level shifters (U1201–U1204) by hand (2026-10-27)** in a column beside J3, with their decaps partly on B.Cu;
-    the analog block moved down ~5.6 mm to make room.
+    the analog block moved down ~5.6 mm to make room;
+  - **isoada buffers (U1304–U1306, 2026-10-31)** on B.Cu between J3 and the mux, routed: J3 pins 1/3/4 leave
+    south (away from MDATA/ADCLK on 6/7), 1k + 1n C0G to GND, OPA365 follower, vias under U1301's body to X4/X6/X7.
+    J3's order (iso1, iso3, iso2 west to east) is the mux's reversed, so isoada2_buf and isoada3_buf cross on In5.
+    3V3_analog joins the three decaps on In2; its feed from the LDO is still open.
 - **LPDDR4**: DQ swizzle within each byte (LPDDR4_SWIZZLE.md: crossings 125 → 45), configured in Efinity
   (`efinity/pinplan/lpddr4_swizzle.json`). 40 Ω / 80 Ω rules (Efinix guide). The Ti135N484**I3** tops out at 2.8 Gbps.
 - **Layers** (TI135_PCB_NOTES.md §6.5–6.6): signals on F/In2/In5/B. In1 and In6 GND; In3 VCORE/1V1/3V3; In4 1V8/0V85/5V0.
@@ -114,7 +118,7 @@ minimum. Rest of the board unchanged (C528 moved 0.3 mm off a dq2 via). Details:
 | 10 emmc | done: THGAMVG7T13BAIL, CMD/DAT0-7/RST_n 47 k pull-ups to 1V8, DS 47 k pull-down, CLK 10 R, VCC 3V3, VCCQ 1V8, VDDi 2u2 |
 | 11 fpga_io | done: U501 bank units with labels from the pin plan |
 | 12 level_shift | done: 4 × SN74AXC8T245, OE pulled up (outputs disabled until the FPGA enables them) |
-| 13 adc | done. Front end from the **Agilex 3 card** (`~/dev/ti60f225_control_card`, design-notes "ADC front end for 2.5 MSPS"): SN74LV4051A (INH to GND, X0 = GND reference, rail monitors, isoada1..3 from J3), then an OPA365 buffer, a 33 R + 680 p C0G kickback filter and an ADS7056. AVDD 4u7 + 100n, DVDD 1V8, 33 R SPI series. The Agilex 5 card's AD8603 was too slow and its INH was tied high |
+| 13 adc | done. Front end from the **Agilex 3 card** (`~/dev/ti60f225_control_card`, design-notes "ADC front end for 2.5 MSPS"): SN74LV4051A (INH to GND, X0 = GND reference, rail monitors, isoada1..3 from J3 through OPA365 followers U1304–U1306, 1k + 1n C0G at their inputs, added 2026-10-31 because the baseboard now filters them with 8.2k + 4.7n/10n), then an OPA365 buffer, a 33 R + 680 p C0G kickback filter and an ADS7056. AVDD 4u7 + 100n, DVDD 1V8, 33 R SPI series. The Agilex 5 card's AD8603 was too slow and its INH was tied high |
 | 14 connectors | done: J3 (baseboard J11) + 32 × 10 k pull-downs, J5 LCD, J2 UART |
 
 ERC shows two known, harmless notes and nothing else:
