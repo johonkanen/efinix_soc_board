@@ -70,13 +70,16 @@ while a sweep runs.
 - [x] The earlier "48 ohm driver 47 mV low" (`validate_drivers.md`) was the validation circuit: it used 20 ohm, the
       model's tables use 24 ohm. Fixed.
 
-### 2. Extract the routed copper
-- [ ] Copy `extract_routes.py` and `routed_si.py` from `~/dev/agilex3_soc_control_card/sim/lpddr4_si/` (read only:
-      never write there) into `sim/lpddr4_si/` and adapt them to this board (U501/U801, layer stack, nets).
-- [ ] Per net: segments per layer with width and length, vias with the layers they join, the T and both branches
-      of shared nets, the U501 pad-to-die delays from the board.
-- [ ] Check the extraction against KiCad: delay per net from the extracted model vs `tools/ddr/kicad_delays.sh`,
-      within about 1 ps (the same check as `ddr_timing.py`).
+### 2. Extract the routed copper (done 2026-10-31)
+- [x] `sim/lpddr4_si/extract_routes.py` (adapted from the Agilex card's, read only there): `tools/p2k/bin/kipy
+      extract_routes.py` -> `work/routes.json`. 56 nets (DQ, DM, DQS, CK, CA, CKE, CS0/CS2, RST), every pad attached.
+- [x] Per net: track and arc pieces (layer, length, width: 0.10 / 0.12 mm, 0.25 mm on the CKE breakout), vias with
+      the layers they join, the T and both branches of shared nets, the U501 pad-to-die delay per pad, the netclass.
+      Under `_board`: stack-up depths, the tuning profiles (ps/mm per layer, via ps/mm), netclass -> profile.
+- [x] `check_routes.py`: the whole-net delay rebuilt from the extracted graph alone with KiCad's model equals
+      KiCad's DRC readout within 0.76 ps on every net (`results/check_routes.md`). The pad-to-pad paths per U801 ball
+      are listed there too: CK reaches channel A 4-5 ps before channel B (CA - CK +2.4 / -2.2 ps, inside +-5.3); a few
+      nets carry under 1 ps of stub copper (dm2, dq26, dq29).
 
 ### 3. Measure one worst-case netlist
 - [ ] Longest route, min corner (typ if min is not validated yet), 3200 Mbps, under `/usr/bin/time -v`: wall time
