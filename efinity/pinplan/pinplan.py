@@ -198,6 +198,10 @@ def main():
         "TARGET1_EN": "0",  # AXI 1 is not available when the hard RISC-V (QCRV32) is used
         "AXI0_CLK_INPUT_PIN": "ddr_axi0_clk",
         "CTRL_CLK_PIN": "ddr_ctrl_clk",
+        # FPGA DQ/DQS drive 40 ohm (Efinity default 34.3): the routed-board IBIS run (sim/lpddr4_si/README.md) used
+        # 40 ohm, and the Efinix IBIS file has no 34.3 ohm driver model. CA/CK/CKE drive has no setting.
+        "DQ_PD_DRV_STRENGTH": "40",
+        "DQ_PU_DRV_STRENGTH": "40",
     }, block_type="DDR")
     # Package pin swizzle as wired on the board (lpddr4_swizzle.json, LPDDR4_SWIZZLE.md): position k of
     # PIN_SWIZZLE_DQMn is FPGA ball DDR_DQ[8n+k] (position 8 = DDR_DM[n]); its value is the DRAM-side signal

@@ -28,5 +28,17 @@
 peak at one DRAM die against 1470 mV** (VDDQ max 1.17 V + 0.3 V; 16 mV over; its area 0.04 V-ns is within 0.1).
 At 2800 Mbps, the Ti135N484I3's top rate, CKE peaks at 1417 mV at max (53 mV below the limit). CKE is the only
 unterminated LPDDR4 input (CKE_INPUT, no ODT); the PRBS at the CA rate is a worst case for a signal that toggles
-rarely in operation. With the FPGA's 48 ohm drive on CKE (Efinity setting) the max-corner peak drops to 1342 mV (2800) /
-1415 mV (3200) with the eye still wide open (523 mV, 226 ps margin at 3200). The worst nets are mostly the same at every corner (ca1/ca3, dq3, dq1/dq11, dqs0/dqs1).
+rarely in operation. The worst nets are mostly the same at every corner (ca1/ca3, dq3, dq1/dq11, dqs0/dqs1).
+
+**CKE fix (2026-10-31).** Efinity's DDR block has no drive setting for CA/CK/CKE, so a weaker CKE driver is not an
+option. Simulated at the DRAM die, the routed CKE with a series resistor at U501 (worst corner of each):
+
+| series R at U501 | peak, max 3200 (limit 1470 mV) | peak, max 2800 | undershoot | V margin | t margin |
+|---|---|---|---|---|---|
+| none | 1486 mV (fails) | 1417 mV | -250 mV | 527 mV | 256 ps |
+| **10 ohm** | **1291 mV** | 1236 mV | -74 mV | 376 mV | 208 ps |
+| 15 ohm | 1230 mV | 1191 mV | -48 mV | 313 mV | 183 ps |
+| 22 ohm | 1217 mV | 1182 mV | -34 mV | 236 mV | 154 ps |
+
+A lower-impedance trunk also passes (In2 0.18 mm, 39.8 ohm: 1384 mV; B.Cu 0.25 mm, 39.3 ohm: 1377 mV at max 3200)
+but needs a reroute. Chosen: **10 ohm in series on B.Cu at U501**.

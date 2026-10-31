@@ -109,9 +109,9 @@ while a sweep runs.
       14 min, 0 failed. Table: `sim/lpddr4_si/results/routed_corners.md`.
 - [x] No negative eye margin at any corner or rate. Worst nets mostly the same at every corner.
 - [x] One limit exceeded: **CKE0, max corner, 3200 Mbps: 1486 mV peak at one DRAM die vs 1470 mV** (16 mV over,
-      area 0.04 V-ns within 0.1). At 2800 Mbps (the I3's top rate) 1417 mV, 53 mV inside. Checked: CKE with the
-      FPGA's 48 ohm drive (Efinity setting) at max peaks at 1342 mV (2800) / 1415 mV (3200), eye still wide open
-      (V margin 523 mV, t margin 226 ps at 3200). Use 48 ohm on CKE if 3200 Mbps or more margin matters.
+      area 0.04 V-ns within 0.1). At 2800 Mbps (the I3's top rate) 1417 mV, 53 mV inside. Efinity has no
+      CA/CK/CKE drive setting; fix: 10 ohm series resistor on B.Cu at U501 (peak 1291 mV at max/3200, eye margins
+      376 mV / 208 ps; `results/routed_corners.md`).
 
 ### 6. Crosstalk (done 2026-10-31)
 - [x] Coupled lengths from the board (`coupled_lengths.py`, `results/coupled_lengths.md`): besides each pair's own
@@ -129,7 +129,8 @@ while a sweep runs.
       4x long with ODT: degraded (259 mV eye) but passes; (4) the same with the ODT off: eye closed (-450 mV, 0 ps).
       The eye plots agree with the numbers.
 - [x] Report: `sim/lpddr4_si/README.md` "Routed board: result". Every net passes at 2800 and 3200 Mbps, all
-      corners, except CKE0 at max/3200 (16 mV over the peak limit): **set the FPGA's CKE drive to 48 ohm**.
+      corners, except CKE0 at max/3200 (16 mV over the peak limit): **10 ohm series resistor on CKE at U501**.
+- [ ] After the resistor is on the board: extract CKE through it and rerun its IBIS case on the real routing.
 
 ## Rules while running
 
