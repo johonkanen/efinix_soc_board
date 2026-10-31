@@ -104,9 +104,14 @@ while a sweep runs.
 - [x] Eye PNGs of the worst net per kind and rate (`--plot-worst`, `results/eyes/eye_worst_*`, git-ignored): open
       eyes, masks inside; plots agree with the numbers.
 
-### 5. Corners
-- [ ] min (and max once step 1 allows it), full or screened.
-- [ ] If screened: one whole byte at all corners first, to check the ranking holds.
+### 5. Corners (done 2026-10-31)
+- [x] Full min and max on every net (no screening): `routed_si.py --sweep --corners min max -j 4`, 344 netlists,
+      14 min, 0 failed. Table: `sim/lpddr4_si/results/routed_corners.md`.
+- [x] No negative eye margin at any corner or rate. Worst nets mostly the same at every corner.
+- [x] One limit exceeded: **CKE0, max corner, 3200 Mbps: 1486 mV peak at one DRAM die vs 1470 mV** (16 mV over,
+      area 0.04 V-ns within 0.1). At 2800 Mbps (the I3's top rate) 1417 mV, 53 mV inside. Checked: CKE with the
+      FPGA's 48 ohm drive (Efinity setting) at max peaks at 1342 mV (2800) / 1415 mV (3200), eye still wide open
+      (V margin 523 mV, t margin 226 ps at 3200). Use 48 ohm on CKE if 3200 Mbps or more margin matters.
 
 ### 6. Crosstalk
 - [ ] Short coupled-line netlists (3-5 lines each) at the tightest spots: the 0.2 mm meanders (CA0/CA1, dq10/dq14,
