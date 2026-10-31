@@ -188,17 +188,32 @@ def export(tag, gen_args, patterns=None):
     return [m for m in msgs if m], meta
 
 
-def cpl_lines(c):
+def cpl_lines(c, dl=0.25e-3):
+    """The coupled 3-line section between the _f and _m nets as a lumped ladder of dl-long sections (0.25 mm, about
+    1.75 ps: far shorter than the edges): per section self L with mutual K, C to ground (Maxwell row sum) and C
+    between lines, from the field-solved per-metre L/C matrices. ngspice's CPL element stopped every run with
+    "timestep too small" (2026-10-31), the ladder runs."""
     sys.path.insert(0, HERE)
     from zsolve_widths import cl_matrix
     key = os.path.join(WORK, f"clm_{c['layer']}_{c['w']:.3f}_{c['gap']:.3f}.json")   # ~35 s per solve: cached
     if not os.path.exists(key): json.dump(cl_matrix(c['layer'], c['w'], c['gap'], 3), open(key, 'w'))
     Lm, Cm, Rdc = json.load(open(key))
-    tri = lambda M: ' '.join(f'{M[i][j]:.6e}' for i in range(3) for j in range(i, 3))
-    R = [[Rdc if i == j else 0 for j in range(3)] for i in range(3)]
-    G = [[0] * 3 for _ in range(3)]
-    return (f"P1 {' '.join(c['nodes_in'])} 0 {' '.join(c['nodes_out'])} 0 PXT\n"
-            f".model PXT CPL length={c['len'] * 1e-3:.6e}\n+R={tri(R)}\n+L={tri(Lm)}\n+G={tri(G)}\n+C={tri(Cm)}")
+    n_sec = max(1, int(round(c['len'] * 1e-3 / dl))); d = c['len'] * 1e-3 / n_sec
+    out = []
+    prev = list(c['nodes_in'])
+    for k in range(n_sec):
+        nxt = list(c['nodes_out']) if k == n_sec - 1 else [f'xl{i}_{k}' for i in range(3)]
+        for i in range(3):
+            mid = f'xr{i}_{k}'
+            out.append(f'Rxs{i}_{k} {prev[i]} {mid} {max(Rdc * d, 1e-6):.6e}')
+            out.append(f'Lx{i}_{k} {mid} {nxt[i]} {Lm[i][i] * d:.6e}')
+            out.append(f'Cxg{i}_{k} {nxt[i]} 0 {sum(Cm[i]) * d:.6e}')
+        for i in range(3):
+            for j in range(i + 1, 3):
+                out.append(f'Kx{i}{j}_{k} Lx{i}_{k} Lx{j}_{k} {Lm[i][j] / (Lm[i][i] * Lm[j][j]) ** 0.5:.6f}')
+                out.append(f'Cxm{i}{j}_{k} {nxt[i]} {nxt[j]} {-Cm[i][j] * d:.6e}')
+        prev = nxt
+    return '\n'.join(out)
 
 
 def ngspice_checked(cir, vecs, out):
@@ -392,7 +407,8 @@ def run_point(job):
         UI = m['ui']
         if m.get('victim') is False: continue       # crosstalk aggressors: only the victim is analysed
         vd = w[die(m['drv'])]
-        if np.ptp(vd[t > SKIP * UI]) < 0.05:        # quiet victim (crosstalk noise run): coupled noise peaks only
+        if np.ptp(vd[t > SKIP * UI]) < 0.3:         # quiet victim (crosstalk noise run; a driving die swings ~0.7 V,
+                                                    # near-end noise on a quiet one stays well below 0.3 V)
             sel = t > SKIP * UI
             for ref, pad in m['rx']:
                 for node, where in ((pad, 'ball'), (die(ref), 'die')):
@@ -611,12 +627,14 @@ XT = [('inner', 0.18, 0.11), ('inner', 0.10, 0.19), ('inner', 0.18, 0.20), ('inn
 XT_LEN = {'inner': 25.0, 'outer': 25.0}
 
 
-def xtalk_points():
+def xtalk_points(cases=None):
+    """cases: [(layer, w, gap, length mm)] (--xt), default XT at XT_LEN."""
     pts = []
+    cases = cases or [(layer, wv, g, XT_LEN[layer]) for layer, wv, g in XT]
     for rate in (2800, 3200):
-        for layer, wv, g in XT:
-            base = f'xt_r{rate}_{layer}_w{wv:.2f}_g{g:.2f}'
-            args = ['--xtalk', layer, '--w', str(wv), '--gap', str(g), '--len', str(XT_LEN[layer]), '--rate', str(rate)]
+        for layer, wv, g, ln in cases:
+            base = f'xt_r{rate}_{layer}_w{wv:.2f}_g{g:.2f}_l{ln:g}'
+            args = ['--xtalk', layer, '--w', str(wv), '--gap', str(g), '--len', str(ln), '--rate', str(rate)]
             # 1 victim PRBS, aggressors uncorrelated PRBS; 2 aggressors quiet (reference); 3 victim quiet low,
             # aggressors in phase (peak coupled noise)
             for k, pat in (('rand', {'xa1': ('shift', 37), 'xa2': ('shift', 71)}),
@@ -696,6 +714,7 @@ def main():
                     'simulated at typ, instead of KiCad\'s vcc=MIN/MAX (wrong away from the V-t fixture)')
     ap.add_argument('--quick', action='store_true', help='typ corner, today / 0.10 / 0.09 mm only')
     ap.add_argument('--xtalk', action='store_true', help='three coupled lines (CPL)')
+    ap.add_argument('--xt', nargs='*', help='with --xtalk: cases layer,w,gap,len_mm (e.g. inner,0.10,0.20,2.5)')
     ap.add_argument('--small', action='store_true', help='typ, 2800/3200, 8 width points, pair geometries (minutes)')
     ap.add_argument('--first', action='store_true', help='first result in about a minute: the worst DQ (dq4) write '
                     'and read and CA1, today vs 0.10 mm, typ, 2800 MT/s (4 small netlists in parallel)')
@@ -731,7 +750,8 @@ def main():
     elif a.small:
         pts, out = small_points(), 'results_small'
     elif a.xtalk:
-        pts, out = xtalk_points(), 'results_xtalk'
+        cases = [(c.split(',')[0], *map(float, c.split(',')[1:])) for c in (a.xt or [])]
+        pts, out = xtalk_points(cases), 'results_xtalk' + ('_board' if cases else '')
     else:
         pts, out = sweep_points(a.quick), 'results' + ('_quick' if a.quick else '')
     jobs = []

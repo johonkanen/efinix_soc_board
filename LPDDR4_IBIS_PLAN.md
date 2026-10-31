@@ -113,9 +113,15 @@ while a sweep runs.
       FPGA's 48 ohm drive (Efinity setting) at max peaks at 1342 mV (2800) / 1415 mV (3200), eye still wide open
       (V margin 523 mV, t margin 226 ps at 3200). Use 48 ohm on CKE if 3200 Mbps or more margin matters.
 
-### 6. Crosstalk
-- [ ] Short coupled-line netlists (3-5 lines each) at the tightest spots: the 0.2 mm meanders (CA0/CA1, dq10/dq14,
-      dq11/dq13, dq26/dq29, dq27/dq28) and the CA-to-DQ crossings. Victim eye with and without aggressors.
+### 6. Crosstalk (done 2026-10-31)
+- [x] Coupled lengths from the board (`coupled_lengths.py`, `results/coupled_lengths.md`): besides each pair's own
+      P/N, at most 2.5 mm at a 0.20-0.25 mm edge gap (dq14) and 9.2 mm at 0.30-0.40 mm (dq30/dq31). CA-to-DQ
+      crossings are on different layers with planes between: not coupled lines.
+- [x] Three coupled lines (both aggressors over the whole length), DQ write, typ, 2800/3200: the board's two worst
+      cases and a 10 mm bound. ngspice's CPL element stopped every run ("timestep too small"); replaced by a lumped
+      ladder of 0.25 mm sections from the same field-solved L/C matrices (`run_si.py` `cpl_lines`).
+- [x] Crosstalk costs at most 14 mV eye height, 10 mV V margin, 8 ps t margin (10 mm bound); peak noise on a quiet
+      victim 30 mV far end. Every net still passes with that taken off. `sim/lpddr4_si/results/xtalk_board.md`.
 
 ### 7. Prove the checks can fail, then report
 - [ ] One deliberately bad case (no ODT, a very long line, or a much too narrow trace): margins must go negative and
