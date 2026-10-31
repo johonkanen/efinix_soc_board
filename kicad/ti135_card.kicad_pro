@@ -647,7 +647,7 @@
       },
       {
         "netclass": "lpddr_ca",
-        "pattern": ".*ddr_(ca[0-5]|cke0|cs[02]_n|rst_n)$"
+        "pattern": ".*ddr_(ca[0-5]|cke0|cke0_fpga|cs[02]_n|rst_n)$"
       },
       {
         "netclass": "lpddr_diff",

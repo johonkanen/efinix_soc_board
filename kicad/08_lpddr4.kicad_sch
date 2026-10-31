@@ -17182,7 +17182,7 @@
 		)
 		(uuid "047abab7-541b-5014-8091-6bc9c29d97c8")
 	)
-	(label "ddr_cke0"
+	(label "ddr_cke0_fpga"
 		(at 116.84 86.36 0)
 		(effects
 			(font
@@ -34116,5 +34116,132 @@
 				)
 			)
 		)
+	)
+	(symbol
+		(lib_id "ti135_card:R")
+		(at 147.32 76.2 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "17367ffc-32d8-51ab-bb11-ca41dc8658fd")
+		(property "Reference" "R803"
+			(at 147.32 72.39 270)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10R"
+			(at 147.32 74.17 270)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 147.32 77.978 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 147.32 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 147.32 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C25077"
+			(at 147.32 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e8cc5ed4-9199-5f49-8702-3de42d73d3b5")
+		)
+		(pin "2"
+			(uuid "219480e0-1585-5030-9fcd-00f16c5f7527")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/df7ad03a-4cdc-47f6-9423-5d0632e27d2b"
+					(reference "R803")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 143.51 76.2) (xy 138.43 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "05f3aa71-6798-59e3-a0de-94bc24039918")
+	)
+	(label "ddr_cke0_fpga"
+		(at 138.43 76.2 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "19dbe758-dc0c-5eff-b308-ff1c1102ccf1")
+	)
+	(wire
+		(pts
+			(xy 151.13 76.2) (xy 156.21 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8276b9c0-6427-55ce-b70e-f58af4f71b05")
+	)
+	(label "ddr_cke0"
+		(at 156.21 76.2 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "7c165aa1-4a87-5549-ac74-41e8ac4c0d42")
+	)
+	(text "CKE series 10R on B.Cu at the U501 CKE via (sim/lpddr4_si/results/routed_corners.md):\nCKE has no ODT; without it the max-corner peak at 3200 Mbps is 1486 mV (limit 1470), with it 1291 mV.\nEfinity has no CA/CKE drive setting."
+		(exclude_from_sim no)
+		(at 127 66.04 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "94e8bf82-fe95-5583-a1eb-2066a3c8b01d")
 	)
 )
