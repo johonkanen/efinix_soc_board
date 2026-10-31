@@ -6,6 +6,8 @@ on:
   workflow_dispatch:
 jobs:
   plots:
-    uses: johonkanen/kicad-board-plots/.github/workflows/plots.yml@v1
+    uses: johonkanen/kicad-board-plots/.github/workflows/plots.yml@v1.1
+    with:
+      render-3d: true
     permissions:
       contents: write
