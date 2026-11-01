@@ -1,6 +1,6 @@
 # Status and handoff
 
-Last updated: **2026-10-27** (phase 3 done: checklist fixes in the schematic and the 84 new parts placed on the board; next is phase 4, CK/CA on one layer; NEXT_SESSION.md). Read this first if you are picking the work up (human or agent).
+Last updated: **2026-11-01** (placement copied from the Agilex card and hand-tuned, power planes reshaped, 3V3 plane added; see "Where we left off (2026-11-01)" below). Read this first if you are picking the work up (human or agent).
 
 ## What this repository is
 
@@ -22,7 +22,34 @@ card, and plugs into the same baseboard.
 | `reference/` | `ti135n484_pinout.csv` (all 484 balls, from the Efinity device DB), `baseboard_j11_pinout.csv` (baseboard signal header, the authority for J3) |
 | `efinity/pinplan/` | `pinplan.py` builds the Interface Designer project for the pin plan; `ti135_pinplan.csv` is the signal → ball result |
 
-## Where we left off
+## Where we left off (2026-11-01)
+
+The Agilex 3 card (`~/dev/agilex3_soc_control_card`, read only) is ready for its final pre-fab check, so its
+placement was copied here (commits 12341e2, 167fdc8, 21cb082; all pushed):
+- **Copied from the Agilex card:** U901 PHY (rotated 180° as there) with its passives matched by function, U1001 eMMC
+  with its caps and pull-ups on B.Cu under it, U601 QSPI, J1 JTAG, J2 UART, JTAG pull-ups R607–R610, and the five
+  TLV62585 cells moved rigidly onto the Agilex regulator spots (VCORE exact; 1V1/3V3/0V85 near; 1V8 next to VCORE,
+  because the Agilex 1V8 spot is fenced by the routed isoada2/isoada3 B.Cu traces). The user then moved parts by
+  hand (U601 to the top right, eMMC, J1/J2, J101, power parts); the board as committed is the user's placement.
+- **Pours copied:** PHY GND / phy_dvdd_rg / phy_vdd10 on B.Cu, phy_avdd33 on In2 (isolated until its vias are
+  routed). B.Cu 5V0 = the Agilex flood plus a box per buck cell and the input parts.
+- **Planes reshaped for the new regulator spots:** In3 1V1 (left over the 1V1 buck and the LPDDR4 caps; east block to
+  x 49 for its decaps), In3 VCORE (south over the VCORE buck), **new In3 3V3** (left column, bottom strip, right
+  side: eMMC, JTAG, PHY; kept out of the DDR area), In4 0V85 (corridor south between the GND/VCORE ball columns, no
+  1V8 vias in it, to the 0V85 buck). Every VCORE/1V1/0V85/1V8 via lands in its plane.
+- **5V0 to the 1V1 buck:** its piece of the B.Cu flood was cut off by the isoada traces; one 0.5 mm In5 jumper with a
+  0.6/0.3 via at each end, (12.6, 22.8) → (10.0, 26.0) mm from the top-left corner.
+- DRC: no clearance/short/courtyard errors; only dangling/unrouted warnings and the isolated phy_avdd33 pour.
+
+**Open, next time:**
+1. U501's three VCCIO33 balls (3V3) sit inside the VCORE plane area: route them to their B.Cu decaps.
+2. Small loads off the planes need traces: U401 VCORE sense pin, FB501 (VCORE) and FB504 (0V85) ferrites.
+3. Buck cell outputs/GND to the planes (cell copper moved with the cells; check every cell is tied in).
+4. U501 sits rotated 180° compared with the Agilex FPGA, so eMMC/RGMII/flash breakout stubs now point away from
+   where those parts went: re-plan the escapes, then route eMMC, QSPI, RGMII/MDI (LAYOUT_PLAN.md phases 4–5).
+5. Still no 3D models for J9 (RJ45), U1303 (ADS7056), Y701.
+
+## Where we left off (before 2026-11-01)
 
 **Phase 2 (schematic): all 14 sheets are drawn. Phase 3 (PCB): every part is placed (2026-10-25)** in
 `kicad/ti135_card.kicad_pcb`.

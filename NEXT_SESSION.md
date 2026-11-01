@@ -1,5 +1,8 @@
 # Next session plan (phases, 2026-10-27; phases 1–3 done)
 
+**2026-11-01:** placement was since copied from the Agilex card and the planes reshaped; the current open list is
+in `STATUS.md`, "Where we left off (2026-11-01)". The phase plan below predates that.
+
 Written for an agent starting with a fresh context. Work **one phase at a time**: finish it, commit, push, update
 this file and `STATUS.md`, then stop and report to the user, who reviews each phase before the next starts.
 
@@ -17,14 +20,14 @@ this file and `STATUS.md`, then stop and report to the user, who reviews each ph
   copies the LPDDR4 rules from it; that is intended.
 - **KiCad must be closed** before writing any file under `kicad/`. Check for `kicad/~ti135_card.kicad_pro.lck` and
   for board/schematic files newer than the last commit; if either, stop and ask.
-- Schematics are **generated**: change `tools/sheets/*.py`, run `tools/build_schematic.sh`, never edit `.kicad_sch`.
+- The user now edits the schematic **by hand** in KiCad: do NOT run `tools/build_schematic.sh` (it would overwrite
+  the hand edits).
   A footprint change reaches the board with `tools/swap_footprint.py` (keeps nets, fields, schematic link).
 - Efinix files (copyright) live in `reference/efinix/` (gitignored; only its README is in git).
 - No silkscreen on this card beyond a few custom markings: ignore silkscreen DRC.
 - Commit trailer (always):
   ```
   Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
-  Claude-Session: https://claude.ai/code/session_01DJMRtrVk88ZxPrcLoqXbjd
   ```
   Push with plain `git push`. Ask the user before anything outward beyond that (orders, upstream bug reports).
 - Keep `STATUS.md` and this file current at every stopping point.
