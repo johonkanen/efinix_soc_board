@@ -12707,7 +12707,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
 			(at 264.922 119.38 0)
 			(hide yes)
 			(show_name no)
@@ -12740,7 +12740,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25744"
+		(property "LCSC" "C473048"
 			(at 266.7 119.38 0)
 			(hide yes)
 			(show_name no)
@@ -13587,7 +13587,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
 			(at 277.622 119.38 0)
 			(hide yes)
 			(show_name no)
@@ -13620,7 +13620,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25744"
+		(property "LCSC" "C473048"
 			(at 279.4 119.38 0)
 			(hide yes)
 			(show_name no)
@@ -15780,7 +15780,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
 			(at 303.022 119.38 0)
 			(hide yes)
 			(show_name no)
@@ -15813,7 +15813,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25744"
+		(property "LCSC" "C473048"
 			(at 304.8 119.38 0)
 			(hide yes)
 			(show_name no)
@@ -16140,7 +16140,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
 			(at 290.322 119.38 0)
 			(hide yes)
 			(show_name no)
@@ -16173,7 +16173,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25744"
+		(property "LCSC" "C473048"
 			(at 292.1 119.38 0)
 			(hide yes)
 			(show_name no)
@@ -17437,7 +17437,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
 			(at 343.8652 74.93 0)
 			(hide yes)
 			(show_name no)
@@ -17470,7 +17470,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C1525"
+		(property "LCSC" "C190183"
 			(at 342.9 71.12 0)
 			(hide yes)
 			(show_name no)
@@ -18002,7 +18002,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
 			(at 241.3 67.818 0)
 			(hide yes)
 			(show_name no)
@@ -18035,7 +18035,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25105"
+		(property "LCSC" "C320843"
 			(at 241.3 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -18112,7 +18112,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
 			(at 241.3 72.898 0)
 			(hide yes)
 			(show_name no)
@@ -18145,7 +18145,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25105"
+		(property "LCSC" "C320843"
 			(at 241.3 71.12 0)
 			(hide yes)
 			(show_name no)
@@ -18222,7 +18222,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
 			(at 241.3 77.978 0)
 			(hide yes)
 			(show_name no)
@@ -18255,7 +18255,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25105"
+		(property "LCSC" "C320843"
 			(at 241.3 76.2 0)
 			(hide yes)
 			(show_name no)
@@ -18332,7 +18332,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
 			(at 241.3 83.058 0)
 			(hide yes)
 			(show_name no)
@@ -18365,7 +18365,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25105"
+		(property "LCSC" "C320843"
 			(at 241.3 81.28 0)
 			(hide yes)
 			(show_name no)
@@ -18442,7 +18442,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
 			(at 241.3 88.138 0)
 			(hide yes)
 			(show_name no)
@@ -18475,7 +18475,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25105"
+		(property "LCSC" "C320843"
 			(at 241.3 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -18552,7 +18552,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
 			(at 241.3 93.218 0)
 			(hide yes)
 			(show_name no)
@@ -18585,7 +18585,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25105"
+		(property "LCSC" "C320843"
 			(at 241.3 91.44 0)
 			(hide yes)
 			(show_name no)

@@ -6,13 +6,13 @@ Edits the hand-maintained sheets in place, as text (KiCad formatting kept):
            resistor sits between <net> (FPGA side, with the pull-ups) and <net>_r.
   06_fpga_config: new 33R on SCK, CS#, IO0-3. The wire from U601's pin to the hierarchical label is replaced by a
            <net>_r label on the pin; the resistor joins <net> (hierarchical label, pull-ups) and <net>_r.
-The resistors are copies of R1001's symbol (0402, LCSC C25105) in a free column with labels on both pins.
+The resistors are copies of R1001's symbol, switched to 0201 (LCSC C320843), in a free column with labels on both pins.
 """
 import os, re, uuid
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SHEETS = os.path.join(ROOT, 'kicad')
-R33 = ('33R', 'C25105')
+R33 = ('33R', 'C320843')          # 0201 (Resistor_SMD:R_0201_0603Metric)
 
 
 def u(): return str(uuid.uuid4())
@@ -40,6 +40,7 @@ def resistor(template, ref, x, y, path):
     b = re.sub(r'^\t\t\(uuid "[^"]+"\)', f'\t\t(uuid "{u()}")', b, count=1, flags=re.M)
     b = b.replace('"Reference" "R1001"', f'"Reference" "{ref}"').replace('(reference "R1001")', f'(reference "{ref}")')
     b = re.sub(r'"Value" "[^"]*"', f'"Value" "{R33[0]}"', b).replace('"LCSC" "C25077"', f'"LCSC" "{R33[1]}"')
+    b = b.replace('Resistor_SMD:R_0402_1005Metric', 'Resistor_SMD:R_0201_0603Metric')
     # property positions: same offsets from the symbol as on R1001 (at 50.8 63.5)
     def prop_at(m):
         px, py = float(m.group(2)), float(m.group(3))
@@ -69,7 +70,8 @@ def add_column(text, template, items, x0, y0):
 def main():
     p10 = os.path.join(SHEETS, '10_emmc.kicad_sch'); t = open(p10).read()
     s, e = symbol_block(t, 'R1001'); tmpl = t[s:e]
-    r1001 = re.sub(r'"Value" "10R"', '"Value" "33R"', tmpl).replace('"LCSC" "C25077"', '"LCSC" "C25105"')
+    r1001 = re.sub(r'"Value" "10R"', '"Value" "33R"', tmpl).replace('"LCSC" "C25077"', f'"LCSC" "{R33[1]}"') \
+        .replace('Resistor_SMD:R_0402_1005Metric', 'Resistor_SMD:R_0201_0603Metric')
     t = t[:s] + r1001 + t[e:]
     emmc = [('R1002', 'emmc_cmd')] + [(f'R100{3 + i}', f'emmc_dat{i}') for i in range(7)] + \
            [('R1021', 'emmc_dat7'), ('R1022', 'emmc_ds')]
