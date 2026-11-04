@@ -35,21 +35,34 @@ Done since 2026-11-01 (all pushed, last commit e61a61c):
 - Free FPGA I/O: 8 HSIO on bank B (3 P/N pairs CLK0/2/3 + R6, L6). MIPI1 hard D-PHY pins are not usable as GPIO
   (data sheet table 136). Pinout checked against Efinix v0.8 / ADV-2604-001 (K8 already GND).
 
-**In progress: ADC front-end simulation** (`sim/adc_mux/adc_mux_sim.py`, not committed yet; README in the script
-docstring). KiCad's bundled libngspice 45.2 driven through ctypes (no ngspice binary on this machine), TI OPA365
-PSpice model (`fetch` downloads it into the git-ignored `sim/adc_mux/models/`), the mux as a data-sheet behavioural
-model (TI's TMUX1308 model stalls ngspice at each channel change and its caps are below the data sheet).
-Scenarios: TMUX1308 typ/max, NX3L4051, SN74LV4051A with followers; TMUX1308 max without the isoada followers,
-with today's filters and with a big-C/low-R variant. First 3-cycle run (TMUX1308 typ, followers): 0.1–2.8 LSB per
-channel. The full 100-cycle sweep (`run -j 2`) was stopped before it finished; next: run it, sanity-check the
-waveforms (v(d), v(csh) around a channel change), then decide on the followers and write up the result.
+**ADC front-end simulation** (`sim/adc_mux/adc_mux_sim.py`; `fetch` then `run -j 2`, ~50 s). KiCad's bundled
+libngspice 45.2 through ctypes, TI OPA365 PSpice model (git-ignored `sim/adc_mux/models/`), the mux as a data-sheet
+behavioural model. 2.5 MSPS round-robin over all 8 channels, 100 cycles; worst error at the sampling instant vs the
+DC value, last cycle, in LSB (14 bit, 201 uV):
+
+| scenario | GND | vcore | 1v8 | 3v3 | iso2 | 1v1 | iso3 | iso1 |
+|---|---|---|---|---|---|---|---|---|
+| TMUX1308 typ caps, followers, 1k monitors | 2.8 | 1.0 | 1.1 | 0.1 | 1.5 | 2.0 | 0.4 | 1.3 |
+| TMUX1308 max caps, followers, 1k monitors | 4.2 | 1.0 | 38 | 0.1 | 1.5 | 74 | 0.4 | 1.4 |
+| NX3L4051, followers | 2.8 | 0.8 | 1552 | 64 | 3.3 | 3246 | 1.7 | 3.2 |
+| SN74LV4051A, followers | 2.8 | 1.0 | 1.1 | 0.1 | 1.5 | 2.0 | 0.5 | 1.3 |
+| TMUX1308 max, no isoada followers | 4.0 | 1.0 | 38 | 0.1 | 851 | 68 | 260 | 698 |
+| same, baseboard 100R/470n + 100n at the mux pin | 4.2 | 1.0 | 38 | 0.1 | 7.8 | 74 | 2.4 | 6.6 |
+| **as built since 2026-11-05: TMUX1308 max caps, followers, monitors at 100R** | 4.2 | 1.0 | 1.1 | 0.1 | 1.5 | 2.0 | 0.5 | 1.4 |
+
+Conclusions: keep the isoada followers (U1304–U1306); the NX3L4051 would have failed on the 1k monitor channels.
+At the TMUX1308's max capacitance the 1 kOhm rail-monitor resistors (R1302 1V8, R1304 1V1, R1303/R1305 3V3 divider)
+leave 38–74 LSB after a large step from the previous channel; ~100 Ohm source resistance (as mon_vcore's R1301)
+brings them to ~1–2 LSB. **Done 2026-11-05:** R1302/R1304 100R (C25076), R1303/R1305 200R/200R (C25087;
+the divider draws 8.25 mA from 3V3); the sim's defaults follow, the old values are scenario `tmux1308_max_rmon1k`. GND channel: the post-mux OPA365 bottoms out ~6.5 mV above 0 V (static) and recovers to
+within ~3–4 LSB after the 0.3 V isoada1 channel. Error grows with the step from the previous channel, so the channel
+order matters too.
 
 **Open, next time:**
-1. Finish the ADC mux sweep (above); commit `sim/adc_mux/` and the `.gitignore` entries.
-2. Reorder the level-shifter I/O so each part is closest to its J3 pin; route U1201–U1204 to the FPGA and J3;
+1. Reorder the level-shifter I/O so each part is closest to its J3 pin; route U1201–U1204 to the FPGA and J3;
    connect U1201/U1203 pin 13 and pin 24.
-3. The 6 flash via-in-pad shorts at U601 (vias now on the `_r` side of R623–R628); place/route the eMMC resistors.
-4. The 2026-11-01 list below (VCCIO33 balls, FB501/FB504/U401 sense, buck ties, escapes, 3D models).
+2. The 6 flash via-in-pad shorts at U601 (vias now on the `_r` side of R623–R628); place/route the eMMC resistors.
+3. The 2026-11-01 list below (VCCIO33 balls, FB501/FB504/U401 sense, buck ties, escapes, 3D models).
 
 ## Where we left off (2026-11-01)
 

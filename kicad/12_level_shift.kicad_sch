@@ -2498,6 +2498,17 @@
 		)
 		(uuid "075821df-786c-5a4a-abdc-0a10cdad9645")
 	)
+	(hierarchical_label "res1"
+		(shape input)
+		(at 271.78 134.62 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "0a72384c-158a-471f-8af5-89298be516a1")
+	)
 	(hierarchical_label "pwm_q5"
 		(shape input)
 		(at 71.12 144.78 180)
@@ -2618,17 +2629,6 @@
 			(justify left)
 		)
 		(uuid "2545605b-c125-5fa9-a326-f4dabc4f7b13")
-	)
-	(hierarchical_label "pwm_trans5_3v3"
-		(shape output)
-		(at 271.78 134.62 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "27687474-16d9-50b3-8a34-d7216e2078a6")
 	)
 	(hierarchical_label "adclk_dab"
 		(shape input)
@@ -2916,7 +2916,7 @@
 		)
 		(uuid "a68d3c51-a845-5254-bbbd-894357cd935b")
 	)
-	(hierarchical_label "pwm_q8_3v3"
+	(hierarchical_label "pwm_q7_3v3"
 		(shape output)
 		(at 271.78 132.08 0)
 		(effects

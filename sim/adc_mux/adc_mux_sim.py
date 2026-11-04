@@ -6,8 +6,8 @@
     python3 sim/adc_mux/adc_mux_sim.py run [-j 2] [scenario ...]
 
 Circuit (sheet 13 values):
-  S0 GND | S1 mon_vcore (VCORE 0.85 V, 100R) | S2 mon_1v8 (1k) | S3 mon_3v3 (1k/1k divider, 1.65 V / 500R)
-  S4 isoada2 | S5 mon_1v1 (1k) | S6 isoada3 | S7 isoada1
+  S0 GND | S1 mon_vcore (VCORE 0.85 V, R1301 100R) | S2 mon_1v8 (R1302 100R) | S3 mon_3v3 (R1303/R1305 200R/200R,
+  1.65 V / 100R) | S4 isoada2 | S5 mon_1v1 (R1304 100R) | S6 isoada3 | S7 isoada1
   isoada chain: ideal source -> baseboard Rbb/Cbb -> J3 -> Rloc/Cloc (R1307-9 1k, C1307-9 1n C0G)
                 -> OPA365 follower (U1304-6, optional) -> mux Sx
   mux D -> OPA365 follower U1302 -> R1306 33R -> AINP (C1302 680p) -> ADS7056 sample switch 50R + 16 pF
@@ -38,8 +38,8 @@ MUX = {
     'sn74lv4051a':  dict(ron=30, cs=5e-12, cd=18e-12, con=23e-12, q=0.0, ton=20e-9, toff=8e-9),
 }
 CH = [  # (name, kind, value V, source R)
-    ('GND', 'rail', 0.0, 1e-3), ('mon_vcore', 'rail', 0.85, 100), ('mon_1v8', 'rail', 1.8, 1000),
-    ('mon_3v3', 'rail', 1.65, 500), ('isoada2', 'iso', 3.0, None), ('mon_1v1', 'rail', 1.1, 1000),
+    ('GND', 'rail', 0.0, 1e-3), ('mon_vcore', 'rail', 0.85, 100), ('mon_1v8', 'rail', 1.8, 100),
+    ('mon_3v3', 'rail', 1.65, 100), ('isoada2', 'iso', 3.0, None), ('mon_1v1', 'rail', 1.1, 100),
     ('isoada3', 'iso', 1.5, None), ('isoada1', 'iso', 0.3, None)]
 SCEN = {  # mux, followers on isoada, baseboard R/C, local R/C at J3
     'tmux1308':          dict(mux='tmux1308', fol=True, rbb=8.2e3, cbb=4.7e-9, rloc=1e3, cloc=1e-9),
@@ -48,6 +48,9 @@ SCEN = {  # mux, followers on isoada, baseboard R/C, local R/C at J3
     'sn74lv4051a':       dict(mux='sn74lv4051a', fol=True, rbb=8.2e3, cbb=4.7e-9, rloc=1e3, cloc=1e-9),
     'tmux1308_max_nofol':      dict(mux='tmux1308_max', fol=False, rbb=8.2e3, cbb=4.7e-9, rloc=1e3, cloc=1e-9),
     'tmux1308_max_nofol_bigc': dict(mux='tmux1308_max', fol=False, rbb=100, cbb=470e-9, rloc=1e-3, cloc=100e-9),
+    # the rail monitors before 2026-11-05: 1V8/1V1 series 1k, 3V3 divider 1k/1k (500 ohm)
+    'tmux1308_max_rmon1k':     dict(mux='tmux1308_max', fol=True, rbb=8.2e3, cbb=4.7e-9, rloc=1e3, cloc=1e-9,
+                                    rsrc={2: 1000, 3: 500, 5: 1000}),
 }
 T, TACQ, TSEL, T0 = 400e-9, 100e-9, 5e-9, 2e-6
 
@@ -78,7 +81,7 @@ def pwl(edges, t_end):
     for t, v in edges[1:]:
         if v != lv: pts += [(t, lv), (t + 1e-9, v)]; lv = v
     pts.append((t_end, lv))
-    return 'PWL(' + ' '.join(f'{t:.4e} {v:g}' for t, v in pts) + ')'
+    return 'PWL(' + ' '.join(f'{t:.12e} {v:g}' for t, v in pts) + ')'
 
 
 def netlist(sc, seq, fixed=None):
@@ -91,7 +94,7 @@ def netlist(sc, seq, fixed=None):
     # sources
     for i, (name, kind, v, r) in enumerate(CH):
         if kind == 'rail':
-            L += [f'V{i} src{i} 0 {v}', f'R{i} src{i} s{i} {r}']
+            L += [f'V{i} src{i} 0 {v}', f'R{i} src{i} s{i} {p.get("rsrc", {}).get(i, r)}']
         else:
             L += [f'V{i} src{i} 0 {v}', f'RBB{i} src{i} bb{i} {p["rbb"]}', f'CBB{i} bb{i} 0 {p["cbb"]}',
                   f'RLOC{i} bb{i} loc{i} {p["rloc"]}', f'CLOC{i} loc{i} 0 {p["cloc"]}']
@@ -115,8 +118,8 @@ def netlist(sc, seq, fixed=None):
         L += [f'VC{i} c{i} 0 {ctl}', f'SW{i} s{i} d c{i} 0 swm']
         if extra > 0: L += [f'SX{i} s{i} sx{i} c{i} 0 swm', f'CX{i} sx{i} 0 {extra}']
     if fixed is None and m['q']:   # charge injection into D at each channel turn-on (2 ns pulse)
-        qi = [f'{tc + m["ton"]:.4e}' for tc, ch in changes[1:]]
-        pts = ['0 0'] + [f'{float(t):.4e} 0 {float(t) + 0.2e-9:.4e} {m["q"] / 2e-9:g} {float(t) + 2e-9:.4e} {m["q"] / 2e-9:g} {float(t) + 2.2e-9:.4e} 0' for t in qi]
+        qi = [f'{tc + m["ton"]:.12e}' for tc, ch in changes[1:]]
+        pts = ['0 0'] + [f'{float(t):.12e} 0 {float(t) + 0.2e-9:.12e} {m["q"] / 2e-9:g} {float(t) + 2e-9:.12e} {m["q"] / 2e-9:g} {float(t) + 2.2e-9:.12e} 0' for t in qi]
         L.append(f'IQ 0 d PWL({" ".join(pts)})')
     # post-mux buffer, kickback filter, ADS7056 sampler
     L += ['XB d bo vaa 0 bo OPA365', 'RK bo ainp 33', 'CK ainp 0 680p']
@@ -134,18 +137,22 @@ def run_scenario(sc, cycles=100):
     os.makedirs(WORK, exist_ok=True)
     nch = len(CH); seq = [k % nch for k in range(cycles * nch)]
     ref = []
+    # one libngspice instance per process; free each circuit and its plots after use (the library keeps every
+    # loaded circuit and all vectors in memory otherwise)
+    ng = NgSpice(); ng.cmd('set ngbehavior=psa')
     for c in range(nch):                       # DC reference with each channel held on
-        ng = NgSpice(); ng.cmd('set ngbehavior=psa')
         net, _ = netlist(sc, [c], fixed=c); ng.circ(net); ng.cmd('op'); ng.out.clear()
         ng.cmd('print v(csh)')
         v = [l for l in ng.out if 'v(csh)' in l]
         ref.append(float(v[-1].split('=')[-1]))
-    ng = NgSpice(); ng.cmd('set ngbehavior=psa')
+        ng.cmd('destroy all'); ng.cmd('remcirc')
     net, t_end = netlist(sc, seq)
+    net = net.replace('CSH csh 0 16p', 'CSH csh 0 16p\n.save v(csh)')   # keep only the sampled node
     open(os.path.join(WORK, f'{sc}.cir'), 'w').write(net)
     ng.circ(net)
     ng.cmd(f'tran 0.5n {t_end:.4e} 0 1n')
     dat = os.path.join(WORK, f'{sc}.dat'); ng.cmd(f'wrdata {dat} v(csh)')
+    ng.cmd('destroy all'); ng.cmd('remcirc')
     err = [l for l in ng.out if any(k in l.lower() for k in ('error', 'timestep too small', 'aborted'))]
     import numpy as np
     d = np.loadtxt(dat); t, v = d[:, 0], d[:, 1]

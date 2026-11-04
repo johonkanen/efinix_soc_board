@@ -5203,7 +5203,7 @@
 				)
 			)
 		)
-		(property "Value" "1k"
+		(property "Value" "200R"
 			(at 46.82 194.31 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5246,7 +5246,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C11702"
+		(property "LCSC" "C25087"
 			(at 43.18 193.04 0)
 			(hide yes)
 			(show_name no)
@@ -6475,7 +6475,7 @@
 				)
 			)
 		)
-		(property "Value" "1k"
+		(property "Value" "200R"
 			(at 67.14 194.31 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6518,7 +6518,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C11702"
+		(property "LCSC" "C25087"
 			(at 63.5 193.04 0)
 			(hide yes)
 			(show_name no)
@@ -8550,7 +8550,7 @@
 				)
 			)
 		)
-		(property "Value" "1k"
+		(property "Value" "100R"
 			(at 36.66 194.31 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8593,7 +8593,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C11702"
+		(property "LCSC" "C25076"
 			(at 33.02 193.04 0)
 			(hide yes)
 			(show_name no)
@@ -8717,7 +8717,7 @@
 				)
 			)
 		)
-		(property "Value" "1k"
+		(property "Value" "100R"
 			(at 56.98 194.31 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8760,7 +8760,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C11702"
+		(property "LCSC" "C25076"
 			(at 53.34 193.04 0)
 			(hide yes)
 			(show_name no)
