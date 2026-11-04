@@ -1,6 +1,6 @@
 # Status and handoff
 
-Last updated: **2026-11-01** (placement copied from the Agilex card and hand-tuned, power planes reshaped, 3V3 plane added; see "Where we left off (2026-11-01)" below). Read this first if you are picking the work up (human or agent).
+Last updated: **2026-11-04** (0201 passives, TMUX1308 mux, level-shifter breakouts, ADC mux simulation started; see "Where we left off (2026-11-04)" below). Read this first if you are picking the work up (human or agent).
 
 ## What this repository is
 
@@ -21,6 +21,35 @@ card, and plugs into the same baseboard.
 | `POWER_BUDGET.md` | Rail estimate, 5V_ISOL input limit, regulator choice (TLV62585PDRLR), divider values |
 | `reference/` | `ti135n484_pinout.csv` (all 484 balls, from the Efinity device DB), `baseboard_j11_pinout.csv` (baseboard signal header, the authority for J3) |
 | `efinity/pinplan/` | `pinplan.py` builds the Interface Designer project for the pin plan; `ti135_pinplan.csv` is the signal → ball result |
+
+## Where we left off (2026-11-04)
+
+Done since 2026-11-01 (all pushed, last commit e61a61c):
+- **0201** for the eMMC/QSPI 33R terminations, eMMC caps and pull-ups, flash cap/pull-ups, FPGA config and JTAG pulls.
+- **U1203/U1204 swapped**; U1204's breakout copied to U1201–U1203 by translation (nets from each chip's pads).
+  U1201 and U1203 have no via-in-pad on pin 13 (GND) / pin 24 (3V3): isoada2 (B.Cu) runs under U1201's B row,
+  U1304/C1312 sit under U1203's. Those two pins still need a GND / 3V3 connection off the pad.
+- **ADC mux = TI TMUX1308PWR** (LCSC C970231, JLC Extended, 4051 pinout, CD(ON) 11 pF typ / 40 pF max,
+  VIH 1.15 V). adbsel0–2 come straight from the FPGA at 1.8 V; U1204 channels 5–8 are spare (the user removed their
+  no-connect flags on sheet 12 for the I/O reorder: ERC shows 5 pin_not_connected on U1204 until they are used).
+- Free FPGA I/O: 8 HSIO on bank B (3 P/N pairs CLK0/2/3 + R6, L6). MIPI1 hard D-PHY pins are not usable as GPIO
+  (data sheet table 136). Pinout checked against Efinix v0.8 / ADV-2604-001 (K8 already GND).
+
+**In progress: ADC front-end simulation** (`sim/adc_mux/adc_mux_sim.py`, not committed yet; README in the script
+docstring). KiCad's bundled libngspice 45.2 driven through ctypes (no ngspice binary on this machine), TI OPA365
+PSpice model (`fetch` downloads it into the git-ignored `sim/adc_mux/models/`), the mux as a data-sheet behavioural
+model (TI's TMUX1308 model stalls ngspice at each channel change and its caps are below the data sheet).
+Scenarios: TMUX1308 typ/max, NX3L4051, SN74LV4051A with followers; TMUX1308 max without the isoada followers,
+with today's filters and with a big-C/low-R variant. First 3-cycle run (TMUX1308 typ, followers): 0.1–2.8 LSB per
+channel. The full 100-cycle sweep (`run -j 2`) was stopped before it finished; next: run it, sanity-check the
+waveforms (v(d), v(csh) around a channel change), then decide on the followers and write up the result.
+
+**Open, next time:**
+1. Finish the ADC mux sweep (above); commit `sim/adc_mux/` and the `.gitignore` entries.
+2. Reorder the level-shifter I/O so each part is closest to its J3 pin; route U1201–U1204 to the FPGA and J3;
+   connect U1201/U1203 pin 13 and pin 24.
+3. The 6 flash via-in-pad shorts at U601 (vias now on the `_r` side of R623–R628); place/route the eMMC resistors.
+4. The 2026-11-01 list below (VCCIO33 balls, FB501/FB504/U401 sense, buck ties, escapes, 3D models).
 
 ## Where we left off (2026-11-01)
 
