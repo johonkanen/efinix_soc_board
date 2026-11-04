@@ -108,8 +108,10 @@ its schematic PDF and IPC-356 netlist:
   40 channels are FPGA outputs, always enabled.
 - **3.3 V inputs bypass the translators** and go straight to HVIO: MDATA_INU, MDATA_DAB, MDATA_ISO, SDATA1_ISO (the
   sigma-delta / SPI data from the power board), T_DO, MISO and T_IRQ from the LCD, plus the UART (1 k series).
-- ADS7056 DVDD = 1V8, so its SPI is on 1.8 V HSIO directly (as proposed in §2). The mux selects (ADBSEL0–2) go
-  through a translator because the SN74LV4051 runs at AD_3V3.
+- ADS7056 DVDD = 1V8, so its SPI is on 1.8 V HSIO directly (as proposed in §2). The mux selects (ADBSEL0–2) went
+  through a translator because the SN74LV4051 runs at AD_3V3. **Changed 2026-11-04:** the mux is now an NXP
+  NX3L4051PW (same TSSOP16 pinout, pin 7 n.c.; VIH 1.3 V at VCC 2.7–3.6 V), driven straight from 1.8 V HSIO;
+  U1204 B5–B7 are unused (A5–A7 stay on adbsel0–2, so no input floats).
 - The Ethernet PHY (PEF7071) RGMII is on 3.3 V HVIO. That is **not possible on the N484**; the KSZ9031 goes on
   1.8 V HSIO instead.
 - It has a "FIX BUGS!" note at the J11 header and "check logic" at the mux; the bugs are not described in the PDF.

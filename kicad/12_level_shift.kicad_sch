@@ -1255,6 +1255,18 @@
 		(uuid "c5d28a84-85f2-5184-8608-b01be7a060ae")
 	)
 	(no_connect
+		(at 264.16 142.24)
+		(uuid "8fa3987b-b3ad-4579-955a-3e2ae1cf8932")
+	)
+	(no_connect
+		(at 264.16 144.78)
+		(uuid "fb6deea5-0e74-4cb9-a5dc-e3239ffffb0f")
+	)
+	(no_connect
+		(at 264.16 147.32)
+		(uuid "15ff2471-a577-4fd5-b8f2-c6288a8b1ab1")
+	)
+	(no_connect
 		(at 264.16 149.86)
 		(uuid "79caba33-42ff-5118-afeb-c74e33539acb")
 	)
@@ -2014,16 +2026,6 @@
 	)
 	(wire
 		(pts
-			(xy 264.16 147.32) (xy 271.78 147.32)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a268a63f-9e9e-540e-bce5-724ae69a9210")
-	)
-	(wire
-		(pts
 			(xy 243.84 127) (xy 238.76 127)
 		)
 		(stroke
@@ -2041,16 +2043,6 @@
 			(type default)
 		)
 		(uuid "a4555449-34eb-52a6-9dea-6934c37e9421")
-	)
-	(wire
-		(pts
-			(xy 264.16 142.24) (xy 271.78 142.24)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a47e0924-444a-5e42-9bb7-a917f38baa43")
 	)
 	(wire
 		(pts
@@ -2351,16 +2343,6 @@
 			(type default)
 		)
 		(uuid "eefae818-8f18-5698-80e8-6f5d83cf5040")
-	)
-	(wire
-		(pts
-			(xy 264.16 144.78) (xy 271.78 144.78)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f134c0dc-ca1f-5139-a539-e67ff23154ec")
 	)
 	(wire
 		(pts
@@ -2789,17 +2771,6 @@
 		)
 		(uuid "6085fbd9-4ce2-5a5c-a7cb-70231c15a680")
 	)
-	(hierarchical_label "adbsel1_3v3"
-		(shape output)
-		(at 271.78 144.78 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "6179e56e-9f98-5f22-badf-6a44e74eccbd")
-	)
 	(hierarchical_label "dab_pwm_lo_sec_3v3"
 		(shape output)
 		(at 106.68 142.24 0)
@@ -2810,17 +2781,6 @@
 			(justify left)
 		)
 		(uuid "63f55a33-973e-5d83-b333-bddf8e75fece")
-	)
-	(hierarchical_label "adbsel2_3v3"
-		(shape output)
-		(at 271.78 147.32 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "6e3b096e-5da3-58df-b28c-3caa66e245c1")
 	)
 	(hierarchical_label "dab_pwm_pri_lo_iso_3v3"
 		(shape output)
@@ -3118,17 +3078,6 @@
 			(justify left)
 		)
 		(uuid "e2420ce5-c85a-5341-be7a-0547b11a8204")
-	)
-	(hierarchical_label "adbsel0_3v3"
-		(shape output)
-		(at 271.78 142.24 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "e3fb2c16-8e6a-5621-a095-e5adb3cf6075")
 	)
 	(hierarchical_label "adasel2_iso"
 		(shape input)

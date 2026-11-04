@@ -145,7 +145,7 @@ minimum. Rest of the board unchanged (C528 moved 0.3 mm off a dq2 via). Details:
 | 10 emmc | done: THGAMVG7T13BAIL, CMD/DAT0-7/RST_n 47 k pull-ups to 1V8, DS 47 k pull-down, CLK 10 R, VCC 3V3, VCCQ 1V8, VDDi 2u2 |
 | 11 fpga_io | done: U501 bank units with labels from the pin plan |
 | 12 level_shift | done: 4 × SN74AXC8T245, OE pulled up (outputs disabled until the FPGA enables them) |
-| 13 adc | done. Front end from the **Agilex 3 card** (`~/dev/ti60f225_control_card`, design-notes "ADC front end for 2.5 MSPS"): SN74LV4051A (INH to GND, X0 = GND reference, rail monitors, isoada1..3 from J3 through OPA365 followers U1304–U1306, 1k + 1n C0G at their inputs, added 2026-10-31 because the baseboard now filters them with 8.2k + 4.7n/10n), then an OPA365 buffer, a 33 R + 680 p C0G kickback filter and an ADS7056. AVDD 4u7 + 100n, DVDD 1V8, 33 R SPI series. The Agilex 5 card's AD8603 was too slow and its INH was tied high |
+| 13 adc | done. Front end from the **Agilex 3 card** (`~/dev/ti60f225_control_card`, design-notes "ADC front end for 2.5 MSPS"): NX3L4051PW mux (was SN74LV4051A; since 2026-11-04 its 1.8 V-compatible selects come straight from the FPGA, no translator; INH/E to GND, X0 = GND reference, rail monitors, isoada1..3 from J3 through OPA365 followers U1304–U1306, 1k + 1n C0G at their inputs, added 2026-10-31 because the baseboard now filters them with 8.2k + 4.7n/10n), then an OPA365 buffer, a 33 R + 680 p C0G kickback filter and an ADS7056. AVDD 4u7 + 100n, DVDD 1V8, 33 R SPI series. The Agilex 5 card's AD8603 was too slow and its INH was tied high |
 | 14 connectors | done: J3 (baseboard J11) + 32 × 10 k pull-downs, J5 LCD, J2 UART |
 
 ERC shows two known, harmless notes and nothing else:

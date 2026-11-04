@@ -1424,7 +1424,7 @@
 		(layer "F.Cu")
 		(uuid "0a0a9dcd-33bc-4116-8cb7-7bb541c622c9")
 		(at 175.025 83.375)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R1002"
 			(at 0 -1.17 0)
@@ -1459,7 +1459,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -1592,7 +1592,7 @@
 				)
 			)
 		)
-		(property "Value" "SN74LV4051APWR"
+		(property "Value" "NX3L4051PW"
 			(at 0 3.45 90)
 			(layer "F.Fab")
 			(uuid "b60658a9-5353-4766-8197-d0ae5ca7360a")
@@ -1603,7 +1603,7 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.nxp.com.cn/docs/en/data-sheet/NX3L4051.pdf"
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -1614,7 +1614,7 @@
 				)
 			)
 		)
-		(property "Description" "CMOS single 8-channel analog multiplexer demultiplexer, TSSOP-16/DIP-16/SOIC-16"
+		(property "Description" "NXP NX3L4051PW,118 low-ohmic 8-channel analog switch, 1.4-4.3 V, 1.8 V select logic at VCC 3.3 V (VIH 1.3 V); pin 7 n.c. (VEE on the 4051 symbol)"
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -1625,7 +1625,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C7793"
+		(property "LCSC" "C2673441"
 			(at 0 0 90)
 			(layer "F.SilkS")
 			(hide yes)
@@ -1911,7 +1911,7 @@
 			(size 1.475 0.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net "/adbsel2_3v3")
+			(net "/adbsel2")
 			(pinfunction "C_9")
 			(pintype "input")
 			(uuid "0410de73-2a6a-489f-b289-8c52627e9348")
@@ -1921,7 +1921,7 @@
 			(size 1.475 0.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net "/adbsel1_3v3")
+			(net "/adbsel1")
 			(pinfunction "B_10")
 			(pintype "input")
 			(uuid "b139ed71-c013-4caf-b6de-0d4653d38248")
@@ -1931,7 +1931,7 @@
 			(size 1.475 0.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net "/adbsel0_3v3")
+			(net "/adbsel0")
 			(pinfunction "A_11")
 			(pintype "input")
 			(uuid "c7091152-4417-4bd9-a839-fa2daa2addb5")
@@ -6628,7 +6628,7 @@
 		(layer "F.Cu")
 		(uuid "2dc2c6c9-6fd0-44a2-aef2-31587c73fe8b")
 		(at 174.775 86.2)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R1006"
 			(at 0 -1.17 0)
@@ -6663,7 +6663,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -8051,7 +8051,7 @@
 		(layer "F.Cu")
 		(uuid "4accc4ab-f4de-44b4-b7fe-2b6bd4622da1")
 		(at 173.0315 92.9216 180)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R611"
 			(at 2.5 -1.795 0)
@@ -8086,7 +8086,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 180)
 			(layer "F.Fab")
 			(hide yes)
@@ -9909,7 +9909,7 @@
 		(layer "F.Cu")
 		(uuid "5844e593-0ff5-47e3-a853-919660471878")
 		(at 175.85 81.8)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R1001"
 			(at 1 3.745 90)
@@ -9944,7 +9944,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -12065,7 +12065,7 @@
 			(size 1.475 0.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net "/adbsel2_3v3")
+			(net "unconnected-(U1204-B7-Pad15)")
 			(pinfunction "B7_15")
 			(pintype "bidirectional")
 			(uuid "430c6714-c7a7-48cd-9bc2-85cf26314087")
@@ -12075,7 +12075,7 @@
 			(size 1.475 0.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net "/adbsel1_3v3")
+			(net "unconnected-(U1204-B6-Pad16)")
 			(pinfunction "B6_16")
 			(pintype "bidirectional")
 			(uuid "2bb5876e-82a8-4361-b13e-5d350a40f46b")
@@ -12085,7 +12085,7 @@
 			(size 1.475 0.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net "/adbsel0_3v3")
+			(net "unconnected-(U1204-B5-Pad17)")
 			(pinfunction "B5_17")
 			(pintype "bidirectional")
 			(uuid "6a142615-fd47-4a02-ac10-d53401c309dd")
@@ -12177,7 +12177,7 @@
 		(layer "F.Cu")
 		(uuid "6ad9dc8b-b412-4431-9037-c0c6610a4aab")
 		(at 167.09 91.571)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R612"
 			(at -1 3.145 90)
@@ -12212,7 +12212,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -12787,7 +12787,7 @@
 		(layer "F.Cu")
 		(uuid "6e83c8da-0084-43cb-8162-cfc1ecb85591")
 		(at 176.225 84.975)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R1004"
 			(at 0 -1.17 0)
@@ -12822,7 +12822,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -15441,7 +15441,7 @@
 		(layer "F.Cu")
 		(uuid "873f48e1-b61e-4e13-90b6-965ce86925e5")
 		(at 174.775 85.4)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R1003"
 			(at 0 -1.17 0)
@@ -15476,7 +15476,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -17497,7 +17497,7 @@
 		(layer "F.Cu")
 		(uuid "ad282e90-6ff7-401e-92c7-553314c83b1d")
 		(at 176.2 86.825)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R1007"
 			(at 0 -1.17 0)
@@ -17532,7 +17532,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -17810,7 +17810,7 @@
 		(layer "F.Cu")
 		(uuid "ae7f1517-b5a5-4c44-bd7d-bdf4b29bca4c")
 		(at 176.225 85.825)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R1005"
 			(at 0 -1.17 0)
@@ -17845,7 +17845,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -24316,7 +24316,7 @@
 		(layer "F.Cu")
 		(uuid "c16797bb-43fd-4ef8-ad25-23e09324f640")
 		(at 174.225 89.175)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R1022"
 			(at 0 -1.17 0)
@@ -24351,7 +24351,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -25884,7 +25884,7 @@
 		(layer "F.Cu")
 		(uuid "dda043fd-f84d-4072-b31b-99bf5ab49e15")
 		(at 174.4 88.5)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R1009"
 			(at 0 -1.17 0)
@@ -25919,7 +25919,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -26630,7 +26630,7 @@
 		(layer "F.Cu")
 		(uuid "e64354b4-4aef-4cd6-8d61-e6fc3ba2760c")
 		(at 174.8 84.5)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R1021"
 			(at 0 -1.17 0)
@@ -26665,7 +26665,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -26943,7 +26943,7 @@
 		(layer "F.Cu")
 		(uuid "eb657ca9-8eba-41e0-81bb-0d8f2e7c3298")
 		(at 174.0485 91.8622)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R616"
 			(at 1.75 -2.045 0)
@@ -26978,7 +26978,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -27415,7 +27415,7 @@
 		(layer "F.Cu")
 		(uuid "f01e6284-b61a-46a4-9aa7-5050ac0840f7")
 		(at 174.775 87.45)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R1008"
 			(at 0 -1.17 0)
@@ -27450,7 +27450,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -29820,7 +29820,7 @@
 		(layer "B.Cu")
 		(uuid "0d8f6a66-6dda-4ee0-b7c5-758bda564c8c")
 		(at 198.75 90.525 90)
-		(descr "Capacitor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Unpolarized capacitor")
 		(tags "capacitor")
 		(property "Reference" "C1005"
 			(at 1.735 0 180)
@@ -29858,7 +29858,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Unpolarized capacitor"
 			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
@@ -30617,7 +30617,7 @@
 		(layer "B.Cu")
 		(uuid "12328476-511b-4e64-8b49-c9d6d182ac22")
 		(at 190.55 87.755)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R1018"
 			(at 3.505 0 90)
@@ -30655,7 +30655,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -30942,7 +30942,7 @@
 		(layer "B.Cu")
 		(uuid "1483dc68-67f1-40fb-9147-eead849513ab")
 		(at 190.545 93.454998)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R1015"
 			(at 4.705 0.25 0)
@@ -30980,7 +30980,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -31588,7 +31588,7 @@
 		(layer "B.Cu")
 		(uuid "173f81fb-e421-4700-987e-b5490415529d")
 		(at 190.55 88.805)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R1013"
 			(at 1.5 -3.745 90)
@@ -31626,7 +31626,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -31907,7 +31907,7 @@
 		(layer "B.Cu")
 		(uuid "174d57ba-3c03-40c7-9abe-09093dc0b221")
 		(at 189.95 76.4 -90)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R619"
 			(at 1.5 1.295 90)
@@ -31945,7 +31945,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 90)
 			(layer "B.Fab")
 			(hide yes)
@@ -32703,7 +32703,7 @@
 		(layer "B.Cu")
 		(uuid "1ab07c68-9ec6-4a79-9616-5c1630d5f9fd")
 		(at 198.2 88.48 90)
-		(descr "Capacitor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Unpolarized capacitor")
 		(tags "capacitor")
 		(property "Reference" "C1006"
 			(at 1.735 2.5 180)
@@ -32741,7 +32741,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Unpolarized capacitor"
 			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
@@ -37569,7 +37569,7 @@
 		(layer "B.Cu")
 		(uuid "2cea1408-30ca-4da0-a2be-cb6719a7bc16")
 		(at 202.27 81.175)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R628"
 			(at 0 1.17 0)
@@ -37607,7 +37607,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -38616,7 +38616,7 @@
 		(layer "B.Cu")
 		(uuid "2e42e50e-c7c2-4af0-88a9-29b2afa80a5d")
 		(at 190.55 89.855)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R1012"
 			(at -3.005 -1.5 270)
@@ -38654,7 +38654,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -39828,7 +39828,7 @@
 		(layer "B.Cu")
 		(uuid "320be038-35b9-4fbf-b46b-754ad67df4c2")
 		(at 190.63 81.175)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R624"
 			(at 0 1.17 0)
@@ -39866,7 +39866,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -40953,7 +40953,7 @@
 		(layer "B.Cu")
 		(uuid "36ed1dab-c5e7-4bf0-b633-2d598437e91f")
 		(at 178.85 83.9 180)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R1010"
 			(at 0 1.17 0)
@@ -40992,7 +40992,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 0)
 			(layer "B.Fab")
 			(hide yes)
@@ -42399,7 +42399,7 @@
 		(layer "B.Cu")
 		(uuid "3ee5c9c7-2983-46b2-aaa1-d23dd948d1bd")
 		(at 192.97 88.485 -90)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R1017"
 			(at -1 3.745 180)
@@ -42437,7 +42437,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 90)
 			(layer "B.Fab")
 			(hide yes)
@@ -44662,7 +44662,7 @@
 		(layer "B.Cu")
 		(uuid "4801de99-4a08-47fc-bcc0-7563e4054adf")
 		(at 193.086 97.254 90)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R609"
 			(at -3.605 0 270)
@@ -44700,7 +44700,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
@@ -47960,7 +47960,7 @@
 		(layer "B.Cu")
 		(uuid "5408842b-a957-49ae-8c18-fd4232767b2d")
 		(at 199.379999 89.48 90)
-		(descr "Capacitor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Unpolarized capacitor")
 		(tags "capacitor")
 		(property "Reference" "C1004"
 			(at -1.5 -3.735 0)
@@ -47998,7 +47998,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Unpolarized capacitor"
 			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
@@ -50186,7 +50186,7 @@
 		(layer "B.Cu")
 		(uuid "61aa9418-3405-4000-b978-214f9dc25719")
 		(at 193.05 74.765001 -90)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R618"
 			(at 0.75 -2.295 270)
@@ -50224,7 +50224,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 90)
 			(layer "B.Fab")
 			(hide yes)
@@ -52185,7 +52185,7 @@
 		(layer "B.Cu")
 		(uuid "6a9ebbf9-7ba6-44d9-a315-985fe6eac5c7")
 		(at 193.54 81.175)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R625"
 			(at 0 1.17 0)
@@ -52223,7 +52223,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -53144,7 +53144,7 @@
 		(layer "B.Cu")
 		(uuid "70e4a20d-a4f9-4e76-ac0e-31ebaad80683")
 		(at 187.72 81.175)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R623"
 			(at 0 1.17 0)
@@ -53182,7 +53182,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -54278,7 +54278,7 @@
 		(layer "B.Cu")
 		(uuid "75ba1232-dac6-4825-a4dd-769ab09d138d")
 		(at 152.8711 91.8171)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R605"
 			(at -5.605 -0.75 0)
@@ -54316,7 +54316,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -54965,7 +54965,7 @@
 		(layer "B.Cu")
 		(uuid "776c30c6-62b2-48ed-9151-f82b629b2feb")
 		(at 190.55 90.904999)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R1011"
 			(at -3.755 0 270)
@@ -55003,7 +55003,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -56097,7 +56097,7 @@
 		(layer "B.Cu")
 		(uuid "7c1da82d-72f0-43e0-9ba7-b96e56299b4a")
 		(at 176.9 83.85 180)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R613"
 			(at -2.755 2.25 90)
@@ -56135,7 +56135,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 0)
 			(layer "B.Fab")
 			(hide yes)
@@ -56587,7 +56587,7 @@
 		(layer "B.Cu")
 		(uuid "7fd34587-dec0-4ebb-a66b-770bb845c50c")
 		(at 189.756 97.254 90)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R608"
 			(at -3.605 0 90)
@@ -56625,7 +56625,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
@@ -57228,7 +57228,7 @@
 		(layer "B.Cu")
 		(uuid "846e41c3-f7d5-4084-b1f1-da885d09201f")
 		(at 196.45 81.175)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R626"
 			(at 0 1.17 0)
@@ -57266,7 +57266,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -58010,7 +58010,7 @@
 		(layer "B.Cu")
 		(uuid "878f58ce-9b32-4fd0-b83d-61745dd09d30")
 		(at 152.8711 92.9771)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R606"
 			(at 3.605 1 0)
@@ -58048,7 +58048,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -58336,7 +58336,7 @@
 		(layer "B.Cu")
 		(uuid "8982c054-ab68-42f1-b89e-dfcd2777eeb1")
 		(at 199.36 81.175)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R627"
 			(at 0 1.17 0)
@@ -58374,7 +58374,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -58818,7 +58818,7 @@
 		(layer "B.Cu")
 		(uuid "8c5f18c1-2074-449b-9c8f-a7879af00470")
 		(at 191.975 75.765001 -90)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R617"
 			(at 0 1.17 270)
@@ -58857,7 +58857,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 90)
 			(layer "B.Fab")
 			(hide yes)
@@ -61894,7 +61894,7 @@
 		(layer "B.Cu")
 		(uuid "97348a92-1dc6-4e73-8afd-173b13581d21")
 		(at 197.15 88.479999 -90)
-		(descr "Capacitor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Unpolarized capacitor")
 		(tags "capacitor")
 		(property "Reference" "C1003"
 			(at 4.185 0 90)
@@ -61932,7 +61932,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Unpolarized capacitor"
 			(at 0 0 90)
 			(layer "B.Fab")
 			(hide yes)
@@ -62862,7 +62862,7 @@
 		(layer "B.Cu")
 		(uuid "9aa8e8ef-d17f-45d2-8d58-9abaf152c78b")
 		(at 196.125 90.55 90)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R1019"
 			(at 4.205 -0.25 90)
@@ -62900,7 +62900,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
@@ -67751,7 +67751,7 @@
 		(layer "B.Cu")
 		(uuid "b8df15a5-cf32-4dc5-a77f-d5216b6ee7c0")
 		(at 194.225 88.1 -90)
-		(descr "Capacitor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Unpolarized capacitor")
 		(tags "capacitor")
 		(property "Reference" "C1002"
 			(at 0.5 2.285 90)
@@ -67789,7 +67789,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Unpolarized capacitor"
 			(at 0 0 90)
 			(layer "B.Fab")
 			(hide yes)
@@ -68233,7 +68233,7 @@
 		(layer "B.Cu")
 		(uuid "ba825de9-1d56-4919-8b49-88e382bc09db")
 		(at 193.025 91.175 90)
-		(descr "Capacitor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Unpolarized capacitor")
 		(tags "capacitor")
 		(property "Reference" "C1007"
 			(at 4.185 0.5 90)
@@ -68271,7 +68271,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Unpolarized capacitor"
 			(at 0 0 90)
 			(layer "B.Fab")
 			(hide yes)
@@ -68716,7 +68716,7 @@
 		(layer "B.Cu")
 		(uuid "bdf90767-6cb2-4b29-9124-cba8507ec4d7")
 		(at 172.15 84.15 -90)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R614"
 			(at 1.755 -2.25 0)
@@ -68754,7 +68754,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 90)
 			(layer "B.Fab")
 			(hide yes)
@@ -69683,7 +69683,7 @@
 		(layer "B.Cu")
 		(uuid "c274b587-5287-4eb5-9f65-4ac89dba99e3")
 		(at 195.35 87.046 180)
-		(descr "Capacitor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Unpolarized capacitor")
 		(tags "capacitor")
 		(property "Reference" "C1001"
 			(at 4.185 0.25 180)
@@ -69721,7 +69721,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Unpolarized capacitor"
 			(at 0 0 0)
 			(layer "B.Fab")
 			(hide yes)
@@ -71143,7 +71143,7 @@
 		(layer "B.Cu")
 		(uuid "c9baf242-291b-4746-9a2b-1ff7c1fee73b")
 		(at 194.6 89.33 180)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R1020"
 			(at 0.25 -4.245 270)
@@ -71181,7 +71181,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 0)
 			(layer "B.Fab")
 			(hide yes)
@@ -71619,7 +71619,7 @@
 		(layer "B.Cu")
 		(uuid "cbab0119-2c1e-46c3-8ac7-76623447fc8c")
 		(at 192.006 97.254 90)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R610"
 			(at 0 3.145 180)
@@ -71657,7 +71657,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
@@ -72831,7 +72831,7 @@
 		(layer "B.Cu")
 		(uuid "d377b700-a109-4d80-aa2e-2e687f880059")
 		(at 190.886 97.254 90)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R607"
 			(at 3.605 0 90)
@@ -72869,7 +72869,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
@@ -73156,7 +73156,7 @@
 		(layer "B.Cu")
 		(uuid "d5ed8bff-b863-4f68-b5d9-5514f6369d69")
 		(at 174.3 83.15 90)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R622"
 			(at 0 1.17 270)
@@ -73194,7 +73194,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
@@ -73318,7 +73318,7 @@
 		(layer "B.Cu")
 		(uuid "d60ed892-4b11-4474-832e-d41d7d2f4d31")
 		(at 176.875 91.775)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R1014"
 			(at -4.205 0.25 180)
@@ -73356,7 +73356,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -75900,7 +75900,7 @@
 		(layer "B.Cu")
 		(uuid "e20aecfa-aaf0-4ab0-a86a-7ac15d4378ca")
 		(at 175.525 90.3 90)
-		(descr "Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Resistor")
 		(tags "resistor")
 		(property "Reference" "R1016"
 			(at 0 3.745 0)
@@ -75938,7 +75938,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
@@ -76707,7 +76707,7 @@
 		(layer "B.Cu")
 		(uuid "e539dd05-1525-4c79-882d-dd83ec0bb925")
 		(at 190.975 77.325 -90)
-		(descr "Capacitor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(descr "Unpolarized capacitor")
 		(tags "capacitor")
 		(property "Reference" "C615"
 			(at 2.75 3.285 90)
@@ -76745,7 +76745,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Unpolarized capacitor"
 			(at 0 0 90)
 			(layer "B.Fab")
 			(hide yes)
@@ -86109,6 +86109,78 @@
 		(uuid "44d1a37a-7402-4b03-96ff-a7b0660f96b3")
 	)
 	(segment
+		(start 173.574999 83.375)
+		(end 174.705 83.375)
+		(width 0.1)
+		(layer "F.Cu")
+		(net "/emmc_cmd")
+		(uuid "6b727fa6-c017-4e70-84f0-1e1cb84e5f38")
+	)
+	(segment
+		(start 173.45 83.399999)
+		(end 173.55 83.399999)
+		(width 0.1)
+		(layer "F.Cu")
+		(net "/emmc_cmd")
+		(uuid "7d61398f-2bef-43a2-97bd-d62a23feb24a")
+	)
+	(segment
+		(start 171.6 83.8)
+		(end 172 83.399999)
+		(width 0.1)
+		(layer "F.Cu")
+		(net "/emmc_cmd")
+		(uuid "a28aaa73-6ba7-4824-b439-a13592a2dc3b")
+	)
+	(segment
+		(start 172 83.399999)
+		(end 173.45 83.399999)
+		(width 0.1)
+		(layer "F.Cu")
+		(net "/emmc_cmd")
+		(uuid "dd3c64f9-3a4b-4e09-9d91-bec22a156693")
+	)
+	(segment
+		(start 173.55 83.399999)
+		(end 173.574999 83.375)
+		(width 0.1)
+		(layer "F.Cu")
+		(net "/emmc_cmd")
+		(uuid "e057bd5a-c42e-415e-981c-adafb4e3dafb")
+	)
+	(segment
+		(start 173.45 83.399999)
+		(end 173.6 83.399999)
+		(width 0.1)
+		(layer "F.Cu")
+		(net "/emmc_cmd")
+		(uuid "eaae7b5d-ce88-467f-8f8c-ab3a0cb3a7a0")
+	)
+	(via
+		(at 171.6 83.8)
+		(size 0.3)
+		(drill 0.15)
+		(layers "F.Cu" "B.Cu")
+		(net "/emmc_cmd")
+		(uuid "4a8bc73c-4c0b-4fd6-98eb-96eb0ca6bd22")
+	)
+	(via
+		(at 197.1 90.18)
+		(size 0.3)
+		(drill 0.15)
+		(layers "F.Cu" "B.Cu")
+		(net "/10 emmc/emmc_cmd_r")
+		(uuid "3153837c-e4f5-45ff-86c7-c512cef0b111")
+	)
+	(via
+		(at 175.345 83.375)
+		(size 0.3)
+		(drill 0.15)
+		(layers "F.Cu" "B.Cu")
+		(net "/10 emmc/emmc_cmd_r")
+		(uuid "3f322712-78a1-4af5-933a-14a818ae8761")
+	)
+	(segment
 		(start 138.575 97.85)
 		(end 138.575 96.2)
 		(width 0.2)
@@ -86355,6 +86427,142 @@
 		(layer "B.Cu")
 		(net "/13 adc/isoada1_buf")
 		(uuid "c7f6a1d9-8da9-4d31-87af-07b6bde8e206")
+	)
+	(via
+		(at 160.4 82.2)
+		(size 0.3)
+		(drill 0.15)
+		(layers "F.Cu" "B.Cu")
+		(net "/adbsel2")
+		(uuid "f7e96343-190f-4d45-a860-fd43d59b25bf")
+	)
+	(segment
+		(start 159.1 83.924265)
+		(end 158.849265 84.175)
+		(width 0.1)
+		(layer "In5.Cu")
+		(net "/adbsel2")
+		(uuid "0d9a0b94-4b26-4dcb-b0db-c9d736531a99")
+	)
+	(segment
+		(start 160.4 82.2)
+		(end 160.05 82.55)
+		(width 0.1)
+		(layer "In5.Cu")
+		(net "/adbsel2")
+		(uuid "266bf620-a857-498c-b128-832d14e0a21b")
+	)
+	(segment
+		(start 159.5 83.475)
+		(end 159.1 83.875)
+		(width 0.1)
+		(layer "In5.Cu")
+		(net "/adbsel2")
+		(uuid "30280877-3022-458a-867f-8b41e39ff170")
+	)
+	(segment
+		(start 159.1 83.875)
+		(end 159.1 83.924265)
+		(width 0.1)
+		(layer "In5.Cu")
+		(net "/adbsel2")
+		(uuid "41117c9e-dd73-4abb-9036-94e6147b9297")
+	)
+	(segment
+		(start 160.05 82.55)
+		(end 160.05 82.974265)
+		(width 0.1)
+		(layer "In5.Cu")
+		(net "/adbsel2")
+		(uuid "8d02d273-1048-4dcf-b206-2b44497acc22")
+	)
+	(segment
+		(start 158.849265 84.175)
+		(end 155.35 84.175)
+		(width 0.1)
+		(layer "In5.Cu")
+		(net "/adbsel2")
+		(uuid "f38142d8-cff7-4dcd-82ab-5ad01778ac2a")
+	)
+	(segment
+		(start 159.549265 83.475)
+		(end 159.5 83.475)
+		(width 0.1)
+		(layer "In5.Cu")
+		(net "/adbsel2")
+		(uuid "f8757a11-bb83-4e60-a7f8-33bfd5ade392")
+	)
+	(segment
+		(start 160.05 82.974265)
+		(end 159.549265 83.475)
+		(width 0.1)
+		(layer "In5.Cu")
+		(net "/adbsel2")
+		(uuid "f9237058-4f4f-4f99-add6-f2b2730b7283")
+	)
+	(segment
+		(start 158 82.2)
+		(end 157.625 82.575)
+		(width 0.1)
+		(layer "F.Cu")
+		(net "/adbsel1")
+		(uuid "88b286c3-045a-4799-b8bd-83eab30a320d")
+	)
+	(segment
+		(start 154.8 82.575)
+		(end 154.525 82.85)
+		(width 0.1)
+		(layer "F.Cu")
+		(net "/adbsel1")
+		(uuid "999f260b-bbc3-4162-828e-c89ff15234b1")
+	)
+	(segment
+		(start 157.625 82.575)
+		(end 154.8 82.575)
+		(width 0.1)
+		(layer "F.Cu")
+		(net "/adbsel1")
+		(uuid "a89e245c-c975-494b-ba88-4d0629669454")
+	)
+	(via
+		(at 158 82.2)
+		(size 0.3)
+		(drill 0.15)
+		(layers "F.Cu" "B.Cu")
+		(net "/adbsel1")
+		(uuid "9a068381-f597-42ff-8776-f962aba4d398")
+	)
+	(segment
+		(start 157.575 83.425)
+		(end 154.875 83.425)
+		(width 0.1)
+		(layer "F.Cu")
+		(net "/adbsel0")
+		(uuid "062ca572-1179-41ba-8859-c8f9daa1dc1f")
+	)
+	(segment
+		(start 154.875 83.425)
+		(end 154.625 83.675)
+		(width 0.1)
+		(layer "F.Cu")
+		(net "/adbsel0")
+		(uuid "346315e1-9aa1-4552-948f-a281a3ac343c")
+	)
+	(segment
+		(start 158 83)
+		(end 157.575 83.425)
+		(width 0.1)
+		(layer "F.Cu")
+		(net "/adbsel0")
+		(uuid "5c1e9345-6d3a-451e-9d34-6d2594d50271")
+	)
+	(via
+		(at 158 83)
+		(size 0.3)
+		(drill 0.15)
+		(layers "F.Cu" "B.Cu")
+		(net "/adbsel0")
+		(uuid "576f1865-745c-4377-9917-c52a0cc14339")
 	)
 	(via
 		(at 166 74.2)
@@ -110645,60 +110853,52 @@
 		(uuid "dc8bcd3d-5917-4521-b32b-48be6c445be3")
 	)
 	(segment
-		(start 173.574999 83.375)
-		(end 174.705 83.375)
+		(start 173.525 86.199999)
+		(end 173.6 86.199999)
 		(width 0.1)
 		(layer "F.Cu")
-		(net "/emmc_cmd")
-		(uuid "6b727fa6-c017-4e70-84f0-1e1cb84e5f38")
+		(net "/emmc_dat3")
+		(uuid "0976d157-7bef-4cc4-b115-b25a67fe68ec")
 	)
 	(segment
-		(start 173.45 83.399999)
-		(end 173.55 83.399999)
+		(start 173.525 86.199999)
+		(end 174.455 86.2)
 		(width 0.1)
 		(layer "F.Cu")
-		(net "/emmc_cmd")
-		(uuid "7d61398f-2bef-43a2-97bd-d62a23feb24a")
+		(net "/emmc_dat3")
+		(uuid "17b30208-6fa1-4cc3-84c2-b007728941a9")
 	)
 	(segment
-		(start 171.6 83.8)
-		(end 172 83.399999)
+		(start 172.4 86.2)
+		(end 173.525 86.199999)
 		(width 0.1)
 		(layer "F.Cu")
-		(net "/emmc_cmd")
-		(uuid "a28aaa73-6ba7-4824-b439-a13592a2dc3b")
-	)
-	(segment
-		(start 172 83.399999)
-		(end 173.45 83.399999)
-		(width 0.1)
-		(layer "F.Cu")
-		(net "/emmc_cmd")
-		(uuid "dd3c64f9-3a4b-4e09-9d91-bec22a156693")
-	)
-	(segment
-		(start 173.55 83.399999)
-		(end 173.574999 83.375)
-		(width 0.1)
-		(layer "F.Cu")
-		(net "/emmc_cmd")
-		(uuid "e057bd5a-c42e-415e-981c-adafb4e3dafb")
-	)
-	(segment
-		(start 173.45 83.399999)
-		(end 173.6 83.399999)
-		(width 0.1)
-		(layer "F.Cu")
-		(net "/emmc_cmd")
-		(uuid "eaae7b5d-ce88-467f-8f8c-ab3a0cb3a7a0")
+		(net "/emmc_dat3")
+		(uuid "f3330132-b5db-4f6b-853f-f109d2f457d2")
 	)
 	(via
-		(at 171.6 83.8)
+		(at 172.4 86.2)
 		(size 0.3)
 		(drill 0.15)
 		(layers "F.Cu" "B.Cu")
-		(net "/emmc_cmd")
-		(uuid "4a8bc73c-4c0b-4fd6-98eb-96eb0ca6bd22")
+		(net "/emmc_dat3")
+		(uuid "fb233509-8a47-45a3-9ecd-d266c32af077")
+	)
+	(via
+		(at 192.1 91.68)
+		(size 0.3)
+		(drill 0.15)
+		(layers "F.Cu" "B.Cu")
+		(net "/10 emmc/emmc_dat3_r")
+		(uuid "33f0c8ca-8f3c-435f-affa-a26019a0bf54")
+	)
+	(via
+		(at 175.095 86.2)
+		(size 0.3)
+		(drill 0.15)
+		(layers "F.Cu" "B.Cu")
+		(net "/10 emmc/emmc_dat3_r")
+		(uuid "4af21009-74a0-4054-910c-21a3e62bc0e1")
 	)
 	(via
 		(at 171.6 79.8)
@@ -110723,14 +110923,6 @@
 		(layer "In2.Cu")
 		(net "/rgmii_rx_ctl")
 		(uuid "a23755ec-82d8-4d6b-89c3-1f9f4768bfea")
-	)
-	(via
-		(at 166.8 84.6)
-		(size 0.3)
-		(drill 0.15)
-		(layers "F.Cu" "B.Cu")
-		(net "/05 fpga_power/vcca_br")
-		(uuid "cc27b52b-95d6-457e-94b1-19d620afc134")
 	)
 	(via
 		(at 171.6 89.4)
@@ -112324,142 +112516,6 @@
 		(net "/pwm_q7")
 		(uuid "ccb72308-7fee-4790-960d-e55cbf9b2680")
 	)
-	(segment
-		(start 157.575 83.425)
-		(end 154.875 83.425)
-		(width 0.1)
-		(layer "F.Cu")
-		(net "/adbsel0")
-		(uuid "062ca572-1179-41ba-8859-c8f9daa1dc1f")
-	)
-	(segment
-		(start 154.875 83.425)
-		(end 154.625 83.675)
-		(width 0.1)
-		(layer "F.Cu")
-		(net "/adbsel0")
-		(uuid "346315e1-9aa1-4552-948f-a281a3ac343c")
-	)
-	(segment
-		(start 158 83)
-		(end 157.575 83.425)
-		(width 0.1)
-		(layer "F.Cu")
-		(net "/adbsel0")
-		(uuid "5c1e9345-6d3a-451e-9d34-6d2594d50271")
-	)
-	(via
-		(at 158 83)
-		(size 0.3)
-		(drill 0.15)
-		(layers "F.Cu" "B.Cu")
-		(net "/adbsel0")
-		(uuid "576f1865-745c-4377-9917-c52a0cc14339")
-	)
-	(segment
-		(start 158 82.2)
-		(end 157.625 82.575)
-		(width 0.1)
-		(layer "F.Cu")
-		(net "/adbsel1")
-		(uuid "88b286c3-045a-4799-b8bd-83eab30a320d")
-	)
-	(segment
-		(start 154.8 82.575)
-		(end 154.525 82.85)
-		(width 0.1)
-		(layer "F.Cu")
-		(net "/adbsel1")
-		(uuid "999f260b-bbc3-4162-828e-c89ff15234b1")
-	)
-	(segment
-		(start 157.625 82.575)
-		(end 154.8 82.575)
-		(width 0.1)
-		(layer "F.Cu")
-		(net "/adbsel1")
-		(uuid "a89e245c-c975-494b-ba88-4d0629669454")
-	)
-	(via
-		(at 158 82.2)
-		(size 0.3)
-		(drill 0.15)
-		(layers "F.Cu" "B.Cu")
-		(net "/adbsel1")
-		(uuid "9a068381-f597-42ff-8776-f962aba4d398")
-	)
-	(via
-		(at 160.4 82.2)
-		(size 0.3)
-		(drill 0.15)
-		(layers "F.Cu" "B.Cu")
-		(net "/adbsel2")
-		(uuid "f7e96343-190f-4d45-a860-fd43d59b25bf")
-	)
-	(segment
-		(start 159.1 83.924265)
-		(end 158.849265 84.175)
-		(width 0.1)
-		(layer "In5.Cu")
-		(net "/adbsel2")
-		(uuid "0d9a0b94-4b26-4dcb-b0db-c9d736531a99")
-	)
-	(segment
-		(start 160.4 82.2)
-		(end 160.05 82.55)
-		(width 0.1)
-		(layer "In5.Cu")
-		(net "/adbsel2")
-		(uuid "266bf620-a857-498c-b128-832d14e0a21b")
-	)
-	(segment
-		(start 159.5 83.475)
-		(end 159.1 83.875)
-		(width 0.1)
-		(layer "In5.Cu")
-		(net "/adbsel2")
-		(uuid "30280877-3022-458a-867f-8b41e39ff170")
-	)
-	(segment
-		(start 159.1 83.875)
-		(end 159.1 83.924265)
-		(width 0.1)
-		(layer "In5.Cu")
-		(net "/adbsel2")
-		(uuid "41117c9e-dd73-4abb-9036-94e6147b9297")
-	)
-	(segment
-		(start 160.05 82.55)
-		(end 160.05 82.974265)
-		(width 0.1)
-		(layer "In5.Cu")
-		(net "/adbsel2")
-		(uuid "8d02d273-1048-4dcf-b206-2b44497acc22")
-	)
-	(segment
-		(start 158.849265 84.175)
-		(end 155.35 84.175)
-		(width 0.1)
-		(layer "In5.Cu")
-		(net "/adbsel2")
-		(uuid "f38142d8-cff7-4dcd-82ab-5ad01778ac2a")
-	)
-	(segment
-		(start 159.549265 83.475)
-		(end 159.5 83.475)
-		(width 0.1)
-		(layer "In5.Cu")
-		(net "/adbsel2")
-		(uuid "f8757a11-bb83-4e60-a7f8-33bfd5ade392")
-	)
-	(segment
-		(start 160.05 82.974265)
-		(end 159.549265 83.475)
-		(width 0.1)
-		(layer "In5.Cu")
-		(net "/adbsel2")
-		(uuid "f9237058-4f4f-4f99-add6-f2b2730b7283")
-	)
 	(via
 		(at 167.6 81.4)
 		(size 0.3)
@@ -112548,6 +112604,62 @@
 		(net "/05 fpga_power/vcca_bl")
 		(uuid "d399b98c-21ae-4674-8890-a0f88620d537")
 	)
+	(segment
+		(start 175.905 84.975)
+		(end 172.025 84.975)
+		(width 0.1)
+		(layer "F.Cu")
+		(net "/emmc_dat1")
+		(uuid "82f5006a-9aed-442b-b12f-d85281e6678e")
+	)
+	(segment
+		(start 172.025 84.975)
+		(end 171.6 85.4)
+		(width 0.1)
+		(layer "F.Cu")
+		(net "/emmc_dat1")
+		(uuid "aa661c7a-a42c-4e6c-91eb-34c0e53481fd")
+	)
+	(via
+		(at 171.6 85.4)
+		(size 0.3)
+		(drill 0.15)
+		(layers "F.Cu" "B.Cu")
+		(net "/emmc_dat1")
+		(uuid "d9e62599-e629-40f6-b075-2c7213865c1e")
+	)
+	(segment
+		(start 171.6 85.4)
+		(end 172 85)
+		(width 0.1)
+		(layer "In5.Cu")
+		(net "/emmc_dat1")
+		(uuid "74342d1e-27bb-48a1-9d10-317c03f133f5")
+	)
+	(segment
+		(start 172 85)
+		(end 173.6 85)
+		(width 0.1)
+		(layer "In5.Cu")
+		(net "/emmc_dat1")
+		(uuid "86e9d64c-2304-42ad-8436-3cb681ebf0b5")
+	)
+	(via
+		(at 176.545 84.975)
+		(size 0.3)
+		(drill 0.15)
+		(layers "F.Cu" "B.Cu")
+		(net "/10 emmc/emmc_dat1_r")
+		(uuid "7b337e9b-794b-4f7f-9da8-b25d786506eb")
+	)
+	(via
+		(at 191.6 90.68)
+		(size 0.3)
+		(drill 0.15)
+		(layers "F.Cu" "B.Cu")
+		(net "/10 emmc/emmc_dat1_r")
+		(uuid "a014ee98-9ee2-4bea-ae3a-3b107b83cc65")
+	)
 	(via
 		(at 167.6 80.6)
 		(size 0.3)
@@ -112589,22 +112701,6 @@
 		(uuid "bc0a789c-e7ea-431f-8c88-3137f7b7e962")
 	)
 	(via
-		(at 176.545 84.975)
-		(size 0.3)
-		(drill 0.15)
-		(layers "F.Cu" "B.Cu")
-		(net "/10 emmc/emmc_dat1_r")
-		(uuid "7b337e9b-794b-4f7f-9da8-b25d786506eb")
-	)
-	(via
-		(at 191.6 90.68)
-		(size 0.3)
-		(drill 0.15)
-		(layers "F.Cu" "B.Cu")
-		(net "/10 emmc/emmc_dat1_r")
-		(uuid "a014ee98-9ee2-4bea-ae3a-3b107b83cc65")
-	)
-	(via
 		(at 176.545 85.825)
 		(size 0.3)
 		(drill 0.15)
@@ -112619,22 +112715,6 @@
 		(layers "F.Cu" "B.Cu")
 		(net "/10 emmc/emmc_dat2_r")
 		(uuid "abf9fa93-d44b-44ed-86fa-aa7271f3fbc7")
-	)
-	(via
-		(at 192.1 91.68)
-		(size 0.3)
-		(drill 0.15)
-		(layers "F.Cu" "B.Cu")
-		(net "/10 emmc/emmc_dat3_r")
-		(uuid "33f0c8ca-8f3c-435f-affa-a26019a0bf54")
-	)
-	(via
-		(at 175.095 86.2)
-		(size 0.3)
-		(drill 0.15)
-		(layers "F.Cu" "B.Cu")
-		(net "/10 emmc/emmc_dat3_r")
-		(uuid "4af21009-74a0-4054-910c-21a3e62bc0e1")
 	)
 	(via
 		(at 192.1 91.18)
@@ -112747,22 +112827,6 @@
 		(layers "F.Cu" "B.Cu")
 		(net "/emmc_rst_n")
 		(uuid "dda4c743-a821-4965-9e6d-17d5da2017a1")
-	)
-	(via
-		(at 197.1 90.18)
-		(size 0.3)
-		(drill 0.15)
-		(layers "F.Cu" "B.Cu")
-		(net "/10 emmc/emmc_cmd_r")
-		(uuid "3153837c-e4f5-45ff-86c7-c512cef0b111")
-	)
-	(via
-		(at 175.345 83.375)
-		(size 0.3)
-		(drill 0.15)
-		(layers "F.Cu" "B.Cu")
-		(net "/10 emmc/emmc_cmd_r")
-		(uuid "3f322712-78a1-4af5-933a-14a818ae8761")
 	)
 	(segment
 		(start 166.4 84.199999)
@@ -113653,20 +113717,36 @@
 		(uuid "239e02d8-12e5-44f4-b263-1c22bc8f18e9")
 	)
 	(segment
-		(start 172.4 83)
-		(end 173.6 83)
+		(start 172.4 85.4)
+		(end 173.3 85.399999)
 		(width 0.1)
 		(layer "F.Cu")
-		(net "/fpga_cbsel0")
-		(uuid "015df86e-9bd7-4612-b630-8b5d7acdb4c3")
+		(net "/emmc_dat0")
+		(uuid "0170adc8-244d-4337-ac60-efba0dcdd005")
+	)
+	(segment
+		(start 173.3 85.399999)
+		(end 173.6 85.399999)
+		(width 0.1)
+		(layer "F.Cu")
+		(net "/emmc_dat0")
+		(uuid "0ad60d5d-3d66-423b-9c49-88581750fd89")
+	)
+	(segment
+		(start 173.3 85.399999)
+		(end 174.455 85.4)
+		(width 0.1)
+		(layer "F.Cu")
+		(net "/emmc_dat0")
+		(uuid "e328a72c-1b5d-4187-aef7-670494d33d0e")
 	)
 	(via
-		(at 172.4 83)
+		(at 172.4 85.4)
 		(size 0.3)
 		(drill 0.15)
 		(layers "F.Cu" "B.Cu")
-		(net "/fpga_cbsel0")
-		(uuid "6cf08449-457b-4d84-a6b2-c9bc56af95cb")
+		(net "/emmc_dat0")
+		(uuid "81b5231e-384d-4436-9d31-0a017e76b4ab")
 	)
 	(segment
 		(start 158 81.4)
@@ -113723,6 +113803,94 @@
 		(layers "F.Cu" "B.Cu")
 		(net "/refclk_bl0")
 		(uuid "00eb33bd-c440-4bfb-87b7-4ffc88c9982d")
+	)
+	(segment
+		(start 171.6 86.2)
+		(end 171.95 86.55)
+		(width 0.1)
+		(layer "F.Cu")
+		(net "/emmc_dat4")
+		(uuid "80e650f4-aab3-479b-abf8-5994eab781c1")
+	)
+	(segment
+		(start 175.605 86.55)
+		(end 175.88 86.825)
+		(width 0.1)
+		(layer "F.Cu")
+		(net "/emmc_dat4")
+		(uuid "8c5c0407-d81b-4e9a-b7f3-eae8006544a1")
+	)
+	(segment
+		(start 171.95 86.55)
+		(end 175.605 86.55)
+		(width 0.1)
+		(layer "F.Cu")
+		(net "/emmc_dat4")
+		(uuid "c611458b-d7f4-468e-854c-3c04a31d4491")
+	)
+	(via
+		(at 171.6 86.2)
+		(size 0.3)
+		(drill 0.15)
+		(layers "F.Cu" "B.Cu")
+		(net "/emmc_dat4")
+		(uuid "9699284d-372f-4015-8b8c-ff2abce2a5b3")
+	)
+	(segment
+		(start 172 86.6)
+		(end 173.6 86.6)
+		(width 0.1)
+		(layer "In2.Cu")
+		(net "/emmc_dat4")
+		(uuid "4effb0ba-0b74-4595-b586-d2145cc74179")
+	)
+	(segment
+		(start 171.6 86.2)
+		(end 172 86.6)
+		(width 0.1)
+		(layer "In2.Cu")
+		(net "/emmc_dat4")
+		(uuid "62ded6d2-56a1-4019-80c7-052df1434f20")
+	)
+	(segment
+		(start 171.225 85.825)
+		(end 170.8 85.4)
+		(width 0.1)
+		(layer "F.Cu")
+		(net "/emmc_dat2")
+		(uuid "0e356f8c-5e2d-49cf-93f1-ca5e4aabefd2")
+	)
+	(segment
+		(start 175.905 85.825)
+		(end 171.225 85.825)
+		(width 0.1)
+		(layer "F.Cu")
+		(net "/emmc_dat2")
+		(uuid "b0bff94e-8d55-446b-bc46-7cd7ea36237f")
+	)
+	(via
+		(at 170.8 85.4)
+		(size 0.3)
+		(drill 0.15)
+		(layers "F.Cu" "B.Cu")
+		(net "/emmc_dat2")
+		(uuid "fe32a816-cab0-4256-9bbe-e1d6f1bbe227")
+	)
+	(segment
+		(start 171.2 85.8)
+		(end 173.6 85.8)
+		(width 0.1)
+		(layer "In2.Cu")
+		(net "/emmc_dat2")
+		(uuid "6dbc2fb4-b214-4d68-aa7d-24a63daa642c")
+	)
+	(segment
+		(start 170.8 85.4)
+		(end 171.2 85.8)
+		(width 0.1)
+		(layer "In2.Cu")
+		(net "/emmc_dat2")
+		(uuid "de2dec49-f0cd-4943-8a1f-b8e2dbd55c37")
 	)
 	(via
 		(at 164.4 72.6)
@@ -113963,198 +114131,6 @@
 		(layers "F.Cu" "B.Cu")
 		(net "/emmc_dat5")
 		(uuid "96a8c5f7-0c9c-4497-8c7e-daaae7654427")
-	)
-	(segment
-		(start 173.525 86.199999)
-		(end 173.6 86.199999)
-		(width 0.1)
-		(layer "F.Cu")
-		(net "/emmc_dat3")
-		(uuid "0976d157-7bef-4cc4-b115-b25a67fe68ec")
-	)
-	(segment
-		(start 173.525 86.199999)
-		(end 174.455 86.2)
-		(width 0.1)
-		(layer "F.Cu")
-		(net "/emmc_dat3")
-		(uuid "17b30208-6fa1-4cc3-84c2-b007728941a9")
-	)
-	(segment
-		(start 172.4 86.2)
-		(end 173.525 86.199999)
-		(width 0.1)
-		(layer "F.Cu")
-		(net "/emmc_dat3")
-		(uuid "f3330132-b5db-4f6b-853f-f109d2f457d2")
-	)
-	(via
-		(at 172.4 86.2)
-		(size 0.3)
-		(drill 0.15)
-		(layers "F.Cu" "B.Cu")
-		(net "/emmc_dat3")
-		(uuid "fb233509-8a47-45a3-9ecd-d266c32af077")
-	)
-	(segment
-		(start 171.6 86.2)
-		(end 171.95 86.55)
-		(width 0.1)
-		(layer "F.Cu")
-		(net "/emmc_dat4")
-		(uuid "80e650f4-aab3-479b-abf8-5994eab781c1")
-	)
-	(segment
-		(start 175.605 86.55)
-		(end 175.88 86.825)
-		(width 0.1)
-		(layer "F.Cu")
-		(net "/emmc_dat4")
-		(uuid "8c5c0407-d81b-4e9a-b7f3-eae8006544a1")
-	)
-	(segment
-		(start 171.95 86.55)
-		(end 175.605 86.55)
-		(width 0.1)
-		(layer "F.Cu")
-		(net "/emmc_dat4")
-		(uuid "c611458b-d7f4-468e-854c-3c04a31d4491")
-	)
-	(via
-		(at 171.6 86.2)
-		(size 0.3)
-		(drill 0.15)
-		(layers "F.Cu" "B.Cu")
-		(net "/emmc_dat4")
-		(uuid "9699284d-372f-4015-8b8c-ff2abce2a5b3")
-	)
-	(segment
-		(start 172 86.6)
-		(end 173.6 86.6)
-		(width 0.1)
-		(layer "In2.Cu")
-		(net "/emmc_dat4")
-		(uuid "4effb0ba-0b74-4595-b586-d2145cc74179")
-	)
-	(segment
-		(start 171.6 86.2)
-		(end 172 86.6)
-		(width 0.1)
-		(layer "In2.Cu")
-		(net "/emmc_dat4")
-		(uuid "62ded6d2-56a1-4019-80c7-052df1434f20")
-	)
-	(segment
-		(start 172.4 85.4)
-		(end 173.3 85.399999)
-		(width 0.1)
-		(layer "F.Cu")
-		(net "/emmc_dat0")
-		(uuid "0170adc8-244d-4337-ac60-efba0dcdd005")
-	)
-	(segment
-		(start 173.3 85.399999)
-		(end 173.6 85.399999)
-		(width 0.1)
-		(layer "F.Cu")
-		(net "/emmc_dat0")
-		(uuid "0ad60d5d-3d66-423b-9c49-88581750fd89")
-	)
-	(segment
-		(start 173.3 85.399999)
-		(end 174.455 85.4)
-		(width 0.1)
-		(layer "F.Cu")
-		(net "/emmc_dat0")
-		(uuid "e328a72c-1b5d-4187-aef7-670494d33d0e")
-	)
-	(via
-		(at 172.4 85.4)
-		(size 0.3)
-		(drill 0.15)
-		(layers "F.Cu" "B.Cu")
-		(net "/emmc_dat0")
-		(uuid "81b5231e-384d-4436-9d31-0a017e76b4ab")
-	)
-	(segment
-		(start 175.905 84.975)
-		(end 172.025 84.975)
-		(width 0.1)
-		(layer "F.Cu")
-		(net "/emmc_dat1")
-		(uuid "82f5006a-9aed-442b-b12f-d85281e6678e")
-	)
-	(segment
-		(start 172.025 84.975)
-		(end 171.6 85.4)
-		(width 0.1)
-		(layer "F.Cu")
-		(net "/emmc_dat1")
-		(uuid "aa661c7a-a42c-4e6c-91eb-34c0e53481fd")
-	)
-	(via
-		(at 171.6 85.4)
-		(size 0.3)
-		(drill 0.15)
-		(layers "F.Cu" "B.Cu")
-		(net "/emmc_dat1")
-		(uuid "d9e62599-e629-40f6-b075-2c7213865c1e")
-	)
-	(segment
-		(start 171.6 85.4)
-		(end 172 85)
-		(width 0.1)
-		(layer "In5.Cu")
-		(net "/emmc_dat1")
-		(uuid "74342d1e-27bb-48a1-9d10-317c03f133f5")
-	)
-	(segment
-		(start 172 85)
-		(end 173.6 85)
-		(width 0.1)
-		(layer "In5.Cu")
-		(net "/emmc_dat1")
-		(uuid "86e9d64c-2304-42ad-8436-3cb681ebf0b5")
-	)
-	(segment
-		(start 171.225 85.825)
-		(end 170.8 85.4)
-		(width 0.1)
-		(layer "F.Cu")
-		(net "/emmc_dat2")
-		(uuid "0e356f8c-5e2d-49cf-93f1-ca5e4aabefd2")
-	)
-	(segment
-		(start 175.905 85.825)
-		(end 171.225 85.825)
-		(width 0.1)
-		(layer "F.Cu")
-		(net "/emmc_dat2")
-		(uuid "b0bff94e-8d55-446b-bc46-7cd7ea36237f")
-	)
-	(via
-		(at 170.8 85.4)
-		(size 0.3)
-		(drill 0.15)
-		(layers "F.Cu" "B.Cu")
-		(net "/emmc_dat2")
-		(uuid "fe32a816-cab0-4256-9bbe-e1d6f1bbe227")
-	)
-	(segment
-		(start 171.2 85.8)
-		(end 173.6 85.8)
-		(width 0.1)
-		(layer "In2.Cu")
-		(net "/emmc_dat2")
-		(uuid "6dbc2fb4-b214-4d68-aa7d-24a63daa642c")
-	)
-	(segment
-		(start 170.8 85.4)
-		(end 171.2 85.8)
-		(width 0.1)
-		(layer "In2.Cu")
-		(net "/emmc_dat2")
-		(uuid "de2dec49-f0cd-4943-8a1f-b8e2dbd55c37")
 	)
 	(segment
 		(start 170.49 87.928407)
@@ -114605,6 +114581,14 @@
 		(uuid "f6739be5-4e3d-4f99-a7dc-936939c586e1")
 	)
 	(via
+		(at 166.8 84.6)
+		(size 0.3)
+		(drill 0.15)
+		(layers "F.Cu" "B.Cu")
+		(net "/05 fpga_power/vcca_br")
+		(uuid "cc27b52b-95d6-457e-94b1-19d620afc134")
+	)
+	(via
 		(at 166 84.6)
 		(size 0.3)
 		(drill 0.15)
@@ -114691,6 +114675,22 @@
 		(layers "F.Cu" "B.Cu")
 		(net "/06 fpga_config/fpga_cdone")
 		(uuid "dea0360c-f1f1-4278-a99a-213ac890c7d6")
+	)
+	(segment
+		(start 172.4 83)
+		(end 173.6 83)
+		(width 0.1)
+		(layer "F.Cu")
+		(net "/fpga_cbsel0")
+		(uuid "015df86e-9bd7-4612-b630-8b5d7acdb4c3")
+	)
+	(via
+		(at 172.4 83)
+		(size 0.3)
+		(drill 0.15)
+		(layers "F.Cu" "B.Cu")
+		(net "/fpga_cbsel0")
+		(uuid "6cf08449-457b-4d84-a6b2-c9bc56af95cb")
 	)
 	(via
 		(at 170 83)

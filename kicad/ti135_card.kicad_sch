@@ -164,16 +164,6 @@
 	)
 	(wire
 		(pts
-			(xy 223.52 104.14) (xy 228.6 104.14)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0a39221b-b64c-5cc1-b9d6-79641e563ede")
-	)
-	(wire
-		(pts
 			(xy 88.9 119.38) (xy 93.98 119.38)
 		)
 		(stroke
@@ -711,16 +701,6 @@
 			(type default)
 		)
 		(uuid "442587ad-cf58-5125-98cc-4853c1f4d36b")
-	)
-	(wire
-		(pts
-			(xy 223.52 99.06) (xy 228.6 99.06)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "44b845a5-937f-58cd-ac57-92bccaa7dea1")
 	)
 	(wire
 		(pts
@@ -1944,16 +1924,6 @@
 	)
 	(wire
 		(pts
-			(xy 223.52 101.6) (xy 228.6 101.6)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b91a3885-41d3-5b46-974d-81155f4f0c12")
-	)
-	(wire
-		(pts
 			(xy 492.76 33.02) (xy 497.84 33.02)
 		)
 		(stroke
@@ -2722,7 +2692,7 @@
 		)
 		(uuid "013b3eeb-22d1-51e9-af47-e08505bbdcfc")
 	)
-	(label "adbsel1_3v3"
+	(label "adbsel1"
 		(at 20.32 114.3 180)
 		(effects
 			(font
@@ -3011,16 +2981,6 @@
 			(justify right)
 		)
 		(uuid "2216c6f8-c67d-5951-a8fe-e9b390720f1e")
-	)
-	(label "adbsel0_3v3"
-		(at 228.6 99.06 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "226286f5-05a9-5c7d-8a6e-530bc3f1c351")
 	)
 	(label "emmc_rst_n"
 		(at 289.56 101.6 180)
@@ -3552,16 +3512,6 @@
 		)
 		(uuid "574b44e1-3d84-5551-8c9d-640282035ac7")
 	)
-	(label "adbsel1_3v3"
-		(at 228.6 101.6 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "57e717d6-e0e1-5ffe-a004-888553b20d85")
-	)
 	(label "gpio_bypass_rly_isolated"
 		(at 497.84 147.32 0)
 		(effects
@@ -3602,7 +3552,7 @@
 		)
 		(uuid "5c9f4d73-5d36-5b72-86a0-55cc0d29184f")
 	)
-	(label "adbsel2_3v3"
+	(label "adbsel2"
 		(at 20.32 116.84 180)
 		(effects
 			(font
@@ -4662,7 +4612,7 @@
 		)
 		(uuid "c024b29e-44db-592f-97e3-1c332d8a3bf5")
 	)
-	(label "adbsel0_3v3"
+	(label "adbsel0"
 		(at 20.32 111.76 180)
 		(effects
 			(font
@@ -5151,16 +5101,6 @@
 			(justify right)
 		)
 		(uuid "ea645e9c-709e-5503-b30f-a3a84038cf0e")
-	)
-	(label "adbsel2_3v3"
-		(at 228.6 104.14 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "eb7dcbb8-32bd-5219-a5c4-b0015805b78f")
 	)
 	(label "flash_io3"
 		(at 424.18 116.84 180)
@@ -6254,36 +6194,6 @@
 				(justify right)
 			)
 		)
-		(pin "adbsel0_3v3" output
-			(at 223.52 99.06 0)
-			(uuid "9b7f7ac2-b9ee-5a47-a666-9c516834a093")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "adbsel1_3v3" output
-			(at 223.52 101.6 0)
-			(uuid "382c4488-869f-5b46-b9a4-ba83ccb26e8e")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "adbsel2_3v3" output
-			(at 223.52 104.14 0)
-			(uuid "a16672de-d33a-596e-a5f2-721e364ab711")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
 		(pin "adclk_dab_3v3" output
 			(at 223.52 106.68 0)
 			(uuid "59e89388-a027-56d0-9498-5d48a89efaff")
@@ -6579,7 +6489,7 @@
 				(justify left top)
 			)
 		)
-		(pin "adbsel0_3v3" input
+		(pin "adbsel0" input
 			(at 25.4 111.76 180)
 			(uuid "a7c451c2-93f8-5cdd-b875-4dfaaa3b646c")
 			(effects
@@ -6589,7 +6499,7 @@
 				(justify left)
 			)
 		)
-		(pin "adbsel1_3v3" input
+		(pin "adbsel1" input
 			(at 25.4 114.3 180)
 			(uuid "1956bb73-35ab-5e06-b7b8-04362b210de2")
 			(effects
@@ -6599,7 +6509,7 @@
 				(justify left)
 			)
 		)
-		(pin "adbsel2_3v3" input
+		(pin "adbsel2" input
 			(at 25.4 116.84 180)
 			(uuid "15477773-37b5-533a-8034-324075a93abd")
 			(effects
