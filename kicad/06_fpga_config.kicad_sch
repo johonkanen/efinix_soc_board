@@ -10661,35 +10661,15 @@
 		)
 		(uuid "02851660-2a93-5fa6-ad48-4ed5db5c1a40")
 	)
-	(label "flash_io3_r"
-		(at 307.34 78.74 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "afb709d2-87e0-4a69-a1bd-f6701c8b9396")
-	)
 	(wire
 		(pts
-			(xy 320.04 78.74) (xy 317.5 78.74)
+			(xy 320.04 73.66) (xy 317.5 73.66)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "881772f7-50ac-4d10-be46-00edf0a1871a")
-	)
-	(label "flash_io3"
-		(at 317.5 78.74 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "719fbac0-5d38-4864-aa95-0b69c50f108a")
+		(uuid "0ee7a97d-1818-4b92-8a2e-8b5f79e78719")
 	)
 	(wire
 		(pts
@@ -10821,36 +10801,6 @@
 		)
 		(uuid "3914f21a-3e1d-59ad-ae54-f510cae15642")
 	)
-	(label "flash_cs_n_r"
-		(at 276.86 71.12 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "3a925f29-7238-4023-9529-5a4f1b6835ea")
-	)
-	(wire
-		(pts
-			(xy 264.16 71.12) (xy 266.7 71.12)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9a276d6a-b766-4f33-b35a-3c6b3fabfdd7")
-	)
-	(label "flash_cs_n"
-		(at 266.7 71.12 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "c6096117-4792-493e-9c26-fdc3b1a1ae72")
-	)
 	(wire
 		(pts
 			(xy 114.3 173.99) (xy 114.3 171.45)
@@ -10981,36 +10931,6 @@
 		)
 		(uuid "6c6f239d-ced8-5932-8524-3aedb4e11427")
 	)
-	(label "flash_sck_r"
-		(at 276.86 73.66 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "b8795ca7-0c45-4e45-8c40-bd8c505d62af")
-	)
-	(wire
-		(pts
-			(xy 264.16 73.66) (xy 266.7 73.66)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a10db283-0622-44b5-9e32-c5ddf6b5ceca")
-	)
-	(label "flash_sck"
-		(at 266.7 73.66 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "4d3f7db7-3e40-41a9-8d00-06bac9372237")
-	)
 	(wire
 		(pts
 			(xy 179.07 73.66) (xy 179.07 82.55)
@@ -11051,35 +10971,15 @@
 		)
 		(uuid "7ce9d44b-27ca-58ad-b060-cc42114cecca")
 	)
-	(label "flash_io1_r"
-		(at 307.34 73.66 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "cc8b9d41-2a41-43e8-a2ca-6577112bbb33")
-	)
 	(wire
 		(pts
-			(xy 320.04 73.66) (xy 317.5 73.66)
+			(xy 320.04 76.2) (xy 317.5 76.2)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "0ee7a97d-1818-4b92-8a2e-8b5f79e78719")
-	)
-	(label "flash_io1"
-		(at 317.5 73.66 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "700fa576-5c99-40c7-84ad-b5e7d23e7bd1")
+		(uuid "7d145375-5f0a-47ad-87fa-2d19d85facca")
 	)
 	(wire
 		(pts
@@ -11090,6 +10990,16 @@
 			(type default)
 		)
 		(uuid "7d32b4fd-5049-5969-a72b-18c3e28eb8a5")
+	)
+	(wire
+		(pts
+			(xy 320.04 78.74) (xy 317.5 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "881772f7-50ac-4d10-be46-00edf0a1871a")
 	)
 	(wire
 		(pts
@@ -11201,36 +11111,6 @@
 		)
 		(uuid "977c1e19-c40e-5379-a204-38a4b7ec0e47")
 	)
-	(label "flash_io2_r"
-		(at 307.34 76.2 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "7de0486a-a2a4-486d-ae0e-303e2999e1fa")
-	)
-	(wire
-		(pts
-			(xy 320.04 76.2) (xy 317.5 76.2)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7d145375-5f0a-47ad-87fa-2d19d85facca")
-	)
-	(label "flash_io2"
-		(at 317.5 76.2 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "6a87cb2e-18ae-4fd0-8823-dab5547a6ca0")
-	)
 	(wire
 		(pts
 			(xy 76.2 130.81) (xy 76.2 133.35)
@@ -11250,6 +11130,16 @@
 			(type default)
 		)
 		(uuid "9a0ed594-e873-5285-bf4c-93d22241fea3")
+	)
+	(wire
+		(pts
+			(xy 264.16 71.12) (xy 266.7 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9a276d6a-b766-4f33-b35a-3c6b3fabfdd7")
 	)
 	(wire
 		(pts
@@ -11290,6 +11180,16 @@
 			(type default)
 		)
 		(uuid "9c22bfac-9e47-53ce-8cf0-573058977010")
+	)
+	(wire
+		(pts
+			(xy 264.16 73.66) (xy 266.7 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a10db283-0622-44b5-9e32-c5ddf6b5ceca")
 	)
 	(wire
 		(pts
@@ -11393,6 +11293,16 @@
 	)
 	(wire
 		(pts
+			(xy 320.04 71.12) (xy 317.5 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d602cd5d-d1ae-4954-a701-b56c6842f334")
+	)
+	(wire
+		(pts
 			(xy 147.32 144.78) (xy 144.78 144.78)
 		)
 		(stroke
@@ -11491,36 +11401,6 @@
 		)
 		(uuid "ed5b19c0-b842-52e0-a69d-e0edad08f691")
 	)
-	(label "flash_io0_r"
-		(at 307.34 71.12 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "974032c0-e5a2-4085-a31a-e4228d4bf14f")
-	)
-	(wire
-		(pts
-			(xy 320.04 71.12) (xy 317.5 71.12)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d602cd5d-d1ae-4954-a701-b56c6842f334")
-	)
-	(label "flash_io0"
-		(at 317.5 71.12 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "37908874-71c8-4227-adfa-d6bf0c06606a")
-	)
 	(wire
 		(pts
 			(xy 335.28 191.77) (xy 335.28 194.31)
@@ -11561,6 +11441,16 @@
 		)
 		(uuid "12469d36-c507-5449-97f5-abbc81e02f64")
 	)
+	(label "flash_io0_r"
+		(at 245.11 76.2 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "1f6b19b4-3812-4ac3-bc24-47467434f87a")
+	)
 	(label "jtag_tms"
 		(at 101.6 133.35 270)
 		(effects
@@ -11571,6 +11461,26 @@
 		)
 		(uuid "2154f1b9-8159-56e9-9dbe-57fba0559443")
 	)
+	(label "flash_io1"
+		(at 237.49 81.28 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "279e800c-7bb4-4dd5-a183-d937bf106485")
+	)
+	(label "flash_io1_r"
+		(at 245.11 81.28 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "301db458-4919-43ca-b3d2-42c37b359443")
+	)
 	(label "flash_rst_n"
 		(at 270.51 76.2 180)
 		(effects
@@ -11580,6 +11490,26 @@
 			(justify right bottom)
 		)
 		(uuid "36bd1938-9ac4-53b7-a324-56c8ed6ca5ed")
+	)
+	(label "flash_io0"
+		(at 317.5 71.12 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "37908874-71c8-4227-adfa-d6bf0c06606a")
+	)
+	(label "flash_cs_n_r"
+		(at 276.86 71.12 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "3a925f29-7238-4023-9529-5a4f1b6835ea")
 	)
 	(label "jtag_tck"
 		(at 63.5 133.35 270)
@@ -11610,6 +11540,16 @@
 			(justify right bottom)
 		)
 		(uuid "471b8993-7aaa-5792-8640-6efe76558b34")
+	)
+	(label "flash_sck"
+		(at 266.7 73.66 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "4d3f7db7-3e40-41a9-8d00-06bac9372237")
 	)
 	(label "fpga_ssu_n"
 		(at 190.5 184.15 270)
@@ -11661,6 +11601,16 @@
 		)
 		(uuid "632914c8-9eef-55cd-871e-c789b95098df")
 	)
+	(label "flash_cs_n"
+		(at 237.49 71.12 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "6889cd47-2f74-48d4-894c-dc29de5b0017")
+	)
 	(label "fpga_cbsel0"
 		(at 127 171.45 90)
 		(effects
@@ -11671,6 +11621,16 @@
 		)
 		(uuid "69b31e67-f44d-5477-bbbf-e1b508b62f76")
 	)
+	(label "flash_io2"
+		(at 317.5 76.2 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "6a87cb2e-18ae-4fd0-8823-dab5547a6ca0")
+	)
 	(label "fpga_cdone"
 		(at 38.1 133.35 270)
 		(effects
@@ -11680,6 +11640,26 @@
 			(justify right bottom)
 		)
 		(uuid "6abdc55a-1682-5c84-ba51-7c7992ca73e5")
+	)
+	(label "flash_io1"
+		(at 317.5 73.66 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "700fa576-5c99-40c7-84ad-b5e7d23e7bd1")
+	)
+	(label "flash_io3"
+		(at 317.5 78.74 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "719fbac0-5d38-4864-aa95-0b69c50f108a")
 	)
 	(label "jtag_tdo"
 		(at 88.9 133.35 270)
@@ -11701,6 +11681,46 @@
 		)
 		(uuid "7b0ac18d-b270-5456-864b-e3a34cec6d56")
 	)
+	(label "flash_io2_r"
+		(at 307.34 76.2 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "7de0486a-a2a4-486d-ae0e-303e2999e1fa")
+	)
+	(label "flash_io3_r"
+		(at 245.11 91.44 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "82756f1a-8df2-4ec3-82bb-a60ae1f285d1")
+	)
+	(label "flash_io2_r"
+		(at 245.11 86.36 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "8c18fb6d-e5d2-4adb-881e-3bc316b8defc")
+	)
+	(label "flash_cs_n_r"
+		(at 245.11 71.12 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "8e67d655-e051-4678-94a6-045bce6a3f68")
+	)
 	(label "fpga_cdone"
 		(at 109.22 68.58 180)
 		(effects
@@ -11721,6 +11741,16 @@
 		)
 		(uuid "90d7e503-af13-5d54-84c8-93d7f45c3212")
 	)
+	(label "flash_io0_r"
+		(at 307.34 71.12 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "974032c0-e5a2-4085-a31a-e4228d4bf14f")
+	)
 	(label "fpga_cbsel1"
 		(at 76.2 193.04 90)
 		(effects
@@ -11730,6 +11760,16 @@
 			(justify left bottom)
 		)
 		(uuid "9d283c04-7a75-5026-bebd-a39d0f133bda")
+	)
+	(label "flash_sck"
+		(at 237.49 66.04 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "aa087765-6076-4848-be3c-0722e03daea6")
 	)
 	(label "flash_rst_n"
 		(at 304.8 125.73 270)
@@ -11741,6 +11781,16 @@
 		)
 		(uuid "af9fd906-1492-553c-b80c-7d74308f3692")
 	)
+	(label "flash_io3_r"
+		(at 307.34 78.74 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "afb709d2-87e0-4a69-a1bd-f6701c8b9396")
+	)
 	(label "fpga_creset_n"
 		(at 50.8 133.35 270)
 		(effects
@@ -11750,6 +11800,16 @@
 			(justify right bottom)
 		)
 		(uuid "b1133f9d-4d94-5ac3-928e-c6c974b69eba")
+	)
+	(label "flash_sck_r"
+		(at 276.86 73.66 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "b8795ca7-0c45-4e45-8c40-bd8c505d62af")
 	)
 	(label "jtag_tck"
 		(at 139.7 137.16 180)
@@ -11770,6 +11830,36 @@
 			(justify right bottom)
 		)
 		(uuid "c31232cc-ddb9-573a-915d-b55f307eacb2")
+	)
+	(label "flash_cs_n"
+		(at 266.7 71.12 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c6096117-4792-493e-9c26-fdc3b1a1ae72")
+	)
+	(label "flash_io3"
+		(at 237.49 91.44 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "ca2efd33-1713-423d-bf6d-fa88250e260c")
+	)
+	(label "flash_io1_r"
+		(at 307.34 73.66 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "cc8b9d41-2a41-43e8-a2ca-6577112bbb33")
 	)
 	(label "flash_cs_n"
 		(at 266.7 125.73 270)
@@ -11801,6 +11891,16 @@
 		)
 		(uuid "de36ede8-8d79-5265-8cc6-e3c7f83a63c7")
 	)
+	(label "flash_io2"
+		(at 237.49 86.36 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "e1495be3-8a64-44f4-8108-e6e4584b5c02")
+	)
 	(label "jtag_tms"
 		(at 139.7 139.7 180)
 		(effects
@@ -11831,6 +11931,16 @@
 		)
 		(uuid "f07672ed-c49a-5730-8ebb-dc3465ac8691")
 	)
+	(label "flash_io0"
+		(at 237.49 76.2 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "f4cc9d18-589f-4535-aa36-4b6351595f36")
+	)
 	(label "jtag_tdo"
 		(at 109.22 81.28 180)
 		(effects
@@ -11840,6 +11950,16 @@
 			(justify right bottom)
 		)
 		(uuid "f83adc3a-52e5-5049-83d4-25e77141ee16")
+	)
+	(label "flash_sck_r"
+		(at 245.11 66.04 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "f9a6a966-08f3-44d5-b4b9-e9db07a4b587")
 	)
 	(hierarchical_label "led1_n"
 		(shape input)
@@ -12157,6 +12277,96 @@
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/005bb34e-5019-4cde-82e0-1ce10912d4b9"
 					(reference "R606")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ti135_card:R")
+		(at 241.3 66.04 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "0bd33164-393e-494f-8129-3932a78f3d90")
+		(property "Reference" "R623"
+			(at 241.3 62.23 270)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "33R"
+			(at 241.3 64.01 270)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
+			(at 241.3 67.818 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 241.3 66.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 241.3 66.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C320843"
+			(at 241.3 66.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "9583018c-9093-4970-b6e9-76374943475f")
+		)
+		(pin "2"
+			(uuid "258c2139-bcf1-4c7f-a078-ce8a9cd100c3")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/005bb34e-5019-4cde-82e0-1ce10912d4b9"
+					(reference "R623")
 					(unit 1)
 				)
 			)
@@ -13375,6 +13585,96 @@
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/005bb34e-5019-4cde-82e0-1ce10912d4b9"
 					(reference "R603")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ti135_card:R")
+		(at 241.3 81.28 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "6dc004d7-b1f5-4730-b1c7-70ee651a600b")
+		(property "Reference" "R626"
+			(at 241.3 77.47 270)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "33R"
+			(at 241.3 79.25 270)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
+			(at 241.3 83.058 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 241.3 81.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 241.3 81.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C320843"
+			(at 241.3 81.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "737102db-7dfe-40a9-8f85-9a3707280ff8")
+		)
+		(pin "2"
+			(uuid "64ffc769-610d-4216-aaa7-3de8a55c58b1")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/005bb34e-5019-4cde-82e0-1ce10912d4b9"
+					(reference "R626")
 					(unit 1)
 				)
 			)
@@ -15519,6 +15819,96 @@
 		)
 	)
 	(symbol
+		(lib_id "ti135_card:R")
+		(at 241.3 86.36 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "93b856f3-ccf4-4107-bb54-844bde387658")
+		(property "Reference" "R627"
+			(at 241.3 82.55 270)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "33R"
+			(at 241.3 84.33 270)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
+			(at 241.3 88.138 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 241.3 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 241.3 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C320843"
+			(at 241.3 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "c3dc6204-f4ab-4604-b4fd-48135f8c6859")
+		)
+		(pin "2"
+			(uuid "318c912f-b869-413b-9942-57fb060a4eea")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/005bb34e-5019-4cde-82e0-1ce10912d4b9"
+					(reference "R627")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "ti135_card:1V8")
 		(at 114.3 171.45 0)
 		(unit 1)
@@ -15667,6 +16057,96 @@
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/005bb34e-5019-4cde-82e0-1ce10912d4b9"
 					(reference "#PWR06004")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ti135_card:R")
+		(at 241.3 91.44 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "a396ca1d-417c-4515-ac1a-521d80676a44")
+		(property "Reference" "R628"
+			(at 241.3 87.63 270)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "33R"
+			(at 241.3 89.41 270)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
+			(at 241.3 93.218 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 241.3 91.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 241.3 91.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C320843"
+			(at 241.3 91.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "56951a06-8561-4b2b-9a7d-6f24624e8de6")
+		)
+		(pin "2"
+			(uuid "a479c759-5f54-4b9e-a2cd-cd7d006ec040")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/005bb34e-5019-4cde-82e0-1ce10912d4b9"
+					(reference "R628")
 					(unit 1)
 				)
 			)
@@ -15834,6 +16314,96 @@
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/005bb34e-5019-4cde-82e0-1ce10912d4b9"
 					(reference "R619")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ti135_card:R")
+		(at 241.3 76.2 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "acd08e32-846c-4e3a-a3a4-3fa15d43009b")
+		(property "Reference" "R625"
+			(at 241.3 72.39 270)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "33R"
+			(at 241.3 74.17 270)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
+			(at 241.3 77.978 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 241.3 76.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 241.3 76.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C320843"
+			(at 241.3 76.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "4283f23b-7020-46a0-b0f3-803250e9a46e")
+		)
+		(pin "2"
+			(uuid "d2761f3a-2383-44fa-8b2e-f428ce9c0f81")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/005bb34e-5019-4cde-82e0-1ce10912d4b9"
+					(reference "R625")
 					(unit 1)
 				)
 			)
@@ -16104,6 +16674,96 @@
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/005bb34e-5019-4cde-82e0-1ce10912d4b9"
 					(reference "R621")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ti135_card:R")
+		(at 241.3 71.12 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "af5dbdce-077f-4596-b4f5-eb7bf3d0719c")
+		(property "Reference" "R624"
+			(at 241.3 67.31 270)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "33R"
+			(at 241.3 69.09 270)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
+			(at 241.3 72.898 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 241.3 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 241.3 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C320843"
+			(at 241.3 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "be88591e-7f9a-4f02-b0aa-b93353a9c960")
+		)
+		(pin "2"
+			(uuid "9b361509-5154-40e0-8c9f-368e30875232")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/005bb34e-5019-4cde-82e0-1ce10912d4b9"
+					(reference "R624")
 					(unit 1)
 				)
 			)
@@ -17970,665 +18630,5 @@
 				)
 			)
 		)
-	)
-	(symbol
-		(lib_id "ti135_card:R")
-		(at 241.3 66.04 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "0bd33164-393e-494f-8129-3932a78f3d90")
-		(property "Reference" "R623"
-			(at 241.3 62.23 270)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "33R"
-			(at 241.3 64.01 270)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
-			(at 241.3 67.818 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 241.3 66.04 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 241.3 66.04 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C320843"
-			(at 241.3 66.04 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "9583018c-9093-4970-b6e9-76374943475f")
-		)
-		(pin "2"
-			(uuid "258c2139-bcf1-4c7f-a078-ce8a9cd100c3")
-		)
-		(instances
-			(project "ti135_card"
-				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/005bb34e-5019-4cde-82e0-1ce10912d4b9"
-					(reference "R623")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(label "flash_sck"
-		(at 237.49 66.04 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "aa087765-6076-4848-be3c-0722e03daea6")
-	)
-	(label "flash_sck_r"
-		(at 245.11 66.04 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "f9a6a966-08f3-44d5-b4b9-e9db07a4b587")
-	)
-	(symbol
-		(lib_id "ti135_card:R")
-		(at 241.3 71.12 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "af5dbdce-077f-4596-b4f5-eb7bf3d0719c")
-		(property "Reference" "R624"
-			(at 241.3 67.31 270)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "33R"
-			(at 241.3 69.09 270)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
-			(at 241.3 72.898 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 241.3 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 241.3 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C320843"
-			(at 241.3 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "be88591e-7f9a-4f02-b0aa-b93353a9c960")
-		)
-		(pin "2"
-			(uuid "9b361509-5154-40e0-8c9f-368e30875232")
-		)
-		(instances
-			(project "ti135_card"
-				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/005bb34e-5019-4cde-82e0-1ce10912d4b9"
-					(reference "R624")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(label "flash_cs_n"
-		(at 237.49 71.12 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "6889cd47-2f74-48d4-894c-dc29de5b0017")
-	)
-	(label "flash_cs_n_r"
-		(at 245.11 71.12 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "8e67d655-e051-4678-94a6-045bce6a3f68")
-	)
-	(symbol
-		(lib_id "ti135_card:R")
-		(at 241.3 76.2 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "acd08e32-846c-4e3a-a3a4-3fa15d43009b")
-		(property "Reference" "R625"
-			(at 241.3 72.39 270)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "33R"
-			(at 241.3 74.17 270)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
-			(at 241.3 77.978 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 241.3 76.2 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 241.3 76.2 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C320843"
-			(at 241.3 76.2 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "4283f23b-7020-46a0-b0f3-803250e9a46e")
-		)
-		(pin "2"
-			(uuid "d2761f3a-2383-44fa-8b2e-f428ce9c0f81")
-		)
-		(instances
-			(project "ti135_card"
-				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/005bb34e-5019-4cde-82e0-1ce10912d4b9"
-					(reference "R625")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(label "flash_io0"
-		(at 237.49 76.2 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "f4cc9d18-589f-4535-aa36-4b6351595f36")
-	)
-	(label "flash_io0_r"
-		(at 245.11 76.2 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "1f6b19b4-3812-4ac3-bc24-47467434f87a")
-	)
-	(symbol
-		(lib_id "ti135_card:R")
-		(at 241.3 81.28 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "6dc004d7-b1f5-4730-b1c7-70ee651a600b")
-		(property "Reference" "R626"
-			(at 241.3 77.47 270)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "33R"
-			(at 241.3 79.25 270)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
-			(at 241.3 83.058 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 241.3 81.28 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 241.3 81.28 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C320843"
-			(at 241.3 81.28 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "737102db-7dfe-40a9-8f85-9a3707280ff8")
-		)
-		(pin "2"
-			(uuid "64ffc769-610d-4216-aaa7-3de8a55c58b1")
-		)
-		(instances
-			(project "ti135_card"
-				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/005bb34e-5019-4cde-82e0-1ce10912d4b9"
-					(reference "R626")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(label "flash_io1"
-		(at 237.49 81.28 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "279e800c-7bb4-4dd5-a183-d937bf106485")
-	)
-	(label "flash_io1_r"
-		(at 245.11 81.28 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "301db458-4919-43ca-b3d2-42c37b359443")
-	)
-	(symbol
-		(lib_id "ti135_card:R")
-		(at 241.3 86.36 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "93b856f3-ccf4-4107-bb54-844bde387658")
-		(property "Reference" "R627"
-			(at 241.3 82.55 270)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "33R"
-			(at 241.3 84.33 270)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
-			(at 241.3 88.138 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 241.3 86.36 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 241.3 86.36 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C320843"
-			(at 241.3 86.36 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "c3dc6204-f4ab-4604-b4fd-48135f8c6859")
-		)
-		(pin "2"
-			(uuid "318c912f-b869-413b-9942-57fb060a4eea")
-		)
-		(instances
-			(project "ti135_card"
-				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/005bb34e-5019-4cde-82e0-1ce10912d4b9"
-					(reference "R627")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(label "flash_io2"
-		(at 237.49 86.36 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "e1495be3-8a64-44f4-8108-e6e4584b5c02")
-	)
-	(label "flash_io2_r"
-		(at 245.11 86.36 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "8c18fb6d-e5d2-4adb-881e-3bc316b8defc")
-	)
-	(symbol
-		(lib_id "ti135_card:R")
-		(at 241.3 91.44 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "a396ca1d-417c-4515-ac1a-521d80676a44")
-		(property "Reference" "R628"
-			(at 241.3 87.63 270)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "33R"
-			(at 241.3 89.41 270)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
-			(at 241.3 93.218 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 241.3 91.44 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 241.3 91.44 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C320843"
-			(at 241.3 91.44 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "56951a06-8561-4b2b-9a7d-6f24624e8de6")
-		)
-		(pin "2"
-			(uuid "a479c759-5f54-4b9e-a2cd-cd7d006ec040")
-		)
-		(instances
-			(project "ti135_card"
-				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/005bb34e-5019-4cde-82e0-1ce10912d4b9"
-					(reference "R628")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(label "flash_io3"
-		(at 237.49 91.44 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "ca2efd33-1713-423d-bf6d-fa88250e260c")
-	)
-	(label "flash_io3_r"
-		(at 245.11 91.44 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "82756f1a-8df2-4ec3-82bb-a60ae1f285d1")
 	)
 )
