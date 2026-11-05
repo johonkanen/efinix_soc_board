@@ -2330,6 +2330,411 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "ti135_card:OPA4322xPW"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "U"
+				(at 0 3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "OPA4322xPW"
+				(at 0 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "Package_SO:TSSOP-14_4.4x5mm_P0.65mm"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "https://www.ti.com/lit/ds/symlink/opa4322.pdf"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Quad 20-MHz, 10-V/us, rail-to-rail I/O CMOS op amp, 1.8-5.5 V, TSSOP-14"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_locked" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "quad opamp rtor"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "TSSOP*4.4x5mm*P0.65mm*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "OPA4322xPW_1_1"
+				(polyline
+					(pts
+						(xy -5.08 5.08) (xy 5.08 0) (xy -5.08 -5.08) (xy -5.08 5.08)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin output line
+					(at 7.62 0 180)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -7.62 -2.54 0)
+					(length 2.54)
+					(name "-"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -7.62 2.54 0)
+					(length 2.54)
+					(name "+"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "OPA4322xPW_2_1"
+				(polyline
+					(pts
+						(xy -5.08 5.08) (xy 5.08 0) (xy -5.08 -5.08) (xy -5.08 5.08)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin input line
+					(at -7.62 2.54 0)
+					(length 2.54)
+					(name "+"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -7.62 -2.54 0)
+					(length 2.54)
+					(name "-"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 7.62 0 180)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "OPA4322xPW_3_1"
+				(polyline
+					(pts
+						(xy -5.08 5.08) (xy 5.08 0) (xy -5.08 -5.08) (xy -5.08 5.08)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin output line
+					(at 7.62 0 180)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "8"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -7.62 -2.54 0)
+					(length 2.54)
+					(name "-"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "9"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -7.62 2.54 0)
+					(length 2.54)
+					(name "+"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "10"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "OPA4322xPW_4_1"
+				(polyline
+					(pts
+						(xy -5.08 5.08) (xy 5.08 0) (xy -5.08 -5.08) (xy -5.08 5.08)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin input line
+					(at -7.62 2.54 0)
+					(length 2.54)
+					(name "+"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "12"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -7.62 -2.54 0)
+					(length 2.54)
+					(name "-"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "13"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 7.62 0 180)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "14"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "OPA4322xPW_5_1"
+				(pin power_in line
+					(at -2.54 7.62 270)
+					(length 3.81)
+					(name "V+"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at -2.54 -7.62 90)
+					(length 3.81)
+					(name "V-"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "11"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 	)
 	(text "Rail monitors"
 		(exclude_from_sim no)
@@ -2549,16 +2954,6 @@
 			(type default)
 		)
 		(uuid "124cccc6-60ae-5825-ba7a-5768104700ae")
-	)
-	(wire
-		(pts
-			(xy 134.62 238.76) (xy 134.62 241.3)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "124cccc6-60ae-5825-ba7a-5768104700af")
 	)
 	(wire
 		(pts
@@ -2892,26 +3287,6 @@
 	)
 	(wire
 		(pts
-			(xy 134.62 223.52) (xy 134.62 220.98)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "67d0c803-c15c-57cd-82af-c2a4c076ddcf")
-	)
-	(wire
-		(pts
-			(xy 134.62 167.64) (xy 134.62 170.18)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6887af9e-bbcd-50ef-b3f9-7b114d2a75a4")
-	)
-	(wire
-		(pts
 			(xy 129.54 177.8) (xy 149.86 177.8)
 		)
 		(stroke
@@ -3022,16 +3397,6 @@
 	)
 	(wire
 		(pts
-			(xy 134.62 152.4) (xy 134.62 149.86)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8d0fc9a1-fa61-5145-b512-98a6c92f6b8d")
-	)
-	(wire
-		(pts
 			(xy 190.5 156.21) (xy 190.5 161.29)
 		)
 		(stroke
@@ -3049,16 +3414,6 @@
 			(type default)
 		)
 		(uuid "92dfebd7-178e-513c-afab-03bcf11286af")
-	)
-	(wire
-		(pts
-			(xy 134.62 203.2) (xy 134.62 205.74)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "95540049-51d0-58b5-8db1-dede104d58ca")
 	)
 	(wire
 		(pts
@@ -3109,16 +3464,6 @@
 			(type default)
 		)
 		(uuid "9f279cd3-1d0d-5183-a8ff-f0a476b334c3")
-	)
-	(wire
-		(pts
-			(xy 134.62 187.96) (xy 134.62 185.42)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9f3ddb45-2a39-57cf-a61a-cb63cd314dd0")
 	)
 	(wire
 		(pts
@@ -3920,9 +4265,9 @@
 		)
 	)
 	(symbol
-		(lib_id "ti135_card:OPA365xxDBV")
+		(lib_id "ti135_card:OPA4322xPW")
 		(at 137.16 231.14 0)
-		(unit 1)
+		(unit 3)
 		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3930,7 +4275,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "110b78c5-81c5-5abd-9549-24b2477f768d")
-		(property "Reference" "U1306"
+		(property "Reference" "U1304"
 			(at 135.89 224.79 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3941,7 +4286,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "OPA365AIDBVR"
+		(property "Value" "OPA4322AIPWR"
 			(at 135.89 227.33 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3952,7 +4297,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-5"
+		(property "Footprint" "Package_SO:TSSOP-14_4.4x5mm_P0.65mm"
 			(at 134.62 236.22 0)
 			(hide yes)
 			(show_name no)
@@ -3964,7 +4309,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/opa4322.pdf"
 			(at 137.16 226.06 0)
 			(hide yes)
 			(show_name no)
@@ -3975,7 +4320,7 @@
 				)
 			)
 		)
-		(property "Description" "50-MHz, Zero-Crossover, Low-Distortion, High CMRR, RRI/O, Single-Supply, SOT-23-5"
+		(property "Description" "Quad 20-MHz, 10-V/us, rail-to-rail I/O CMOS op amp, 1.8-5.5 V, TSSOP-14"
 			(at 137.16 231.14 0)
 			(hide yes)
 			(show_name no)
@@ -3986,7 +4331,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C96626"
+		(property "LCSC" "C486027"
 			(at 137.16 231.14 0)
 			(hide yes)
 			(show_name no)
@@ -3997,26 +4342,20 @@
 				)
 			)
 		)
-		(pin "2"
-			(uuid "e8299cd7-c364-5580-89d8-047d67f4172b")
+		(pin "8"
+			(uuid "18f9a9d7-b960-473a-936e-f2a55c2ad364")
 		)
-		(pin "5"
-			(uuid "8eec913f-18fa-5667-b778-e411a4440e1e")
+		(pin "9"
+			(uuid "b2e4b019-7d8c-4a81-8d05-3b1867a12c1c")
 		)
-		(pin "1"
-			(uuid "e2b99c40-132a-504e-8483-35bcd00d3a7c")
-		)
-		(pin "3"
-			(uuid "e66a94e7-2c04-57f7-a0a1-d225917d7699")
-		)
-		(pin "4"
-			(uuid "8647696a-91c2-578e-8303-21664b92c1e4")
+		(pin "10"
+			(uuid "8dd1a632-e914-4f7b-817c-73d875942721")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/334ad52b-5884-483f-bc00-3be643cae895"
-					(reference "U1306")
-					(unit 1)
+					(reference "U1304")
+					(unit 3)
 				)
 			)
 		)
@@ -4451,83 +4790,6 @@
 		)
 	)
 	(symbol
-		(lib_id "ti135_card:3V3_analog")
-		(at 134.62 185.42 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "2534107b-7514-5c4a-8516-06a7646e0e7b")
-		(property "Reference" "#PWR13032"
-			(at 134.62 189.23 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "3V3_analog"
-			(at 134.62 181.864 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 134.62 185.42 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 134.62 185.42 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol for net \"3V3_analog\" (IPC net name)"
-			(at 134.62 185.42 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "245e47f3-086a-5408-aa49-9f1d11c187f8")
-		)
-		(instances
-			(project "ti135_card"
-				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/334ad52b-5884-483f-bc00-3be643cae895"
-					(reference "#PWR13032")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "ti135_card:C")
 		(at 368.3 152.4 0)
 		(unit 1)
@@ -4856,83 +5118,6 @@
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/334ad52b-5884-483f-bc00-3be643cae895"
 					(reference "#PWR13022")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "ti135_card:GND")
-		(at 134.62 170.18 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "3a3f09c6-0433-5334-bee5-331600d277c3")
-		(property "Reference" "#PWR13028"
-			(at 134.62 176.53 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 134.62 173.99 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 134.62 170.18 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 134.62 170.18 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol for net \"GND\" (IPC net name)"
-			(at 134.62 170.18 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "2ee288ae-6a8c-53c9-98e2-ffe83252a39a")
-		)
-		(instances
-			(project "ti135_card"
-				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/334ad52b-5884-483f-bc00-3be643cae895"
-					(reference "#PWR13028")
 					(unit 1)
 				)
 			)
@@ -5350,83 +5535,6 @@
 		)
 	)
 	(symbol
-		(lib_id "ti135_card:3V3_analog")
-		(at 134.62 149.86 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "5792670a-166a-5cf8-875f-5570dc7e682e")
-		(property "Reference" "#PWR13027"
-			(at 134.62 153.67 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "3V3_analog"
-			(at 134.62 146.304 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 134.62 149.86 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 134.62 149.86 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol for net \"3V3_analog\" (IPC net name)"
-			(at 134.62 149.86 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "6c8f16b5-d64f-5af9-a399-78acf95fae05")
-		)
-		(instances
-			(project "ti135_card"
-				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/334ad52b-5884-483f-bc00-3be643cae895"
-					(reference "#PWR13027")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "ti135_card:GND")
 		(at 172.72 166.37 0)
 		(unit 1)
@@ -5594,7 +5702,7 @@
 		)
 	)
 	(symbol
-		(lib_id "ti135_card:OPA365xxDBV")
+		(lib_id "ti135_card:OPA4322xPW")
 		(at 137.16 160.02 0)
 		(unit 1)
 		(body_style 1)
@@ -5615,7 +5723,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "OPA365AIDBVR"
+		(property "Value" "OPA4322AIPWR"
 			(at 135.89 156.21 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5626,7 +5734,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-5"
+		(property "Footprint" "Package_SO:TSSOP-14_4.4x5mm_P0.65mm"
 			(at 134.62 165.1 0)
 			(hide yes)
 			(show_name no)
@@ -5638,7 +5746,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/opa4322.pdf"
 			(at 137.16 154.94 0)
 			(hide yes)
 			(show_name no)
@@ -5649,7 +5757,7 @@
 				)
 			)
 		)
-		(property "Description" "50-MHz, Zero-Crossover, Low-Distortion, High CMRR, RRI/O, Single-Supply, SOT-23-5"
+		(property "Description" "Quad 20-MHz, 10-V/us, rail-to-rail I/O CMOS op amp, 1.8-5.5 V, TSSOP-14"
 			(at 137.16 160.02 0)
 			(hide yes)
 			(show_name no)
@@ -5660,7 +5768,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C96626"
+		(property "LCSC" "C486027"
 			(at 137.16 160.02 0)
 			(hide yes)
 			(show_name no)
@@ -5670,21 +5778,15 @@
 					(size 1.27 1.27)
 				)
 			)
-		)
-		(pin "2"
-			(uuid "1e464c62-67f1-5e2c-9cce-b8bf252c5e21")
-		)
-		(pin "5"
-			(uuid "e40e8ee5-4b85-5847-a9f5-beca6738728e")
 		)
 		(pin "1"
-			(uuid "2dd3d4e7-8056-5497-8abc-490501a00f8d")
+			(uuid "5f7f90f3-fa61-4303-a0ab-db1b604a963d")
+		)
+		(pin "2"
+			(uuid "811728a7-75a1-4d09-b6c5-703ce260755a")
 		)
 		(pin "3"
-			(uuid "5bf66b27-0eb8-5af4-ac2e-fc25b5fa8491")
-		)
-		(pin "4"
-			(uuid "5053514c-c24a-5b22-a41d-f5bc1cec1c15")
+			(uuid "e16307fc-ed4d-43be-a233-0c955fa14bbc")
 		)
 		(instances
 			(project "ti135_card"
@@ -6539,83 +6641,6 @@
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/334ad52b-5884-483f-bc00-3be643cae895"
 					(reference "R1305")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "ti135_card:GND")
-		(at 134.62 205.74 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "97c3cbf8-bd69-54a8-84f4-842e30984f6c")
-		(property "Reference" "#PWR13033"
-			(at 134.62 212.09 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 134.62 209.55 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 134.62 205.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 134.62 205.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol for net \"GND\" (IPC net name)"
-			(at 134.62 205.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "b5ab7e7f-243d-5e03-bb5e-2dd93fe4c75b")
-		)
-		(instances
-			(project "ti135_card"
-				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/334ad52b-5884-483f-bc00-3be643cae895"
-					(reference "#PWR13033")
 					(unit 1)
 				)
 			)
@@ -7644,83 +7669,6 @@
 		)
 	)
 	(symbol
-		(lib_id "ti135_card:3V3_analog")
-		(at 134.62 220.98 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "bb012e20-0854-5618-aeae-0429cfc61bbe")
-		(property "Reference" "#PWR13037"
-			(at 134.62 224.79 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "3V3_analog"
-			(at 134.62 217.424 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 134.62 220.98 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 134.62 220.98 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol for net \"3V3_analog\" (IPC net name)"
-			(at 134.62 220.98 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "cd09e1f6-959a-57e6-815b-fec057682ac2")
-		)
-		(instances
-			(project "ti135_card"
-				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/334ad52b-5884-483f-bc00-3be643cae895"
-					(reference "#PWR13037")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "ti135_card:GND")
 		(at 200.66 111.76 0)
 		(unit 1)
@@ -7952,9 +7900,9 @@
 		)
 	)
 	(symbol
-		(lib_id "ti135_card:OPA365xxDBV")
+		(lib_id "ti135_card:OPA4322xPW")
 		(at 137.16 195.58 0)
-		(unit 1)
+		(unit 2)
 		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7962,7 +7910,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "c4fb0372-5db1-5324-b38c-2818494aab48")
-		(property "Reference" "U1305"
+		(property "Reference" "U1304"
 			(at 135.89 189.23 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7973,7 +7921,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "OPA365AIDBVR"
+		(property "Value" "OPA4322AIPWR"
 			(at 135.89 191.77 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7984,7 +7932,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-5"
+		(property "Footprint" "Package_SO:TSSOP-14_4.4x5mm_P0.65mm"
 			(at 134.62 200.66 0)
 			(hide yes)
 			(show_name no)
@@ -7996,7 +7944,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/opa4322.pdf"
 			(at 137.16 190.5 0)
 			(hide yes)
 			(show_name no)
@@ -8007,7 +7955,7 @@
 				)
 			)
 		)
-		(property "Description" "50-MHz, Zero-Crossover, Low-Distortion, High CMRR, RRI/O, Single-Supply, SOT-23-5"
+		(property "Description" "Quad 20-MHz, 10-V/us, rail-to-rail I/O CMOS op amp, 1.8-5.5 V, TSSOP-14"
 			(at 137.16 195.58 0)
 			(hide yes)
 			(show_name no)
@@ -8018,7 +7966,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C96626"
+		(property "LCSC" "C486027"
 			(at 137.16 195.58 0)
 			(hide yes)
 			(show_name no)
@@ -8028,27 +7976,21 @@
 					(size 1.27 1.27)
 				)
 			)
-		)
-		(pin "2"
-			(uuid "c08b616e-8b26-593e-9eed-6f24249a101b")
 		)
 		(pin "5"
-			(uuid "2d904ed9-2891-534e-a45c-efc62b9bd8c2")
+			(uuid "81efb1e9-6bd3-4cd2-b10e-936d93ba47af")
 		)
-		(pin "1"
-			(uuid "ba161725-c54b-5ca3-8609-8d11402b7fec")
+		(pin "6"
+			(uuid "ed60596e-410e-4bfe-9a4a-97c6b8017cf5")
 		)
-		(pin "3"
-			(uuid "188b371a-0e5c-576d-a7db-94bdc40b2828")
-		)
-		(pin "4"
-			(uuid "b9417b29-d9db-56b9-a7de-cee18cff4c57")
+		(pin "7"
+			(uuid "b9431905-1f37-450f-8f90-e27042ea72f2")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/334ad52b-5884-483f-bc00-3be643cae895"
-					(reference "U1305")
-					(unit 1)
+					(reference "U1304")
+					(unit 2)
 				)
 			)
 		)
@@ -9146,83 +9088,6 @@
 		)
 	)
 	(symbol
-		(lib_id "ti135_card:GND")
-		(at 134.62 241.3 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "e8b35f8d-65ce-53a7-887d-489648c04a0d")
-		(property "Reference" "#PWR13038"
-			(at 134.62 247.65 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 134.62 245.11 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 134.62 241.3 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 134.62 241.3 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol for net \"GND\" (IPC net name)"
-			(at 134.62 241.3 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "3121f857-adbe-5657-958f-36fc9216b8ef")
-		)
-		(instances
-			(project "ti135_card"
-				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/334ad52b-5884-483f-bc00-3be643cae895"
-					(reference "#PWR13038")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "ti135_card:R")
 		(at 304.8 200.66 90)
 		(unit 1)
@@ -9718,6 +9583,516 @@
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/334ad52b-5884-483f-bc00-3be643cae895"
 					(reference "C1304")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ti135_card:OPA4322xPW")
+		(at 137.16 266.7 0)
+		(unit 4)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "10bb0cf4-3bbc-41be-8de5-36ebd6f5136d")
+		(property "Reference" "U1304"
+			(at 135.89 260.35 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "OPA4322AIPWR"
+			(at 135.89 262.89 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_SO:TSSOP-14_4.4x5mm_P0.65mm"
+			(at 134.62 271.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/opa4322.pdf"
+			(at 137.16 261.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Quad 20-MHz, 10-V/us, rail-to-rail I/O CMOS op amp, 1.8-5.5 V, TSSOP-14"
+			(at 137.16 266.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C486027"
+			(at 137.16 266.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "12"
+			(uuid "84815af1-4a5b-4571-bb20-034a21e03f2b")
+		)
+		(pin "13"
+			(uuid "a3c39edc-9574-4f2b-b841-1abc3b354f13")
+		)
+		(pin "14"
+			(uuid "5d1ecd06-9531-4362-89d4-dcd5e4662192")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/334ad52b-5884-483f-bc00-3be643cae895"
+					(reference "U1304")
+					(unit 4)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 144.78 266.7) (xy 147.32 266.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "83ff9c8c-2236-4d2b-ab93-d6461e557321")
+	)
+	(wire
+		(pts
+			(xy 147.32 266.7) (xy 147.32 274.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "820b8b6f-3c8b-450f-ae3b-17fe64eaca59")
+	)
+	(wire
+		(pts
+			(xy 147.32 274.32) (xy 127 274.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "baa3bb0d-2d21-4af7-8de0-80decea98887")
+	)
+	(wire
+		(pts
+			(xy 127 274.32) (xy 127 269.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "edb0da1e-544b-41d7-a7f0-e524daa85bf1")
+	)
+	(wire
+		(pts
+			(xy 127 269.24) (xy 129.54 269.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "19ebb99c-d633-4a5b-b74e-1b2648ab483e")
+	)
+	(wire
+		(pts
+			(xy 129.54 264.16) (xy 121.92 264.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0758675b-b741-4909-8286-951bdc7e18ec")
+	)
+	(wire
+		(pts
+			(xy 121.92 264.16) (xy 121.92 279.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9f282dbd-7f50-4d71-a887-133ee1571327")
+	)
+	(symbol
+		(lib_id "ti135_card:GND")
+		(at 121.92 279.4 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "e6c782fd-f2dd-4514-94f5-3c0fce284288")
+		(property "Reference" "#PWR13043"
+			(at 121.92 285.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 121.92 283.21 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 121.92 279.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 121.92 279.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol for net \"GND\" (IPC net name)"
+			(at 121.92 279.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "7301681a-3d32-4b4a-bfae-236067f85755")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/334ad52b-5884-483f-bc00-3be643cae895"
+					(reference "#PWR13043")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ti135_card:OPA4322xPW")
+		(at 167.64 266.7 0)
+		(unit 5)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "d8e75d00-9e01-4bad-bf0b-42e427a735e3")
+		(property "Reference" "U1304"
+			(at 166.37 260.35 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "OPA4322AIPWR"
+			(at 166.37 262.89 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_SO:TSSOP-14_4.4x5mm_P0.65mm"
+			(at 165.1 271.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/opa4322.pdf"
+			(at 167.64 261.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Quad 20-MHz, 10-V/us, rail-to-rail I/O CMOS op amp, 1.8-5.5 V, TSSOP-14"
+			(at 167.64 266.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C486027"
+			(at 167.64 266.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "4"
+			(uuid "e770124f-53f7-4b28-b910-7f249ca1ca51")
+		)
+		(pin "11"
+			(uuid "629298b6-86a9-41ce-9d34-947a6c6aa416")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/334ad52b-5884-483f-bc00-3be643cae895"
+					(reference "U1304")
+					(unit 5)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 165.1 259.08) (xy 165.1 256.54)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "eb68bb52-049b-4519-99ce-164bf0abebdc")
+	)
+	(symbol
+		(lib_id "ti135_card:3V3_analog")
+		(at 165.1 256.54 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "e5729e9e-678e-44cc-9cd5-f3ae873a1519")
+		(property "Reference" "#PWR13041"
+			(at 165.1 260.35 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "3V3_analog"
+			(at 165.1 252.984 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 165.1 256.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 165.1 256.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol for net \"3V3_analog\" (IPC net name)"
+			(at 165.1 256.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "45c1257e-bee2-486f-a765-2b7a24363e43")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/334ad52b-5884-483f-bc00-3be643cae895"
+					(reference "#PWR13041")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 165.1 274.32) (xy 165.1 276.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "53cfb47a-1efd-42dd-903a-91bcc71d5b1c")
+	)
+	(symbol
+		(lib_id "ti135_card:GND")
+		(at 165.1 276.86 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "2d279a42-0b4a-441c-ad57-0f50ef6287d3")
+		(property "Reference" "#PWR13042"
+			(at 165.1 283.21 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 165.1 280.67 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 165.1 276.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 165.1 276.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol for net \"GND\" (IPC net name)"
+			(at 165.1 276.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "180a97bc-6486-4e40-b7c6-d34ec47ce778")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/334ad52b-5884-483f-bc00-3be643cae895"
+					(reference "#PWR13042")
 					(unit 1)
 				)
 			)

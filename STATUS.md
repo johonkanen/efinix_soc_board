@@ -50,7 +50,8 @@ DC value, last cycle, in LSB (14 bit, 201 uV):
 | same, baseboard 100R/470n + 100n at the mux pin | 4.2 | 1.0 | 38 | 0.1 | 7.8 | 74 | 2.4 | 6.6 |
 | **as built since 2026-11-05: TMUX1308 max caps, followers, monitors at 100R** | 4.2 | 1.0 | 1.1 | 0.1 | 1.5 | 2.0 | 0.5 | 1.4 |
 
-Conclusions: keep the isoada followers (U1304–U1306); the NX3L4051 would have failed on the 1k monitor channels.
+Conclusions: keep the isoada followers (U1304–U1306; since 2026-11-05 one OPA4322AIPWR quad, U1304 A–C, D spare;
+the sim still uses the OPA365 model for them: TI's OPAx322 model runs too slowly in ngspice to sweep); the NX3L4051 would have failed on the 1k monitor channels.
 At the TMUX1308's max capacitance the 1 kOhm rail-monitor resistors (R1302 1V8, R1304 1V1, R1303/R1305 3V3 divider)
 leave 38–74 LSB after a large step from the previous channel; ~100 Ohm source resistance (as mon_vcore's R1301)
 brings them to ~1–2 LSB. **Done 2026-11-05:** R1302/R1304 100R (C25076), R1303/R1305 200R/200R (C25087;
@@ -59,6 +60,8 @@ within ~3–4 LSB after the 0.3 V isoada1 channel. Error grows with the step fro
 order matters too.
 
 **Open, next time:**
+0. Place U1304 (now OPA4322AIPWR, TSSOP-14, parked right of the outline at ~(84, 30) mm on B.Cu) where U1304–U1306
+   were, and reroute: the old SOT-23 breakouts are left dangling. C1310–C1312 (one 100n per old OPA365) can drop to one.
 1. Reorder the level-shifter I/O so each part is closest to its J3 pin; route U1201–U1204 to the FPGA and J3;
    connect U1201/U1203 pin 13 and pin 24.
 2. The 6 flash via-in-pad shorts at U601 (vias now on the `_r` side of R623–R628); place/route the eMMC resistors.
@@ -187,7 +190,7 @@ minimum. Rest of the board unchanged (C528 moved 0.3 mm off a dq2 via). Details:
 | 10 emmc | done: THGAMVG7T13BAIL, CMD/DAT0-7/RST_n 47 k pull-ups to 1V8, DS 47 k pull-down, CLK 10 R, VCC 3V3, VCCQ 1V8, VDDi 2u2 |
 | 11 fpga_io | done: U501 bank units with labels from the pin plan |
 | 12 level_shift | done: 4 × SN74AXC8T245, OE pulled up (outputs disabled until the FPGA enables them) |
-| 13 adc | done. Front end from the **Agilex 3 card** (`~/dev/ti60f225_control_card`, design-notes "ADC front end for 2.5 MSPS"): TMUX1308PWR mux (was SN74LV4051A, briefly NX3L4051PW; 11 pF typ / 40 pF max on-capacitance vs the NX3L's 350 pF; since 2026-11-04 its 1.8 V-compatible selects (VIH 1.15 V) come straight from the FPGA, no translator; INH/E to GND, X0 = GND reference, rail monitors, isoada1..3 from J3 through OPA365 followers U1304–U1306, 1k + 1n C0G at their inputs, added 2026-10-31 because the baseboard now filters them with 8.2k + 4.7n/10n), then an OPA365 buffer, a 33 R + 680 p C0G kickback filter and an ADS7056. AVDD 4u7 + 100n, DVDD 1V8, 33 R SPI series. The Agilex 5 card's AD8603 was too slow and its INH was tied high |
+| 13 adc | done. Front end from the **Agilex 3 card** (`~/dev/ti60f225_control_card`, design-notes "ADC front end for 2.5 MSPS"): TMUX1308PWR mux (was SN74LV4051A, briefly NX3L4051PW; 11 pF typ / 40 pF max on-capacitance vs the NX3L's 350 pF; since 2026-11-04 its 1.8 V-compatible selects (VIH 1.15 V) come straight from the FPGA, no translator; INH/E to GND, X0 = GND reference, rail monitors, isoada1..3 from J3 through followers U1304A–C (OPA4322AIPWR quad, LCSC C486027, since 2026-11-05; was 3x OPA365; unit D spare follower, + to GND), 1k + 1n C0G at their inputs, added 2026-10-31 because the baseboard now filters them with 8.2k + 4.7n/10n), then an OPA365 buffer, a 33 R + 680 p C0G kickback filter and an ADS7056. AVDD 4u7 + 100n, DVDD 1V8, 33 R SPI series. The Agilex 5 card's AD8603 was too slow and its INH was tied high |
 | 14 connectors | done: J3 (baseboard J11) + 32 × 10 k pull-downs, J5 LCD, J2 UART |
 
 ERC shows two known, harmless notes and nothing else:

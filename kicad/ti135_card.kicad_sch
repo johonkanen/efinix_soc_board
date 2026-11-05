@@ -6444,6 +6444,16 @@
 				(justify right)
 			)
 		)
+		(pin "res1" output
+			(at 223.52 101.6 0)
+			(uuid "fd474fc4-734d-40c0-b3ab-03633a356e64")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7"
@@ -8414,6 +8424,16 @@
 				(justify right)
 			)
 		)
+		(pin "res1" input
+			(at 358.14 147.32 0)
+			(uuid "88150c80-d15d-4369-abc3-3be0c007efc3")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7"
@@ -8636,6 +8656,46 @@
 		(path "/"
 			(page "1")
 		)
+	)
+	(label "res1"
+		(at 228.6 101.6 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "b02e100e-56d0-4a3e-9a6b-a6f2a0032534")
+	)
+	(wire
+		(pts
+			(xy 223.52 101.6) (xy 228.6 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f76037ce-782d-4ec0-b764-9b1d58713aad")
+	)
+	(label "res1"
+		(at 363.22 147.32 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c1d8c0f4-1ebe-4dd8-8c49-ad8750c9f83e")
+	)
+	(wire
+		(pts
+			(xy 358.14 147.32) (xy 363.22 147.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2a371c4b-851f-4a52-b4d5-61106499a2c4")
 	)
 	(embedded_fonts no)
 )

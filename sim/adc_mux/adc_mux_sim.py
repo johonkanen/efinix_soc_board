@@ -28,6 +28,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 MODELS, WORK = os.path.join(HERE, 'models'), os.path.join(HERE, 'work')
 OPA_LIB = os.path.join(MODELS, 'opa365', 'OPA365-PSpiceFiles', 'SCHEMATIC1', 'TransientAnalysis', 'OPA365.lib')
 OPA_URL = 'https://www.ti.com/lit/zip/SBOC133'
+OPA322_LIB = os.path.join(MODELS, 'opa322', 'OPAx322.LIB')     # OPA4322 (quad) family model
+OPA322_URL = 'https://www.ti.com/lit/zip/SBOM888'
 LSB = 3.3 / 16384
 
 # data-sheet switch parameters at 3.3 V (typ unless *_max); caps in F, R in ohm, Q in C, t in s
@@ -51,6 +53,9 @@ SCEN = {  # mux, followers on isoada, baseboard R/C, local R/C at J3
     # the rail monitors before 2026-11-05: 1V8/1V1 series 1k, 3V3 divider 1k/1k (500 ohm)
     'tmux1308_max_rmon1k':     dict(mux='tmux1308_max', fol=True, rbb=8.2e3, cbb=4.7e-9, rloc=1e3, cloc=1e-9,
                                     rsrc={2: 1000, 3: 500, 5: 1000}),
+    # isoada followers as one OPA4322 quad (20 MHz) instead of three OPA365 (50 MHz)
+    'opa4322':                 dict(mux='tmux1308', fol=True, folm='OPAx322', rbb=8.2e3, cbb=4.7e-9, rloc=1e3, cloc=1e-9),
+    'opa4322_max':             dict(mux='tmux1308_max', fol=True, folm='OPAx322', rbb=8.2e3, cbb=4.7e-9, rloc=1e3, cloc=1e-9),
 }
 T, TACQ, TSEL, T0 = 400e-9, 100e-9, 5e-9, 2e-6
 
@@ -69,6 +74,10 @@ class NgSpice:
         self.lib.ngSpice_Init(self._p, None, self._e, None, None, None, None)
         self.lib.ngSpice_Command.argtypes = [ctypes.c_char_p]
         self.lib.ngSpice_Circ.argtypes = [ctypes.POINTER(ctypes.c_char_p)]
+        # XSPICE code models: PSpice-mode TABLE/VSWITCH cards become xfer/aswitch instances that need them
+        cm = os.path.join(os.path.dirname(c[0]), 'ngspice')
+        for f in ('analog.cm', 'digital.cm', 'xtradev.cm', 'xtraevt.cm', 'table.cm', 'spice2poly.cm'):
+            if os.path.exists(os.path.join(cm, f)): self.cmd(f'codemodel {os.path.join(cm, f)}')
     def cmd(self, c): return self.lib.ngSpice_Command(c.encode())
     def circ(self, text):
         lines = text.splitlines() + ['.end']
@@ -88,7 +97,7 @@ def netlist(sc, seq, fixed=None):
     """seq: channel index sampled at each instant k (t_k = T0 + k*T). fixed: channel held on (for .op)."""
     p, m = SCEN[sc], MUX[SCEN[sc]['mux']]
     n = len(seq); t_end = T0 + (n + 0.5) * T
-    L = [f'adc mux {sc}', f'.include {OPA_LIB}', 'VAA vaa 0 3.3',
+    L = [f'adc mux {sc}', f'.include {OPA_LIB}'] + ([f'.include {OPA322_LIB}'] if p.get('folm') == 'OPAx322' else []) + ['VAA vaa 0 3.3',
          f'.model swm sw vt=0.5 vh=0.01 ron={m["ron"]} roff=1e9',
          '.model swa sw vt=0.5 vh=0.01 ron=50 roff=1e9']
     # sources
@@ -98,7 +107,7 @@ def netlist(sc, seq, fixed=None):
         else:
             L += [f'V{i} src{i} 0 {v}', f'RBB{i} src{i} bb{i} {p["rbb"]}', f'CBB{i} bb{i} 0 {p["cbb"]}',
                   f'RLOC{i} bb{i} loc{i} {p["rloc"]}', f'CLOC{i} loc{i} 0 {p["cloc"]}']
-            L += [f'XF{i} loc{i} s{i} vaa 0 s{i} OPA365'] if p['fol'] else [f'RW{i} loc{i} s{i} 1e-3']
+            L += [f'XF{i} loc{i} s{i} vaa 0 s{i} {p.get("folm", "OPA365")}'] if p['fol'] else [f'RW{i} loc{i} s{i} 1e-3']
     # mux: CS(OFF) on each source, CD(OFF) on D, extra ON capacitance switched onto the source side
     extra = max(m['con'] - m['cd'] - m['cs'], 0.0)
     L.append(f'CD d 0 {m["cd"]}')
@@ -195,6 +204,8 @@ def fetch():
     os.makedirs(MODELS, exist_ok=True)
     req = urllib.request.Request(OPA_URL, headers={'User-Agent': 'Mozilla/5.0'})
     zipfile.ZipFile(io.BytesIO(urllib.request.urlopen(req).read())).extractall(os.path.join(MODELS, 'opa365'))
+    req = urllib.request.Request(OPA322_URL, headers={'User-Agent': 'Mozilla/5.0'})
+    zipfile.ZipFile(io.BytesIO(urllib.request.urlopen(req).read())).extractall(os.path.join(MODELS, 'opa322'))
     print('OPA365 model:', OPA_LIB, os.path.exists(OPA_LIB))
 
 
