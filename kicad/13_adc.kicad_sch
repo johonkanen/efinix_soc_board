@@ -5704,7 +5704,7 @@
 	(symbol
 		(lib_id "ti135_card:OPA4322xPW")
 		(at 137.16 160.02 0)
-		(unit 1)
+		(unit 2)
 		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5779,20 +5779,20 @@
 				)
 			)
 		)
-		(pin "1"
-			(uuid "5f7f90f3-fa61-4303-a0ab-db1b604a963d")
+		(pin "5"
+			(uuid "e7282c77-7da1-4184-bec8-70492784f32c")
 		)
-		(pin "2"
-			(uuid "811728a7-75a1-4d09-b6c5-703ce260755a")
+		(pin "6"
+			(uuid "71041350-2b04-49d7-ac00-854dfea1ef96")
 		)
-		(pin "3"
-			(uuid "e16307fc-ed4d-43be-a233-0c955fa14bbc")
+		(pin "7"
+			(uuid "6d491a00-32fb-46d3-a8d9-f09c1605d079")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/334ad52b-5884-483f-bc00-3be643cae895"
 					(reference "U1304")
-					(unit 1)
+					(unit 2)
 				)
 			)
 		)
@@ -7902,7 +7902,7 @@
 	(symbol
 		(lib_id "ti135_card:OPA4322xPW")
 		(at 137.16 195.58 0)
-		(unit 2)
+		(unit 4)
 		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7977,20 +7977,20 @@
 				)
 			)
 		)
-		(pin "5"
-			(uuid "81efb1e9-6bd3-4cd2-b10e-936d93ba47af")
+		(pin "12"
+			(uuid "9c22828f-54d6-4938-a3f4-cc451698d93e")
 		)
-		(pin "6"
-			(uuid "ed60596e-410e-4bfe-9a4a-97c6b8017cf5")
+		(pin "13"
+			(uuid "e53ea554-c332-48fd-93a5-4129843bfae1")
 		)
-		(pin "7"
-			(uuid "b9431905-1f37-450f-8f90-e27042ea72f2")
+		(pin "14"
+			(uuid "174f7afc-0d07-4526-b6c3-8396ba3e0c5b")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/334ad52b-5884-483f-bc00-3be643cae895"
 					(reference "U1304")
-					(unit 2)
+					(unit 4)
 				)
 			)
 		)
@@ -9591,7 +9591,7 @@
 	(symbol
 		(lib_id "ti135_card:OPA4322xPW")
 		(at 137.16 266.7 0)
-		(unit 4)
+		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -9666,20 +9666,20 @@
 				)
 			)
 		)
-		(pin "12"
-			(uuid "84815af1-4a5b-4571-bb20-034a21e03f2b")
+		(pin "1"
+			(uuid "1e02aa3b-a555-4e81-b37f-b524c9a1340a")
 		)
-		(pin "13"
-			(uuid "a3c39edc-9574-4f2b-b841-1abc3b354f13")
+		(pin "2"
+			(uuid "5dd033af-7c25-4a85-a75f-e8cbf6b1cf0a")
 		)
-		(pin "14"
-			(uuid "5d1ecd06-9531-4362-89d4-dcd5e4662192")
+		(pin "3"
+			(uuid "197c025c-3900-4edd-a728-038c48357377")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/334ad52b-5884-483f-bc00-3be643cae895"
 					(reference "U1304")
-					(unit 4)
+					(unit 1)
 				)
 			)
 		)

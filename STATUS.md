@@ -60,8 +60,11 @@ within ~3–4 LSB after the 0.3 V isoada1 channel. Error grows with the step fro
 order matters too.
 
 **Open, next time:**
-0. Place U1304 (now OPA4322AIPWR, TSSOP-14, parked right of the outline at ~(84, 30) mm on B.Cu) where U1304–U1306
-   were, and reroute: the old SOT-23 breakouts are left dangling. C1310–C1312 (one 100n per old OPA365) can drop to one.
+0. U1304 (OPA4322AIPWR) is placed at (8.95, 32.9) mm on B.Cu between the old U1304/U1306 spots, C1310 moved next to
+   its V+ (pin 4); old SOT-23 breakouts removed. Gate swap 2026-11-05: isoada1 on unit B (pins 5-7, left top, by R1307),
+   isoada3 on C (8-10, right top, by R1309), isoada2 on D (12-14, right bottom, toward R1308), spare follower on A (1-3). Still to route: + inputs from R1307/R1309/R1308, outputs to the mux
+   (the In5 drops for isoada1/2_buf at (8.99, 44.51)/(15.93, 42.71) remain; isoada3_buf's via was removed, its In5
+   trace ends at (10.83, 34.91)), V-/GND, unit D. C1311/C1312 (old per-OPA365 decaps) can go.
 1. Reorder the level-shifter I/O so each part is closest to its J3 pin; route U1201–U1204 to the FPGA and J3;
    connect U1201/U1203 pin 13 and pin 24.
 2. The 6 flash via-in-pad shorts at U601 (vias now on the `_r` side of R623–R628); place/route the eMMC resistors.
