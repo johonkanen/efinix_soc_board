@@ -10207,7 +10207,7 @@
 		)
 		(uuid "01fd25e2-7b6e-5f90-acc5-8b0fc08c4067")
 	)
-	(hierarchical_label "gpio_bypass_rly_iso"
+	(hierarchical_label "adasel1_iso"
 		(shape output)
 		(at 139.7 193.04 0)
 		(effects
@@ -10251,7 +10251,7 @@
 		)
 		(uuid "0b8acf78-368f-58c1-a010-ac794c0c2c9a")
 	)
-	(hierarchical_label "adclk_dab"
+	(hierarchical_label "pwm_q7"
 		(shape output)
 		(at 63.5 172.72 180)
 		(effects
@@ -10262,7 +10262,7 @@
 		)
 		(uuid "13df7101-3d93-50a5-a5ed-0a7bc76b7d4c")
 	)
-	(hierarchical_label "pwm_trans3_iso"
+	(hierarchical_label "adc_sclk"
 		(shape output)
 		(at 139.7 180.34 0)
 		(effects
@@ -10328,7 +10328,7 @@
 		)
 		(uuid "1f5b5fe2-3dbb-5eea-aeb1-a86e2f8fff24")
 	)
-	(hierarchical_label "dab_pwm_pri_hi_iso"
+	(hierarchical_label "pwm_g4_iso"
 		(shape output)
 		(at 63.5 198.12 180)
 		(effects
@@ -10416,7 +10416,7 @@
 		)
 		(uuid "33b7b61b-d548-569f-986f-fd7701904c6c")
 	)
-	(hierarchical_label "dab_pwm_lo_sec"
+	(hierarchical_label "cs1_iso"
 		(shape output)
 		(at 63.5 205.74 180)
 		(effects
@@ -10427,7 +10427,7 @@
 		)
 		(uuid "36dc64d0-5df0-5d7f-88e0-2ad4fd7cb4bd")
 	)
-	(hierarchical_label "adasel2_iso"
+	(hierarchical_label "adclk_iso"
 		(shape output)
 		(at 139.7 190.5 0)
 		(effects
@@ -10449,7 +10449,7 @@
 		)
 		(uuid "3a87c997-d236-5558-9a72-3270f14c1c97")
 	)
-	(hierarchical_label "pwm_trans5"
+	(hierarchical_label "inu_adclk"
 		(shape output)
 		(at 139.7 185.42 0)
 		(effects
@@ -10460,7 +10460,7 @@
 		)
 		(uuid "3de6f752-df1e-5db9-8790-6b48ef1866fb")
 	)
-	(hierarchical_label "adbsel0"
+	(hierarchical_label "adasel2_iso"
 		(shape output)
 		(at 139.7 195.58 0)
 		(effects
@@ -10471,7 +10471,7 @@
 		)
 		(uuid "3ff392a9-8490-51f9-b3ac-3ea44d8f21e4")
 	)
-	(hierarchical_label "pwm_trans2_iso"
+	(hierarchical_label "pwm_q8"
 		(shape output)
 		(at 139.7 177.8 0)
 		(effects
@@ -10482,7 +10482,7 @@
 		)
 		(uuid "406b8f0a-885a-5179-83c4-04fa0110afd0")
 	)
-	(hierarchical_label "adclk_iso"
+	(hierarchical_label "pwm_q5"
 		(shape output)
 		(at 63.5 170.18 180)
 		(effects
@@ -10515,7 +10515,7 @@
 		)
 		(uuid "45cc23f7-1dbe-5dc5-94ee-ed61b2506b52")
 	)
-	(hierarchical_label "cs1_iso"
+	(hierarchical_label "dab_pwm_pri_hi_iso"
 		(shape output)
 		(at 63.5 177.8 180)
 		(effects
@@ -10526,7 +10526,7 @@
 		)
 		(uuid "4829f2f1-ea76-53d7-ac76-11046de2576c")
 	)
-	(hierarchical_label "pwm_g4_iso"
+	(hierarchical_label "pwm_trans3_iso"
 		(shape output)
 		(at 63.5 195.58 180)
 		(effects
@@ -10603,7 +10603,7 @@
 		)
 		(uuid "6b2520f5-6f5a-5292-96ec-8b86399c0585")
 	)
-	(hierarchical_label "pwm_trans1_iso"
+	(hierarchical_label "pwm_trans5"
 		(shape output)
 		(at 139.7 175.26 0)
 		(effects
@@ -10669,7 +10669,7 @@
 		)
 		(uuid "73bb2cc2-d959-571e-aa66-882962966cf6")
 	)
-	(hierarchical_label "adasel0_iso"
+	(hierarchical_label "pwm_g1_iso"
 		(shape output)
 		(at 63.5 185.42 180)
 		(effects
@@ -10691,7 +10691,7 @@
 		)
 		(uuid "762fa64e-a357-5cfa-8b2f-43fa398c1ef3")
 	)
-	(hierarchical_label "pwm_q5"
+	(hierarchical_label "adbsel1"
 		(shape output)
 		(at 63.5 208.28 180)
 		(effects
@@ -10724,7 +10724,7 @@
 		)
 		(uuid "7d449de1-2552-5fe2-9edc-a8c5e932a5a0")
 	)
-	(hierarchical_label "pwm_trans6"
+	(hierarchical_label "pwm_q6"
 		(shape output)
 		(at 139.7 187.96 0)
 		(effects
@@ -10845,7 +10845,7 @@
 		)
 		(uuid "96248bbb-f788-5eaf-a9cb-30bc8ec1ddf1")
 	)
-	(hierarchical_label "adbsel2"
+	(hierarchical_label "gpio_bypass_rly_isolated"
 		(shape output)
 		(at 139.7 205.74 0)
 		(effects
@@ -10856,7 +10856,7 @@
 		)
 		(uuid "9a53536a-fff2-5502-b7ab-8cc9e7d02409")
 	)
-	(hierarchical_label "adbsel1"
+	(hierarchical_label "adasel0_iso"
 		(shape output)
 		(at 139.7 198.12 0)
 		(effects
@@ -10878,7 +10878,7 @@
 		)
 		(uuid "a2599689-138a-5f4b-b6b8-b15d61c482b0")
 	)
-	(hierarchical_label "pwm_g2_iso"
+	(hierarchical_label "dab_pwm_lo_sec"
 		(shape output)
 		(at 63.5 190.5 180)
 		(effects
@@ -10911,7 +10911,7 @@
 		)
 		(uuid "a536239a-96e7-5122-b096-4c36f03ae6e8")
 	)
-	(hierarchical_label "pwm_q7"
+	(hierarchical_label "adbsel0"
 		(shape output)
 		(at 139.7 170.18 0)
 		(effects
@@ -10922,7 +10922,7 @@
 		)
 		(uuid "a6b72de9-c69d-5d0e-b5be-b6fdd4fd457d")
 	)
-	(hierarchical_label "clk1_iso"
+	(hierarchical_label "pwm_g3_iso"
 		(shape output)
 		(at 63.5 180.34 180)
 		(effects
@@ -10933,7 +10933,7 @@
 		)
 		(uuid "a9a97263-018f-5081-b921-fe62ae4f3071")
 	)
-	(hierarchical_label "adc_sclk"
+	(hierarchical_label "clk1_iso"
 		(shape output)
 		(at 139.7 200.66 0)
 		(effects
@@ -10944,7 +10944,7 @@
 		)
 		(uuid "ad931068-d654-5231-8d08-f552ec2957af")
 	)
-	(hierarchical_label "pwm_q6"
+	(hierarchical_label "adbsel2"
 		(shape output)
 		(at 63.5 210.82 180)
 		(effects
@@ -10955,7 +10955,7 @@
 		)
 		(uuid "ae1c1129-782f-5776-ba67-8de688c42fff")
 	)
-	(hierarchical_label "pwm_q8"
+	(hierarchical_label "pwm_g2_iso"
 		(shape output)
 		(at 139.7 172.72 0)
 		(effects
@@ -10999,7 +10999,7 @@
 		)
 		(uuid "b5bfe95e-e6fc-5a8e-b7c7-dc5d4a788373")
 	)
-	(hierarchical_label "dab_pwm_pri_lo_iso"
+	(hierarchical_label "pwm_trans1_iso"
 		(shape output)
 		(at 63.5 200.66 180)
 		(effects
@@ -11010,7 +11010,7 @@
 		)
 		(uuid "bf469d73-92d6-5467-bd59-3e10cc32b14c")
 	)
-	(hierarchical_label "pwm_g3_iso"
+	(hierarchical_label "adclk_dab"
 		(shape output)
 		(at 63.5 193.04 180)
 		(effects
@@ -11021,7 +11021,7 @@
 		)
 		(uuid "c59673e0-472f-55fe-aa23-d7a17203bee9")
 	)
-	(hierarchical_label "pwm_trans4"
+	(hierarchical_label "gpio_bypass_rly_iso"
 		(shape output)
 		(at 139.7 182.88 0)
 		(effects
@@ -11043,7 +11043,7 @@
 		)
 		(uuid "ca01a924-50e5-50d5-ae1c-6df44c4157e0")
 	)
-	(hierarchical_label "gpio_bypass_rly_isolated"
+	(hierarchical_label "adc_cs_n"
 		(shape output)
 		(at 274.32 58.42 180)
 		(effects
@@ -11109,7 +11109,7 @@
 		)
 		(uuid "db98faeb-ea3a-5d9a-a410-d7ce9f7a8841")
 	)
-	(hierarchical_label "pwm_g1_iso"
+	(hierarchical_label "dab_pwm_pri_lo_iso"
 		(shape output)
 		(at 63.5 187.96 180)
 		(effects
@@ -11197,7 +11197,7 @@
 		)
 		(uuid "e9c9f104-9313-5709-a9dd-70a12caaac96")
 	)
-	(hierarchical_label "adasel1_iso"
+	(hierarchical_label "pwm_trans4"
 		(shape output)
 		(at 63.5 182.88 180)
 		(effects
@@ -11208,7 +11208,7 @@
 		)
 		(uuid "ebf521d9-186d-5665-b891-5d52660c748a")
 	)
-	(hierarchical_label "inu_adclk"
+	(hierarchical_label "pwm_trans6"
 		(shape output)
 		(at 63.5 175.26 180)
 		(effects
@@ -11230,7 +11230,7 @@
 		)
 		(uuid "eec95d9f-e9a8-56be-8391-a02db760aa03")
 	)
-	(hierarchical_label "adc_cs_n"
+	(hierarchical_label "pwm_trans2_iso"
 		(shape output)
 		(at 139.7 203.2 0)
 		(effects

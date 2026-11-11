@@ -464,6 +464,16 @@
 	)
 	(wire
 		(pts
+			(xy 358.14 147.32) (xy 363.22 147.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2a371c4b-851f-4a52-b4d5-61106499a2c4")
+	)
+	(wire
+		(pts
 			(xy 294.64 182.88) (xy 289.56 182.88)
 		)
 		(stroke
@@ -2594,6 +2604,16 @@
 	)
 	(wire
 		(pts
+			(xy 223.52 101.6) (xy 228.6 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f76037ce-782d-4ec0-b764-9b1d58713aad")
+	)
+	(wire
+		(pts
 			(xy 294.64 172.72) (xy 289.56 172.72)
 		)
 		(stroke
@@ -4462,6 +4482,16 @@
 		)
 		(uuid "afe2c570-6b06-59ee-8348-36ea024317cb")
 	)
+	(label "res1"
+		(at 228.6 101.6 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "b02e100e-56d0-4a3e-9a6b-a6f2a0032534")
+	)
 	(label "rgmii_txd1"
 		(at 20.32 88.9 180)
 		(effects
@@ -4611,6 +4641,16 @@
 			(justify right)
 		)
 		(uuid "c024b29e-44db-592f-97e3-1c332d8a3bf5")
+	)
+	(label "res1"
+		(at 363.22 147.32 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c1d8c0f4-1ebe-4dd8-8c49-ad8750c9f83e")
 	)
 	(label "adbsel0"
 		(at 20.32 111.76 180)
@@ -8656,46 +8696,6 @@
 		(path "/"
 			(page "1")
 		)
-	)
-	(label "res1"
-		(at 228.6 101.6 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "b02e100e-56d0-4a3e-9a6b-a6f2a0032534")
-	)
-	(wire
-		(pts
-			(xy 223.52 101.6) (xy 228.6 101.6)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f76037ce-782d-4ec0-b764-9b1d58713aad")
-	)
-	(label "res1"
-		(at 363.22 147.32 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "c1d8c0f4-1ebe-4dd8-8c49-ad8750c9f83e")
-	)
-	(wire
-		(pts
-			(xy 358.14 147.32) (xy 363.22 147.32)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2a371c4b-851f-4a52-b4d5-61106499a2c4")
 	)
 	(embedded_fonts no)
 )

@@ -8715,7 +8715,7 @@
 			)
 		)
 		(property "Value" "PWR_FLAG"
-			(at 243.84 133.35 0)
+			(at 242.062 125.222 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects

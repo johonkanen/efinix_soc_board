@@ -2448,7 +2448,7 @@
 		)
 		(uuid "14552612-c8e0-449c-972d-442e9b70fc20")
 	)
-	(label "emmc_rst_n"
+	(label "emmc_rst_n_r"
 		(at 172.72 78.74 180)
 		(effects
 			(font
@@ -2548,6 +2548,16 @@
 		)
 		(uuid "6067e2ca-9c6f-5cc6-a896-79bd7a60c0ec")
 	)
+	(label "emmc_rst_n"
+		(at 97.79 116.84 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "62b36d48-1d95-4f4f-af5b-44c1be3768df")
+	)
 	(label "emmc_dat0_r"
 		(at 105.41 71.12 0)
 		(effects
@@ -2618,7 +2628,7 @@
 		)
 		(uuid "7be9606d-96f8-59fe-8b21-f063e2a3ac4e")
 	)
-	(label "emmc_rst_n"
+	(label "emmc_rst_n_r"
 		(at 129.54 161.29 270)
 		(effects
 			(font
@@ -2667,6 +2677,16 @@
 			(justify right bottom)
 		)
 		(uuid "85ab415b-ba25-441a-ae5a-1eed1d6924a3")
+	)
+	(label "emmc_rst_n_r"
+		(at 105.41 116.84 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "8a296c0d-5670-43f2-b70d-0a2f5243e319")
 	)
 	(label "emmc_cmd"
 		(at 97.79 66.04 180)
@@ -4587,6 +4607,96 @@
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/3886b9a9-7f36-4ca1-be8f-3e95434be1e8"
 					(reference "#PWR10016")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ti135_card:R")
+		(at 101.6 116.84 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "4adb6580-428f-40a6-ad9e-632b4a91807e")
+		(property "Reference" "R1023"
+			(at 101.6 113.03 270)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "33R"
+			(at 101.6 114.81 270)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
+			(at 101.6 118.618 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 101.6 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 101.6 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C320843"
+			(at 101.6 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "8200b9d4-28d4-4aed-bf79-36886720829c")
+		)
+		(pin "2"
+			(uuid "d6db3a5b-3175-4cc9-8fe1-1d54de0630e3")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/3886b9a9-7f36-4ca1-be8f-3e95434be1e8"
+					(reference "R1023")
 					(unit 1)
 				)
 			)

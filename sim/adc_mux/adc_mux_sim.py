@@ -53,6 +53,10 @@ SCEN = {  # mux, followers on isoada, baseboard R/C, local R/C at J3
     # the rail monitors before 2026-11-05: 1V8/1V1 series 1k, 3V3 divider 1k/1k (500 ohm)
     'tmux1308_max_rmon1k':     dict(mux='tmux1308_max', fol=True, rbb=8.2e3, cbb=4.7e-9, rloc=1e3, cloc=1e-9,
                                     rsrc={2: 1000, 3: 500, 5: 1000}),
+    'tmux1308_max_rmon300':    dict(mux='tmux1308_max', fol=True, rbb=8.2e3, cbb=4.7e-9, rloc=1e3, cloc=1e-9,
+                                    rsrc={1: 300, 2: 300, 3: 300, 5: 300}),
+    'tmux1308_max_rmon500':    dict(mux='tmux1308_max', fol=True, rbb=8.2e3, cbb=4.7e-9, rloc=1e3, cloc=1e-9,
+                                    rsrc={1: 500, 2: 500, 3: 500, 5: 500}),
     # isoada followers as one OPA4322 quad (20 MHz) instead of three OPA365 (50 MHz)
     'opa4322':                 dict(mux='tmux1308', fol=True, folm='OPAx322', rbb=8.2e3, cbb=4.7e-9, rloc=1e3, cloc=1e-9),
     'opa4322_max':             dict(mux='tmux1308_max', fol=True, folm='OPAx322', rbb=8.2e3, cbb=4.7e-9, rloc=1e3, cloc=1e-9),

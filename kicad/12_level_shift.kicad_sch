@@ -1254,6 +1254,22 @@
 		(color 0 0 0 0)
 		(uuid "c5d28a84-85f2-5184-8608-b01be7a060ae")
 	)
+	(no_connect
+		(at 264.16 147.32)
+		(uuid "955a2832-18bc-4f76-afb0-3e63bff2c6ed")
+	)
+	(no_connect
+		(at 243.84 137.16)
+		(uuid "b04cbb79-c337-45f5-9dd1-da32d30476ce")
+	)
+	(no_connect
+		(at 264.16 68.58)
+		(uuid "c784f632-bbf1-4efc-9da8-3eca3dc2c631")
+	)
+	(no_connect
+		(at 264.16 134.62)
+		(uuid "c7863a77-d71d-4f21-a995-13bd918258be")
+	)
 	(wire
 		(pts
 			(xy 243.84 55.88) (xy 236.22 55.88)
@@ -1553,6 +1569,16 @@
 			(type default)
 		)
 		(uuid "4862cad5-9cb2-5030-b944-519b3dc985dc")
+	)
+	(wire
+		(pts
+			(xy 264.16 142.24) (xy 271.78 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "48cda790-27aa-4908-a07e-ff6237c1f3e2")
 	)
 	(wire
 		(pts
@@ -2016,6 +2042,16 @@
 	)
 	(wire
 		(pts
+			(xy 264.16 144.78) (xy 271.78 144.78)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "aca109d8-7e23-476b-9cae-d5f059706417")
+	)
+	(wire
+		(pts
 			(xy 264.16 121.92) (xy 266.7 121.92)
 		)
 		(stroke
@@ -2033,6 +2069,16 @@
 			(type default)
 		)
 		(uuid "ae1d74ac-9219-5742-bc28-0bf67b0c0d19")
+	)
+	(wire
+		(pts
+			(xy 264.16 149.86) (xy 271.78 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b0f06616-c897-4e4c-b1d7-d21176ad7e46")
 	)
 	(wire
 		(pts
@@ -2103,6 +2149,16 @@
 			(type default)
 		)
 		(uuid "c2e6b2b6-751a-5e08-8d48-50bc57981625")
+	)
+	(wire
+		(pts
+			(xy 243.84 149.86) (xy 236.22 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c3567d92-5909-4f20-90d7-301114ee80e5")
 	)
 	(wire
 		(pts
@@ -2655,6 +2711,17 @@
 		)
 		(uuid "53d4199b-6ae8-553f-9127-6435a6776e49")
 	)
+	(hierarchical_label "pwm_q8_3v3"
+		(shape output)
+		(at 271.78 144.78 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "579d1016-5332-4cc9-ab67-88afb8ddbf84")
+	)
 	(hierarchical_label "pwm_trans6"
 		(shape input)
 		(at 236.22 63.5 180)
@@ -2776,6 +2843,17 @@
 		)
 		(uuid "836c314c-7d1f-5a30-9960-cbff4f5b4f63")
 	)
+	(hierarchical_label "gpio_bypass_rly_iso_3v3"
+		(shape output)
+		(at 271.78 142.24 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "87768613-f90f-43ee-91bf-801293a9f997")
+	)
 	(hierarchical_label "pwm_trans4_3v3"
 		(shape output)
 		(at 271.78 66.04 0)
@@ -2841,6 +2919,28 @@
 			(justify right)
 		)
 		(uuid "94cb3eb4-17a3-5428-8807-baf25a880de3")
+	)
+	(hierarchical_label "pwm_q6"
+		(shape input)
+		(at 236.22 149.86 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "986fc04c-c024-4cf6-86fb-fceb900b9926")
+	)
+	(hierarchical_label "pwm_q6_3v3"
+		(shape output)
+		(at 271.78 149.86 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "9f83f835-eadd-4b59-a37f-2a70dcc756d4")
 	)
 	(hierarchical_label "dab_pwm_hi_sec"
 		(shape input)
@@ -7665,105 +7765,5 @@
 				)
 			)
 		)
-	)
-	(no_connect
-		(at 264.16 134.62)
-		(uuid "c7863a77-d71d-4f21-a995-13bd918258be")
-	)
-	(no_connect
-		(at 243.84 137.16)
-		(uuid "b04cbb79-c337-45f5-9dd1-da32d30476ce")
-	)
-	(hierarchical_label "gpio_bypass_rly_iso_3v3"
-		(shape output)
-		(at 271.78 142.24 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "87768613-f90f-43ee-91bf-801293a9f997")
-	)
-	(wire
-		(pts
-			(xy 264.16 142.24) (xy 271.78 142.24)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "48cda790-27aa-4908-a07e-ff6237c1f3e2")
-	)
-	(hierarchical_label "pwm_q8_3v3"
-		(shape output)
-		(at 271.78 144.78 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "579d1016-5332-4cc9-ab67-88afb8ddbf84")
-	)
-	(wire
-		(pts
-			(xy 264.16 144.78) (xy 271.78 144.78)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "aca109d8-7e23-476b-9cae-d5f059706417")
-	)
-	(no_connect
-		(at 264.16 147.32)
-		(uuid "955a2832-18bc-4f76-afb0-3e63bff2c6ed")
-	)
-	(hierarchical_label "pwm_q6"
-		(shape input)
-		(at 236.22 149.86 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "986fc04c-c024-4cf6-86fb-fceb900b9926")
-	)
-	(wire
-		(pts
-			(xy 243.84 149.86) (xy 236.22 149.86)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c3567d92-5909-4f20-90d7-301114ee80e5")
-	)
-	(hierarchical_label "pwm_q6_3v3"
-		(shape output)
-		(at 271.78 149.86 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "9f83f835-eadd-4b59-a37f-2a70dcc756d4")
-	)
-	(wire
-		(pts
-			(xy 264.16 149.86) (xy 271.78 149.86)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b0f06616-c897-4e4c-b1d7-d21176ad7e46")
-	)
-	(no_connect
-		(at 264.16 68.58)
-		(uuid "c784f632-bbf1-4efc-9da8-3eca3dc2c631")
 	)
 )
