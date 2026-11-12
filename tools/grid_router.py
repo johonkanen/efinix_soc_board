@@ -619,7 +619,14 @@ for net in want:
         ops["log"].append(f"{net}: {sa[3]} -> {ga[3]}  {length:.1f} mm, {len(vias_)} via(s), layers {'/'.join(sorted({t['layer'] for t in tracks}))}")
         print(f"ok   {net}: {sa[3]} -> {ga[3]}  {length:.1f} mm, {len(vias_)} via(s)  [{time.time() - t1:.1f} s]", flush=True)
         # merge: the piece that owns the reached anchor absorbs the source piece and the new copper
-        dstp = next(p for p in ps if p["tied"]) if ga[0] is None else next(p for p in ps if p is not src and any(a is ga for a in p["anchors"]))
+        if ga[0] is None:
+            dstp = next((p for p in ps if p["tied"]), None)
+            if dstp is None:                    # nothing of this net was in a fill yet: this piece is now
+                src["tied"] = True
+                src["anchors"] += [(v["x"], v["y"], None, "via", None) for v in vias_]
+                continue
+        else:
+            dstp = next(p for p in ps if p is not src and any(a is ga for a in p["anchors"]))
         new_anchors = [(t["x1"], t["y1"], (t["layer"],), "track", None) for t in tracks] + [(t["x2"], t["y2"], (t["layer"],), "track", None) for t in tracks] + \
                       [(v["x"], v["y"], None, "via", None) for v in vias_]
         dstp["anchors"] += src["anchors"] + new_anchors

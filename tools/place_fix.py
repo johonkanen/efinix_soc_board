@@ -59,6 +59,10 @@ if SET == "pll":
         "FB504": ("U501", "W11", 7.0, 7.0),   # 0V85 -> vddpll
     }
     FLIP = set(RELOCATE)
+if SET == "c542":
+    # 1V1 decap boxed in by routed RGMII on every layer: onto the 1V1 ball via R1 if a spot exists
+    NUDGES = {}
+    RELOCATE = {"C542": ("U501", "R1", 1.2, 1.2)}
 CLR = 0.10          # copper clearance used for the search (board minimum 0.09)
 HOLE = 0.175        # hole to copper
 STEP = 0.05

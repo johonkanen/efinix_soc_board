@@ -11,7 +11,9 @@ kept in `tools/`. Konnect (MCP) is used for read-only queries and DRC only. Afte
 
 ## 1. Where the board stands
 
-- 411 footprints, all placed inside the outline. Nothing is unplaced; placement work is corrections only.
+- 411 footprints. Four are not on the board: C806, C807, C823, C824 (22 µF, LPDDR4 1V1 bulk, locked) are
+  parked 9–11 mm above the top edge (found in phase 3; the first version of this plan wrongly said all
+  parts were inside the outline). The rest are placed; placement work is corrections only.
 - 448 open connections on 102 nets: 300 on the 8 rails, 148 on 94 signal and local-supply nets.
 - 26 DRC errors (8 shorts, 6 hole clearance, 6 solder-mask bridge, 6 courtyard overlaps), 114 warnings
   (57 dangling vias, 55 dangling tracks, 2 isolated copper). Schematic parity 0.
@@ -71,15 +73,23 @@ later. On the card that is the EN/PG chain `pg_group1` and `pg_all`, both still 
 Board: x 131.5–207.5, y 51.7–116.8 mm. Signal layers F.Cu, In2, In5, B.Cu; planes In1 (GND), In3
 (1V1 / VCORE / 3V3 / GND), In4 (1V8 / 0V85), In6 (GND).
 
-**LPDDR4 region: x 150–178, y 51.7–92** (U801, the corridor, the DDR half of U501). In it:
+**LPDDR4 region (narrowed 2026-11-12): x 152–176.5, y 51.7–77.5.** That is the measured extent of the
+LPDDR4 copper (F.Cu x 153.7–175.8, y 52.9–76.9; In2 x 153.3–174.7, y 52.6–76.8; In5 x 152.9–173.2,
+y 59.3–76.6; 72 short B.Cu tracks under U801) plus a margin; U501's DDR balls are rows y 72.6–76.6. The
+rest of U501 (y 77.5–91) is outside it. In the region:
 - In1 and In6 GND are the references of F.Cu/In2 and In5/B.Cu; the In3 1V1 block is In2's second
   reference. **No new tracks on In1, In3, In4, In6 anywhere**, and no zone edit that cuts these planes
   inside the region.
-- No new signal tracks on F.Cu, In2 or In5 in the region (the DDR nets carry 0.2 mm class clearance).
-- New vias in the region only for rail/GND at existing decaps, and only where they do not cut a slot in a
-  plane (no rows of vias closer than 0.8 mm pitch across a DDR trace's return path).
-- No new parts in the region. C806–C808, C814, C823–C827 (frozen LPDDR4 caps) still need their 1V1/GND
-  vias: rail copper may be added, the parts stay.
+- The rule is enforced by distance, not by the box: `tools/grid_router.py` keeps every new track 0.3 mm
+  from LPDDR4 tracks and pads (3h), and every new via 0.3 mm from LPDDR4 copper on all layers. One
+  exception: a B.Cu track may pass an LPDDR4 *via* at the normal 0.1 mm, as the decoupling under both
+  BGAs already does.
+- New vias in the region only for rail/GND at existing parts.
+- No new parts in the region on F.Cu. On B.Cu the PLL ferrites and their caps were moved into the strip
+  between U801 and U501 (phase 3), next to the balls they feed.
+- **C806, C807, C823, C824 (22 µF LPDDR4 bulk caps, locked) lie outside the board outline at y 40–43**
+  (the board's top edge is y 51.7). They are protected footprints, so they have not been moved; they
+  need a place on the board and the user's go-ahead to move them.
 
 | Area | F.Cu | In2 | In5 | B.Cu |
 |---|---|---|---|---|
@@ -101,8 +111,8 @@ No part is unplaced. Planned moves, none in the LPDDR4 region and none of a lock
 
 1. Courtyard overlaps: C105 off U101; C1004/C1005 apart; R1009, R1022, R1023 off U501's courtyard and
    each other (they belong beside their eMMC balls on the east side).
-2. eMMC FPGA-side resistors R1010–R1020: check each sits on its escape; move where a net is 15–21 mm open
-   with a resistor in the wrong place.
+2. eMMC pull-ups R1011–R1013, R1015, R1017, R1018 and the DS pull-down R1020 (47 k, on the FPGA-side
+   nets but placed at the eMMC, 15–21 mm away): move them next to the 33R series resistors.
 3. Flash R623–R628: keep at the FPGA end; positions adjusted only if the U601 re-fan-out needs it.
 4. `vcca_bl` caps (C5060–C5062, 5–6 mm from R8): try once to bring them closer; the area is full, so this
    may stay as it is.
@@ -174,3 +184,25 @@ Board minimums: clearance 0.09 mm, hole clearance 0.175 mm, hole to hole 0.2 mm,
   leave them.
 - The 1V1 buck (U341/L341 at x 148, y 56–60, B.Cu) is 8–9 mm west of U801. Efinix asks for ≥ 100 mil
   from switching nodes to DDR traces; that holds, and the cell is not moved.
+
+## 10. Phase 3 as built (2026-11-12)
+
+- Rail pads tied: 448 → 149 open connections in total; the rails went from 300 open to 12 (below).
+  `tools/rail_vias.py` (169 vias in or beside pads, 86 stubs), then `tools/grid_router.py` for pads with
+  no fill of their rail under them (0.2 mm, 0.12 mm under the BGA), 3V3_analog (0.3 mm on F/B) and the PHY
+  supplies. `tools/phase3.sh` reruns the trace part on a work copy.
+- Regulator output vias found (within 6 mm of the inductor's output pad, all in the rail's fill):
+  VCORE 5, 1V8 4, 3V3 3, 0V85 2, 1V1 3. With the assumption of section 6 that is 1.5–3.5 A per rail
+  against 0.45–1.0 A high-case loads, so none were added. This is fewer than the "at least 4 × 0.45/0.25"
+  written in section 6.
+- Moved in phase 3: FB501/C501 (vcca_bl) and FB504/C507/C508 (DDR PLL supply) from beside the PHY to
+  B.Cu north of U501, 3–6 mm from balls R8 and W11 (they were 17–23 mm away).
+- Left open on the rails, each tried three ways (via in pad, stub or via beside the pad, routed trace) and
+  boxed in by routed Ethernet signals on every layer:
+  - C542.1 (1V1 decap at U501's east edge);
+  - C940.1 / C941.1 (PHY 3V3 bypass, joined to each other but not to 3V3);
+  - U901.38 (`phy_vdd10`), U901.28 / C936.1 (`phy_dvdd_rg`), and the `phy_dvdd_rg` B.Cu pour is in two pieces;
+  - the B.Cu GND pour under the PHY has no via to the GND planes (stitching, phase 4 step 9);
+  - C806, C807, C823, C824: off the board (above).
+- The rail stubs drawn by `tools/rail_vias.py` run straight from pad to via at whatever angle that is,
+  not at 45°. Electrically fine; tidy by hand if wanted.
