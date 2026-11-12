@@ -189,3 +189,20 @@ lifted and re-routed. **Result worse than the board as committed, so nothing was
 - The ferrite inputs need VCORE (In3, x <= 173.7, y >= 76) and 0V85 (In4, x <= 172.9); neither plane
   reaches the free F.Cu area, so each input became a 10 mm trace.
 The board is unchanged from commit 442cbe1.
+
+## Follow-up 4: B.Cu strip north-east of U501 tidied; bulk caps to the top (2026-11-12)
+
+User request (options 1 and 2). `tools/tidy_strip.sh` on a work copy, then accepted:
+- Lifted the copper this project's scripts had added in x 160–181.5, y 66–84 (131 rail stubs, vias and
+  feeds, plus all of `vcca_bl` and the DDR PLL supply) and routed it again with the grid router in a fixed
+  order (vcca_bl core, ferrite feeds, DDR PLL supply, then the rail pads), so the new traces are at
+  45 degrees. Nothing that was on the board before phase 3 was removed.
+- Moved to F.Cu east of the DDR corridor, each tied by vias to its plane: C538 (10 u, 1V1) to
+  (178.6, 71.2), C5023 (10 u, 1V8) to (182.75, 70.0), C5020 (47 u, 1V8) to (180.65, 69.05). They are now
+  6–12 mm from where they were, further from U501's balls; acceptable for bulk capacitance, not for
+  the small caps, which stayed.
+- C542 was not moved: its GND pad carries older copper.
+- New vias keep 0.3 mm from LPDDR4 copper on every layer whatever the track setting (router change).
+- DRC: 0 errors, 12 unconnected, the same twelve as before the tidy. `verify_protected.py check`: no
+  differences. `pg_all`: not routed further at the user's word; it stays listed until the net leaves
+  the schematic.

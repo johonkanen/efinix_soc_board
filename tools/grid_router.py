@@ -139,12 +139,16 @@ class Raster:
         self._put(l, i0, j0, d <= r, nid(net))
 
 
+VIA_DDR_EXTRA = 0.20        # new vias always keep 0.3 mm from LPDDR4 copper, whatever --ddr-extra says
+
+
 def paint_track(R, t):
-    R.seg(t["layer"], t["x1"], t["y1"], t["x2"], t["y2"], t["w"] / 2, t["net"], DDR_EXTRA if is_ddr(t["net"]) else 0)
+    ex = (VIA_DDR_EXTRA if R is RV else DDR_EXTRA) if is_ddr(t["net"]) else 0
+    R.seg(t["layer"], t["x1"], t["y1"], t["x2"], t["y2"], t["w"] / 2, t["net"], ex)
 
 
 def paint_via(R, v, is_via_raster):
-    ex = DDR_EXTRA if is_ddr(v["net"]) else 0
+    ex = (VIA_DDR_EXTRA if is_via_raster else DDR_EXTRA) if is_ddr(v["net"]) else 0
     for l in R.own:
         # B.Cu tracks may pass an LPDDR4 via at the normal clearance: the decoupling under both BGAs sits
         # between those vias already, and the plane-side nets there have no other way out
@@ -154,7 +158,7 @@ def paint_via(R, v, is_via_raster):
 
 
 def paint_pad(R, p, is_via_raster):
-    ex = DDR_EXTRA if is_ddr(p["net"]) else 0
+    ex = (VIA_DDR_EXTRA if is_via_raster else DDR_EXTRA) if is_ddr(p["net"]) else 0
     for l in p["layers"]:
         R.rect(l, p["box"], p["net"], ex)
     if p["drill"] and is_via_raster:

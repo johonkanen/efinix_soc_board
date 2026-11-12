@@ -83,6 +83,15 @@ if SET == "pll_top":
         "C5072": ("U501", "W11", 3.0, 3.0), "C5073": ("U501", "W11", 3.0, 3.0),
     }
     TOP = {"FB501", "C501", "C5060", "C502", "FB504", "C507", "C508"}
+if SET == "bulk_top":
+    # 2026-11-12, user: bulk caps on the east side of the crowded B.Cu strip go to F.Cu, where the 1V1
+    # (In3) and 1V8 (In4) planes are under the free area. C542 (1V1, boxed in on B.Cu) goes with them.
+    NUDGES = {}
+    RELOCATE = {
+        "C538": ("@", (178.5, 73.5, "1"), 5.0, 99), "C5023": ("@", (181.0, 73.5, "1"), 5.0, 99),
+        "C5020": ("@", (180.0, 70.0, "1"), 5.0, 99),
+    }   # C542 stays: its GND pad carries copper from before this work, and a flip in place would short
+    TOP = set(RELOCATE)
 ALLOW_PROTECTED = set()
 if SET == "ddr_caps":
     # the four 22u LPDDR4 1V1 bulk caps that were parked above the board edge; the user allowed moving
@@ -165,7 +174,8 @@ def seg_rect_dist(x1, y1, x2, y2, r):
 
 def relocate(ref, tref, tpad, radius, limit):
     f = movable(ref)
-    if (ref in FLIP and f.GetLayer() == pcbnew.F_Cu) or (ref in TOP and f.GetLayer() == pcbnew.B_Cu):
+    flipped = (ref in FLIP and f.GetLayer() == pcbnew.F_Cu) or (ref in TOP and f.GetLayer() == pcbnew.B_Cu)
+    if flipped:
         f.Flip(f.GetPosition(), pcbnew.FLIP_DIRECTION_LEFT_RIGHT)
     side = f.GetLayer()
     fx, fy = pcbnew.ToMM(f.GetPosition().x), pcbnew.ToMM(f.GetPosition().y)
@@ -262,6 +272,8 @@ def relocate(ref, tref, tpad, radius, limit):
                     best = (dist, x, y, k)
     if not best or best[0] >= min(limit, cur - 0.5):
         print(f"relocate {ref}: no better spot (now {cur:.1f} mm from {tref}.{tpad}); left in place")
+        if flipped:
+            f.Flip(f.GetPosition(), pcbnew.FLIP_DIRECTION_LEFT_RIGHT)
         return
     dist, x, y, k = best
     for p in f.Pads():
@@ -270,6 +282,8 @@ def relocate(ref, tref, tpad, radius, limit):
             if any(t.GetNetname() == p.GetNetname() and t.Type() != pcbnew.PCB_VIA_T and
                    ((t.GetStart() - pos).EuclideanNorm() < MM(0.2) or (t.GetEnd() - pos).EuclideanNorm() < MM(0.2)) for t in b.GetTracks()):
                 print(f"relocate {ref}: pad {p.GetNumber()} has a track on it; left in place")
+                if flipped:
+                    f.Flip(f.GetPosition(), pcbnew.FLIP_DIRECTION_LEFT_RIGHT)
                 return
     f.SetOrientationDegrees(f.GetOrientationDegrees() + 90 * k)
     f.SetPosition(pcbnew.VECTOR2I(MM(x), MM(y)))
