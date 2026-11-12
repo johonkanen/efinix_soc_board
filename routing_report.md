@@ -2,7 +2,8 @@
 
 Board: `kicad/ti135_card.kicad_pcb`, KiCad 10.0.7. Start: commit 9b6150d on `main`. The plan is
 `layout_plan_remaining.md`; this report says what was done, what is still open and what a person should
-look at. **The board is not finished: 18 connections are open, among them the VCCA_BL supply.**
+look at. **The board is not finished: 15 connections are open** (list below). VCCA_BL reaches its ball
+since the follow-up of the same day (section "Follow-up: vcca_bl").
 
 ## Result
 
@@ -10,10 +11,10 @@ look at. **The board is not finished: 18 connections are open, among them the VC
 
 | | Start | Now |
 |---|---|---|
-| Unconnected items | 448 | **18** |
+| Unconnected items | 448 | **15** |
 | Errors other than unconnected | 26 (8 shorts, 6 hole clearance, 6 mask bridge, 6 courtyard) | **0** |
 | Schematic parity | 0 | 0 |
-| Warnings | 114 (57 dangling vias, 55 dangling tracks, 2 isolated copper) | 75 (44 dangling vias, 31 dangling tracks) |
+| Warnings | 114 (57 dangling vias, 55 dangling tracks, 2 isolated copper) | 74 (43 dangling vias, 31 dangling tracks) |
 
 `verify_protected.py check`: no differences (2730 LPDDR4 track/via items, 300 rail items next to
 LPDDR4 pads, 43 footprints). ERC was not touched (2 items at the start, both schematic matters).
@@ -65,13 +66,13 @@ Specctra round-trip took place. KiCadRoutingTools was skipped as you said.
   for this stack-up). Regulator outputs have 2–5 vias into their planes (1.5–3.5 A by that rule against
   0.45–1.0 A loads), so none were added; the plan had said "at least 4".
 
-## Open: 18 unconnected items
+## Open: 15 unconnected items
 
 Each was tried at least three ways and then left, as the brief asks.
 
 | Net | What is open | Why |
 |---|---|---|
-| **`vcca_bl`** (7 items) | PLL analog supply, ball R8, with FB501, C501, C502, C5060–C5063 | R8 sits in the DDR ball rows; the pads are boxed in on B.Cu by decoupling and DDR vias. Four attempts (0.2 mm, 0.12 mm, 0.12 and 0.10 mm at normal DDR clearance). C502 is still beside the PHY, 24 mm away: no legal spot near R8. **The FPGA will not work without this.** |
+| `vcca_bl` (4 items) | four small filter caps: C5060 (100 n), C5062 (10 n), C5063, and C502 beside the PHY | their pads are boxed in on B.Cu by the 0V85 and VCORE feeds to the two ferrites and by GND stubs; routing them first boxes the ferrite inputs in instead. The supply itself is connected: VCORE → FB501 → C501 (1 µ) → ball R8, with C5061 (10 n) 1.6 mm from the ball |
 | `pg_all` | U341 pin 6 (1V1 regulator PG) | pin boxed in on B.Cu; the rest of `pg_all` is routed |
 | `adc_cs_n` | ball N1 to R1310 | no free way out of the ball on any layer |
 | `uart_tx` | ball H7 stub to R1402 | same |
@@ -114,7 +115,8 @@ change.
   routed another way, plus 3 on unused translator pins. I did not delete any existing copper to tidy them.
 
 **Power**
-- `vcca_bl` open (above). The other PLL supplies are routed at 0.12–0.2 mm.
+- `vcca_bl` is fed but has only 1 µ + 10 n of its filter connected (above); the Efinix checklist row for
+  VCCA is 2 × 100 n, 2 × 10 n, 1 n. The other PLL supplies are routed at 0.12–0.2 mm.
 - The rail stubs from `tools/rail_vias.py` run straight from pad to via at whatever angle; the routed
   traces are 45°.
 - Via-in-pad on many 0201/0402 and IC pads, as the board already does under the BGAs: the order needs
@@ -140,3 +142,18 @@ change.
 - `tools/kicad_ibis_simulation` (submodule pointer) was modified before I started and is still uncommitted.
 - `STATUS.md` and `NEXT_SESSION.md` were not updated; they describe the board before this work.
 - `work/` and `reports/` are git-ignored (router inputs/outputs per batch are in `reports/phase3`, `reports/phase4`).
+
+## Follow-up: vcca_bl (2026-11-12, after the report)
+
+You asked me to move Ethernet tracks to get `vcca_bl` through. **No Ethernet track was moved**: Ethernet
+was not what blocked it. Ball R8 was boxed in on B.Cu by copper I had added myself in phases 3 and 4 (the
+DDR PLL supply looped around R8's via, and the VCORE and 0V85 feeds to FB501 and FB504 ran beside it).
+I lifted those traces (`tools/remove_ops.py` removes exactly what an earlier router run added) and routed
+in this order: `vcca_bl` core, VCORE to FB501, 0V85 to FB504 and its caps, then the DDR PLL supply.
+- Connected now: FB501.2 – C501 – ball R8 (0.2 mm and 0.12 mm, B.Cu, 4.0 + 4.6 mm), C5061 – R8 (1.9 mm).
+- Re-routed and connected as before: VCORE → FB501.1 (7.9 mm), 0V85 → FB504.1, C531, C533, the whole DDR
+  PLL supply (`vddpll_mcb_top_phy_ddr`; its 10 n cap C5072 now has a 20.8 mm trace, C5073 10.7 mm).
+- These nets run at the board's 0.1 mm clearance to LPDDR4 vias and pads in the ball field (static nets).
+- Still open on `vcca_bl`: C5060, C5062, C5063, C502.
+- DRC: 0 errors, 15 unconnected; `verify_protected.py check`: no differences.
+The Ethernet-boxed pads (C542, C940/C941, U901 pins 28 and 38) are unchanged and still open.

@@ -42,6 +42,7 @@ ap.add_argument("--ddr-extra", type=float, default=None, help="extra clearance t
                 "(supplies, calibration resistors) that have to enter the DDR ball field")
 ap.add_argument("--keep-pours", default=None, help="regex of nets whose pours no foreign track (on the pour's layer) or via may enter")
 ap.add_argument("--stitch", nargs=3, metavar=("NET", "LAYER", "STEP"), help="write vias of NET on a STEP mm grid wherever one lands inside NET's pour on LAYER and clears all layers, then exit")
+ap.add_argument("--skip-refs", default="", help="comma list of footprint refs whose lone pads are left out of this run (to fix the order within a net)")
 ap.add_argument("--probe", nargs=4, metavar=("NET", "X", "Y", "R"), help="report where a via of NET could go within R of (X, Y), then exit")
 ap.add_argument("--layer-cost", default="", help="e.g. B.Cu=1.5,F.Cu=1.2")
 A = ap.parse_args()
@@ -619,7 +620,10 @@ for rx in A.nets:
             want.append(nname)
 for net in want:
     ps = pieces(net)
-    if len(ps) < 2:
+    if A.skip_refs:
+        sk = set(A.skip_refs.split(","))
+        ps = [p for p in ps if not all(a[3].split(".")[0] in sk for a in p["anchors"])]
+    if len(ps) < 2 and not (A.plane_vias and ps and not ps[0]["tied"]):
         continue
     guard = 0
     while len(ps) > 1 and guard < 200:
