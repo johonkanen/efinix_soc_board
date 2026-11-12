@@ -68,6 +68,21 @@ if SET == "c502":
     NUDGES = {}
     RELOCATE = {"C502": ("U501", "R8", 7.0, 7.0)}
     FLIP = {"C502"}
+TOP = set()
+if SET == "pll_top":
+    # 2026-11-12, user: the B.Cu strip north-east of U501 is too crowded and F.Cu beside it has room.
+    # The two PLL ferrites and their larger caps go to F.Cu east of the DDR corridor; only the small
+    # caps stay on B.Cu at the balls. Targets "@" are board coordinates for the named pad.
+    NUDGES = {}
+    RELOCATE = {
+        "FB501": ("@", (176.9, 75.0, "2"), 3.0, 99), "C501": ("@", (176.9, 74.0, "1"), 3.0, 99),
+        "C5060": ("@", (178.0, 75.0, "1"), 3.0, 99), "C502": ("@", (178.0, 74.0, "1"), 3.0, 99),
+        "FB504": ("@", (176.9, 71.5, "2"), 3.0, 99), "C507": ("@", (176.9, 70.5, "1"), 3.0, 99),
+        "C508": ("@", (178.0, 70.5, "1"), 3.0, 99),
+        "C5062": ("U501", "R8", 3.0, 3.0), "C5063": ("U501", "R8", 3.0, 3.0),
+        "C5072": ("U501", "W11", 3.0, 3.0), "C5073": ("U501", "W11", 3.0, 3.0),
+    }
+    TOP = {"FB501", "C501", "C5060", "C502", "FB504", "C507", "C508"}
 ALLOW_PROTECTED = set()
 if SET == "ddr_caps":
     # the four 22u LPDDR4 1V1 bulk caps that were parked above the board edge; the user allowed moving
@@ -150,13 +165,17 @@ def seg_rect_dist(x1, y1, x2, y2, r):
 
 def relocate(ref, tref, tpad, radius, limit):
     f = movable(ref)
-    if ref in FLIP and f.GetLayer() == pcbnew.F_Cu:
+    if (ref in FLIP and f.GetLayer() == pcbnew.F_Cu) or (ref in TOP and f.GetLayer() == pcbnew.B_Cu):
         f.Flip(f.GetPosition(), pcbnew.FLIP_DIRECTION_LEFT_RIGHT)
     side = f.GetLayer()
-    tp = pad(tref, tpad).GetPosition()
-    tx, ty = pcbnew.ToMM(tp.x), pcbnew.ToMM(tp.y)
     fx, fy = pcbnew.ToMM(f.GetPosition().x), pcbnew.ToMM(f.GetPosition().y)
-    signal_pad = next(p for p in f.Pads() if p.GetNumber() and p.GetNetname() == pad(tref, tpad).GetNetname())
+    if tref == "@":
+        tx, ty = tpad[0], tpad[1]
+        signal_pad = pad(ref, tpad[2]); tpad = "(%.1f, %.1f)" % (tx, ty)
+    else:
+        tp = pad(tref, tpad).GetPosition()
+        tx, ty = pcbnew.ToMM(tp.x), pcbnew.ToMM(tp.y)
+        signal_pad = next(p for p in f.Pads() if p.GetNumber() and p.GetNetname() == pad(tref, tpad).GetNetname())
     cur = math.hypot(pcbnew.ToMM(signal_pad.GetPosition().x) - tx, pcbnew.ToMM(signal_pad.GetPosition().y) - ty)
     # shape relative to the footprint position, at the current orientation
     c = cy_box(f)

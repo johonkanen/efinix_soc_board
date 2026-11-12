@@ -176,3 +176,16 @@ re-route the lifted nets, check). Router results are in `reports/phase7/`.
 Open now (12): `vcca_bl` caps C5060, C5062, C5063, C502 (4 items); C542 pin 1; `adc_cs_n`; `uart_tx`;
 `t_irq`; `fpga_ssu_n`; `pg_all` (U341 pin 6); and two zone items: the `phy_dvdd_rg` B.Cu pour is still in
 two pieces (the smaller piece carries no pad) and slivers of the PHY GND pour.
+
+## Follow-up 3: moving the PLL filter parts to the top side (2026-11-12, tried and discarded)
+
+The user found the B.Cu strip north-east of U501 messy and pointed out free room on F.Cu. Tried on a work
+copy (`tools/place_fix.py` set `pll_top`): FB501, C501, C502, C5060 and FB504 to F.Cu east of the DDR
+corridor (x 176–179, y 71–77), with the wiring of `vcca_bl`, the DDR PLL supply and the ferrite feeds
+lifted and re-routed. **Result worse than the board as committed, so nothing was accepted:**
+- FB501 on F.Cu could not be reached on either pad, and neither top-side group could be joined to its
+  ball. Balls R8 and W11 sit in the middle of the DDR ball rows (x 166.8 and 164.4); a feed from the east
+  has to cross the whole DDR field on B.Cu, which is what the parts next to the balls avoid.
+- The ferrite inputs need VCORE (In3, x <= 173.7, y >= 76) and 0V85 (In4, x <= 172.9); neither plane
+  reaches the free F.Cu area, so each input became a 10 mm trace.
+The board is unchanged from commit 442cbe1.
