@@ -1205,12 +1205,6 @@
 		(uuid "fcfc10b7-b6b8-5d9b-8aa5-9ae2a88df621")
 	)
 	(junction
-		(at 152.4 60.96)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "4a2809b9-d9e7-575b-8bbb-04cc129016fd")
-	)
-	(junction
 		(at 109.22 60.96)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1245,6 +1239,16 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "b5f04467-46a7-56cb-884a-50fd7b2a6028")
+	)
+	(wire
+		(pts
+			(xy 40.64 60.96) (xy 50.8 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cce8289f-fe07-4845-a902-4e9d4e466764")
 	)
 	(wire
 		(pts
@@ -1288,7 +1292,7 @@
 	)
 	(wire
 		(pts
-			(xy 152.4 71.12) (xy 152.4 73.66)
+			(xy 40.64 71.12) (xy 40.64 73.66)
 		)
 		(stroke
 			(width 0)
@@ -1518,7 +1522,7 @@
 	)
 	(wire
 		(pts
-			(xy 152.4 60.96) (xy 152.4 63.5)
+			(xy 40.64 60.96) (xy 40.64 63.5)
 		)
 		(stroke
 			(width 0)
@@ -1598,7 +1602,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 143.2052 71.12 0)
 			(hide yes)
 			(show_name no)
@@ -1631,7 +1635,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C45783"
+		(property "LCSC" "C109447"
 			(at 142.24 67.31 0)
 			(hide yes)
 			(show_name no)
@@ -1688,7 +1692,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
 			(at 131.7752 71.12 0)
 			(hide yes)
 			(show_name no)
@@ -1721,7 +1725,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C1555"
+		(property "LCSC" "C76924"
 			(at 130.81 67.31 0)
 			(hide yes)
 			(show_name no)
@@ -1778,7 +1782,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 51.7652 71.12 0)
 			(hide yes)
 			(show_name no)
@@ -1811,7 +1815,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C15850"
+		(property "LCSC" "C109457"
 			(at 50.8 67.31 0)
 			(hide yes)
 			(show_name no)
@@ -1945,7 +1949,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Inductor_SMD:L_Coilcraft_XxL4020"
+		(property "Footprint" "Inductor_SMD:L_1008_2520Metric"
 			(at 97.79 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -1978,7 +1982,7 @@
 				)
 			)
 		)
-		(property "MPN" "WPN4020H1R0MT"
+		(property "MPN" "FTC252012S1R0MBCA"
 			(at 97.79 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -1989,7 +1993,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C98359"
+		(property "LCSC" "C5832370"
 			(at 97.79 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -2357,7 +2361,7 @@
 				)
 			)
 		)
-		(property "Value" "100k 0.5%"
+		(property "Value" "100k"
 			(at 121.58 78.74 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2367,7 +2371,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
 			(at 115.062 77.47 0)
 			(hide yes)
 			(show_name no)
@@ -2400,7 +2404,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C136979"
+		(property "LCSC" "C106224"
 			(at 116.84 77.47 0)
 			(hide yes)
 			(show_name no)
@@ -2505,7 +2509,7 @@
 	)
 	(symbol
 		(lib_id "ti135_card:GND")
-		(at 152.4 73.66 0)
+		(at 40.64 73.66 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -2515,7 +2519,7 @@
 		(dnp no)
 		(uuid "8d909983-b593-5812-b9ae-472dbe2a0740")
 		(property "Reference" "#PWR02006"
-			(at 152.4 80.01 0)
+			(at 40.64 80.01 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2526,7 +2530,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 152.4 77.47 0)
+			(at 40.64 77.47 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2536,7 +2540,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 152.4 73.66 0)
+			(at 40.64 73.66 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2547,7 +2551,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 152.4 73.66 0)
+			(at 40.64 73.66 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2558,7 +2562,7 @@
 			)
 		)
 		(property "Description" "Power symbol for net \"GND\" (IPC net name)"
-			(at 152.4 73.66 0)
+			(at 40.64 73.66 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2705,7 +2709,7 @@
 				)
 			)
 		)
-		(property "Value" "59.0k 0.5%"
+		(property "Value" "59.0k"
 			(at 124.88 68.58 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2715,7 +2719,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
 			(at 115.062 67.31 0)
 			(hide yes)
 			(show_name no)
@@ -2748,7 +2752,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C2684527"
+		(property "LCSC" "C320978"
 			(at 116.84 67.31 0)
 			(hide yes)
 			(show_name no)
@@ -2776,7 +2780,7 @@
 	)
 	(symbol
 		(lib_id "ti135_card:C")
-		(at 152.4 67.31 0)
+		(at 40.64 67.31 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -2786,7 +2790,7 @@
 		(dnp no)
 		(uuid "c7175887-b65b-5b5b-9650-20cbe74203f5")
 		(property "Reference" "C203"
-			(at 157.14 66.04 0)
+			(at 45.38 66.04 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2795,8 +2799,8 @@
 				)
 			)
 		)
-		(property "Value" "22u"
-			(at 156.59 68.58 0)
+		(property "Value" "100n"
+			(at 44.83 68.58 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2805,8 +2809,8 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
-			(at 153.3652 71.12 0)
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+			(at 41.6052 71.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2817,7 +2821,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 152.4 67.31 0)
+			(at 40.64 67.31 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2828,7 +2832,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 152.4 67.31 0)
+			(at 40.64 67.31 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2838,8 +2842,8 @@
 				)
 			)
 		)
-		(property "LCSC" "C45783"
-			(at 152.4 67.31 0)
+		(property "LCSC" "C190183"
+			(at 40.64 67.31 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)

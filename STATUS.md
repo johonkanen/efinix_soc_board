@@ -1,6 +1,6 @@
 # Status and handoff
 
-Last updated: **2026-11-11** (Ethernet routed; see "Where we left off (2026-11-11)" below). Read this first if you are picking the work up (human or agent).
+Last updated: **2026-11-12** (power cells rebuilt; see "Where we left off (2026-11-12)" below). Read this first if you are picking the work up (human or agent).
 
 ## What this repository is
 
@@ -22,10 +22,38 @@ card, and plugs into the same baseboard.
 | `reference/` | `ti135n484_pinout.csv` (all 484 balls, from the Efinity device DB), `baseboard_j11_pinout.csv` (baseboard signal header, the authority for J3) |
 | `efinity/pinplan/` | `pinplan.py` builds the Interface Designer project for the pin plan; `ti135_pinplan.csv` is the signal → ball result |
 
+## Where we left off (2026-11-12)
+
+Power-supply rework, step 1 of 2: **the five TLV62585 cells are rebuilt from one template** (not committed yet).
+- **One cell, 6.9 x 8.5 mm, for every rail** (`tools/buck_cell.py`, template in the regulator's pin frame; `--demo`
+  draws it alone on an empty board): L 1 uH 2520 (FTC252012S1R0MBCA, C5832370), CIN 10 u 0603 + 100 n 0201 at VIN,
+  COUT 47 u 0805 + 22 u 0603, R1/R2/CFF 0201 (1 % dividers, also VCORE: worst case about +-2.7 % against the +-3.2 %
+  VCC window). The output edge is a VOUT bus with up to six 0.45/0.25 plane vias; GND is one piece on B.Cu with
+  vias to In6; PG has a 0.3/0.15 via in its pad; EN leaves sideways (5V0 flood, or pg_group1 left to route).
+- **Schematic** (`tools/buck_cell_sch.py`, edits sheets 02/03 in place; the sheet generators no longer run on the
+  hand-saved sheets): the second 22 u of each cell became its 100 n input capacitor (C203, C303, C313, C343; new
+  C335 on 0V85). ERC unchanged, schematic parity clean.
+- **Board:** output edges face the plane entry: VCORE, 1V8, 0V85 north; 3V3, 1V1 east. Regulators moved: U201
+  0.5 mm south, U311 0.5 mm south, U331 0.25 mm south, U341 2.25 mm east / 0.25 mm south (clears C1204 and the
+  j3_oe_n / 3V3 vias), U301 not at all. The In4 0V85 region's box over the buck now starts at y 96.71 (was 98.49).
+  C808, C809, C825, C826 (LPDDR4 1V1 caps) are tied straight to the 1V1 cell's bus. 1V1 has 5 output vias and no
+  via in CIN's ground pad (F.Cu traces above); 0V85 has 5 output vias.
+- DRC against the board before: no new violations except the open EN stubs (pg_group1 at U331, U341) and the PG
+  vias, which are not routed yet. Opens per net went down or stayed, except phy_vdd10 6 -> 7 (all zones were
+  refilled; that pour is on the open Ethernet list).
+- Recipe: `buck_cell_sch.py`, `add_parts.py`, `swap_footprint.py` (L, CIN/22 u to 0603, 100 n/CFF/R to 0201),
+  `buck_cell.py --strip IN OUT`, `buck_cell.py IN OUT`.
+
+**Open, power rework step 2 (decided 2026-11-12: bulk counted per rail, not per bank):**
+1. 1 u / 4.7 u and the remaining 0402 100 n on the rails to 0201 on via pairs (`tools/place_bga_decaps.py`).
+2. Bulk down to a few large caps: VCORE 2 x 100 u 1206 at the BGA edge, 1V8 2 x 47 u near the HSIO banks, 1V1
+   1 x 47 u between the BGA and the LPDDR4; drop the 0805 10 u and 0402 22 u around the FPGA. Update
+   HW_CHECKLIST_REVIEW.md (it records the per-bank count as met).
+3. Route pg_group1 / pg_all to the cells' EN stubs and PG vias; POWER_BUDGET.md still lists the old cell parts.
+
 ## Where we left off (2026-11-11)
 
-J3 I/O routing and the pin plan that follows it are pushed (4aa3eb8). **Ethernet is routed on the board, not yet
-committed** (`tools/eth_route.sh` is the recipe, `tools/eth_fanout.py` and `tools/eth_finish.py` its parts):
+J3 I/O routing and the pin plan that follows it are pushed (4aa3eb8). **Ethernet is routed on the board (committed 9b6150d)** (`tools/eth_route.sh` is the recipe, `tools/eth_fanout.py` and `tools/eth_finish.py` its parts):
 - **MDI pairs** copied from the Agilex card (same PHY, same HR911130A, same offset within 0.05 mm): F.Cu, 0.12 mm,
   no vias, P/N within 0.1 mm (A 8.3, B 13.8/13.9, C 6.8, D 7.4 mm). Pair B loops around jack pin 6 as there.
 - **PHY passives as on the Agilex card** (`tools/eth_place.py`): RX series R907–R912, the bypass caps C921, C922,
