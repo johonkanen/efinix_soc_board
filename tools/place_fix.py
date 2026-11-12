@@ -92,6 +92,17 @@ if SET == "bulk_top":
         "C5020": ("@", (180.0, 70.0, "1"), 5.0, 99),
     }   # C542 stays: its GND pad carries copper from before this work, and a flip in place would short
     TOP = set(RELOCATE)
+if SET == "bulk_out":
+    # 2026-11-12, user: the 0805 bulk caps under U501 go outside the BGA (bulk capacitance may sit
+    # further away). VCORE ones south of U501 over the In3 VCORE plane, 1V8 ones over In4, all on F.Cu.
+    NUDGES = {}
+    RELOCATE = {
+        "C5003": ("@", (155.5, 93.3, "1"), 5.0, 99), "C509": ("@", (158.3, 93.3, "1"), 5.0, 99),
+        "C5005": ("@", (161.0, 93.3, "1"), 5.0, 99), "C5004": ("@", (163.7, 93.3, "1"), 5.0, 99),
+        "C5021": ("@", (167.5, 93.3, "1"), 5.0, 99), "C5026": ("@", (170.5, 93.3, "1"), 5.0, 99),
+        "C5024": ("@", (151.5, 79.0, "1"), 5.0, 99),
+    }
+    TOP = set(RELOCATE)
 ALLOW_PROTECTED = set()
 if SET == "ddr_caps":
     # the four 22u LPDDR4 1V1 bulk caps that were parked above the board edge; the user allowed moving
@@ -181,7 +192,7 @@ def relocate(ref, tref, tpad, radius, limit):
     fx, fy = pcbnew.ToMM(f.GetPosition().x), pcbnew.ToMM(f.GetPosition().y)
     if tref == "@":
         tx, ty = tpad[0], tpad[1]
-        signal_pad = pad(ref, tpad[2]); tpad = "(%.1f, %.1f)" % (tx, ty)
+        signal_pad = pad(ref, tpad[2]); tpad = "(%.1f, %.1f)" % (tx, ty); at_target = True
     else:
         tp = pad(tref, tpad).GetPosition()
         tx, ty = pcbnew.ToMM(tp.x), pcbnew.ToMM(tp.y)
@@ -270,7 +281,7 @@ def relocate(ref, tref, tpad, radius, limit):
                         break
                 if ok:
                     best = (dist, x, y, k)
-    if not best or best[0] >= min(limit, cur - 0.5):
+    if not best or (tref != "@" and best[0] >= min(limit, cur - 0.5)):     # "@": any legal spot in range
         print(f"relocate {ref}: no better spot (now {cur:.1f} mm from {tref}.{tpad}); left in place")
         if flipped:
             f.Flip(f.GetPosition(), pcbnew.FLIP_DIRECTION_LEFT_RIGHT)

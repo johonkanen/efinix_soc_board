@@ -206,3 +206,23 @@ User request (options 1 and 2). `tools/tidy_strip.sh` on a work copy, then accep
 - DRC: 0 errors, 12 unconnected, the same twelve as before the tidy. `verify_protected.py check`: no
   differences. `pg_all`: not routed further at the user's word; it stays listed until the net leaves
   the schematic.
+
+## Follow-up 5: 0805 bulk caps moved out from under U501 (2026-11-12)
+
+User request. `tools/bulk_out.sh`: the tie-ins this project had added at the caps' old pads were lifted,
+the caps flipped to F.Cu and placed south of the BGA, and tied to their planes again by the grid router.
+
+| Cap | Rail | Was (B.Cu, under U501) | Now (F.Cu) |
+|---|---|---|---|
+| C509 22 u | VCORE | (157.34, 86.52) | (159.70, 93.25) |
+| C5005 10 u | VCORE | (159.15, 89.30) | (160.00, 96.05) |
+| C5004 10 u | VCORE | (162.95, 87.20) | (162.85, 95.85) |
+| C5021 47 u | 1V8 | (166.95, 89.10) | (167.25, 97.20) |
+| C5026 10 u | 1V8 | (170.00, 89.25) | (171.90, 96.80) |
+
+- Not moved: C5003 (47 u, VCORE) and C5024 (10 u, 1V8). Their pads carry copper from before this work,
+  which the scripts do not remove. The 4.7 u 0402 caps under the BGA were not counted as large.
+- Each moved cap is tied with 0.2–0.3 mm stubs and 0.30/0.15 vias, one per connection; for 22–47 u bulk
+  caps a second via per pad would be better and is easy to add by hand.
+- The new spots are on F.Cu above the B.Cu regulator cells (y 93–97); In1/In3/In4/In6 lie between.
+- DRC: 0 errors, 12 unconnected (the same twelve). `verify_protected.py check`: no differences.
