@@ -38,10 +38,14 @@ ap.add_argument("--max-len", type=float, default=0, help="give up on a connectio
 ap.add_argument("--prev", nargs="*", default=[], help="ops files already produced on this geometry (treated as existing copper)")
 ap.add_argument("--plane-vias", action="store_true", help="nets with fills: end at a new via into the fill")
 ap.add_argument("--zone-penalty", type=float, default=4.0, help="cost factor for a track cell inside another net's pour on that layer")
+ap.add_argument("--ddr-extra", type=float, default=None, help="extra clearance to LPDDR4 copper (default 0.2, i.e. 0.3 mm in all). 0 only for static nets "
+                "(supplies, calibration resistors) that have to enter the DDR ball field")
 ap.add_argument("--probe", nargs=4, metavar=("NET", "X", "Y", "R"), help="report where a via of NET could go within R of (X, Y), then exit")
 ap.add_argument("--layer-cost", default="", help="e.g. B.Cu=1.5,F.Cu=1.2")
 A = ap.parse_args()
 
+if A.ddr_extra is not None:
+    DDR_EXTRA = A.ddr_extra
 G = json.load(open(A.geom))
 for pf in A.prev:
     o = json.load(open(pf))

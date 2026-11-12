@@ -4,7 +4,7 @@
 Pads (bounding box, copper layers, net, drill), tracks, vias, the board edge box, net classes, and for
 every item of a net that has zones whether it sits in a fill of its net (so the router knows what is
 already tied to a plane)."""
-import sys, json, collections
+import sys, json, math, collections
 import pcbnew
 
 b = pcbnew.LoadBoard(sys.argv[1]); mm = pcbnew.ToMM
@@ -39,6 +39,18 @@ for t in b.GetTracks():
     if t.Type() == pcbnew.PCB_VIA_T:
         o["vias"].append({"x": mm(t.GetPosition().x), "y": mm(t.GetPosition().y), "d": mm(t.GetWidth(pcbnew.F_Cu)), "drill": mm(t.GetDrillValue()),
                           "net": net, "fill": in_fill(net, t.GetPosition(), cu), "locked": t.IsLocked()})
+    elif t.Type() == pcbnew.PCB_ARC_T:
+        # arcs (the LPDDR4 meanders) as short chords, so the router sees where the copper really is
+        l = t.GetLayer(); c = t.GetCenter(); r = t.GetRadius()
+        a0 = math.atan2(t.GetStart().y - c.y, t.GetStart().x - c.x); am = math.atan2(t.GetMid().y - c.y, t.GetMid().x - c.x)
+        a1 = math.atan2(t.GetEnd().y - c.y, t.GetEnd().x - c.x)
+        d1 = (am - a0) % (2 * math.pi); d2 = (a1 - a0) % (2 * math.pi)
+        sweep = d2 if d1 <= d2 else d2 - 2 * math.pi
+        n = max(2, int(abs(sweep) * mm(r) / 0.05) + 1)
+        pts = [(mm(c.x) + mm(r) * math.cos(a0 + sweep * k / n), mm(c.y) + mm(r) * math.sin(a0 + sweep * k / n)) for k in range(n + 1)]
+        fl = in_fill(net, t.GetStart(), [l]) or in_fill(net, t.GetEnd(), [l])
+        for (x1, y1), (x2, y2) in zip(pts, pts[1:]):
+            o["tracks"].append({"x1": x1, "y1": y1, "x2": x2, "y2": y2, "w": mm(t.GetWidth()), "layer": name[l], "net": net, "fill": fl, "locked": t.IsLocked()})
     else:
         l = t.GetLayer()
         o["tracks"].append({"x1": mm(t.GetStart().x), "y1": mm(t.GetStart().y), "x2": mm(t.GetEnd().x), "y2": mm(t.GetEnd().y), "w": mm(t.GetWidth()),
