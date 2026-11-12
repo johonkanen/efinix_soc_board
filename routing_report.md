@@ -241,3 +241,39 @@ neighbouring pads that had hung on the lifted copper (C5002 among them).
 
 All seven 0805 bulk caps are now outside U501's outline. DRC: 0 errors, 12 unconnected (the same
 twelve). `verify_protected.py check`: no differences.
+
+## Follow-up 7: the fifteen 4.7 u 0402 caps moved out from under U501 (2026-11-12)
+
+`tools/bulk47.sh` (`tools/place_fix.py` set `bulk47`). Each cap went to the nearest free spot outside
+U501's courtyard and outside the LPDDR4 region that has its rail's plane underneath (survey of both
+sides). 21 unlocked B.Cu tracks ending on the old pads were lifted with `tools/rip_box.py`; vias were
+left because they may also serve a ball. Ties were made by the grid router (`--plane-vias`, 0.3 then
+0.2 mm) and `tools/rail_vias.py`; ops in `reports/phase12/`.
+
+| Cap | Rail | Was (B.Cu, under U501) | Now |
+|---|---|---|---|
+| C562 | 3V3 | (153.01, 84.55) | B.Cu (150.27, 84.50) |
+| C5056 | 1V1 | (154.20, 75.70) | B.Cu (150.98, 69.00) |
+| C5055 | 1V1 | (154.55, 74.20) | B.Cu (150.50, 65.77) |
+| C5027 | 1V8 | (154.70, 72.00) | F.Cu (150.50, 75.52) |
+| C5029 | 1V8 | (155.00, 77.70) | B.Cu (150.50, 80.02) |
+| C513 | VCORE | (157.23, 89.81) | B.Cu (156.75, 93.48) |
+| C5030 | 1V8 | (160.05, 86.45) | B.Cu (164.73, 92.50) |
+| C512 | VCORE | (160.40, 84.20) | B.Cu (161.00, 92.98) |
+| C511 | VCORE | (162.40, 79.00) | B.Cu (164.98, 95.25) |
+| C514 | VCORE | (164.00, 83.00) | B.Cu (172.25, 96.98) |
+| C5048 | 3V3 | (165.50, 86.45) | F.Cu (151.25, 88.52) |
+| C5049 | 3V3 | (167.50, 87.55) | F.Cu (180.77, 87.50) |
+| C553 | 1V8 | (169.98, 80.29) | F.Cu (177.50, 80.73) |
+| C5054 | 1V1 | (171.70, 72.10) | B.Cu (179.75, 72.27) |
+| C5028 | 1V8 | (173.00, 85.85) | B.Cu (177.25, 88.02) |
+
+- C5056, C5055, C5027 and C5054 had frozen (locked, tier B) 1V1/1V8/GND stubs ending on their old pads.
+  That copper was not touched: eight stubs (0.02–1.5 mm) now end in nothing under the BGA and show as
+  `track_dangling` warnings (31 -> 40 in total, with one 3V3 stub whose via still carries a connection).
+  Deleting them needs the user's permission.
+- C5055 is tied to 1V1 through C5056's pad (2.8 mm of 0.3 mm track), C5056's GND runs 3.8 mm to a via;
+  every other tie is at most 2.5 mm, one 0.30/0.15 via per connection.
+- C5056/C5055 sit at x 150.5, just west of the narrowed LPDDR4 region (x 152–176.5).
+- No 4.7 u cap is left inside U501's courtyard; the 0201 (100 n/10 n/1 n) and 1 u 0402 caps stay.
+- DRC: 0 errors, 12 unconnected (the same twelve nets). `verify_protected.py check`: no differences.
