@@ -226,3 +226,18 @@ the caps flipped to F.Cu and placed south of the BGA, and tied to their planes a
   caps a second via per pad would be better and is easy to add by hand.
 - The new spots are on F.Cu above the B.Cu regulator cells (y 93–97); In1/In3/In4/In6 lie between.
 - DRC: 0 errors, 12 unconnected (the same twelve). `verify_protected.py check`: no differences.
+
+## Follow-up 6: C5003 and C5024 moved out as well (2026-11-12)
+
+The user allowed lifting the older copper on their pads: 15 unlocked items (5 VCORE, 7 1V8, 3 GND tracks
+and vias ending in the four pads) were removed with `tools/rip_box.py`, then the caps were flipped to F.Cu
+(`tools/place_fix.py` set `bulk_out2`) and the rails tied again by the grid router, including the
+neighbouring pads that had hung on the lifted copper (C5002 among them).
+
+| Cap | Rail | Was (B.Cu, under U501) | Now (F.Cu) |
+|---|---|---|---|
+| C5003 47 u | VCORE | (155.10, 89.30) | (150.70, 93.30), south-west of the BGA |
+| C5024 10 u | 1V8 | (153.35, 78.00) | (150.40, 79.00), west of the BGA |
+
+All seven 0805 bulk caps are now outside U501's outline. DRC: 0 errors, 12 unconnected (the same
+twelve). `verify_protected.py check`: no differences.

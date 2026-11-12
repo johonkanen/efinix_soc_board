@@ -103,6 +103,11 @@ if SET == "bulk_out":
         "C5024": ("@", (151.5, 79.0, "1"), 5.0, 99),
     }
     TOP = set(RELOCATE)
+if SET == "bulk_out2":
+    # the two 0805 bulk caps left under U501 by "bulk_out"; the user allowed lifting the older copper on their pads
+    NUDGES = {}
+    RELOCATE = {"C5003": ("@", (155.5, 93.3, "1"), 5.0, 99), "C5024": ("@", (151.5, 79.0, "1"), 5.0, 99)}
+    TOP = set(RELOCATE)
 ALLOW_PROTECTED = set()
 if SET == "ddr_caps":
     # the four 22u LPDDR4 1V1 bulk caps that were parked above the board edge; the user allowed moving

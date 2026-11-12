@@ -3,11 +3,12 @@
 
     tools/p2k/bin/kipy tools/rip_box.py BOARD NET_REGEX X0 Y0 X1 Y1 [LAYER,LAYER]
 
-Refuses every net in protected_nets.txt. The nets are re-routed afterwards with tools/grid_router.py."""
+Refuses the tier A nets of protected_nets.txt and never touches a locked item. The nets are re-routed afterwards with tools/grid_router.py."""
 import sys, re
 import pcbnew
 
-prot = {l.split("\t")[1] for l in open("protected_nets.txt") if l[:1] in "AB"}
+# tier A nets are refused outright; on the tier B rails the frozen copper is locked, and locked items are skipped
+prot = {l.split("\t")[1] for l in open("protected_nets.txt") if l[:1] == "A"}
 b = pcbnew.LoadBoard(sys.argv[1]); rx = sys.argv[2]; x0, y0, x1, y1 = map(float, sys.argv[3:7])
 layers = sys.argv[7].split(",") if len(sys.argv) > 7 else None
 inside = lambda p: x0 <= pcbnew.ToMM(p.x) <= x1 and y0 <= pcbnew.ToMM(p.y) <= y1
