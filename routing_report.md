@@ -2,7 +2,7 @@
 
 Board: `kicad/ti135_card.kicad_pcb`, KiCad 10.0.7. Start: commit 9b6150d on `main`. The plan is
 `layout_plan_remaining.md`; this report says what was done, what is still open and what a person should
-look at. **The board is not finished: 15 connections are open** (list below). VCCA_BL reaches its ball
+look at. **The board is not finished: 12 connections are open** (list below and the last section). VCCA_BL reaches its ball
 since the follow-up of the same day (section "Follow-up: vcca_bl").
 
 ## Result
@@ -11,7 +11,7 @@ since the follow-up of the same day (section "Follow-up: vcca_bl").
 
 | | Start | Now |
 |---|---|---|
-| Unconnected items | 448 | **15** |
+| Unconnected items | 448 | **12** |
 | Errors other than unconnected | 26 (8 shorts, 6 hole clearance, 6 mask bridge, 6 courtyard) | **0** |
 | Schematic parity | 0 | 0 |
 | Warnings | 114 (57 dangling vias, 55 dangling tracks, 2 isolated copper) | 74 (43 dangling vias, 31 dangling tracks) |
@@ -66,7 +66,7 @@ Specctra round-trip took place. KiCadRoutingTools was skipped as you said.
   for this stack-up). Regulator outputs have 2–5 vias into their planes (1.5–3.5 A by that rule against
   0.45–1.0 A loads), so none were added; the plan had said "at least 4".
 
-## Open: 15 unconnected items
+## Open: 12 unconnected items (the table below is the state before the second follow-up; see the last section)
 
 Each was tried at least three ways and then left, as the brief asks.
 
@@ -157,3 +157,22 @@ in this order: `vcca_bl` core, VCORE to FB501, 0V85 to FB504 and its caps, then 
 - Still open on `vcca_bl`: C5060, C5062, C5063, C502.
 - DRC: 0 errors, 15 unconnected; `verify_protected.py check`: no differences.
 The Ethernet-boxed pads (C542, C940/C941, U901 pins 28 and 38) are unchanged and still open.
+
+## Follow-up 2: the pads boxed in by Ethernet (2026-11-12)
+
+You allowed moving Ethernet tracks for C542, C940/C941 and U901 pins 28 and 38. Result: three of four
+fixed, unconnected 15 -> 12, DRC 0 errors, `verify_protected.py check` no differences.
+
+| Pad | Result | What moved |
+|---|---|---|
+| U901 pin 38 (`phy_vdd10`) | connected to C934 pin 1 | nothing: a hand-placed 0.09 mm F.Cu stub, 1.3 mm, passes the `phy_xo` via at the minimum clearance |
+| C940 / C941 pin 1 (3V3) | connected to the 3V3 via at U901 pin 29 (1.4 mm, F.Cu) | `phy_rx_ctl` lifted between the caps and the PHY and re-routed: U901 pin 26 -> 1.7 mm F.Cu, then 4.2 mm with one new via to its In2 run. Its PHY-side length is now 8.5 mm (`phy_rxc` 8.0, `phy_rxd1` 8.6, `phy_rxd2` 8.7) |
+| U901 pin 28 (`phy_dvdd_rg`) | connected: 0.8 mm F.Cu and one via into its B.Cu pour (which holds C936) | nothing more; the space came from moving `phy_rx_ctl` |
+| C542 pin 1 (1V1) | **still open** | connecting it needs the gap that `rgmii_txd1` and `eth_rst_n` use on B.Cu beside ball via R1; with those two lifted the cap connects (1.8 mm), but neither signal can then leave its ball (P3, K2) on any layer. The attempt was discarded; nothing of it is on the board |
+
+Tools: `tools/rip_box.py` (lifts named nets inside a box), `tools/fix_area.sh` (lift, route the power pad,
+re-route the lifted nets, check). Router results are in `reports/phase7/`.
+
+Open now (12): `vcca_bl` caps C5060, C5062, C5063, C502 (4 items); C542 pin 1; `adc_cs_n`; `uart_tx`;
+`t_irq`; `fpga_ssu_n`; `pg_all` (U341 pin 6); and two zone items: the `phy_dvdd_rg` B.Cu pour is still in
+two pieces (the smaller piece carries no pad) and slivers of the PHY GND pour.
