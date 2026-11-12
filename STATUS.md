@@ -1,6 +1,6 @@
 # Status and handoff
 
-Last updated: **2026-11-04** (0201 passives, TMUX1308 mux, level-shifter breakouts, ADC mux simulation started; see "Where we left off (2026-11-04)" below). Read this first if you are picking the work up (human or agent).
+Last updated: **2026-11-11** (Ethernet routed; see "Where we left off (2026-11-11)" below). Read this first if you are picking the work up (human or agent).
 
 ## What this repository is
 
@@ -21,6 +21,34 @@ card, and plugs into the same baseboard.
 | `POWER_BUDGET.md` | Rail estimate, 5V_ISOL input limit, regulator choice (TLV62585PDRLR), divider values |
 | `reference/` | `ti135n484_pinout.csv` (all 484 balls, from the Efinity device DB), `baseboard_j11_pinout.csv` (baseboard signal header, the authority for J3) |
 | `efinity/pinplan/` | `pinplan.py` builds the Interface Designer project for the pin plan; `ti135_pinplan.csv` is the signal → ball result |
+
+## Where we left off (2026-11-11)
+
+J3 I/O routing and the pin plan that follows it are pushed (4aa3eb8). **Ethernet is routed on the board, not yet
+committed** (`tools/eth_route.sh` is the recipe, `tools/eth_fanout.py` and `tools/eth_finish.py` its parts):
+- **MDI pairs** copied from the Agilex card (same PHY, same HR911130A, same offset within 0.05 mm): F.Cu, 0.12 mm,
+  no vias, P/N within 0.1 mm (A 8.3, B 13.8/13.9, C 6.8, D 7.4 mm). Pair B loops around jack pin 6 as there.
+- **PHY passives as on the Agilex card** (`tools/eth_place.py`): RX series R907–R912, the bypass caps C921, C922,
+  C930–C936, C940, C941 and the straps R920–R925 are now **0201** (22R C155743, 4k7 C270346, 1u C272877, 100n
+  C190183, the Agilex card's parts; sheet 09 and board, parity clean) and sit on their Agilex counterparts' spots.
+  C940 has no counterpart and sits beside C941. C920 (10u 0805) moved 0.7 mm north to clear C921.
+- **R931 (RSET) moved 3.0 mm south** to (189.16, 66.7): it sat in pair A's path.
+- **U901 pins 12–20** (reset, MDC, MDIO, TX) face north: a 0.1 mm F.Cu stub and a via each, two staggered rows
+  that clear R912/R920, R929 and C920.
+- **RGMII** by `route.py`: TX on In5 as one bus (28.5–36.5 mm from ball to pin, through R901–R906), RX on In2/In5
+  (27.0–38.8 mm). No length tuning: the 12 mm spread is about 80 ps. 3–6 vias per signal, counting the ball via.
+- MDC, MDIO, INT on In5; the jack LED on In2; reset, crystal (XI 6.4 mm, XO 7.6 mm), RSET, LEDs, CT on F.Cu/B.Cu.
+- DRC: no new violations against the board before (KiCad lists at most 499 unconnected items, so compare per net).
+
+**Open on the Ethernet block:**
+1. `phy_vdd10` (6), `phy_avdd33` (5), `phy_dvdd_rg` (2) pin and capacitor connections to their pours, and the GND
+   pads. `route.py` on these nets also added copper on GND/VCORE/1V1 and put a via beside J9 pin 3; that run was
+   dropped. Do them by hand or with a script like `tools/buck_copper.py`.
+2. `refclk_bl0..2` (R701–R703 to N7/R3/L2) are still stubs. `refclk_bl1`'s In5 stub leaves the BGA between the RX
+   and MDC/MDIO runs on In5; check the crossing when routing it.
+3. Review in KiCad: the RX runs near R907–R912 are autorouted and not tidy; `phy_rstb` crosses under the
+   MDI pairs on B.Cu; `rgmii_rxd3` runs on In5
+   beside the outermost DDR trace (at the 0.2 mm class clearance).
 
 ## Where we left off (2026-11-04)
 
