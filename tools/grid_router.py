@@ -37,6 +37,8 @@ ap.add_argument("--margin", type=float, default=6.0)
 ap.add_argument("--max-len", type=float, default=0, help="give up on a connection longer than this (mm), 0 = no limit")
 ap.add_argument("--prev", nargs="*", default=[], help="ops files already produced on this geometry (treated as existing copper)")
 ap.add_argument("--plane-vias", action="store_true", help="nets with fills: end at a new via into the fill")
+ap.add_argument("--zone-penalty", type=float, default=4.0, help="cost factor for a track cell inside another net's pour on that layer")
+ap.add_argument("--probe", nargs=4, metavar=("NET", "X", "Y", "R"), help="report where a via of NET could go within R of (X, Y), then exit")
 ap.add_argument("--layer-cost", default="", help="e.g. B.Cu=1.5,F.Cu=1.2")
 A = ap.parse_args()
 
@@ -176,6 +178,25 @@ def merge_via():
 
 
 VIAOWN = merge_via()
+
+
+def zone_owner():
+    """Per signal layer: which net's pour covers the cell (0 none). A track of another net through a pour
+    can cut it into islands, so such cells cost more."""
+    from PIL import Image, ImageDraw
+    out = {}
+    for l in SIG:
+        im = Image.new("I", (W, H), 0); d = ImageDraw.Draw(im)
+        for f in G.get("fills", []):
+            if f["layer"] == l:
+                d.polygon([((x / P) - IX0, (y / P) - IY0) for x, y in f["pts"]], fill=NID[f["net"]])
+                for h_ in f["holes"]:
+                    d.polygon([((x / P) - IX0, (y / P) - IY0) for x, y in h_], fill=0)
+        out[l] = np.array(im, dtype=np.int32).astype(np.int16)
+    return out
+
+
+ZOWN = zone_owner()
 _fillok = {}
 
 
@@ -207,6 +228,23 @@ def fillok(net):
     return acc
 print(f"rasters built in {time.time() - t0:.1f} s ({W} x {H})", flush=True)
 
+
+if A.probe:
+    net, x, y, r = A.probe[0], float(A.probe[1]), float(A.probe[2]), float(A.probe[3])
+    n = NID[net]; k = int(r / P); ci, cj = gi(x), gj(y)
+    sl = (slice(cj - k, cj + k + 1), slice(ci - k, ci + k + 1))
+    vok = (VIAOWN[sl] == 0) | (VIAOWN[sl] == n)
+    fo = fillok(net)[sl] if any(f["net"] == net for f in G.get("fills", [])) else np.zeros_like(vok)
+    print(f"{net} around ({x}, {y}) +-{r}: via clear of all layers {int(vok.sum())} cells, inside a fill {int(fo.sum())}, both {int((vok & fo).sum())}")
+    for l in G["layers"]:
+        a = RV.own[l][sl]; bad = ~((a == 0) | (a == n))
+        owners = collections.Counter(int(v) for v in a[bad].ravel())
+        names = {i: nm for nm, i in NID.items()}
+        print(f"  {l:7s} blocked {int(bad.sum()):5d}  by", ", ".join(f"{names.get(o, 'several')}" for o, c in owners.most_common(4)))
+    both = np.argwhere(vok & fo)
+    for j, i in both[:8]:
+        print(f"  free spot ({(i + ci - k + IX0) * P:.2f}, {(j + cj - k + IY0) * P:.2f})")
+    sys.exit(0)
 
 # ---------------------------------------------------------------------------------------------------
 # pieces of a net
@@ -316,6 +354,11 @@ def route(net, src, dst, margin):
     for l in ALLOWED:
         a = RT.own[l][j0:j1 + 1, i0:i1 + 1]
         passb.append(((a == 0) | (a == n)).astype(np.uint8).tobytes())
+    zoneb = []
+    for l in ALLOWED:
+        z = ZOWN[l][j0:j1 + 1, i0:i1 + 1]
+        zoneb.append(((z != 0) & (z != n)).astype(np.uint8).tobytes())
+    ZP = A.zone_penalty
     va = VIAOWN[j0:j1 + 1, i0:i1 + 1]
     vok = (va == 0) | (va == n)
     # no new via on top of, or overlapping, a via the net already has (that one is a target instead)
@@ -407,7 +450,7 @@ def route(net, src, dst, margin):
         if g0 > maxcost:
             return None, "longer than --max-len"
         li, r = divmod(c, wh); j, i = divmod(r, w)
-        pb = passb[li]; lc = lcost[li]
+        pb = passb[li]; lc = lcost[li]; zb = zoneb[li]
         for di, dj, cost in MOVES:
             i2, j2 = i + di, j + dj
             if i2 < 0 or j2 < 0 or i2 >= w or j2 >= h:
@@ -418,7 +461,7 @@ def route(net, src, dst, margin):
             if di and dj and not (pb[j * w + i2] and pb[r2 - di]):
                 continue
             c2 = li * wh + r2
-            g2 = g0 + cost * lc
+            g2 = g0 + cost * lc * (ZP if zb[r2] else 1.0)
             if g2 < gs.get(c2, 1e18):
                 gs[c2] = g2; came[c2] = c
                 heapq.heappush(pq, (g2 + hfun(i2, j2), c2))
