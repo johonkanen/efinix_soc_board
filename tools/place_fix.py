@@ -63,6 +63,13 @@ if SET == "c542":
     # 1V1 decap boxed in by routed RGMII on every layer: onto the 1V1 ball via R1 if a spot exists
     NUDGES = {}
     RELOCATE = {"C542": ("U501", "R1", 1.2, 1.2)}
+ALLOW_PROTECTED = set()
+if SET == "ddr_caps":
+    # the four 22u LPDDR4 1V1 bulk caps that were parked above the board edge; the user allowed moving
+    # them on 2026-11-12. They are locked again after the move (and the baseline is re-taken).
+    NUDGES = {}
+    RELOCATE = {"C806": ("U801", "U3", 7.0, 99), "C807": ("U801", "F3", 7.0, 99), "C823": ("U801", "U10", 7.0, 99), "C824": ("U801", "F10", 7.0, 99)}
+    ALLOW_PROTECTED = set(RELOCATE)
 CLR = 0.10          # copper clearance used for the search (board minimum 0.09)
 HOLE = 0.175        # hole to copper
 STEP = 0.05
@@ -70,7 +77,9 @@ STEP = 0.05
 
 def movable(ref):
     f = fps[ref]
-    if f.IsLocked() or ref in protected:
+    if ref in ALLOW_PROTECTED:
+        f.SetLocked(False)
+    elif f.IsLocked() or ref in protected:
         sys.exit(f"{ref} is locked/protected: not moved")
     return f
 
@@ -244,6 +253,8 @@ def relocate(ref, tref, tpad, radius, limit):
     err = math.hypot(pcbnew.ToMM(got.x) - tx, pcbnew.ToMM(got.y) - ty) - dist
     if abs(err) > 0.02:
         sys.exit(f"relocate {ref}: predicted and actual pad position differ by {err:.3f} mm")
+    if ref in ALLOW_PROTECTED:
+        f.SetLocked(True)
     print(f"relocate {ref}: ({fx:.2f}, {fy:.2f}) -> ({x:.2f}, {y:.2f}) rot +{90 * k}; {cur:.1f} -> {dist:.2f} mm from {tref}.{tpad}")
 
 
