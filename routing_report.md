@@ -286,3 +286,40 @@ pads of C5056, C5055, C5027, C5054 and one GND stub at (156.0, 77.0); no vias): 
 GND. `verify_protected.py check` showed exactly these eleven as removed and nothing else; the baseline
 `protected_baseline.json` was then re-taken. DRC: 0 errors, 12 unconnected (the same twelve),
 `track_dangling` 40 -> 32, `via_dangling` 43.
+
+## Follow-up 9: fifteen 1 u 0402 rail caps moved out from under U501 (2026-11-12)
+
+`tools/bulk47.sh work/NAME bulk1u "REFS"` (`tools/place_fix.py` set `bulk1u`), same method as Follow-up 7:
+36 unlocked B.Cu tracks lifted at the old pads, ties by the grid router (ops in `reports/phase14/`), then
+16 unlocked leftovers that DRC reported as dangling removed with `tools/remove_dangling.py`.
+
+| Cap | Rail | Was (B.Cu, under U501) | Now | Moved |
+|---|---|---|---|---|
+| C5051 | 3V3 | (153.95, 80.70) | B.Cu (150.02, 82.25) | 3.6 mm |
+| C5052 | 3V3 | (154.55, 82.65) | F.Cu (150.00, 85.52) | 5.4 mm |
+| C5050 | 3V3 | (154.95, 80.78) | B.Cu (147.75, 80.52) | 7.2 mm |
+| C5032 | 1V8 | (155.28, 79.08) | B.Cu (147.00, 74.02) | 9.0 mm |
+| C5007 | VCORE | (155.85, 84.95) | B.Cu (166.50, 92.77) | 13.9 mm |
+| C5008 | VCORE | (157.10, 88.10) | F.Cu (165.27, 100.25) | 14.6 mm |
+| C540 | 1V1 | (160.41, 72.97) | B.Cu (149.00, 66.52) | 13.1 mm |
+| C5006 | VCORE | (163.70, 84.85) | F.Cu (172.27, 99.75) | 17.0 mm |
+| C5031 | 1V8 | (169.60, 86.40) | F.Cu (177.25, 88.98) | 7.8 mm |
+| C541 | 1V1 | (172.00, 75.80) | B.Cu (179.00, 77.48) | 6.6 mm |
+| C5035 | 1V8 | (173.00, 83.90) | B.Cu (177.75, 81.27) | 5.4 mm |
+| C542 | 1V1 | (173.30, 79.10) | B.Cu (180.02, 81.50) | 7.5 mm |
+| C5034 | 1V8 | (173.75, 81.20) | B.Cu (178.50, 85.27) | 6.3 mm |
+| C539 | 1V1 | (174.33, 74.47) | B.Cu (178.52, 79.00) | 6.2 mm |
+| C5033 | 1V8 | (174.35, 79.00) | B.Cu (181.75, 77.77) | 7.5 mm |
+
+- C542 pin 1 (1V1), open since Phase 4, is now tied to the 1V1 plane: unconnected 12 -> 11.
+- Not moved: C528, C529, C530, C531 (0V85). Outside the BGA the 0V85 plane is a 3 mm corridor to its
+  regulator; the nearest free spots with the plane underneath are 23-31 mm from the old positions.
+- Not moved: C501 (vcca_bl), C507 (vddpll), C503 (vcca_br). They are the PLL filter caps behind the
+  ferrites, not rail bulk; C503 already sits outside U501's courtyard.
+- Two frozen (locked) stubs now end in nothing: 1V1 0.87 mm at (160.41, 73.45) (C540's old pad) and GND
+  1.05 mm at (173.30, 78.62) (C542's old pad). Not touched; deleting them needs the user's permission.
+- Baseline correction: re-taking `protected_baseline.json` in Follow-up 8 had also pulled in eight unlocked
+  GND segments that were routed during this work (snapshot takes all rail copper within 1 mm of protected
+  pads). One of them was C539's own stub, so the check flagged its removal. The eight were dropped again:
+  the baseline is the earlier one minus the eleven segments deleted in Follow-up 8, nothing else.
+- DRC: 0 errors, 11 unconnected, `track_dangling` 33, `via_dangling` 43. `verify_protected.py check`: OK.

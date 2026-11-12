@@ -125,6 +125,22 @@ if SET == "bulk47":
         "C5028": ("@", (177.25, 88.5, "1"), 1.5, 99),
     }
     TOP = {"C5027", "C5048", "C5049", "C553"}
+if SET == "bulk1u":
+    # 2026-11-12, user: the 1 u 0402 rail caps under U501 go outside the BGA too; spots picked as for bulk47.
+    # Not in this set: the four 0V85 caps (C528-C531; the 0V85 plane has no free spot nearer than 23 mm) and
+    # the PLL filter caps C501, C507, C503, which belong at their balls behind the ferrites.
+    NUDGES = {}
+    RELOCATE = {
+        "C5051": ("@", (150.5, 82.25, "1"), 1.5, 99), "C5052": ("@", (150.0, 86.0, "1"), 1.5, 99),
+        "C5050": ("@", (147.75, 81.0, "1"), 1.5, 99), "C5032": ("@", (147.0, 74.5, "1"), 1.5, 99),
+        "C5007": ("@", (166.5, 93.25, "1"), 1.5, 99), "C5008": ("@", (165.75, 100.25, "1"), 1.5, 99),
+        "C540": ("@", (149.0, 67.0, "1"), 1.5, 99), "C5006": ("@", (172.75, 99.75, "1"), 1.5, 99),
+        "C5031": ("@", (177.25, 88.5, "1"), 1.5, 99), "C541": ("@", (179.0, 77.0, "1"), 1.5, 99),
+        "C5035": ("@", (177.75, 81.75, "1"), 1.5, 99), "C542": ("@", (180.5, 81.5, "1"), 1.5, 99),
+        "C5034": ("@", (178.5, 85.75, "1"), 1.5, 99), "C539": ("@", (179.0, 79.0, "1"), 1.5, 99),
+        "C5033": ("@", (181.75, 78.25, "1"), 1.5, 99),
+    }
+    TOP = {"C5052", "C5008", "C5006", "C5031"}
 ALLOW_PROTECTED = set()
 if SET == "ddr_caps":
     # the four 22u LPDDR4 1V1 bulk caps that were parked above the board edge; the user allowed moving
@@ -312,7 +328,7 @@ def relocate(ref, tref, tpad, radius, limit):
     for p in f.Pads():
         if p.GetNumber():
             pos = p.GetPosition()
-            if any(t.GetNetname() == p.GetNetname() and t.Type() != pcbnew.PCB_VIA_T and t.GetLayer() == f.GetLayer() and not (SET == "bulk47" and t.IsLocked()) and
+            if any(t.GetNetname() == p.GetNetname() and t.Type() != pcbnew.PCB_VIA_T and t.GetLayer() == f.GetLayer() and not (SET in ("bulk47", "bulk1u") and t.IsLocked()) and
                    ((t.GetStart() - pos).EuclideanNorm() < MM(0.2) or (t.GetEnd() - pos).EuclideanNorm() < MM(0.2)) for t in b.GetTracks()):
                 print(f"relocate {ref}: pad {p.GetNumber()} has a track on it; left in place")
                 if flipped:
