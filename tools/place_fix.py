@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """Phase 2 placement corrections (layout_plan_remaining.md section 5).
 
-    tools/p2k/bin/kipy tools/place_fix.py BOARD      (edits BOARD in place: run it on a copy in work/)
+    tools/p2k/bin/kipy tools/place_fix.py BOARD [SET]   (edits BOARD in place: run it on a copy in work/)
+
+SET is "phase2" (default) or "pll" (phase 3: the VCCA_BL and DDR-PLL ferrites and their 1 u caps, which sat
+25 mm from their balls beside the PHY, flipped to B.Cu and moved next to the balls).
 
 1. NUDGES: fixed small moves that clear the courtyard overlaps. Copper on a moved pad follows it: a via
    in the pad moves with the pad, and every track that ended there gets a stub from the old spot.
@@ -44,6 +47,18 @@ RELOCATE = {
     "C5062": ("U501", "R8", 3.5, 3.5),
     "C5060": ("U501", "R8", 3.5, 3.5),
 }
+SET = sys.argv[2] if len(sys.argv) > 2 else "phase2"
+FLIP = set()
+if SET == "pll":
+    NUDGES = {}
+    RELOCATE = {
+        "C501": ("U501", "R8", 6.0, 6.0),     # vcca_bl 1u
+        "FB501": ("U501", "R8", 7.0, 7.0),    # VCORE -> vcca_bl
+        "C507": ("U501", "W11", 6.0, 6.0),    # vddpll 1u
+        "C508": ("U501", "W11", 6.0, 6.0),    # vddpll 100n
+        "FB504": ("U501", "W11", 7.0, 7.0),   # 0V85 -> vddpll
+    }
+    FLIP = set(RELOCATE)
 CLR = 0.10          # copper clearance used for the search (board minimum 0.09)
 HOLE = 0.175        # hole to copper
 STEP = 0.05
@@ -117,6 +132,8 @@ def seg_rect_dist(x1, y1, x2, y2, r):
 
 def relocate(ref, tref, tpad, radius, limit):
     f = movable(ref)
+    if ref in FLIP and f.GetLayer() == pcbnew.F_Cu:
+        f.Flip(f.GetPosition(), pcbnew.FLIP_DIRECTION_LEFT_RIGHT)
     side = f.GetLayer()
     tp = pad(tref, tpad).GetPosition()
     tx, ty = pcbnew.ToMM(tp.x), pcbnew.ToMM(tp.y)
