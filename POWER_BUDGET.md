@@ -81,9 +81,9 @@ The TDA38812 (VCORE on the Agilex card) is not needed: the Ti135 core is about 1
 
 **One TLV62585PDRLR per rail**, the same part five times: VCORE 0.95 V, 0V85, 1V1, 1V8, 3V3 (the 1V2 rail went with the KSZ9031). Each with:
 
-- Cin 10 µF 0805
-- L 1 µH, 4 × 4 mm: **Sunlord WPN4020H1R0MT** (C98359, 26 mΩ, Isat 5.8 A, above the 4 A switch limit; 11,421 orderable)
-- Cout 22 µF 0805 (2 × 22 µF on VCORE)
+- Cin 10 µF 0603 + 100 nF 0201 at VIN (since 2026-11-12, one cell layout for all rails: `tools/buck_cell.py`)
+- L 1 µH, 2.5 × 2.0 mm: **FTC252012S1R0MBCA** (C5832370, 35 mΩ, 4 A rms / 5.6 A sat, above the 4 A switch limit; 324k orderable 2026-11-12). Before: Sunlord WPN4020H1R0MT, 4 × 4 mm
+- Cout 47 µF 0805 + 22 µF 0603 on every rail
 - R2 = 100 kΩ (data sheet maximum), R1 = R2 × (Vout/0.6 − 1), optional feed-forward C3
 
 | Rail | Vout | R1 (top) | R2 (bottom) | Vout with E96 values |
@@ -94,7 +94,7 @@ The TDA38812 (VCORE on the Agilex card) is not needed: the Ti135 core is about 1
 | 1V8 | 1.8 V | **200 k** | 100 k | 1.800 V |
 | 3V3 | 3.3 V | 450 k → **453 k** | 100 k | 3.318 V |
 
-VCC tolerance is 0.92…0.98 V (±3.2 %). FB ±2 % plus 1 % resistors fits; use 0.5 % resistors on VCORE for margin.
+VCC tolerance is 0.92…0.98 V (±3.2 %). FB ±2 % plus 1 % resistors gives about ±2.7 % worst case; since 2026-11-12 all dividers are 1 % 0201 (user decision; 59.0 k 0.5 % 0201 was not orderable).
 3V3_analog: NCP163ASN330T1G LDO from 5V0, as on the Agilex card.
 
 ## Open

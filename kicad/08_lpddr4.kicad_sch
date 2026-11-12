@@ -18814,10 +18814,10 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
+		(in_bom no)
+		(on_board no)
 		(in_pos_files yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "136b2302-57bb-5e40-983e-06ba2df3d99d")
 		(property "Reference" "C806"
 			(at 138.09 222.25 0)
@@ -21032,7 +21032,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
 			(at 149.5552 260.35 0)
 			(hide yes)
 			(show_name no)
@@ -21065,7 +21065,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C52923"
+		(property "LCSC" "C272877"
 			(at 148.59 256.54 0)
 			(hide yes)
 			(show_name no)
@@ -21495,10 +21495,10 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
+		(in_bom no)
+		(on_board no)
 		(in_pos_files yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "2dd50d2c-76ae-5eae-864f-733839e9145c")
 		(property "Reference" "C823"
 			(at 138.09 255.27 0)
@@ -22021,7 +22021,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
 			(at 157.1752 227.33 0)
 			(hide yes)
 			(show_name no)
@@ -22054,7 +22054,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C52923"
+		(property "LCSC" "C272877"
 			(at 156.21 223.52 0)
 			(hide yes)
 			(show_name no)
@@ -23640,10 +23640,10 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
+		(in_bom no)
+		(on_board no)
 		(in_pos_files yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "53cc3824-7dc7-5405-a914-44b982194fe6")
 		(property "Reference" "C824"
 			(at 145.71 255.27 0)
@@ -24679,7 +24679,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
 			(at 157.1752 260.35 0)
 			(hide yes)
 			(show_name no)
@@ -24712,7 +24712,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C52923"
+		(property "LCSC" "C272877"
 			(at 156.21 256.54 0)
 			(hide yes)
 			(show_name no)
@@ -26542,7 +26542,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
 			(at 149.5552 227.33 0)
 			(hide yes)
 			(show_name no)
@@ -26575,7 +26575,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C52923"
+		(property "LCSC" "C272877"
 			(at 148.59 223.52 0)
 			(hide yes)
 			(show_name no)
@@ -32738,10 +32738,10 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
+		(in_bom no)
+		(on_board no)
 		(in_pos_files yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "e685f42f-092f-508d-b5ec-8dbd65c537ea")
 		(property "Reference" "C807"
 			(at 145.71 222.25 0)

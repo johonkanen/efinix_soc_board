@@ -1,6 +1,6 @@
 # Status and handoff
 
-Last updated: **2026-11-12** (power cells rebuilt; see "Where we left off (2026-11-12)" below). Read this first if you are picking the work up (human or agent).
+Last updated: **2026-11-12** (power cells rebuilt, decoupling reworked; see "Where we left off (2026-11-12)" below). Read this first if you are picking the work up (human or agent).
 
 ## What this repository is
 
@@ -24,7 +24,7 @@ card, and plugs into the same baseboard.
 
 ## Where we left off (2026-11-12)
 
-Power-supply rework, step 1 of 2: **the five TLV62585 cells are rebuilt from one template** (not committed yet).
+Power-supply rework, step 1 of 2: **the five TLV62585 cells are rebuilt from one template** (f2638d2).
 - **One cell, 6.9 x 8.5 mm, for every rail** (`tools/buck_cell.py`, template in the regulator's pin frame; `--demo`
   draws it alone on an empty board): L 1 uH 2520 (FTC252012S1R0MBCA, C5832370), CIN 10 u 0603 + 100 n 0201 at VIN,
   COUT 47 u 0805 + 22 u 0603, R1/R2/CFF 0201 (1 % dividers, also VCORE: worst case about +-2.7 % against the +-3.2 %
@@ -44,12 +44,26 @@ Power-supply rework, step 1 of 2: **the five TLV62585 cells are rebuilt from one
 - Recipe: `buck_cell_sch.py`, `add_parts.py`, `swap_footprint.py` (L, CIN/22 u to 0603, 100 n/CFF/R to 0201),
   `buck_cell.py --strip IN OUT`, `buck_cell.py IN OUT`.
 
-**Open, power rework step 2 (decided 2026-11-12: bulk counted per rail, not per bank):**
-1. 1 u / 4.7 u and the remaining 0402 100 n on the rails to 0201 on via pairs (`tools/place_bga_decaps.py`).
-2. Bulk down to a few large caps: VCORE 2 x 100 u 1206 at the BGA edge, 1V8 2 x 47 u near the HSIO banks, 1V1
-   1 x 47 u between the BGA and the LPDDR4; drop the 0805 10 u and 0402 22 u around the FPGA. Update
-   HW_CHECKLIST_REVIEW.md (it records the per-bank count as met).
-3. Route pg_group1 / pg_all to the cells' EN stubs and PG vias; POWER_BUDGET.md still lists the old cell parts.
+**Step 2, decoupling (same day, `tools/decap_rework.py`; not committed yet).** User decision: bulk is counted per
+rail, not per VCCIO bank as the Efinix checklist lists it.
+- **0402 -> 0201** (47 parts): the 1 u and 4.7 u on VCORE, 0V85, 1V1, 1V8, the 1 u on 3V3, and the 0402 100 n at the
+  level shifters, U401, Y701 and the PHY. Nine of the caps under U501 moved onto free rail/GND via pairs
+  (`place_bga_decaps.py`: VCORE 7 of 7, 1V1 2 of 5); the other 17 kept their spots, because 0V85, 1V8 and 3V3 have
+  no free pair left under U501. Kept in 0402: the 4.7 u on 3V3 (C5048, C5049, C562: a 6.3 V 0201 loses most of its
+  capacitance at 3.3 V) and C5033 (eth_rst_n runs between its pads).
+- **Bulk outside the cells:** VCORE 2 x 100 u 1206 (C5001, C5002), 1V8 2 x 47 u (C5019 west, C5020 east of U501),
+  1V1 1 x 47 u (C538, was 10 u; still east of U501, not moved between the BGA and the LPDDR4). C551 (10 u at the
+  eMMC) and C803 (22 u at the LPDDR4, routed) are unchanged.
+- **Removed from the board, DNP / not on board in the schematic** (symbols stay drawn; clear the flags to bring one
+  back): C5003, C509, C510, C5004, C5005 (VCORE), C5021-C5026 (1V8), C527 (0V85), C806, C807, C823, C824 (1V1).
+- Rails now carry 9 x 0805 and 2 x 1206 in all (cells included), down from about 30. DRC: no new violations,
+  parity clean, opens 432 -> 399.
+
+**Open:**
+1. Route pg_group1 / pg_all to the cells' EN stubs and PG vias.
+2. Check the 2520 inductor's land pattern (KiCad's generic L_1008_2520Metric) against the FTC252012S data sheet.
+3. The decaps that are not on a via pair still need their pad connections (opens per net: 1V8 59, VCORE 10,
+   1V1 6, 0V85 6).
 
 ## Where we left off (2026-11-11)
 

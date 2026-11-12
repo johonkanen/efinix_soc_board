@@ -14,8 +14,8 @@ are placed but not yet tied to their rails by copper, except the 14 0201s sittin
 |---|---|---|---|---|
 | 1 | DDR_CAL (Y9) | 240 Ω **±0.1 %** to GND, close to the pin | R801 240 Ω **0.1 %** (RT0402BRD07240RL, C852660) | ✓ (phase 3) |
 | 2 | SSU_N (L4) | weak pull-up | R622 10 k to 1V8 (B.Cu, 4.6 mm from L4) | ✓ (phase 3; x8 chip select, unused in x4 mode) |
-| 3 | Decoupling per rail | table below | the table in full: C5001–C5073 added ("Missing" column below) | ✓ (phase 3; copper in phase 5) |
-| 4 | Energy storage | ≥ 1 × 47 µF at each regulator output | 47 µF per cell (C204, C304 from the table; C314, C333, C344 new) + a 22 pF feed-forward across R1 (C205/C305/C315/C334/C345: TLV62585 data sheet, > 47 µF output) | ✓ (phase 3; check loop stability at bring-up) |
+| 3 | Decoupling per rail | table below | the table in full: C5001–C5073 added ("Missing" column below) | ~ since 2026-11-12: small values as listed, **bulk counted per rail** (user decision; `tools/decap_rework.py`, STATUS.md): VCORE 2×100 µ, 1V8 2×47 µ, 1V1 1×47 µ plus 47 µ + 22 µ at each regulator. The per-bank 47 µ / 10 µ and the extra 22 µ are DNP |
+| 4 | Energy storage | ≥ 1 × 47 µF at each regulator output | 47 µF 0805 + 22 µF 0603 per cell (C204, C304, C314, C333, C344) + a 22 pF feed-forward across R1 (C205/C305/C315/C334/C345: TLV62585 data sheet, > 47 µF output) | ✓ (phase 3; check loop stability at bring-up) |
 | 5 | DDR byte group on one layer; CK/A/CKE/CS on one layer | required | main: bytes spread over 3–4 layers, CA over In5/In2/F. `ddr-option2`: bytes 75–81 % on one layer | ✗ (main) / ~ (option 2) |
 | 6 | DDR skew (3700 Mbps) | DQ–DQS ≤ 75 ps, CK–DQS ≤ 350 ps, A/CKE/CS–CK ≤ 100 ps | main: DQ–DQS −83…+102 ✗, CK–DQS ≤ 91 ✓, CA–CK −64.5…+47 ✓. `ddr-option2`: DQ–DQS −24…+60 ✓ | ✗ (main) / ✓ (option 2) |
 

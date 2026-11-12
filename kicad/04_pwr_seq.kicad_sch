@@ -1569,7 +1569,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
 			(at 191.4652 67.31 0)
 			(hide yes)
 			(show_name no)
@@ -1602,7 +1602,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C1525"
+		(property "LCSC" "C190183"
 			(at 190.5 63.5 0)
 			(hide yes)
 			(show_name no)
