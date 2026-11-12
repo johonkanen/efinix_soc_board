@@ -40,6 +40,7 @@ ap.add_argument("--plane-vias", action="store_true", help="nets with fills: end 
 ap.add_argument("--zone-penalty", type=float, default=4.0, help="cost factor for a track cell inside another net's pour on that layer")
 ap.add_argument("--ddr-extra", type=float, default=None, help="extra clearance to LPDDR4 copper (default 0.2, i.e. 0.3 mm in all). 0 only for static nets "
                 "(supplies, calibration resistors) that have to enter the DDR ball field")
+ap.add_argument("--keep-pours", default=None, help="regex of nets whose pours no foreign track (on the pour's layer) or via may enter")
 ap.add_argument("--probe", nargs=4, metavar=("NET", "X", "Y", "R"), help="report where a via of NET could go within R of (X, Y), then exit")
 ap.add_argument("--layer-cost", default="", help="e.g. B.Cu=1.5,F.Cu=1.2")
 A = ap.parse_args()
@@ -365,6 +366,19 @@ def route(net, src, dst, margin):
     ZP = A.zone_penalty
     va = VIAOWN[j0:j1 + 1, i0:i1 + 1]
     vok = (va == 0) | (va == n)
+    if A.keep_pours:
+        keep = [i_ for nm, i_ in NID.items() if re.search(A.keep_pours, nm) and i_ != n]
+        for li_, l in enumerate(ALLOWED):
+            z = ZOWN[l][j0:j1 + 1, i0:i1 + 1]
+            hard = np.isin(z, keep)
+            if hard.any():
+                # grow by a via radius + clearance so the antipad stays out of the pour's edge too
+                k_ = int(math.ceil(0.3 / P)); grown = hard.copy()
+                for s_ in range(1, k_ + 1):
+                    grown[s_:, :] |= hard[:-s_, :]; grown[:-s_, :] |= hard[s_:, :]; grown[:, s_:] |= hard[:, :-s_]; grown[:, :-s_] |= hard[:, s_:]
+                pa = np.frombuffer(passb[li_], np.uint8).reshape(h, w) & ~hard
+                passb[li_] = pa.astype(np.uint8).tobytes()
+                vok &= ~grown
     # no new via on top of, or overlapping, a via the net already has (that one is a target instead)
     kk = int(math.ceil(0.5 / P))
     for v in G["vias"]:
@@ -400,7 +414,9 @@ def route(net, src, dst, margin):
                         if box is not None and not (box[0] <= cx <= box[2] and box[1] <= cy <= box[3]):
                             continue
                         d = math.hypot(cx - x, cy - y)
-                        if d <= 0.16 and (best is None or d < best[0]):
+                        # inside a pad the joint may be anywhere on the pad; at a track end or via it must
+                        # be the nearest cell, or the joining stub could leave the checked cells
+                        if d <= (0.16 if box is not None else 0.04) and (best is None or d < best[0]):
                             best = (d, li * wh + j * w + i)
             if best:
                 out.append(best[1])
