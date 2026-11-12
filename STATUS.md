@@ -64,8 +64,19 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
    cheap): pg_group1 56 mm on In2 + 20 mm on In5 to R401 and all five cells, pg_all 48 mm on B.Cu + In2/In5 to
    U401. 9 new vias. No new DRC violations; review the long B.Cu run of pg_all in KiCad.
 2. Check the 2520 inductor's land pattern (KiCad's generic L_1008_2520Metric) against the FTC252012S data sheet.
-3. The decaps that are not on a via pair still need their pad connections (opens per net: 1V8 59, VCORE 10,
-   1V1 6, 0V85 6).
+3. **Mostly done 2026-11-12 (`tools/decap_connect.py`, not committed yet):** of the 127 rail-decap pads without
+   copper, 97 are connected: 42 by a via in the pad, 30 by a via beside the pad (also between four balls under
+   U501), 19 by a straight track to a via of the net, 6 by a two-segment track. No new DRC violations; opens
+   388 -> 296 (1V8 59 -> 33, GND 121 -> 71, VCORE 10 -> 6, 1V1 6 -> 2, 3V3 33 -> 25).
+   **Left open, 30 pads** (no legal via site and no via of the net within reach; move the cap or route by hand):
+   - 0V85 under U501: C528.1, C529.1, C530.1, C531.1, C533.1/.2 (nearest 0V85 ball via 1.5-6 mm away);
+   - 1V8 under U501: C5029.1/.2, C5032.1, C5033.1/.2, C5036.1, C5038.1, C5039.1, C5046.1; GND of C5035, C5041,
+     C5043, C553;
+   - 3V3 under U501 (over the VCORE plane, 3V3 only at the three VCCIO33 ball vias): C5048.1, C5049.1, C5050.1/.2,
+     C563.1;
+   - 1V1: C5056.1, GND of C5055; C401.2 (GND, U401);
+   - C5002.1 (100 u VCORE): the cap sits west of U501, outside the In3 VCORE region (starts at x 155.2);
+   - C940.1, C941.1 (3V3 at the PHY, F.Cu): part of the open PHY supply connections.
 
 ## Where we left off (2026-11-11)
 
