@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "konnect": {
+      "command": "/home/jari/dev/efinix_soc_board/work/mcp/konnect-bin/konnect",
+      "args": ["--config", "/home/jari/dev/efinix_soc_board/konnect-settings.json"]
+    }
+  }
+}

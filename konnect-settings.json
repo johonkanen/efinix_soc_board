@@ -1,0 +1,7 @@
+{
+  "kicad_cli": "/home/jari/dev/efinix_soc_board/tools/p2k/bin/kicad-cli",
+  "project_dir": "/home/jari/dev/efinix_soc_board/kicad",
+  "ipc_address": "ipc:///tmp/kicad/api.sock",
+  "transport": "stdio",
+  "log_level": "info"
+}
