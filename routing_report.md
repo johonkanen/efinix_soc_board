@@ -277,3 +277,12 @@ left because they may also serve a ball. Ties were made by the grid router (`--p
 - C5056/C5055 sit at x 150.5, just west of the narrowed LPDDR4 region (x 152–176.5).
 - No 4.7 u cap is left inside U501's courtyard; the 0201 (100 n/10 n/1 n) and 1 u 0402 caps stay.
 - DRC: 0 errors, 12 unconnected (the same twelve nets). `verify_protected.py check`: no differences.
+
+## Follow-up 8: frozen stubs at the old 4.7 u pads deleted (2026-11-12)
+
+With the user's permission, eleven locked tier B segments on B.Cu that ended in nothing after Follow-up 7
+were deleted with `tools/remove_frozen_stubs.py` (only tracks that DRC reported as dangling, near the old
+pads of C5056, C5055, C5027, C5054 and one GND stub at (156.0, 77.0); no vias): 3 on 1V1, 2 on 1V8, 6 on
+GND. `verify_protected.py check` showed exactly these eleven as removed and nothing else; the baseline
+`protected_baseline.json` was then re-taken. DRC: 0 errors, 12 unconnected (the same twelve),
+`track_dangling` 40 -> 32, `via_dangling` 43.
