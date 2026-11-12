@@ -12150,7 +12150,7 @@
 	(footprint "Inductor_SMD:L_0402_1005Metric"
 		(layer "F.Cu")
 		(uuid "6e7292e2-13da-492b-a7b9-be5d83db6dda")
-		(at 178.925 59.435 90)
+		(at 177.35 60.81 90)
 		(descr "Inductor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: http://www.tortai-tech.com/upload/download/2011102023233369053.pdf)")
 		(tags "inductor")
 		(property "Reference" "FB501"
@@ -24721,144 +24721,6 @@
 		)
 		(embedded_fonts no)
 		(model "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 0)
-			)
-		)
-	)
-	(footprint "Inductor_SMD:L_0402_1005Metric"
-		(layer "F.Cu")
-		(uuid "c50c370b-310b-47a7-a9c6-527348f45299")
-		(at 165.02 94.05 -90)
-		(descr "Inductor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: http://www.tortai-tech.com/upload/download/2011102023233369053.pdf)")
-		(tags "inductor")
-		(property "Reference" "FB502"
-			(at -1.755 0 0)
-			(layer "F.SilkS")
-			(uuid "7810b285-83f0-4dc5-b579-51dca2790b56")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Value" "BLM15PX121SN1D"
-			(at 0 1.17 270)
-			(layer "F.Fab")
-			(uuid "46ea90d0-9d5c-4f80-a031-58f00301b5c6")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 270)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "75ae26f3-1945-41d3-8316-6cbc0ecf2203")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Ferrite bead, small symbol"
-			(at 0 0 270)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "1d5e9eeb-04d1-482b-89aa-6f9624e606db")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C88970"
-			(at 0 0 0)
-			(layer "F.SilkS")
-			(hide yes)
-			(uuid "5daa3b42-e1cc-454d-a122-95da2ea49067")
-			(effects
-				(font
-					(size 1.27 1.27)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property ki_fp_filters "Inductor_* L_* *Ferrite*")
-		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/21f67463-077b-52e3-bb50-ce9e40aa5f10")
-		(sheetname "/05 fpga_power/")
-		(sheetfile "05_fpga_power.kicad_sch")
-		(units
-			(unit
-				(name "A")
-				(pins "1" "2")
-			)
-		)
-		(attr smd)
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_rect
-			(start -0.93 -0.47)
-			(end 0.93 0.47)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(fill no)
-			(layer "F.CrtYd")
-			(uuid "e2bbd115-4c2b-4566-9024-706b7fccf37c")
-		)
-		(fp_rect
-			(start -0.5 -0.25)
-			(end 0.5 0.25)
-			(stroke
-				(width 0.1)
-				(type solid)
-			)
-			(fill no)
-			(layer "F.Fab")
-			(uuid "ba32107e-fbdf-43cd-92b4-73cd0bea5fed")
-		)
-		(fp_text user "${REFERENCE}"
-			(at 0 0 270)
-			(layer "F.Fab")
-			(uuid "82997ff8-978b-4564-94f3-3974d00bceec")
-			(effects
-				(font
-					(size 0.25 0.25)
-					(thickness 0.04)
-				)
-			)
-		)
-		(pad "1" smd roundrect
-			(at -0.485 0 270)
-			(size 0.59 0.64)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(roundrect_rratio 0.25)
-			(net "VCORE")
-			(pintype "passive")
-			(uuid "d3f6d4b9-3178-4823-b242-a47e2938ccb2")
-		)
-		(pad "2" smd roundrect
-			(at 0.485 0 270)
-			(size 0.59 0.64)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(roundrect_rratio 0.25)
-			(net "/05 fpga_power/vcca_br")
-			(pintype "passive")
-			(uuid "cbf63114-d039-4a95-bac2-f964c61b6027")
-		)
-		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Inductor_SMD.3dshapes/L_0402_1005Metric.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -59422,7 +59284,7 @@
 	(footprint "Capacitor_SMD:C_0805_2012Metric"
 		(layer "B.Cu")
 		(uuid "8d587388-7a8d-43c2-97d8-f33171537175")
-		(at 162.95 87.2)
+		(at 162.25 93.25)
 		(descr "Capacitor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf, https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing)")
 		(tags "capacitor")
 		(property "Reference" "C5004"
@@ -69930,6 +69792,150 @@
 		)
 		(embedded_fonts no)
 		(model "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint "Inductor_SMD:L_0402_1005Metric"
+		(layer "B.Cu")
+		(uuid "c50c370b-310b-47a7-a9c6-527348f45299")
+		(at 164.475 86.71 -90)
+		(descr "Inductor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: http://www.tortai-tech.com/upload/download/2011102023233369053.pdf)")
+		(tags "inductor")
+		(property "Reference" "FB502"
+			(at -1.755 0 0)
+			(layer "B.SilkS")
+			(uuid "7810b285-83f0-4dc5-b579-51dca2790b56")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "BLM15PX121SN1D"
+			(at 0 -1.17 90)
+			(layer "B.Fab")
+			(uuid "46ea90d0-9d5c-4f80-a031-58f00301b5c6")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 90)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "75ae26f3-1945-41d3-8316-6cbc0ecf2203")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" "Ferrite bead, small symbol"
+			(at 0 0 90)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "1d5e9eeb-04d1-482b-89aa-6f9624e606db")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC" "C88970"
+			(at 0 0 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "5daa3b42-e1cc-454d-a122-95da2ea49067")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property ki_fp_filters "Inductor_* L_* *Ferrite*")
+		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/21f67463-077b-52e3-bb50-ce9e40aa5f10")
+		(sheetname "/05 fpga_power/")
+		(sheetfile "05_fpga_power.kicad_sch")
+		(units
+			(unit
+				(name "A")
+				(pins "1" "2")
+			)
+		)
+		(attr smd)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_rect
+			(start -0.93 0.47)
+			(end 0.93 -0.47)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(fill no)
+			(layer "B.CrtYd")
+			(uuid "e2bbd115-4c2b-4566-9024-706b7fccf37c")
+		)
+		(fp_rect
+			(start -0.5 0.25)
+			(end 0.5 -0.25)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(fill no)
+			(layer "B.Fab")
+			(uuid "ba32107e-fbdf-43cd-92b4-73cd0bea5fed")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 0 90)
+			(layer "B.Fab")
+			(uuid "82997ff8-978b-4564-94f3-3974d00bceec")
+			(effects
+				(font
+					(size 0.25 0.25)
+					(thickness 0.04)
+				)
+				(justify mirror)
+			)
+		)
+		(pad "1" smd roundrect
+			(at -0.485 0 270)
+			(size 0.59 0.64)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net "VCORE")
+			(pintype "passive")
+			(uuid "d3f6d4b9-3178-4823-b242-a47e2938ccb2")
+		)
+		(pad "2" smd roundrect
+			(at 0.485 0 270)
+			(size 0.59 0.64)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net "/05 fpga_power/vcca_br")
+			(pintype "passive")
+			(uuid "cbf63114-d039-4a95-bac2-f964c61b6027")
+		)
+		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Inductor_SMD.3dshapes/L_0402_1005Metric.step"
 			(offset
 				(xyz 0 0 0)
 			)
