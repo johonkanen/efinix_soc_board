@@ -27,7 +27,7 @@ o = {"edge": [mm(bb.GetLeft()), mm(bb.GetTop()), mm(bb.GetRight()), mm(bb.GetBot
 for f in b.GetFootprints():
     for p in f.Pads():
         tht = p.GetAttribute() in (pcbnew.PAD_ATTRIB_PTH, pcbnew.PAD_ATTRIB_NPTH)
-        layers = cu if tht else [l for l in cu if p.IsOnLayer(l)]
+        layers = cu if tht else [l for l in cu if p.IsOnLayer(l)]      # NPTH holes too: keep vias off them
         if not layers:
             continue
         r = p.GetBoundingBox(); net = p.GetNetname()

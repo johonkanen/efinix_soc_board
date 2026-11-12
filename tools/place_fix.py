@@ -63,6 +63,11 @@ if SET == "c542":
     # 1V1 decap boxed in by routed RGMII on every layer: onto the 1V1 ball via R1 if a spot exists
     NUDGES = {}
     RELOCATE = {"C542": ("U501", "R1", 1.2, 1.2)}
+if SET == "c502":
+    # the third vcca_bl cap left beside the PHY when FB501/C501 moved in phase 3
+    NUDGES = {}
+    RELOCATE = {"C502": ("U501", "R8", 7.0, 7.0)}
+    FLIP = {"C502"}
 ALLOW_PROTECTED = set()
 if SET == "ddr_caps":
     # the four 22u LPDDR4 1V1 bulk caps that were parked above the board edge; the user allowed moving

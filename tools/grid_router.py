@@ -41,6 +41,7 @@ ap.add_argument("--zone-penalty", type=float, default=4.0, help="cost factor for
 ap.add_argument("--ddr-extra", type=float, default=None, help="extra clearance to LPDDR4 copper (default 0.2, i.e. 0.3 mm in all). 0 only for static nets "
                 "(supplies, calibration resistors) that have to enter the DDR ball field")
 ap.add_argument("--keep-pours", default=None, help="regex of nets whose pours no foreign track (on the pour's layer) or via may enter")
+ap.add_argument("--stitch", nargs=3, metavar=("NET", "LAYER", "STEP"), help="write vias of NET on a STEP mm grid wherever one lands inside NET's pour on LAYER and clears all layers, then exit")
 ap.add_argument("--probe", nargs=4, metavar=("NET", "X", "Y", "R"), help="report where a via of NET could go within R of (X, Y), then exit")
 ap.add_argument("--layer-cost", default="", help="e.g. B.Cu=1.5,F.Cu=1.2")
 A = ap.parse_args()
@@ -205,15 +206,15 @@ ZOWN = zone_owner()
 _fillok = {}
 
 
-def fillok(net):
+def fillok(net, only_layer=None):
     """2D mask: a 0.3 mm via centred here lies inside a fill of `net` (0.1 mm inside its edge)."""
-    if net in _fillok:
+    if only_layer is None and net in _fillok:
         return _fillok[net]
     from PIL import Image, ImageDraw
     acc = np.zeros((H, W), bool)
     by_layer = collections.defaultdict(list)
     for f in G.get("fills", []):
-        if f["net"] == net:
+        if f["net"] == net and only_layer in (None, f["layer"]):
             by_layer[f["layer"]].append(f)
     k = int(math.ceil((VIA_D / 2 + 0.1) / P))
     for layer, fl in by_layer.items():
@@ -229,10 +230,33 @@ def fillok(net):
                 if di * di + dj * dj <= k * k and (di or dj):
                     er &= np.roll(np.roll(m, dj, 0), di, 1)
         acc |= er
-    _fillok[net] = acc
+    if only_layer is None:
+        _fillok[net] = acc
     return acc
 print(f"rasters built in {time.time() - t0:.1f} s ({W} x {H})", flush=True)
 
+
+if A.stitch:
+    net, layer, step = A.stitch[0], A.stitch[1], float(A.stitch[2])
+    n = NID[net]
+    ok = fillok(net, layer) & ((VIAOWN == 0) | (VIAOWN == n))
+    have = [(v["x"], v["y"]) for v in G["vias"] if v["net"] == net] + [(p["x"], p["y"]) for p in G["pads"] if p["net"] == net and p["drill"]]
+    out = []; k = int(round(step / P))
+    for j in range(k // 2, H, k):
+        for i in range(k // 2, W, k):
+            best = None
+            for dj in range(-k // 4, k // 4 + 1, 2):
+                for di in range(-k // 4, k // 4 + 1, 2):
+                    jj, ii = j + dj, i + di
+                    if 0 <= jj < H and 0 <= ii < W and ok[jj, ii] and (best is None or abs(di) + abs(dj) < best[0]):
+                        best = (abs(di) + abs(dj), ii, jj)
+            if best:
+                x, y = round((best[1] + IX0) * P, 3), round((best[2] + IY0) * P, 3)
+                if all(math.hypot(x - a, y - b_) > 0.8 for a, b_ in have):
+                    out.append({"x": x, "y": y, "d": VIA_D, "drill": VIA_DRILL, "net": net}); have.append((x, y))
+    json.dump({"tracks": [], "vias": out, "log": [], "failed": []}, open(A.out, "w"))
+    print(f"stitching: {len(out)} vias of {net} in its {layer} pour")
+    sys.exit(0)
 
 if A.probe:
     net, x, y, r = A.probe[0], float(A.probe[1]), float(A.probe[2]), float(A.probe[3])
