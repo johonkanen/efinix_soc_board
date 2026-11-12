@@ -4,8 +4,7 @@
     tools/p2k/bin/kipy tools/protected_nets.py [BOARD]
 
 Tiers:
-  A  signal nets of the frozen interfaces: every non-rail net on a pad of the LPDDR4 (U801),
-     the QSPI flash (U601) or the eMMC (U1001); the net on the far side of a resistor on such
+  A  signal nets of the frozen interface: every non-rail net on a pad of the LPDDR4 (U801); the net on the far side of a resistor on such
      a net (series terminations, ZQ/RSET-type references); and the non-rail nets on the
      FPGA's DDR-bank balls (pin function containing "DDR").
      Everything on these nets is frozen: tracks, vias, and every footprint with a pad on them.
@@ -18,9 +17,13 @@ import sys
 import collections
 import pcbnew
 
-DEVICES = ("U801", "U601", "U1001")      # LPDDR4, QSPI flash, eMMC
+DEVICES = ("U801",)                      # LPDDR4. Flash (U601) and eMMC (U1001) are NOT frozen:
+#                                          the user decided 2026-11-12 that they are remaining work
+#                                          (they carried shorts and open connections).
+# DDR-bank nets that are still unrouted, so they are remaining work too (same decision):
+NOT_FROZEN = ("Net-(U501A-DDR_CAL)", "/05 fpga_power/vddpll_mcb_top_phy_ddr")
 SOC = "U501"
-FROZEN_SHEETS = ("08_lpddr4.kicad_sch", "10_emmc.kicad_sch")
+FROZEN_SHEETS = ("08_lpddr4.kicad_sch",)
 RAIL_MIN_PADS = 20
 DECAP_RANGE_MM = 3.0                     # rail-to-rail caps this close to a device, on its sheet, are its decoupling
 
@@ -33,7 +36,7 @@ rails = {n for n, k in npads.items() if n and k >= RAIL_MIN_PADS}
 
 
 def signal(n):
-    return n and n not in rails and not n.startswith("unconnected-")
+    return n and n not in rails and not n.startswith("unconnected-") and n not in NOT_FROZEN
 
 
 why = {}                                  # tier A net -> reason
