@@ -44,7 +44,7 @@ Power-supply rework, step 1 of 2: **the five TLV62585 cells are rebuilt from one
 - Recipe: `buck_cell_sch.py`, `add_parts.py`, `swap_footprint.py` (L, CIN/22 u to 0603, 100 n/CFF/R to 0201),
   `buck_cell.py --strip IN OUT`, `buck_cell.py IN OUT`.
 
-**Step 2, decoupling (same day, `tools/decap_rework.py`; not committed yet).** User decision: bulk is counted per
+**Step 2, decoupling (same day, `tools/decap_rework.py`; 70d0dce).** User decision: bulk is counted per
 rail, not per VCCIO bank as the Efinix checklist lists it.
 - **0402 -> 0201** (47 parts): the 1 u and 4.7 u on VCORE, 0V85, 1V1, 1V8, the 1 u on 3V3, and the 0402 100 n at the
   level shifters, U401, Y701 and the PHY. Nine of the caps under U501 moved onto free rail/GND via pairs
@@ -60,7 +60,9 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
   parity clean, opens 432 -> 399.
 
 **Open:**
-1. Route pg_group1 / pg_all to the cells' EN stubs and PG vias.
+1. **Done 2026-11-12:** pg_group1 and pg_all routed with `route.py` (0.15 mm, the Ethernet recipe's options, In2/In5
+   cheap): pg_group1 56 mm on In2 + 20 mm on In5 to R401 and all five cells, pg_all 48 mm on B.Cu + In2/In5 to
+   U401. 9 new vias. No new DRC violations; review the long B.Cu run of pg_all in KiCad.
 2. Check the 2520 inductor's land pattern (KiCad's generic L_1008_2520Metric) against the FTC252012S data sheet.
 3. The decaps that are not on a via pair still need their pad connections (opens per net: 1V8 59, VCORE 10,
    1V1 6, 0V85 6).
