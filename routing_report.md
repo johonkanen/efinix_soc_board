@@ -323,3 +323,12 @@ GND. `verify_protected.py check` showed exactly these eleven as removed and noth
   pads). One of them was C539's own stub, so the check flagged its removal. The eight were dropped again:
   the baseline is the earlier one minus the eleven segments deleted in Follow-up 8, nothing else.
 - DRC: 0 errors, 11 unconnected, `track_dangling` 33, `via_dangling` 43. `verify_protected.py check`: OK.
+
+## Follow-up 10: frozen stubs at the old pads of C540 and C542 deleted (2026-11-12)
+
+With the user's permission, three locked tier B segments on B.Cu that ended in nothing after Follow-up 9
+were deleted with `tools/remove_frozen_stubs.py`: 1V1 (160.406, 73.455)-(160.406, 74.326) at C540's old
+pad, and GND (173.30, 78.62)-(174.35, 78.52)-(173.50, 78.17) (two segments) at C542's old pad.
+`verify_protected.py check` showed exactly these three as removed; they were then taken out of
+`protected_baseline.json` by hand (no re-snapshot, so nothing else entered the baseline).
+DRC: 0 errors, 11 unconnected, `track_dangling` 31, `via_dangling` 43.
