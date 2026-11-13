@@ -135,6 +135,14 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
    gpio_bypass_rly_isolated and the old j3_oe_n stub. Two flagged tracks (j3_oe_n at ball L5, jtag_tms at
    F7) carried their net and only overshot the junction; those were trimmed, not removed. DRC with parity now
    shows only the 11 accepted courtyard overlaps; 0 unconnected.
+   **Pre-order review started 2026-11-13** (`ORDER_CHECKLIST.md`; reports in `reports/order_check/`, local).
+   Script-driven checks and the footprint / rotation review are done; the FPGA-pin, peripheral, connector and
+   power reviews are not. Fixed from it (`tools/assembly_fixes.py`): the ads7056 footprint's origin was 4.6 mm
+   from its pads (U1303 would have been placed beside its lands), `tools/jlc/jlc_bom_cpl.py` subtracted the
+   package rotation offset on the bottom side (U1304 came out 180 degrees wrong; fix is in the jlc-tools
+   submodule), and U401 is now TPS3808G01DBVT (C702161; the DBVR reel was oversold). Still open: ADS7056IRUGR
+   oversold at JLCPCB, JLCPCB's via-hole-to-track 0.2 mm (199 spots at 0.175-0.2 from the drill), SOT-563 and
+   oscillator orientation to confirm in JLCPCB's placement preview, R613 / R614 valued "10k DNP" but fitted.
 2. **Checked 2026-11-13:** the 2520 inductor's land pattern (KiCad's generic L_1008_2520Metric) against the
    FTC252012S data sheet (cjiang FTC series, "Recommend Land Pattern": A 2.60 overall, B 0.70 gap, C 2.10
    wide, i.e. pads 0.95 x 2.10 at +-0.825). The board has pads 1.25 x 2.20 at +-1.075: overall 3.40, gap 0.90.
