@@ -104,6 +104,8 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
    neck between a B.Cu track of U1302 (x 144.3) and the cell's GND pour. The cells keep their own B.Cu pours
    from `buck_cell.py` (VIN with 100 n + 10 u at the pin, GND, VOUT with the output caps, SW). DRC unchanged,
    opens 169; the four 5V0 opens are the F.Cu pads of U101, C104 and R401, which still need vias to the pour.
+   **Done the same day** (`tools/pour_vias.py`): a 0.3/0.15 via in each of U101.1, U101.3, C104.1 and R401.1.
+   **5V0 is fully connected**; opens 169 -> 165.
 2. Check the 2520 inductor's land pattern (KiCad's generic L_1008_2520Metric) against the FTC252012S data sheet.
 3. **Mostly done 2026-11-12 (`tools/decap_connect.py`, a991e16):** of the 127 rail-decap pads without
    copper, 97 are connected: 42 by a via in the pad, 30 by a via beside the pad (also between four balls under
