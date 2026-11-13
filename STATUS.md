@@ -130,6 +130,11 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
    and 30 (0.11 mm) and phy_rxc on In2 (0.12 mm); a redundant B.Cu loop of phy_vdd10 below it was removed
    first. phy_rx_ctl did not have to move. DRC unchanged: 40 items with parity on (19 via_dangling, 10
    track_dangling, 11 courtyards_overlap), no clearance errors, no shorts.
+   **Dangling copper removed 2026-11-13 (`tools/drop_dangling.py`):** 20 unused vias (mostly via-in-pad on
+   balls that route on F.Cu) and 22 dead track segments, among them a whole leftover In5 route of
+   gpio_bypass_rly_isolated and the old j3_oe_n stub. Two flagged tracks (j3_oe_n at ball L5, jtag_tms at
+   F7) carried their net and only overshot the junction; those were trimmed, not removed. DRC with parity now
+   shows only the 11 accepted courtyard overlaps; 0 unconnected.
 2. Check the 2520 inductor's land pattern (KiCad's generic L_1008_2520Metric) against the FTC252012S data sheet.
 3. **Mostly done 2026-11-12 (`tools/decap_connect.py`, a991e16):** of the 127 rail-decap pads without
    copper, 97 are connected: 42 by a via in the pad, 30 by a via beside the pad (also between four balls under
