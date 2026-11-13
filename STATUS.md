@@ -96,6 +96,14 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
    (`route.py`). A fourth old short is gone too: the In2 run of /flash_sck (y 85) crossed a via of emmc_dat1_r;
    the segment was replaced. shorting_items 4 -> 0, hole_clearance 3 -> 0, solder_mask_bridge 3 -> 0;
    opens 172 -> 169, all supply pins.
+   **5V0 pour shaped 2026-11-13** (user decision; `tools/shape_5v0.py`): the B.Cu pour `plane:5V0` is a feeder
+   now, not an area fill (about 490 mm2): a 3.8 mm trunk along the south edge from J101 / J6 and C101-C103, a
+   finger up to the VIN pour of U301, U201, U331, fingers to the EN stubs of U301, U201, U311 (EN of group 1 is
+   tied to 5 V and used to be picked up by the area fill), a 3 mm strip up the west side to U311 and U341, a tab
+   under U101 / C104. Solid pad connections on SMD, reliefs on through-hole. The finger to C311 passes a 0.74 mm
+   neck between a B.Cu track of U1302 (x 144.3) and the cell's GND pour. The cells keep their own B.Cu pours
+   from `buck_cell.py` (VIN with 100 n + 10 u at the pin, GND, VOUT with the output caps, SW). DRC unchanged,
+   opens 169; the four 5V0 opens are the F.Cu pads of U101, C104 and R401, which still need vias to the pour.
 2. Check the 2520 inductor's land pattern (KiCad's generic L_1008_2520Metric) against the FTC252012S data sheet.
 3. **Mostly done 2026-11-12 (`tools/decap_connect.py`, a991e16):** of the 127 rail-decap pads without
    copper, 97 are connected: 42 by a via in the pad, 30 by a via beside the pad (also between four balls under
