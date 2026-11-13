@@ -125,6 +125,11 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
      under the pin, so the pin can neither leave on F.Cu nor take a via. Fix by hand: move the F.Cu run of
      phy_rx_ctl (take it to In2 near R908) and bring 3V3 from C941.
    No new DRC violations (violations 59 -> 47); 5V0 pour still one piece.
+   **U901 pin 29 connected the same day: the board has no open connections left** (`tools/phy_pin29.py`). A
+   0.3/0.15 via sits in the west tip of the pad at (182.72, 62.99), the one site that clears the vias of pins 28
+   and 30 (0.11 mm) and phy_rxc on In2 (0.12 mm); a redundant B.Cu loop of phy_vdd10 below it was removed
+   first. phy_rx_ctl did not have to move. DRC unchanged: 40 items with parity on (19 via_dangling, 10
+   track_dangling, 11 courtyards_overlap), no clearance errors, no shorts.
 2. Check the 2520 inductor's land pattern (KiCad's generic L_1008_2520Metric) against the FTC252012S data sheet.
 3. **Mostly done 2026-11-12 (`tools/decap_connect.py`, a991e16):** of the 127 rail-decap pads without
    copper, 97 are connected: 42 by a via in the pad, 30 by a via beside the pad (also between four balls under
