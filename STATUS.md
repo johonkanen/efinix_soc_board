@@ -140,8 +140,9 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
    power reviews are not. Fixed from it (`tools/assembly_fixes.py`): the ads7056 footprint's origin was 4.6 mm
    from its pads (U1303 would have been placed beside its lands), `tools/jlc/jlc_bom_cpl.py` subtracted the
    package rotation offset on the bottom side (U1304 came out 180 degrees wrong; fix is in the jlc-tools
-   submodule), and U401 is now TPS3808G01DBVT (C702161; the DBVR reel was oversold). Still open: ADS7056IRUGR
-   oversold at JLCPCB, JLCPCB's via-hole-to-track 0.2 mm (199 spots at 0.175-0.2 from the drill), SOT-563 and
+   submodule), and U401 is now TPS3808G01DBVT (C702161; the DBVR reel was oversold). The ADS7056IRUGR is oversold at JLCPCB, but the
+   user has the part and solders U1303 by hand: leave it out of the order files (`fab_outputs.sh ... --skip U1303`).
+   Still open: JLCPCB's via-hole-to-track 0.2 mm (199 spots at 0.175-0.2 from the drill), SOT-563 and
    oscillator orientation to confirm in JLCPCB's placement preview, R613 / R614 valued "10k DNP" but fitted.
 2. **Checked 2026-11-13:** the 2520 inductor's land pattern (KiCad's generic L_1008_2520Metric) against the
    FTC252012S data sheet (cjiang FTC series, "Recommend Land Pattern": A 2.60 overall, B 0.70 gap, C 2.10
