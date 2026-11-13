@@ -1949,7 +1949,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Inductor_SMD:L_1008_2520Metric"
+		(property "Footprint" "ti135_card:L_2520_FTC252012S"
 			(at 97.79 60.96 0)
 			(hide yes)
 			(show_name no)

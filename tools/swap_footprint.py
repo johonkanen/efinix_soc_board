@@ -13,6 +13,8 @@ import pcbnew
 board_path, fpid, refs = sys.argv[1], sys.argv[2], sys.argv[3:]
 lib, name = fpid.split(":")
 libdir = os.path.join(os.environ["KICAD_MOUNT"], "share", "kicad", "footprints", lib + ".pretty")
+if lib == "ti135_card":  # the project library
+    libdir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "lib", lib + ".pretty")
 b = pcbnew.LoadBoard(board_path)
 old, done = [], []
 for ref in refs:

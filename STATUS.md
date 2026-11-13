@@ -139,7 +139,10 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
    FTC252012S data sheet (cjiang FTC series, "Recommend Land Pattern": A 2.60 overall, B 0.70 gap, C 2.10
    wide, i.e. pads 0.95 x 2.10 at +-0.825). The board has pads 1.25 x 2.20 at +-1.075: overall 3.40, gap 0.90.
    Usable as is: terminals (0.9 long, gap G 0.7 typ) overlap the pads by 0.8 mm with a 0.45 mm toe; the inner
-   0.1 mm of each terminal is off the pad. Not changed. The data-sheet pattern would be 0.8 mm shorter.
+   0.1 mm of each terminal is off the pad. **Changed the same day to the data-sheet pattern**
+   (`tools/inductor_fp.py`, `tools/swap_footprint.py`): new project footprint ti135_card:L_2520_FTC252012S on
+   L201, L301, L311, L331, L341 (sheets 02, 03 and the board). No copper moved; the old track ends lie inside
+   the new pads. DRC with parity unchanged (11 courtyard overlaps, 0 unconnected).
 3. **Mostly done 2026-11-12 (`tools/decap_connect.py`, a991e16):** of the 127 rail-decap pads without
    copper, 97 are connected: 42 by a via in the pad, 30 by a via beside the pad (also between four balls under
    U501), 19 by a straight track to a via of the net, 6 by a two-segment track. No new DRC violations; opens

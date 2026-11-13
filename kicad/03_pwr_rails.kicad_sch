@@ -4856,7 +4856,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Inductor_SMD:L_1008_2520Metric"
+		(property "Footprint" "ti135_card:L_2520_FTC252012S"
 			(at 85.09 137.16 0)
 			(hide yes)
 			(show_name no)
@@ -5920,7 +5920,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Inductor_SMD:L_1008_2520Metric"
+		(property "Footprint" "ti135_card:L_2520_FTC252012S"
 			(at 224.79 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -7217,7 +7217,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Inductor_SMD:L_1008_2520Metric"
+		(property "Footprint" "ti135_card:L_2520_FTC252012S"
 			(at 224.79 137.16 0)
 			(hide yes)
 			(show_name no)
@@ -8386,7 +8386,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Inductor_SMD:L_1008_2520Metric"
+		(property "Footprint" "ti135_card:L_2520_FTC252012S"
 			(at 85.09 58.42 0)
 			(hide yes)
 			(show_name no)
