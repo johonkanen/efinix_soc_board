@@ -135,7 +135,11 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
    gpio_bypass_rly_isolated and the old j3_oe_n stub. Two flagged tracks (j3_oe_n at ball L5, jtag_tms at
    F7) carried their net and only overshot the junction; those were trimmed, not removed. DRC with parity now
    shows only the 11 accepted courtyard overlaps; 0 unconnected.
-2. Check the 2520 inductor's land pattern (KiCad's generic L_1008_2520Metric) against the FTC252012S data sheet.
+2. **Checked 2026-11-13:** the 2520 inductor's land pattern (KiCad's generic L_1008_2520Metric) against the
+   FTC252012S data sheet (cjiang FTC series, "Recommend Land Pattern": A 2.60 overall, B 0.70 gap, C 2.10
+   wide, i.e. pads 0.95 x 2.10 at +-0.825). The board has pads 1.25 x 2.20 at +-1.075: overall 3.40, gap 0.90.
+   Usable as is: terminals (0.9 long, gap G 0.7 typ) overlap the pads by 0.8 mm with a 0.45 mm toe; the inner
+   0.1 mm of each terminal is off the pad. Not changed. The data-sheet pattern would be 0.8 mm shorter.
 3. **Mostly done 2026-11-12 (`tools/decap_connect.py`, a991e16):** of the 127 rail-decap pads without
    copper, 97 are connected: 42 by a via in the pad, 30 by a via beside the pad (also between four balls under
    U501), 19 by a straight track to a via of the net, 6 by a two-segment track. No new DRC violations; opens
