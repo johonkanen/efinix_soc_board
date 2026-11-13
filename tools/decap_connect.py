@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """Connect the rail decoupling capacitors that hang loose (kipy):
-    decap_connect.py IN.kicad_pcb OUT.kicad_pcb [--dry] [--gnd REF ...]
+    decap_connect.py IN.kicad_pcb OUT.kicad_pcb [--dry] [--all DRC.json] [--gnd REF ...]
 --gnd: also the GND pad of these capacitors, which sit on another net (the VCCA filter caps under U501).
+--all: every SMD pad on GND or a plane rail that has no copper, whatever the part (resistors, ferrites, IC pins),
+       if kicad-cli's DRC report (JSON) lists it as unconnected. A track that runs through a pad without ending in
+       it looks like "no copper" here, so the report decides.
 
 For every capacitor between GND and one of VCORE / 1V8 / 3V3 / 0V85 / 1V1, each pad that has no track, no via and
 no pour of its own net on it gets, in this order:
@@ -27,6 +30,16 @@ VIA, DRILL, TRK = 0.3, 0.15, 0.2
 b = pcbnew.LoadBoard(sys.argv[1])
 dry = "--dry" in sys.argv
 also_gnd = set(sys.argv[sys.argv.index("--gnd") + 1:]) if "--gnd" in sys.argv else set()
+every = "--all" in sys.argv
+listed = set()
+if every:
+    import json
+    import re
+    for x in json.load(open(sys.argv[sys.argv.index("--all") + 1]))["unconnected_items"]:
+        for i in x["items"]:
+            m = re.match(r"(?:PTH pad|Pad) (\S+) \[[^\]]*\] of (\S+)", i["description"])
+            if m:
+                listed.add((m.group(2), m.group(1)))
 zones = {}
 for z in b.Zones():
     for l in z.GetLayerSet().Seq():
@@ -39,8 +52,11 @@ def add_item(t):
         q = t.GetPosition()
         items.append(("circle", (MM(q.x), MM(q.y), MM(t.GetWidth(pcbnew.B_Cu)) / 2), t.GetNetCode(), None, MM(t.GetDrill()) / 2))
     else:
-        a, c = t.GetStart(), t.GetEnd()
-        items.append(("seg", (MM(a.x), MM(a.y), MM(c.x), MM(c.y), MM(t.GetWidth()) / 2), t.GetNetCode(), t.GetLayerName(), 0))
+        arc = isinstance(t, pcbnew.PCB_ARC)                  # two chords through the mid point, a little fatter
+        pts = [t.GetStart(), t.GetMid(), t.GetEnd()] if arc else [t.GetStart(), t.GetEnd()]
+        for a, c in zip(pts, pts[1:]):
+            items.append(("seg", (MM(a.x), MM(a.y), MM(c.x), MM(c.y), MM(t.GetWidth()) / 2 + (0.05 if arc else 0)),
+                          t.GetNetCode(), t.GetLayerName(), 0))
 
 
 for f in b.GetFootprints():
@@ -131,6 +147,12 @@ for ref in ("U501", "U801"):
 
 todo = []
 for f in sorted(b.GetFootprints(), key=lambda f: f.GetReference()):
+    if every:
+        for p in f.Pads():
+            if p.GetNumber() and p.GetAttribute() == pcbnew.PAD_ATTRIB_SMD and (p.GetNetname() == "GND" or p.GetNetname() in PLANE) \
+                    and (f.GetReference(), p.GetNumber()) in listed and not has_copper(p, f):
+                todo.append((f, p))
+        continue
     if not f.GetReference().startswith("C"):
         continue
     pads = [p for p in f.Pads() if p.GetNumber()]

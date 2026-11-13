@@ -106,6 +106,25 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
    opens 169; the four 5V0 opens are the F.Cu pads of U101, C104 and R401, which still need vias to the pour.
    **Done the same day** (`tools/pour_vias.py`): a 0.3/0.15 via in each of U101.1, U101.3, C104.1 and R401.1.
    **5V0 is fully connected**; opens 169 -> 165.
+   **Supply pins connected 2026-11-13: one open connection is left on the whole board (U901 pin 29).**
+   - **Rail monitors removed for now, may return** (user decision; `tools/drop_monitors.py`): R1301-R1305 are DNP /
+     not on board in sheet 13, their footprints and the mon_* copper are gone. Symbols and nets stay drawn; clear
+     the flags and run `add_parts.py` to get them back. Mux inputs X1, X2, X3, X5 of U1301 float: do not select.
+   - Pads on GND / 1V8 / 3V3 / VCORE: `decap_connect.py --all DRC.json` (now any SMD pad the DRC lists as open):
+     77 pads, via in or beside the pad or a short track. Opens 160 -> 83.
+   - VCCA_BL / BR / TR, the DDR PLL supply, the three PHY supplies and 3V3_analog: `route.py` at 0.2 mm (the PLL
+     net at 0.15 mm), all on the signal layers; In1 / In6 were not needed and no dogbones either, the filter caps
+     stayed where they were. 3V3_analog was re-routed once with a temporary keep-out, because its first B.Cu run
+     cut the 5V0 strip in two.
+   - The last 32 (pads with no via site, FB501.1 VCORE 19 mm and FB504.1 0V85 15 mm from their planes, U401.5
+     SENSE, the 3V3 balls G7 / J7 / M21 that sit in the VCORE region of In3): `route.py` on GND 1V8 3V3 VCORE 1V1
+     0V85 with temporary keep-outs (no vias under the PHY, no B.Cu tracks on the PHY 1V0 pour and the 5V0 strip).
+     **Side effect: it re-routed /09 ethernet/phy_rx_ctl near U901 pins 28-30, now 0.2 mm wide.**
+   - `pour_vias.py ... @X,Y`: two stitching vias tie islands of the PHY GND pour on B.Cu.
+   - **Open: U901 pin 29 (3V3, DVDD).** phy_rx_ctl runs on F.Cu 0.3 mm in front of pins 28-30 and phy_rxc on In2
+     under the pin, so the pin can neither leave on F.Cu nor take a via. Fix by hand: move the F.Cu run of
+     phy_rx_ctl (take it to In2 near R908) and bring 3V3 from C941.
+   No new DRC violations (violations 59 -> 47); 5V0 pour still one piece.
 2. Check the 2520 inductor's land pattern (KiCad's generic L_1008_2520Metric) against the FTC252012S data sheet.
 3. **Mostly done 2026-11-12 (`tools/decap_connect.py`, a991e16):** of the 127 rail-decap pads without
    copper, 97 are connected: 42 by a via in the pad, 30 by a via beside the pad (also between four balls under

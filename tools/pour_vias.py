@@ -2,6 +2,8 @@
 """Tie pads on the other side of the board to a pour with a via each (kipy):
 
     pour_vias.py IN OUT ZONE_NAME REF.PAD [REF.PAD ...]      e.g. plane:5V0 U101.1 U101.3 C104.1 R401.1
+    pour_vias.py IN OUT ZONE_NAME @X,Y [...]                 a stitching via of the zone's net at or near X,Y: ties an
+                                                             island of the pour to the planes of its net
 
 For each pad: a via (0.3/0.15) in the pad, else within 1.2 mm of it with a 0.2 mm track on the pad's layer. The via
 must be legal on every layer (0.1 mm copper, 0.175 mm hole to copper, 0.2 mm hole to hole) and land on the filled
@@ -76,6 +78,18 @@ def on_pour(p):
 
 done, left = [], []
 for spec in sys.argv[4:]:
+    if spec.startswith("@"):
+        c = tuple(float(v) for v in spec[1:].split(",")); code = zone.GetNetCode()
+        for q in [c] + [(c[0] + r * math.cos(a * math.pi / 12), c[1] + r * math.sin(a * math.pi / 12))
+                        for r in (0.1, 0.2, 0.3, 0.6, 0.9, 1.2, 1.5) for a in range(24)]:
+            if via_ok(q, code) and zone.HitTestFilledArea(zl, pcbnew.VECTOR2I(FM(q[0]), FM(q[1]))):   # centre only: islands can be slivers
+                v = pcbnew.PCB_VIA(b); v.SetPosition(pcbnew.VECTOR2I(FM(q[0]), FM(q[1]))); v.SetViaType(pcbnew.VIATYPE_THROUGH)
+                v.SetWidth(FM(VIA)); v.SetDrill(FM(DRILL)); v.SetNet(zone.GetNet()); b.Add(v)
+                items.append(("circle", (q[0], q[1], VIA / 2), code, None, DRILL / 2))
+                done.append(f"stitch at ({q[0]:.2f}, {q[1]:.2f})"); break
+        else:
+            left.append(spec)
+        continue
     ref, num = spec.split(".")
     f = b.FindFootprintByReference(ref); p = next(q for q in f.Pads() if q.GetNumber() == num)
     assert p.GetNetCode() == zone.GetNetCode(), spec
