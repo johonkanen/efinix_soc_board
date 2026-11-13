@@ -249,7 +249,8 @@ def move(src, out, refs, pads_rule=False):
     for ref in refs:
         f = b.FindFootprintByReference(ref)
         fp = [p for p in f.Pads() if p.GetNumber()]
-        rail_pad = next(p for p in fp if p.GetNetname() in RAILS); gnd_pad = next(p for p in fp if p.GetNetname() == "GND")
+        gnd_pad = next(p for p in fp if p.GetNetname() == "GND")
+        rail_pad = next(p for p in fp if p is not gnd_pad)    # a rail, or any net with a ball via (R801, R601)
         code = rail_pad.GetNetCode()
         d = math.hypot(MM(rail_pad.GetPosition().x - gnd_pad.GetPosition().x), MM(rail_pad.GetPosition().y - gnd_pad.GetPosition().y))
         bb = rail_pad.GetBoundingBox(); along = max(MM(bb.GetWidth()), MM(bb.GetHeight())) if False else None

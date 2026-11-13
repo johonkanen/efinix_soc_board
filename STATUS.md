@@ -82,7 +82,10 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
    **Every signal net is now connected except flash_cs_n_r, flash_io2_r, flash_io3_r** (failed again; stubs
    removed). One new 0.57 mm dangling stub on j3_oe_n (In5). No other new DRC violations; opens 223 -> 174, all
    of them supply pins (GND, 1V8, 3V3, 3V3_analog, VCORE, 5V0, VCCA filters, PHY supplies) plus those three.
-   To review: DDR_CAL runs 15 mm to R801 and REF_RES_2A 14 mm to R601; both resistors would be better at the ball.
+   **R801 and R601 moved to their balls 2026-11-13** (user decision; the 15 mm / 14 mm runs are gone). Both are
+   now on B.Cu under U501 (0402, `decap_move.py --pads`, which now takes any part with one GND pad): R801 (240R,
+   DDR_CAL) with pad 1 on ball via Y9 and a new GND via 0.55 mm from pad 2; R601 (10k, REF_RES_2A) with pad 1 on a
+   new via in ball P16 and pad 2 on GND ball via P15. No new DRC violations; opens 174 -> 172.
 2. Check the 2520 inductor's land pattern (KiCad's generic L_1008_2520Metric) against the FTC252012S data sheet.
 3. **Mostly done 2026-11-12 (`tools/decap_connect.py`, a991e16):** of the 127 rail-decap pads without
    copper, 97 are connected: 42 by a via in the pad, 30 by a via beside the pad (also between four balls under
