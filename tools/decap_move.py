@@ -3,6 +3,10 @@
 
     decap_move.py --strip IN OUT REF [REF ...]    remove the copper hanging on these caps (its own run)
     decap_move.py IN OUT REF [REF ...]            move and connect them
+    decap_move.py --pads IN OUT REF [REF ...]     the same, but courtyards may overlap: 0.2 mm between the pads of
+                                                  different parts instead (user decision 2026-11-12, under U501 only);
+                                                  45 degree orientations are tried too (rail pad on its ball via,
+                                                  ground pad in the gap between four balls)
 
 For each cap the rail pad goes onto, or within 0.9 mm of, a U501 ball via of its rail, in one of four orientations;
 the ground pad must then sit on a GND via or reach one with a straight track of at most 1.0 mm. A spot is legal if
@@ -90,7 +94,34 @@ def gap_pt_seg(g, x, y):
     return math.hypot(x - (ax + t * (cx - ax)), y - (ay + t * (cy - ay))) - hw
 
 
-def move(src, out, refs):
+class Pad:
+    """A pad rectangle turned by its part's axis (ux, uy): half length hl along the axis, half width hw across."""
+    def __init__(self, c, hl, hw, ux, uy):
+        self.c, self.hl, self.hw, self.ux, self.uy = c, hl, hw, ux, uy
+
+    def pt(self, x, y):
+        dx, dy = x - self.c[0], y - self.c[1]
+        a, w = dx * self.ux + dy * self.uy, -dx * self.uy + dy * self.ux
+        return math.hypot(max(abs(a) - self.hl, 0), max(abs(w) - self.hw, 0))
+
+    def rect(self, r):
+        if r[0] <= self.c[0] <= r[2] and r[1] <= self.c[1] <= r[3]:
+            return 0.0
+        n = 8
+        pts = [(r[0] + (r[2] - r[0]) * i / n, y) for i in range(n + 1) for y in (r[1], r[3])] + \
+              [(x, r[1] + (r[3] - r[1]) * i / n) for i in range(n + 1) for x in (r[0], r[2])]
+        return min(self.pt(*q) for q in pts)
+
+    def seg(self, g):
+        n = max(2, int(math.hypot(g[2] - g[0], g[3] - g[1]) / 0.04))
+        return min(self.pt(g[0] + (g[2] - g[0]) * i / n, g[1] + (g[3] - g[1]) * i / n) for i in range(n + 1)) - g[4]
+
+    def box(self):
+        ex = abs(self.ux) * self.hl + abs(self.uy) * self.hw; ey = abs(self.uy) * self.hl + abs(self.ux) * self.hw
+        return (self.c[0] - ex, self.c[1] - ey, self.c[0] + ex, self.c[1] + ey)
+
+
+def move(src, out, refs, pads_rule=False):
     b = pcbnew.LoadBoard(src)
     u = b.FindFootprintByReference("U501").GetBoundingBox(False)
     ux0, uy0, ux1, uy1 = MM(u.GetLeft()) - 0.5, MM(u.GetTop()) - 0.5, MM(u.GetRight()) + 0.5, MM(u.GetBottom()) + 0.5
@@ -113,13 +144,13 @@ def move(src, out, refs):
 
     def pad_ok(r, code, ref):
         for s, n, o in pads:
-            if o != ref and gap_rect_rect(r, s) < CLR - 1e-6:
+            if o != ref and abs(s[0] - r.c[0]) < 2 and abs(s[1] - r.c[1]) < 2 and r.rect(s) < (0.2 if pads_rule else CLR) - 1e-6:
                 return False
         for g, n in segs:
-            if n != code and gap_seg_rect(g, r) < CLR - 1e-6:
+            if n != code and min(abs(g[0] - r.c[0]), abs(g[2] - r.c[0])) < 3 and r.seg(g) < CLR - 1e-6:
                 return False
         for x, y, rv, rd, n in vias:
-            if n != code and gap_pt_rect(r, x, y) < max(rv + CLR, rd + HOLE) - 1e-6:
+            if n != code and r.pt(x, y) < max(rv + CLR, rd + HOLE) - 1e-6:
                 return False
         return True
 
@@ -142,7 +173,7 @@ def move(src, out, refs):
             d = math.hypot(vx - p[0], vy - p[1])
             if d > reach or (best and d >= best[0]):
                 continue
-            if gap_pt_rect(rect, vx, vy) == 0:
+            if rect.pt(vx, vy) == 0:
                 return 0.0, None
             if seg_ok(p, (vx, vy), code, ref):
                 best = (d, (vx, vy))
@@ -169,12 +200,12 @@ def move(src, out, refs):
                 continue
             for ox, oy in [(0, 0)] + [(i * 0.2, j * 0.2) for i in range(-4, 5) for j in range(-4, 5) if (i or j) and math.hypot(i, j) * 0.2 <= 0.9]:
                 p1 = (vx + ox, vy + oy)
-                for ax, ay in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                q = math.sqrt(0.5)
+                for ax, ay in ((1, 0), (-1, 0), (0, 1), (0, -1)) + (((q, q), (q, -q), (-q, q), (-q, -q)) if pads_rule else ()):
                     p2 = (p1[0] + ax * d, p1[1] + ay * d)
-                    hx, hy = (pl / 2, pw / 2) if ax else (pw / 2, pl / 2)
-                    r1 = (p1[0] - hx, p1[1] - hy, p1[0] + hx, p1[1] + hy); r2 = (p2[0] - hx, p2[1] - hy, p2[0] + hx, p2[1] + hy)
+                    r1 = Pad(p1, pl / 2, pw / 2, ax, ay); r2 = Pad(p2, pl / 2, pw / 2, ax, ay)
                     cx, cy = (p1[0] + p2[0]) / 2, (p1[1] + p2[1]) / 2
-                    chx, chy = (cl / 2, cwid / 2) if ax else (cwid / 2, cl / 2)
+                    chx, chy = (cl / 2, cwid / 2) if ay == 0 else (cwid / 2, cl / 2)
                     cr = (cx - chx, cy - chy, cx + chx, cy + chy)
                     cands.append((math.hypot(ox, oy), math.hypot(cx - here[0], cy - here[1]), p1, p2, r1, r2, cr))
         cands.sort(key=lambda c: (c[0] > 0, c[1]))
@@ -182,7 +213,7 @@ def move(src, out, refs):
         for off, dist, p1, p2, r1, r2, cr in cands:
             if best and (best[0] == 0 or off > 0 and dist > best[1] + 3):
                 break
-            if any(o != ref and r[0] < cr[2] - 1e-6 and r[2] > cr[0] + 1e-6 and r[1] < cr[3] - 1e-6 and r[3] > cr[1] + 1e-6 for r, o in crts):
+            if not pads_rule and any(o != ref and r[0] < cr[2] - 1e-6 and r[2] > cr[0] + 1e-6 and r[1] < cr[3] - 1e-6 and r[3] > cr[1] + 1e-6 for r, o in crts):
                 why["courtyard"] = why.get("courtyard", 0) + 1; continue
             if not pad_ok(r1, code, ref) or not pad_ok(r2, gnd, ref):
                 why["pad clearance"] = why.get("pad clearance", 0) + 1; continue
@@ -205,13 +236,13 @@ def move(src, out, refs):
         tot, dist, p1, p2, r1, r2, cr, l1, l2 = best
         f.SetPosition(pcbnew.VECTOR2I(FM((p1[0] + p2[0]) / 2), FM((p1[1] + p2[1]) / 2)))
         err = None
-        for a in (0, 90, 180, 270):
+        for a in range(0, 360, 45):
             f.SetOrientationDegrees(a)
             q = rail_pad.GetPosition(); e = math.hypot(MM(q.x) - p1[0], MM(q.y) - p1[1])
             if err is None or e < err[0]:
                 err = (e, a)
         f.SetOrientationDegrees(err[1]); assert err[0] < 0.02, (ref, err)
-        pads += [(r1, code, ref), (r2, gnd, ref)]; crts.append((cr, ref))
+        pads += [(r1.box(), code, ref), (r2.box(), gnd, ref)]; crts.append((cr, ref))
         for (ln, v), p, n in ((l1, p1, rail_pad.GetNet()), (l2, p2, gnd_pad.GetNet())):
             if v:
                 t = pcbnew.PCB_TRACK(b); t.SetStart(pcbnew.VECTOR2I(FM(p[0]), FM(p[1]))); t.SetEnd(pcbnew.VECTOR2I(FM(v[0]), FM(v[1])))
@@ -228,6 +259,8 @@ if __name__ == "__main__":
     a = sys.argv[1:]
     if len(a) >= 4 and a[0] == "--strip":
         strip(a[1], a[2], a[3:])
+    elif len(a) >= 4 and a[0] == "--pads":
+        move(a[1], a[2], a[3:], pads_rule=True)
     elif len(a) >= 3:
         move(a[0], a[1], a[2:])
     else:

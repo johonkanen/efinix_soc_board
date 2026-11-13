@@ -25,7 +25,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 C0201 = "Capacitor_SMD:C_0201_0603Metric"
 LCSC = {"1u": "C272877", "4u7": "C47117441", "100n": "C190183"}        # 6.3 V, 6.3 V, 10 V X5R
 TO_0201 = {
-    "1u": "C528 C529 C530 C531 C539 C540 C541 C542 C808 C809 C825 C826 C5031 C5032 C5034 C5035 C1306 "
+    "1u": "C530 C539 C540 C541 C542 C808 C809 C825 C826 C5031 C5032 C5034 C5035 C1306 "
           "C5050 C5051 C5052 C5006 C5007 C5008".split(),
     "4u7": "C511 C512 C513 C514 C5054 C5055 C5056 C5027 C5028 C5029 C5030 C552 C553".split(),
     "100n": "C1201 C1202 C1203 C1204 C1205 C1206 C1207 C1208 C401 C701 C951".split(),
@@ -33,9 +33,11 @@ TO_0201 = {
 REMOVED = ("C5003 C509 C510 C5004 C5005 "          # VCORE: 47 u, 2 x 22 u, 2 x 10 u
            "C5021 C5022 C5023 C5024 C5025 C5026 "  # 1V8: 2 x 47 u, 4 x 10 u
            "C527 "                                 # 0V85: 10 u
-           "C806 C807 C823 C824").split()          # 1V1: 4 x 22 u 0402 at the LPDDR4 (never placed)
+           "C806 C807 C823 C824 "                  # 1V1: 4 x 22 u 0402 at the LPDDR4 (never placed)
+           "C528 C529 C531 C533").split()          # 0V85, beyond the checklist's 1 x 1 u + 1 x 100 n on VDD_PHY, and
+#                                                    without a free spot at a 0V85 ball via (C530 1 u, 5 x 100 n stay)
 RETYPED = {"C538": ("47u", "Capacitor_SMD:C_0805_2012Metric", "C16780")}   # 1V1 bulk, 6.3 V X5R
-UNDER_BGA = ("C528 C529 C531 C541 C542 C5054 C5055 C5056 C5031 C5032 C5034 C5035 C5027 C5028 C5029 C5030 C553 "
+UNDER_BGA = ("C541 C542 C5054 C5055 C5056 C5031 C5032 C5034 C5035 C5027 C5028 C5029 C5030 C553 "
              "C5050 C5052 C5006 C5007 C5008 C511 C512 C513 C514").split()   # no tracks on them: free to move
 
 

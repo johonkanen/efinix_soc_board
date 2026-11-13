@@ -68,17 +68,21 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
    copper, 97 are connected: 42 by a via in the pad, 30 by a via beside the pad (also between four balls under
    U501), 19 by a straight track to a via of the net, 6 by a two-segment track. No new DRC violations; opens
    388 -> 296 (1V8 59 -> 33, GND 121 -> 71, VCORE 10 -> 6, 1V1 6 -> 2, 3V3 33 -> 25).
-   **Moving the loose caps to their rail's ball vias (`tools/decap_move.py`, same day, not committed yet):** only
+   **Moving the loose caps to their rail's ball vias (`tools/decap_move.py`, same day, 5780038):** only
    4 of 22 found a legal spot (C5029, C5035, C5036, C5039, all 1V8, 2.8-6.6 mm moved, at most 1.6 mm of track).
    For the others every spot within 0.9 mm of a ball via of the rail overlaps another cap's courtyard (the 0201
    courtyard is 1.49 x 0.79 mm on a 0.8 mm ball grid). Opens 296 -> 288.
-   **Left open, 22 pads** (decide: accept courtyard overlap under U501 with a pad-to-pad rule, drop caps beyond the
-   checklist counts, or place by hand):
-   - 0V85 under U501: C528.1, C529.1, C530.1, C531.1, C533.1/.2 (the checklist asks for 1 x 1 u on VDD_PHY; the
-     card has 4);
-   - 1V8 under U501: C5032.1, C5038.1, C5046.1; GND of C5033, C5041, C5043, C553;
-   - 3V3 under U501 (over the VCORE plane, 3V3 only at the three VCCIO33 ball vias): C5048.1, C5049.1, C563.1;
-   - 1V1: C5056.1, GND of C5055; C401.2 (GND, U401);
+   **Follow-up (user decision 2026-11-12, not committed yet):** (a) caps beyond the checklist counts that had no
+   spot were dropped: C528, C529, C531 (1 u) and C533 (100 n) on 0V85, DNP / not on board in the schematic
+   (`decap_rework.py`); 0V85 keeps C530 1 u, 5 x 100 n, 10 n against the checklist's 1 u + 100 n + 10 n. The other
+   rails have no surplus among the stuck caps. (b) `decap_move.py --pads`: courtyards may overlap under U501,
+   0.2 mm pad to pad instead, 45 degree placements allowed (rail pad on its ball via, ground pad between four
+   balls). Moved: C530, C5032, C5038, C5043, C5055. **KiCad DRC now shows 5 more courtyards_overlap (11 in all),
+   accepted by that decision.** Opens 288 -> 277 (0V85 6 -> 1).
+   **Left open, 11 pads** (place by hand):
+   - under U501: C5046.1 (1V8, 1 n), C5033.2 (GND; 1 u 0402), C553.2 (GND), C5056.1 (1V1, 4.7 u), and the 3V3
+     pads of C5048, C5049 (4.7 u 0402) and C563: 3V3 exists there only at the three VCCIO33 ball vias;
+   - C401.2 (GND, U401);
    - C5002.1 (100 u VCORE): the cap sits west of U501, outside the In3 VCORE region (starts at x 155.2);
    - C940.1, C941.1 (3V3 at the PHY, F.Cu): part of the open PHY supply connections.
 
