@@ -57,7 +57,7 @@ scheme under U501 (`tools/place_bga_decaps.py`), which still has VCORE pairs fre
 | VDDQ_PHY, VDDQX_PHY, VDDQ_CK_PHY | 1.1 V (LPDDR4) | 1V1 |
 | VQPS (F9) | stays low unless blowing fuses | GND |
 | Power-up groups | group 1 (VCC, VCCA, VDD_SOC, VCCAUX, VCCIO, VCCIO33), then group 2 (DDR PHY) ≥ 10 µs later | enable chain VCORE → 1V8 → 3V3, then 0V85 / 1V1 (TI135_PCB_NOTES.md §5) |
-| CRESET_N (G10) | held low by a supervisor until supplies are up; ≥ 320 ns pulse | TPS3808 (U401) on VCORE, manual reset from `pg_all`, 10 k pull-up to 1V8 |
+| CRESET_N (G10) | held low by a supervisor until supplies are up; ≥ 320 ns pulse | TPS3808 (U401) on VCORE, ~MR open (`pg_all` removed 2026-11-13: the supervisor no longer waits for 0V85 / 1V1), 10 k pull-up to 1V8 |
 | CDONE (H10) | external pull-up, not held low | 10 k to 1V8 |
 | TEST_N (L7) | 10 k pull-up | 10 k to 1V8 |
 | TCK / TDI / TDO / TMS | 10 k pull-ups | 10 k to 3V3 (JTAG at 3.3 V) |

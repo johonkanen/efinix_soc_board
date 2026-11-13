@@ -1164,16 +1164,6 @@
 	)
 	(wire
 		(pts
-			(xy 358.14 33.02) (xy 363.22 33.02)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7207abfb-3ae1-5097-bee3-98468f742a5c")
-	)
-	(wire
-		(pts
 			(xy 160.02 121.92) (xy 154.94 121.92)
 		)
 		(stroke
@@ -1591,16 +1581,6 @@
 			(type default)
 		)
 		(uuid "a4fc0534-68e6-5718-b584-80d6c243b6b8")
-	)
-	(wire
-		(pts
-			(xy 492.76 35.56) (xy 497.84 35.56)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a680c70a-a2cc-5fd3-a4e5-d47b261ef506")
 	)
 	(wire
 		(pts
@@ -4772,16 +4752,6 @@
 		)
 		(uuid "cab06b9b-b29b-5912-be84-9472265f4806")
 	)
-	(label "pg_all"
-		(at 497.84 35.56 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "cb561a34-b927-5a23-9752-e150d4efb7a7")
-	)
 	(label "flash_cs_n"
 		(at 154.94 53.34 180)
 		(effects
@@ -5171,16 +5141,6 @@
 			(justify left)
 		)
 		(uuid "ed528d62-89b0-557d-8647-5cd5dfbe3ccf")
-	)
-	(label "pg_all"
-		(at 363.22 33.02 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "ee582a6b-815e-56f4-92db-844da9f2edf2")
 	)
 	(label "inu_adclk"
 		(at 497.84 149.86 0)
@@ -5607,16 +5567,6 @@
 		(pin "fpga_creset_n" output
 			(at 492.76 33.02 0)
 			(uuid "818018b0-a8a7-52bd-962a-042435191b57")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "pg_all" passive
-			(at 492.76 35.56 0)
-			(uuid "9ad67109-c522-5b12-88bf-3a4d90b2c543")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8517,16 +8467,6 @@
 					(size 1.27 1.27)
 				)
 				(justify left top)
-			)
-		)
-		(pin "pg_all" passive
-			(at 358.14 33.02 0)
-			(uuid "47dcdb4b-3d73-5cc3-a8cc-6ba9e5658b2f")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
 			)
 		)
 		(pin "pg_group1" passive

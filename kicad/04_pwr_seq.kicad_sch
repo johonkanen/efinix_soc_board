@@ -1069,7 +1069,7 @@
 		)
 		(uuid "bf474ab8-5874-53e8-ae64-c3f51bbe7cf9")
 	)
-	(text "Power-up order (TI135_PCB_NOTES.md §5): group 1 (VCORE, 1V8, 3V3) -> pg_group1 -> group 2 (0V85, 1V1)\n-> pg_all -> U401 TPS3808 (20 ms) -> fpga_creset_n -> SPI active configuration."
+	(text "Power-up order (TI135_PCB_NOTES.md §5): group 1 (VCORE, 1V8, 3V3) -> pg_group1 -> group 2 (0V85, 1V1)\n; U401 TPS3808 (VCORE good + 20 ms) -> fpga_creset_n -> SPI active configuration."
 		(exclude_from_sim no)
 		(at 17.78 17.78 0)
 		(effects
@@ -1079,6 +1079,10 @@
 			(justify left bottom)
 		)
 		(uuid "e58542e8-918c-545c-b7bd-54aa09e7720f")
+	)
+	(no_connect
+		(at 142.24 76.2)
+		(uuid "5d0c1a3e-9b1f-5a57-8c1e-03a1f0e4d003")
 	)
 	(no_connect
 		(at 142.24 78.74)
@@ -1103,16 +1107,6 @@
 			(type default)
 		)
 		(uuid "34c797e6-f7b6-57dd-9c16-a0b50148f122")
-	)
-	(wire
-		(pts
-			(xy 142.24 76.2) (xy 124.46 76.2)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4a7cac13-3663-5a04-b9bc-8a250f2ada3a")
 	)
 	(wire
 		(pts
@@ -1194,17 +1188,6 @@
 			(justify left)
 		)
 		(uuid "65b52c2c-3d49-5678-949a-77ac49cf4dd5")
-	)
-	(hierarchical_label "pg_all"
-		(shape passive)
-		(at 124.46 76.2 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "70336c42-1278-5746-9ca7-5c66c42a4de2")
 	)
 	(hierarchical_label "pg_group1"
 		(shape passive)

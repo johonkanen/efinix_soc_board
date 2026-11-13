@@ -64,6 +64,10 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
 1. **Done 2026-11-12:** pg_group1 and pg_all routed with `route.py` (0.15 mm, the Ethernet recipe's options, In2/In5
    cheap): pg_group1 56 mm on In2 + 20 mm on In5 to R401 and all five cells, pg_all 48 mm on B.Cu + In2/In5 to
    U401. 9 new vias. No new DRC violations; review the long B.Cu run of pg_all in KiCad.
+   **pg_all removed 2026-11-13** (user decision: not needed; `tools/drop_pg_all.py`): labels, sheet pins and 86 mm
+   of track with 5 vias are gone. PG of U331 (0V85) and U341 (1V1) and ~MR of U401 carry no-connect flags; ~MR
+   floats on the TPS3808's internal pull-up. U401 now releases fpga_creset_n on VCORE (SENSE) + delay only and no
+   longer waits for group 2. pg_group1 is unchanged.
 2. Check the 2520 inductor's land pattern (KiCad's generic L_1008_2520Metric) against the FTC252012S data sheet.
 3. **Mostly done 2026-11-12 (`tools/decap_connect.py`, a991e16):** of the 127 rail-decap pads without
    copper, 97 are connected: 42 by a via in the pad, 30 by a via beside the pad (also between four balls under
@@ -98,6 +102,10 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
    - **C5049** has no spot: J7 has C556 to the west and no GND within reach to the east. It is seated with its GND
      pad on ball via **C7** (as 0201 in the old spot its 3V3 pad came 0.08 mm from that via); **C5049.1 stays open**,
      nearest 3V3 is G7 at 3.7 mm. To finish by hand: move C556 off J8/K8 or accept a 3.7 mm track.
+   **(d) 2026-11-13: C556 moved so C5049 fits at J7** (user decision). C5049 sits at 45 degrees with its 3V3 pad
+   0.28 mm from ball via J7 and its GND pad on ball via K8, where C556 was. C556 (100 n, 1V8) went 2.6 mm from
+   J8/K8 to the 1V8 ball N8, with a new GND via between four balls 0.75 mm away; J8 has no cap of its own any
+   more. Two more courtyards_overlap (C556 with C5017, C524; 13 in all). C5049.1 is closed: **8 pads remain**.
    `decap_move.py --pads` now also ties a ground pad to a connected GND pad of a neighbour, or drills a new GND via
    in the pad / between four balls when every layer is free there. No new DRC violations; opens 277 -> 272;
    9 pads of the list above remain (C5048.1, C563.1 done).
