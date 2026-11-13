@@ -39,8 +39,9 @@ In6 GND; In3 VCORE / 1V1 / 3V3 regions; In4 1V8 / 0V85; signals on F, In2, In5, 
 
 ## Accepted, do not report
 
-- 11 `courtyards_overlap` items, all between parts under U501 (0201 capacitors and resistors packed at 0.2 mm
-  pad to pad). A courtyard overlap anywhere else **is** a finding.
+- 11 `courtyards_overlap` items. Five are under U501 (0201 capacitors and resistors packed at 0.2 mm
+  pad to pad). Six are elsewhere, in three places, and still to be judged: U101 / C105, C1004 / C1005, R1009 / R1022 / R1023 at
+  U501's edge (reports/order_check/inline_checks.md, finding 3). Any other overlap **is** a finding.
 - No reference silkscreen; ignore silk DRC.
 - R801 (DDR_CAL 240 Ω) is 0.5 %, the Efinix checklist asks 0.1 %.
 - Rail monitors removed for now: R1301–R1305 are DNP, so U1301 inputs X1, X2, X3, X5 float.
