@@ -89,6 +89,13 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
    **Both to 0201 the same day** (`tools/ref_res_0201.py`; user accepted looser tolerance): R801 is now 240R
    **0.5 %** RC0201DR-07240RL (C851687; the 0.1 % 0201 parts had no JLCPCB stock; the Efinix checklist asks for
    0.1 %), at 45 degrees on Y9 with a GND via in pad 2. R601 is 10k 1 % RC0201FR-0710KL (C106225) on P16 / P15.
+   **Flash nets finished 2026-11-13: every signal net on the board is connected and DRC has no shorts left.**
+   flash_cs_n_r, flash_io2_r, flash_io3_r could not be routed because copper from before the 33R series
+   resistors (46b55bc) still ran /flash_cs_n, /flash_io2 and /flash_io3 into vias in the flash pads C2, C4, D4:
+   three shorts across R624, R627, R628. Those vias and their In2 ends are removed and all six nets re-routed
+   (`route.py`). A fourth old short is gone too: the In2 run of /flash_sck (y 85) crossed a via of emmc_dat1_r;
+   the segment was replaced. shorting_items 4 -> 0, hole_clearance 3 -> 0, solder_mask_bridge 3 -> 0;
+   opens 172 -> 169, all supply pins.
 2. Check the 2520 inductor's land pattern (KiCad's generic L_1008_2520Metric) against the FTC252012S data sheet.
 3. **Mostly done 2026-11-12 (`tools/decap_connect.py`, a991e16):** of the 127 rail-decap pads without
    copper, 97 are connected: 42 by a via in the pad, 30 by a via beside the pad (also between four balls under
