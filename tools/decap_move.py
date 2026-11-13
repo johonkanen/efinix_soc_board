@@ -6,17 +6,22 @@
     decap_move.py --pads IN OUT REF [REF ...]     the same, but courtyards may overlap: 0.2 mm between the pads of
                                                   different parts instead (user decision 2026-11-12, under U501 only);
                                                   45 degree orientations are tried too (rail pad on its ball via,
-                                                  ground pad in the gap between four balls)
+                                                  ground pad in the gap between four balls); a ground pad with
+                                                  no GND via in reach gets a track to a connected GND pad of
+                                                  another part within 1.0 mm, else a new via (0.3/0.15) in the
+                                                  pad or at the centre between four balls within 1.0 mm
 
 For each cap the rail pad goes onto, or within 0.9 mm of, a U501 ball via of its rail, in one of four orientations;
 the ground pad must then sit on a GND via or reach one with a straight track of at most 1.0 mm. A spot is legal if
 the pads keep 0.1 mm to foreign copper on B.Cu and to every other part's pads, 0.175 mm from foreign holes, and the
 courtyard overlaps no other B.Cu courtyard. Of the legal spots the one with the least track is taken, then the
 nearest. Tracks are 0.2 mm. Caps with no legal spot within 7 mm stay where they are and are reported.
+Environment: DECAP_RANGE (mm, default 7) and DECAP_GND_REACH (mm, default 1.0) widen the search for single caps.
 --strip removes the tracks ending on the caps' pads, the vias in those pads and the via at the far end of such a
 track, unless the via is a ball via or something else uses it.
 """
 import math
+import os
 import sys
 
 import pcbnew
@@ -24,6 +29,9 @@ import pcbnew
 MM, FM = pcbnew.ToMM, pcbnew.FromMM
 RAILS = ("VCORE", "1V8", "3V3", "0V85", "1V1")
 CLR, HOLE, TRK = 0.1, 0.175, 0.2
+VIA, DRILL, H2H = 0.3, 0.15, 0.2
+RANGE = float(os.environ.get("DECAP_RANGE", 7.0))            # how far a cap may travel, mm
+GND_REACH = float(os.environ.get("DECAP_GND_REACH", 1.0))    # longest ground track, mm
 key = lambda v: (round(MM(v.x), 3), round(MM(v.y), 3))
 
 
@@ -141,6 +149,49 @@ def move(src, out, refs, pads_rule=False):
         elif t.GetLayer() == pcbnew.B_Cu:
             segs.append(((MM(t.GetStart().x), MM(t.GetStart().y), MM(t.GetEnd().x), MM(t.GetEnd().y), MM(t.GetWidth()) / 2), t.GetNetCode()))
     gnd = b.FindNet("GND").GetNetCode()
+    ball0 = b.FindFootprintByReference("U501").Pads()[0].GetPosition(); ball0 = (MM(ball0.x), MM(ball0.y))
+    every = []                  # copper on any layer, for a new through via: (rect, code, ref, radius if round)
+    for f in b.GetFootprints():
+        for p in f.Pads():
+            if p.IsOnCopperLayer():
+                bb = p.GetBoundingBox()
+                rnd = MM(p.GetSize().x) / 2 if p.GetShape() == pcbnew.PAD_SHAPE_CIRCLE else 0
+                every.append(((MM(bb.GetLeft()), MM(bb.GetTop()), MM(bb.GetRight()), MM(bb.GetBottom())), p.GetNetCode(), f.GetReference(), rnd))
+    allsegs = [((MM(t.GetStart().x), MM(t.GetStart().y), MM(t.GetEnd().x), MM(t.GetEnd().y), MM(t.GetWidth()) / 2), t.GetNetCode())
+               for t in b.GetTracks() if not isinstance(t, pcbnew.PCB_VIA)]
+
+    def via_ok(p, ref, mine):
+        """A new GND through via at p: legal on every layer; mine = this cap's two pads at the candidate spot."""
+        need = max(VIA / 2 + CLR, DRILL / 2 + HOLE) - 1e-6
+        if mine[0].pt(*p) < need:                                           # the cap's own rail pad
+            return False
+        for s, n, o, rnd in every:
+            if o == ref or n == gnd or abs(s[0] - p[0]) > 2:
+                continue
+            g = math.hypot((s[0] + s[2]) / 2 - p[0], (s[1] + s[3]) / 2 - p[1]) - rnd if rnd else gap_pt_rect(s, *p)
+            if g < need:
+                return False
+        if any(n != gnd and gap_pt_seg(g, *p) < need for g, n in allsegs):
+            return False
+        for vx, vy, rv, rd, n in vias:
+            dd = math.hypot(vx - p[0], vy - p[1])
+            if (n != gnd and dd - rv < need) or dd < rd + DRILL / 2 + H2H - 1e-6:
+                return False
+        return True
+
+    def new_gnd(p2, r1, r2, ref):
+        """(track length, via position) for a new GND via: in the pad, else between four balls within 1.0 mm."""
+        if via_ok(p2, ref, (r1, r2)):
+            return 0.0, p2
+        gx = ball0[0] + 0.4 + 0.8 * round((p2[0] - ball0[0] - 0.4) / 0.8); gy = ball0[1] + 0.4 + 0.8 * round((p2[1] - ball0[1] - 0.4) / 0.8)
+        best = None
+        for i in (-1, 0, 1):
+            for j in (-1, 0, 1):
+                v = (gx + 0.8 * i, gy + 0.8 * j); dd = math.hypot(v[0] - p2[0], v[1] - p2[1])
+                if dd <= 1.0 and (best is None or dd < best[0]) and ux0 < v[0] < ux1 and uy0 < v[1] < uy1 \
+                        and via_ok(v, ref, (r1, r2)) and seg_ok(p2, v, gnd, ref) and r1.seg((p2[0], p2[1], v[0], v[1], TRK / 2)) >= CLR - 1e-6:
+                    best = (dd, v)
+        return best
 
     def pad_ok(r, code, ref):
         for s, n, o in pads:
@@ -164,9 +215,24 @@ def move(src, out, refs, pads_rule=False):
                 return False
         return True
 
-    def link(p, rect, code, ref, reach):
+    def gnd_pads(ref):
+        """Centres of other parts' GND pads on B.Cu that have a via in them or a track ending on them."""
+        out = []
+        for s, n, o in pads:
+            if n == gnd and o != ref and (any(c == gnd and s[0] <= x <= s[2] and s[1] <= y <= s[3] for x, y, rv, rd, c in vias)
+                                          or any(c == gnd and any(s[0] <= g[i] <= s[2] and s[1] <= g[i + 1] <= s[3] for i in (0, 2)) for g, c in segs)):
+                out.append(((s[0] + s[2]) / 2, (s[1] + s[3]) / 2, 0, 0, gnd))
+        return out
+
+    def link(p, rect, code, ref, reach, targets=None):
         """(track length, via) to the nearest reachable via of the net: 0 if one lies in the pad."""
         best = None
+        if targets is not None:
+            for vx, vy, rv, rd, n in targets:
+                d = math.hypot(vx - p[0], vy - p[1])
+                if d <= reach and not (best and d >= best[0]) and seg_ok(p, (vx, vy), code, ref):
+                    best = (d, (vx, vy))
+            return best
         for vx, vy, rv, rd, n in vias:
             if n != code:
                 continue
@@ -196,7 +262,7 @@ def move(src, out, refs, pads_rule=False):
         pads[:] = [x for x in pads if x[2] != ref]; crts[:] = [x for x in crts if x[1] != ref]
         cands = []
         for vx, vy, rv, rd, n in vias:
-            if n != code or not (ux0 < vx < ux1 and uy0 < vy < uy1) or math.hypot(vx - here[0], vy - here[1]) > 7.0:
+            if n != code or not (ux0 < vx < ux1 and uy0 < vy < uy1) or math.hypot(vx - here[0], vy - here[1]) > RANGE:
                 continue
             for ox, oy in [(0, 0)] + [(i * 0.2, j * 0.2) for i in range(-4, 5) for j in range(-4, 5) if (i or j) and math.hypot(i, j) * 0.2 <= 0.9]:
                 p1 = (vx + ox, vy + oy)
@@ -220,20 +286,31 @@ def move(src, out, refs, pads_rule=False):
             l1 = link(p1, r1, code, ref, 0.95)
             if not l1:
                 why["rail link"] = why.get("rail link", 0) + 1; continue
-            l2 = link(p2, r2, gnd, ref, 1.0)
+            l2 = link(p2, r2, gnd, ref, GND_REACH); nv = None
+            if not l2 and pads_rule:
+                l2 = link(p2, r2, gnd, ref, GND_REACH, gnd_pads(ref))
+                if l2 and r1.seg((p2[0], p2[1], l2[1][0], l2[1][1], TRK / 2)) < CLR - 1e-6:
+                    l2 = None
+            if not l2 and pads_rule:
+                nv = new_gnd(p2, r1, r2, ref)
+                l2 = nv and (nv[0], None if nv[0] == 0 else nv[1])
             if not l2:
                 why["gnd link"] = why.get("gnd link", 0) + 1; continue
             tot = l1[0] + l2[0]
             if best is None or (tot, dist) < (best[0], best[1]):
-                best = (tot, dist, p1, p2, r1, r2, cr, l1, l2)
+                best = (tot, dist, p1, p2, r1, r2, cr, l1, l2, nv and nv[1])
         if best is None:
-            stuck.append(f"{ref} {why or 'no ball via of the rail within 7 mm'}")
+            stuck.append(f"{ref} {why or f'no ball via of the rail within {RANGE:g} mm'}")
             for p in fp:
                 bb = p.GetBoundingBox()
                 pads.append(((MM(bb.GetLeft()), MM(bb.GetTop()), MM(bb.GetRight()), MM(bb.GetBottom())), p.GetNetCode(), ref))
             crts.append(((MM(cb.GetLeft()), MM(cb.GetTop()), MM(cb.GetRight()), MM(cb.GetBottom())), ref))
             continue
-        tot, dist, p1, p2, r1, r2, cr, l1, l2 = best
+        tot, dist, p1, p2, r1, r2, cr, l1, l2, nv = best
+        if nv:
+            v = pcbnew.PCB_VIA(b); v.SetPosition(pcbnew.VECTOR2I(FM(nv[0]), FM(nv[1]))); v.SetViaType(pcbnew.VIATYPE_THROUGH)
+            v.SetWidth(FM(VIA)); v.SetDrill(FM(DRILL)); v.SetNet(gnd_pad.GetNet()); b.Add(v)
+            vias.append((nv[0], nv[1], VIA / 2, DRILL / 2, gnd))
         f.SetPosition(pcbnew.VECTOR2I(FM((p1[0] + p2[0]) / 2), FM((p1[1] + p2[1]) / 2)))
         err = None
         for a in range(0, 360, 45):
@@ -243,12 +320,14 @@ def move(src, out, refs, pads_rule=False):
                 err = (e, a)
         f.SetOrientationDegrees(err[1]); assert err[0] < 0.02, (ref, err)
         pads += [(r1.box(), code, ref), (r2.box(), gnd, ref)]; crts.append((cr, ref))
+        every[:] = [x for x in every if x[2] != ref] + [(r1.box(), code, ref, 0), (r2.box(), gnd, ref, 0)]
         for (ln, v), p, n in ((l1, p1, rail_pad.GetNet()), (l2, p2, gnd_pad.GetNet())):
             if v:
                 t = pcbnew.PCB_TRACK(b); t.SetStart(pcbnew.VECTOR2I(FM(p[0]), FM(p[1]))); t.SetEnd(pcbnew.VECTOR2I(FM(v[0]), FM(v[1])))
                 t.SetWidth(FM(TRK)); t.SetLayer(pcbnew.B_Cu); t.SetNet(n); b.Add(t)
                 segs.append(((p[0], p[1], v[0], v[1], TRK / 2), n.GetNetCode()))
-        moved.append(f"{ref} {dist:.1f} mm, track {tot:.2f} mm")
+                allsegs.append(segs[-1])
+        moved.append(f"{ref} {dist:.1f} mm, track {tot:.2f} mm" + (", new GND via" if nv else ""))
     pcbnew.ZONE_FILLER(b).Fill(b.Zones())
     pcbnew.SaveBoard(out, b)
     print(f"decap_move: {len(moved)} moved:", "; ".join(moved))

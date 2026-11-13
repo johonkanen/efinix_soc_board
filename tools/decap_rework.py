@@ -7,8 +7,9 @@
 Between the two: tools/add_parts.py (values, fields) and tools/swap_footprint.py for TO_0201 and nothing else;
 after them tools/place_bga_decaps.py for the caps under U501 (UNDER_BGA) puts them on rail/GND via pairs.
 
-- 1 u and 4.7 u on VCORE, 0V85, 1V1, 1V8 and 1 u on 3V3: 0402 -> 0201. The 4.7 u on 3V3 stay 0402: a 6.3 V 0201
-  loses most of its capacitance at 3.3 V bias.
+- 1 u and 4.7 u on VCORE, 0V85, 1V1, 1V8 and 1 u on 3V3: 0402 -> 0201. Of the 4.7 u on 3V3, C562 stays 0402: a
+  6.3 V 0201 loses most of its capacitance at 3.3 V bias. C5048 and C5049 under U501 went to 0201 all the same
+  (user decision 2026-11-13): as 0402 they fit at none of the three VCCIO33 ball vias.
 - 100 n still in 0402 on 1V8 / 3V3 (level shifters, supervisor, oscillator, PHY): 0201.
 - Bulk per rail, on top of each cell's 47 u + 22 u: VCORE 2 x 100 u 1206 (C5001, C5002); 1V8 2 x 47 u (C5019 west,
   C5020 east of U501); 1V1 1 x 47 u (C538, was 10 u). Everything else in REMOVED is marked DNP, not in BOM and not
@@ -27,7 +28,8 @@ LCSC = {"1u": "C272877", "4u7": "C47117441", "100n": "C190183"}        # 6.3 V, 
 TO_0201 = {
     "1u": "C530 C539 C540 C541 C542 C808 C809 C825 C826 C5031 C5032 C5034 C5035 C1306 "
           "C5050 C5051 C5052 C5006 C5007 C5008".split(),
-    "4u7": "C511 C512 C513 C514 C5054 C5055 C5056 C5027 C5028 C5029 C5030 C552 C553".split(),
+    "4u7": "C511 C512 C513 C514 C5054 C5055 C5056 C5027 C5028 C5029 C5030 C552 C553 "
+           "C5048 C5049".split(),          # 3V3 under U501, see the docstring
     "100n": "C1201 C1202 C1203 C1204 C1205 C1206 C1207 C1208 C401 C701 C951".split(),
 }
 REMOVED = ("C5003 C509 C510 C5004 C5005 "          # VCORE: 47 u, 2 x 22 u, 2 x 10 u

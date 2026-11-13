@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""Connect the rail decoupling capacitors that hang loose (kipy):  decap_connect.py IN.kicad_pcb OUT.kicad_pcb [--dry]
+"""Connect the rail decoupling capacitors that hang loose (kipy):
+    decap_connect.py IN.kicad_pcb OUT.kicad_pcb [--dry] [--gnd REF ...]
+--gnd: also the GND pad of these capacitors, which sit on another net (the VCCA filter caps under U501).
 
 For every capacitor between GND and one of VCORE / 1V8 / 3V3 / 0V85 / 1V1, each pad that has no track, no via and
 no pour of its own net on it gets, in this order:
@@ -24,6 +26,7 @@ VIA, DRILL, TRK = 0.3, 0.15, 0.2
 
 b = pcbnew.LoadBoard(sys.argv[1])
 dry = "--dry" in sys.argv
+also_gnd = set(sys.argv[sys.argv.index("--gnd") + 1:]) if "--gnd" in sys.argv else set()
 zones = {}
 for z in b.Zones():
     for l in z.GetLayerSet().Seq():
@@ -132,10 +135,10 @@ for f in sorted(b.GetFootprints(), key=lambda f: f.GetReference()):
         continue
     pads = [p for p in f.Pads() if p.GetNumber()]
     nets = {p.GetNetname() for p in pads}
-    if len(pads) != 2 or "GND" not in nets or not (nets & set(PLANE)):
+    if len(pads) != 2 or "GND" not in nets or not (nets & set(PLANE) or f.GetReference() in also_gnd):
         continue
     for p in pads:
-        if not has_copper(p, f):
+        if (p.GetNetname() == "GND" or p.GetNetname() in PLANE) and not has_copper(p, f):
             todo.append((f, p))
 # anchors for rule 3: vias on their plane, of each net
 anchors = {}

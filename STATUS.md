@@ -49,8 +49,9 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
 - **0402 -> 0201** (47 parts): the 1 u and 4.7 u on VCORE, 0V85, 1V1, 1V8, the 1 u on 3V3, and the 0402 100 n at the
   level shifters, U401, Y701 and the PHY. Nine of the caps under U501 moved onto free rail/GND via pairs
   (`place_bga_decaps.py`: VCORE 7 of 7, 1V1 2 of 5); the other 17 kept their spots, because 0V85, 1V8 and 3V3 have
-  no free pair left under U501. Kept in 0402: the 4.7 u on 3V3 (C5048, C5049, C562: a 6.3 V 0201 loses most of its
-  capacitance at 3.3 V) and C5033 (eth_rst_n runs between its pads).
+  no free pair left under U501. Kept in 0402: C562 (4.7 u on 3V3: a 6.3 V 0201 loses most of its capacitance at
+  3.3 V) and C5033 (eth_rst_n runs between its pads). C5048 and C5049 (4.7 u on 3V3) went to 0201 on 2026-11-13,
+  see follow-up (c) below.
 - **Bulk outside the cells:** VCORE 2 x 100 u 1206 (C5001, C5002), 1V8 2 x 47 u (C5019 west, C5020 east of U501),
   1V1 1 x 47 u (C538, was 10 u; still east of U501, not moved between the BGA and the LPDDR4). C551 (10 u at the
   eMMC) and C803 (22 u at the LPDDR4, routed) are unchanged.
@@ -81,10 +82,25 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
    accepted by that decision.** Opens 288 -> 277 (0V85 6 -> 1).
    **Left open, 11 pads** (place by hand):
    - under U501: C5046.1 (1V8, 1 n), C5033.2 (GND; 1 u 0402), C553.2 (GND), C5056.1 (1V1, 4.7 u), and the 3V3
-     pads of C5048, C5049 (4.7 u 0402) and C563: 3V3 exists there only at the three VCCIO33 ball vias;
+     pads of C5048, C5049 (4.7 u 0402) and C563: 3V3 exists there only at the three VCCIO33 ball vias
+     (**C5048 and C563 solved, C5049.1 still open: see (c)**);
    - C401.2 (GND, U401);
    - C5002.1 (100 u VCORE): the cap sits west of U501, outside the In3 VCORE region (starts at x 155.2);
    - C940.1, C941.1 (3V3 at the PHY, F.Cu): part of the open PHY supply connections.
+   **(c) 2026-11-13, user decision: C5048 and C5049 to 0201** (4u7 6.3 V, C47117441; sheet 05, `decap_rework.py`).
+   The 3V3 balls of U501 are G7, J7 and M21. No new GND via fits beside G7 / J7: In2 carries lcd_sck in the
+   x 167.2 channel and lcd_reset_n in the x 168.0 channel. So:
+   - `decap_connect.py --gnd C5064 C5065 C5066` first ties the GND pads of those three VCCA_BR filter caps to the
+     GND ball vias E7 / E8 (their vcca_br pads are still open, like the rest of that net);
+   - **C563** (100 n) sits at 45 degrees with its 3V3 pad on **G7**, GND by a 0.93 mm track to C5064.2;
+   - **C5048** moved 12.4 mm (`DECAP_RANGE=13`) to the 3V3 via at (153.83, 81.45) just west of U501, the one C5050,
+     C5051 and C565 use, 2.6 mm from M21; GND to the via at (154.4, 82.18);
+   - **C5049** has no spot: J7 has C556 to the west and no GND within reach to the east. It is seated with its GND
+     pad on ball via **C7** (as 0201 in the old spot its 3V3 pad came 0.08 mm from that via); **C5049.1 stays open**,
+     nearest 3V3 is G7 at 3.7 mm. To finish by hand: move C556 off J8/K8 or accept a 3.7 mm track.
+   `decap_move.py --pads` now also ties a ground pad to a connected GND pad of a neighbour, or drills a new GND via
+   in the pad / between four balls when every layer is free there. No new DRC violations; opens 277 -> 272;
+   9 pads of the list above remain (C5048.1, C563.1 done).
 
 ## Where we left off (2026-11-11)
 
