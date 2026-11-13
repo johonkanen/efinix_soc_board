@@ -18,7 +18,7 @@ card, and plugs into the same baseboard.
 | `NEXT_SESSION.md` | **Start here next time:** the plan for the next session (bus router result, learning the tools on their LPDDR4 example, DDR clean-up) |
 | `LAYOUT_PLAN.md` | Placement and routing plan: phases, which tool does each step, the fixed design inputs |
 | `MECHANICAL.md` | **Hard mechanical requirements**: outline, J3/J6 (bottom-side baseboard connectors), RJ45 position, all in the Ti60 / KiCad frames |
-| `POWER_BUDGET.md` | Rail estimate, 5V_ISOL input limit, regulator choice (TLV62585PDRLR), divider values |
+| `POWER_BUDGET.md` | Rail estimate, 5V_ISOL input limit, regulator choice (AP61203 / AP61202 since 2026-11-13), divider values |
 | `reference/` | `ti135n484_pinout.csv` (all 484 balls, from the Efinity device DB), `baseboard_j11_pinout.csv` (baseboard signal header, the authority for J3) |
 | `efinity/pinplan/` | `pinplan.py` builds the Interface Designer project for the pin plan; `ti135_pinplan.csv` is the signal → ball result |
 
@@ -144,6 +144,22 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
    user has the part and solders U1303 by hand: leave it out of the order files (`fab_outputs.sh ... --skip U1303`).
    Still open: JLCPCB's via-hole-to-track 0.2 mm (199 spots at 0.175-0.2 from the drill), SOT-563 and
    oscillator orientation to confirm in JLCPCB's placement preview, R613 / R614 valued "10k DNP" but fitted.
+   **Regulators changed 2026-11-13: TLV62585PDRLR -> Diodes AP61203Z6-7 / AP61202Z6-7** (user decision: the
+   user already owns them at JLCPCB, 48 x AP61203 C5244557 and 72 x AP61202 C5188956; the parts of the Agilex 5
+   card). 2 A, 1.3 MHz, peak limit 2.4 A min. AP61203 (forced PWM) on VCORE, 0V85, 1V1; AP61202 (PFM at light
+   load) on 1V8, 3V3. Same SOT-563, other pinout (1 FB, 2 GND, 3 VIN, 4 SW, 5 EN, 6 PG; as KiCad's own
+   Regulator_Switching:AP61202Z6), so the symbol was renumbered and no wire moved (`tools/ap61_cells.py sch`).
+   Feedback as in the data sheet's Table 1: 200 k on top, 33 pF across it, bottom 340 k / 100 k / 44.2 k /
+   475 k / 243 k; L 1 uH is the table value. The other cards' layouts were not copied (hand-placed cells, each
+   different, 0402 parts, 2016 inductors, 6 layers); the cell template of `tools/buck_cell.py` was redrawn
+   instead, as the mirror image of the old one: inductor on the SW side, EN out between the inductor's pads,
+   divider beside FB, input capacitors and output row unchanged. Board: `tools/ap61_layout.sh` (strip, place
+   within 1.2 mm of the old boxes, 5V0 feeder reshaped in `tools/shape_5v0.py`, pg_group1 re-routed, one B.Cu
+   3V3 loop near U341 removed). DRC with parity: the 11 courtyard overlaps, 0 unconnected. (The change was
+   first made with AP61302 / AP61102, the parts of `~/dev/ti60f225_control_card`, then moved to the parts in
+   stock: same family, pinout and cell.) VCORE: 1.0 A worst case and >= 1.5 A inrush on a 2 A part.
+   **LPDDR4 U801 is now H9HCNNN8KUMLHR-NMO (C51891855)**, of which the user owns 4: same 8 Gb die, package and
+   3733 Mbps as the -NME; the suffix is the temperature grade (not confirmed in an SK hynix document).
 2. **Checked 2026-11-13:** the 2520 inductor's land pattern (KiCad's generic L_1008_2520Metric) against the
    FTC252012S data sheet (cjiang FTC series, "Recommend Land Pattern": A 2.60 overall, B 0.70 gap, C 2.10
    wide, i.e. pads 0.95 x 2.10 at +-0.825). The board has pads 1.25 x 2.20 at +-1.075: overall 3.40, gap 0.90.
@@ -441,13 +457,13 @@ tools/p2k/bin/p2k render_sheet kicad/08_lpddr4.kicad_sch   # PNG check -> report
 - 3.3 V I/O shortage: inputs and LCD on HVIO, J3 outputs through 4 × SN74AXC8T245, the same scheme as the working
   Ti60 card but with OE gated, plus 10 k pull-downs on every J3 signal pin.
 - Shared parts with the Agilex 3 / Agilex 5 cards:
-  - LPDDR4 SK hynix H9HCNNN8KUMLHR-NME (C2912103)
+  - LPDDR4 SK hynix H9HCNNN8KUMLHR-NMO (C51891855; the Agilex cards' -NME is C2912103)
   - eMMC KIOXIA THGAMVG7T13BAIL (C7599693)
   - QSPI ISSI IS25WP128-RHLE (C1349419)
 - Board: the Ti60/Agilex outline, 8 layers (JLC08161H-3313 stack-up), JTAG header + Efinix cable (no on-board FTDI).
 - J3 and J6 are bottom-side sockets, numbered like the baseboard (pin n = baseboard pin n). The RJ45 is the HanRun
   HR911130A magjack (C54408; the UDE RB1-125B8G1A had no stock), aligned to the Ti60 jack's front face and centreline (MECHANICAL.md).
-- Regulators: 5 × TLV62585PDRLR (3 A) instead of the TDA38812 / AP61202; 3V3_analog NCP163 LDO.
+- Regulators: 3 × AP61203Z6-7 (forced PWM: VCORE, 0V85, 1V1) + 2 × AP61202Z6-7 (PFM: 1V8, 3V3), 2 A each, since 2026-11-13 (before: 5 × TLV62585PDRLR); 3V3_analog NCP163 LDO.
 - Ethernet PHY: RTL8211FDI-CG (C692886), RGMII at 1.8 V from its internal pad LDO (2026-10-25; it replaced the KSZ9031).
 - 5 V budget: the baseboard U8 (VXO7805-1000, 1 A) becomes the **Mornsun K7805-2000R3 (5 V / 2 A), upright**, with
   C93 10 µF / 50 V 1210 in and C94 22 µF / 10 V 0805 out (2026-10-29, `ac_psu_kicad` 732c9b1). The card gets 2 A minus

@@ -83,7 +83,7 @@ In6 GND; In3 VCORE / 1V1 / 3V3 regions; In4 1V8 / 0V85; signals on F, In2, In5, 
   `HW_CHECKLIST_REVIEW.md` "Decoupling" and the Efinix checklist (`reference/efinix/ti135n484_hw_checklist.htm`).
   Every capacitor has both pads connected, and the ones under the BGA sit within one ball pitch of a ball of
   their rail.
-- **B4 Regulators.** For each TLV62585 cell (U201, U301, U311, U331, U341) and the NCP163 LDO: input capacitor at
+- **B4 Regulators.** For each AP61203 / AP61202 cell (U201, U301, U311, U331, U341; changed from TLV62585 on 2026-11-13, pinout 1 FB, 2 GND, 3 VIN, 4 SW, 5 EN, 6 PG) and the NCP163 LDO: input capacitor at
   the VIN pin with a short loop to GND, feedback divider values give the intended voltage, FB trace away from the
   switch node, EN connected, inductor on the new footprint `ti135_card:L_2520_FTC252012S` with both pads in copper.
   Check the sequencing against `TI135_PCB_NOTES.md` §5.
@@ -148,7 +148,7 @@ In6 GND; In3 VCORE / 1V1 / 3V3 regions; In4 1V8 / 0V85; signals on F, In2, In5, 
   and centreline; parts taller than the allowed card-to-baseboard gap on the bottom side (the gap measurement is
   an open item: say which parts are at risk for which gap).
 - **G2 Footprints against data sheets** for every non-generic part: pad pattern, pin 1, and pin numbering
-  (U501, U801, eMMC, U601, U901, TLV62585, NCP163, ADS7056, the oscillator, RJ45, the translators). The inductor
+  (U501, U801, eMMC, U601, U901, AP61203 / AP61202, NCP163, ADS7056, the oscillator, RJ45, the translators). The inductor
   was checked on 2026-11-13; re-measure it anyway.
 - **G3 Pin 1 and polarity** are unambiguous without silkscreen (assembly uses the CPL rotation): run
   `KICAD_ROOT=$KICAD_MOUNT tools/jlc/fab_outputs.sh kicad/ti135_card.kicad_pcb SCRATCH/fab` and check the CPL

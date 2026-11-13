@@ -27020,7 +27020,7 @@
 				)
 			)
 		)
-		(property "Value" "H9HCNNN8KUMLHR-NME"
+		(property "Value" "H9HCNNN8KUMLHR-NMO"
 			(at 284.48 90.17 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -27063,7 +27063,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C2912103"
+		(property "LCSC" "C51891855"
 			(at 266.7 127 0)
 			(hide yes)
 			(show_name no)
@@ -30632,7 +30632,7 @@
 				)
 			)
 		)
-		(property "Value" "H9HCNNN8KUMLHR-NME"
+		(property "Value" "H9HCNNN8KUMLHR-NMO"
 			(at 386.08 90.17 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30675,7 +30675,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C2912103"
+		(property "LCSC" "C51891855"
 			(at 368.3 127 0)
 			(hide yes)
 			(show_name no)

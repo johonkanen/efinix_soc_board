@@ -1409,7 +1409,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "ti135_card:TLV62585PDRL"
+		(symbol "ti135_card:AP61x02Z6"
 			(pin_names
 				(offset 1.016)
 			)
@@ -1429,7 +1429,7 @@
 					(justify left)
 				)
 			)
-			(property "Value" "TLV62585PDRLR"
+			(property "Value" "AP61203Z6-7"
 				(at -7.62 -16.51 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1473,7 +1473,7 @@
 					)
 				)
 			)
-			(symbol "TLV62585PDRL_0_1"
+			(symbol "AP61x02Z6_0_1"
 				(rectangle
 					(start -7.62 5.08)
 					(end 7.62 -12.7)
@@ -1486,7 +1486,7 @@
 					)
 				)
 			)
-			(symbol "TLV62585PDRL_1_1"
+			(symbol "AP61x02Z6_1_1"
 				(pin power_in line
 					(at 0 -15.24 90)
 					(length 2.54)
@@ -1497,7 +1497,7 @@
 							)
 						)
 					)
-					(number "1"
+					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1515,7 +1515,7 @@
 							)
 						)
 					)
-					(number "2"
+					(number "4"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1551,7 +1551,7 @@
 							)
 						)
 					)
-					(number "4"
+					(number "5"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1569,7 +1569,7 @@
 							)
 						)
 					)
-					(number "5"
+					(number "1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -4100,7 +4100,7 @@
 				)
 			)
 		)
-		(property "Value" "22p"
+		(property "Value" "33p"
 			(at 262 144.78 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4143,7 +4143,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C76924"
+		(property "LCSC" "C277477"
 			(at 257.81 143.51 0)
 			(hide yes)
 			(show_name no)
@@ -4421,7 +4421,7 @@
 				)
 			)
 		)
-		(property "Value" "22p"
+		(property "Value" "33p"
 			(at 122.3 66.04 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4464,7 +4464,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C76924"
+		(property "LCSC" "C277477"
 			(at 118.11 64.77 0)
 			(hide yes)
 			(show_name no)
@@ -4491,7 +4491,7 @@
 		)
 	)
 	(symbol
-		(lib_id "ti135_card:TLV62585PDRL")
+		(lib_id "ti135_card:AP61x02Z6")
 		(at 63.5 60.96 0)
 		(unit 1)
 		(body_style 1)
@@ -4512,7 +4512,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TLV62585PDRLR"
+		(property "Value" "AP61202Z6-7"
 			(at 55.88 77.47 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4534,7 +4534,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/tlv62585.pdf"
+		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/AP61200_AP61201_AP61202_AP61203.pdf"
 			(at 63.5 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -4545,7 +4545,7 @@
 				)
 			)
 		)
-		(property "Description" "TI 3 A synchronous buck, 2.5-5.5 V in, 0.6 V FB, power good, SOT-563 (PDRL)"
+		(property "Description" "Diodes 2 A synchronous buck, PFM at light load, 2.3-5.5 V in, 0.6 V FB, power good, SOT-563"
 			(at 63.5 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -4556,7 +4556,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C485118"
+		(property "LCSC" "C5188956"
 			(at 63.5 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -6242,7 +6242,7 @@
 				)
 			)
 		)
-		(property "Value" "22p"
+		(property "Value" "33p"
 			(at 122.3 144.78 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6285,7 +6285,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C76924"
+		(property "LCSC" "C277477"
 			(at 118.11 143.51 0)
 			(hide yes)
 			(show_name no)
@@ -6576,7 +6576,7 @@
 				)
 			)
 		)
-		(property "Value" "22p"
+		(property "Value" "33p"
 			(at 262 66.04 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6619,7 +6619,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C76924"
+		(property "LCSC" "C277477"
 			(at 257.81 64.77 0)
 			(hide yes)
 			(show_name no)
@@ -6666,7 +6666,7 @@
 				)
 			)
 		)
-		(property "Value" "82.5k"
+		(property "Value" "200k"
 			(at 249.13 144.78 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6709,7 +6709,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C423422"
+		(property "LCSC" "C138163"
 			(at 243.84 143.51 0)
 			(hide yes)
 			(show_name no)
@@ -6756,7 +6756,7 @@
 				)
 			)
 		)
-		(property "Value" "100k"
+		(property "Value" "243k"
 			(at 248.58 154.94 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6799,7 +6799,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C106224"
+		(property "LCSC" "C423644"
 			(at 243.84 153.67 0)
 			(hide yes)
 			(show_name no)
@@ -6916,7 +6916,7 @@
 		)
 	)
 	(symbol
-		(lib_id "ti135_card:TLV62585PDRL")
+		(lib_id "ti135_card:AP61x02Z6")
 		(at 63.5 139.7 0)
 		(unit 1)
 		(body_style 1)
@@ -6937,7 +6937,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TLV62585PDRLR"
+		(property "Value" "AP61203Z6-7"
 			(at 55.88 156.21 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6959,7 +6959,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/tlv62585.pdf"
+		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/AP61200_AP61201_AP61202_AP61203.pdf"
 			(at 63.5 139.7 0)
 			(hide yes)
 			(show_name no)
@@ -6970,7 +6970,7 @@
 				)
 			)
 		)
-		(property "Description" "TI 3 A synchronous buck, 2.5-5.5 V in, 0.6 V FB, power good, SOT-563 (PDRL)"
+		(property "Description" "Diodes 2 A synchronous buck, forced PWM, 2.3-5.5 V in, 0.6 V FB, power good, SOT-563"
 			(at 63.5 139.7 0)
 			(hide yes)
 			(show_name no)
@@ -6981,7 +6981,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C485118"
+		(property "LCSC" "C5244557"
 			(at 63.5 139.7 0)
 			(hide yes)
 			(show_name no)
@@ -7040,7 +7040,7 @@
 				)
 			)
 		)
-		(property "Value" "100k"
+		(property "Value" "475k"
 			(at 108.88 154.94 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7083,7 +7083,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C106224"
+		(property "LCSC" "C388079"
 			(at 104.14 153.67 0)
 			(hide yes)
 			(show_name no)
@@ -7308,7 +7308,7 @@
 				)
 			)
 		)
-		(property "Value" "453k"
+		(property "Value" "200k"
 			(at 248.58 66.04 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7351,7 +7351,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C423509"
+		(property "LCSC" "C138163"
 			(at 243.84 64.77 0)
 			(hide yes)
 			(show_name no)
@@ -7545,7 +7545,7 @@
 		)
 	)
 	(symbol
-		(lib_id "ti135_card:TLV62585PDRL")
+		(lib_id "ti135_card:AP61x02Z6")
 		(at 203.2 60.96 0)
 		(unit 1)
 		(body_style 1)
@@ -7566,7 +7566,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TLV62585PDRLR"
+		(property "Value" "AP61202Z6-7"
 			(at 195.58 77.47 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7588,7 +7588,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/tlv62585.pdf"
+		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/AP61200_AP61201_AP61202_AP61203.pdf"
 			(at 203.2 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -7599,7 +7599,7 @@
 				)
 			)
 		)
-		(property "Description" "TI 3 A synchronous buck, 2.5-5.5 V in, 0.6 V FB, power good, SOT-563 (PDRL)"
+		(property "Description" "Diodes 2 A synchronous buck, PFM at light load, 2.3-5.5 V in, 0.6 V FB, power good, SOT-563"
 			(at 203.2 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -7610,7 +7610,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C485118"
+		(property "LCSC" "C5188956"
 			(at 203.2 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -8106,7 +8106,7 @@
 				)
 			)
 		)
-		(property "Value" "41.2k"
+		(property "Value" "200k"
 			(at 109.43 144.78 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8149,7 +8149,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C473480"
+		(property "LCSC" "C138163"
 			(at 104.14 143.51 0)
 			(hide yes)
 			(show_name no)
@@ -8196,7 +8196,7 @@
 				)
 			)
 		)
-		(property "Value" "100k"
+		(property "Value" "44.2k"
 			(at 248.58 76.2 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8239,7 +8239,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C106224"
+		(property "LCSC" "C226551"
 			(at 243.84 74.93 0)
 			(hide yes)
 			(show_name no)
@@ -9099,7 +9099,7 @@
 		)
 	)
 	(symbol
-		(lib_id "ti135_card:TLV62585PDRL")
+		(lib_id "ti135_card:AP61x02Z6")
 		(at 203.2 139.7 0)
 		(unit 1)
 		(body_style 1)
@@ -9120,7 +9120,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TLV62585PDRLR"
+		(property "Value" "AP61203Z6-7"
 			(at 195.58 156.21 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9142,7 +9142,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/tlv62585.pdf"
+		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/AP61200_AP61201_AP61202_AP61203.pdf"
 			(at 203.2 139.7 0)
 			(hide yes)
 			(show_name no)
@@ -9153,7 +9153,7 @@
 				)
 			)
 		)
-		(property "Description" "TI 3 A synchronous buck, 2.5-5.5 V in, 0.6 V FB, power good, SOT-563 (PDRL)"
+		(property "Description" "Diodes 2 A synchronous buck, forced PWM, 2.3-5.5 V in, 0.6 V FB, power good, SOT-563"
 			(at 203.2 139.7 0)
 			(hide yes)
 			(show_name no)
@@ -9164,7 +9164,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C485118"
+		(property "LCSC" "C5244557"
 			(at 203.2 139.7 0)
 			(hide yes)
 			(show_name no)

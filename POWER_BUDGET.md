@@ -65,6 +65,24 @@ Decision needed before layout: see §Open below.
 
 ## Regulator choice
 
+**2026-11-13: the card now uses Diodes AP61203Z6-7 (forced PWM) on VCORE, 0V85 and 1V1 and AP61202Z6-7 (PFM at
+light load) on 1V8 and 3V3** (user decision: 48 + 72 already bought at JLCPCB; the parts of the Agilex 5 card).
+2 A continuous, 1.3 MHz, 0.6 V reference, peak limit 2.4 A min / 3.2 A typ, 0.5 ms soft start (VCORE ramps at
+about 1.9 V/ms, inside 0.095...10 V/ms), PG open drain with 5 M to VIN. VCORE is 1.0 A worst case with an inrush
+of 1.5 A or more: inside the 2 A rating, with less margin than the 3 A TLV62585 had. Feedback as in the data
+sheet's Table 1: R1 (top) 200 k with 33 pF across it, R2 (bottom) = 0.6 * R1 / (VOUT - 0.6):
+
+| Rail | Part | R2 (bottom) | Vout |
+|---|---|---|---|
+| VCORE | AP61203 | 340 k | 0.953 V |
+| 0V85 | AP61203 | 475 k | 0.853 V |
+| 1V1 | AP61203 | 243 k | 1.094 V |
+| 1V8 | AP61202 | 100 k | 1.800 V |
+| 3V3 | AP61202 | 44.2 k | 3.315 V |
+
+Inductor (FTC252012S1R0MBCA) and capacitors per cell are unchanged. The mode is fixed by the part number, so EN stays tied to VIN (group 1) or
+pg_group1 (group 2). The rest of this section is the TLV62585 choice it replaced.
+
 The Agilex card uses AP61202Z6 (2 A, SOT-563) for the rails and a TDA38812 for VCORE. For this card:
 
 | | AP61202Z6-7 (Agilex) | **TLV62585PDRLR** (chosen) |

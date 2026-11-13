@@ -21539,7 +21539,7 @@
 		)
 		(embedded_fonts no)
 	)
-	(symbol "TLV62585PDRL"
+	(symbol "AP61x02Z6"
 		(pin_names
 			(offset 1.016)
 		)
@@ -21555,7 +21555,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TLV62585PDRLR"
+		(property "Value" "AP61203Z6-7"
 			(at -7.62 -16.51 0)
 			(effects
 				(font
@@ -21591,7 +21591,7 @@
 				)
 			)
 		)
-		(symbol "TLV62585PDRL_0_1"
+		(symbol "AP61x02Z6_0_1"
 			(rectangle
 				(start -7.62 5.08)
 				(end 7.62 -12.7)
@@ -21604,7 +21604,7 @@
 				)
 			)
 		)
-		(symbol "TLV62585PDRL_1_1"
+		(symbol "AP61x02Z6_1_1"
 			(pin power_in line
 				(at -10.16 2.54 0)
 				(length 2.54)
@@ -21633,7 +21633,7 @@
 						)
 					)
 				)
-				(number "4"
+				(number "5"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -21651,7 +21651,7 @@
 						)
 					)
 				)
-				(number "2"
+				(number "4"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -21669,7 +21669,7 @@
 						)
 					)
 				)
-				(number "5"
+				(number "1"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -21705,7 +21705,7 @@
 						)
 					)
 				)
-				(number "1"
+				(number "2"
 					(effects
 						(font
 							(size 1.27 1.27)

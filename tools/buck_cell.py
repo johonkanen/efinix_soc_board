@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""One TLV62585 cell layout for every rail: parts and copper from a single template (kipy).
+"""One regulator cell layout (AP6120x) for every rail: parts and copper from a single template (kipy).
 
     buck_cell.py --demo OUT.kicad_pcb [OUT.json]      one cell alone on an empty board, for review and DRC
     buck_cell.py --strip IN.kicad_pcb OUT.kicad_pcb   remove the cells' old copper (run first, as its own step)
@@ -18,16 +18,17 @@ On the card (after tools/buck_cell_sch.py, add_parts.py and swap_footprint.py ha
 - the In4 0V85 region is widened to cover the 0V85 cell's output vias.
 
 The template is written in the regulator's pin frame, taken from the pads themselves, so rotation and the
-bottom-side flip come out right:  origin = package centre, +x = pin 3 (VIN) -> pin 4 (EN), +y = pin 1 (GND) -> pin 3.
-Power pins (GND 1, SW 2, VIN 3) are the -x row, EN 4 / FB 5 / PG 6 the +x row.
+bottom-side flip come out right:  origin = package centre, +x = pin 3 (VIN) -> pin 4 (SW), +y = pin 1 (FB) -> pin 3.
+AP6120x (since 2026-11-13; before: TLV62585, the mirror image of this cell about the y axis):
+FB 1, GND 2, VIN 3 are the -x row, SW 4, EN 5, PG 6 the +x row.
 
     +y   VIN side:  C_HF 100n 0201, then CIN 10u 0603, both VIN pad over pin 3, GND pad on the centre strip side
-    -x   L 2520, pads along y, SW pad facing pin 2, VOUT pad toward -y
+    +x   L 2520, pads along y, SW pad beside pin 4, VOUT pad toward -y; EN runs out between the two pads
     -y   COUT row: 47u 0805 (VOUT pad under L's VOUT pad) and 22u 0603, GND pads in the middle under the regulator,
          then the VOUT bus with the plane vias: the -y edge is the cell's output edge
-    +x   R1, CFF (FB - VOUT) beside the FB pin, R2 (FB - GND) below the PG pin
-GND is one piece on the cell's layer: strip between the pin rows, pin 1, both COUT grounds, R2, C_HF and CIN.
-EN leaves at +x (5V0 flood or a signal); PG has a via in its pad (it is fenced by FB and GND).
+    -x   R1, CFF (FB - VOUT) beside the FB pin, R2 (FB - GND) below it
+GND is one piece on the cell's layer: pin 2, the strip between the pin rows, both COUT grounds, R2, C_HF and CIN.
+PG has a via in its pad (it is fenced by EN and GND).
 Every footprint keeps its courtyard clear of the others.
 """
 import json
@@ -39,43 +40,46 @@ import pcbnew
 
 FM, MM = pcbnew.FromMM, pcbnew.ToMM
 CAP, RES, IND = "Capacitor_SMD", "Resistor_SMD", "Inductor_SMD"
+PROJ_LIB = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "lib")
 # role: (library, footprint, pad 1 position, pad 2 position) in the pin frame
 PARTS = {
-    "L":    (IND, "L_1008_2520Metric", (-2.64, 0.45), (-2.64, -1.70)),     # 1 SW, 2 VOUT
+    "L":    ("ti135_card", "L_2520_FTC252012S", (2.64, 0.825), (2.64, -0.825)),  # 1 SW, 2 VOUT
     "CHF":  (CAP, "C_0201_0603Metric", (-0.64, 1.39), (0.00, 1.39)),       # 1 VIN, 2 GND
     "CIN":  (CAP, "C_0603_1608Metric", (-0.71, 2.56), (0.84, 2.56)),       # 1 VIN, 2 GND
-    "COUT1": (CAP, "C_0805_2012Metric", (-3.29, -3.645), (-1.39, -3.645)),  # 47u: 1 VOUT, 2 GND
-    "COUT2": (CAP, "C_0603_1608Metric", (1.705, -3.645), (0.155, -3.645)),  # 22u: 1 VOUT, 2 GND
-    "R2":   (RES, "R_0201_0603Metric", (0.94, -1.45), (0.30, -1.45)),      # 1 FB, 2 GND
-    "R1":   (RES, "R_0201_0603Metric", (2.43, -0.25), (1.79, -0.25)),      # 1 VOUT, 2 FB
-    "CFF":  (CAP, "C_0201_0603Metric", (2.43, -1.04), (1.79, -1.04)),      # 1 VOUT, 2 FB
+    "COUT1": (CAP, "C_0805_2012Metric", (3.29, -3.645), (1.39, -3.645)),    # 47u: 1 VOUT, 2 GND
+    "COUT2": (CAP, "C_0603_1608Metric", (-1.705, -3.645), (-0.155, -3.645)),  # 22u: 1 VOUT, 2 GND
+    "R2":   (RES, "R_0201_0603Metric", (-0.94, -1.45), (-0.30, -1.45)),    # 1 FB, 2 GND
+    "R1":   (RES, "R_0201_0603Metric", (-2.43, -0.5), (-1.79, -0.5)),      # 1 VOUT, 2 FB
+    "CFF":  (CAP, "C_0201_0603Metric", (-2.43, -1.29), (-1.79, -1.29)),    # 1 VOUT, 2 FB
 }
 PADNETS = {"L": ("SW", "VOUT"), "CHF": ("VIN", "GND"), "CIN": ("VIN", "GND"), "COUT1": ("VOUT", "GND"),
            "COUT2": ("VOUT", "GND"), "R2": ("FB", "GND"), "R1": ("VOUT", "FB"), "CFF": ("VOUT", "FB")}
+PIN = {"FB": "1", "GND": "2", "VIN": "3", "SW": "4", "EN": "5", "PG": "6"}     # AP6120x, SOT-563
 # copper areas (net role, outline); drawn as solid zones on the cell's layer
 AREAS = [
-    ("SW",   [(-3.74, -0.175), (-0.375, -0.175), (-0.375, 0.175), (-3.74, 0.175)]),
+    ("SW",   [(0.375, 0.35), (3.69, 0.35), (3.69, 0.65), (0.375, 0.65)]),
     ("VIN",  [(-1.05, 0.325), (-0.375, 0.325), (-0.375, 3.035), (-1.3, 3.035), (-1.3, 1.6), (-1.05, 1.35)]),
-    ("GND",  [(-0.17, -0.8), (-0.17, 1.19), (-0.23, 1.19), (-0.23, 1.59), (-0.1, 1.59), (-0.1, 3.035), (1.29, 3.035),
-              (1.29, 2.085), (0.3, 2.085), (0.23, 1.59), (0.23, 1.19), (0.17, 1.19), (0.17, -0.8), (0.53, -0.8),
-              (0.53, -2.1), (0.63, -2.6), (0.63, -4.12), (-0.32, -4.12), (-0.32, -4.37), (-1.89, -4.37), (-1.89, -2.6),
-              (-1.3, -2.6), (-1.3, -0.8), (-1.05, -0.8), (-1.05, -0.325), (-0.375, -0.325), (-0.375, -0.8)]),
-    ("VOUT", [(-3.79, -1.075), (-1.54, -1.075), (-1.54, -2.325), (-2.14, -2.325), (-2.14, -4.55), (1.255, -4.55),
-              (1.255, -3.17), (2.155, -3.17), (2.155, -5.15), (-3.79, -5.15)]),
+    ("GND",  [(-0.17, -0.8), (-0.17, -0.15), (-1.05, -0.15), (-1.05, 0.15), (-0.17, 0.15), (-0.17, 1.19), (-0.23, 1.19),
+              (-0.23, 1.59), (-0.1, 1.59), (-0.1, 3.035), (1.29, 3.035), (1.29, 2.085), (0.3, 2.085), (0.23, 1.59),
+              (0.23, 1.19), (0.17, 1.19), (0.17, -0.8), (1.3, -0.8), (1.3, -2.6), (1.89, -2.6), (1.89, -4.37),
+              (0.32, -4.37), (0.32, -4.12), (-0.63, -4.12), (-0.63, -2.6), (-0.53, -2.1), (-0.53, -0.8)]),
+    ("VOUT", [(3.79, -0.35), (1.59, -0.35), (1.59, -1.3), (2.14, -1.3), (2.14, -4.55), (-1.255, -4.55),
+              (-1.255, -3.17), (-2.155, -3.17), (-2.155, -5.15), (3.79, -5.15)]),
 ]
 TRACKS = [  # net role, width, points
-    ("FB", 0.15, [(0.7125, 0.0), (1.79, 0.0), (1.79, -0.25), (1.79, -1.04), (1.5, -1.45), (0.94, -1.45)]),
-    ("VOUT", 0.2, [(2.43, -0.25), (2.43, -1.04), (2.43, -2.7), (1.9, -3.25)]),
-    ("EN", 0.2, [(0.7125, 0.5), (1.6, 0.5)]),
+    ("FB", 0.15, [(-0.7125, -0.5), (-1.79, -0.5), (-1.79, -1.29), (-1.5, -1.45), (-0.94, -1.45)]),
+    ("VOUT", 0.2, [(-2.43, -0.5), (-2.43, -1.29), (-2.43, -2.7), (-1.9, -3.25)]),
+    ("EN", 0.15, [(0.7125, 0.0), (3.96, 0.0)]),                      # between the inductor's pads
 ]
 VIAS = [  # net role, position, diameter, drill
-    ("VOUT", (-2.9, -4.85), 0.45, 0.25), ("VOUT", (-2.1, -4.85), 0.45, 0.25), ("VOUT", (-1.3, -4.85), 0.45, 0.25),
-    ("VOUT", (-0.5, -4.85), 0.45, 0.25), ("VOUT", (0.5, -4.85), 0.45, 0.25), ("VOUT", (1.5, -4.85), 0.45, 0.25),
-    ("GND", (-0.85, -1.3), 0.45, 0.25), ("GND", (-0.85, -2.1), 0.45, 0.25), ("GND", (-0.1, -2.1), 0.45, 0.25),
-    ("GND", (-0.45, -2.8), 0.45, 0.25), ("GND", (0.84, 2.56), 0.3, 0.15),
+    ("VOUT", (2.9, -4.85), 0.45, 0.25), ("VOUT", (2.1, -4.85), 0.45, 0.25), ("VOUT", (1.3, -4.85), 0.45, 0.25),
+    ("VOUT", (0.5, -4.85), 0.45, 0.25), ("VOUT", (-0.5, -4.85), 0.45, 0.25), ("VOUT", (-1.5, -4.85), 0.45, 0.25),
+    ("GND", (0.85, -1.3), 0.45, 0.25), ("GND", (0.85, -2.1), 0.45, 0.25), ("GND", (0.1, -2.1), 0.45, 0.25),
+    ("GND", (0.45, -2.8), 0.45, 0.25), ("GND", (0.84, 2.56), 0.3, 0.15),
     ("PG", (0.8, -0.5), 0.3, 0.15),
 ]
-BBOX = (-4.035, -5.15, 2.975, 3.335)   # cell extent in the pin frame (courtyards and copper)
+OLD_BBOX = (-4.035, -5.15, 2.975, 3.335)   # the TLV62585 cell, for --strip
+BBOX = (-2.975, -5.15, 4.035, 3.335)   # cell extent in the pin frame (courtyards and copper)
 
 
 class Frame:
@@ -143,6 +147,7 @@ CELLS = [  # U, rail, plane layer, output edge faces
 ]
 DIRS = {"N": (0, -1), "S": (0, 1), "E": (1, 0), "W": (-1, 0)}
 CLR, HOLE = 0.1, 0.175
+SHIFT_HOME = bool(os.environ.get("BUCK_SHIFT_HOME"))
 
 
 def roles(u):
@@ -180,9 +185,12 @@ class Obstacles:
             q = t.GetPosition()
             self.items.append(("circle", (MM(q.x), MM(q.y), MM(t.GetWidth(pcbnew.B_Cu)) / 2), t.GetNetCode(), True))
         else:
-            a, c = t.GetStart(), t.GetEnd()
-            self.items.append(("seg", (MM(a.x), MM(a.y), MM(c.x), MM(c.y), MM(t.GetWidth()) / 2), t.GetNetCode(),
-                               t.GetLayer() == pcbnew.B_Cu))
+            pts = [t.GetStart(), t.GetEnd()]
+            if t.GetClass() == "PCB_ARC":                     # two chords through the mid point
+                pts.insert(1, pcbnew.Cast_to_PCB_ARC(t).GetMid())
+            for a, c in zip(pts, pts[1:]):
+                self.items.append(("seg", (MM(a.x), MM(a.y), MM(c.x), MM(c.y), MM(t.GetWidth()) / 2 + (0.02 if len(pts) == 3 else 0)),
+                                   t.GetNetCode(), t.GetLayer() == pcbnew.B_Cu))
 
     @staticmethod
     def gap(kind, g, x, y):
@@ -215,6 +223,52 @@ class Obstacles:
             if hit:
                 hits.append((k, n))
         return hits
+
+
+def _pt_poly(q, poly):
+    if _in_poly(q, poly):
+        return 0.0
+    return min(Obstacles.gap("seg", (*a, *c, 0.0), q[0], q[1]) for a, c in zip(poly, poly[1:] + poly[:1]))
+
+
+def cell_shapes(b, fr, refs, nets):
+    """The new cell's pads and tracks in board coordinates: (net code, polygon)."""
+    out = []                                             # the zones are left out: their fill flows round foreign vias
+    for role, w, pts in TRACKS:
+        for a, c in zip(pts, pts[1:]):
+            (ax, ay), (cx, cy) = fr(a), fr(c); h = w / 2
+            out.append((nets[role].GetNetCode(), [(min(ax, cx) - h, min(ay, cy) - h), (max(ax, cx) + h, min(ay, cy) - h),
+                                                  (max(ax, cx) + h, max(ay, cy) + h), (min(ax, cx) - h, max(ay, cy) + h)]))
+    for ref in refs:
+        for p in b.FindFootprintByReference(ref).Pads():
+            if p.IsOnLayer(pcbnew.B_Cu):
+                bb = p.GetBoundingBox(); x0, y0, x1, y1 = MM(bb.GetLeft()), MM(bb.GetTop()), MM(bb.GetRight()), MM(bb.GetBottom())
+                out.append((p.GetNetCode(), [(x0, y0), (x1, y0), (x1, y1), (x0, y1)]))
+    return out
+
+
+def copper_hits(obst, shapes, bx):
+    """Foreign items the cell's copper would touch: B.Cu pads in the box (strict), vias and B.Cu tracks by clearance."""
+    hits = []
+    for k, g, n, on_b in obst.items:
+        if not on_b:
+            continue
+        if k == "rect":
+            if g[0] < bx[2] and g[2] > bx[0] and g[1] < bx[3] and g[3] > bx[1]:
+                hits.append((k, n))
+            continue
+        if k == "circle":
+            if not (bx[0] - 1 < g[0] < bx[2] + 1 and bx[1] - 1 < g[1] < bx[3] + 1):
+                continue
+            pts, need = [(g[0], g[1])], g[2] + CLR
+        else:
+            if not (min(g[0], g[2]) < bx[2] + 1 and max(g[0], g[2]) > bx[0] - 1 and min(g[1], g[3]) < bx[3] + 1 and max(g[1], g[3]) > bx[1] - 1):
+                continue
+            m = max(2, int(math.hypot(g[2] - g[0], g[3] - g[1]) / 0.05) + 1)
+            pts, need = [(g[0] + (g[2] - g[0]) * i / m, g[1] + (g[3] - g[1]) * i / m) for i in range(m + 1)], g[4] + CLR
+        if any(code != n and _pt_poly(q, poly) < need - 1e-6 for code, poly in shapes for q in pts):
+            hits.append((k, n))
+    return hits
 
 
 def strip_old(b, cells):
@@ -269,6 +323,34 @@ def strip_old(b, cells):
         print(f"  {u}: {len(take)} old tracks/vias removed")
     for t in doomed:                                         # SWIG: remove last, then save and reload
         b.Remove(t)
+    # what the connectivity walk misses: vias inside the old cell zones, enable fingers. Everything of the cell's
+    # nets on B.Cu, and every via of those nets, inside the old cell's box goes.
+    gone = {t.m_Uuid.AsString() for t in doomed}
+    extra = []
+    for u, rail, *_ in cells:
+        U = b.FindFootprintByReference(u); fr = Frame(U)
+        nets = {p.GetNetname() for p in U.Pads()} | {rail, "GND", "5V0"}
+        def inbox(v):
+            g = (MM(v.x) - fr.o[0], MM(v.y) - fr.o[1])
+            lx, ly = g[0] * fr.ex[0] + g[1] * fr.ex[1], g[0] * fr.ey[0] + g[1] * fr.ey[1]
+            return OLD_BBOX[0] - 0.05 < lx < OLD_BBOX[2] + 0.05 and OLD_BBOX[1] - 0.05 < ly < OLD_BBOX[3] + 0.05
+        for t in b.GetTracks():
+            if t.GetNetname() not in nets or t.m_Uuid.AsString() in gone:
+                continue
+            if isinstance(t, pcbnew.PCB_VIA):
+                hit = inbox(t.GetPosition())
+            else:
+                loose = t.GetNetname() not in ("GND", "5V0")        # bus ties, enable and PG stubs: one end is enough
+                hit = t.GetLayer() == pcbnew.B_Cu and (inbox(t.GetStart()) or inbox(t.GetEnd())) and (loose or (inbox(t.GetStart()) and inbox(t.GetEnd())))
+            if hit:
+                extra.append(t); gone.add(t.m_Uuid.AsString())
+    print(f"  {len(extra)} more tracks/vias inside the old cell boxes removed")
+    for t in extra:
+        b.Remove(t)
+    zs = [z for z in b.Zones() if z.GetZoneName() == "buck_cell"]
+    for z in zs:
+        b.Remove(z)
+    print(f"  {len(zs)} cell zones removed")
 
 
 def apply(src, out):
@@ -286,52 +368,74 @@ def apply(src, out):
             U.SetOrientationDegrees(U.GetOrientationDegrees() + 90)
         else:
             raise SystemExit(f"{u}: cannot face {face}")
-        home = U.GetPosition()
+        home = home0 = U.GetPosition()
+        if SHIFT_HOME:                                       # first run after the TLV62585: put the new box on the old one
+            dxf = OLD_BBOX[0] - BBOX[0]
+            home = pcbnew.VECTOR2I(home.x + FM(dxf * fr.ex[0]), home.y + FM(dxf * fr.ex[1]))
         pz, pl = zones[(rail, plane)]
         code = {p.GetNumber(): p.GetNet() for p in U.Pads()}
-        nets = {"GND": code["1"], "SW": code["2"], "VIN": code["3"], "EN": code["4"], "FB": code["5"], "PG": code["6"],
-                "VOUT": b.FindNet(rail)}
+        nets = {role: code[n] for role, n in PIN.items()}
+        nets["VOUT"] = b.FindNet(rail)
+
+        def place_parts(fr):
+            for role, ref in roles(u).items():
+                f = b.FindFootprintByReference(ref)
+                if not f.IsFlipped():
+                    f.Flip(f.GetPosition(), pcbnew.FLIP_DIRECTION_LEFT_RIGHT)
+                lib, name, p1, p2 = PARTS[role]
+                assert str(f.GetFPID().GetLibItemName()) == name, (ref, name)
+                a_net = nets[PADNETS[role][0]].GetNetname()
+                pads = {p.GetNumber(): p.GetNetname() for p in f.Pads() if p.GetNumber()}
+                assert set(pads.values()) == {a_net, nets[PADNETS[role][1]].GetNetname()}, (ref, pads)
+                place2(f, fr, *((p1, p2) if pads["1"] == a_net else (p2, p1)))
 
         def box(fr):
             cs = [fr((BBOX[i], BBOX[j])) for i in (0, 2) for j in (1, 3)]
             return min(c[0] for c in cs), min(c[1] for c in cs), max(c[0] for c in cs), max(c[1] for c in cs)
 
         best = None
-        offs = sorted(((dx * 0.25, dy * 0.25) for dx in range(-12, 13) for dy in range(-12, 13)), key=lambda o: math.hypot(*o))
-        for need, (dx, dy) in ((n, o) for n in (4, 3) for o in offs):     # 4 legal output vias, else 3
+        homes = [home, home0] if SHIFT_HOME else [home]
+        grid = {(dx * 0.05, dy * 0.05) for dx in range(-12, 13) for dy in range(-12, 13)}      # fine near home, then coarse
+        grid |= {(dx * 0.25, dy * 0.25) for dx in range(-12, 13) for dy in range(-12, 13)}
+        offs = sorted(((h, dx, dy) for h in range(len(homes)) for dx, dy in grid), key=lambda o: (math.hypot(o[1], o[2]), o[0]))
+        for need, (hi, dx, dy) in ((n, o) for n in (5, 4, 3) for o in offs):     # legal output vias wanted
             if best:
                 break
+            home = homes[hi]
             U.SetPosition(pcbnew.VECTOR2I(home.x + FM(dx), home.y + FM(dy)))
             fr = Frame(U); bx = box(fr)
-            if obst.box_hits(*bx) or any(bx[0] < t[2] and bx[2] > t[0] and bx[1] < t[3] and bx[3] > t[1] for t in taken):
+            if any(bx[0] < t[2] and bx[2] > t[0] and bx[1] < t[3] and bx[3] > t[1] for t in taken):
                 continue
+            if obst.box_hits(*bx):                           # something in the box: look at the copper itself
+                place_parts(fr)
+                if copper_hits(obst, cell_shapes(b, fr, [u] + list(roles(u).values()), nets), bx):
+                    continue
             vout = [fr(q) for role, q, *_ in VIAS if role == "VOUT"]
             if rail != "0V85" and not all(pz.HitTestFilledArea(pl, pcbnew.VECTOR2I(FM(x), FM(y))) for x, y in vout):
                 continue
             if sum(obst.via_ok(v, 0.45, 0.25, nets["VOUT"].GetNetCode()) for v in vout) < need:
                 continue
-            best = (dx, dy)
+            if not nets["PG"].GetNetname().startswith("unconnected-") and not all(obst.via_ok(fr(q), dia, drill, nets[role].GetNetCode()) for role, q, dia, drill in VIAS if role == "PG"):
+                continue                                     # the PG via has no other site
+            best = (dx + MM(home.x - home0.x), dy + MM(home.y - home0.y)); spot = pcbnew.VECTOR2I(home.x + FM(dx), home.y + FM(dy))
         if best is None:
-            U.SetPosition(home)
-            print(f"  {u}: no free spot within 3 mm; left as it was, NOT rebuilt"); continue
-        U.SetPosition(pcbnew.VECTOR2I(home.x + FM(best[0]), home.y + FM(best[1])))
+            U.SetPosition(home0)
+            fr = Frame(U); nn = {n.GetNetCode(): n.GetNetname() for n in b.GetNetInfo().NetsByName().values()}
+            import collections
+            place_parts(fr)
+            hits = collections.Counter((k, nn.get(n, "?")) for k, n in copper_hits(obst, cell_shapes(b, fr, [u] + list(roles(u).values()), nets), box(fr)))
+            print(f"  {u}: no free spot within 3 mm; left as it was, NOT rebuilt. In the box at home: {dict(hits)}"); continue
+        U.SetPosition(spot)
         fr = Frame(U); taken.append(box(fr))
-        for role, ref in roles(u).items():
-            f = b.FindFootprintByReference(ref)
-            if not f.IsFlipped():
-                f.Flip(f.GetPosition(), pcbnew.FLIP_DIRECTION_LEFT_RIGHT)
-            lib, name, p1, p2 = PARTS[role]
-            assert str(f.GetFPID().GetLibItemName()) == name, (ref, name)
-            a_net = nets[PADNETS[role][0]].GetNetname()
-            pads = {p.GetNumber(): p.GetNetname() for p in f.Pads() if p.GetNumber()}
-            assert set(pads.values()) == {a_net, nets[PADNETS[role][1]].GetNetname()}, (ref, pads)
-            place2(f, fr, *((p1, p2) if pads["1"] == a_net else (p2, p1)))
+        place_parts(fr)
         # vias: legal sites only
         skipped = []
         saved = list(VIAS)
         use = []
         gnd_area = AREAS[2][1]
         for role, q, dia, drill in saved:
+            if role == "PG" and nets["PG"].GetNetname().startswith("unconnected-"):
+                continue                                     # PG not used on this cell: no via
             n = nets[role].GetNetCode()
             cands = [q]
             if role == "VOUT":
@@ -366,7 +470,7 @@ def apply(src, out):
                     continue
                 g = (MM(p.GetPosition().x) - fr.o[0], MM(p.GetPosition().y) - fr.o[1])
                 lx, ly = g[0] * fr.ex[0] + g[1] * fr.ex[1], g[0] * fr.ey[0] + g[1] * fr.ey[1]
-                if -3.6 < lx < 2.0 and -6.4 < ly < -5.15:
+                if -2.0 < lx < 3.6 and -6.4 < ly < -5.15:
                     t = pcbnew.PCB_TRACK(b)
                     t.SetStart(fr.v((lx, -4.85))); t.SetEnd(p.GetPosition()); t.SetWidth(FM(0.3)); t.SetLayer(pcbnew.B_Cu)
                     t.SetNet(nets["VOUT"]); b.Add(t); obst.add_track(t); ties += 1
@@ -403,14 +507,14 @@ def demo(out, dump=None):
         n = pcbnew.NETINFO_ITEM(b, role); b.Add(n); nets[role] = n
     cx, cy = 100.0, 100.0
     u = pcbnew.FootprintLoad(os.path.join(libs, "Package_TO_SOT_SMD.pretty"), "SOT-563")
-    u.SetReference("U1"); u.SetValue("TLV62585"); b.Add(u)
+    u.SetReference("U1"); u.SetValue("AP6120x"); b.Add(u)
     u.SetPosition(pcbnew.VECTOR2I(FM(cx), FM(cy)))
     u.Flip(u.GetPosition(), pcbnew.FLIP_DIRECTION_LEFT_RIGHT)            # on B.Cu, as on the card
-    for p, role in zip("123456", ("GND", "SW", "VIN", "EN", "FB", "PG")):
+    for role, p in PIN.items():
         next(q for q in u.Pads() if q.GetNumber() == p).SetNet(nets[role])
     fr = Frame(u)
     for role, (lib, name, p1, p2) in PARTS.items():
-        f = pcbnew.FootprintLoad(os.path.join(libs, lib + ".pretty"), name)
+        f = pcbnew.FootprintLoad(os.path.join(PROJ_LIB if lib == "ti135_card" else libs, lib + ".pretty"), name)
         f.SetReference(role); f.SetValue(role); b.Add(f)
         f.SetPosition(u.GetPosition()); f.Flip(f.GetPosition(), pcbnew.FLIP_DIRECTION_LEFT_RIGHT)
         place2(f, fr, p1, p2)
