@@ -106,6 +106,15 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
    0.28 mm from ball via J7 and its GND pad on ball via K8, where C556 was. C556 (100 n, 1V8) went 2.6 mm from
    J8/K8 to the 1V8 ball N8, with a new GND via between four balls 0.75 mm away; J8 has no cap of its own any
    more. Two more courtyards_overlap (C556 with C5017, C524; 13 in all). C5049.1 is closed: **8 pads remain**.
+   **(e) 2026-11-13: the 4.7 u and 1 u 0201 caps left the BGA** (user decision: more room under U501;
+   `tools/decap_perimeter.py` after `decap_move.py --strip`). 19 caps sit 0.7 ... 3.7 mm outside the body outline
+   on B.Cu, each with a via in both pads (rail via on its filled plane): VCORE C511-C514, C5006-C5008 and 1V8
+   C5030, C5031 south; 1V8 C5029, C5032 and 1V1 C5054, C540 north; 1V8 C553, C5035 and 1V1 C541, C542 east;
+   3V3 C5049 west (J7 is free again). **C530 (0V85, 1 u) found its nearest legal spot 17 mm away at the south
+   edge (164.1, 92.3): it is on the 0V85 plane but far from the 0V85 balls (rows U/V, north) - review.**
+   Under U501 now: 62 caps (100 n, 10 n, 1 n). C5027.1, C5044.2, C5041.1 shared copper with moved caps and were
+   reconnected. No new DRC violations, courtyards_overlap 13 -> 11, opens 271 -> 269; **7 pads remain open**
+   (C553.2 is closed).
    `decap_move.py --pads` now also ties a ground pad to a connected GND pad of a neighbour, or drills a new GND via
    in the pad / between four balls when every layer is free there. No new DRC violations; opens 277 -> 272;
    9 pads of the list above remain (C5048.1, C563.1 done).
