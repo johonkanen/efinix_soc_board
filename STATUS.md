@@ -110,9 +110,9 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
    `tools/decap_perimeter.py` after `decap_move.py --strip`). 19 caps sit 0.7 ... 3.7 mm outside the body outline
    on B.Cu, each with a via in both pads (rail via on its filled plane): VCORE C511-C514, C5006-C5008 and 1V8
    C5030, C5031 south; 1V8 C5029, C5032 and 1V1 C5054, C540 north; 1V8 C553, C5035 and 1V1 C541, C542 east;
-   3V3 C5049 west (J7 is free again). **C530 (0V85, 1 u) found its nearest legal spot 17 mm away at the south
-   edge (164.1, 92.3): it is on the 0V85 plane but far from the 0V85 balls (rows U/V, north) - review.**
-   Under U501 now: 62 caps (100 n, 10 n, 1 n). C5027.1, C5044.2, C5041.1 shared copper with moved caps and were
+   3V3 C5049 west (J7 is free again). C530 (0V85, 1 u) only found a spot 17 mm from its balls at the south
+   edge, so by user decision it went **back under the BGA** to its old place at the 0V85 ball via (169.4, 76.4)
+   (`decap_move.py --strip`, then `--pads`). Under U501 now: 63 caps (100 n, 10 n, 1 n and C530); 18 moved out. C5027.1, C5044.2, C5041.1 shared copper with moved caps and were
    reconnected. No new DRC violations, courtyards_overlap 13 -> 11, opens 271 -> 269; **7 pads remain open**
    (C553.2 is closed).
    `decap_move.py --pads` now also ties a ground pad to a connected GND pad of a neighbour, or drills a new GND via
