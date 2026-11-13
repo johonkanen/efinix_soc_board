@@ -75,6 +75,14 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
    adc_cs_n_r, adc_sclk_r, adc_sdo_r, U1302/U1304A feedback. Old partial copper on these nets was replaced.
    **Failed, still open: flash_cs_n_r, flash_io2_r, flash_io3_r** (blocked by flash_io1/io3 at R624; their stubs
    were removed again). No new DRC violations; opens 269 -> 223.
+   **Long signal runs routed 2026-11-13** (same recipe, costs F 3 / In2 1 / In5 1 / B 3): 43 nets - JTAG (4),
+   fpga_cdone, fpga_creset_n, LCD (7) and touch (5) to J5, eMMC dat0/1/2/4/6/7 and ds, adbsel0-2, adc_cs_n, adc_sdo,
+   mon_vcore, j3_oe_n, led0_n/led1_n, refclk_bl0-2, uart_rx/tx and the J2 side, DDR_CAL, REF_RES_2A. Mostly In2/In5,
+   30-50 mm for the J5 nets. flash_io0, flash_io1, flash_io3 and emmc_dat5 were re-routed on the way.
+   **Every signal net is now connected except flash_cs_n_r, flash_io2_r, flash_io3_r** (failed again; stubs
+   removed). One new 0.57 mm dangling stub on j3_oe_n (In5). No other new DRC violations; opens 223 -> 174, all
+   of them supply pins (GND, 1V8, 3V3, 3V3_analog, VCORE, 5V0, VCCA filters, PHY supplies) plus those three.
+   To review: DDR_CAL runs 15 mm to R801 and REF_RES_2A 14 mm to R601; both resistors would be better at the ball.
 2. Check the 2520 inductor's land pattern (KiCad's generic L_1008_2520Metric) against the FTC252012S data sheet.
 3. **Mostly done 2026-11-12 (`tools/decap_connect.py`, a991e16):** of the 127 rail-decap pads without
    copper, 97 are connected: 42 by a via in the pad, 30 by a via beside the pad (also between four balls under
