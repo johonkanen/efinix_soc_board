@@ -68,6 +68,13 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
    of track with 5 vias are gone. PG of U331 (0V85) and U341 (1V1) and ~MR of U401 carry no-connect flags; ~MR
    floats on the TPS3808's internal pull-up. U401 now releases fpga_creset_n on VCORE (SENSE) + delay only and no
    longer waits for group 2. pg_group1 is unchanged.
+   **Short local nets routed 2026-11-13** (`route.py`, the Ethernet recipe's options, costs F 1 / In2 3 / In5 3 /
+   B 1, 0.12 mm): 35 nets - flash_cs_n, flash_io0-3, flash_sck, flash_io0_r, flash_io1_r, flash_sck_r,
+   fpga_cbsel0, fpga_csi, fpga_ssu_n, fpga_test_n, emmc_cmd, emmc_dat3, emmc_dat5, emmc_vddi, REF_RES_4A/4B,
+   Y701 OUT, D601/D602 anodes, and on the ADC sheet adc_ainp, adc_mux_out, isoada1-3_buf, mon_1v1/1v8/3v3,
+   adc_cs_n_r, adc_sclk_r, adc_sdo_r, U1302/U1304A feedback. Old partial copper on these nets was replaced.
+   **Failed, still open: flash_cs_n_r, flash_io2_r, flash_io3_r** (blocked by flash_io1/io3 at R624; their stubs
+   were removed again). No new DRC violations; opens 269 -> 223.
 2. Check the 2520 inductor's land pattern (KiCad's generic L_1008_2520Metric) against the FTC252012S data sheet.
 3. **Mostly done 2026-11-12 (`tools/decap_connect.py`, a991e16):** of the 127 rail-decap pads without
    copper, 97 are connected: 42 by a via in the pad, 30 by a via beside the pad (also between four balls under
