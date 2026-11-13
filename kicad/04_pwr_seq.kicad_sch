@@ -1069,7 +1069,7 @@
 		)
 		(uuid "bf474ab8-5874-53e8-ae64-c3f51bbe7cf9")
 	)
-	(text "Power-up order (TI135_PCB_NOTES.md §5): group 1 (VCORE, 1V8, 3V3) -> pg_group1 -> group 2 (0V85, 1V1)\n; U401 TPS3808 (VCORE good + 20 ms) -> fpga_creset_n -> SPI active configuration."
+	(text "Power-up order (TI135_PCB_NOTES.md §5): group 1 (VCORE, 1V8, 3V3) -> pg_group1 -> group 2 (0V85, 1V1)\n; U401 TPS3808G09 (VCORE above 0.84 V + 20 ms) -> fpga_creset_n -> SPI active configuration."
 		(exclude_from_sim no)
 		(at 17.78 17.78 0)
 		(effects
@@ -1689,6 +1689,199 @@
 		)
 	)
 	(symbol
+		(lib_id "ti135_card:C")
+		(at 66.04 67.31 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "dfa4a998-2132-437f-b4aa-8ea0048289bd")
+		(property "Reference" "C402"
+			(at 70.78 66.04 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100n"
+			(at 70.78 68.58 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+			(at 67.0052 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 66.04 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 66.04 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 66.04 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "b0e9a199-4094-4a8c-b26b-da8e4e8803a0")
+		)
+		(pin "2"
+			(uuid "5f66a815-cb87-4d81-b540-95d0a3fd1243")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/1200db6b-7482-42ce-b7c4-d025e9219459"
+					(reference "C402")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ti135_card:GND")
+		(at 66.04 73.66 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "8baf7117-bc65-4483-93ab-d074d3e375d2")
+		(property "Reference" "#PWR04007"
+			(at 66.04 80.01 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 66.04 77.47 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 66.04 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 66.04 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol for net \"GND\" (IPC net name)"
+			(at 66.04 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "39dfa0e5-ef93-4c02-9382-b68eeb0ad935")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/1200db6b-7482-42ce-b7c4-d025e9219459"
+					(reference "#PWR04007")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 55.88 63.5) (xy 66.04 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c0224cc4-e201-4b30-8487-5659f33c45f0")
+	)
+	(wire
+		(pts
+			(xy 66.04 71.12) (xy 66.04 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "663ccf48-1352-42ce-acbf-295ab4717a6b")
+	)
+	(junction
+		(at 55.88 63.5)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "3cafd5c2-fc9c-488f-8c77-5b37b0fe4bd5")
+	)
+	(symbol
 		(lib_id "ti135_card:VCORE")
 		(at 137.16 73.66 90)
 		(unit 1)
@@ -1865,7 +2058,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TPS3808G01DBVT"
+		(property "Value" "TPS3808G09DBVR"
 			(at 152.4 69.85 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1909,7 +2102,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C702161"
+		(property "LCSC" "C24584"
 			(at 152.4 76.2 0)
 			(hide yes)
 			(show_name no)

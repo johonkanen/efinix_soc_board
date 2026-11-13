@@ -160,6 +160,18 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
    stock: same family, pinout and cell.) VCORE: 1.0 A worst case and >= 1.5 A inrush on a 2 A part.
    **LPDDR4 U801 is now H9HCNNN8KUMLHR-NMO (C51891855)**, of which the user owns 4: same 8 Gb die, package and
    3733 Mbps as the -NME; the suffix is the temperature grade (not confirmed in an SK hynix document).
+   **FPGA-pin and peripherals reviews done 2026-11-13** (`reports/order_check/FPGA_pins.md`,
+   `PER_peripherals.md`, local): no must-fix. Changed from them (`tools/seq_fixes.py`): U401 is now
+   TPS3808G09DBVR (C24584, fixed 0.84 V threshold; SENSE sits directly on VCORE, where the G01 tripped at
+   0.405 V), R929 (MDIO pull-up) 4k7 -> 1k5, and a new C402 100 n from pg_group1 to GND on B.Cu at the EN stub of
+   U331 (154.6, 102.25): with R401 100 k it holds group 2 off for about 2 ms, in case the AP6120x PG outputs
+   float while 5V0 ramps (the data sheet does not say). Left for bring-up: VCORE start-up peaks near the
+   AP61203's 2.4 A minimum limit (1.5 A inrush + charging 289 uF in 0.5 ms); VCORE 0.927-0.979 V and 1V1 down
+   to 1.062 V at the tolerance corners; the gateware must delay the RGMII TX clock (TXDLY strap is 0); eMMC
+   clock is on the external-configuration-clock ball K4 (keep the internal oscillator) and eMMC reset on CSO
+   (A3, low during configuration); LPDDR4 RESET_n has no pull-down; R613 / R614 are fitted (CBSEL to GND,
+   harmless) although their value says "10k DNP". Reviews still to run: connector pinouts and mechanical (F1, G1),
+   power planes and decoupling (B1-B3, B5), D4, G4.
 2. **Checked 2026-11-13:** the 2520 inductor's land pattern (KiCad's generic L_1008_2520Metric) against the
    FTC252012S data sheet (cjiang FTC series, "Recommend Land Pattern": A 2.60 overall, B 0.70 gap, C 2.10
    wide, i.e. pads 0.95 x 2.10 at +-0.825). The board has pads 1.25 x 2.20 at +-1.075: overall 3.40, gap 0.90.

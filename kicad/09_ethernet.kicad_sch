@@ -5791,7 +5791,7 @@
 				)
 			)
 		)
-		(property "Value" "4k7"
+		(property "Value" "1k5"
 			(at 47.37 201.93 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5834,7 +5834,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25900"
+		(property "LCSC" "C25867"
 			(at 43.18 200.66 0)
 			(hide yes)
 			(show_name no)
