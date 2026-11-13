@@ -86,6 +86,9 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
    now on B.Cu under U501 (0402, `decap_move.py --pads`, which now takes any part with one GND pad): R801 (240R,
    DDR_CAL) with pad 1 on ball via Y9 and a new GND via 0.55 mm from pad 2; R601 (10k, REF_RES_2A) with pad 1 on a
    new via in ball P16 and pad 2 on GND ball via P15. No new DRC violations; opens 174 -> 172.
+   **Both to 0201 the same day** (`tools/ref_res_0201.py`; user accepted looser tolerance): R801 is now 240R
+   **0.5 %** RC0201DR-07240RL (C851687; the 0.1 % 0201 parts had no JLCPCB stock; the Efinix checklist asks for
+   0.1 %), at 45 degrees on Y9 with a GND via in pad 2. R601 is 10k 1 % RC0201FR-0710KL (C106225) on P16 / P15.
 2. Check the 2520 inductor's land pattern (KiCad's generic L_1008_2520Metric) against the FTC252012S data sheet.
 3. **Mostly done 2026-11-12 (`tools/decap_connect.py`, a991e16):** of the 127 rail-decap pads without
    copper, 97 are connected: 42 by a via in the pad, 30 by a via beside the pad (also between four balls under

@@ -12,7 +12,7 @@ are placed but not yet tied to their rails by copper, except the 14 0201s sittin
 
 | # | Item | Checklist | This card | |
 |---|---|---|---|---|
-| 1 | DDR_CAL (Y9) | 240 Ω **±0.1 %** to GND, close to the pin | R801 240 Ω **0.1 %** (RT0402BRD07240RL, C852660) | ✓ (phase 3) |
+| 1 | DDR_CAL (Y9) | 240 Ω **±0.1 %** to GND, close to the pin | R801 240 Ω **0.5 %** 0201 (RC0201DR-07240RL, C851687) on ball via Y9, since 2026-11-13 | ~ looser than the checklist by user decision: no 0.1 % 0201 in stock at JLCPCB |
 | 2 | SSU_N (L4) | weak pull-up | R622 10 k to 1V8 (B.Cu, 4.6 mm from L4) | ✓ (phase 3; x8 chip select, unused in x4 mode) |
 | 3 | Decoupling per rail | table below | the table in full: C5001–C5073 added ("Missing" column below) | ~ since 2026-11-12: small values as listed, **bulk counted per rail** (user decision; `tools/decap_rework.py`, STATUS.md): VCORE 2×100 µ, 1V8 2×47 µ, 1V1 1×47 µ plus 47 µ + 22 µ at each regulator. The per-bank 47 µ / 10 µ and the extra 22 µ are DNP; on 0V85 three of the four 1 µ and one 100 n are DNP too (still 1 µ, 5×100 n, 10 n against 1 µ, 100 n, 10 n) |
 | 4 | Energy storage | ≥ 1 × 47 µF at each regulator output | 47 µF 0805 + 22 µF 0603 per cell (C204, C304, C314, C333, C344) + a 22 pF feed-forward across R1 (C205/C305/C315/C334/C345: TLV62585 data sheet, > 47 µF output) | ✓ (phase 3; check loop stability at bring-up) |

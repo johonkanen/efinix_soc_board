@@ -31316,7 +31316,7 @@
 				)
 			)
 		)
-		(property "Value" "240R 0.1%"
+		(property "Value" "240R 0.5%"
 			(at 144.65 116.84 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -31326,7 +31326,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
 			(at 135.382 115.57 0)
 			(hide yes)
 			(show_name no)
@@ -31359,7 +31359,7 @@
 				)
 			)
 		)
-		(property "MPN" "RT0402BRD07240RL"
+		(property "MPN" "RC0201DR-07240RL"
 			(at 137.16 115.57 0)
 			(hide yes)
 			(show_name no)
@@ -31370,7 +31370,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C852660"
+		(property "LCSC" "C851687"
 			(at 137.16 115.57 0)
 			(hide yes)
 			(show_name no)

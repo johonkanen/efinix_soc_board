@@ -17840,7 +17840,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
 			(at 200.152 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -17873,7 +17873,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25744"
+		(property "LCSC" "C106225"
 			(at 201.93 86.36 0)
 			(hide yes)
 			(show_name no)
