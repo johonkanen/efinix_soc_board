@@ -46,6 +46,8 @@ In6 GND; In3 VCORE / 1V1 / 3V3 regions; In4 1V8 / 0V85; signals on F, In2, In5, 
 - R801 (DDR_CAL 240 Ω) is 0.5 %, the Efinix checklist asks 0.1 %.
 - Rail monitors removed for now: R1301–R1305 are DNP, so U1301 inputs X1, X2, X3, X5 float.
 - `pg_all` removed: the supervisor U401 watches VCORE only.
+- Baseboard fit: the card seats on the baseboard as the existing card does (user, 2026-11-13); the U8 overlap is closed.
+- 10 `length_out_of_range` items on the eMMC nets until the user has meandered them (tools/emmc_delay_rules.py).
 - Clearances: copper 0.1 mm, hole to copper 0.175 mm, hole to hole 0.2 mm (see A4 for the open question there).
 
 ## A. Rule checks

@@ -14134,7 +14134,7 @@
 				)
 			)
 		)
-		(property "Value" "10k DNP"
+		(property "Value" "10k"
 			(at 133.39 179.07 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15749,7 +15749,7 @@
 				)
 			)
 		)
-		(property "Value" "10k DNP"
+		(property "Value" "10k"
 			(at 146.09 179.07 0)
 			(show_name no)
 			(do_not_autoplace no)

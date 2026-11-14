@@ -172,6 +172,30 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
    (A3, low during configuration); LPDDR4 RESET_n has no pull-down; R613 / R614 are fitted (CBSEL to GND,
    harmless) although their value says "10k DNP". Reviews still to run: connector pinouts and mechanical (F1, G1),
    power planes and decoupling (B1-B3, B5), D4, G4.
+   **Connector / mechanical and power-plane reviews done 2026-11-13** (`MECH_connectors.md`,
+   `PWR_planes_decoupling.md`): J3 / J6 land pin for pin on the baseboard's J11 / J12 (checked against
+   `~/dev/ac_psu_kicad`), no must-fix in the copper. Open on the baseboard side: its new U8 (K7805-2000R3)
+   reaches about 0.8 mm under the card's south edge, and the card-to-baseboard gap is unmeasured. J1, J2, J5,
+   J101 are wired, so their positions do not matter (user); trim their pins below the card.
+   Copper touch-ups (`tools/power_copper_fixes.py`): 5V0 pour thermal spokes 0.25 -> 0.5 mm (J6, J101 pins); a
+   via in U901 pin 21 at (183.03, 59.77) with 0.67 mm of B.Cu to C931; 122 segments (63 of 89 mm) of the
+   0.2 mm 3V3 feeds to the translators and to U501's G7 / J7 / M21 widened to 0.3 mm where DRC allows; a GND
+   via beside C1208; three fiducials per side (FID1-FID6, board-only). Not changed: the 5V0 pinch at
+   (139.6-142.6, 101.3-103.6), about 0.35 mm wide but under 1 mm long between vias of C1305 / U1302 (under
+   1 mOhm; the only legal bypass was 5 mm of 0.25 mm inner track, which would carry nothing).
+   TI135_PCB_NOTES.md §6.5 / §6.10 still describe 40 ohm LPDDR4 widths; the board has 0.10 mm (decision of
+   2026-10-30 in the .kicad_dru header).
+   **Baseboard fit accepted (user, 2026-11-13):** the card fits the baseboard as the existing card does; no
+   notch, the U8 overlap finding is closed. R613 / R614 value text is now "10k".
+   **eMMC delay rules added** (`tools/emmc_delay_rules.py`): net class `emmc` (22 nets, the single-ended
+   tuning profile) and one length rule per signal on its eMMC-side net `/10 emmc/emmc_x_r`, in the generated
+   block at the end of `kicad/ti135_card.kicad_dru`. Target 522.3 ps +-10, the delay of DS (FPGA ball ->
+   resistor -> eMMC ball, pad-to-die included); the other ten signals need 66 ... 228 ps more. **The user
+   meanders these by hand**; until then DRC shows 10 `length_out_of_range` items, all eMMC. Rerun the script
+   after re-routing an FPGA-side eMMC net or DS (shortening DS's 331 ps FPGA-side run would cut every meander).
+   Checks re-run on the final board 2026-11-13: DRC with parity on the card and on a refilled copy (11
+   courtyard overlaps + the 10 eMMC length items, 0 unconnected, 0 parity), ERC (the known ADC warning),
+   LPDDR4 timing unchanged (DQ - DQS 9.0-14.7 ps, CA - CK -2.5...-0.1 ps).
 2. **Checked 2026-11-13:** the 2520 inductor's land pattern (KiCad's generic L_1008_2520Metric) against the
    FTC252012S data sheet (cjiang FTC series, "Recommend Land Pattern": A 2.60 overall, B 0.70 gap, C 2.10
    wide, i.e. pads 0.95 x 2.10 at +-0.825). The board has pads 1.25 x 2.20 at +-1.075: overall 3.40, gap 0.90.

@@ -61,6 +61,7 @@ NETCLASSES = [
     ("lpddr_ca", 0.18, 0.1, 0.3, 0.15, 0.14, 0.15),
     ("lpddr_diff", 0.14, 0.1, 0.3, 0.15, 0.14, 0.15),
     ("rgmii", 0.12, 0.1, 0.3, 0.15, 0.1, 0.2),
+    ("emmc", 0.1, 0.1, 0.3, 0.15, 0.1, 0.2),            # Default geometry; a class of its own for the delay rules
     ("PWR", 0.3, 0.1, 0.45, 0.25, 0.1, 0.2),
     ("PWR_CORE", 0.5, 0.1, 0.45, 0.25, 0.1, 0.2),
 ]
@@ -70,6 +71,7 @@ PATTERNS = [
     ("lpddr_ca", r".*ddr_(ca[0-5]|cke0|cs[02]_n|rst_n)$"),
     ("lpddr_diff", r".*ddr_(dqs[0-3]|ck)_[PN]$"),
     ("rgmii", r".*(rgmii|phy)_(txc|tx_ctl|txd[0-3]|rxc|rx_ctl|rxd[0-3])$"),
+    ("emmc", r".*emmc_(clk|cmd|dat[0-7]|ds)(_r)?$"),          # tools/emmc_delay_rules.py
     ("PWR", r"^(5V0|1V8|3V3|1V1|0V85|3V3_analog|phy_vdd10)$"),
     ("PWR_CORE", r"^VCORE$"),
 ]
@@ -83,7 +85,7 @@ LAYER_STACK = ["F.Cu", "In1.Cu", "In2.Cu", "In3.Cu", "In4.Cu", "In5.Cu", "In6.Cu
 LAYER_DELAY = {"F.Cu": 6.11, "In1.Cu": 6.97, "In2.Cu": 7.01, "In3.Cu": 7.00, "In4.Cu": 7.00, "In5.Cu": 7.01,
                "In6.Cu": 6.97, "B.Cu": 6.11}
 TUNING = {  # profile: (type 0 SE / 1 diff, target ohms, {outer|inner: (width mm, gap mm)}, net classes)
-    "LPDDR4 SE 40R JLC08161H-3313": (0, 40.0, {"outer": (0.25, 0.0), "inner": (0.18, 0.0)}, ["lpddr_dq", "lpddr_ca"]),
+    "LPDDR4 SE 40R JLC08161H-3313": (0, 40.0, {"outer": (0.25, 0.0), "inner": (0.18, 0.0)}, ["lpddr_dq", "lpddr_ca", "emmc"]),
     "LPDDR4 DIFF 80R JLC08161H-3313": (1, 80.0, {"outer": (0.20, 0.20), "inner": (0.14, 0.15)}, ["lpddr_diff"]),
 }
 
