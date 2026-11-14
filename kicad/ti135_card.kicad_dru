@@ -193,39 +193,39 @@
 # ---- END generated delay targets ----
 
 # ---- BEGIN generated eMMC delay targets (tools/emmc_delay_rules.py; do not edit by hand) ----
-# eMMC: every signal (FPGA ball -> series resistor -> eMMC ball) to 522.3 ps +-10 (the longest signal, dat3), by
+# eMMC: every signal (FPGA ball -> series resistor -> eMMC ball) to 348.6 ps +-10 (the longest signal, dat3), by
 # meandering the eMMC-side net. opt = target - delay of the FPGA-side net as routed when this was generated.
 (rule "emmc_delay_clk"
 	(condition "A.NetName == '/10 emmc/emmc_clk_r'")
-	(constraint length (min 416.9ps) (opt 426.9ps) (max 436.9ps)))
+	(constraint length (min 243.2ps) (opt 253.2ps) (max 263.2ps)))
 (rule "emmc_delay_cmd"
 	(condition "A.NetName == '/10 emmc/emmc_cmd_r'")
-	(constraint length (min 399.0ps) (opt 409.0ps) (max 419.0ps)))
+	(constraint length (min 225.2ps) (opt 235.2ps) (max 245.2ps)))
 (rule "emmc_delay_dat0"
 	(condition "A.NetName == '/10 emmc/emmc_dat0_r'")
-	(constraint length (min 386.2ps) (opt 396.2ps) (max 406.2ps)))
+	(constraint length (min 212.5ps) (opt 222.5ps) (max 232.5ps)))
 (rule "emmc_delay_dat1"
 	(condition "A.NetName == '/10 emmc/emmc_dat1_r'")
-	(constraint length (min 399.5ps) (opt 409.5ps) (max 419.5ps)))
+	(constraint length (min 225.8ps) (opt 235.8ps) (max 245.8ps)))
 (rule "emmc_delay_dat2"
 	(condition "A.NetName == '/10 emmc/emmc_dat2_r'")
-	(constraint length (min 384.9ps) (opt 394.9ps) (max 404.9ps)))
+	(constraint length (min 211.1ps) (opt 221.1ps) (max 231.1ps)))
 (rule "emmc_delay_dat3"
 	(condition "A.NetName == '/10 emmc/emmc_dat3_r'")
-	(constraint length (min 320.9ps) (opt 330.9ps) (max 340.9ps)))
+	(constraint length (min 147.2ps) (opt 157.2ps) (max 167.2ps)))
 (rule "emmc_delay_dat4"
 	(condition "A.NetName == '/10 emmc/emmc_dat4_r'")
-	(constraint length (min 371.7ps) (opt 381.7ps) (max 391.7ps)))
+	(constraint length (min 198.0ps) (opt 208.0ps) (max 218.0ps)))
 (rule "emmc_delay_dat5"
 	(condition "A.NetName == '/10 emmc/emmc_dat5_r'")
-	(constraint length (min 346.7ps) (opt 356.7ps) (max 366.7ps)))
+	(constraint length (min 172.9ps) (opt 182.9ps) (max 192.9ps)))
 (rule "emmc_delay_dat6"
 	(condition "A.NetName == '/10 emmc/emmc_dat6_r'")
-	(constraint length (min 389.3ps) (opt 399.3ps) (max 409.3ps)))
+	(constraint length (min 215.6ps) (opt 225.6ps) (max 235.6ps)))
 (rule "emmc_delay_dat7"
 	(condition "A.NetName == '/10 emmc/emmc_dat7_r'")
-	(constraint length (min 400.7ps) (opt 410.7ps) (max 420.7ps)))
+	(constraint length (min 227.0ps) (opt 237.0ps) (max 247.0ps)))
 (rule "emmc_delay_ds"
 	(condition "A.NetName == '/10 emmc/emmc_ds_r'")
-	(constraint length (min 398.9ps) (opt 408.9ps) (max 418.9ps)))
+	(constraint length (min 225.1ps) (opt 235.1ps) (max 245.1ps)))
 # ---- END generated eMMC delay targets ----
