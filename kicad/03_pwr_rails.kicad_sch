@@ -706,6 +706,195 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "ti135_card:AP61x02Z6"
+			(pin_names
+				(offset 1.016)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "U"
+				(at -7.62 6.35 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "AP61203Z6-7"
+				(at -7.62 -16.51 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "Package_TO_SOT_SMD:SOT-563"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "https://www.ti.com/lit/ds/symlink/tlv62585.pdf"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "TI 3 A synchronous buck, 2.5-5.5 V in, 0.6 V FB, power good, SOT-563 (PDRL)"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "AP61x02Z6_0_1"
+				(rectangle
+					(start -7.62 5.08)
+					(end 7.62 -12.7)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(symbol "AP61x02Z6_1_1"
+				(pin input line
+					(at 10.16 0 180)
+					(length 2.54)
+					(name "FB"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 0 -15.24 90)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at -10.16 2.54 0)
+					(length 2.54)
+					(name "VIN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_out line
+					(at 10.16 2.54 180)
+					(length 2.54)
+					(name "SW"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -10.16 0 0)
+					(length 2.54)
+					(name "EN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin open_collector line
+					(at 10.16 -2.54 180)
+					(length 2.54)
+					(name "PG"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "ti135_card:C"
 			(pin_numbers
 				(hide yes)
@@ -1409,195 +1598,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "ti135_card:AP61x02Z6"
-			(pin_names
-				(offset 1.016)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "U"
-				(at -7.62 6.35 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "AP61203Z6-7"
-				(at -7.62 -16.51 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Footprint" "Package_TO_SOT_SMD:SOT-563"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" "https://www.ti.com/lit/ds/symlink/tlv62585.pdf"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "TI 3 A synchronous buck, 2.5-5.5 V in, 0.6 V FB, power good, SOT-563 (PDRL)"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "AP61x02Z6_0_1"
-				(rectangle
-					(start -7.62 5.08)
-					(end 7.62 -12.7)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-			)
-			(symbol "AP61x02Z6_1_1"
-				(pin power_in line
-					(at 0 -15.24 90)
-					(length 2.54)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_out line
-					(at 10.16 2.54 180)
-					(length 2.54)
-					(name "SW"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at -10.16 2.54 0)
-					(length 2.54)
-					(name "VIN"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -10.16 0 0)
-					(length 2.54)
-					(name "EN"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at 10.16 0 180)
-					(length 2.54)
-					(name "FB"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin open_collector line
-					(at 10.16 -2.54 180)
-					(length 2.54)
-					(name "PG"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "6"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 	)
 	(text "1V1 DDR I/O + LPDDR4 VDD2/VDDQ (group 2)"
 		(exclude_from_sim no)
@@ -1798,240 +1798,13 @@
 		(color 0 0 0 0)
 		(uuid "f5b389a1-13c8-54f9-a90a-45113d543729")
 	)
-	(symbol
-		(lib_id "ti135_card:C")
-		(at 27.94 143.51 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "e0c78685-9cc9-4b44-835b-0dd432f7c144")
-		(property "Reference" "C335"
-			(at 32.68 142.24 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "100n"
-			(at 32.13 144.78 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
-			(at 28.9052 147.32 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 27.94 143.51 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 27.94 143.51 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C190183"
-			(at 27.94 143.51 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "88b3464f-911f-4f96-9439-9455ad2abc02")
-		)
-		(pin "2"
-			(uuid "cf2b31a8-b048-45b5-a05f-ee53df599652")
-		)
-		(instances
-			(project "ti135_card"
-				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
-					(reference "C335")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(no_connect
-		(at 73.66 142.24)
-		(uuid "5d0c1a3e-9b1f-5a57-8c1e-03a1f0e4d002")
-	)
 	(no_connect
 		(at 213.36 142.24)
 		(uuid "5d0c1a3e-9b1f-5a57-8c1e-03a1f0e4d001")
 	)
-	(wire
-		(pts
-			(xy 167.64 137.16) (xy 177.8 137.16)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "724d1ed6-ab5b-4680-a95c-21937f7fbf9d")
-	)
-	(wire
-		(pts
-			(xy 27.94 137.16) (xy 38.1 137.16)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ed7a8f7b-bd84-4d3d-b749-cc2fcb7716d2")
-	)
-	(wire
-		(pts
-			(xy 27.94 137.16) (xy 27.94 139.7)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "acd69abd-73a6-4a82-b0c0-9e73fffb1573")
-	)
-	(wire
-		(pts
-			(xy 27.94 147.32) (xy 27.94 149.86)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c440c57f-fabc-4eb4-bbe9-68d9c9b9572e")
-	)
-	(symbol
-		(lib_id "ti135_card:GND")
-		(at 27.94 149.86 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "bc94b316-7efa-426d-8fae-67db2d4dba4a")
-		(property "Reference" "#PWR3035"
-			(at 27.94 156.21 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 27.94 153.67 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 27.94 149.86 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 27.94 149.86 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol for net \"GND\" (IPC net name)"
-			(at 27.94 149.86 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "bcdde51f-40d6-4f32-8c62-26e075129fd4")
-		)
-		(instances
-			(project "ti135_card"
-				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
-					(reference "#PWR3035")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(wire
-		(pts
-			(xy 167.64 58.42) (xy 177.8 58.42)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "280b41d9-bbcc-4bab-b0dc-6c24c6a66da5")
-	)
-	(wire
-		(pts
-			(xy 27.94 58.42) (xy 38.1 58.42)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6cd3a9a5-a83a-4b5e-a66b-ae0b5140ba8c")
+	(no_connect
+		(at 73.66 142.24)
+		(uuid "5d0c1a3e-9b1f-5a57-8c1e-03a1f0e4d002")
 	)
 	(wire
 		(pts
@@ -2185,6 +1958,16 @@
 	)
 	(wire
 		(pts
+			(xy 167.64 58.42) (xy 177.8 58.42)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "280b41d9-bbcc-4bab-b0dc-6c24c6a66da5")
+	)
+	(wire
+		(pts
 			(xy 43.18 58.42) (xy 38.1 58.42)
 		)
 		(stroke
@@ -2245,7 +2028,7 @@
 	)
 	(wire
 		(pts
-			(xy 228.6 137.16) (xy 236.22 137.16)
+			(xy 228.6 137.16) (xy 280.67 137.16)
 		)
 		(stroke
 			(width 0)
@@ -2505,6 +2288,16 @@
 	)
 	(wire
 		(pts
+			(xy 27.94 58.42) (xy 38.1 58.42)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6cd3a9a5-a83a-4b5e-a66b-ae0b5140ba8c")
+	)
+	(wire
+		(pts
 			(xy 53.34 139.7) (xy 49.53 139.7)
 		)
 		(stroke
@@ -2522,6 +2315,16 @@
 			(type default)
 		)
 		(uuid "708e8753-c543-51a7-b0e1-39f3db419b5d")
+	)
+	(wire
+		(pts
+			(xy 167.64 137.16) (xy 177.8 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "724d1ed6-ab5b-4680-a95c-21937f7fbf9d")
 	)
 	(wire
 		(pts
@@ -2775,13 +2578,23 @@
 	)
 	(wire
 		(pts
-			(xy 289.56 147.32) (xy 289.56 149.86)
+			(xy 280.67 147.32) (xy 280.67 149.86)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "ac7b365e-6c30-5df7-b396-588bbee844ac")
+	)
+	(wire
+		(pts
+			(xy 27.94 137.16) (xy 27.94 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "acd69abd-73a6-4a82-b0c0-9e73fffb1573")
 	)
 	(wire
 		(pts
@@ -2805,7 +2618,7 @@
 	)
 	(wire
 		(pts
-			(xy 289.56 137.16) (xy 289.56 139.7)
+			(xy 280.67 137.16) (xy 280.67 139.7)
 		)
 		(stroke
 			(width 0)
@@ -2842,16 +2655,6 @@
 			(type default)
 		)
 		(uuid "b3f515ea-156b-5746-ab24-f645489e9024")
-	)
-	(wire
-		(pts
-			(xy 236.22 137.16) (xy 243.84 137.16)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b923b7bf-a09b-5569-b623-806442788b71")
 	)
 	(wire
 		(pts
@@ -2932,6 +2735,16 @@
 			(type default)
 		)
 		(uuid "c3ffe447-53a4-58b1-a81b-7e5ba629695c")
+	)
+	(wire
+		(pts
+			(xy 27.94 147.32) (xy 27.94 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c440c57f-fabc-4eb4-bbe9-68d9c9b9572e")
 	)
 	(wire
 		(pts
@@ -3105,16 +2918,6 @@
 	)
 	(wire
 		(pts
-			(xy 243.84 137.16) (xy 289.56 137.16)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e3f5fbff-cf4e-5a37-9026-acbdecf0c822")
-	)
-	(wire
-		(pts
 			(xy 228.6 58.42) (xy 236.22 58.42)
 		)
 		(stroke
@@ -3142,6 +2945,16 @@
 			(type default)
 		)
 		(uuid "ec9ae30c-bb57-5ec5-82c2-f73bf0c5273d")
+	)
+	(wire
+		(pts
+			(xy 27.94 137.16) (xy 38.1 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ed7a8f7b-bd84-4d3d-b749-cc2fcb7716d2")
 	)
 	(wire
 		(pts
@@ -3824,7 +3637,7 @@
 	)
 	(symbol
 		(lib_id "ti135_card:GND")
-		(at 289.56 149.86 0)
+		(at 280.67 149.86 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -3834,7 +3647,7 @@
 		(dnp no)
 		(uuid "24d6b662-f517-5964-b718-287aefe63fc9")
 		(property "Reference" "#PWR03033"
-			(at 289.56 156.21 0)
+			(at 280.67 156.21 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3845,7 +3658,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 289.56 153.67 0)
+			(at 280.67 153.67 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3855,7 +3668,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 289.56 149.86 0)
+			(at 280.67 149.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3866,7 +3679,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 289.56 149.86 0)
+			(at 280.67 149.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3877,7 +3690,7 @@
 			)
 		)
 		(property "Description" "Power symbol for net \"GND\" (IPC net name)"
-			(at 289.56 149.86 0)
+			(at 280.67 149.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6313,7 +6126,7 @@
 	)
 	(symbol
 		(lib_id "ti135_card:C")
-		(at 289.56 143.51 0)
+		(at 280.67 143.51 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6323,7 +6136,7 @@
 		(dnp no)
 		(uuid "81aa142c-9935-5381-bdba-62f28b5b45d1")
 		(property "Reference" "C344"
-			(at 294.3 142.24 0)
+			(at 285.41 142.24 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6333,7 +6146,7 @@
 			)
 		)
 		(property "Value" "47u"
-			(at 293.75 144.78 0)
+			(at 284.86 144.78 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6343,7 +6156,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
-			(at 290.5252 147.32 0)
+			(at 281.6352 147.32 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6354,7 +6167,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 289.56 143.51 0)
+			(at 280.67 143.51 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6365,7 +6178,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 289.56 143.51 0)
+			(at 280.67 143.51 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6376,7 +6189,7 @@
 			)
 		)
 		(property "LCSC" "C16780"
-			(at 289.56 143.51 0)
+			(at 280.67 143.51 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7996,6 +7809,83 @@
 		)
 	)
 	(symbol
+		(lib_id "ti135_card:GND")
+		(at 27.94 149.86 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "bc94b316-7efa-426d-8fae-67db2d4dba4a")
+		(property "Reference" "#PWR3035"
+			(at 27.94 156.21 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 27.94 153.67 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 27.94 149.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 27.94 149.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol for net \"GND\" (IPC net name)"
+			(at 27.94 149.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "bcdde51f-40d6-4f32-8c62-26e075129fd4")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
+					(reference "#PWR3035")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "ti135_card:C")
 		(at 139.7 143.51 0)
 		(unit 1)
@@ -8618,6 +8508,96 @@
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
 					(reference "R302")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ti135_card:C")
+		(at 27.94 143.51 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "e0c78685-9cc9-4b44-835b-0dd432f7c144")
+		(property "Reference" "C335"
+			(at 32.68 142.24 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100n"
+			(at 32.13 144.78 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+			(at 28.9052 147.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 27.94 143.51 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 27.94 143.51 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 27.94 143.51 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "88b3464f-911f-4f96-9439-9455ad2abc02")
+		)
+		(pin "2"
+			(uuid "cf2b31a8-b048-45b5-a05f-ee53df599652")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/afe31350-0a3f-46a7-ba21-73576eb9e8e2"
+					(reference "C335")
 					(unit 1)
 				)
 			)
