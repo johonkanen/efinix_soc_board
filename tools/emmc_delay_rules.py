@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """eMMC delay matching as DRC length rules, for meandering by hand in pcbnew (user request 2026-11-13):
-    python3 tools/emmc_delay_rules.py [--tol PS]      (kicad-cli on PATH: source tools/p2k/bin/kicad_env.sh)
+    python3 tools/emmc_delay_rules.py [--tol PS] [--target PS]      (kicad-cli on PATH: source tools/p2k/bin/kicad_env.sh)
 
 The eMMC signals were routed without matching: CLK, CMD, DAT0-7 and DS differ by up to about 190 ps, FPGA ball to
 eMMC ball. Each signal is two nets, split by its series resistor: /emmc_x (U501 -> R) and /10 emmc/emmc_x_r (R -> U1001).
@@ -65,8 +65,11 @@ fp = {x: d[f"/emmc_{x}"] for x in SIGS}
 em = {x: d[f"/10 emmc/emmc_{x}_r"] for x in SIGS}
 tot = {x: fp[x] + em[x] for x in SIGS}
 ref = max(tot, key=tot.get); T = tot[ref]
+why = f"the longest signal, {ref}"
+if "--target" in sys.argv:  # e.g. the middle of the already tuned signals, so none of them needs touching
+    T = float(sys.argv[sys.argv.index("--target") + 1]); why = "given with --target"
 rules = ""
-print(f"target {T:.1f} ps (the longest signal, {ref}); tolerance +-{tol:g} ps")
+print(f"target {T:.1f} ps ({why}); tolerance +-{tol:g} ps")
 print("signal   FPGA side   eMMC side    total   to add   rule on the eMMC-side net (min / opt / max ps)")
 for x in SIGS:
     opt = T - fp[x]
@@ -76,6 +79,6 @@ for x in SIGS:
 s = open(DRU).read()
 if BEGIN in s:
     s = s[:s.index(BEGIN)].rstrip("\n") + "\n" + s[s.index(END) + len(END):].lstrip("\n")
-head = (f"# eMMC: every signal (FPGA ball -> series resistor -> eMMC ball) to {T:.1f} ps +-{tol:g}, the delay of {ref}, by\n"
+head = (f"# eMMC: every signal (FPGA ball -> series resistor -> eMMC ball) to {T:.1f} ps +-{tol:g} ({why}), by\n"
         "# meandering the eMMC-side net. opt = target - delay of the FPGA-side net as routed when this was generated.\n")
 open(DRU, "w").write(s.rstrip("\n") + "\n\n" + BEGIN + "\n" + head + rules + END + "\n")
