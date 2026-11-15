@@ -1,6 +1,6 @@
 # Status and handoff
 
-Last updated: **2026-11-12** (power cells rebuilt, decoupling reworked; see "Where we left off (2026-11-12)" below). Read this first if you are picking the work up (human or agent).
+Last updated: **2026-11-15** (eMMC delay-matched, flash resistors at the FPGA, 3V3 pours on In4; see the end of open item 1 under "Where we left off (2026-11-12)"). Read this first if you are picking the work up (human or agent).
 
 ## What this repository is
 
@@ -196,6 +196,29 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
    Checks re-run on the final board 2026-11-13: DRC with parity on the card and on a refilled copy (11
    courtyard overlaps + the 10 eMMC length items, 0 unconnected, 0 parity), ERC (the known ADC warning),
    LPDDR4 timing unchanged (DQ - DQS 9.0-14.7 ps, CA - CK -2.5...-0.1 ps).
+   **Since then (2026-11-14 / 15), which replaces the eMMC numbers above:**
+   - **eMMC is delay-matched (user, by hand).** The user re-routed the eMMC nets short and direct (DS's
+     FPGA-side run 32.6 -> 2.5 mm), so the target fell from 522.3 to **348.6 ps +-10**, and then meandered the
+     eMMC-side nets. All 11 signals (CLK, CMD, DAT0-7, DS) measure 348.5-348.6 ps, FPGA ball -> resistor ->
+     eMMC ball. No `length_out_of_range` items are left; the rules stay in `kicad/ti135_card.kicad_dru`.
+     Rerun `tools/emmc_delay_rules.py` only after re-routing an eMMC net (it rewrites the targets).
+   - **Flash series resistors and pull-ups moved from the flash to the FPGA** (a34b793; brief in
+     `FLASH_REROUTE_BRIEF.md`, done by an agent through the KiCad MCP server, client `tools/kicad_mcp.py`).
+     R623-R627, R616, R617 sit at x 170-178 beside U501, R619 at U601; flash-side runs mostly on In2. Not
+     ideal: the io1 / io2 series resistors are about 5.5 mm of track from their balls, and R617 has no 1V8
+     via of its own (3.7 mm branch from C5028).
+   - **3V3 feeds are pours on In4** (`tools/v33_in4_pours.py`, 2a9b63f): three 3V3 regions cut into the 1V8
+     plane and stitched to In3's 3V3 by vias: translators U1204 / U1202 (x 145.6-150.5, y 59-75.2), ball M21
+     (x 153.05-157, y 78.9-81.9), and a 2.25 mm finger from y 109.6 north to balls G7 / J7 just east of the
+     0V85 neck (x 164.25-166.5). 3V3 track on F / In2 / In5 / B went from 122 to 25 mm. 1V8 and 0V85 are
+     still one piece each.
+   - `AGENTIC_PCB_ROUTING.md`: the user's notes on routing with agents.
+   - Checks on the board of 2026-11-15: DRC with parity on the card and on a refilled copy shows only the
+     11 accepted courtyard overlaps, 0 unconnected, 0 parity; ERC the known ADC warning; LPDDR4 timing
+     unchanged.
+   - **Left before ordering:** JLCPCB's via-hole-to-track 0.2 mm question (above), the placement preview
+     (SOT-563 and oscillator orientation), order options, FPGA sourcing, and the final order files with
+     `--skip U1303`.
 2. **Checked 2026-11-13:** the 2520 inductor's land pattern (KiCad's generic L_1008_2520Metric) against the
    FTC252012S data sheet (cjiang FTC series, "Recommend Land Pattern": A 2.60 overall, B 0.70 gap, C 2.10
    wide, i.e. pads 0.95 x 2.10 at +-0.825). The board has pads 1.25 x 2.20 at +-1.075: overall 3.40, gap 0.90.
