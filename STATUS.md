@@ -284,8 +284,8 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
        C561 (1V8) is at (171.25, 76.1).
      - Restored from the last commit because the rip-up had taken them along: the vias in balls AB1 (GND), V7
        (0V85) and R7 (VCORE, at 166.0, 78.2), and **VCORE to U401 pin 5 (SENSE)** on F.Cu.
-     - DRC: 25 courtyard overlaps, 0 unconnected, 0 parity, and the user's dangling In2 pg_group1 track at
-       (157.25, 102.35). ERC: only the known ADC warning. LPDDR4 timing and the eMMC match are unchanged.
+     - DRC: 25 courtyard overlaps, 0 unconnected, 0 parity. (The In2 pg_group1 trunk overshot the via that
+       moved with C402 to (158.311, 102.359) by 1.06 mm; trimmed to the via.) ERC: only the known ADC warning. LPDDR4 timing and the eMMC match are unchanged.
    - **Left before ordering:** JLCPCB's via-hole-to-track 0.2 mm question (above), the placement preview
      (SOT-563 and oscillator orientation), order options, FPGA sourcing, and the final order files with
      `--skip U1303`.
