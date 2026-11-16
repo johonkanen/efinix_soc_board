@@ -300,6 +300,9 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
      **RGMII RX done** (the user's routing; closed by a via on rgmii_rxd2 at (179.3, 71.05) where its In2 and
      In5 halves meet, and a leftover B.Cu stub of rgmii_rxd0 removed). 26.9-38.8 mm per signal, not matched.
      Do not run the router on a net that is already mostly routed: it replaced the whole rxd2 route.
+     **Flash I/O done** (`tools/flash_io.py`, then the router for io0): the user's column of 33R on F.Cu at
+     x 183.7 (via in pad 1, In2 to the FPGA, F.Cu to the flash), pull-ups R616-R618 on B.Cu under them with one
+     shared 1V8 via at (184.85, 77.95); R625 (io0) at (186.0, 77.4). 23.0-29.6 mm per signal.
    - **Left before ordering:** JLCPCB's via-hole-to-track 0.2 mm question (above), the placement preview
      (SOT-563 and oscillator orientation), order options, FPGA sourcing, and the final order files with
      `--skip U1303`.
