@@ -307,6 +307,13 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
      1V8 via; R1014 (dat3) and R1018 (dat7) on B.Cu from a new via on the F.Cu route; the old B.Cu taps are gone;
      R1023 (reset) reconnected. **The eMMC match is open again:** rules regenerated, target 351.2 ps (dat2);
      to add on the eMMC-side nets: dat3 93 ps, dat5 44.5 ps, cmd 16 ps, dat0 13 ps; the rest is within +-10.
+     **Rail decoupling placed** (`tools/decap_place.py`, two passes; rule from the user: under the BGA where it
+     fits, else at the switcher output): 13 under U501 on free rail / GND ball-via pairs (all ten VCORE parts,
+     C539, C541, C5045), 23 at the regulator outputs with a via in each pad (13 on 1V8, all nine 3V3, C542),
+     C701 at Y701 and C951 at U902. 3V3 has no capacitor at balls M21 / G7 / J7 and 1V8 almost none under
+     the BGA. Open connections 136 -> 52. Still open on power: C538 (1V1, sits where there is no 1V1 plane),
+     C5002 VCORE pad, C5028, C5043, C5042, C501, R612, U902 pin 5. Parked: the VCCA_BR and DDR PLL filter
+     parts (FB502, C503, C504, C5064, C507, C5072) and C901, R932, R605, R606, R613, R620, R621, D601, D602.
    - **Left before ordering:** JLCPCB's via-hole-to-track 0.2 mm question (above), the placement preview
      (SOT-563 and oscillator orientation), order options, FPGA sourcing, and the final order files with
      `--skip U1303`.
