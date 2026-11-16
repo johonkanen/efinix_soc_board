@@ -216,6 +216,34 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
    - Checks on the board of 2026-11-15: DRC with parity on the card and on a refilled copy shows only the
      11 accepted courtyard overlaps, 0 unconnected, 0 parity; ERC the known ADC warning; LPDDR4 timing
      unchanged.
+   - **Decoupling fixes from a fresh power-integrity review (2026-11-15;** `reports/order_check/PI_fresh_review.md`,
+     local; recipe `tools/pi_fixes_sch.py`, `tools/add_parts.py`, `tools/pi_fixes.py`). The review found no
+     must-fix and DC drop under 7 mV on every rail. Changed:
+     - S1 / S2 and the PLL filters (user: filter capacitors at the pin, as on the Agilex card, which has a 1 u
+       0201 on the ball and a 4.7 u beside it): the 0402 filter capacitors that sat at the ferrites, 9-24 mm
+       from their balls, are now 0201 on B.Cu at the balls. C502 / C504 / C506 changed 100 n -> 4u7.
+       | Rail (ball) | on the ball via (45 degrees, GND on a GND ball via) | second capacitor |
+       |---|---|---|
+       | VCCA_TR (J16) | C505 1u | C506 4u7, 0.6 mm from the via |
+       | VCCA_BR (G8) | C503 1u, 0.3 mm of track from the via | C504 4u7 on the track, 0.6 mm |
+       | VCCA_BL (R8) | C501 1u | C502 4u7 and C5060 100n on the feed at the BGA's north edge, 5.5-6 mm |
+       | VDDPLL_MCB_TOP_PHY_DDR (W11) | C507 1u | C5072 10n, 1 mm north; C508 (100n 0402) stays at FB504 |
+       The vcca_bl feed beside W11 is necked to 0.1 mm over 1.3 mm. The ferrites did not move (FB502 is 2.3 mm
+       from G8; FB501 / FB503 / FB504 are 10-25 mm away, the Agilex card has them at 3-6 mm).
+     - S3: C1203 (U1202's 1V8 capacitor, was at the LPDDR4) at U1202 pin 1, (147.4, 62.4) F.Cu.
+     - S4: C1310 on F.Cu under U1304 at (135.52, 95.9), 0.75 mm from the via of pin 4. C1311 / C1312 not moved.
+     - S5: C5046 tied to C558's 1V8 via (1.3 mm, was 11.8 mm); GND vias in the pads of C1308 / C1309.
+       **Not done:** C5056, C5041 and C561 have no free via position within reach and B.Cu around them is
+       full; they stay on their long tracks (C5041 does nothing where it is).
+     - S6: new C5074 (4u7) and C5075 (1u) on B.Cu on the In4 3V3 finger at (166.22, 96.8 / 97.6), 3V3 via in
+       pad 1, GND via in pad 2. They sit 12 mm south of G7 / J7: further north, inner-layer tracks leave no
+       room for a via.
+     - S7: C941 (100 n) on B.Cu on the via of U901 pin 29 (a via in its old pad is blocked by phy_rx_ctl on
+       In5); C940 (1 u) stays.
+     - S8: C701 beside Y701 pin 4 at (182.85, 75.9), GND via in its pad.
+     The 45-degree capacitors add 11 courtyard overlaps under U501: **22 accepted courtyard overlaps now**
+     (pads and bodies clear; only the courtyards touch). DRC with parity: those
+     22, 0 unconnected, 0 parity; ERC unchanged; LPDDR4 timing unchanged.
    - **Left before ordering:** JLCPCB's via-hole-to-track 0.2 mm question (above), the placement preview
      (SOT-563 and oscillator orientation), order options, FPGA sourcing, and the final order files with
      `--skip U1303`.
