@@ -293,6 +293,10 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
      series resistors were put back from d37b641 (`tools/restore_nets.py`), but the FPGA-side eMMC nets have
      been edited since: totals now run 334.7-368.2 ps, so rerun `tools/emmc_delay_rules.py` and re-tune when
      the area is done. `tools/drop_orphans.py` removes routes that reach no pin and dangling vias.
+     Re-routing, one group at a time: **RGMII TX done** (`tools/rgmii_tx.py`, then the router; header of the
+     script). R901-R906, all 0201 now, stand north-south on B.Cu in two rows at (175.6-178.0, 71.57) and
+     (176.0 / 176.8, 73.12), a via in each pad; the In5 PHY bus fans out to them in its own order; the FPGA
+     side runs from the ball escapes as one bundle. 28.9-35.0 mm per signal, not length-matched.
    - **Left before ordering:** JLCPCB's via-hole-to-track 0.2 mm question (above), the placement preview
      (SOT-563 and oscillator orientation), order options, FPGA sourcing, and the final order files with
      `--skip U1303`.
