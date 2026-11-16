@@ -286,6 +286,13 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
        (0V85) and R7 (VCORE, at 166.0, 78.2), and **VCORE to U401 pin 5 (SENSE)** on F.Cu.
      - DRC: 25 courtyard overlaps, 0 unconnected, 0 parity. (The In2 pg_group1 trunk overshot the via that
        moved with C402 to (158.311, 102.359) by 1.06 mm; trimmed to the via.) ERC: only the known ADC warning. LPDDR4 timing and the eMMC match are unchanged.
+   - **Work in progress since the evening of 2026-11-16: the user is re-routing the crowded area east of U501
+     by hand.** Many parts there are parked right of the board (eMMC pull-ups R1010-R1018, decoupling, RGMII
+     TX resistors, VCCA_BR filter, straps) and the board has about 126 open connections; it is **not
+     order-ready** and the checks above describe the state before this rework. The eMMC routes and their 12
+     series resistors were put back from d37b641 (`tools/restore_nets.py`), but the FPGA-side eMMC nets have
+     been edited since: totals now run 334.7-368.2 ps, so rerun `tools/emmc_delay_rules.py` and re-tune when
+     the area is done. `tools/drop_orphans.py` removes routes that reach no pin and dangling vias.
    - **Left before ordering:** JLCPCB's via-hole-to-track 0.2 mm question (above), the placement preview
      (SOT-563 and oscillator orientation), order options, FPGA sourcing, and the final order files with
      `--skip U1303`.

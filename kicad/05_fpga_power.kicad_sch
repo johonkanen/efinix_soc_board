@@ -10808,12 +10808,6 @@
 		(uuid "1eed8c1f-8202-5597-ac9c-4352ce0ad99b")
 	)
 	(junction
-		(at 508 255.27)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "1faa40d4-c4f6-5242-bc7c-79ca7405669f")
-	)
-	(junction
 		(at 127 214.63)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -10866,12 +10860,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "2b825655-e7a5-51b4-b775-3eafba3c69cb")
-	)
-	(junction
-		(at 300.99 177.8)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "2bf09f6c-1068-56b7-8184-3ea3d9681d45")
 	)
 	(junction
 		(at 55.88 201.93)
@@ -11052,12 +11040,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "481ce1cf-0b98-51f7-9d05-d8045d96ea0a")
-	)
-	(junction
-		(at 300.99 116.84)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "494674a1-2993-5f44-9f2a-30db7ad739eb")
 	)
 	(junction
 		(at 290.83 116.84)
@@ -11768,12 +11750,6 @@
 		(uuid "cff5d802-d1ed-588b-84c8-f20a6ae03fb0")
 	)
 	(junction
-		(at 508 267.97)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "d1ff708f-825f-5421-ba27-d678e20913e3")
-	)
-	(junction
 		(at 171.45 287.02)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -11900,12 +11876,6 @@
 		(uuid "ea01c7b7-9382-50e9-895e-f36532a722b8")
 	)
 	(junction
-		(at 508 110.49)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "ea02b0b0-6e17-5c64-af8f-450a97dcae76")
-	)
-	(junction
 		(at 269.24 278.13)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -11970,12 +11940,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "ee50e3ab-ca64-5904-b107-7bcec9efb1a5")
-	)
-	(junction
-		(at 508 123.19)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "ee60b8a4-c689-50e9-9ae5-ac5b558604b9")
 	)
 	(junction
 		(at 278.13 344.17)
@@ -12466,16 +12430,6 @@
 			(type default)
 		)
 		(uuid "134178d1-14d5-537d-96e7-e8611ef29af4")
-	)
-	(wire
-		(pts
-			(xy 508 265.43) (xy 508 267.97)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "134aad00-2fdd-530e-8a1a-4ac24dcff4f8")
 	)
 	(wire
 		(pts
@@ -13759,7 +13713,7 @@
 	)
 	(wire
 		(pts
-			(xy 290.83 116.84) (xy 300.99 116.84)
+			(xy 290.83 116.84) (xy 308.61 116.84)
 		)
 		(stroke
 			(width 0)
@@ -14289,16 +14243,6 @@
 	)
 	(wire
 		(pts
-			(xy 508 255.27) (xy 508 252.73)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "61260817-0be2-591c-b470-729522fe248f")
-	)
-	(wire
-		(pts
 			(xy 171.45 276.86) (xy 171.45 274.32)
 		)
 		(stroke
@@ -14676,16 +14620,6 @@
 			(type default)
 		)
 		(uuid "705260d7-6b35-5151-9414-286a8b375427")
-	)
-	(wire
-		(pts
-			(xy 300.99 116.84) (xy 308.61 116.84)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "70748669-388f-57fe-b436-0d3dbcb184bd")
 	)
 	(wire
 		(pts
@@ -15199,7 +15133,7 @@
 	)
 	(wire
 		(pts
-			(xy 508 257.81) (xy 508 255.27)
+			(xy 508 252.73) (xy 508 257.81)
 		)
 		(stroke
 			(width 0)
@@ -15389,7 +15323,7 @@
 	)
 	(wire
 		(pts
-			(xy 508 267.97) (xy 508 270.51)
+			(xy 508 265.43) (xy 508 270.51)
 		)
 		(stroke
 			(width 0)
@@ -17359,16 +17293,6 @@
 	)
 	(wire
 		(pts
-			(xy 300.99 177.8) (xy 308.61 177.8)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f334ba91-dabc-522e-bce6-2e3833b0dc60")
-	)
-	(wire
-		(pts
 			(xy 109.22 243.84) (xy 109.22 241.3)
 		)
 		(stroke
@@ -17639,7 +17563,7 @@
 	)
 	(wire
 		(pts
-			(xy 290.83 177.8) (xy 300.99 177.8)
+			(xy 290.83 177.8) (xy 308.61 177.8)
 		)
 		(stroke
 			(width 0)
@@ -37465,6 +37389,7 @@
 	(symbol
 		(lib_id "ti135_card:C")
 		(at 38.1 280.67 0)
+		(mirror y)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -37474,7 +37399,7 @@
 		(dnp no)
 		(uuid "e9ae67c3-cc07-5c68-bf46-2b72c5e06b30")
 		(property "Reference" "C5019"
-			(at 43.39 279.4 0)
+			(at 32.81 279.4 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -37484,7 +37409,7 @@
 			)
 		)
 		(property "Value" "47u"
-			(at 42.29 281.94 0)
+			(at 33.91 281.94 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -37494,7 +37419,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
-			(at 39.0652 284.48 0)
+			(at 37.1348 284.48 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
