@@ -303,6 +303,10 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
      **Flash I/O done** (`tools/flash_io.py`, then the router for io0): the user's column of 33R on F.Cu at
      x 183.7 (via in pad 1, In2 to the FPGA, F.Cu to the flash), pull-ups R616-R618 on B.Cu under them with one
      shared 1V8 via at (184.85, 77.95); R625 (io0) at (186.0, 77.4). 23.0-29.6 mm per signal.
+     **eMMC pull-ups done** (`tools/emmc_pullups.py`): R1010-R1018 beside their series resistors, each with a
+     1V8 via; R1014 (dat3) and R1018 (dat7) on B.Cu from a new via on the F.Cu route; the old B.Cu taps are gone;
+     R1023 (reset) reconnected. **The eMMC match is open again:** rules regenerated, target 351.2 ps (dat2);
+     to add on the eMMC-side nets: dat3 93 ps, dat5 44.5 ps, cmd 16 ps, dat0 13 ps; the rest is within +-10.
    - **Left before ordering:** JLCPCB's via-hole-to-track 0.2 mm question (above), the placement preview
      (SOT-563 and oscillator orientation), order options, FPGA sourcing, and the final order files with
      `--skip U1303`.
