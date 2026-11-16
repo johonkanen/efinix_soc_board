@@ -297,6 +297,9 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
      script). R901-R906, all 0201 now, stand north-south on B.Cu in two rows at (175.6-178.0, 71.57) and
      (176.0 / 176.8, 73.12), a via in each pad; the In5 PHY bus fans out to them in its own order; the FPGA
      side runs from the ball escapes as one bundle. 28.9-35.0 mm per signal, not length-matched.
+     **RGMII RX done** (the user's routing; closed by a via on rgmii_rxd2 at (179.3, 71.05) where its In2 and
+     In5 halves meet, and a leftover B.Cu stub of rgmii_rxd0 removed). 26.9-38.8 mm per signal, not matched.
+     Do not run the router on a net that is already mostly routed: it replaced the whole rxd2 route.
    - **Left before ordering:** JLCPCB's via-hole-to-track 0.2 mm question (above), the placement preview
      (SOT-563 and oscillator orientation), order options, FPGA sourcing, and the final order files with
      `--skip U1303`.
