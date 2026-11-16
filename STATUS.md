@@ -250,6 +250,42 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
      pull-up R612; that does not fit between 0201 pads, so **R612 moved** to (168.35, 92.87) F.Cu, pad 2 on
      the fpga_test_n track, a 1V8 via in pad 1, and the loop around R603 is gone. DRC unchanged (22 courtyard
      overlaps, 0 unconnected, 0 parity).
+   - **Via and decoupling audit (2026-11-16;** `tools/pi_fixes_sch.py`, `tools/pi_fixes.py BOARD BOARD tidy`):
+     every via has two or more connections (one leftover 3V3_analog via at (142.65, 87.85) and its dead-end
+     feed removed). Capacitors that were far from what they serve:
+     - C564 (100 n 3V3, an U501 bank capacitor 20 mm from any 3V3 ball) is on the via of ball J7, at 45 degrees.
+     - C1302 (680 p, the ADS7056's sampling capacitor, was 6.7 mm from the pin) is on F.Cu at (138.62, 100.2),
+       between the AINP track 0.6 mm from pin 7 and pin 8 (AINM / GND).
+     - C1312 (100 n 3V3_analog) is on B.Cu under U1303 at (139.54, 101.3), across the vias of pin 6 (AVDD) and pin 5.
+     - C5061, C5062, C5063 (VCCA_BL) and C5073 (DDR PLL) are **DNP**: leftovers on 4-7 mm stubs, 6.5-9.3 mm from
+       balls that now have their own capacitors. Their footprints and stubs stay on the board.
+     Still far and left: C5041, C561 (no via position), C5074 / C5075 (12 mm), C508 (at its ferrite).
+     The board also carries the user's own uncommitted edits of that morning (C1311 at U1304, C402, C5002,
+     C5007 moved); one In2 pg_group1 track from them is still dangling at (157.25, 102.35).
+   - **Later on 2026-11-16, on top of the user's own rework** (they deleted C5061-C5063 and ripped out the PLL
+     filters to have them rebuilt at the pins). Recipe steps `tools/pi_fixes.py BOARD BOARD flash phy pll`
+     (after `tools/pi_fixes_sch.py`, `tools/swap_footprint.py`, `tools/add_parts.py`):
+     - **Flash series resistors and pull-ups are in the free area east of U501** (x 179-189), each 33R on its own
+       In2 run with a via in each pad: R623 (182.7, 84.0), R624 (181.7, 88.0), R625 (185.5, 79.1), R626 (179.2,
+       84.3, on the existing via), R627 (183.5, 80.0), R628 (188.7, 84.4). The copper from the old to the new
+       position changed from the `_r` net to the FPGA-side net. Pull-ups R616 / R617 / R618 sit 1.5-2.5 mm from
+       their resistor with a 1V8 via in the pad. Line lengths are unchanged.
+     - **RGMII TX resistors R901, R902, R904, R905, R906 are 0201** (C155743). **R903 stays 0402**: rgmii_txd2
+       passes between its pads to reach R905.
+     - **PLL filters rebuilt at the balls, ferrites 0201 MPZ0603S121HT000 (C695597) as on the Agilex card:**
+       | Rail (ball) | Ferrite | 1 u | 4u7 / other |
+       |---|---|---|---|
+       | VCCA_BL (R8) | FB501 across the via pair VCORE (166.8, 77.4) - R8 | C501 on R8, GND on (166.0, 79.0) | none |
+       | DDR PLL (W11) | FB504 across the via pair 0V85 (164.4, 75.8) - W11 | C507 1 mm north of W11 | C5072 10n beside C507 |
+       | VCCA_TR (J16) | FB503 0.7 mm from J16, VCORE from (161.2, 81.5) | C505 on J16 | C506 at (161.25, 84.15) |
+       | VCCA_BR (G8) | FB502 0.4 mm of track from G8, VCORE from (166.0, 83.0) | C503 0.3 mm from G8 | C504 at (165.65, 83.85) |
+       C502 (4u7, BL), C508 (100n) and C5073 (1n) on the DDR PLL and C5060 (100n, BL) found no room and
+       were **deleted** from sheet 05 and the board (user; `tools/pi_delete_parts.py`, then `pi_fixes.py ... drop`).
+       C561 (1V8) is at (171.25, 76.1).
+     - Restored from the last commit because the rip-up had taken them along: the vias in balls AB1 (GND), V7
+       (0V85) and R7 (VCORE, at 166.0, 78.2), and **VCORE to U401 pin 5 (SENSE)** on F.Cu.
+     - DRC: 25 courtyard overlaps, 0 unconnected, 0 parity, and the user's dangling In2 pg_group1 track at
+       (157.25, 102.35). ERC: only the known ADC warning. LPDDR4 timing and the eMMC match are unchanged.
    - **Left before ordering:** JLCPCB's via-hole-to-track 0.2 mm question (above), the placement preview
      (SOT-563 and oscillator orientation), order options, FPGA sourcing, and the final order files with
      `--skip U1303`.

@@ -54,6 +54,18 @@ for ref in ("C501", "C503", "C505", "C507"):
 for ref in ("C502", "C504", "C506"):
     set_fields(ref, {"Value": "4u7", "Footprint": F0201, "LCSC": "C47117441"})
 print("05_fpga_power: C501 / C503 / C505 / C507 1u 0201, C502 / C504 / C506 4u7 0201")
+# 2026-11-16: the 0201s left over on the old PLL feeds, 6.5-9.3 mm from their balls on long stubs, are not fitted
+for ref in ("C5061", "C5062", "C5063", "C5073"):
+    if f'"Reference" "{ref}"' not in t:      # C5061-C5063 were later deleted from the design by the user
+        continue
+    blk, e = block(ref); a = e - len(blk)
+    new, n = re.subn(r"\(dnp (yes|no)\)", "(dnp yes)", blk, count=1); assert n == 1, ref
+    t = t[:a] + new + t[e:]
+print("05_fpga_power: C5061 / C5062 / C5063 / C5073 DNP")
+# 2026-11-16: the PLL ferrites as on the Agilex card (0201, MPZ0603S121HT000) so that they fit under U501
+for ref in ("FB501", "FB502", "FB503", "FB504"):
+    set_fields(ref, {"Value": "MPZ0603S121HT000", "Footprint": "Inductor_SMD:L_0201_0603Metric", "LCSC": "C695597"})
+print("05_fpga_power: FB501-FB504 MPZ0603S121HT000 0201")
 if '"Reference" "C5074"' in t:
     print("05_fpga_power: C5074 / C5075 already there"); open(p, "w").write(t)
 else:
