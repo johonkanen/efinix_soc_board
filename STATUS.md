@@ -244,6 +244,12 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
      The 45-degree capacitors add 11 courtyard overlaps under U501: **22 accepted courtyard overlaps now**
      (pads and bodies clear; only the courtyards touch). DRC with parity: those
      22, 0 unconnected, 0 parity; ERC unchanged; LPDDR4 timing unchanged.
+   - **R602 / R603 / R604 (REF_RES 10k 1 %) are 0201 like R601 (user, 2026-11-16;** C106225). Recipe: fields in
+     sheet 06, `tools/swap_footprint.py BOARD Resistor_SMD:R_0201_0603Metric R602 R603 R604`, `tools/add_parts.py`,
+     `tools/pi_fixes.py BOARD BOARD r603`. fpga_test_n used to pass between the pads of the 0402 R603 to reach its
+     pull-up R612; that does not fit between 0201 pads, so **R612 moved** to (168.35, 92.87) F.Cu, pad 2 on
+     the fpga_test_n track, a 1V8 via in pad 1, and the loop around R603 is gone. DRC unchanged (22 courtyard
+     overlaps, 0 unconnected, 0 parity).
    - **Left before ordering:** JLCPCB's via-hole-to-track 0.2 mm question (above), the placement preview
      (SOT-563 and oscillator orientation), order options, FPGA sourcing, and the final order files with
      `--skip U1303`.

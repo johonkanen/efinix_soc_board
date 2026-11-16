@@ -333,8 +333,48 @@ def s6():
             raise SystemExit(f"S6: no room for {ref}")
 
 
+def r603():
+    """After R602-R604 became 0201 (user, 2026-11-16; tools/swap_footprint.py): fpga_test_n looped around the end of
+    R603's REF_RES_4A track by passing between the pads of the 0402, to reach its pull-up R612 on the far side. It
+    does not fit between 0201 pads, and there is no room for a GND via to move R603. So R612 moves to the near
+    side instead: pad 2 on the fpga_test_n track at y 92.55, a 1V8 via in pad 1; the loop and R612's old 1V8
+    stub go. R603 stays where it was."""
+    tn = fp("R612").FindPadByNumber("2").GetNetname()
+
+    def drop(netname, pts):
+        for a, c in zip(pts, pts[1:]):
+            hit = [t for t in b.GetTracks() if t.Type() != pcbnew.PCB_VIA_T and t.GetNetname() == netname and
+                   t.GetLayer() == pcbnew.F_Cu and
+                   {(round(TOMM(t.GetStart().x), 2), round(TOMM(t.GetStart().y), 2)), (round(TOMM(t.GetEnd().x), 2), round(TOMM(t.GetEnd().y), 2))}
+                   == {(round(a[0], 2), round(a[1], 2)), (round(c[0], 2), round(c[1], 2))}]
+            assert len(hit) == 1, (netname, a, c, len(hit))
+            b.Delete(hit[0])
+
+    drop(tn, [(169.35, 92.55), (169.55, 92.35), (169.55, 91.7), (169.35, 91.5), (167.65, 91.5)])  # the loop
+    drop("1V8", [(166.2, 91.2), (166.4, 91.2), (166.75, 91.55), (166.77, 91.571)])                # R612's old stub
+    pp = place("R612", 168.35, 92.87, 90)
+    if pp["2"][1] > pp["1"][1]:
+        pp = place("R612", 168.35, 92.87, 270)
+    for t in b.GetTracks():
+        if t.Type() != pcbnew.PCB_VIA_T and t.GetNetname() == tn and t.GetLayer() == pcbnew.F_Cu:
+            for get, put in ((t.GetStart, t.SetStart), (t.GetEnd, t.SetEnd)):
+                if abs(TOMM(get().x) - 169.35) < 0.01 and abs(TOMM(get().y) - 92.55) < 0.01:
+                    put(P(pp["2"][0], 92.55))
+    via(pp["1"][0], pp["1"][1], "1V8")
+    for v in [t for t in b.GetTracks() if t.Type() == pcbnew.PCB_VIA_T and t.GetNetname() == "1V8"
+              and abs(TOMM(t.GetPosition().x) - 166.2) < 0.01 and abs(TOMM(t.GetPosition().y) - 91.2) < 0.01]:
+        pt = v.GetPosition()
+        if not any(o.Type() != pcbnew.PCB_VIA_T and o.GetNetCode() == v.GetNetCode() and
+                   seg_d(pt.x, pt.y, o.GetStart().x, o.GetStart().y, o.GetEnd().x, o.GetEnd().y) <= o.GetWidth() // 2 + MM(0.15)
+                   for o in b.GetTracks()) and \
+           not any(p.GetNetCode() == v.GetNetCode() and p.HitTest(pt) for f in b.GetFootprints() for p in f.Pads()):
+            b.Delete(v); print("   unused 1V8 via at (166.2, 91.2) removed")
+    print("R612 moved so that R603 can be 0201:", pp)
+
+
 STEPS = {"s3": s3, "s8": s8, "s7": s7, "s5": s5, "s4": s4, "s2": s2, "s1": s1, "s9": s9, "s6": s6}
-for name in (sys.argv[3:] or list(STEPS)):
+STEPS["r603"] = r603  # a later change, not part of the default run
+for name in (sys.argv[3:] or [k for k in STEPS if k != "r603"]):
     STEPS[name]()
 # vias of the track-only nets that are left with copper on one layer only
 base = opens()
