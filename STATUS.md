@@ -381,6 +381,11 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
      plane. Order settings: filled and capped vias for the whole board, ENIG, 0.15 mm via option, impedance
      control with JLC08161H-3313, rails on the top and bottom edges only, pin 1 of every polarised part
      checked in the placement preview, U901's 16 thermal holes filled.
+     **No zone copper under the Ethernet jack (2026-11-17, user: the jack is the card's galvanic isolation).**
+     Rule area `j9_no_pour` (x 190.04 to the east edge, y 53.06-70.19, all copper layers; `tools/j9_no_pour.py`).
+     Tracks stay (MDI pairs, LED nets). J9's shield tabs and pin 10 (CHS) are GND in the schematic: each has a
+     0.3 mm B.Cu track to a GND via at x 189.44. Open question for the user: shield straight on card GND, or a
+     separate chassis net / RC to GND.
    - **Left before ordering:** JLCPCB's via-hole-to-track 0.2 mm question (above), the placement preview
      (SOT-563 and oscillator orientation), order options, FPGA sourcing, and the final order files with
      `--skip U1303`.
