@@ -34,13 +34,21 @@ def erc():
 
 
 # ERC names a point of a wire with a loose end, not the wire: try each wire at that point, one at a time, and keep
-# the deletion only if no other ERC item (an unconnected pin, a dangling label) appears
+# the deletion only if it has an end no other wire shares and no other ERC item (an unconnected pin, a
+# dangling label) appears. (Without the first test a rail segment between a part and its net label can go.)
 n = 0; loose, base = erc(); refused = set()
 while loose:
     t = open(SCH).read(); done = False
+    cnt = {}
+    for m in WIRE.finditer(t):
+        x1, y1, x2, y2 = (round(float(g), 2) for g in m.groups())
+        for q in ((x1, y1), (x2, y2)):
+            cnt[q] = cnt.get(q, 0) + 1
     for m in WIRE.finditer(t):
         x1, y1, x2, y2 = (round(float(g), 2) for g in m.groups())
         if (x1, y1, x2, y2) in refused or not ((x1, y1) in loose or (x2, y2) in loose):
+            continue
+        if cnt[(x1, y1)] > 1 and cnt[(x2, y2)] > 1:       # both ends shared with other wires: part of a rail, not a stub
             continue
         open(SCH, "w").write(t[:m.start()] + t[m.end():])
         l2, other = erc()

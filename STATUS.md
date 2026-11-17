@@ -314,6 +314,18 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
      the BGA. Open connections 136 -> 52. Still open on power: C538 (1V1, sits where there is no 1V1 plane),
      C5002 VCORE pad, C5028, C5043, C5042, C501, R612, U902 pin 5. Parked: the VCCA_BR and DDR PLL filter
      parts (FB502, C503, C504, C5064, C507, C5072) and C901, R932, R605, R606, R613, R620, R621, D601, D602.
+     **PLL filters and courtyards (2026-11-16 / 17).** The user accepts no courtyard overlap any more; the
+     board has none (`ORDER_CHECKLIST.md` updated).
+     - PLL filters (`tools/pll_place.py`, then the router for VCCA_BL): with clean courtyards a PLL ball takes one
+       part. 1 u on the ball: C501 (R8), C507 (W11); C503 0.5 mm from G8; C505 at J16 (user). Ferrites: FB501
+       at (168.15, 78.35) with 1.8 mm of B.Cu to R8; FB504 at (163.2, 76.5) with 2.95 mm of B.Cu between the ball
+       vias to W11; FB502 0.9 mm from G8; FB503 on the via pair at J16 (user). C504, C5064, C5072 deleted
+       (user). To make room C518, C5018, C519 (VCORE) and C537 (0V85) went to their regulator outputs.
+     - Courtyard fixes (`tools/courtyard_fixes.py`): R1009 (dat6) onto its In5 run on B.Cu at (175.96, 89.74);
+       R1022 (ds) flipped to B.Cu in place with a via in pad 1; C5055 to the 1V1 regulator; C1005 and C105
+       shifted 0.48 / 0.47 mm with their vias.
+     - eMMC rules regenerated: DS is now the longest, target 367.5 ps; every other signal needs 16-109 ps more
+       on its eMMC-side net (the user meanders).
    - **Left before ordering:** JLCPCB's via-hole-to-track 0.2 mm question (above), the placement preview
      (SOT-563 and oscillator orientation), order options, FPGA sourcing, and the final order files with
      `--skip U1303`.

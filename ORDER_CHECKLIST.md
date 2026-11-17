@@ -39,10 +39,7 @@ In6 GND; In3 VCORE / 1V1 / 3V3 regions; In4 1V8 / 0V85; signals on F, In2, In5, 
 
 ## Accepted, do not report
 
-- 25 `courtyards_overlap` items (11 until 2026-11-15, the rest from the PLL filter parts placed at 45 degrees
-  or on via pairs at balls W11, R8, J16 and G8). Most are under U501 (0201 capacitors and resistors packed at 0.2 mm
-  pad to pad). Six are elsewhere, in three places, and still to be judged: U101 / C105, C1004 / C1005, R1009 / R1022 / R1023 at
-  U501's edge (reports/order_check/inline_checks.md, finding 3). Any other overlap **is** a finding.
+- (No courtyard overlap is accepted since 2026-11-17: any `courtyards_overlap` item is a finding.)
 - No reference silkscreen; ignore silk DRC.
 - R801 (DDR_CAL 240 Ω) is 0.5 %, the Efinix checklist asks 0.1 %.
 - Rail monitors removed for now: R1301–R1305 are DNP, so U1301 inputs X1, X2, X3, X5 float.
@@ -54,8 +51,7 @@ In6 GND; In3 VCORE / 1V1 / 3V3 regions; In4 1V8 / 0V85; signals on F, In2, In5, 
 ## A. Rule checks
 
 - **A1 DRC.** `kicad-cli pcb drc --format json --severity-all --schematic-parity -o OUT.json
-  kicad/ti135_card.kicad_pcb`. Pass: 0 unconnected, 0 parity items, and no violation other than the 25 accepted
-  courtyard overlaps. Refill the zones on a scratch copy first and confirm the result is the same (a stale fill
+  kicad/ti135_card.kicad_pcb`. Pass: 0 unconnected, 0 parity items, and no violation at all. Refill the zones on a scratch copy first and confirm the result is the same (a stale fill
   hides shorts and opens).
 - **A2 ERC.** `kicad-cli sch erc --format json --severity-all -o OUT.json kicad/ti135_card.kicad_sch`. Pass: only
   the one known `pin_to_pin` warning on the ADC sheet. Explain what that warning is and whether it is harmless.
