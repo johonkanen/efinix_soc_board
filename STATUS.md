@@ -346,6 +346,16 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
        before putting a via in a pad.**
      - `tools/trim_dangling.py` (rounds with a fresh DRC): dangling ends cut back one at a time. The three
        reference clocks still carried their whole old inner-layer routes as 12-19 mm stubs; gone.
+     **Planes checked after the moves (2026-11-17, `tools/plane_fixes.py`).** eMMC meandered by the user: all 11
+     signals 366.3-367.5 ps. DRC with parity is completely clean (0 violations, 0 unconnected, 0 parity).
+     - All inner planes are one piece; the corridors are as wide as before or wider (0V85 neck 0.95 mm, 3V3
+       finger 1.15 mm at the narrowest); the board has 63 fewer vias than before the rework.
+     - Regulator outputs: moving C204 / C202 (VCORE) and C5020 (1V8) had turned two output vias of each row
+       into GND vias (they touch the capacitors' GND pads). VCORE (170.63, 96.18) is back on VCORE, and new
+       0.45 / 0.25 vias sit beside the inductors: VCORE at (168.39, 97.38), 1V8 at (178.8, 96.39) and
+       (178.8, 97.89). Plane vias: VCORE 5, 1V8 6. The B.Cu output pours stay in two pieces each.
+     - In3: the 1V1 arm east of U501 (x 172.85-178.72, y 70.69-81.6) had no user left and is GND again.
+     - 3V3 still has no capacitor within 2 mm of balls M21 / G7 / J7.
    - **Left before ordering:** JLCPCB's via-hole-to-track 0.2 mm question (above), the placement preview
      (SOT-563 and oscillator orientation), order options, FPGA sourcing, and the final order files with
      `--skip U1303`.
