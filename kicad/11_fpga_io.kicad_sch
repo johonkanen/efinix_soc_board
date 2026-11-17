@@ -10196,8 +10196,8 @@
 		)
 		(uuid "ff4c1058-46df-5845-8b8f-dda6a9ef0263")
 	)
-	(hierarchical_label "t_din"
-		(shape output)
+	(hierarchical_label "uart_rx"
+		(shape input)
 		(at 281.94 180.34 180)
 		(effects
 			(font
@@ -10240,7 +10240,7 @@
 		)
 		(uuid "09587511-8cfc-5560-a72c-f2e99a1c55e3")
 	)
-	(hierarchical_label "lcd_mosi"
+	(hierarchical_label "uart_tx"
 		(shape output)
 		(at 353.06 203.2 0)
 		(effects
@@ -10273,8 +10273,8 @@
 		)
 		(uuid "14cd048f-06bf-5c66-ad76-d0ec74be690e")
 	)
-	(hierarchical_label "t_do"
-		(shape input)
+	(hierarchical_label "t_din"
+		(shape output)
 		(at 353.06 187.96 0)
 		(effects
 			(font
@@ -10317,7 +10317,7 @@
 		)
 		(uuid "1b4e5ee9-1bba-5af9-996f-a478fd8afa47")
 	)
-	(hierarchical_label "lcd_sck"
+	(hierarchical_label "led0_n"
 		(shape output)
 		(at 353.06 200.66 0)
 		(effects
@@ -10339,7 +10339,7 @@
 		)
 		(uuid "202e1cdd-e1d9-5d6e-bf5f-4d9ba6a7933a")
 	)
-	(hierarchical_label "t_clk"
+	(hierarchical_label "lcd_sck"
 		(shape output)
 		(at 281.94 177.8 180)
 		(effects
@@ -10361,8 +10361,8 @@
 		)
 		(uuid "27d04e91-86c6-5eaa-9e1d-8305de0bc1ab")
 	)
-	(hierarchical_label "uart_rx"
-		(shape input)
+	(hierarchical_label "t_clk"
+		(shape output)
 		(at 281.94 187.96 180)
 		(effects
 			(font
@@ -10383,7 +10383,7 @@
 		)
 		(uuid "2a752bbd-1bec-5501-ae2c-c62d172cf794")
 	)
-	(hierarchical_label "led1_n"
+	(hierarchical_label "lcd_dc"
 		(shape output)
 		(at 281.94 190.5 180)
 		(effects
@@ -10394,7 +10394,7 @@
 		)
 		(uuid "2aa54f8d-cce3-5cef-b43b-b14a76702c46")
 	)
-	(hierarchical_label "t_irq"
+	(hierarchical_label "t_do"
 		(shape input)
 		(at 353.06 190.5 0)
 		(effects
@@ -10438,7 +10438,7 @@
 		)
 		(uuid "391e9864-3a45-51e9-8279-d48debbfda23")
 	)
-	(hierarchical_label "lcd_cs_n"
+	(hierarchical_label "led1_n"
 		(shape output)
 		(at 353.06 193.04 0)
 		(effects
@@ -10647,7 +10647,7 @@
 		)
 		(uuid "71914f28-5205-50e0-bc14-fd752363f22b")
 	)
-	(hierarchical_label "uart_tx"
+	(hierarchical_label "lcd_led"
 		(shape output)
 		(at 281.94 182.88 180)
 		(effects
@@ -10658,7 +10658,7 @@
 		)
 		(uuid "738399c6-fca9-5ac2-8556-17d52d1afc2e")
 	)
-	(hierarchical_label "led0_n"
+	(hierarchical_label "t_cs_n"
 		(shape output)
 		(at 281.94 185.42 180)
 		(effects
@@ -10702,7 +10702,7 @@
 		)
 		(uuid "7a0f71ab-ef56-5ff9-9c72-60958c1ce6d3")
 	)
-	(hierarchical_label "lcd_led"
+	(hierarchical_label "lcd_reset_n"
 		(shape output)
 		(at 353.06 205.74 0)
 		(effects
@@ -10867,7 +10867,7 @@
 		)
 		(uuid "a091f6d5-fb94-5feb-8206-52db8a84fde9")
 	)
-	(hierarchical_label "t_cs_n"
+	(hierarchical_label "lcd_cs_n"
 		(shape output)
 		(at 281.94 175.26 180)
 		(effects
@@ -11054,8 +11054,8 @@
 		)
 		(uuid "d0dd8bc6-84e9-5e90-9ac0-b02e263660e3")
 	)
-	(hierarchical_label "lcd_dc"
-		(shape output)
+	(hierarchical_label "lcd_miso"
+		(shape input)
 		(at 353.06 198.12 0)
 		(effects
 			(font
@@ -11098,7 +11098,7 @@
 		)
 		(uuid "db57b041-3d95-535f-831d-621b03e1737a")
 	)
-	(hierarchical_label "lcd_miso"
+	(hierarchical_label "t_irq"
 		(shape input)
 		(at 353.06 185.42 0)
 		(effects
@@ -11131,7 +11131,7 @@
 		)
 		(uuid "de7516b5-6e16-5e20-a17e-19d797cc4e20")
 	)
-	(hierarchical_label "lcd_reset_n"
+	(hierarchical_label "lcd_mosi"
 		(shape output)
 		(at 353.06 195.58 0)
 		(effects

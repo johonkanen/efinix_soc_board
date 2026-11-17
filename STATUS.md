@@ -326,6 +326,14 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
        shifted 0.48 / 0.47 mm with their vias.
      - eMMC rules regenerated: DS is now the longest, target 367.5 ps; every other signal needs 16-109 ps more
        on its eMMC-side net (the user meanders).
+     **3.3 V I/O re-assigned to cut crossings (2026-11-17, `tools/io_swap.py`).** 16 signals of banks BL3 / BR0 /
+     TR1 changed ball (the touch, LCD, UART and LED nets; MOVES table in the tool); the four signals to J3 kept
+     theirs. Sheet 11, `efinity/pinplan/ti135_pinplan.csv` and `pinplan.py` follow: **regenerate the Interface
+     Designer project.** The 14 routable nets were re-routed with the router: 547 -> 474 mm, 29 -> 23 vias, and
+     the open lcd_dc / lcd_reset_n / lcd_sck / uart_rx are closed. Everything stays on 3.3 V banks (the LCD is
+     3.3 V). led0_n / led1_n (now L8 / M8) have no LED circuit in the schematic any more (ERC lists them).
+     Open now (14): 1V8 x5 (R605 / R606 / R612, C5028 / C5043), GND x2 and 1V1 (C538), 3V3 (the In4 pour at
+     M21), fpga_csi, fpga_creset_n, jtag_tms, jtag_tdi, adc_cs_n.
    - **Left before ordering:** JLCPCB's via-hole-to-track 0.2 mm question (above), the placement preview
      (SOT-563 and oscillator orientation), order options, FPGA sourcing, and the final order files with
      `--skip U1303`.
