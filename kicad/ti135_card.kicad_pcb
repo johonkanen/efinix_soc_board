@@ -73146,6 +73146,173 @@
 	)
 	(footprint "Capacitor_SMD:C_0201_0603Metric"
 		(layer "B.Cu")
+		(uuid "f23b962b-7416-4a26-92a3-f780308a50c5")
+		(at 164.3 73.8 90)
+		(descr "Capacitor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
+		(tags "capacitor")
+		(property "Reference" "C508"
+			(at 0 1.05 270)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "e8500f77-2119-4efb-a911-2263f7cec1f8")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "100n"
+			(at 0 -1.05 270)
+			(layer "B.Fab")
+			(uuid "dc55076c-2e42-46d9-9a04-42b50551fc7c")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 270)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "74d6c628-2ed6-42a7-adc7-e71cd9851d23")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 0 0 270)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "562e197e-d578-4961-8d20-280c5b2ac7bf")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
+			(at 0 0 270)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "b7bf2b1a-b0ff-43b5-ab58-209ca506b9c8")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 0 0 270)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "7eeec5b5-a8ed-4c3a-b5a5-8f40f2936d92")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(path "/55e10be5-a4dc-4519-b64d-07699d83e66a/0d49b86e-73bc-4a97-8015-e24cd63b5ba3")
+		(sheetname "05 fpga_power")
+		(sheetfile "05_fpga_power.kicad_sch")
+		(attr smd)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_poly
+			(pts
+				(xy -0.7 0.35) (xy -0.7 -0.35) (xy 0.7 -0.35) (xy 0.7 0.35)
+			)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(fill no)
+			(layer "B.CrtYd")
+			(uuid "bfcd6e5c-1266-4594-bbfb-5d13d472daac")
+		)
+		(fp_poly
+			(pts
+				(xy -0.3 0.15) (xy -0.3 -0.15) (xy 0.3 -0.15) (xy 0.3 0.15)
+			)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(fill no)
+			(layer "B.Fab")
+			(uuid "f93b7802-b53c-425e-bac5-b1be016a4039")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 0.680001 270)
+			(layer "B.Fab")
+			(uuid "9ff24a92-2ddd-44bb-ae3c-9960900facec")
+			(effects
+				(font
+					(size 0.25 0.25)
+					(thickness 0.04)
+				)
+				(justify mirror)
+			)
+		)
+		(pad "" smd roundrect
+			(at -0.345 0 90)
+			(size 0.318 0.36)
+			(layers "B.Paste")
+			(roundrect_rratio 0.25)
+			(uuid "f25b9cf7-2cfa-48de-8c2f-18aadbe1a5ce")
+		)
+		(pad "" smd roundrect
+			(at 0.345 0 90)
+			(size 0.318 0.36)
+			(layers "B.Paste")
+			(roundrect_rratio 0.25)
+			(uuid "5debc010-9c3f-4ec8-bc1e-9d078b0dcd96")
+		)
+		(pad "1" smd roundrect
+			(at -0.32 0 90)
+			(size 0.46 0.4)
+			(layers "B.Cu" "B.Mask")
+			(roundrect_rratio 0.25)
+			(net "/05 fpga_power/vddpll_mcb_top_phy_ddr")
+			(pintype "passive")
+			(uuid "cd0ae497-6777-4261-92d7-99c0fb1dd64d")
+		)
+		(pad "2" smd roundrect
+			(at 0.32 0 90)
+			(size 0.46 0.4)
+			(layers "B.Cu" "B.Mask")
+			(roundrect_rratio 0.25)
+			(net "GND")
+			(pintype "passive")
+			(uuid "c69813d1-2b67-498b-b69a-ba0763aea7ec")
+		)
+		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0201_0603Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint "Capacitor_SMD:C_0201_0603Metric"
+		(layer "B.Cu")
 		(uuid "f4124d5d-cecd-4c95-b0f8-1e8b259278b5")
 		(at 160.8 80.6)
 		(descr "Capacitor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf)")
@@ -80213,6 +80380,14 @@
 		(layer "B.Cu")
 		(net "GND")
 		(uuid "7c375506-c013-4dcc-bb4f-7f476cfe3e77")
+	)
+	(segment
+		(start 164.3 73.48)
+		(end 163.6 72.6)
+		(width 0.2)
+		(layer "B.Cu")
+		(net "GND")
+		(uuid "7c4bb098-7347-49a4-ba46-82bd2782092e")
 	)
 	(segment
 		(start 154.52 75.7)
@@ -133219,6 +133394,14 @@
 		(layer "B.Cu")
 		(net "/05 fpga_power/vddpll_mcb_top_phy_ddr")
 		(uuid "a5f53148-4ee3-4f0f-ba38-9db841b6a50e")
+	)
+	(segment
+		(start 164.3 74.119999)
+		(end 164 74.6)
+		(width 0.2)
+		(layer "B.Cu")
+		(net "/05 fpga_power/vddpll_mcb_top_phy_ddr")
+		(uuid "b103476b-a859-4e56-96b1-28beb2ad923f")
 	)
 	(via
 		(at 166 74.2)

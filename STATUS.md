@@ -377,10 +377,14 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
      - Checked against TI's data sheet: DIR1 = H, DIR2 = L on the SN74AXC8T245 is A -> B for all 8 bits.
      Still open from the check: via hole to track 0.175 mm at 286 vias and the tracks between J3's pins at
      0.28 mm (ask JLCPCB); through-hole pins connected solid to the planes; which connectors JLCPCB solders;
-     PLL supplies with 1 u only; U1001 pad 0.24 mm against a 0.30 mm ball; C5056 / C5041 / C940 far from their
+     VCCA_BL and VCCA_BR with 1 u only (no courtyard-clean place within 5 mm of R8 / G8); U1001 pad 0.24 mm against a 0.30 mm ball; C5056 / C5041 / C940 far from their
      plane. Order settings: filled and capped vias for the whole board, ENIG, 0.15 mm via option, impedance
      control with JLC08161H-3313, rails on the top and bottom edges only, pin 1 of every polarised part
      checked in the placement preview, U901's 16 thermal holes filled.
+     **100 n on the DDR PLL supply (2026-11-17, user).** C508, 100n 0201 (C190183), from
+     vddpll_mcb_top_phy_ddr to GND: `tools/ddr_pll_cap_sch.py`, `tools/add_parts.py`, `tools/ddr_pll_cap.py`.
+     B.Cu at (164.30, 73.80), supply pad 0.89 mm from W11, links 0.57 / 1.12 mm. DRC with parity 0 / 0 / 0,
+     LPDDR4 timing unchanged. `reports/fab/` must be regenerated.
      **No zone copper under the Ethernet jack (2026-11-17, user: the jack is the card's galvanic isolation).**
      Rule area `j9_no_pour` (x 190.04 to the east edge, y 53.06-70.19, all copper layers; `tools/j9_no_pour.py`).
      Tracks stay (MDI pairs, LED nets). J9's shield tabs and pin 10 (CHS) are GND in the schematic: each has a

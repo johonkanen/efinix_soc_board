@@ -37528,4 +37528,197 @@
 			)
 		)
 	)
+	(symbol
+		(lib_id "ti135_card:C")
+		(at 300.99 184.15 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "0d49b86e-73bc-4a97-8015-e24cd63b5ba3")
+		(property "Reference" "C508"
+			(at 305.73 182.88 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100n"
+			(at 304.63 185.42 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
+			(at 301.955 187.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 300.99 184.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 300.99 184.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C190183"
+			(at 300.99 184.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "e84a3d09-50ed-46d1-8b29-4b572dc1fb37")
+		)
+		(pin "2"
+			(uuid "cdf62490-161b-453a-8341-ffb3ee27fc4f")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/55e10be5-a4dc-4519-b64d-07699d83e66a"
+					(reference "C508")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ti135_card:GND")
+		(at 300.99 190.5 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "c26105d1-3342-4c4d-9a13-91ae508eb49a")
+		(property "Reference" "#PWR05060"
+			(at 300.99 196.85 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 300.99 194.31 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 300.99 190.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 300.99 190.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol for net \"GND\" (IPC net name)"
+			(at 300.99 190.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "b3808357-6117-4f17-8b77-1c9e60892339")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/55e10be5-a4dc-4519-b64d-07699d83e66a"
+					(reference "#PWR05060")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 300.99 177.8) (xy 300.99 180.34)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "eb2a101d-e36a-4a20-9c73-27efd5ca7dfd")
+	)
+	(wire
+		(pts
+			(xy 300.99 187.96) (xy 300.99 190.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "48cf36e7-4928-4cb2-9ac8-eab8d552be1a")
+	)
+	(junction
+		(at 300.99 177.8)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "80687625-6b0b-4005-b41f-7bf46902c703")
+	)
 )
