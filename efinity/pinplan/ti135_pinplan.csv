@@ -71,23 +71,23 @@ rgmii_txd2,out,T6,GPIOB_N_07_CDI16,4B,eth,
 rgmii_txd3,out,P4,GPIOB_P_05,4B,eth,
 j3_oe_n,out,L5,GPIOB_P_09,4B,j3ctl,"OE of all 4 translators, 10k pull-up to 1V8"
 gpio_bypass_rly_isolated,out,K16,GPIOT_P_39_CLK15_P,2C,j3out,via translator
-t_clk,out,H8,GPIOL_33,BL3,lcd,
-t_cs_n,out,H9,GPIOL_32_PLLIN1,BL3,lcd,
-t_din,out,L21,GPIOR_83,TR1,lcd,
-led0_n,out,L8,GPIOR_130_PLLIN1,BR0,led,active low
+t_clk,out,J6,GPIOR_131_PERST_Q0_N,BR0,lcd,
+t_cs_n,out,F5,GPIOL_34_PLLIN1,BL3,lcd,
+t_din,out,H5,GPIOR_132,BR0,lcd,
+led0_n,out,M22,GPIOR_82,TR1,led,active low
 led1_n,out,M8,GPIOR_127_CLK8,BR0,led,active low
-uart_rx,in,G6,GPIOL_28,BL3,uart,pull-up
-uart_tx,out,J6,GPIOR_131_PERST_Q0_N,BR0,uart,
-lcd_cs_n,out,F4,GPIOL_26_CLK24,BL3,lcd,
-lcd_dc,out,F5,GPIOL_34_PLLIN1,BL3,lcd,
+uart_rx,in,K7,GPIOR_128_CLK9,BR0,uart,pull-up
+uart_tx,out,G6,GPIOL_28,BL3,uart,
+lcd_cs_n,out,L22,GPIOR_84,TR1,lcd,
+lcd_dc,out,H9,GPIOL_32_PLLIN1,BL3,lcd,
 lcd_led,out,H7,GPIOL_31,BL3,lcd,
-lcd_mosi,out,K7,GPIOR_128_CLK9,BR0,lcd,
-lcd_reset_n,out,H5,GPIOR_132,BR0,lcd,
-lcd_sck,out,H6,GPIOL_27_CLK25,BL3,lcd,
+lcd_mosi,out,H6,GPIOL_27_CLK25,BL3,lcd,
+lcd_reset_n,out,L21,GPIOR_83,TR1,lcd,
+lcd_sck,out,H8,GPIOL_33,BL3,lcd,
 mdata_dab,in,N20,GPIOR_79,TR1,j3in,
 mdata_inu,in,M20,GPIOR_78_PLLIN1,TR1,j3in,
 mdata_iso,in,N21,GPIOR_80_CLK12,TR1,j3in,
 sdata1_iso,in,N22,GPIOR_81_CLK13,TR1,j3in,
-lcd_miso,in,K6,GPIOR_129_PLLIN1,BR0,lcd,
-t_do,in,L22,GPIOR_84,TR1,lcd,
-t_irq,in,M22,GPIOR_82,TR1,lcd,
+lcd_miso,in,L8,GPIOR_130_PLLIN1,BR0,lcd,
+t_do,in,F4,GPIOL_26_CLK24,BL3,lcd,
+t_irq,in,K6,GPIOR_129_PLLIN1,BR0,lcd,

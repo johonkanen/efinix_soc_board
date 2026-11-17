@@ -108,8 +108,12 @@ The Agilex 5 card (after its 2026-10-24 change) is the same within 0.03 mm.
 
 ## J5: LCD header (1×14, 2.54 mm), not a hard requirement
 
-The LCD is connected with jumper wires. Keep the Ti60/Agilex position anyway: pin 1 at Ti60 (52.912, −14.454) =
-KiCad (152.912, 114.454), pins along +x.
+The LCD is connected with jumper wires. Keep the Ti60/Agilex position anyway: the 14 holes are at KiCad
+x 152.912 … 185.932 (2.54 mm pitch), y 114.454 (Ti60 (52.912, −14.454) is the west hole).
+**Turned 180° on 2026-11-17 (user), to sit like the header of the Agilex 5 card:** pin 1 is now the **east** hole
+(185.932, 114.454) and the pins run along −x, so that 3V3 (pin 14) and GND (pin 13) are at the west end, where the
+Agilex card has its 3V3 and GND. West to east: 3V3, GND, lcd_cs_n, lcd_reset_n, lcd_dc, lcd_miso, lcd_sck, lcd_led,
+lcd_mosi, t_clk, t_cs_n, t_din, t_do, t_irq.
 
 ## J1 (JTAG 1×5) and J2 (UART 1×3), 2.54 mm, top side
 

@@ -356,6 +356,12 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
        (178.8, 97.89). Plane vias: VCORE 5, 1V8 6. The B.Cu output pours stay in two pieces each.
      - In3: the 1V1 arm east of U501 (x 172.85-178.72, y 70.69-81.6) had no user left and is GND again.
      - 3V3 still has no capacitor within 2 mm of balls M21 / G7 / J7.
+     **3V3 decoupling at the balls and J5 turned (2026-11-17).** `tools/caps_3v3.py`: C565 at M21, C563 at G7,
+     C564 beside J7 (100 n, B.Cu, 0.35-0.62 mm of track to the ball via). J5 (LCD header) is turned 180 degrees,
+     pin 1 east, 3V3 / GND at the west end as on the Agilex 5 card (MECHANICAL.md); the 3.3 V balls were
+     assigned again for the reversed order (`tools/io_swap.py`, 14 signals) and 14 nets re-routed. **Regenerate
+     the Interface Designer project.** Open question for the user: the header has lcd_miso in the 6th position and
+     lcd_mosi in the 9th; the common ILI9341 modules have SDI (MOSI) 6th and SDO (MISO) 9th.
    - **Left before ordering:** JLCPCB's via-hole-to-track 0.2 mm question (above), the placement preview
      (SOT-563 and oscillator orientation), order options, FPGA sourcing, and the final order files with
      `--skip U1303`.

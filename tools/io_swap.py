@@ -5,7 +5,8 @@
 MOVES maps signal -> new ball. It must be a permutation of balls that carry a signal today (a move to an unused ball
 would also need the no-connect flag taken off and a label added in sheet 11: not handled here).
 The 3.3 V group (banks BL3, BR0, TR1; 20 signals to J3 in the west, J5 in the south and the UART) was assigned by a
-search that minimises crossings of the straight lines ball -> far end: 45 crossings before, 2 after. The four
+search that minimises crossings of the straight lines ball -> far end: 45 crossings before, 2 after; with J5
+turned 78 before and 2 after. The four
 signals that go west to J3 (mdata_inu, mdata_dab, mdata_iso, sdata1_iso) keep their balls: moving them made
 their routes longer. Route the moved nets afterwards with the router (tools/rgmii_tx.py has the command line;
 --layer-costs 2 -1 1 -1 -1 1 -1 2), then refill the zones."""
@@ -15,9 +16,13 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-MOVES = {"t_irq": "M22", "t_do": "L22", "t_din": "L21", "t_cs_n": "H9", "t_clk": "H8", "lcd_mosi": "K7", "lcd_led": "H7",
-         "uart_rx": "G6", "uart_tx": "J6", "lcd_sck": "H6", "lcd_miso": "K6", "lcd_dc": "F5", "lcd_reset_n": "H5",
-         "lcd_cs_n": "F4", "led1_n": "M8", "led0_n": "L8"}
+# second assignment, for the LCD header J5 turned 180 degrees (pin 1 east, 3V3 at the west end as on the Agilex card).
+# The first one (2026-11-17, header not yet turned) was: t_irq M22, t_do L22, t_din L21, t_cs_n H9, t_clk H8,
+# lcd_mosi K7, lcd_led H7, uart_rx G6, uart_tx J6, lcd_sck H6, lcd_miso K6, lcd_dc F5, lcd_reset_n H5, lcd_cs_n F4,
+# led1_n M8, led0_n L8.
+MOVES = {"lcd_cs_n": "L22", "lcd_reset_n": "L21", "lcd_dc": "H9", "lcd_miso": "L8", "lcd_sck": "H8", "uart_rx": "K7",
+         "uart_tx": "G6", "lcd_mosi": "H6", "t_clk": "J6", "t_cs_n": "F5", "t_din": "H5", "t_do": "F4", "t_irq": "K6",
+         "led0_n": "M22"}
 CSV = os.path.join(ROOT, "efinity", "pinplan", "ti135_pinplan.csv")
 rows = list(csv.DictReader(open(CSV)))
 ball_of = {r["signal"]: r["ball"] for r in rows}
