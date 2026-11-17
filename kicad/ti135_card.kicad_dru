@@ -128,6 +128,11 @@
 (rule "jlc_npth_to_zone"
 	(condition "A.Type == 'Pad' && A.Pad_Type == 'NPTH, mechanical' && B.Type == 'Zone'")
 	(constraint hole_clearance (min 0.3mm)))
+# Ethernet jack shield (J9 CHS pin and shield tabs, net eth_shield): joined to GND only through C952 (1 nF 2 kV)
+# and R951 (1 M). Everything else, plane fills included, keeps 1 mm from it.
+(rule "eth_shield_isolation"
+	(condition "A.NetName == '/09 ethernet/eth_shield' && B.NetName != '/09 ethernet/eth_shield'")
+	(constraint clearance (min 1.0mm)))
 
 
 # J3 corner pins 37/38: the hole positions come from the Ti60 card / baseboard (MECHANICAL.md) and sit

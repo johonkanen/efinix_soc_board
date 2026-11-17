@@ -384,8 +384,12 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
      **No zone copper under the Ethernet jack (2026-11-17, user: the jack is the card's galvanic isolation).**
      Rule area `j9_no_pour` (x 190.04 to the east edge, y 53.06-70.19, all copper layers; `tools/j9_no_pour.py`).
      Tracks stay (MDI pairs, LED nets). J9's shield tabs and pin 10 (CHS) are GND in the schematic: each has a
-     0.3 mm B.Cu track to a GND via at x 189.44. Open question for the user: shield straight on card GND, or a
-     separate chassis net / RC to GND.
+     0.3 mm B.Cu track to a GND via at x 189.44.
+     **Shield through an RC (same day, user):** J9's shield tabs and pin 10 are on the net eth_shield, joined
+     to GND only by C952 (1 nF 2 kV X7R 1206, C9196) and R951 (1 M 1206, C17927, 200 V) on B.Cu beside the
+     tabs (`tools/shield_rc_sch.py`, `tools/shield_rc.py`). Rule `eth_shield_isolation`: 1 mm from every other
+     net, plane fills included. Values chosen by Claude as the usual shield termination; R951 is the weaker
+     part for isolation.
    - **Left before ordering:** JLCPCB's via-hole-to-track 0.2 mm question (above), the placement preview
      (SOT-563 and oscillator orientation), order options, FPGA sourcing, and the final order files with
      `--skip U1303`.

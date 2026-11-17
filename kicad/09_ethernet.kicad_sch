@@ -12631,84 +12631,6 @@
 	)
 	(symbol
 		(lib_id "ti135_card:GND")
-		(at 313.69 127 270)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "f74ac664-4501-53ab-8b13-0ce8ac0d6219")
-		(property "Reference" "#PWR09033"
-			(at 307.34 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 310.39 127 270)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 313.69 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 313.69 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol for net \"GND\" (IPC net name)"
-			(at 313.69 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "f2528dce-61e9-5a30-8f08-506564278475")
-		)
-		(instances
-			(project "ti135_card"
-				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/232c9406-938b-4386-9e9b-bee74439c084"
-					(reference "#PWR09033")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "ti135_card:GND")
 		(at 53.34 246.38 0)
 		(unit 1)
 		(body_style 1)
@@ -12875,8 +12797,8 @@
 		)
 	)
 	(symbol
-		(lib_id "ti135_card:GND")
-		(at 346.71 116.84 90)
+		(lib_id "ti135_card:C")
+		(at 327.66 190.5 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -12884,10 +12806,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "ff54e7f8-0b88-535f-b983-ea5de5e0d341")
-		(property "Reference" "#PWR09034"
-			(at 353.06 116.84 0)
-			(hide yes)
+		(uuid "d2b6cf5c-7257-4465-b707-7b7aad4b0323")
+		(property "Reference" "C952"
+			(at 332.4 189.23 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -12896,19 +12817,18 @@
 				)
 			)
 		)
-		(property "Value" "GND"
-			(at 350.01 116.84 90)
+		(property "Value" "1n 2kV"
+			(at 332.4 191.77 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
 			)
 		)
-		(property "Footprint" ""
-			(at 346.71 116.84 0)
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
+			(at 328.625 194.31 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12919,7 +12839,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 346.71 116.84 0)
+			(at 327.66 190.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12929,8 +12849,19 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol for net \"GND\" (IPC net name)"
-			(at 346.71 116.84 0)
+		(property "Description" "Unpolarized capacitor"
+			(at 327.66 190.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C9196"
+			(at 327.66 190.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12941,15 +12872,235 @@
 			)
 		)
 		(pin "1"
-			(uuid "ab465f88-f815-52b9-9f62-80f62086bb42")
+			(uuid "bdf54c68-049f-4f36-b7c2-31e0f6967a86")
+		)
+		(pin "2"
+			(uuid "ed08a9c5-09bc-4f35-9a91-e58fa9d8badd")
 		)
 		(instances
 			(project "ti135_card"
 				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/232c9406-938b-4386-9e9b-bee74439c084"
-					(reference "#PWR09034")
+					(reference "C952")
 					(unit 1)
 				)
 			)
 		)
+	)
+	(symbol
+		(lib_id "ti135_card:R")
+		(at 340.36 190.5 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "f3f664d5-b80e-4131-bdfd-afd188622cbf")
+		(property "Reference" "R951"
+			(at 345.1 189.23 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1M"
+			(at 345.1 191.77 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
+			(at 338.582 190.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 340.36 190.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 340.36 190.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C17927"
+			(at 340.36 190.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "e100219e-2d53-4de2-beed-568998f04b53")
+		)
+		(pin "2"
+			(uuid "27dd0ce9-7881-4a70-871b-a4817d17fb14")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/232c9406-938b-4386-9e9b-bee74439c084"
+					(reference "R951")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ti135_card:GND")
+		(at 327.66 194.31 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "ee250fc2-739c-476e-ac4b-5726826fa71c")
+		(property "Reference" "#PWR09037"
+			(at 327.66 200.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 327.66 198.12 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 327.66 194.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 327.66 194.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol for net \"GND\" (IPC net name)"
+			(at 327.66 194.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "0d942ef8-cea6-491e-aa40-b42ad2f9eb2e")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/232c9406-938b-4386-9e9b-bee74439c084"
+					(reference "#PWR09037")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 327.66 186.69) (xy 340.36 186.69)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b4141682-a6b0-418d-9b2f-27e7d5c13288")
+	)
+	(wire
+		(pts
+			(xy 327.66 194.31) (xy 340.36 194.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "827bbf3f-14ab-40d6-94ec-a38fee3d71ec")
+	)
+	(label "eth_shield"
+		(at 327.66 186.69 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "2fc2764c-5dca-4538-a657-b6df7651df6d")
+	)
+	(label "eth_shield"
+		(at 346.71 116.84 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "a854a24f-097f-42d2-9693-4991c085ca83")
+	)
+	(label "eth_shield"
+		(at 313.69 127 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "d3649a22-6837-4394-9f1b-8a20efc5d287")
 	)
 )
