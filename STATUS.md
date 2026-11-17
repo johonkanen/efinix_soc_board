@@ -334,6 +334,18 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
      3.3 V). led0_n / led1_n (now L8 / M8) have no LED circuit in the schematic any more (ERC lists them).
      Open now (14): 1V8 x5 (R605 / R606 / R612, C5028 / C5043), GND x2 and 1V1 (C538), 3V3 (the In4 pour at
      M21), fpga_csi, fpga_creset_n, jtag_tms, jtag_tdi, adc_cs_n.
+     **All connections closed (2026-11-17).** DRC with parity: only the 5 eMMC `length_out_of_range` items
+     (the user meanders), 0 unconnected, 0 parity, no courtyard overlap, no dangling end.
+     - Router: fpga_csi, fpga_creset_n, jtag_tms, jtag_tdi, adc_cs_n, Net-(J2-Pin_2).
+     - `tools/open_fixes.py`: track links found by a small grid search for supply pads with no via position
+       nearby (C5028 / C5043; R605 / R606 / R612 to a new 1V8 via at (160.66, 91.95); C551 / C5019 GND); two
+       stitching vias for the In4 3V3 pour at M21 (it had none left: M21 was unpowered); C538 (47 u 1V1) to the
+       1V1 regulator output at (155.2, 54.6).
+     - Two shorts found and removed, both a via in a pad that came out in another part's pad on the far side:
+       Y701 pad 1 (1V8) in Y901's GND pad; R1402 pad 2 (J2 pin 2) in C202's GND pad. **Check the far side
+       before putting a via in a pad.**
+     - `tools/trim_dangling.py` (rounds with a fresh DRC): dangling ends cut back one at a time. The three
+       reference clocks still carried their whole old inner-layer routes as 12-19 mm stubs; gone.
    - **Left before ordering:** JLCPCB's via-hole-to-track 0.2 mm question (above), the placement preview
      (SOT-563 and oscillator orientation), order options, FPGA sourcing, and the final order files with
      `--skip U1303`.
