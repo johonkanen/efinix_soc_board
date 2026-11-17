@@ -20,8 +20,10 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # The first one (2026-11-17, header not yet turned) was: t_irq M22, t_do L22, t_din L21, t_cs_n H9, t_clk H8,
 # lcd_mosi K7, lcd_led H7, uart_rx G6, uart_tx J6, lcd_sck H6, lcd_miso K6, lcd_dc F5, lcd_reset_n H5, lcd_cs_n F4,
 # led1_n M8, led0_n L8.
-MOVES = {"lcd_cs_n": "L22", "lcd_reset_n": "L21", "lcd_dc": "H9", "lcd_miso": "L8", "lcd_sck": "H8", "uart_rx": "K7",
-         "uart_tx": "G6", "lcd_mosi": "H6", "t_clk": "J6", "t_cs_n": "F5", "t_din": "H5", "t_do": "F4", "t_irq": "K6",
+# lcd_miso / lcd_mosi exchanged (H6 <-> L8) the same day: J5 had them in each other's position against the
+# MSP2807 module (tools/mfg_fixes_sch.py, tools/mfg_fixes.py; the copper stays, the nets exchange names).
+MOVES = {"lcd_cs_n": "L22", "lcd_reset_n": "L21", "lcd_dc": "H9", "lcd_miso": "H6", "lcd_sck": "H8", "uart_rx": "K7",
+         "uart_tx": "G6", "lcd_mosi": "L8", "t_clk": "J6", "t_cs_n": "F5", "t_din": "H5", "t_do": "F4", "t_irq": "K6",
          "led0_n": "M22"}
 CSV = os.path.join(ROOT, "efinity", "pinplan", "ti135_pinplan.csv")
 rows = list(csv.DictReader(open(CSV)))

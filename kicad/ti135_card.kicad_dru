@@ -115,6 +115,19 @@
 (rule "jlc_pth_to_track"
 	(condition "A.Type == 'Pad' && A.Pad_Type == 'Through-hole' && B.Type != 'Pad'")
 	(constraint hole_clearance (min 0.28mm)))
+# Holes against zone copper (manufacturability check 2026-11-17): the zone fills keep JLCPCB's published
+# distances, since pulling a fill back costs nothing: via hole to copper 0.2 mm, plated hole to inner copper
+# 0.3 mm, unplated hole to copper 0.2 mm (0.3 here). Tracks stay at 0.175 / 0.28 mm (about 290 vias, most of
+# them at the LPDDR4 balls, and the tracks between J3's pins): ask JLCPCB before paying.
+(rule "jlc_via_hole_to_zone"
+	(condition "A.Type == 'Via' && B.Type == 'Zone'")
+	(constraint hole_clearance (min 0.2mm)))
+(rule "jlc_pth_to_zone"
+	(condition "A.Type == 'Pad' && A.Pad_Type == 'Through-hole' && B.Type == 'Zone'")
+	(constraint hole_clearance (min 0.3mm)))
+(rule "jlc_npth_to_zone"
+	(condition "A.Type == 'Pad' && A.Pad_Type == 'NPTH, mechanical' && B.Type == 'Zone'")
+	(constraint hole_clearance (min 0.3mm)))
 
 
 # J3 corner pins 37/38: the hole positions come from the Ti60 card / baseboard (MECHANICAL.md) and sit

@@ -10317,8 +10317,8 @@
 		)
 		(uuid "1b4e5ee9-1bba-5af9-996f-a478fd8afa47")
 	)
-	(hierarchical_label "lcd_miso"
-		(shape input)
+	(hierarchical_label "lcd_mosi"
+		(shape output)
 		(at 353.06 200.66 0)
 		(effects
 			(font
@@ -10339,8 +10339,8 @@
 		)
 		(uuid "202e1cdd-e1d9-5d6e-bf5f-4d9ba6a7933a")
 	)
-	(hierarchical_label "lcd_mosi"
-		(shape output)
+	(hierarchical_label "lcd_miso"
+		(shape input)
 		(at 281.94 177.8 180)
 		(effects
 			(font

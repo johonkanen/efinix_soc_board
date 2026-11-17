@@ -1259,10 +1259,6 @@
 		(uuid "955a2832-18bc-4f76-afb0-3e63bff2c6ed")
 	)
 	(no_connect
-		(at 243.84 137.16)
-		(uuid "b04cbb79-c337-45f5-9dd1-da32d30476ce")
-	)
-	(no_connect
 		(at 264.16 68.58)
 		(uuid "c784f632-bbf1-4efc-9da8-3eca3dc2c631")
 	)
@@ -7765,5 +7761,93 @@
 				)
 			)
 		)
+	)
+	(symbol
+		(lib_id "ti135_card:GND")
+		(at 238.76 137.16 270)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "df6808a5-382c-4e78-9433-a6b0b46bcb66")
+		(property "Reference" "#PWR12042"
+			(at 232.41 137.16 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 235.46 137.16 270)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 238.76 137.16 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 238.76 137.16 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol for net \"GND\" (IPC net name)"
+			(at 238.76 137.16 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "273fcb05-d802-428f-a5c7-88cef8fbf306")
+		)
+		(instances
+			(project "ti135_card"
+				(path "/c384d3ae-6e7d-47ca-8f4d-7f9f77efe4b7/25009a49-bc15-4aef-b3df-d48f1029afc5"
+					(reference "#PWR12042")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 243.84 137.16) (xy 238.76 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a12dee7d-a0d6-4551-8b03-270f77f56ee2")
 	)
 )

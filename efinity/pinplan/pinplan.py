@@ -113,7 +113,7 @@ SIGNALS = [
     ("mdata_dab", "in", "GPIOR_79", "j3in", ""),
     ("mdata_iso", "in", "GPIOR_80_CLK12", "j3in", ""),
     ("sdata1_iso", "in", "GPIOR_81_CLK13", "j3in", ""),
-    ("lcd_miso", "in", "GPIOR_130_PLLIN1", "lcd", ""),
+    ("lcd_miso", "in", "GPIOL_27_CLK25", "lcd", ""),
     ("t_do", "in", "GPIOL_26_CLK24", "lcd", ""),
     ("t_irq", "in", "GPIOR_129_PLLIN1", "lcd", ""),
     # --- HVIO BR0 (3.3 V): LCD outputs ---
@@ -121,7 +121,7 @@ SIGNALS = [
     ("lcd_reset_n", "out", "GPIOR_83", "lcd", ""),
     ("lcd_dc", "out", "GPIOL_32_PLLIN1", "lcd", ""),
     ("lcd_sck", "out", "GPIOL_33", "lcd", ""),
-    ("lcd_mosi", "out", "GPIOL_27_CLK25", "lcd", ""),
+    ("lcd_mosi", "out", "GPIOR_130_PLLIN1", "lcd", ""),
     ("lcd_led", "out", "GPIOL_31", "lcd", ""),
     # --- HVIO BR1_BL3 (3.3 V): touch outputs, FPGA UART ---
     ("t_cs_n", "out", "GPIOL_34_PLLIN1", "lcd", ""),

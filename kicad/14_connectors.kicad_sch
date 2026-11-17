@@ -4762,8 +4762,8 @@
 		)
 		(uuid "58df5b5c-75d6-5c54-93d2-e51dd7bf34b9")
 	)
-	(hierarchical_label "lcd_mosi"
-		(shape input)
+	(hierarchical_label "lcd_miso"
+		(shape output)
 		(at 63.5 149.86 180)
 		(effects
 			(font
@@ -4806,8 +4806,8 @@
 		)
 		(uuid "6c31a511-30c4-54ab-930f-ca06a7e16686")
 	)
-	(hierarchical_label "lcd_miso"
-		(shape output)
+	(hierarchical_label "lcd_mosi"
+		(shape input)
 		(at 63.5 157.48 180)
 		(effects
 			(font
@@ -7667,5 +7667,16 @@
 				)
 			)
 		)
+	)
+	(text "lcd_mosi / lcd_miso exchanged at J5 2026-11-17"
+		(exclude_from_sim no)
+		(at 20 285 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "8b0f2f86-7a76-4e9a-ba53-871ffdf00654")
 	)
 )

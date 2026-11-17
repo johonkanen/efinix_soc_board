@@ -362,6 +362,25 @@ rail, not per VCCIO bank as the Efinix checklist lists it.
      assigned again for the reversed order (`tools/io_swap.py`, 14 signals) and 14 nets re-routed. **Regenerate
      the Interface Designer project.** Open question for the user: the header has lcd_miso in the 6th position and
      lcd_mosi in the 9th; the common ILI9341 modules have SDI (MOSI) 6th and SDO (MISO) 9th.
+     **Manufacturability check (2026-11-17).** Three independent reviews by `MFG_CHECK.md` (fabrication,
+     assembly, design match); reports in `reports/mfg_check/` (git-ignored). No short, open or schematic
+     mismatch found. Fixed the same day (`tools/mfg_fixes_sch.py`, `tools/mfg_fixes.py`):
+     - `.kicad_dru`: zone fills keep 0.2 mm from via holes and 0.3 mm from plated / unplated pad holes
+       (JLCPCB's published limits); no hole is closer to zone copper now, planes still one piece.
+     - lcd_mosi / lcd_miso exchanged (MOSI on L8 and J5 pin 9, MISO on H6 and J5 pin 6): they were in each
+       other's position against the MSP2807 module. Copper unchanged. **Regenerate the Interface Designer
+       project.**
+     - Escape vias of balls H5, G6, F5, L8, H6 centred in the ball (K6 stays 0.10 mm off: C564's GND pad).
+     - Reference designators hidden on the silkscreen. U1204 pin 5 (A3) tied to GND. Three thin junctions
+       (lcd_led at J5.7, U1302 pin 4, VCORE sense) run into the pad / via.
+     - R804 added: 10k 0201 (C106225) from ddr_rst_n to GND, B.Cu at U801 T11's via.
+     - Checked against TI's data sheet: DIR1 = H, DIR2 = L on the SN74AXC8T245 is A -> B for all 8 bits.
+     Still open from the check: via hole to track 0.175 mm at 286 vias and the tracks between J3's pins at
+     0.28 mm (ask JLCPCB); through-hole pins connected solid to the planes; which connectors JLCPCB solders;
+     PLL supplies with 1 u only; U1001 pad 0.24 mm against a 0.30 mm ball; C5056 / C5041 / C940 far from their
+     plane. Order settings: filled and capped vias for the whole board, ENIG, 0.15 mm via option, impedance
+     control with JLC08161H-3313, rails on the top and bottom edges only, pin 1 of every polarised part
+     checked in the placement preview, U901's 16 thermal holes filled.
    - **Left before ordering:** JLCPCB's via-hole-to-track 0.2 mm question (above), the placement preview
      (SOT-563 and oscillator orientation), order options, FPGA sourcing, and the final order files with
      `--skip U1303`.
