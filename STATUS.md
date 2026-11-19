@@ -1,6 +1,6 @@
 # Status and handoff
 
-Last updated: **2026-11-15** (eMMC delay-matched, flash resistors at the FPGA, 3V3 pours on In4; see the end of open item 1 under "Where we left off (2026-11-12)"). Read this first if you are picking the work up (human or agent).
+Last updated: **2026-11-19** (the board was ordered from JLCPCB on 2026-11-17; see "Board ordered" below). Read this first if you are picking the work up (human or agent).
 
 ## What this repository is
 
@@ -21,6 +21,22 @@ card, and plugs into the same baseboard.
 | `POWER_BUDGET.md` | Rail estimate, 5V_ISOL input limit, regulator choice (AP61203 / AP61202 since 2026-11-13), divider values |
 | `reference/` | `ti135n484_pinout.csv` (all 484 balls, from the Efinity device DB), `baseboard_j11_pinout.csv` (baseboard signal header, the authority for J3) |
 | `efinity/pinplan/` | `pinplan.py` builds the Interface Designer project for the pin plan; `ti135_pinplan.csv` is the signal → ball result |
+
+## Board ordered (2026-11-17)
+
+The user ordered the board from JLCPCB on 2026-11-17. The order files were the ones generated from commit `0fbbb14`
+(with C508) and copied to `C:\dev\efinix_soc_jlc` that evening; that this is the ordered revision is inferred from
+the dates, not stated by the user. **Do not change `kicad/` for this revision any more**: board changes from here on
+are a new revision.
+
+After the order (2026-11-19):
+- Tz100N484 against Ti135N484: pinout spreadsheets (Tz100 v0.6, Ti135 v0.8, all 484 balls), IBIS buffer models (all
+  120 Topaz models), package RLC and the net-length sheets (233 balls) are identical. Data sheets not compared.
+- eMMC ball map checked against Kioxia's data sheet (all 33 connected balls).
+- `efinity/io_test/make_io_test.py`: a test design with a flop on every core-side port of the pin plan builds through
+  Efinity 2026.1 for Ti135N484 I3 (map, interface, place and route, bitstream: all pass). Efinity's pinout report
+  matches the board on all 92 GPIO / PLL reference signals and on the 57 connected DDR balls. In `pinplan.py` the DDR
+  and SoC clock pins now name PLL outputs.
 
 ## Where we left off (2026-11-12)
 

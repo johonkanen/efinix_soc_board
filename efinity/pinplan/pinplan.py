@@ -196,8 +196,9 @@ def main():
         "CLKIN_SEL": "CLKIN 2",
         "TARGET0_EN": "1",
         "TARGET1_EN": "0",  # AXI 1 is not available when the hard RISC-V (QCRV32) is used
-        "AXI0_CLK_INPUT_PIN": "ddr_axi0_clk",
-        "CTRL_CLK_PIN": "ddr_ctrl_clk",
+        "AXI0_CLK_INPUT_PIN": "pll_bl2_CLKOUT0",  # placeholder clock plan: PLL outputs, so the
+        # generated constraints are complete (efinity/io_test builds this project through place and route)
+        "CTRL_CLK_PIN": "pll_bl2_CLKOUT0",
         # FPGA DQ/DQS drive 40 ohm (Efinity default 34.3): the routed-board IBIS run (sim/lpddr4_si/README.md) used
         # 40 ohm, and the Efinix IBIS file has no 34.3 ohm driver model. CA/CK/CKE drive has no setting.
         "DQ_PD_DRV_STRENGTH": "40",
@@ -225,7 +226,7 @@ def main():
     d.create_block("soc", block_type="SOC")
     d.assign_resource("soc", "SOC_0", block_type="SOC")
     d.set_property("soc", {"SYS_CLK_SOURCE": "Clock 0", "MEM_CLK_SOURCE": "Clock 1",
-                           "IO_PERIPHERALCLK_PIN": "soc_periph_clk"}, block_type="SOC")
+                           "IO_PERIPHERALCLK_PIN": "pll_bl0_CLKOUT0"}, block_type="SOC")
 
     try:
         ok = d.check_design()
